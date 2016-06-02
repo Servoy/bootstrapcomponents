@@ -6,6 +6,7 @@ Responsive-Layout: True
 Bundle-Name: Bootstrap Components
 Bundle-SymbolicName: bootstrapcomponents
 Bundle-Version: 1.0.1
+Package-Type: Web-Component
 
 Name: button/button.spec
 Web-Component: True
