@@ -30,6 +30,20 @@ angular.module('bootstrapcomponentsTablesspanel',['servoy']).directive('bootstra
 				}	
 		  });
 		
+    	  $scope.$watch("model.visible", function(newValue,oldValue) {
+  	  		if ($scope.model.containedForm && newValue !== oldValue)
+  	  		{
+  	  			if (newValue)
+  	  			{
+  	  				$scope.svyServoyapi.formWillShow($scope.model.containedForm,$scope.model.relationName);
+  	  			}
+  	  			else
+  	  			{
+  	  				$scope.svyServoyapi.hideForm($scope.model.containedForm);
+  	  			}	
+			}	
+		  });
+    	  
     	  $scope.getContainerStyle = function() {
     		  var height = 0;
     		  if ($scope.model.height)

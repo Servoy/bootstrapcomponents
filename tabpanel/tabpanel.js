@@ -90,6 +90,20 @@ angular.module('bootstrapcomponentsTabpanel',['servoy']).directive('bootstrapcom
 				}	
 		  });
 		  
+    	  $scope.$watch("model.visible", function(newValue,oldValue) {
+    	  		if ($scope.model.tabIndex && newValue !== oldValue && $scope.model.tabs && $scope.model.tabs[$scope.model.tabIndex-1] && $scope.model.tabs[$scope.model.tabIndex-1].containedForm)
+    	  		{
+    	  			if (newValue)
+    	  			{
+    	  				$scope.svyServoyapi.formWillShow($scope.model.tabs[$scope.model.tabIndex-1].containedForm,$scope.model.tabs[$scope.model.tabIndex-1].relationName);
+    	  			}
+    	  			else
+    	  			{
+    	  				$scope.svyServoyapi.hideForm($scope.model.tabs[$scope.model.tabIndex-1].containedForm);
+    	  			}	
+  			}	
+  		  });
+    	  
 		   $scope.$watch("model.tabs", function(newValue,oldValue) {
     	  		if (newValue != oldValue)
     	  		{
