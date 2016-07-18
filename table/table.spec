@@ -31,17 +31,19 @@
 	"handlers":
 	{
 		"onCellClick" : {
-	        	"parameters":[
-					{
-						"name":"row",
-						"type":"int"
-					},
-					{
-						"name":"column",
-						"type":"int"
-					}
-				]
-		},
+			"description": "Called when the mouse is clicked on a row/cell (row and column are given) or\nwhen the ENTER key is used then only the selected row is given",
+        	"parameters":[
+				{
+					"name":"row",
+					"type":"int"
+				},
+				{
+					"name":"column",
+					"type":"int",
+					"optional":true
+				}
+			]
+	},
 		"onHeaderClick" : {
 	        	"parameters":[
 					{
