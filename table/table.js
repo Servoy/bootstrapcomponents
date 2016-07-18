@@ -6,16 +6,23 @@ angular.module('bootstrapcomponentsTable',['servoy']).directive('bootstrapcompon
        	handlers: "=svyHandlers"
       },
       link: function($scope, $element, $attrs) {
-    	  $scope.$watch('model.foundset.serverSize', function (newValue) {
+    	  $scope.$watch('model.foundset.serverSize', function (newValue,oldValue) {
     		  if (newValue)
     		  {
     			  if (!$scope.showPagination())
     			  {
     				  $scope.model.foundset.loadRecordsAsync(0, newValue);
-    			  }
+    			  } 
     			  else
     			  {
-    				  $scope.model.foundset.loadRecordsAsync($scope.model.pageSize * ($scope.model.currentPage -1), $scope.model.pageSize);
+    				  if ($scope.model.pageSize * ($scope.model.currentPage -1) > newValue)
+    				  {
+    					  $scope.model.currentPage =  Math.floor(newValue / $scope.model.pageSize) + 1;
+    				  }
+    				  else
+    				  {
+    					  $scope.model.foundset.loadRecordsAsync($scope.model.pageSize * ($scope.model.currentPage -1), $scope.model.pageSize);
+    				  }	  
     			  }	  
     		  }	  
           });
