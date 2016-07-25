@@ -140,7 +140,7 @@ angular.module('bootstrapcomponentsTabpanel',['servoy']).directive('bootstrapcom
     	  
     	  $scope.showEditorHint = function()
     	  {
-    		  return (!$scope.model.tabs || $scope.model.tabs.length == 0) && $element[0].getAttribute("svy-id") !== null;
+    		  return (!$scope.model.tabs || $scope.model.tabs.length == 0) && $scope.svyServoyapi.isInDesigner();
     	  }
     	  
       },

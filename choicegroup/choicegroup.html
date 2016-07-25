@@ -1,7 +1,15 @@
-<div ng-class='model.styleClass' ng-if='model.valuelistID== null || model.valuelistID.length == 0' ng-if='model.visible'>
+<div ng-class='model.styleClass' ng-if='svyServoyapi.isInDesigner()' ng-if='model.visible'>
   <label>
   	<input type="{{model.inputType}}"/>
-  	 <span>Select a valuelist</span>
+  	 <span>Item 1</span>
+  </label>
+  <label>
+  	<input type="{{model.inputType}}"/>
+  	 <span>Item 2</span>
+  </label>
+  <label>
+  	<input type="{{model.inputType}}"/>
+  	 <span>Item 3</span>
   </label>
 </div>
 <div class='bts-radiogroup' ng-class='model.styleClass' ng-if='model.visible'>
