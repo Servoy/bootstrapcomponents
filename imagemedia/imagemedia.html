@@ -1,4 +1,4 @@
-<img class='bts-media' ng-src='{{model.dataProviderID.url}}'
+<img class='bts-media' ng-src='{{model.dataProviderID != null && model.dataProviderID.url ? model.dataProviderID.url : model.dataProviderID }}'
 	ng-class='model.styleClass'
 	sablo-tabseq='model.tabSeq'
 	alt="{{model.alternate}}"
