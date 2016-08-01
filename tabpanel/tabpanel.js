@@ -37,10 +37,18 @@ angular.module('bootstrapcomponentsTabpanel',['servoy']).directive('bootstrapcom
     				  $scope.svyServoyapi.formWillShow(tab.containedForm, tab.relationName);
     			  }
     			  else {
-					var promise =  $scope.svyServoyapi.hideForm($scope.model.tabs[$scope.model.tabIndex-1].containedForm);
+    				tab.active = false;
+    				$scope.model.tabs[$scope.model.tabIndex-1].active = true;
+					var promise =  $scope.svyServoyapi.hideForm($scope.model.tabs[$scope.model.tabIndex-1].containedForm, null,null,tab.containedForm, tab.relationName);
 					promise.then(function(ok) {
-					  $scope.model.tabIndex = getTabIndex(tab)+1;
-    			 	  $scope.svyServoyapi.formWillShow(tab.containedForm, tab.relationName);
+					  if (ok) {
+						  $scope.model.tabs[$scope.model.tabIndex-1].active = false;
+						  $scope.model.tabIndex = getTabIndex(tab)+1;
+						  tab.active = true;
+					  }
+					  else {
+						  $scope.model.tabs[$scope.model.tabIndex-1].active = true;
+					  }
 					})  
     			  }
     		  }	  
