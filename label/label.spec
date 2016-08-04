@@ -10,7 +10,7 @@
 			"enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["onActionMethodID","onDoubleClickMethodID","onRightClickMethodID"] },
 	    	"labelFor" : { "type" : "string", "tags": { "scope" :"design" } },
 			"styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "values" :["label","label-default","label-primary","label-success","label-info","label-warning","label-danger"]},
-	    	"text" : {"type":"tagstring" , "default":"Label", "tags": { "directEdit" : "true" }},
+	    	"text" : {"type":"tagstring" , "initialValue":"Label", "tags": { "directEdit" : "true" }},
 	    	"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
 	    	"visible" : "visible"
 	},
