@@ -7,5 +7,5 @@
     "wikiUrl": "https://github.com/Servoy/bootstrapcomponents/wiki",
     "sourceUrl" : "https://github.com/Servoy/bootstrapcomponents",
     "releases" : [{"version":"1.0.1","url":"https://github.com/Servoy/bootstrapcomponents/releases/download/v1.0.1/bootstrapcomponents.zip"},
-                  {"version":"1.0.2","url":"https://github.com/Servoy/bootstrapcomponents/releases/download/v1.0.2/bootstrapcomponents.zip", "servoy-version":"8.1", "dependency":"12grid#>1.0.2"}]
+                  {"version":"1.0.2","url":"https://github.com/Servoy/bootstrapcomponents/releases/download/v1.0.2/bootstrapcomponents.zip", "servoy-version":"8.1", "dependency":"12grid#>=1.0.2"}]
 }
