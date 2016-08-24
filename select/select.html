@@ -1,10 +1,12 @@
 <select 	svy-change='handlers.onActionMethodID($event)'
 			ng-class='model.styleClass' class='bts-select'
 			ng-model='model.dataProviderID'
-			ng-options='value.realValue as value.displayValue for value in model.valuelistID'
 			ng-if='model.visible'
 			ng-disabled="!model.enabled"
 			sablo-tabseq='model.tabSeq'
 			svy-autoapply
 			id="{{::model.svyMarkupId}}">
+			<option ng-selected="model.dataProviderID === value.realValue" ng-repeat="value in model.valuelistID" value="{{value.realValue}}">
+				{{value.realValue | showDisplayValue:model.valuelistID}}
+			</option>
 </select>
