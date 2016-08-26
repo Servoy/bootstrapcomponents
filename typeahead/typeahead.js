@@ -1,4 +1,4 @@
-angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapcomponentsTypeahead', ['formatFilterFilter','$q', function(formatFilter,$q) {
+angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapcomponentsTypeahead', ['formatFilterFilter', function(formatFilter) {
   return {
     restrict: 'E',
     scope: {
@@ -11,6 +11,8 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
 
       $scope.ngModel = $element.controller('ngModel');
     	
+      var resolvingDisplayValue = false;
+      
       $scope.formatLabel = function(model) {
         var displayFormat = undefined;
         var type = undefined;
@@ -27,9 +29,16 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
           }
           if (!found && typeof realValue === typeof $scope.model.valuelistID[0].realValue)
           {
-        	  $scope.model.valuelistID.getDisplayValue(realValue).then(function(dispValue){
-        		  displayValue = dispValue;
-        	  });       	  
+        	  if(!resolvingDisplayValue) {
+        		  resolvingDisplayValue = true;
+	        	  $scope.model.valuelistID.getDisplayValue(realValue).then(function(dispValue){
+	        		  $scope.model.valuelistID.push({realValue:realValue, displayValue:dispValue});
+	        		  resolvingDisplayValue = false;
+	        		  $scope.ngModel.$modelValue = null;//needed to force the format to be applied again
+	        	  }, function(reason) {
+	        	  	  resolvingDisplayValue = false; 
+	        	  });  
+        	  }
           }
         } else {
           displayValue = model;
