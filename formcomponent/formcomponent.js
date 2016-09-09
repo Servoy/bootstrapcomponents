@@ -18,7 +18,9 @@ angular.module('bootstrapcomponentsFormcomponent',['servoy']).directive('bootstr
         				   var template = "<div style='position:relative;";
         				   if ($scope.model.height) template += "height:" +$scope.model.height + "px;"
         				   if ($scope.model.width) template += "width:" +$scope.model.width + "px;"
-        				   template += "'></div>";
+        				   template += "'";
+        				   if ($scope.model.styleClass)  template += " class='" +$scope.model.styleClass + "'";
+        				   template += "></div>";
         				   var div = $compile(template)($scope);
         				   div.append(elements);
         				   $element.append(div);
