@@ -11,7 +11,10 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 			var child = $element.children();
 			var ngModel = child.controller("ngModel");
 
-			child.datetimepicker();
+			child.datetimepicker({
+				showTodayButton: true,
+				calendarWeeks: true
+			});
 
 			$scope.$watch('model.format', function(){
 				setDateFormat($scope.model.format);
