@@ -46,7 +46,10 @@
 	},
 	"api":
 	{
-
+			"requestFocus": {
+				"delayUntilFormLoads": true,
+				"discardPreviouslyQueuedSimilarCalls": true
+	        }
 	}
 
 }

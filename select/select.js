@@ -9,7 +9,13 @@ angular.module('bootstrapcomponentsSelect',['servoy']).directive('bootstrapcompo
       },
       link: function($scope, $element, $attrs) {
 
-         
+    	  /**
+           * Set the focus to combobox.
+           * @example %%prefix%%%%elementName%%.requestFocus();
+           */
+          $scope.api.requestFocus = function() { 
+	         $element.find('select')[0].focus();
+          }
       },
       templateUrl: 'bootstrapcomponents/select/select.html'
     };

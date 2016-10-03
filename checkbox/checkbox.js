@@ -50,6 +50,15 @@ angular.module('bootstrapcomponentsCheckbox',['servoy']).directive('bootstrapcom
         		  return $scope.model.dataProviderID > 0;
         	  }
           }
+          
+          /**
+			 * Request the focus to this checkbox.
+			 * 
+			 * @example %%prefix%%%%elementName%%.requestFocus();
+			 */
+			$scope.api.requestFocus = function(mustExecuteOnFocusGainedMethod) {
+				$element.find('input')[0].focus();
+			}
       },
       templateUrl: 'bootstrapcomponents/checkbox/checkbox.html'
     };

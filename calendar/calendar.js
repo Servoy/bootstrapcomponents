@@ -69,6 +69,10 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 				$scope.$digest();
 			});
 			
+			$scope.api.requestFocus = function(mustExecuteOnFocusGainedMethod) {
+				$element.find('input')[0].focus();
+			}
+			
 		},
 		templateUrl: 'bootstrapcomponents/calendar/calendar.html'
 	};

@@ -65,6 +65,14 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
           $scope.svyServoyapi.apply('dataProviderID');
         }
       }
+      
+      /**
+		 * Request the focus to this typeahead.
+		 * @example %%prefix%%%%elementName%%.requestFocus();
+		 */
+		$scope.api.requestFocus = function(mustExecuteOnFocusGainedMethod) { 
+			$element[0].focus();
+		}
     },
     templateUrl: 'bootstrapcomponents/typeahead/typeahead.html',
     replace: true

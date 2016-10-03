@@ -3,6 +3,7 @@ angular.module('bootstrapcomponentsTextbox',['servoy']).directive('bootstrapcomp
       restrict: 'E',
       scope: {
        	model: "=svyModel",
+       	api: "=svyApi",
        	handlers: "=svyHandlers"
       },
       link: function($scope, $element, $attrs) {
@@ -19,6 +20,14 @@ angular.module('bootstrapcomponentsTextbox',['servoy']).directive('bootstrapcomp
     			  else formatState = $formatterUtils.createFormatState($element, $scope, ngModel,true,$scope.model.format);
     		  }	  
     	  })
+    	  
+    	  /**
+	    	* Request the focus to this text field.
+	    	* @example %%prefix%%%%elementName%%.requestFocus();
+	    	*/
+			$scope.api.requestFocus = function() { 
+    		  $element.find('input')[0].focus();
+			}
       },
       templateUrl: 'bootstrapcomponents/textbox/textbox.html'
     };

@@ -67,6 +67,14 @@ angular.module('bootstrapcomponentsChoicegroup',['servoy']).directive('bootstrap
     		  if(ret === "") ret =null
     		  return ret;
     	  }
+    	  
+    	  /**
+           * Set the focus to the first checkbox.
+           * @example %%prefix%%%%elementName%%.requestFocus();
+           */
+          $scope.api.requestFocus = function(mustExecuteOnFocusGainedMethod) { 
+	         $element.find('input')[0].focus();
+          }
       },
       templateUrl: 'bootstrapcomponents/choicegroup/choicegroup.html'
     };
