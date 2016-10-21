@@ -9,10 +9,11 @@ angular.module('bootstrapcomponentsTablesspanel',['servoy']).directive('bootstra
       },
       controller: function($scope, $element, $attrs) {
     	  
+    	  var realContainedForm = $scope.model.containedForm;
     	  $scope.getActiveTabUrl = function() {
-    		  if ($scope.model.containedForm)
+    		  if (realContainedForm)
     		  {
-    			  return $scope.svyServoyapi.getFormUrl($scope.model.containedForm)
+    			  return $scope.svyServoyapi.getFormUrl(realContainedForm)
     		  }  
     		  return "";
     	  }
@@ -25,8 +26,15 @@ angular.module('bootstrapcomponentsTablesspanel',['servoy']).directive('bootstra
     	  $scope.$watch("model.containedForm", function(newValue,oldValue) {
     	  		if (newValue !== oldValue)
     	  		{
-					if (newValue) $scope.svyServoyapi.formWillShow(newValue,$scope.model.relationName);
-					if (oldValue) $scope.svyServoyapi.hideForm(oldValue);
+					if (oldValue) {
+						$scope.svyServoyapi.hideForm(oldValue,null,null,newValue,$scope.model.relationName,null).then(function(ok) {
+							realContainedForm = $scope.model.containedForm;
+						})
+					}
+					else if (newValue) {
+						$scope.svyServoyapi.formWillShow(newValue,$scope.model.relationName);
+						realContainedForm = $scope.model.containedForm;
+					}
 				}	
 		  });
 		
