@@ -28,13 +28,17 @@ angular.module('bootstrapcomponentsTablesspanel',['servoy']).directive('bootstra
     	  		{
 					if (oldValue) {
 						$scope.svyServoyapi.hideForm(oldValue,null,null,newValue,$scope.model.relationName,null).then(function(ok) {
+							if (ok && newValue) {
+								$scope.svyServoyapi.formWillShow(newValue,$scope.model.relationName);
+							}
 							realContainedForm = $scope.model.containedForm;
-						})
+						});
 					}
 					else if (newValue) {
 						$scope.svyServoyapi.formWillShow(newValue,$scope.model.relationName);
 						realContainedForm = $scope.model.containedForm;
 					}
+
 				}	
 		  });
 		
