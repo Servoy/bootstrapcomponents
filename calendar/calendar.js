@@ -1,4 +1,4 @@
-angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcomponentsCalendar', function($log) {  
+angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcomponentsCalendar', function($sabloApplication,$log) {  
 	return {
 		restrict: 'E',
 		scope: {
@@ -11,10 +11,16 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 			var child = $element.children();
 			var ngModel = child.controller("ngModel");
 
-			child.datetimepicker({
+			var options = {
 				showTodayButton: true,
 				calendarWeeks: true
-			});
+			}
+
+			var locale = $sabloApplication.getLocale();
+			if (locale.language) {
+				options.locale = locale.language;
+			}
+			child.datetimepicker(options);
 
 			$scope.$watch('model.format', function(){
 				setDateFormat($scope.model.format);
