@@ -4,7 +4,8 @@ angular.module('bootstrapcomponentsLabel',['servoy'])
       restrict: 'E',
       scope: {
        	model: "=svyModel",
-       	handlers: "=svyHandlers"
+       	handlers: "=svyHandlers",
+       	servoyApi: "=svyServoyapi"
       },
       controller: function($scope, $element, $attrs) {
     	var templateUrl = $scope.model.labelFor ? "bootstrapcomponents/label/labelfor.html" : "bootstrapcomponents/label/label.html";
