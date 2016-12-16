@@ -1,6 +1,6 @@
 {
 	"name": "bootstrapcomponents-formcomponent",
-	"displayName": "FormComponent",
+	"displayName": "FormComponentContainer",
 	"version": 1,
 	"icon": "bootstrapcomponents/formcomponent/form.gif",
 	"definition": "bootstrapcomponents/formcomponent/formcomponent.js", 
