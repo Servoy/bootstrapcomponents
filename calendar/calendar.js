@@ -71,8 +71,11 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 			$element.on("dp.change",inputChanged);
 
 			$element.on("dp.error",function(){
-				ngModel.$setValidity("", false);
-				$scope.$digest();
+				if (child.children("input").val() !== '')
+				{
+					ngModel.$setValidity("", false);
+					$scope.$digest();
+				}	
 			});
 			
 			$scope.api.requestFocus = function(mustExecuteOnFocusGainedMethod) {
