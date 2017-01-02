@@ -8,7 +8,7 @@
       	svy-autoapply
       	ng-if='model.visible'
       	ng-disabled="!model.enabled"
-	    ng-readonly="model.readOnly"
+	    ng-readonly="model.readOnly || !model.editable"
 		sablo-tabseq='model.tabSeq'
 		id="{{::model.svyMarkupId}}"
 	    >

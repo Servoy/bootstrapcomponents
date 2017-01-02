@@ -2,7 +2,7 @@
 	    ng-class='model.styleClass' class='bts-textbox'
 	    ng-model="model.dataProviderID"
 	    ng-disabled="!model.enabled"
-	    ng-readonly="model.readOnly"
+	    ng-readonly="model.readOnly || !model.editable"
 	    placeholder="{{model.placeholderText}}"
 	    svy-focusgained='handlers.onFocusGainedMethodID($event)'
 	   	svy-focuslost='handlers.onFocusLostMethodID($event)'
