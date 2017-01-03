@@ -2,7 +2,7 @@
 	"name": "bootstrapcomponents-imagemedia",
 	"displayName": "Image Media",
 	"version": 1,
-	"icon": "servoydefault/imagemedia/IMG16.png",
+	"icon": "bootstrapcomponents/imagemedia/IMG16.png",
 	"definition": "bootstrapcomponents/imagemedia/imagemedia.js",
 	"libraries": [],
 	"model":

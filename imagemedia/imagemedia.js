@@ -3,6 +3,7 @@ angular.module('bootstrapcomponentsImagemedia',['servoy']).directive('bootstrapc
       restrict: 'E',
       scope: {
         model: "=svyModel",
+        svyServoyapi: "=",
         handlers: "=svyHandlers"
       },
       controller: function($scope, $element, $attrs) {  
