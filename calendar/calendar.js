@@ -38,7 +38,7 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 				try {
 					$element.off("dp.change",inputChanged);
 					var x = child.data('DateTimePicker');
-					if (x) x.date(angular.isDefined(ngModel.$viewValue) ? ngModel.$viewValue : null); // set default date for widget open; turn undefined to null as well (undefined gives exception)
+					if (x && !$scope.model.findmode) x.date(angular.isDefined(ngModel.$viewValue) ? ngModel.$viewValue : null); // set default date for widget open; turn undefined to null as well (undefined gives exception)
 					else {
 						// in find mode 
 						child.children("input").val(ngModel.$viewValue);
