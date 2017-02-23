@@ -40,7 +40,7 @@ angular.module('bootstrapcomponentsChoicegroup',['servoy']).directive('bootstrap
     	  function setSelectionFromDataprovider(){
     		  $scope.selection =[]
     		  if($scope.model.dataProviderID === null || $scope.model.dataProviderID === undefined) return;
-    		  var arr = $scope.model.dataProviderID.split('\n')
+    		  var arr = $scope.model.dataProviderID.split ? $scope.model.dataProviderID.split('\n') : [$scope.model.dataProviderID];
     		  arr.forEach(function(element, index, array){
     			  for(var i=0;i<$scope.model.valuelistID.length;i++){
     				  var item= $scope.model.valuelistID[i];
