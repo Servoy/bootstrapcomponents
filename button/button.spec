@@ -4,7 +4,7 @@
 	"version": 1,
 	"icon": "servoydefault/button/button.gif",
 	"definition": "bootstrapcomponents/button/button.js",
-	"libraries": [],
+	"libraries": [{"name":"bootstrapcomponents-button-css", "version":"1.0", "url":"bootstrapcomponents/button/button.css", "mimetype":"text/css"}],
 	"model":
 	{
 		"enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["onActionMethodID","onDoubleClickMethodID","onRightClickMethodID"] },

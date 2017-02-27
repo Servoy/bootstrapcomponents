@@ -4,7 +4,7 @@
 	"version": 1,
 	"icon": "servoydefault/label/text.gif",
 	"definition": "bootstrapcomponents/label/label.js",
-	"libraries": [],
+	"libraries": [{"name":"bootstrapcomponents-label-css", "version":"1.0", "url":"bootstrapcomponents/label/label.css", "mimetype":"text/css"}],
 	"model":
 	{
 			"enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["onActionMethodID","onDoubleClickMethodID","onRightClickMethodID"] },

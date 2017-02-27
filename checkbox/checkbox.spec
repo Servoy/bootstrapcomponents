@@ -4,7 +4,7 @@
 	"version": 1,
 	"icon": "servoydefault/check/CHECKBOX16.png",
 	"definition": "bootstrapcomponents/checkbox/checkbox.js",
-	"libraries": [],
+	"libraries": [{"name":"bootstrapcomponents-checkbox-css", "version":"1.0", "url":"bootstrapcomponents/checkbox/checkbox.css", "mimetype":"text/css"}],
 	"model":
 	{
 	        "dataProviderID" : { "type":"dataprovider", "pushToServer": "allow", "tags": { "scope" :"design" }, "ondatachange": { "onchange":"onDataChangeMethodID", "callback":"onDataChangeCallback"}},

@@ -4,7 +4,7 @@
 	"version": 1,
 	"icon": "servoydefault/textarea/TEXTAREA16.png",
 	"definition": "bootstrapcomponents/textarea/textarea.js",
-	"libraries": [],
+	"libraries": [{"name":"bootstrapcomponents-textarea-css", "version":"1.0", "url":"bootstrapcomponents/textarea/textarea.css", "mimetype":"text/css"}],
 	"model":
 	{
 			"dataProviderID" : { "type":"dataprovider", "pushToServer": "allow","tags": { "scope" :"design" }, "ondatachange": { "onchange":"onDataChangeMethodID", "callback":"onDataChangeCallback"}},

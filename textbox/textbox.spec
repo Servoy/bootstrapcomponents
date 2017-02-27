@@ -4,7 +4,7 @@
 	"version": 1,
 	"icon": "servoydefault/textfield/textinput.png",
 	"definition": "bootstrapcomponents/textbox/textbox.js",
-	"libraries": [],
+	"libraries": [{"name":"bootstrapcomponents-textbox-css", "version":"1.0", "url":"bootstrapcomponents/textbox/textbox.css", "mimetype":"text/css"}],
 	"model":
 	{
 			"dataProviderID" : { "type":"dataprovider", "pushToServer": "allow","tags": { "scope" :"design" }, "ondatachange": { "onchange":"onDataChangeMethodID", "callback":"onDataChangeCallback"}},

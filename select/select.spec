@@ -4,7 +4,7 @@
 	"version": 1,
 	"icon": "servoydefault/combobox/SELECT16.png",
 	"definition": "bootstrapcomponents/select/select.js",
-	"libraries": [],
+	"libraries": [{"name":"bootstrapcomponents-select-css", "version":"1.0", "url":"bootstrapcomponents/select/select.css", "mimetype":"text/css"}],
 	"model":
 	{
 	        "dataProviderID" : { "type":"dataprovider","pushToServer": "allow", "tags": { "scope" :"design" }, "ondatachange": { "onchange":"onDataChangeMethodID", "callback":"onDataChangeCallback"}},
