@@ -1,0 +1,31 @@
+.svy-wrapper > * > .bts-tabpanel {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.svy-wrapper > * > .bts-tabpanel > .nav-tabs {
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	height: 42px;
+}
+
+.svy-wrapper > * > .bts-tabpanel > .tab-content {
+    overflow: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 42px;
+}
+
+.svy-wrapper > * > .bts-tabpanel > .tab-content > .tab-pane {
+	height: 100%;
+}
+
+.svy-wrapper > * > .bts-tabpanel > .tab-content > .tab-pane > div {
+	height: 100%;
+}

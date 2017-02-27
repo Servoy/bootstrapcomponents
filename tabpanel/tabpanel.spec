@@ -4,7 +4,7 @@
 	"version": 1,
 	"icon": "servoydefault/tabpanel/tabs.gif",
 	"definition": "bootstrapcomponents/tabpanel/tabpanel.js",
-	"libraries": [],
+	"libraries": [{"name":"bootstrapcomponents-tabpanel-css", "version":"1.0", "url":"bootstrapcomponents/tabpanel/tabpanel.css", "mimetype":"text/css"}],
 	"model":
 	{
 			"containerStyleClass" : { "type" :"styleclass"},
