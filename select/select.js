@@ -32,7 +32,7 @@ angular.module('bootstrapcomponentsSelect',['servoy']).directive('bootstrapcompo
 			//maybe to something like {realValue1:displayValue1, realValue2:displayValue2, ...}
 			for (i = 0; i < valuelist.length; i++) {
 				if (realValue === valuelist[i].realValue) {
-					return valuelist[i].displayValue;
+					return getParsedDisplayValue(valuelist[i].displayValue);
 				}
 			}
 			var hasRealValues = false;
@@ -49,10 +49,19 @@ angular.module('bootstrapcomponentsSelect',['servoy']).directive('bootstrapcompo
 				valuelist.getDisplayValue(realValue).then(function(val){
 					diplayValue = val;
 				})
-				return diplayValue;
+				return getParsedDisplayValue(diplayValue);
 			}
 			if (valuelist.length == 0) return null;
 		}
+		
+		function getParsedDisplayValue(value) {
+			if (value === undefined || value === null || value === '') {
+				return '&nbsp;'
+			} else {
+				return value;
+			}
+		}
+		
 		return input;
 	};
 });
