@@ -3,7 +3,7 @@
 	"displayName": "Progress Bar",
 	"version": 1,
 	"definition": "bootstrapcomponents/progressbar/progressbar.js",
-	"libraries": [],
+	"libraries": [{"name":"bootstrapcomponents-progressbar-css", "version":"1.0", "url":"bootstrapcomponents/progressbar/progressbar.css", "mimetype":"text/css"}],
 	"icon": "bootstrapcomponents/progressbar/progress_bar.png",
 	"model":
 	{
