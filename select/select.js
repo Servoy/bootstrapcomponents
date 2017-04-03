@@ -1,25 +1,61 @@
-angular.module('bootstrapcomponentsSelect',['servoy']).directive('bootstrapcomponentsSelect', function() {  
-    return {
-      restrict: 'E',
-      scope: {
-        name: "=",
-        model: "=svyModel",
-        handlers: "=svyHandlers",
-        api: "=svyApi"
-      },
-      link: function($scope, $element, $attrs) {
+angular.module('bootstrapcomponentsSelect',['servoy']).directive('bootstrapcomponentsSelect', ['$log', '$sabloConstants', function($log, $sabloConstants) {
+	return {
+		restrict: 'E',
+		scope: {
+			name: "=",
+			model: "=svyModel",
+			handlers: "=svyHandlers",
+			api: "=svyApi",
+			svyServoyapi: "="
+		},
+		link: function($scope, $element, $attrs) {
+			/* 
+			 * Using ng-options
+			 * <!--ng-options='option.realValue as option.displayValue for option in model.valuelistID track by option.realValue'-->
+			 * */
+			
+			var element = $element.find('select');
+			
+			Object.defineProperty($scope.model,$sabloConstants.modelChangeNotifier, {configurable:true,value:function(property,value) {
+				switch(property) {
+					case "dataProviderID":
+						element.val(value);
+						break;
+				}
+			}});
+			
+			var destroyListenerUnreg = $scope.$on("$destroy", function() {
+				destroyListenerUnreg();
+				delete $scope.model[$sabloConstants.modelChangeNotifier];
+				if (observer) {
+					observer.disconnect();
+				}
+			});
+			
+			// data can already be here, if so call the modelChange function so that it is initialized correctly.
+			var modelChangeFunction = $scope.model[$sabloConstants.modelChangeNotifier];
+			for (var key in $scope.model) {
+				modelChangeFunction(key,$scope.model[key]);
+			}
+			
+			$scope.onChange = function(event) {
+				var value = $element.find('select').val();
+				$scope.model.dataProviderID = value;
+				$scope.svyServoyapi.apply("dataProviderID");
+				$scope.handlers.onActionMethodID(event);
+			}
 
-    	  /**
-           * Set the focus to combobox.
-           * @example %%prefix%%%%elementName%%.requestFocus();
-           */
-          $scope.api.requestFocus = function() { 
-	         $element.find('select')[0].focus();
-          }
+			/**
+			 * Set the focus to combobox.
+			 * @example %%prefix%%%%elementName%%.requestFocus();
+			 */
+			$scope.api.requestFocus = function() {
+				$element.find('select')[0].focus();
+			}
       },
       templateUrl: 'bootstrapcomponents/select/select.html'
     };
-})
+}])
 .filter('showDisplayValue', function () { // filter that takes the realValue as an input and returns the displayValue
 	return function (input, valuelist) {
 		var i = 0;
