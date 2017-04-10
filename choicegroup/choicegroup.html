@@ -5,7 +5,7 @@
   		ng-click="itemClicked($event,$index)"
         sablo-tabseq='model.tabSeq'
         svy-click='handlers.onActionMethodID($event)'
-        ng-disabled="!model.enabled"/>
+        ng-disabled="model.readOnly || !model.enabled"/>
   	 <span ng-bind='item.displayValue'></span>
   </label>
 </div>

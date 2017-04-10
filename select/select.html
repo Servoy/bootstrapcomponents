@@ -1,7 +1,7 @@
 <select 	svy-change='onChange($event)'
 			ng-class='model.styleClass' class='bts-select'
 			ng-if='model.visible'
-			ng-disabled="!model.enabled"
+			ng-disabled="model.readOnly || !model.enabled"
 			sablo-tabseq='model.tabSeq'
 			svy-autoapply
 			id="{{::model.svyMarkupId}}">

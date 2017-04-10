@@ -9,6 +9,7 @@
 	{
 	        "dataProviderID" : { "type":"dataprovider", "pushToServer": "allow", "tags": { "scope" :"design" }, "ondatachange": { "onchange":"onDataChangeMethodID", "callback":"onDataChangeCallback"}},
 	        "enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["dataProviderID","onActionMethodID","onDataChangeMethodID"] },
+	        "readOnly" : { "type": "protected", "blockingOn": true, "default": false, "for": ["dataProviderID","onDataChangeMethodID"], "tags": {"scope":"runtime"} },
 	        "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "default":"checkbox"},
 	        "text" : { "type" : "tagstring" ,"default": "Checkbox" },
 			"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},

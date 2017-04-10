@@ -10,6 +10,7 @@
 			"alternate" : { "type" : "tagstring" },
 			"enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["dataProviderID","onActionMethodID","onDataChangeMethodID"] }, 
 	        "dataProviderID" : { "type":"dataprovider", "tags": { "scope" :"design", "typeName": "mediaDataprovider" }, "ondatachange": { "onchange":"onDataChangeMethodID", "callback":"onDataChangeCallback"}},
+	        "readOnly" : { "type": "protected", "blockingOn": true, "default": false, "for": ["dataProviderID","onDataChangeMethodID"], "tags": {"scope":"runtime"} },
 	        "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "values" :["img-responsive","img-rounded","img-circle", "img-thumbnail","media-object"]},
 			"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
 	        "visible" : "visible"

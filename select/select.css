@@ -3,3 +3,9 @@
 	height: 100%;
 	padding: 1px 5px;
 }
+
+.bts-select[disabled] {
+	cursor: default;
+ 	background-color: #eee;
+ 	opacity: 1;
+}
