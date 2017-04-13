@@ -3,12 +3,12 @@
   	 <span>No tabs defined</span>
   </label>
 </div>
-<tabset  id="{{::model.svyMarkupId}}" class='bts-tabpanel' ng-class='model.styleClass' style="position: relative;" ng-if='model.visible' sablo-tabseq='model.tabSeq' sablo-tabseq-config="{container: true, reservedGap: 50}">
-    <tab ng-repeat="tab in model.tabs" active="tab.active" select="select(tab)" >
-      <tab-heading>
+<uib-tabset  id="{{::model.svyMarkupId}}" active="model.tabIndex - 1" class='bts-tabpanel' ng-class='model.styleClass' style="position: relative;" ng-if='model.visible' sablo-tabseq='model.tabSeq' sablo-tabseq-config="{container: true, reservedGap: 50}">
+    <uib-tab ng-repeat="tab in model.tabs" active="tab.active" select="select(tab)" >
+      <uib-tab-heading>
       	<img ng-hide="tab.imageMediaID == ''"  ng-src='{{tab.imageMediaID}}'/>
         <span  ng-bind='tab.text'></span>
-      </tab-heading>
+      </uib-tab-heading>
       <div ng-include="getForm(tab)" ng-class='model.containerStyleClass' ng-style='getContainerStyle()'></div>
-    </tab>
-</tabset>
+    </uib-tab>
+</uib-tabset>
