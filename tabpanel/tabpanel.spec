@@ -13,6 +13,7 @@
 			"height" : {"type":"int", "default":"500"},
 			"tabIndex" : {"type":"int", "pushToServer": "shallow", "tags": { "scope" :"runtime" },"default":1},
 			"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
+			"activeTabIndex": { "type": "int", "default": 0, "tags": { "scope": "runtime" }, "pushToServer": "shallow" },
 	    	"visible" : "visible"
 	},
 	"handlers":

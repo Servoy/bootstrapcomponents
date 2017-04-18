@@ -8,7 +8,7 @@ angular.module('bootstrapcomponentsTabpanel',['servoy']).directive('bootstrapcom
        	api: "=svyApi"
       },
       controller: function($scope, $element, $attrs, webStorage) {
-    	  
+
     	  var getTabIndex = function(tab)
     	  {
     	      if ($scope.model.tabs && tab)
@@ -95,7 +95,8 @@ angular.module('bootstrapcomponentsTabpanel',['servoy']).directive('bootstrapcom
 						 var key = $scope.$parent.formname +"_" + $element.attr('name')+"_tabindex";
 						 webStorage.session.add(key,newValue);
 					}
-				}	
+				}
+			  	$scope.model.activeTabIndex = $scope.model.tabIndex - 1;
 		  });
 		  
     	  $scope.$watch("model.visible", function(newValue,oldValue) {

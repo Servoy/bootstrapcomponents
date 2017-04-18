@@ -48,7 +48,7 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
     	return formatFilter(displayValue, displayFormat, type);
       }
       $scope.doSvyApply = function() {
-         if (angular.element('[typeahead-popup]').attr('aria-hidden') == "true") {
+         if (angular.element('[uib-typeahead-popup]').attr('aria-hidden') == "true") {
           if ($scope.model.valuelistID && $scope.model.valuelistID.length > 0 && $scope.model.valuelistID[0].displayValue) {
             var hasMatchingDisplayValue = false;
             for (var i = 0; i < $scope.model.valuelistID.length; i++) {
