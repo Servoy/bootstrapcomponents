@@ -12,14 +12,16 @@ angular.module('bootstrapcomponentsTextbox',['servoy']).directive('bootstrapcomp
     	  var child = $element.children();
     	  var ngModel = child.controller("ngModel");
 			
-    	  $scope.$watch('model.format', function(){
-    		  if ($scope.model.format)
-    		  {
-    			  if (formatState)
-  					formatState(value);
-    			  else formatState = $formatterUtils.createFormatState($element, $scope, ngModel,true,$scope.model.format);
-    		  }	  
-    	  })
+				if($scope.model.inputType == "text") {
+					$scope.$watch('model.format', function(){
+						if ($scope.model.format)
+						{
+							if (formatState)
+							formatState(value);
+							else formatState = $formatterUtils.createFormatState($element, $scope, ngModel,true,$scope.model.format);
+						}	  
+					})
+				}
     	  
     	  /**
 	    	* Request the focus to this text field.
