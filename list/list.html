@@ -1,0 +1,19 @@
+<div class='bts-list'>
+	<input
+			svy-enter='handlers.onActionMethodID($event)'
+			type="text"
+			list="{{::model.svyMarkupId}}_datalist"
+			ng-blur='onBlur($event)'
+			ng-class='model.styleClass'
+			ng-show='model.visible'
+			ng-disabled="!model.enabled"
+			sablo-tabseq='model.tabSeq'
+			ng-readonly="model.readOnly || !model.editable"
+			id="{{::model.svyMarkupId}}"/>
+
+	<datalist id="{{::model.svyMarkupId}}_datalist">
+		<option ng-selected="model.dataProviderID === value.realValue" ng-repeat="value in model.valuelistID" 
+			value="{{value.realValue | showDisplayValue:model.valuelistID}}">
+		</option>
+	</datalist>
+</div>
