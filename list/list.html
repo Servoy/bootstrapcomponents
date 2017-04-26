@@ -13,7 +13,7 @@
 
 	<datalist id="{{::model.svyMarkupId}}_datalist">
 		<option ng-selected="model.dataProviderID === value.realValue" ng-repeat="value in model.valuelistID" 
-			value="{{value.realValue | showDisplayValue:model.valuelistID}}">
+			value="{{value.realValue | showDisplayValue:model.valuelistID:true}}">
 		</option>
 	</datalist>
 </div>

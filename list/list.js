@@ -16,7 +16,11 @@ angular.module('bootstrapcomponentsList',['servoy', 'bootstrapcomponentscommon']
 
 				if($scope.model.valuelistID) {
 					for (i = 0; i < $scope.model.valuelistID.length; i++) {
-						if (listValue === $scope.model.valuelistID[i].displayValue) {
+						var displayValue = $scope.model.valuelistID[i].displayValue;
+						if (displayValue === undefined || displayValue === null || displayValue === '') {
+							displayValue = ' ';
+						}
+						if (listValue === displayValue) {
 							listValue = $scope.model.valuelistID[i].realValue;
 							break;
 						}
@@ -38,10 +42,7 @@ angular.module('bootstrapcomponentsList',['servoy', 'bootstrapcomponentscommon']
 
 				if($scope.model.valuelistID) {
 					var showDisplayValueFilter = $filter("showDisplayValue");
-					var displayValue = showDisplayValueFilter(listValue, $scope.model.valuelistID);
-					if(displayValue !== '&nbsp;') {
-						listValue = displayValue;
-					}
+					listValue = showDisplayValueFilter(listValue, $scope.model.valuelistID, true);
 				}
 
 				inputEl.val(listValue);
