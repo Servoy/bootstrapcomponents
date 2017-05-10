@@ -52,6 +52,3 @@ Web-Component: True
 
 Name: formcomponent/formcomponent.spec
 Web-Component: True
-
-Name: list/list.spec
-Web-Component: True
