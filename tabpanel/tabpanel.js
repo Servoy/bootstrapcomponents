@@ -85,7 +85,7 @@ angular.module('bootstrapcomponentsTabpanel',['servoy']).directive('bootstrapcom
     	  				// invalid, revert to old value
     	  				$scope.model.tabIndex = oldValue;
     	  				return;
-    	  			}	
+    	  			}
     	  			if (oldValue)
     	  			{ 
     	  				$scope.svyServoyapi.hideForm($scope.model.tabs[oldValue-1].containedForm);
