@@ -42,7 +42,7 @@ angular.module('bootstrapcomponentsList',['servoy', 'bootstrapcomponentscommon']
 
 				if($scope.model.valuelistID) {
 					var showDisplayValueFilter = $filter("showDisplayValue");
-					listValue = showDisplayValueFilter(listValue, $scope.model.valuelistID, true);
+					listValue = showDisplayValueFilter(listValue, $scope.model.valuelistID, true, true);
 				}
 
 				inputEl.val(listValue);
