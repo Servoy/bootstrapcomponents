@@ -11,6 +11,15 @@ angular.module('bootstrapcomponentsList',['servoy', 'bootstrapcomponentscommon']
 		link: function($scope, $element, $attrs) {
 			var inputEl = $element.find('input');
 
+			function updateInput(listValue) {
+				if($scope.model.valuelistID) {
+					var showDisplayValueFilter = $filter("showDisplayValue");
+					listValue = showDisplayValueFilter(listValue, $scope.model.valuelistID, true, true);
+				}
+
+				inputEl.val(listValue);				
+			}
+
 			function updateDataprovider() {
 				var listValue = inputEl.val();
 
@@ -27,8 +36,13 @@ angular.module('bootstrapcomponentsList',['servoy', 'bootstrapcomponentscommon']
 					}
 				}
 
-				$scope.model.dataProviderID = listValue;
-				$scope.svyServoyapi.apply("dataProviderID");
+				if($scope.model.dataProviderID !== listValue) {
+					$scope.model.dataProviderID = listValue;
+					$scope.svyServoyapi.apply("dataProviderID");
+				}
+				else {
+					updateInput(listValue);
+				}
 			}
 
 			inputEl.on("keydown", function(event) {
@@ -38,14 +52,7 @@ angular.module('bootstrapcomponentsList',['servoy', 'bootstrapcomponentscommon']
 			});
 
 			$scope.$watch('model.dataProviderID', function(newValue, oldValue) { 
-				var listValue = newValue;
-
-				if($scope.model.valuelistID) {
-					var showDisplayValueFilter = $filter("showDisplayValue");
-					listValue = showDisplayValueFilter(listValue, $scope.model.valuelistID, true, true);
-				}
-
-				inputEl.val(listValue);
+				updateInput(newValue);
 			})
 
 			$scope.onBlur = function(event) {
