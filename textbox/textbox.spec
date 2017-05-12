@@ -4,6 +4,7 @@
 	"version": 1,
 	"icon": "servoydefault/textfield/textinput.png",
 	"definition": "bootstrapcomponents/textbox/textbox.js",
+	"serverscript": "bootstrapcomponents/textbox/textbox_server.js",
 	"libraries": [{"name":"bootstrapcomponents-textbox-css", "version":"1.0", "url":"bootstrapcomponents/textbox/textbox.css", "mimetype":"text/css"}],
 	"model":
 	{
@@ -80,7 +81,16 @@
 		"requestFocus": {
 				"delayUntilFormLoads": true,
 				"discardPreviouslyQueuedSimilarCalls": true
-	        }
+	    },
+	    "setInputType": {
+	    	"parameters":[
+						 	{
+								"name":"inputType",
+					 			"type":"text"
+							}
+						],
+			"returns" : "boolean"
+	   }
 	}
 
 }
