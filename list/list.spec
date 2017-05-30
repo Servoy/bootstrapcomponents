@@ -4,7 +4,11 @@
 	"version": 1,
 	"icon": "servoydefault/typeahead/bhdropdownlisticon.gif",
 	"definition": "bootstrapcomponents/list/list.js",
-	"libraries": [{"name":"bootstrapcomponents-list-css", "version":"1.0", "url":"bootstrapcomponents/list/list.css", "mimetype":"text/css"}],
+	"libraries": [
+		{"name":"bootstrapcomponents-list-css", "version":"1.0", "url":"bootstrapcomponents/list/list.css", "mimetype":"text/css"},
+		{"name":"purejs-datalist-polyfill-js", "version":"1.0", "url":"bootstrapcomponents/list/lib/purejs-datalist-polyfill/datalist.polyfill.js", "mimetype":"text/javascript"},
+		{"name":"purejs-datalist-polyfill-css", "version":"1.0", "url":"bootstrapcomponents/list/lib/purejs-datalist-polyfill/style.css", "mimetype":"text/css"}
+		],
 	"model":
 	{
 	        "dataProviderID" : { "type":"dataprovider","pushToServer": "allow", "tags": { "scope" :"design" }, "ondatachange": { "onchange":"onDataChangeMethodID", "callback":"onDataChangeCallback"}},

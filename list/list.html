@@ -12,8 +12,10 @@
 			id="{{::model.svyMarkupId}}"/>
 
 	<datalist id="{{::model.svyMarkupId}}_datalist">
+		<!--[if lte IE 9]><select data-datalist="{{::model.svyMarkupId}}_datalist"><![endif]-->
 		<option ng-selected="model.dataProviderID === value.realValue" ng-repeat="value in model.valuelistID" 
-			value="{{value.realValue | showDisplayValue:model.valuelistID:true}}">
+			value="{{value.realValue | showDisplayValue:model.valuelistID:true}}" ng-init="$last && renderFinished()">
 		</option>
+		<!--[if lte IE 9]></select><![endif]-->
 	</datalist>
 </div>
