@@ -86,7 +86,7 @@
 	    	"parameters":[
 						 	{
 								"name":"inputType",
-					 			"type":"text"
+					 			"type":"string"
 							}
 						],
 			"returns" : "boolean"
