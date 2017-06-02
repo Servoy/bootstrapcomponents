@@ -17,6 +17,7 @@
 					"editable" : { "type": "protected", "blockingOn": false, "default": true,"for": ["dataProviderID","onDataChangeMethodID"] },
 	       	"styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "default" : "form-control"},
 	        "valuelistID" : { "type" : "valuelist", "tags": { "scope" :"design" }, "for": "dataProviderID"},
+	        "placeholderText" : "tagstring",
 					"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
 	        "visible" : "visible"
 	},

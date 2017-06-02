@@ -2,6 +2,7 @@
 		svy-enter='handlers.onActionMethodID($event)'
 		type="text"
 		ng-class='model.styleClass' class='bts-typeahead'
+		placeholder="{{model.placeholderText}}"
 		ng-model="model.dataProviderID"
 		typeahead-min-length="-1"
 		typeahead-wait-ms="500"
