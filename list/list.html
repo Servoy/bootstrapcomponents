@@ -1,6 +1,7 @@
 <div class='bts-list'>
 	<input
 			svy-enter='handlers.onActionMethodID($event)'
+			placeholder="{{model.placeholderText}}"
 			type="text"
 			list="{{::model.svyMarkupId}}_datalist"
 			ng-blur='onBlur($event)'
