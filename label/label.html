@@ -3,7 +3,7 @@
     svy-dblclick='handlers.onDoubleClickMethodID($event)'
  	svy-rightclick='handlers.onRightClickMethodID($event)'
  	ng-bind-html='model.text| htmlFilter| trustAsHtml:servoyApi.trustAsHtml()'
-	sablo-tabseq='model.tabSeq'
+	sablo-tabseq='(handlers.onActionMethodID || handlers.onDoubleClickMethodID || handlers.onRightClickMethodID) ? model.tabSeq : -2'
 	ng-disabled='!model.enabled'
  	ng-if='model.visible'
  	id="{{::model.svyMarkupId}}">

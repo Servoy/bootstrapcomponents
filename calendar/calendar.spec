@@ -16,6 +16,7 @@
 	    "format" : {"for":["dataProviderID"] , "type" :"format"},
 	    "readOnly" : { "type": "protected", "blockingOn": true, "default": false,"for": ["dataProviderID","onDataChangeMethodID"] },
 	    "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "default" : "form-control"},
+	    "placeholderText" : "tagstring",
 	    "tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
 	    "visible" : "visible"
 	},

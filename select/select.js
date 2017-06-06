@@ -1,4 +1,4 @@
-angular.module('bootstrapcomponentsSelect',['servoy', 'bootstrapcomponentscommon']).directive('bootstrapcomponentsSelect', ['$log', '$sabloConstants', function($log, $sabloConstants) {
+angular.module('bootstrapcomponentsSelect',['servoy', 'bootstrapcomponentscommon']).directive('bootstrapcomponentsSelect', ['$log', '$sabloConstants', '$timeout', function($log, $sabloConstants, $timeout) {
 	return {
 		restrict: 'E',
 		scope: {
@@ -38,11 +38,26 @@ angular.module('bootstrapcomponentsSelect',['servoy', 'bootstrapcomponentscommon
 				modelChangeFunction(key,$scope.model[key]);
 			}
 			
-			$scope.onChange = function(event) {
+			function updateDataprovider() {
 				var value = $element.find('select').val();
-				$scope.model.dataProviderID = value;
-				$scope.svyServoyapi.apply("dataProviderID");
-				if($scope.handlers.onActionMethodID) $scope.handlers.onActionMethodID(event);
+				if($scope.model.dataProviderID != value) {
+					$scope.model.dataProviderID = value;
+					$scope.svyServoyapi.apply("dataProviderID");
+					return true;
+				}
+				return false;
+			}
+
+			$scope.onChange = function(event) {
+				if(updateDataprovider() && $scope.handlers.onActionMethodID) {
+					$scope.handlers.onActionMethodID(event);
+				}
+			}
+
+			$scope.renderFinished = function() {
+				$timeout(function() {
+					updateDataprovider();
+				});
 			}
 
 			/**

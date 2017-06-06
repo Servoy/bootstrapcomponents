@@ -1,4 +1,4 @@
-angular.module('bootstrapcomponentsList',['servoy', 'bootstrapcomponentscommon']).directive('bootstrapcomponentsList', ['$log', '$sabloConstants', '$filter', '$utils', function($log, $sabloConstants, $filter, $utils) {
+angular.module('bootstrapcomponentsList',['servoy', 'bootstrapcomponentscommon']).directive('bootstrapcomponentsList', ['$log', '$sabloConstants', '$filter', '$utils', '$timeout', function($log, $sabloConstants, $filter, $utils, $timeout) {
 	return {
 		restrict: 'E',
 		scope: {
@@ -21,29 +21,36 @@ angular.module('bootstrapcomponentsList',['servoy', 'bootstrapcomponentscommon']
 			}
 
 			function updateDataprovider() {
-				var listValue = inputEl.val();
+				if(!isFakeListSelection()) {
+					var listValue = inputEl.val();
 
-				if($scope.model.valuelistID) {
-					for (i = 0; i < $scope.model.valuelistID.length; i++) {
-						var displayValue = $scope.model.valuelistID[i].displayValue;
-						if (displayValue === undefined || displayValue === null || displayValue === '') {
-							displayValue = ' ';
-						}
-						if (listValue === displayValue) {
-							listValue = $scope.model.valuelistID[i].realValue;
-							break;
+					if($scope.model.valuelistID) {
+						for (i = 0; i < $scope.model.valuelistID.length; i++) {
+							var displayValue = $scope.model.valuelistID[i].displayValue;
+							if (displayValue === undefined || displayValue === null || displayValue === '') {
+								displayValue = ' ';
+							}
+							if (listValue === displayValue) {
+								listValue = $scope.model.valuelistID[i].realValue;
+								break;
+							}
 						}
 					}
-				}
 
-				if($scope.model.dataProviderID !== listValue) {
-					$scope.model.dataProviderID = listValue;
-					$scope.svyServoyapi.apply("dataProviderID");
-				}
-				else {
-					updateInput(listValue);
+					if($scope.model.dataProviderID !== listValue) {
+						$scope.model.dataProviderID = listValue;
+						$scope.svyServoyapi.apply("dataProviderID");
+					}
+					else {
+						updateInput(listValue);
+					}
 				}
 			}
+
+
+			$scope.$watch('model.dataProviderID', function(newValue, oldValue) { 
+				updateInput(newValue);
+			})
 
 			inputEl.on("keydown", function(event) {
 				if($utils.testEnterKey(event)) {
@@ -51,12 +58,28 @@ angular.module('bootstrapcomponentsList',['servoy', 'bootstrapcomponentscommon']
 				}
 			});
 
-			$scope.$watch('model.dataProviderID', function(newValue, oldValue) { 
-				updateInput(newValue);
-			})
-
 			$scope.onBlur = function(event) {
 				updateDataprovider();
+			}
+
+			var polyFillFakeList = null;
+
+			$scope.renderFinished = function() {
+				$timeout(function() {
+					polyFillFakeList = DatalistPolyFill.apply(inputEl.get(0));
+				});
+			}
+
+			function isFakeListSelection() {
+				if(polyFillFakeList && (polyFillFakeList.style.display != 'none')) {
+					var fakeItems = polyFillFakeList.childNodes;
+					for( var i = 0; i < fakeItems.length; i++ ) {
+						if (fakeItems[i].className == DatalistPolyFill.ACTIVE_CLASS) {
+							return true;
+						}
+					}
+				}
+				return false;
 			}
 
 			/**
