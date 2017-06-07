@@ -1,4 +1,4 @@
-angular.module('bootstrapcomponentsSelect',['servoy', 'bootstrapcomponentscommon']).directive('bootstrapcomponentsSelect', ['$log', '$sabloConstants', '$timeout', function($log, $sabloConstants, $timeout) {
+angular.module('bootstrapcomponentsSelect',['servoy', 'bootstrapcomponentscommon']).directive('bootstrapcomponentsSelect', ['$log', '$sabloConstants', function($log, $sabloConstants) {
 	return {
 		restrict: 'E',
 		scope: {
@@ -52,12 +52,6 @@ angular.module('bootstrapcomponentsSelect',['servoy', 'bootstrapcomponentscommon
 				if(updateDataprovider() && $scope.handlers.onActionMethodID) {
 					$scope.handlers.onActionMethodID(event);
 				}
-			}
-
-			$scope.renderFinished = function() {
-				$timeout(function() {
-					updateDataprovider();
-				});
 			}
 
 			/**
