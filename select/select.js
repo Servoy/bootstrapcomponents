@@ -27,9 +27,6 @@ angular.module('bootstrapcomponentsSelect',['servoy', 'bootstrapcomponentscommon
 			var destroyListenerUnreg = $scope.$on("$destroy", function() {
 				destroyListenerUnreg();
 				delete $scope.model[$sabloConstants.modelChangeNotifier];
-				if (observer) {
-					observer.disconnect();
-				}
 			});
 			
 			// data can already be here, if so call the modelChange function so that it is initialized correctly.
