@@ -1,4 +1,4 @@
-angular.module('bootstrapcomponentsSelect',['servoy']).directive('bootstrapcomponentsSelect', ['$log', '$sabloConstants', function($log, $sabloConstants) {
+angular.module('bootstrapcomponentsSelect',['servoy', 'bootstrapcomponentscommon']).directive('bootstrapcomponentsSelect', ['$log', '$sabloConstants', function($log, $sabloConstants) {
 	return {
 		restrict: 'E',
 		scope: {
@@ -27,9 +27,6 @@ angular.module('bootstrapcomponentsSelect',['servoy']).directive('bootstrapcompo
 			var destroyListenerUnreg = $scope.$on("$destroy", function() {
 				destroyListenerUnreg();
 				delete $scope.model[$sabloConstants.modelChangeNotifier];
-				if (observer) {
-					observer.disconnect();
-				}
 			});
 			
 			// data can already be here, if so call the modelChange function so that it is initialized correctly.
@@ -38,11 +35,20 @@ angular.module('bootstrapcomponentsSelect',['servoy']).directive('bootstrapcompo
 				modelChangeFunction(key,$scope.model[key]);
 			}
 			
-			$scope.onChange = function(event) {
+			function updateDataprovider() {
 				var value = $element.find('select').val();
-				$scope.model.dataProviderID = value;
-				$scope.svyServoyapi.apply("dataProviderID");
-				$scope.handlers.onActionMethodID(event);
+				if($scope.model.dataProviderID != value) {
+					$scope.model.dataProviderID = value;
+					$scope.svyServoyapi.apply("dataProviderID");
+					return true;
+				}
+				return false;
+			}
+
+			$scope.onChange = function(event) {
+				if(updateDataprovider() && $scope.handlers.onActionMethodID) {
+					$scope.handlers.onActionMethodID(event);
+				}
 			}
 
 			/**
@@ -55,49 +61,4 @@ angular.module('bootstrapcomponentsSelect',['servoy']).directive('bootstrapcompo
       },
       templateUrl: 'bootstrapcomponents/select/select.html'
     };
-}])
-.filter('showDisplayValue', function () { // filter that takes the realValue as an input and returns the displayValue
-	return function (input, valuelist) {
-		var i = 0;
-		var realValue = input;
-		if (valuelist) {
-			if (input && input.hasOwnProperty("realValue")) {
-				realValue = input.realValue;
-			}
-			//TODO performance upgrade: change the valuelist to a hashmap so that this for loop is no longer needed. 
-			//maybe to something like {realValue1:displayValue1, realValue2:displayValue2, ...}
-			for (i = 0; i < valuelist.length; i++) {
-				if (realValue === valuelist[i].realValue) {
-					return getParsedDisplayValue(valuelist[i].displayValue);
-				}
-			}
-			var hasRealValues = false;
-			for (var i = 0; i < valuelist.length; i++) {
-				var item = valuelist[i];
-				if (item.realValue != item.displayValue) {
-					hasRealValues = true;
-					break;
-				}
-			}
-			if (hasRealValues) {
-				var diplayValue = null;
-				// this then function will resolve right away if the value is already cached on the client.
-				valuelist.getDisplayValue(realValue).then(function(val){
-					diplayValue = val;
-				})
-				return getParsedDisplayValue(diplayValue);
-			}
-			if (valuelist.length == 0) return null;
-		}
-		
-		function getParsedDisplayValue(value) {
-			if (value === undefined || value === null || value === '') {
-				return '&nbsp;'
-			} else {
-				return value;
-			}
-		}
-		
-		return input;
-	};
-});
+}]);

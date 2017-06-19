@@ -12,6 +12,7 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 			var ngModel = child.controller("ngModel");
 
 			var options = {
+				widgetParent: $(document.body),
 				showTodayButton: true,
 				calendarWeeks: true
 			}

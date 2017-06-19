@@ -1,18 +1,24 @@
 {
-	"name": "bootstrapcomponents-select",
-	"displayName": "Combobox",
+	"name": "bootstrapcomponents-list",
+	"displayName": "Data List",
 	"version": 1,
-	"icon": "servoydefault/combobox/combobox.png",
-	"definition": "bootstrapcomponents/select/select.js",
-	"libraries": [{"name":"bootstrapcomponents-select-css", "version":"1.0", "url":"bootstrapcomponents/select/select.css", "mimetype":"text/css"}],
+	"icon": "servoydefault/typeahead/bhdropdownlisticon.gif",
+	"definition": "bootstrapcomponents/list/list.js",
+	"libraries": [
+		{"name":"bootstrapcomponents-list-css", "version":"1.0", "url":"bootstrapcomponents/list/list.css", "mimetype":"text/css"},
+		{"name":"purejs-datalist-polyfill-js", "version":"1.0", "url":"bootstrapcomponents/list/lib/purejs-datalist-polyfill/datalist.polyfill.js", "mimetype":"text/javascript"},
+		{"name":"purejs-datalist-polyfill-css", "version":"1.0", "url":"bootstrapcomponents/list/lib/purejs-datalist-polyfill/style.css", "mimetype":"text/css"}
+		],
 	"model":
 	{
 	        "dataProviderID" : { "type":"dataprovider","pushToServer": "allow", "tags": { "scope" :"design" }, "ondatachange": { "onchange":"onDataChangeMethodID", "callback":"onDataChangeCallback"}},
 	        "enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["dataProviderID","onActionMethodID","onDataChangeMethodID"] },
 	       	"readOnly" : { "type": "protected", "blockingOn": true, "default": false,"for": ["dataProviderID","onDataChangeMethodID"], "tags": {"scope":"runtime"} },
+					"editable" : { "type": "protected", "blockingOn": false, "default": true,"for": ["dataProviderID","onDataChangeMethodID"] },
 	       	"styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "default" : "form-control"},
 	        "valuelistID" : { "type" : "valuelist", "tags": { "scope" :"design" }, "for": "dataProviderID"},
-			"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
+	        "placeholderText" : "tagstring",
+					"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
 	        "visible" : "visible"
 	},
 	"handlers":
