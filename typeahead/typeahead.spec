@@ -2,7 +2,7 @@
 	"name": "bootstrapcomponents-typeahead",
 	"displayName": "Type Ahead ",
 	"version": 1,
-	"icon": "servoydefault/typeahead/bhdropdownlisticon.gif",
+	"icon": "servoydefault/typeahead/typeahead.png",
 	"definition": "bootstrapcomponents/typeahead/typeahead.js",
 	"libraries": [{"name":"bootstrapcomponents-typeahead-css", "version":"1.0", "url":"bootstrapcomponents/typeahead/typeahead.css", "mimetype":"text/css"}],
 	"model":

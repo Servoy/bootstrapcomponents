@@ -2,7 +2,7 @@
 	"name": "bootstrapcomponents-button",
 	"displayName": "Button",
 	"version": 1,
-	"icon": "servoydefault/button/button.gif",
+	"icon": "servoydefault/button/button.png",
 	"definition": "bootstrapcomponents/button/button.js",
 	"libraries": [{"name":"bootstrapcomponents-button-css", "version":"1.0", "url":"bootstrapcomponents/button/button.css", "mimetype":"text/css"}],
 	"model":

@@ -2,7 +2,7 @@
 	"name": "bootstrapcomponents-tabpanel",
 	"displayName": "TabPanel",
 	"version": 1,
-	"icon": "servoydefault/tabpanel/tabs.gif",
+	"icon": "servoydefault/tabpanel/tab.png",
 	"definition": "bootstrapcomponents/tabpanel/tabpanel.js",
 	"libraries": [{"name":"bootstrapcomponents-tabpanel-css", "version":"1.0", "url":"bootstrapcomponents/tabpanel/tabpanel.css", "mimetype":"text/css"}],
 	"model":

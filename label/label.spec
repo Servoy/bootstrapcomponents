@@ -2,7 +2,7 @@
 	"name": "bootstrapcomponents-label",
 	"displayName": "Label",
 	"version": 1,
-	"icon": "servoydefault/label/text.gif",
+	"icon": "servoydefault/label/label.png",
 	"definition": "bootstrapcomponents/label/label.js",
 	"libraries": [{"name":"bootstrapcomponents-label-css", "version":"1.0", "url":"bootstrapcomponents/label/label.css", "mimetype":"text/css"}],
 	"model":

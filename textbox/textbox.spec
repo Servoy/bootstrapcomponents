@@ -2,7 +2,7 @@
 	"name": "bootstrapcomponents-textbox",
 	"displayName": "TextBox",
 	"version": 1,
-	"icon": "servoydefault/textfield/textinput.png",
+	"icon": "servoydefault/textfield/textfield.png",
 	"definition": "bootstrapcomponents/textbox/textbox.js",
 	"libraries": [{"name":"bootstrapcomponents-textbox-css", "version":"1.0", "url":"bootstrapcomponents/textbox/textbox.css", "mimetype":"text/css"}],
 	"model":

@@ -4,7 +4,7 @@
 	"version": 1,
 	"definition": "bootstrapcomponents/choicegroup/choicegroup.js",
 	"libraries": [{"name":"bootstrapcomponents-choicegroup-css", "version":"1.0", "url":"bootstrapcomponents/choicegroup/choicegroup.css", "mimetype":"text/css"}],
-	"icon": "servoydefault/radio/RADIO16.png",
+	"icon": "servoydefault/radio/radiobutton.png",
 	"model":
 	{
 	        "dataProviderID" : { "type":"dataprovider", "pushToServer": "allow","tags": { "scope" :"design" }, "ondatachange": { "onchange":"onDataChangeMethodID", "callback":"onDataChangeCallback"}},
