@@ -51,6 +51,19 @@ angular.module('bootstrapcomponentsSelect',['servoy', 'bootstrapcomponentscommon
 				}
 			}
 
+			$scope.isDPInValueList = function() {
+				var isDPInValueList = false;
+				if($scope.model.valuelistID) {
+					for (i = 0; i < $scope.model.valuelistID.length; i++) {
+						if($scope.model.dataProviderID == $scope.model.valuelistID[i].realValue) {
+							isDPInValueList = true;
+							break;
+						}
+					}
+				}
+				return isDPInValueList;
+			}
+
 			/**
 			 * Set the focus to combobox.
 			 * @example %%prefix%%%%elementName%%.requestFocus();
