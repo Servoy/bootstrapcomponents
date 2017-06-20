@@ -3,14 +3,15 @@
 		type="text"
 		ng-class='model.styleClass' class='bts-typeahead'
 		placeholder="{{model.placeholderText}}"
-		ng-model="model.dataProviderID"
+		ng-model="value"
 		typeahead-min-length="0"
 		typeahead-wait-ms="500"
 		typeahead-append-to-body="true"
 		uib-typeahead="value.realValue as value.displayValue || '&nbsp;' | formatFilter:model.format.display:model.format.type
        			  for value in model.valuelistID.filterList($viewValue)"
 		typeahead-input-formatter="formatLabel($model)"
-		ng-blur="doSvyApply()"
+		typeahead-on-select="doSvyApply(true)"
+		ng-blur="doSvyApply(false)"
 		ng-show='model.visible'
 		ng-disabled="!model.enabled"
 		sablo-tabseq='model.tabSeq'

@@ -13,6 +13,20 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
     	
       var resolvingDisplayValue = false;
       
+      var hasRealValues = false;
+
+	$scope.$watch('model.valuelistID', function() {
+		if (!$scope.model.valuelistID || $scope.model.valuelistID.length == 0) return; // not loaded yet or already filtered
+		hasRealValues = false;
+		for (var i = 0; i < $scope.model.valuelistID.length; i++) {
+			var item = $scope.model.valuelistID[i];
+			if (item.realValue != item.displayValue) {
+				hasRealValues = true;
+				break;
+			}
+		}
+	});
+		
       $scope.formatLabel = function(model) {
         var displayFormat = undefined;
         var type = undefined;
@@ -47,23 +61,59 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
         if ($scope.model.format && $scope.model.format.type) type = $scope.model.format.type;
     	return formatFilter(displayValue, displayFormat, type);
       }
-      $scope.doSvyApply = function() {
-         if (angular.element('[uib-typeahead-popup]').attr('aria-hidden') == "true") {
-          if ($scope.model.valuelistID && $scope.model.valuelistID.length > 0 && $scope.model.valuelistID[0].displayValue) {
-            var hasMatchingDisplayValue = false;
-            for (var i = 0; i < $scope.model.valuelistID.length; i++) {
-              if ($element.val() === $scope.model.valuelistID[i].displayValue) {
-            	$scope.model.dataProviderID = $scope.model.valuelistID[i].realValue;
-                hasMatchingDisplayValue = true;
-                break;
-              }
-            }
-            if (!hasMatchingDisplayValue) {
-            	$scope.model.dataProviderID = null;
-            }
-          }
-          $scope.svyServoyapi.apply('dataProviderID');
-        }
+      
+      $scope.$watch('model.dataProviderID', function() {
+    	  if (!hasRealValues)
+			{
+				$scope.value = $scope.model.dataProviderID;
+			}
+			else
+			{
+				var found = false;
+				for (var i = 0; i < $scope.model.valuelistID.length; i++) {
+					var item = $scope.model.valuelistID[i];
+					if (item.realValue === $scope.model.dataProviderID) {
+						$scope.value = item.displayValue;
+						found = true;
+						break;
+					}
+				}
+				if(!found)
+				{
+					$scope.value = $scope.model.dataProviderID;
+				}	
+			}	
+		});
+
+      $scope.doSvyApply = function(force) {
+    	  if (force || angular.element('[uib-typeahead-popup]').attr('aria-hidden') == "true") {
+    		  if ($scope.model.valuelistID) {
+    			  var hasMatchingDisplayValue = false;
+    			  for (var i = 0; i < $scope.model.valuelistID.length; i++) {
+    				  if ($scope.value === $scope.model.valuelistID[i].displayValue) {
+    					  $scope.model.dataProviderID = $scope.model.valuelistID[i].realValue;
+    					  hasMatchingDisplayValue = true;
+    					  break;
+    				  }
+    			  }
+    			  if (!hasMatchingDisplayValue) 
+    			  {
+    				  if (hasRealValues) 
+    				  {
+    					  $scope.model.dataProviderID = null;
+    				  }
+    				  else
+    				  {
+    					  $scope.model.dataProviderID = $scope.value;
+    				  }
+    			  }
+    		  }
+    		  else
+    		  {
+    			  $scope.model.dataProviderID = $scope.value;
+    		  }  
+    		  $scope.svyServoyapi.apply('dataProviderID');
+    	  }
       }
       
       /**
