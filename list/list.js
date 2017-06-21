@@ -13,7 +13,7 @@ angular.module('bootstrapcomponentsList',['servoy', 'bootstrapcomponentscommon']
 
 			function updateInput(listValue) {
 				if($scope.model.valuelistID) {
-					var showDisplayValueFilter = $filter("showDisplayValue");
+					var showDisplayValueFilter = $filter("bcShowDisplayValue");
 					listValue = showDisplayValueFilter(listValue, $scope.model.valuelistID, true, true);
 				}
 
