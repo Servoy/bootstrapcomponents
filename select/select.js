@@ -36,11 +36,22 @@ angular.module('bootstrapcomponentsSelect',['servoy', 'bootstrapcomponentscommon
 			}
 			
 			function updateDataprovider() {
-				var value = $element.find('select').val();
-				if($scope.model.dataProviderID != value) {
-					$scope.model.dataProviderID = value;
-					$scope.svyServoyapi.apply("dataProviderID");
-					return true;
+				if($scope.model.valuelistID) {
+					var selectComp = $element.find('select');
+					var selectedText = selectComp.find("option:selected").text();
+					var value = null;
+					for (i = 0; i < $scope.model.valuelistID.length; i++) {
+						if($scope.model.valuelistID[i].displayValue == selectedText) {
+							value = $scope.model.valuelistID[i].realValue;
+							break;
+						}
+					}
+
+					if($scope.model.dataProviderID != value) {
+						$scope.model.dataProviderID = value;
+						$scope.svyServoyapi.apply("dataProviderID");
+						return true;
+					}
 				}
 				return false;
 			}
