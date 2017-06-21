@@ -83,6 +83,12 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
     		  }  
     		  $scope.svyServoyapi.apply('dataProviderID');
     	  }
+    	  else if (!hasRealValues && ($scope.model.dataProviderID != $scope.value))
+    	  {
+    		  $scope.model.dataProviderID = $scope.value;
+    		  $scope.svyServoyapi.apply('dataProviderID');
+    	  }
+
       }
       
       /**
