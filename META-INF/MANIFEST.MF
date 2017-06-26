@@ -5,7 +5,7 @@ CSS-ClientLibs: css/bootstrap/css/bootstrap.css;name=bootstrap;version=3.3.1
 JS-ClientLibs: bootstrapcomponents/lib/js/bscomponents-common.js;name=bscomponents-common.js;version=1.0.0,
 Bundle-Name: Bootstrap Components
 Bundle-SymbolicName: bootstrapcomponents
-Bundle-Version: 1.2.1
+Bundle-Version: 1.2.2
 Package-Type: Web-Component
 
 Name: button/button.spec
