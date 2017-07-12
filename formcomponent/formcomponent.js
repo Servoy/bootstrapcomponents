@@ -14,10 +14,16 @@ angular.module('bootstrapcomponentsFormcomponent',['servoy']).directive('bootstr
         		   var newValue = $scope.model.containedForm;
         		   if (newValue) {
         			   var elements = $scope.svyServoyapi.getFormComponentElements("containedForm", newValue);
-        			   if ($scope.model.height || $scope.model.width) {
+        			   var height = $scope.model.height;
+        			   var width = $scope.model.width;
+        			   if ($scope.model.svy_absoluteLayout) {
+	        			   if (!height) height = $scope.model.svy_formHeight;
+	        			   if (!width) width = $scope.model.svy_formWidth;
+        			   }
+        			   if (height || width) {
         				   var template = "<div style='position:relative;";
-        				   if ($scope.model.height) template += "height:" +$scope.model.height + "px;"
-        				   if ($scope.model.width) template += "width:" +$scope.model.width + "px;"
+        				   if (height) template += "height:" +height + "px;"
+        				   if (width) template += "width:" +width + "px;"
         				   template += "'";
         				   if ($scope.model.styleClass)  template += " class='" +$scope.model.styleClass + "'";
         				   template += "></div>";
