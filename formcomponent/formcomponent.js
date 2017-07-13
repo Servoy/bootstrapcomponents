@@ -16,9 +16,9 @@ angular.module('bootstrapcomponentsFormcomponent',['servoy']).directive('bootstr
         			   var elements = $scope.svyServoyapi.getFormComponentElements("containedForm", newValue);
         			   var height = $scope.model.height;
         			   var width = $scope.model.width;
-        			   if ($scope.model.svy_absoluteLayout) {
-	        			   if (!height) height = $scope.model.svy_formHeight;
-	        			   if (!width) width = $scope.model.svy_formWidth;
+        			   if (newValue.absoluteLayout) {
+	        			   if (!height) height = newValue.formHeight;
+	        			   if (!width) width = newValue.formWidth;
         			   }
         			   if (height || width) {
         				   var template = "<div style='position:relative;";
