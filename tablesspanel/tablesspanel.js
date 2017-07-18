@@ -78,7 +78,7 @@ angular.module('bootstrapcomponentsTablesspanel',['servoy']).directive('bootstra
 				{
 					// for absolute form default height is design height, for responsive form default height is 0
 					var formState = $sabloApplication.getFormStateEvenIfNotYetResolved($scope.model.containedForm);
-					if (formState && formState.properties && formState.properties.absoluteLayout)
+					if (formState && formState.absoluteLayout)
 					{
 						height = formState.properties.designSize.height; 
 					}	  
