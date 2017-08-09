@@ -1,4 +1,4 @@
-angular.module('bootstrapcomponentsSelect',['servoy', 'bootstrapcomponentscommon']).directive('bootstrapcomponentsSelect', ['$log', '$sabloConstants', function($log, $sabloConstants) {
+angular.module('bootstrapcomponentsSelect',['servoy', 'bootstrapcomponentscommon']).directive('bootstrapcomponentsSelect', ['$log', '$svyProperties', '$sabloConstants', function($log, $svyProperties, $sabloConstants) {
 	return {
 		restrict: 'E',
 		scope: {
@@ -15,12 +15,18 @@ angular.module('bootstrapcomponentsSelect',['servoy', 'bootstrapcomponentscommon
 			 * */
 			
 			var element = $element.find('select');
-			
+			var tooltipState = null;
 			Object.defineProperty($scope.model,$sabloConstants.modelChangeNotifier, {configurable:true,value:function(property,value) {
 				switch(property) {
 					case "dataProviderID":
 						element.val(value);
 						break;
+					case "toolTipText":
+	    				  if (tooltipState)
+	    					  tooltipState(value);
+	    				  else
+	    					  tooltipState = $svyProperties.createTooltipState($element, value);
+	    				  break;
 				}
 			}});
 			

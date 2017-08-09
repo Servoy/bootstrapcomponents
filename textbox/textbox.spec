@@ -17,6 +17,7 @@
 			"placeholderText" : "tagstring",
 			"styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "default": "form-control", "values" :["form-control", "input-sm"]},
 			"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
+			"toolTipText" : { "type" : "tagstring"},
 	    	"visible" : "visible"
 	},
 	"handlers":

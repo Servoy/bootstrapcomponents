@@ -14,6 +14,7 @@
 		"styleClass" : { "type": "styleclass", "tags": { "scope": "design" }, "default": "table", "values": ["table", "table-striped", "table-bordered", "table-hover", "table-condensed"] },
 		"selectionClass" : { "type": "styleclass", "default": "table-bootstrapcomponent-selected "},
 		"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
+		"toolTipText" : { "type" : "tagstring"},
 	 	"visible" : "visible"
 	},
 	"types":

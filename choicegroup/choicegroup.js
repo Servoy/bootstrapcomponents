@@ -1,4 +1,4 @@
-angular.module('bootstrapcomponentsChoicegroup',['servoy']).directive('bootstrapcomponentsChoicegroup', function($utils) {  
+angular.module('bootstrapcomponentsChoicegroup',['servoy']).directive('bootstrapcomponentsChoicegroup', function($utils,$svyProperties, $sabloConstants) {  
     return {
       restrict: 'E',
       scope: {
@@ -68,6 +68,31 @@ angular.module('bootstrapcomponentsChoicegroup',['servoy']).directive('bootstrap
     		  return ret;
     	  }
     	  
+    	  var tooltipState = null;
+    	  Object.defineProperty($scope.model, $sabloConstants.modelChangeNotifier, {
+    		  configurable: true,
+    		  value: function(property, value) {
+    			  switch (property) {
+    			  case "toolTipText":
+    				  if (tooltipState)
+    					  tooltipState(value);
+    				  else
+    					  tooltipState = $svyProperties.createTooltipState($element, value);
+    				  break;
+    			  }
+    		  }
+    	  });
+    	  var destroyListenerUnreg = $scope.$on("$destroy", function() {
+    		  destroyListenerUnreg();
+    		  delete $scope.model[$sabloConstants.modelChangeNotifier];
+    	  });
+    	  // data can already be here, if so call the modelChange function so
+    	  // that it is initialized correctly.
+    	  var modelChangFunction = $scope.model[$sabloConstants.modelChangeNotifier];
+    	  for (key in $scope.model) {
+    		  modelChangFunction(key, $scope.model[key]);
+    	  }
+
     	  /**
            * Set the focus to the first checkbox.
            * @example %%prefix%%%%elementName%%.requestFocus();

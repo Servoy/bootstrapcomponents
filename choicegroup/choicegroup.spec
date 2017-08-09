@@ -14,6 +14,7 @@
 	        "styleClass" : { "type" :"styleclass", "default" : "checkbox" , "tags": { "scope" :"design" }, "values" :["checkbox", "radio"]},
 	        "valuelistID" : { "type" : "valuelist", "tags": { "scope" :"design" }, "for": "dataProviderID"},
 			"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
+			"toolTipText" : { "type" : "tagstring"},
 	        "visible" : "visible"
 	},
 	"handlers":

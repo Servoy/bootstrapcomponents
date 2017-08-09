@@ -94,6 +94,7 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 			
 			var isAnchored = $element.parent().hasClass('svy-wrapper');
 			
+			var tooltipState = null;
 			Object.defineProperty($scope.model, $sabloConstants.modelChangeNotifier, {
 				configurable : true,
 				value : function(property, value) {
@@ -104,6 +105,12 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 							$svyProperties.setCssProperty(inputElement, "height", value.height);
 						}
 						break;
+					case "toolTipText":
+						if (tooltipState)
+							tooltipState(value);
+						else
+							tooltipState = $svyProperties.createTooltipState(inputElement, value);
+					 break;
 					}
 				}
 			});

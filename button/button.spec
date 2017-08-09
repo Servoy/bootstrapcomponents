@@ -12,6 +12,7 @@
 	    "tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }}, 
 	    "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" },"default": "btn btn-default", "values" :["btn","btn-default","btn-lg","btn-sm","btn-xs"]},
 	    "text" : {"type":"tagstring" , "initialValue":"Button", "tags": { "directEdit" : "true" }},
+	    "toolTipText" : { "type" : "tagstring"}, 
 	    "visible" : "visible"
 	},
 	"handlers":

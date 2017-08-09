@@ -14,6 +14,7 @@
 	        "text" : { "type" : "tagstring" ,"default": "Checkbox" },
 			"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
 			"selectedValue" : { "type" : "string" },
+			"toolTipText" : { "type" : "tagstring"}, 
 	        "visible" : "visible"
 	},
 	"handlers":

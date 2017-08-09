@@ -14,6 +14,7 @@
 			"showValue" : {"type":"boolean", "default":true},
 			"max" : {"type":"int", "default":100},
 			"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
+			"toolTipText" : { "type" : "tagstring"},
 	    	"visible" : "visible"
 	},
 	"handlers":
