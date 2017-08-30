@@ -2,7 +2,7 @@
 	"name": "bootstrapcomponents-imagemedia",
 	"displayName": "Image Media",
 	"version": 1,
-	"icon": "bootstrapcomponents/imagemedia/IMG16.png",
+	"icon": "bootstrapcomponents/imagemedia/media.png",
 	"definition": "bootstrapcomponents/imagemedia/imagemedia.js",
 	"libraries": [{"name":"bootstrapcomponents-imagemedia-css", "version":"1.0", "url":"bootstrapcomponents/imagemedia/imagemedia.css", "mimetype":"text/css"}],
 	"model":

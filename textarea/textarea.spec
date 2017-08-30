@@ -2,7 +2,7 @@
 	"name": "bootstrapcomponents-textarea",
 	"displayName": "TextArea",
 	"version": 1,
-	"icon": "servoydefault/textarea/textarea.png",
+	"icon": "bootstrapcomponents/textarea/textarea.png",
 	"definition": "bootstrapcomponents/textarea/textarea.js",
 	"libraries": [{"name":"bootstrapcomponents-textarea-css", "version":"1.0", "url":"bootstrapcomponents/textarea/textarea.css", "mimetype":"text/css"}],
 	"model":

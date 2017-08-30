@@ -2,7 +2,7 @@
 	"name": "bootstrapcomponents-formcomponent",
 	"displayName": "FormComponentContainer",
 	"version": 1,
-	"icon": "bootstrapcomponents/formcomponent/form.gif",
+	"icon": "bootstrapcomponents/formcomponent/formcomponent.png",
 	"definition": "bootstrapcomponents/formcomponent/formcomponent.js", 
 	"libraries": [],	
 	"model":

@@ -2,7 +2,7 @@
 	"name": "bootstrapcomponents-select",
 	"displayName": "Combobox",
 	"version": 1,
-	"icon": "servoydefault/combobox/combobox.png",
+	"icon": "bootstrapcomponents/select/combobox.png",
 	"definition": "bootstrapcomponents/select/select.js",
 	"libraries": [{"name":"bootstrapcomponents-select-css", "version":"1.0", "url":"bootstrapcomponents/select/select.css", "mimetype":"text/css"}],
 	"model":

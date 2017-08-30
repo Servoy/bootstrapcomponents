@@ -2,7 +2,7 @@
 	"name": "bootstrapcomponents-checkbox",
 	"displayName": "CheckBox",
 	"version": 1,
-	"icon": "servoydefault/check/checkbox.png",
+	"icon": "bootstrapcomponents/checkbox/checkbox.png",
 	"definition": "bootstrapcomponents/checkbox/checkbox.js",
 	"libraries": [{"name":"bootstrapcomponents-checkbox-css", "version":"1.0", "url":"bootstrapcomponents/checkbox/checkbox.css", "mimetype":"text/css"}],
 	"model":

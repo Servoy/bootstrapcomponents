@@ -2,7 +2,7 @@
 	"name": "bootstrapcomponents-list",
 	"displayName": "Data List",
 	"version": 1,
-	"icon": "servoydefault/typeahead/bhdropdownlisticon.gif",
+	"icon": "bootstrapcomponents/list/listbox.png",
 	"definition": "bootstrapcomponents/list/list.js",
 	"libraries": [
 		{"name":"bootstrapcomponents-list-css", "version":"1.0", "url":"bootstrapcomponents/list/list.css", "mimetype":"text/css"},

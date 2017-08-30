@@ -2,7 +2,7 @@
 	"name": "bootstrapcomponents-tablesspanel",
 	"displayName": "Tabless Panel",
 	"version": 1,
-	"icon": "servoydefault/tabpanel/tab.png",
+	"icon": "bootstrapcomponents/tabpanel/tab.png",
 	"definition": "bootstrapcomponents/tablesspanel/tablesspanel.js",
 	"libraries": [{"name":"bootstrapcomponents-tablesspanel-css", "version":"1.0", "url":"bootstrapcomponents/tablesspanel/tablesspanel.css", "mimetype":"text/css"}],
 	"model":
