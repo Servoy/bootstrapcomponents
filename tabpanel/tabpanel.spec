@@ -5,6 +5,7 @@
 	"icon": "bootstrapcomponents/tabpanel/tab.png",
 	"definition": "bootstrapcomponents/tabpanel/tabpanel.js",
 	"libraries": [{"name":"bootstrapcomponents-tabpanel-css", "version":"1.0", "url":"bootstrapcomponents/tabpanel/tabpanel.css", "mimetype":"text/css"}],
+	"serverscript": "bootstrapcomponents/tabpanel/tabpanel_server.js",
 	"model":
 	{
 			"containerStyleClass" : { "type" :"styleclass"},
@@ -22,7 +23,45 @@
 	},
 	"api":
 	{
-
+ 		"addTab": {
+	            "returns": "tab",
+				"parameters":[
+								{                                                                 
+ 								"name":"form",
+								"type":"form"
+			                	},
+             					{                                                                 
+ 								"name":"tabText",
+								"type":"tagstring",
+			            		},
+             					{                                                                 
+ 								"name":"index",
+								"type":"int",
+			            		"optional":true
+			            		}             
+							 ]
+	
+	        },
+	      "getTabAt": {
+	            "returns": "tab",
+				"parameters":[
+								{                                                                 
+ 								"name":"i",
+								"type":"int"
+			                	}             
+							 ]
+	
+	        },   
+	     "removeTabAt": {
+	            "returns": "boolean",
+				"parameters":[
+								{                                                                 
+ 								"name":"index",
+								"type":"int"
+			                	}             
+							 ]
+	
+	        }
 	},
 	"types": {
   	 "tab": {

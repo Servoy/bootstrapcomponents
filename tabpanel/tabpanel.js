@@ -1,4 +1,4 @@
-angular.module('bootstrapcomponentsTabpanel',['servoy']).directive('bootstrapcomponentsTabpanel', function() {  
+angular.module('bootstrapcomponentsTabpanel',['servoy']).directive('bootstrapcomponentsTabpanel', function($timeout) {  
     return {
       restrict: 'E',
       scope: {
@@ -92,8 +92,8 @@ angular.module('bootstrapcomponentsTabpanel',['servoy']).directive('bootstrapcom
     	  				$scope.model.tabs[oldValue-1].active = false;
     	  			}
 					if (newValue)
-					{ 
-						$scope.svyServoyapi.formWillShow($scope.model.tabs[newValue-1].containedForm,$scope.model.tabs[newValue-1].relationName);
+					{
+						var promise = $scope.svyServoyapi.formWillShow($scope.model.tabs[newValue-1].containedForm,$scope.model.tabs[newValue-1].relationName);
 						$scope.model.tabs[newValue-1].active = true;
 					}
 					if ($scope.$parent && $scope.$parent.formname)
@@ -102,7 +102,10 @@ angular.module('bootstrapcomponentsTabpanel',['servoy']).directive('bootstrapcom
 						 webStorage.session.add(key,newValue);
 					}
 				}
-			  	$scope.model.activeTabIndex = $scope.model.tabIndex - 1;
+    	  		// make sure angularui model is corect before changing activeindex, otherwise angularui doesn't handle the change correctly
+    	  		$timeout(function() {
+    	  			$scope.model.activeTabIndex = $scope.model.tabIndex - 1;
+				}, 0);
 		  });
 		  
     	  $scope.$watch("model.visible", function(newValue,oldValue) {
@@ -122,7 +125,7 @@ angular.module('bootstrapcomponentsTabpanel',['servoy']).directive('bootstrapcom
 		   $scope.$watch("model.tabs", function(newValue,oldValue) {
     	  		if (newValue != oldValue)
     	  		{
-    	  			var oldForm = oldValue && oldValue.length > 0?  oldValue[$scope.model.tabIndex-1].containedForm : null;
+    	  			var oldForm = oldValue && oldValue.length > 0 && oldValue[$scope.model.tabIndex-1] ?  oldValue[$scope.model.tabIndex-1].containedForm : null;
     	  			var newTabIndex = $scope.model.tabIndex;
     	  			if (!newValue || newValue.length == 0)
     	  			{
