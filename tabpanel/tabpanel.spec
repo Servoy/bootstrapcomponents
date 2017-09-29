@@ -32,7 +32,7 @@
 			                	},
              					{                                                                 
  								"name":"tabText",
-								"type":"tagstring",
+								"type":"tagstring"
 			            		},
              					{                                                                 
  								"name":"index",
