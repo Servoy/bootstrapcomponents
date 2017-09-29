@@ -18,7 +18,7 @@ angular.module('bootstrapcomponentsTextbox',['servoy']).directive('bootstrapcomp
     			  if ($scope.model.format)
     			  {
     				  if (formatState)
-    					  formatState(value);
+    					  formatState($scope.model.format);
     				  else formatState = $formatterUtils.createFormatState(child, $scope, ngModel,true,$scope.model.format);
     			  }	  
     		  })
