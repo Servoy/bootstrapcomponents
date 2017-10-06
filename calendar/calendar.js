@@ -79,10 +79,24 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 				}	
 			});
 			
+			/**
+			 * Set the focus to this calendar.
+			 * 
+			 * @example %%prefix%%%%elementName%%.requestFocus();
+			 * @param mustExecuteOnFocusGainedMethod
+			 *            (optional) if false will not execute the onFocusGained
+			 *            method; the default value is true
+			 */
 			$scope.api.requestFocus = function(mustExecuteOnFocusGainedMethod) {
-				$element.find('input')[0].focus();
-			}
-			
+				var input = $element.find('input');
+				if (mustExecuteOnFocusGainedMethod === false && $scope.handlers.onFocusGainedMethodID) {
+					input.unbind('focus');
+					input[0].focus();
+					input.bind('focus', $scope.handlers.onFocusGainedMethodID)
+				} else {
+					input[0].focus();
+				}
+			}			
 			
 			$scope.api.getWidth = $apifunctions.getWidth($element[0]);
 			$scope.api.getHeight = $apifunctions.getHeight($element[0]);

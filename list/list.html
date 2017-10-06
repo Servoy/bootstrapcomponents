@@ -1,6 +1,8 @@
 <div class='bts-list'>
 	<input
 			svy-enter='handlers.onActionMethodID($event)'
+			svy-focusgained='handlers.onFocusGainedMethodID($event)'
+			svy-focuslost='handlers.onFocusLostMethodID($event)'
 			placeholder="{{model.placeholderText}}"
 			type="text"
 			list="{{::model.svyMarkupId}}_datalist"

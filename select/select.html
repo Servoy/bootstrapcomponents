@@ -1,4 +1,6 @@
 <select 	svy-change='onChange($event)'
+			svy-focusgained='handlers.onFocusGainedMethodID($event)'
+			svy-focuslost='handlers.onFocusLostMethodID($event)'
 			ng-class='model.styleClass' class='bts-select'
 			ng-if='model.visible'
 			ng-disabled="model.readOnly || !model.enabled"

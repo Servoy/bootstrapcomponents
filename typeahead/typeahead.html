@@ -1,5 +1,7 @@
 <input
 		svy-enter='handlers.onActionMethodID($event)'
+		svy-focusgained='handlers.onFocusGainedMethodID($event)'
+		svy-focuslost='handlers.onFocusLostMethodID($event)'
 		type="text"
 		ng-class='model.styleClass' class='bts-typeahead'
 		placeholder="{{model.placeholderText}}"

@@ -115,12 +115,23 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
 	  for (key in $scope.model) {
 		  modelChangFunction(key, $scope.model[key]);
 	  }
-      /**
+
+		/**
 		 * Request the focus to this typeahead.
+		 * 
 		 * @example %%prefix%%%%elementName%%.requestFocus();
+		 * @param mustExecuteOnFocusGainedMethod
+		 *            (optional) if false will not execute the onFocusGained
+		 *            method; the default value is true
 		 */
-		$scope.api.requestFocus = function(mustExecuteOnFocusGainedMethod) { 
-			$element[0].focus();
+		$scope.api.requestFocus = function(mustExecuteOnFocusGainedMethod) {
+			if (mustExecuteOnFocusGainedMethod === false && $scope.handlers.onFocusGainedMethodID) {
+				$element.unbind('focus');
+				$element[0].focus();
+				$element.bind('focus', $scope.handlers.onFocusGainedMethodID)
+			} else {
+				$element[0].focus();
+			}
 		}
     },
     templateUrl: 'bootstrapcomponents/typeahead/typeahead.html',

@@ -34,7 +34,8 @@ angular.module('bootstrapcomponentsChoicegroup',['servoy']).directive('bootstrap
     			$scope.model.dataProviderID = getDataproviderFromSelection()
     		}	
             
-            $scope.svyServoyapi.apply('dataProviderID')        
+			$scope.svyServoyapi.apply('dataProviderID')
+			if($scope.handlers.onFocusLostMethodID) $scope.handlers.onFocusLostMethodID($event)
           }
 
     	  function setSelectionFromDataprovider(){
@@ -93,13 +94,24 @@ angular.module('bootstrapcomponentsChoicegroup',['servoy']).directive('bootstrap
     		  modelChangFunction(key, $scope.model[key]);
     	  }
 
-    	  /**
-           * Set the focus to the first checkbox.
-           * @example %%prefix%%%%elementName%%.requestFocus();
-           */
-          $scope.api.requestFocus = function(mustExecuteOnFocusGainedMethod) { 
-	         $element.find('input')[0].focus();
-          }
+		/**
+		 * Request the focus to this choicegroup.
+		 * 
+		 * @example %%prefix%%%%elementName%%.requestFocus();
+		 * @param mustExecuteOnFocusGainedMethod
+		 *            (optional) if false will not execute the onFocusGained
+		 *            method; the default value is true
+		 */
+		$scope.api.requestFocus = function(mustExecuteOnFocusGainedMethod) {
+			var input = $element.find('input');
+			if (mustExecuteOnFocusGainedMethod === false && $scope.handlers.onFocusGainedMethodID) {
+				input.unbind('focus');
+				input[0].focus();
+				input.bind('focus', $scope.handlers.onFocusGainedMethodID)
+			} else {
+				input[0].focus();
+			}
+		}
       },
       templateUrl: 'bootstrapcomponents/choicegroup/choicegroup.html'
     };

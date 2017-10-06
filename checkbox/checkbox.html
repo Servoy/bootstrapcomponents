@@ -5,6 +5,8 @@
 					sablo-tabseq='model.tabSeq'
 					ng-click="checkBoxClicked()"
 					svy-click='handlers.onActionMethodID($event)'
+					svy-focusgained='handlers.onFocusGainedMethodID($event)'
+					svy-focuslost='handlers.onFocusLostMethodID($event)'
 					ng-disabled="model.readOnly || !model.enabled"
 					id="{{::model.svyMarkupId}}"
 					/>

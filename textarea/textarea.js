@@ -31,14 +31,26 @@ angular.module('bootstrapcomponentsTextarea',['servoy']).directive('bootstrapcom
     	  for (key in $scope.model) {
     		  modelChangFunction(key, $scope.model[key]);
     	  }
+		  
+		/**
+		 * Request the focus to this textarea.
+		 * @example %%prefix%%%%elementName%%.requestFocus();
+		 * @param mustExecuteOnFocusGainedMethod (optional) if false will not execute the onFocusGained method; the default value is true
+		 */
+		$scope.api.requestFocus = function(mustExecuteOnFocusGainedMethod) {
+			var inputEl = $element.find('textarea');
+			if (mustExecuteOnFocusGainedMethod === false && $scope.handlers.onFocusGainedMethodID)
+			{
+				inputEl.unbind('focus');
+				inputEl[0].focus();
+				inputEl.bind('focus', $scope.handlers.onFocusGainedMethodID)
+			}
+			else
+			{
+				inputEl[0].focus();
+			}			  
+		}
 
-    	  /**
-    	   * Request the focus to this textarea.
-    	   * @example %%prefix%%%%elementName%%.requestFocus();
-    	   */
-    	  $scope.api.requestFocus = function() {
-    		  $element.find('textarea')[0].focus();
-    	  }
       },
       templateUrl: 'bootstrapcomponents/textarea/textarea.html'
     };

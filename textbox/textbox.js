@@ -52,9 +52,21 @@ angular.module('bootstrapcomponentsTextbox',['servoy']).directive('bootstrapcomp
     	  /**
     	   * Request the focus to this text field.
     	   * @example %%prefix%%%%elementName%%.requestFocus();
+		   * @param mustExecuteOnFocusGainedMethod (optional) if false will not execute the onFocusGained method; the default value is true
     	   */
-    	  $scope.api.requestFocus = function() { 
-    		  $element.find('input')[0].focus();
+    	  $scope.api.requestFocus = function(mustExecuteOnFocusGainedMethod) { 
+			  var inputEl = $element.find('input');
+			  
+			  if (mustExecuteOnFocusGainedMethod === false && $scope.handlers.onFocusGainedMethodID)
+			  {
+				inputEl.unbind('focus');
+				inputEl[0].focus();
+				inputEl.bind('focus', $scope.handlers.onFocusGainedMethodID)
+			  }
+			  else
+			  {
+				inputEl[0].focus();
+			  }			  
     	  }
 
     	  /**

@@ -84,10 +84,21 @@ angular.module('bootstrapcomponentsSelect',['servoy', 'bootstrapcomponentscommon
 			/**
 			 * Set the focus to combobox.
 			 * @example %%prefix%%%%elementName%%.requestFocus();
+			 * @param mustExecuteOnFocusGainedMethod (optional) if false will not execute the onFocusGained method; the default value is true
 			 */
-			$scope.api.requestFocus = function() {
-				$element.find('select')[0].focus();
-			}
+			$scope.api.requestFocus = function(mustExecuteOnFocusGainedMethod) {
+				var inputEl = $element.find('select');
+				if (mustExecuteOnFocusGainedMethod === false && $scope.handlers.onFocusGainedMethodID)
+				{
+					inputEl.unbind('focus');
+					inputEl[0].focus();
+					inputEl.bind('focus', $scope.handlers.onFocusGainedMethodID)
+				}
+				else
+				{
+					inputEl[0].focus();
+				}			  
+			}			
       },
       templateUrl: 'bootstrapcomponents/select/select.html'
     };

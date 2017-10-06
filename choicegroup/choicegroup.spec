@@ -45,11 +45,36 @@
 								  "type":"JSEvent"
 								}
 							 ]
+	        },
+					"onFocusGainedMethodID" : {
+
+	        	"parameters":[
+								{
+						      "name":"event",
+								  "type":"JSEvent"
+								}
+						]
+	        },
+	        "onFocusLostMethodID" : {
+
+	        	"parameters":[
+								{
+						      "name":"event",
+								  "type":"JSEvent"
+								}
+						]
 	        }
 	},
 	"api":
 	{
 		"requestFocus": {
+				"parameters":[
+						{                                                                 
+						"name":"mustExecuteOnFocusGainedMethod",
+						"type":"boolean",
+						"optional":true
+						}             
+				],
 				"delayUntilFormLoads": true,
 				"discardPreviouslyQueuedSimilarCalls": true
 	        }
