@@ -21,10 +21,10 @@
 	{
 		"column":
 		{
-			"dataprovider": {	"type": "dataprovider",	"forFoundset": "foundset" },
+			"dataprovider": {	"type": "dataprovider",	"forFoundset": "foundset", "tags": { "useAsCaptionInDeveloper" : true, "captionPriority" : 2 } },
 			"format" : {"for":["valuelist","dataprovider"] , "type" :"format"},
 			"headerStyleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }}, 
-			"headerText": {"type" :"string", "initialValue" : "header", "tags": { "showInOutlineView" :true }},
+			"headerText": {"type" :"string", "tags": { "useAsCaptionInDeveloper" : true, "captionPriority" : 1, "showInOutlineView" : true }},
 			"styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }},
 			"valuelist" : { "type" : "valuelist", "tags": { "scope" :"design" }, "for": "dataprovider"}
 		}

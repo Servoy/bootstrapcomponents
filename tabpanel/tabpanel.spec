@@ -60,7 +60,7 @@
 			"active": { "type": "boolean", "default": false, "tags": { "scope": "private" } },
 			"containedForm": "form",
 			"imageMediaID": "media",
-			"text": { "type": "tagstring", "default": "tab" },
+			"text": { "type": "tagstring", "tags": { "useAsCaptionInDeveloper" : true, "captionPriority" : 1 } },
 			"relationName": "relation"
 		}
 	}
