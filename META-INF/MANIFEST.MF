@@ -14,6 +14,9 @@ Web-Component: True
 Name: label/label.spec
 Web-Component: True
 
+Name: datalabel/datalabel.spec
+Web-Component: True
+
 Name: textbox/textbox.spec
 Web-Component: True
 
