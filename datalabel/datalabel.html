@@ -1,0 +1,10 @@
+<span class='bts-datalabel' ng-class="model.styleClass"
+	svy-click='handlers.onActionMethodID($event)'
+    svy-dblclick='handlers.onDoubleClickMethodID($event)'
+ 	svy-rightclick='handlers.onRightClickMethodID($event)'
+ 	ng-bind-html='model.dataProviderID | formatFilter:model.format.display:model.format.type| designFilter:servoyApi.isInDesigner() | htmlFilter | trustAsHtml:servoyApi.trustAsHtml()'
+	sablo-tabseq='(handlers.onActionMethodID || handlers.onDoubleClickMethodID || handlers.onRightClickMethodID) ? model.tabSeq : -2'
+	ng-disabled='!model.enabled'
+ 	ng-if='model.visible'
+ 	id="{{::model.svyMarkupId}}">
+</span>
