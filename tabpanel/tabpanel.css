@@ -29,3 +29,17 @@
 .svy-wrapper > * > .bts-tabpanel > .tab-content > .tab-pane > div {
 	height: 100%;
 }
+
+
+/* Default form's height to 100% if responsive form is contained within an anchored form */
+.svy-wrapper > * > .bts-tabpanel > .tab-content > .tab-pane > div > svy-formload > .svy-respform {
+	height: 100%;
+}
+
+/* 
+ * TODO min-height can be greater than 100% height of the panel
+ * should min-height be overruled to 0 if the responsive form is included in an anchored form ?
+ */
+.svy-wrapper > * > .bts-tabpanel > .tab-content > .tab-pane > div {
+	/* min-height: 0 !important; */
+}
