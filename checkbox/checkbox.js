@@ -13,8 +13,11 @@ angular.module('bootstrapcomponentsCheckbox',['servoy']).directive('bootstrapcom
           $scope.selection = false;
           
           $scope.$watch('model.dataProviderID', function() 
-          { 
-        	  $scope.selection = getSelectionFromDataprovider();
+          {
+        	  var value = {}
+        	  value.value = getSelectionFromDataprovider();
+        	  // see "always include a dot in your ngmodel" issue
+        	  $scope.selection = value;
           })
           
           $scope.checkBoxClicked = function()
