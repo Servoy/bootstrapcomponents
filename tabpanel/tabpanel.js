@@ -23,8 +23,26 @@ angular.module('bootstrapcomponentsTabpanel',['servoy']).directive('bootstrapcom
     	      }
     	      return -1;
     	  }
+    	  var currentTab = null;
+    	  var currentContainedForm = null;
     	  $scope.getForm = function(tab) {
     		  if (tab && tab.active && tab.containedForm) { 
+    			  if (currentContainedForm !== tab.containedForm) {
+    				  if (currentContainedForm != null && currentTab == tab) {
+    					  // this was a change 
+    					  // temp set it to false, so it will not show the new form yet.
+    					  tab.active = false;
+    					  var promise =  $scope.svyServoyapi.hideForm(currentContainedForm, null,null,tab.containedForm, tab.relationName);
+    					  promise.then(function(ok) {
+    						  // we can't do much more then to set the back to true.
+    						  // maybe if 'ok' is false we should also push back the previous form??
+    						  tab.active = true; 
+    					  })  
+    				  }
+    				  currentContainedForm = tab.containedForm;
+    				  currentTab = tab;
+    				  if (!tab.active) return "";
+    			  }
     			  return $scope.svyServoyapi.getFormUrl(tab.containedForm);
     		  }
     		  return "";
