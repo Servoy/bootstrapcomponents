@@ -1,4 +1,4 @@
-angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapcomponentsTypeahead', ['formatFilterFilter','$svyProperties','$sabloConstants', function(formatFilter,$svyProperties, $sabloConstants) {
+angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapcomponentsTypeahead', ['formatFilterFilter','$svyProperties','$sabloConstants','$formatterUtils', function(formatFilter,$svyProperties, $sabloConstants,$formatterUtils) {
   return {
     restrict: 'E',
     scope: {
@@ -92,6 +92,7 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
       }
       
       var tooltipState = null;
+      var formatState = null;
 	  Object.defineProperty($scope.model, $sabloConstants.modelChangeNotifier, {
 		  configurable: true,
 		  value: function(property, value) {
@@ -102,6 +103,11 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
 				  else
 					  tooltipState = $svyProperties.createTooltipState($element, value);
 				  break;
+			  case "format":
+					if (formatState)
+						formatState(value);
+					else formatState = $formatterUtils.createFormatState($element, $scope,$scope.ngModel,true,value);
+					break;
 			  }
 		  }
 	  });
