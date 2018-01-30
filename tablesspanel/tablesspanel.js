@@ -14,16 +14,21 @@ angular.module('bootstrapcomponentsTablesspanel',['servoy']).directive('bootstra
 			var formWillShowCalled;
 
 			function setRealContainedForm (formname, relationname) {
-				if (formWillShowCalled != formname && formname) {
-					formWillShowCalled = formname;
-					if ($scope.model.waitForData) {
-						$q.when($scope.svyServoyapi.formWillShow(formname, relationname)).then(function() {
+				if ($scope.model.visible) {
+					if (formWillShowCalled != formname && formname) {
+						formWillShowCalled = formname;
+						if ($scope.model.waitForData) {
+							$q.when($scope.svyServoyapi.formWillShow(formname, relationname)).then(function() {
+								realContainedForm = formname;
+							});
+						} else {
+							$scope.svyServoyapi.formWillShow(formname, relationname);
 							realContainedForm = formname;
-						});
-					} else {
-						$scope.svyServoyapi.formWillShow(formname, relationname);
-						realContainedForm = formname;
+						}
 					}
+				} else {
+					// panel is not visible; don't ask server to show child form as that would generate an exception on server
+					realContainedForm = formWillShowCalled = undefined;
 				}
 			}
 
