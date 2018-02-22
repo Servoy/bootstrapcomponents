@@ -26,7 +26,7 @@ angular.module('bootstrapcomponentsTabpanel',['servoy']).directive('bootstrapcom
     	  var currentTab = null;
     	  var currentContainedForm = null;
     	  $scope.getForm = function(tab) {
-    		  if (tab && tab.active && tab.containedForm) { 
+    		  if (tab && (tab.active || $scope.svyServoyapi.isInDesigner()) && tab.containedForm) { 
     			  if (currentContainedForm !== tab.containedForm) {
     				  if (currentContainedForm != null && currentTab == tab) {
     					  // this was a change 
@@ -37,7 +37,7 @@ angular.module('bootstrapcomponentsTabpanel',['servoy']).directive('bootstrapcom
     						  // we can't do much more then to set the back to true.
     						  // maybe if 'ok' is false we should also push back the previous form??
     						  tab.active = true; 
-    					  })  
+    					  })
     				  }
     				  currentContainedForm = tab.containedForm;
     				  currentTab = tab;
