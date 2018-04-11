@@ -48,6 +48,7 @@ angular.module('bootstrapcomponentsTablesspanel',['servoy']).directive('bootstra
 				if (newValue !== oldValue)
 				{
 					if (oldValue) {
+						formWillShowCalled = newValue;
 						$scope.svyServoyapi.hideForm(oldValue,null,null,newValue,$scope.model.relationName,null).then(function(ok) {
 							realContainedForm = $scope.model.containedForm;
 						})
