@@ -169,6 +169,14 @@ angular.module('bootstrapcomponentsTabpanel',['servoy']).directive('bootstrapcom
     	  			{
     	  				$scope.model.tabIndex = newTabIndex;
     	  			}
+    	  			else if (newTabIndex > 0)
+    	  			{
+    	  				$scope.model.tabs[newTabIndex-1].active = true;
+    	  				// make sure angularui model is corect before changing activeindex, otherwise angularui doesn't handle the change correctly
+    	  				$timeout(function() {
+    	    	  			$scope.model.activeTabIndex = $scope.model.tabIndex - 1;
+    					}, 0);
+    	  			}
 				}	
 		  });
 		  
