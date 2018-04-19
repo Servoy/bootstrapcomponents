@@ -4,6 +4,7 @@
 	    ng-disabled="!model.enabled"
 	    ng-readonly="model.readOnly || !model.editable"
 	    placeholder="{{model.placeholderText}}"
+       	    svy-decimal-key-converter
 	    svy-focusgained='handlers.onFocusGainedMethodID($event)'
 	   	svy-focuslost='handlers.onFocusLostMethodID($event)'
 	   	svy-enter='handlers.onActionMethodID($event)'
