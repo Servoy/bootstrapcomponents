@@ -12,27 +12,34 @@ angular.module('bootstrapcomponentsFormcomponent',['servoy']).directive('bootstr
         	   function createContent() {
         		   $element.empty();
         		   var newValue = $scope.model.containedForm;
-        		   if (newValue) {
+        		   if (newValue) {       			   
         			   var elements = $scope.svyServoyapi.getFormComponentElements("containedForm", newValue);
         			   var height = $scope.model.height;
         			   var width = $scope.model.width;
+        			   
+        			   // set the styleClass
+        			   var styleClass = "svy-formcomponent";
+        			   if ($scope.model.styleClass) styleClass += " " + $scope.model.styleClass;
+        			   
         			   if (newValue.absoluteLayout) {
 	        			   if (!height) height = newValue.formHeight;
 	        			   if (!width) width = newValue.formWidth;
         			   }
-        			   if (height || width) {
+        			   if (height || width) { 	// is absolute. Why not to use newValue.absoluteLayout !?
         				   var template = "<div style='position:relative;";
         				   if (height) template += "height:" +height + "px;"
         				   if (width) template += "width:" +width + "px;"
         				   template += "'";
-        				   if ($scope.model.styleClass)  template += " class='svy-formcomponent " +$scope.model.styleClass + "'";
+        				   template += " class='svy-wrapper " + styleClass + "'";
         				   template += "></div>";
         				   var div = $compile(template)($scope);
         				   div.append(elements);
         				   $element.append(div);
+        			   } else  {	// is responsive
+        				   // add the styleClass to the angular data-x element
+        			   	   if (styleClass) $element.addClass(styleClass);
+        				   $element.append(elements);
         			   }
-        			   // FIXME styleClass is not applied to responsive forms
-        			   else $element.append(elements);
         		   }
         		   else {
         			   $element.html("<div>FormComponentContainer, select a form</div>");
@@ -66,14 +73,40 @@ angular.module('bootstrapcomponentsFormcomponent',['servoy']).directive('bootstr
 						value: function(property, value) {
 							switch (property) {
 							case "styleClass":
-								// TODO does not work for responsive forms
-								var div = $element.children()[0];
-								if (div) {
-									var wrapper = $(div);
-									if (wrapper.hasClass('svy-formcomponent')) {
-										if (className) wrapper.removeClass(className);
+								if ($scope.model.containedForm) {
+									if ( $scope.model.containedForm.absoluteLayout) {
+										// TODO does not work for responsive forms
+										var div = $element.children()[0];
+										if (div) {
+											var wrapper = $(div);
+											if (wrapper.hasClass('svy-wrapper')) {
+												if (className) wrapper.removeClass(className);
+												// adding again the styleClass because svy-formcomponent is the default styleClass in .spec file
+												className = 'svy-formcomponent ' + value;
+												if (className) wrapper.addClass(className);
+											}
+										}
+									} else {
+										/* Considerations:
+										 * Adding the styleClass to the parent element may mess up the parent div layout. Also it breaks the encapsulation
+										 * The actual content of the form-component may have multiple divs, what do i do, i add the styleclass to each div !?
+										 * What would break if i add the styleClass to the data-forcomponent-container element ?
+										 *
+										 * Let's think of some extreme use cases
+										 * - display: block|inline|none
+										 * - height|width
+										 * - styleClass .hidden
+										 *
+										 * 	The developer is responsible to wrap the containedForm into the proper div and style it properly.
+										 * 	The display|height|width type should not be applied to the parent itself but to the content of the contained form. e.g. .hidden-formcomponent > * { display: none }
+										 * 	Alternatevely the containedForm should be contained by a div, without other sibilings. e.g. row > col > div > containedForm
+										 * */
+										
+										// add it to the data-formcomponent-container
+										if (className) $element.removeClass(className);
+										// adding again the styleClass because svy-formcomponent is the default styleClass in .spec file
 										className = 'svy-formcomponent ' + value;
-										if (className) wrapper.addClass(className);
+										if (className) $element.addClass(className);
 									}
 								}
 								break;
