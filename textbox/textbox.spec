@@ -8,7 +8,7 @@
 	"libraries": [{"name":"bootstrapcomponents-textbox-css", "version":"1.0", "url":"bootstrapcomponents/textbox/textbox.css", "mimetype":"text/css"}],
 	"model":
 	{
-			"dataProviderID" : { "type":"dataprovider", "pushToServer": "allow","tags": { "scope" :"design" }, "ondatachange": { "onchange":"onDataChangeMethodID", "callback":"onDataChangeCallback"}},
+			"dataProviderID" : { "type":"dataprovider", "pushToServer": "allow","tags": { "scope" :"design" }, "ondatachange": { "onchange":"onDataChangeMethodID"}},
 			"enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["dataProviderID","onActionMethodID","onDataChangeMethodID","onFocusGainedMethodID","onFocusLostMethodID","onRightClickMethodID"] },
 			"format" : {"for":["dataProviderID"] , "type" :"format"}, 
 			"inputType" : {"type":"string" , "pushToServer": "allow", "tags": { "scope" :"design" }, "default" : "text",  "values" :["text", "password", "email", "tel", "date", "time", "datetime-local", "month", "week", "number", "color"]},

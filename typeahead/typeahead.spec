@@ -7,7 +7,7 @@
 	"libraries": [{"name":"bootstrapcomponents-typeahead-css", "version":"1.0", "url":"bootstrapcomponents/typeahead/typeahead.css", "mimetype":"text/css"}],
 	"model":
 	{
-	    "dataProviderID" : { "type":"dataprovider","pushToServer": "allow", "tags": { "scope" :"design" }, "ondatachange": { "onchange":"onDataChangeMethodID", "callback":"onDataChangeCallback"}},
+	    "dataProviderID" : { "type":"dataprovider","pushToServer": "allow", "tags": { "scope" :"design" }, "ondatachange": { "onchange":"onDataChangeMethodID"}},
 	    "enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["dataProviderID","onActionMethodID","onDataChangeMethodID"] },
 	    "format" : {"for":["valuelistID","dataProviderID"] , "type" :"format"},
 		"readOnly" : { "type": "protected", "blockingOn": true, "default": false,"for": ["dataProviderID","onDataChangeMethodID"], "tags": {"scope":"runtime"} },
