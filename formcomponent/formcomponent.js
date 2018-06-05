@@ -81,8 +81,7 @@ angular.module('bootstrapcomponentsFormcomponent',['servoy']).directive('bootstr
 											var wrapper = $(div);
 											if (wrapper.hasClass('svy-wrapper')) {
 												if (className) wrapper.removeClass(className);
-												// adding again the styleClass because svy-formcomponent is the default styleClass in .spec file
-												className = 'svy-formcomponent ' + value;
+												className = value;
 												if (className) wrapper.addClass(className);
 											}
 										}
@@ -104,8 +103,7 @@ angular.module('bootstrapcomponentsFormcomponent',['servoy']).directive('bootstr
 										
 										// add it to the data-formcomponent-container
 										if (className) $element.removeClass(className);
-										// adding again the styleClass because svy-formcomponent is the default styleClass in .spec file
-										className = 'svy-formcomponent ' + value;
+										className = value;
 										if (className) $element.addClass(className);
 									}
 								}
