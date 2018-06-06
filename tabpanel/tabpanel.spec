@@ -19,7 +19,17 @@
 		"visible": "visible"
 	},
 	
-	"handlers": { },
+	"handlers": { 
+		"onChangeMethodID": {
+			"parameters": [{
+				"name": "previousIndex",
+				"type": "int"
+			}, {
+				"name": "event",
+				"type": "JSEvent"
+			}]
+		}
+	},
 	
 	"api": {
 		"addTab": {

@@ -1,4 +1,4 @@
-angular.module('bootstrapcomponentsTabpanel',['servoy']).directive('bootstrapcomponentsTabpanel', function($timeout) {  
+angular.module('bootstrapcomponentsTabpanel',['servoy']).directive('bootstrapcomponentsTabpanel', function($timeout,$window) {  
     return {
       restrict: 'E',
       scope: {
@@ -63,8 +63,12 @@ angular.module('bootstrapcomponentsTabpanel',['servoy']).directive('bootstrapcom
 					promise.then(function(ok) {
 					  if (ok) {
 						  $scope.model.tabs[$scope.model.tabIndex-1].active = false;
+						  var oldIndex =  $scope.model.tabIndex;
 						  $scope.model.tabIndex = getTabIndex(tab)+1;
 						  tab.active = true;
+						  $timeout(function() {
+								$scope.handlers.onChangeMethodID(oldIndex, $window.event ? $window.event : $.Event("change"));
+						  },0);
 					  }
 					  else {
 						  $scope.model.tabs[$scope.model.tabIndex-1].active = true;
