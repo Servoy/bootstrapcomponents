@@ -50,11 +50,17 @@ angular.module('bootstrapcomponentsTabpanel',['servoy']).directive('bootstrapcom
     		  return "";
     	  }
     	  
-    	  $scope.select = function(tab) {
+    	  $scope.select = function(tab,oldSelection) {
     		  if (tab && tab.containedForm)
     		  {
     			  if ($scope.model.tabs[$scope.model.tabIndex-1] == tab) {
     				  $scope.svyServoyapi.formWillShow(tab.containedForm, tab.relationName);
+    				  if(oldSelection !== undefined && oldSelection !== null)
+    				  {
+    					  $timeout(function() {
+  							$scope.handlers.onChangeMethodID(oldSelection+1 , $window.event ? $window.event : $.Event("change"));
+    					  },0);
+    				  }	  
     			  }
     			  else {
     				tab.active = false;
