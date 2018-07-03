@@ -6,7 +6,7 @@
 <uib-tabset  id="{{::model.svyMarkupId}}" active="model.activeTabIndex" class='bts-tabpanel' ng-class='model.styleClass' style="position: relative;" ng-if='model.visible' sablo-tabseq='model.tabSeq' sablo-tabseq-config="{container: true, reservedGap: 50}">
     <uib-tab ng-repeat="tab in model.tabs" select="select(tab,previousIndex)" >
       <uib-tab-heading>
-      	<img ng-hide="tab.imageMediaID == ''"  ng-src='{{tab.imageMediaID}}'/>
+      	<img ng-show="tab.imageMediaID"  ng-src='{{tab.imageMediaID}}'/>
         <span  ng-bind='tab.text'></span>
       </uib-tab-heading>
       <div ng-include="getForm(tab)" ng-class='model.containerStyleClass' ng-style='getContainerStyle()'></div>
