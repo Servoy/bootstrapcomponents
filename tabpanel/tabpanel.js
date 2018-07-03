@@ -55,7 +55,7 @@ angular.module('bootstrapcomponentsTabpanel',['servoy']).directive('bootstrapcom
     		  {
     			  if ($scope.model.tabs[$scope.model.tabIndex-1] == tab) {
     				  $scope.svyServoyapi.formWillShow(tab.containedForm, tab.relationName);
-    				  if(oldSelection !== undefined && oldSelection !== null)
+    				  if(oldSelection !== undefined && oldSelection !== null && $scope.handlers.onChangeMethodID)
     				  {
     					  $timeout(function() {
   							$scope.handlers.onChangeMethodID(oldSelection+1 , $window.event ? $window.event : $.Event("change"));
@@ -72,12 +72,16 @@ angular.module('bootstrapcomponentsTabpanel',['servoy']).directive('bootstrapcom
 						  var oldIndex =  $scope.model.tabIndex;
 						  $scope.model.tabIndex = getTabIndex(tab)+1;
 						  tab.active = true;
-						  $timeout(function() {
-								$scope.handlers.onChangeMethodID(oldIndex, $window.event ? $window.event : $.Event("change"));
-						  },0);
+						  if ($scope.handlers.onChangeMethodID)
+						  {
+							  $timeout(function() {
+									$scope.handlers.onChangeMethodID(oldIndex, $window.event ? $window.event : $.Event("change"));
+							  },0); 
+						  }	  
 					  }
 					  else {
 						  $scope.model.tabs[$scope.model.tabIndex-1].active = true;
+						  $scope.model.activeTabIndex = $scope.model.tabIndex - 1;
 					  }
 					})  
     			  }
