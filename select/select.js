@@ -53,7 +53,7 @@ angular.module('bootstrapcomponentsSelect',['servoy', 'bootstrapcomponentscommon
 						}
 					}
 
-					if($scope.model.dataProviderID != value) {
+					if(($scope.model.dataProviderID +'') != (value +'')) {
 						$scope.model.dataProviderID = value;
 						$scope.svyServoyapi.apply("dataProviderID");
 						return true;
