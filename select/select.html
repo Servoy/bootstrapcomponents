@@ -10,7 +10,7 @@
 			<option ng-if="model.valuelistID && model.valuelistID.length && model.valuelistID[0].realValue && !isDPInValueList()" selected="selected" disabled 
 					ng-bind-html="model.dataProviderID | bcShowDisplayValue:model.valuelistID">
 			</option>
-			<option ng-selected="model.dataProviderID === value.realValue" ng-repeat="value in model.valuelistID" value="{{value.realValue}}" 
+			<option ng-selected="(model.dataProviderID+'') === (value.realValue+'')" ng-repeat="value in model.valuelistID" value="{{value.realValue}}" 
 					ng-bind-html="value.realValue | bcShowDisplayValue:model.valuelistID">
 			</option>
 </select>
