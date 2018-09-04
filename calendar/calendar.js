@@ -125,6 +125,10 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 						else
 							tooltipState = $svyProperties.createTooltipState(inputElement, value);
 					 break;
+ 					case "selectOnEnter":
+						if (value)
+							$svyProperties.addSelectOnEnter(inputElement);
+						break;					 
 					}
 				}
 			});

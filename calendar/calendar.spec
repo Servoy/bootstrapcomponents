@@ -19,7 +19,9 @@
 	    "placeholderText" : "tagstring",
 	    "tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
 	     "toolTipText" : { "type" : "tagstring"}, 
-	    "visible" : "visible"
+	    "visible" : "visible",
+	    "selectOnEnter" : {"type" :"boolean", "tags": { "scope" :"design" }}, 
+	    
 	},
 	"handlers":
 	{

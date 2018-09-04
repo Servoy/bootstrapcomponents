@@ -10,6 +10,7 @@
 	   ng-readonly="model.readOnly"
        sablo-tabseq='model.tabSeq'
 	   ng-class='model.styleClass'
-	   id="{{::model.svyMarkupId}}"/>
+	   id="{{::model.svyMarkupId}}"
+	   svy-selectonenter='model.selectOnEnter'/>
 	<span class="input-group-addon"  ng-show="!model.readOnly && model.enabled"><span class="glyphicon glyphicon-calendar"></span></span>
 </div>

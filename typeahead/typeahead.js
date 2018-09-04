@@ -108,6 +108,9 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
 						formatState(value);
 					else formatState = $formatterUtils.createFormatState($element, $scope,$scope.ngModel,true,value);
 					break;
+			  case "selectOnEnter":
+					if (value) $svyProperties.addSelectOnEnter($element);
+					break;
 			  }
 		  }
 	  });

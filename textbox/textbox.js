@@ -29,6 +29,9 @@ angular.module('bootstrapcomponentsTextbox',['servoy']).directive('bootstrapcomp
     		  configurable: true,
     		  value: function(property, value) {
     			  switch (property) {
+    			  case "selectOnEnter":
+					if (value) $svyProperties.addSelectOnEnter($element);
+					break;
     			  case "toolTipText":
     				  if (tooltipState)
     					  tooltipState(value);
