@@ -13,7 +13,7 @@ angular.module('bootstrapcomponentsTextbox',['servoy']).directive('bootstrapcomp
     	  var child = $element.children();
     	  var ngModel = child.controller("ngModel");
 
-    	  if($scope.model.inputType == "text") {
+    	  if($scope.model.inputType == "text" || $scope.model.inputType == 'number') {
     		  $scope.$watch('model.format', function(){
     			  if ($scope.model.format)
     			  {
