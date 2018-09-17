@@ -7,7 +7,8 @@
 			sablo-tabseq='model.tabSeq'
 			svy-autoapply
 			id="{{::model.svyMarkupId}}">
-			<option ng-if="model.valuelistID && model.valuelistID.length && !isDPInValueList()" selected="selected" disabled 
+			<option class="placeholderOption" ng-bind-html="model.placeholderText" selected disabled hidden></option>
+			<option ng-if="model.valuelistID && model.valuelistID.length && !isDPInValueList()" disabled 
 					ng-bind-html="model.dataProviderID | bcShowDisplayValue:model.valuelistID">
 			</option>
 			<option ng-selected="(model.dataProviderID+'') === (value.realValue+'')" ng-repeat="value in model.valuelistID" value="{{value.realValue}}" 

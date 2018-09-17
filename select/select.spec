@@ -14,7 +14,8 @@
 	        "valuelistID" : { "type" : "valuelist", "tags": { "scope" :"design" }, "for": "dataProviderID", "max":500},
 			"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
 			"toolTipText" : { "type" : "tagstring"},
-	        "visible" : "visible"
+	        "visible" : "visible",
+	        "placeholderText" : { "type" : "tagstring", "displayTagsPropertyName" : "displaysTags" }
 	},
 	"handlers":
 	{
