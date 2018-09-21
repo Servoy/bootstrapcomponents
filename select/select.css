@@ -11,6 +11,10 @@
  	opacity: 1;
 }
 
+.bts-select{
+ 	color:inherit;
+ }
+
 .placeholder {
-   color:gray !important;
+    color:gray !important;
 }
