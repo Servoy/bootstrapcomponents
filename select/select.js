@@ -35,7 +35,7 @@ angular.module('bootstrapcomponentsSelect',['servoy', 'bootstrapcomponentscommon
 	    					  tooltipState = $svyProperties.createTooltipState($element, value);
 	    				  break;
 					case "placeholderText":
-						if($scope.model.placeholderText.length > 0)
+						if($scope.model.placeholderText.length > 0 && $scope.showPlaceholder())
 							$element.addClass('placeholder');
 				}
 			}});
