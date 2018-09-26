@@ -10,6 +10,8 @@ angular.module('bootstrapcomponentsChoicegroup',['servoy']).directive('bootstrap
       },
       link: function($scope, $element, $attrs) {
           
+          $scope.notNullOrEmpty = $utils.notNullOrEmpty  // adding it to the root scope doesn't fix the resolution of the comparator in the filter (in this directive). it has to be in local scope. TODO remove the need for this
+          var allowNullinc=0;
     	  $scope.selection= []
     	  
           $scope.$watch('model.dataProviderID', function() { 
@@ -20,6 +22,7 @@ angular.module('bootstrapcomponentsChoicegroup',['servoy']).directive('bootstrap
            	  $scope.model.valuelistID = [{realValue:1,displayValue:"Item1"},{realValue:2,displayValue:"Item2"},{realValue:3,displayValue:"Item3"}];
             }
             if(!$scope.model.valuelistID) return; // not loaded yet
+            if(isValueListNull($scope.model.valuelistID[0])) allowNullinc=1;
             setSelectionFromDataprovider();
           })
           
@@ -27,15 +30,30 @@ angular.module('bootstrapcomponentsChoicegroup',['servoy']).directive('bootstrap
            
     		if ($scope.model.inputType == 'radio')
     		{
-    			$scope.model.dataProviderID = $scope.model.valuelistID[$index].realValue;
+    			$scope.model.dataProviderID = $scope.model.valuelistID[$index+allowNullinc].realValue;
     		}
     		else
     		{
+                var checkedTotal = 0;
+                for(var i=0;i< $scope.selection.length ;i++){
+               	 if($scope.selection[i]==true) checkedTotal++;            	 
+                }
+
+               // prevent unselection of the last element if 'allow null' is not set                                          
+               if(checkedTotal==0 && allowNullinc ==0){
+                  $scope.selection[$index] = true;
+               }
     			$scope.model.dataProviderID = getDataproviderFromSelection()
+				if(checkedTotal==0 && allowNullinc ==0) return;
     		}	
             
 			$scope.svyServoyapi.apply('dataProviderID')
 			if($scope.handlers.onFocusLostMethodID) $scope.handlers.onFocusLostMethodID($event)
+          }
+          
+          function isValueListNull(item)
+          {
+              return (item.realValue == null || item.realValue =='') && item.displayValue=='';
           }
 
     	  function setSelectionFromDataprovider(){
@@ -49,11 +67,11 @@ angular.module('bootstrapcomponentsChoicegroup',['servoy']).directive('bootstrap
     				  {
     					  if ($scope.model.inputType == 'radio')
     					  {
-    						  $scope.selection[i] = $scope.model.dataProviderID;
+    						  $scope.selection[i-allowNullinc] = $scope.model.dataProviderID;
     					  }
     					  else
     					  {
-    						  $scope.selection[i] = true;
+    						  $scope.selection[i-allowNullinc] = true;
     					  }
     				  }
     			  }
@@ -63,8 +81,9 @@ angular.module('bootstrapcomponentsChoicegroup',['servoy']).directive('bootstrap
     	  function getDataproviderFromSelection(){
     		  var ret ="";
     		  $scope.selection.forEach(function(element, index, array){
-    			  if(element == true) ret+= $scope.model.valuelistID[index].realValue+'\n';
+    			  if(element == true) ret+= $scope.model.valuelistID[index+allowNullinc].realValue+'\n';
     		  });
+    		  ret = ret.replace(/\n$/, "");
     		  if(ret === "") ret =null
     		  return ret;
     	  }
