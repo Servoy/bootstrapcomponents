@@ -63,7 +63,7 @@ angular.module('bootstrapcomponentsChoicegroup',['servoy']).directive('bootstrap
     		  arr.forEach(function(element, index, array){
     			  for(var i=0;i<$scope.model.valuelistID.length;i++){
     				  var item= $scope.model.valuelistID[i];
-    				  if(item.realValue && item.realValue==element) 
+                      if(item.realValue==element && !isValueListNull(item))
     				  {
     					  if ($scope.model.inputType == 'radio')
     					  {
