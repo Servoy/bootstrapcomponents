@@ -21,7 +21,7 @@ angular.module('bootstrapcomponentsChoicegroup',['servoy']).directive('bootstrap
         	if ($scope.svyServoyapi.isInDesigner() && !$scope.model.valuelistID) {
            	  $scope.model.valuelistID = [{realValue:1,displayValue:"Item1"},{realValue:2,displayValue:"Item2"},{realValue:3,displayValue:"Item3"}];
             }
-            if(!$scope.model.valuelistID) return; // not loaded yet
+            if(!$scope.model.valuelistID || $scope.model.valuelistID.length < 1) return; // not loaded yet
             if(isValueListNull($scope.model.valuelistID[0])) allowNullinc=1;
             setSelectionFromDataprovider();
           })
