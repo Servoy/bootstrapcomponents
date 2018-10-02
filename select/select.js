@@ -15,6 +15,8 @@ angular.module('bootstrapcomponentsSelect',['servoy', 'bootstrapcomponentscommon
 			 * */
 			
 			$scope.showPlaceholder = function(listValue){
+				if(!$scope.model.placeholderText || $scope.model.placeholderText.length === 0) 
+					return false;			
 				var showDisplayValueFilter = $filter("bcShowDisplayValue");
 				var displayValue = showDisplayValueFilter($scope.model.dataProviderID, $scope.model.valuelistID, true, true);
 				return displayValue == null || (displayValue == "" && $scope.model.dataProviderID === null);
@@ -35,8 +37,7 @@ angular.module('bootstrapcomponentsSelect',['servoy', 'bootstrapcomponentscommon
 	    					  tooltipState = $svyProperties.createTooltipState($element, value);
 	    				  break;
 					case "placeholderText":
-						if($scope.model.placeholderText && $scope.model.placeholderText.length > 0 && $scope.showPlaceholder())
-							$element.addClass('placeholder');
+						!$scope.showPlaceholder() ? $element.removeClass('placeholder') : $element.addClass('placeholder');
 				}
 			}});
 			var destroyListenerUnreg = $scope.$on("$destroy", function() {
