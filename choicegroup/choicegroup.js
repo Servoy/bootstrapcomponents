@@ -40,11 +40,11 @@ angular.module('bootstrapcomponentsChoicegroup',['servoy']).directive('bootstrap
                 }
 
                // prevent unselection of the last element if 'allow null' is not set                                          
-               if(checkedTotal==0 && allowNullinc ==0){
+               if(checkedTotal==0 && allowNullinc ==0 && !$scope.model.findmode){
                   $scope.selection[$index] = true;
                }
     			$scope.model.dataProviderID = getDataproviderFromSelection()
-				if(checkedTotal==0 && allowNullinc ==0) return;
+				if(checkedTotal==0 && allowNullinc ==0 && !$scope.model.findmode) return;
     		}	
             
 			$scope.svyServoyapi.apply('dataProviderID')
