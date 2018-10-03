@@ -24,15 +24,12 @@ angular.module('bootstrapcomponentsChoicegroup',['servoy']).directive('bootstrap
             if(!$scope.model.valuelistID) return; // not loaded yet
             if($scope.model.valuelistID.length > 0 && isValueListNull($scope.model.valuelistID[0])) allowNullinc=1;
             else allowNullinc = 0;	
-            
-            console.log($scope.model.valuelistID);
-            console.log("AllowNullInc value is : " + allowNullinc);
-            
             setSelectionFromDataprovider();
           })
           
           $scope.itemClicked = function($event,$index){
            
+           var changed = true;
     		if ($scope.model.inputType == 'radio')
     		{
     			$scope.model.dataProviderID = $scope.model.valuelistID[$index+allowNullinc].realValue;
@@ -41,19 +38,18 @@ angular.module('bootstrapcomponentsChoicegroup',['servoy']).directive('bootstrap
     		{
                 var checkedTotal = 0;
                 for(var i=0;i< $scope.selection.length ;i++){
-               	 if($scope.selection[i]==true) checkedTotal++;            	 
+                	if($scope.selection[i]==true) checkedTotal++;            	 
                 }
-
-               // prevent unselection of the last element if 'allow null' is not set                                          
-               if(checkedTotal==0 && allowNullinc ==0 && !$scope.model.findmode){
+				changed = !(checkedTotal == 0 && allowNullinc == 0 && !$scope.model.findmode)
+               
+			   // prevent unselection of the last element if 'allow null' is not set                                          
+               if(!changed){
                   $scope.selection[$index] = true;
                }
     			$scope.model.dataProviderID = getDataproviderFromSelection()
-				if(checkedTotal==0 && allowNullinc ==0 && !$scope.model.findmode) return;
     		}	
-            
-			$scope.svyServoyapi.apply('dataProviderID')
-			if($scope.handlers.onFocusLostMethodID) $scope.handlers.onFocusLostMethodID($event)
+			if(changed) $scope.svyServoyapi.apply('dataProviderID');			
+			if($scope.handlers.onFocusLostMethodID) $scope.handlers.onFocusLostMethodID($.Event("blur"));
           }
           
           function isValueListNull(item)
