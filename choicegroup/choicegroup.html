@@ -1,8 +1,8 @@
 <div class='bts-radiogroup' ng-class='model.styleClass' ng-if='model.visible' id="{{::model.svyMarkupId}}">
-  <label ng-repeat="item in model.valuelistID">
+  <label ng-repeat="item in model.valuelistID | filter:notNullOrEmpty('realValue')">
   	<input type="{{model.inputType}}" ng-model="selection[$index]"
   		ng-value="item.realValue"
-  		ng-click="itemClicked($event,$index)"
+  		ng-change="itemClicked($event,$index)"
         sablo-tabseq='model.tabSeq'
         svy-click='handlers.onActionMethodID($event)'
         svy-focusgained='handlers.onFocusGainedMethodID($event)'
