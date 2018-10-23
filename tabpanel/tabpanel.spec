@@ -71,7 +71,8 @@
 			"containedForm": "form",
 			"imageMediaID": "media",
 			"text": { "type": "tagstring", "tags": { "useAsCaptionInDeveloper" : true, "captionPriority" : 1 } },
-			"relationName": "relation"
+			"relationName": "relation",
+			"name": { "type": "string" }
 		}
 	}
 
