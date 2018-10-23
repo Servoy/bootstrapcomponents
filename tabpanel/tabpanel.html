@@ -7,7 +7,7 @@
     <uib-tab ng-repeat="tab in model.tabs" select="select(tab,previousIndex)" >
       <uib-tab-heading>
       	<img ng-show="tab.imageMediaID"  ng-src='{{tab.imageMediaID}}'/>
-        <span  ng-bind='tab.text'></span>
+        <span ng-bind-html="tab.text| htmlFilter| trustAsHtml:servoyApi.trustAsHtml()"></span>
       </uib-tab-heading>
       <div ng-include="getForm(tab)" ng-class='model.containerStyleClass' ng-style='getContainerStyle()'></div>
     </uib-tab>
