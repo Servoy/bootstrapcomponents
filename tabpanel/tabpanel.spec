@@ -21,12 +21,31 @@
 	
 	"handlers": { 
 		"onChangeMethodID": {
+			"description": "Fired after a different tab is selected",
 			"parameters": [{
 				"name": "previousIndex",
-				"type": "int"
+				"type": "int",
+				"description": "The previous tab index"
 			}, {
 				"name": "event",
 				"type": "JSEvent"
+			}]
+		},
+		"onTabClickedMethodID": {
+			"description": "Fired when the user clicks on a tab. When false is returned, the tab switch is prevented",
+			"returns": "boolean",
+			"parameters": [{
+				"name": "event",
+				"type": "JSEvent",
+				"description": "The event that triggered the action"
+			}, {
+				"name": "clickedTabIndex",
+				"type": "int",
+				"description": "The index of the tab that was clicked"
+			}, {
+				"name": "dataTarget",
+				"type": "string",
+				"description": "The value of the closest data-target attribute when found"
 			}]
 		}
 	},
@@ -72,7 +91,8 @@
 			"imageMediaID": "media",
 			"text": { "type": "tagstring", "tags": { "useAsCaptionInDeveloper" : true, "captionPriority" : 1 } },
 			"relationName": "relation",
-			"name": { "type": "string" }
+			"name": { "type": "string" },
+			"disabled": { "type": "boolean", "default": false }
 		}
 	}
 
