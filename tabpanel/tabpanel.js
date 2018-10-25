@@ -66,11 +66,7 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 								var oldIndex = $scope.model.tabIndex;
 								$scope.model.tabIndex = getTabIndex(tab) + 1;
 								tab.active = true;
-								if ($scope.handlers.onChangeMethodID) {
-									$timeout(function() {
-											$scope.handlers.onChangeMethodID(oldIndex, $window.event ? $window.event : $.Event("change"));
-										}, 0);
-								}
+								// onChange handler no longer fired here, but from the watch on model.tabIndex
 							} else {
 								$scope.model.tabs[$scope.model.tabIndex - 1].active = true;
 								$scope.model.activeTabIndex = $scope.model.tabIndex - 1;
@@ -127,7 +123,7 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 							$scope.model.tabIndex = oldValue;
 							return;
 						}
-						if (oldValue) {
+						if (oldValue && $scope.model.tabs[oldValue - 1]) {
 							$scope.svyServoyapi.hideForm($scope.model.tabs[oldValue - 1].containedForm);
 							$scope.model.tabs[oldValue - 1].active = false;
 						}
@@ -139,11 +135,17 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 							var key = $scope.$parent.formname + "_" + $element.attr('name') + "_tabindex";
 							webStorage.session.add(key, newValue);
 						}
+						if ($scope.handlers.onChangeMethodID) {
+							$timeout(function() {
+								$scope.handlers.onChangeMethodID(oldValue, $window.event ? $window.event : $.Event("change"));
+							}, 0);
+						}
 					}
 					// make sure angularui model is corect before changing activeindex, otherwise angularui doesn't handle the change correctly
 					$timeout(function() {
 							$scope.model.activeTabIndex = $scope.model.tabIndex - 1;
 						}, 0);
+					
 				});
 	
 			$scope.$watch("model.visible", function(newValue, oldValue) {
