@@ -12,7 +12,7 @@
       <div ng-include="getForm(tab)" ng-class='model.containerStyleClass' ng-style='getContainerStyle()'></div>
     </uib-tab>
 </uib-tabset>
-<div class="absoluteTopRight">
+<div class="absoluteTopRight" ng-show="model.visible">
   <div class="nav-scroller nav-scroller-right" ng-click="moveRight()" bs-tabpanel-button="right"><i class="glyphicon glyphicon-chevron-right"></i></div>
   <div class="nav-scroller nav-scroller-left" ng-click="moveLeft()" bs-tabpanel-button="left"><i class="glyphicon glyphicon-chevron-left"></i></div>
 </div>
