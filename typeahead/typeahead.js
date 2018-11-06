@@ -18,13 +18,20 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
 	$scope.$watch('model.valuelistID', function() {
 		if (!$scope.model.valuelistID || $scope.model.valuelistID.length == 0) return; // not loaded yet or already filtered
 		hasRealValues = false;
-		for (var i = 0; i < $scope.model.valuelistID.length; i++) {
-			var item = $scope.model.valuelistID[i];
-			if (item.realValue != item.displayValue) {
-				hasRealValues = true;
-				break;
-			}
+		if ($scope.model.valuelistID.hasRealValues)
+		{	
+			hasRealValues = $scope.model.valuelistID.hasRealValues()
 		}
+		else
+		{
+			for (var i = 0; i < $scope.model.valuelistID.length; i++) {
+				var item = $scope.model.valuelistID[i];
+				if (item.realValue != item.displayValue) {
+					hasRealValues = true;
+					break;
+				}
+			}
+		}	
 	});
 		
          
