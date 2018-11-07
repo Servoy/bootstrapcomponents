@@ -385,9 +385,9 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 
 							// show the next form if the tabIndex was 1 and has not changed
 							if (formToShow && formToShow.containedForm) {
-								// FIXME something goes wrong here. This will happen only when the first tab is the visible tab and i am closing the first tab.
-								// The previous tab already call the onHide.. here i should force the onShow of the coming tab.. since the $scope.model.tabIndex doesn't change
-								// Something goes wrong with the $scope.model.activeTabIndex of angularui.. it doesn't understand the tab is gone and active tabIndex remains 1 item off
+								// This will happen only when the first tab is the visible tab and i am closing the first tab.
+								// The previous tab already call the onHide.. here i force the onShow of the "next" tab.. since the $scope.model.tabIndex doesn't change
+								// Using ng-repeat="tab in model.tabs track by $index" to make angularui aware of the change.
 								
 								// show the tab
 								if (!formToShow.active) {
