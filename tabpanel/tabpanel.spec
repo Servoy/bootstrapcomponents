@@ -10,7 +10,9 @@
 	
 	"model": {
 		"containerStyleClass": { "type": "styleclass" },
-		"tabs": { "type": "tab[]", "pushToServer": "allow", "droppable": true },
+		"closeIconStyleClass" : {"type":"styleclass", "default":"glyphicon glyphicon-remove close-icon", "tags": { "scope" :"design" }, "values":[]},
+		"showTabCloseIcon" : { "type": "boolean", "default": false },
+		"tabs": { "type": "tab[]", "pushToServer": "deep", "droppable": true },
 		"styleClass": { "type": "styleclass" },
 		"height": { "type": "int", "default": "500" },
 		"tabIndex": { "type": "int", "pushToServer": "shallow", "tags": { "scope": "runtime" }, "default": 1 },
@@ -46,6 +48,19 @@
 				"name": "dataTarget",
 				"type": "string",
 				"description": "The value of the closest data-target attribute when found"
+			}]
+		},
+		"onTabCloseMethodID": {
+			"description": "Fired when the user clicks on the tab close icon. When false is returned, the tab close is prevented",
+			"returns": "boolean",
+			"parameters": [{
+				"name": "event",
+				"type": "JSEvent",
+				"description": "The event that triggered the action"
+			}, {
+				"name": "clickedTabIndex",
+				"type": "int",
+				"description": "The index of the tab that was clicked"
 			}]
 		}
 	},
@@ -92,7 +107,8 @@
 			"text": { "type": "tagstring", "tags": { "useAsCaptionInDeveloper" : true, "captionPriority" : 1 } },
 			"relationName": "relation",
 			"name": { "type": "string" },
-			"disabled": { "type": "boolean", "default": false }
+			"disabled": { "type": "boolean", "default": false },
+			"hideCloseIcon" : { "type": "boolean", "default": false }
 		}
 	}
 

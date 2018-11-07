@@ -77,23 +77,42 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 			}
 	
 			$scope.tabClicked = function(tab, tabIndexClicked, event) {
-				var previousIndex = $scope.model.tabIndex - 1;
-				$scope.model.activeTabIndex = previousIndex;
-				if (tab.disabled === true) {
-					return;
-				}
-				if ($scope.handlers.onTabClickedMethodID) {
-					var dataTargetAttr = $(event.target).closest('[data-target]');
-					var dataTarget = dataTargetAttr ? dataTargetAttr.attr('data-target') : null;
-					$scope.handlers.onTabClickedMethodID($window.event ? $window.event : $.Event("tabclicked"), tabIndexClicked + 1, dataTarget).then(
-						function(result) {
-							if (result !== false) {
-								$scope.select(tab, previousIndex)
+				if ($(event.target).hasClass('bts-tabpanel-close-icon')) {	// close the tab
+					
+					if ($scope.handlers.onTabCloseMethodID) {
+						$scope.handlers.onTabCloseMethodID($window.event ? $window.event : $.Event("tabclicked"), tabIndexClicked + 1).then(
+							function(result) {
+								if (result !== false) {
+									$scope.api.removeTabAt(tabIndexClicked + 1);
+								}
 							}
-						}
-					);
-				} else {
-					$scope.select(tab, previousIndex)
+						);
+					} else {
+						$scope.api.removeTabAt(tabIndexClicked + 1);
+					}
+					
+					//event.preventDefault();
+					
+				} else {	// fire the onTabClickedMethod
+					var previousIndex = $scope.model.tabIndex - 1;
+					$scope.model.activeTabIndex = previousIndex;
+					
+					if (tab.disabled === true) {
+						return;
+					}
+					if ($scope.handlers.onTabClickedMethodID) {
+						var dataTargetAttr = $(event.target).closest('[data-target]');
+						var dataTarget = dataTargetAttr ? dataTargetAttr.attr('data-target') : null;
+						$scope.handlers.onTabClickedMethodID($window.event ? $window.event : $.Event("tabclicked"), tabIndexClicked + 1, dataTarget).then(
+							function(result) {
+								if (result !== false) {
+									$scope.select(tab, previousIndex)
+								}
+							}
+						);
+					} else {
+						$scope.select(tab, previousIndex)
+					}
 				}
 			}
 	
@@ -321,6 +340,79 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 						}
 					});
 			}
+			
+				$scope.api.removeTabAt = function(removeIndex) {
+					// copied from the serverside code
+					if (removeIndex > 0 && removeIndex <= $scope.model.tabs.length) {
+						var formToHide;
+						var formToShow;
+						if ($scope.model.tabIndex === removeIndex) {
+							formToHide = $scope.model.tabs[removeIndex - 1];
+
+							// if the first tab is selected and is being removed. Must call show on the new form
+							if ($scope.model.tabIndex === 1 && $scope.model.tabs.length > 1) {
+								// get the tab at second position
+								formToShow = $scope.model.tabs[$scope.model.tabIndex];
+							}
+						}
+
+						// remove the tab
+						// $scope.model.tabs.splice(removeIndex - 1, 1);
+						for (var i = removeIndex - 1; i < $scope.model.tabs.length - 1; i++) {
+							$scope.model.tabs[i] = $scope.model.tabs[i + 1];
+						}
+						$scope.model.tabs.length = $scope.model.tabs.length - 1;
+
+						// update the tabIndex
+						if ($scope.model.tabIndex >= removeIndex) {
+							if ($scope.model.tabIndex === removeIndex) {
+								$scope.model.tabIndex = 1;
+							} else {
+								$scope.model.tabIndex--;
+							}
+						}
+
+						// hide the form
+						if (formToHide) {
+							// hide the current form
+							if (formToHide.containedForm && !formToShow) {
+								// TODO what if doesn't hide ?
+								$scope.svyServoyapi.hideForm(formToHide.containedForm);
+								if (formToHide.active) {
+									formToHide.active = false;
+								}
+							}
+
+							// show the next form if the tabIndex was 1 and has not changed
+							if (formToShow && formToShow.containedForm) {
+								// FIXME something goes wrong here. This will happen only when the first tab is the visible tab and i am closing the first tab.
+								// The previous tab already call the onHide.. here i should force the onShow of the coming tab.. since the $scope.model.tabIndex doesn't change
+								// Something goes wrong with the $scope.model.activeTabIndex of angularui.. it doesn't understand the tab is gone and active tabIndex remains 1 item off
+								
+								// show the tab
+								if (!formToShow.active) {
+									formToShow.active = true;
+									//currentTab = formToShow;
+									//currentContainedForm = formToShow.containedForm;
+								}
+								$scope.svyServoyapi.formWillShow(formToShow.containedForm, formToShow.relationName);
+								if ($scope.handlers.onChangeMethodID) {
+									$timeout(function() {
+											$scope.handlers.onChangeMethodID(1, $window.event ? $window.event : $.Event("change"));
+										}, 0);
+								}
+								// make sure angularui model is corect before changing activeindex, otherwise angularui doesn't handle the change correctly
+								$timeout(function() {
+										$scope.model.activeTabIndex = 0;
+									}, 0);
+							}
+							return true;
+						}
+						return true;
+					}
+					return false;
+				}
+
 	
 		},
 		templateUrl: 'bootstrapcomponents/tabpanel/tabpanel.html'

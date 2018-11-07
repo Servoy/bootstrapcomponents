@@ -94,3 +94,13 @@ ul.nav-tabs li{
 .nav-scroller-left {
   float:right;
 }
+
+.bts-tabpanel-close-icon {
+	color: #333;
+	cursor: pointer;
+	transition: .25s;
+}
+
+.bts-tabpanel-close-icon:hover {
+	color: #e6e6e6;
+}
