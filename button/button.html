@@ -4,7 +4,8 @@
  	svy-rightclick='handlers.onRightClickMethodID($event)'
 	sablo-tabseq='model.tabSeq'
 	ng-disabled="!model.enabled"
- 	ng-if='model.visible'
+     ng-if='model.visible'
+    ng-bind-html='model.text| htmlFilter| trustAsHtml:servoyApi.trustAsHtml()'
  	id="{{::model.svyMarkupId}}">
- 		 <span ng-class="model.imageStyleClass" aria-hidden="true"></span> {{model.text}}
+          <span ng-class="model.imageStyleClass" aria-hidden="true"></span> {{model.text}}
 </button>
