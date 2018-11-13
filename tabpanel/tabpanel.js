@@ -401,13 +401,17 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 											$scope.handlers.onChangeMethodID(1, $window.event ? $window.event : $.Event("change"));
 										}, 0);
 								}
-								// make sure angularui model is corect before changing activeindex, otherwise angularui doesn't handle the change correctly
-								$timeout(function() {
-										$scope.model.activeTabIndex = 0;
-									}, 0);
 							}
+							// make sure angularui model is corect before changing activeindex, otherwise angularui doesn't handle the change correctly
+							$timeout(function() {
+									$scope.model.activeTabIndex = $scope.model.tabIndex - 1;
+								}, 0);
 							return true;
 						}
+						// make sure angularui model is corect before changing activeindex, otherwise angularui doesn't handle the change correctly
+						$timeout(function() {
+								$scope.model.activeTabIndex = $scope.model.tabIndex - 1;
+							}, 0);
 						return true;
 					}
 					return false;
