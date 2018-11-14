@@ -41,7 +41,8 @@ $scope.api.removeTabAt = function(index) {
         	   {
         		   if ($scope.model.tabIndex === index)
         		   {
-        			   $scope.model.tabIndex = 1;
+        			   // TODO should check if the tab was disabled
+        			   $scope.model.tabIndex = getFirstEnabledTabIndex();
         		   }  
         		   else
         		   {
@@ -56,3 +57,13 @@ $scope.api.removeTabAt = function(index) {
     	   }
     	   return false;
   }
+
+var getFirstEnabledTabIndex = function() {
+	for (var i = 0; $scope.model.tabs && i < $scope.model.tabs.length; i++) {
+		var tab = $scope.model.tabs[i];
+		if (tab.disabled !== true) {
+			return i + 1;
+		}
+	}
+	return 0;
+}

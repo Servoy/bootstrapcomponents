@@ -54,6 +54,7 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 				return -1;
 			}
 			
+			/**
 			// register the change listener
 			Object.defineProperty($scope.model,$sabloConstants.modelChangeNotifier, {configurable:true,value:function(property,value) {
 				switch(property) {
@@ -81,7 +82,7 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 			var modelChangFunction = $scope.model[$sabloConstants.modelChangeNotifier];
 			for (var key in $scope.model) {
 				modelChangFunction(key,$scope.model[key]);
-			}
+			} */
 			
 			// get the form html.
 			$scope.getForm = function(tab) {
@@ -102,26 +103,34 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 						currentTab = tab;
 						if (!tab.active) return "";
 					}
-					// don't show the disabled form
-					if (tab.disabled === true) {
-						return "";
-					} else {
+					// in case we don't want to show the disabled form
+//					if (tab.disabled === true) {
+//						return "";
+//					} else {
 						return $scope.svyServoyapi.getFormUrl(tab.containedForm);
-					} 
+//					} 
 				}
 				return "";
 			}
 	
 			$scope.select = function(tab, oldSelection) {
-				// shall it check if the tab is disabled !? in fact will never end up here if the tab is disabled
 				if (tab && tab.containedForm) {
-					if ($scope.model.tabs[$scope.model.tabIndex - 1] == tab) {
+					if (oldSelection === -1) {
+						$scope.model.tabIndex = getTabIndex(tab) + 1;
+						tab.active = true;
+					} else if ($scope.model.tabs[$scope.model.tabIndex - 1] == tab || !$scope.model.tabs[$scope.model.tabIndex - 1]) {
+						
+						// if previously there was no selection
+						if (oldSelection === -1) {
+						}
+						
 						$scope.svyServoyapi.formWillShow(tab.containedForm, tab.relationName);
 						if (oldSelection !== undefined && oldSelection !== null && $scope.handlers.onChangeMethodID) {
 							$timeout(function() {
+								// TODO should check if oldIndex is different than current index !?
 									$scope.handlers.onChangeMethodID(oldSelection + 1, $window.event ? $window.event : $.Event("change"));
 								}, 0);
-						}
+						} 
 					} else {
 						tab.active = false;
 						$scope.model.tabs[$scope.model.tabIndex - 1].active = true;
@@ -184,26 +193,36 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 			}
 	
 			if ($scope.model.tabs && $scope.model.tabs.length > 0) {
-				var index = 1;
+				// check if there is any enabled tab
+				var index = getFirstEnabledTabIndex();
+				if (index === -1) {
+					index = 0;
+				}
 				if ($scope.$parent && $scope.$parent.formname) {
 					var key = $scope.$parent.formname + "_" + $element.attr('name') + "_tabindex";
 					var storageValue = webStorage.session.get(key);
 					if (storageValue) {
 						index = parseInt(storageValue);
 						if (index > $scope.model.tabs.length) {
-							index = 1;
+							// check if there is any enabled tab
+							index = getFirstEnabledTabIndex();
+							if (index === -1) {
+								index = 0;
+							}
 						}
 					}
 				}
 				// TODO shall i look if tab is disabled and pickup the next tab !?
 				
-				if ($scope.model.tabs[index - 1].containedForm) {
+				if ($scope.model.tabs[index - 1] && $scope.model.tabs[index - 1].containedForm) {
+					// find the first enabled tab
 					$scope.model.tabIndex = index;
 					$scope.model.tabs[index - 1].active = true;
 					if ($scope.model.tabs[index - 1].disabled !== true) {
 						$scope.svyServoyapi.formWillShow($scope.model.tabs[index - 1].containedForm, $scope.model.tabs[index - 1].relationName);
 					} else {
 						$scope.tabDisabled = $scope.model.tabs[index - 1];
+						$scope.svyServoyapi.formWillShow($scope.model.tabs[index - 1].containedForm, $scope.model.tabs[index - 1].relationName);
 						console.log("shall i do anything here !?")
 					}
 				}
@@ -213,11 +232,49 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 					// if the tab is disabled, is a developer issue so let it go
 				
 					if (newValue !== oldValue) {
-						if (!$scope.model.tabs[newValue - 1]) {
+//						// possible if all tabs are disabled
+//						if (oldValue === 0 && $scope.model.tabs[newValue - 1]) {
+//							// restoring from a previous value, all fine
+//							return;
+//						}
+						
+						if ($scope.model.tabIndex === 0 && getFirstEnabledTabIndex() === -1 ) {
+							// all tabs are disabled. Keep the index to 0
+							return;
+						} else if ($scope.model.tabIndex === 0 && $scope.model.tabs[oldValue - 1] && $scope.model.tabs[oldValue - 1].disabled === true) { 
+							// when the previous tab was disabled and it tried to switch to a disabled tab, revert to old value: 0
+							$scope.model.tabIndex = oldValue;
+							return;
+						} else if (!$scope.model.tabs[newValue - 1]) {
 							// invalid, revert to old value
 							$scope.model.tabIndex = oldValue;
 							return;
+						} else if ($scope.model.tabs && $scope.model.tabs[newValue - 1] && $scope.model.tabs[newValue - 1].disabled === true) {
+							// invalid, the new tab index is disabled, revert to oldTab
+							// it can end-up in a digest loop if the selected tab is disabled and it tries to switch to another disabled tab
+							if (!$scope.model.tabs[oldValue-1] || ($scope.model.tabs[oldValue - 1] && $scope.model.tabs[oldValue - 1].disabled === true)) {
+								// get the first available tab
+								newValue = getFirstEnabledTabIndex();
+								if (newValue === -1) {
+									newValue = 0;
+								}
+								$scope.model.tabIndex = newValue;
+								
+								// update angularui
+								$timeout(function() {
+									$scope.model.activeTabIndex = $scope.model.tabIndex - 1;
+								}, 0);
+								
+								return;
+							} else {
+								// why this check !?
+								
+								$scope.model.tabIndex = oldValue;
+								return;
+							}
 						}
+						
+						
 						if (oldValue && $scope.model.tabs[oldValue - 1]) {
 							$scope.svyServoyapi.hideForm($scope.model.tabs[oldValue - 1].containedForm);
 							$scope.model.tabs[oldValue - 1].active = false;
@@ -238,7 +295,13 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 					}
 					// make sure angularui model is corect before changing activeindex, otherwise angularui doesn't handle the change correctly
 					$timeout(function() {
-							$scope.model.activeTabIndex = $scope.model.tabIndex - 1;
+						$scope.model.activeTabIndex = $scope.model.tabIndex - 1;
+							// ignore disabled tab
+//							if ($scope.model.activeTabIndex === -1 && $scope.model.tabIndex === 0 && $scope.model.tabs && $scope.model.tabs[0] && $scope.model.tabs[0].disabled === true) {
+//								// do nothing if the first tab is already selected and is disabled
+//							} else {
+//								$scope.model.activeTabIndex = $scope.model.tabIndex - 1;
+//							}
 						}, 0);
 					
 				});
@@ -251,7 +314,8 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 								$scope.svyServoyapi.formWillShow($scope.model.tabs[$scope.model.tabIndex - 1].containedForm, $scope.model.tabs[$scope.model.tabIndex - 1].relationName);
 							} else {
 								// TODO perhaps shall log that is trying to show a disabled form !?
-								$scope.tabDisabled = $scope.model.tabs[$scope.model.tabIndex - 1];
+//								$scope.tabDisabled = $scope.model.tabs[$scope.model.tabIndex - 1];
+								$scope.svyServoyapi.formWillShow($scope.model.tabs[$scope.model.tabIndex - 1].containedForm, $scope.model.tabs[$scope.model.tabIndex - 1].relationName);
 							}
 						} else {
 							$scope.svyServoyapi.hideForm($scope.model.tabs[$scope.model.tabIndex - 1].containedForm);
@@ -277,7 +341,8 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 							if (oldForm) $scope.svyServoyapi.hideForm(oldForm);
 							if (newForm) $scope.svyServoyapi.formWillShow(newForm, newValue[newTabIndex - 1].relationName);
 						} else if (newForm == oldForm && newTab && oldTab && newTab.disabled !== true && oldTab.disabled === true) {
-							// if the selected tab was previously disabled then call formWillShow
+							// if the selected tab was previously disabled then call formWillShow. 
+							// Actually would be called only if the disabled form was selected by never had a formWillShow. Calling it twice it shouldn't harm
 							if (newForm) $scope.svyServoyapi.formWillShow(newForm, newValue[newTabIndex - 1].relationName);
 						}
 						
@@ -463,7 +528,8 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 									$scope.model.tabIndex = newTabIndex;
 								} else {
 									// cannot give an index != 0
-									newTabIndex = 1
+									$scope.model.tabIndex = 0;
+									newTabIndex = 0;
 									// deselect the tab;
 								}
 							} else {
@@ -491,8 +557,6 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 								// show the tab
 								if (!formToShow.active) {
 									formToShow.active = true;
-									//currentTab = formToShow;
-									//currentContainedForm = formToShow.containedForm;
 								}
 								$scope.svyServoyapi.formWillShow(formToShow.containedForm, formToShow.relationName);
 								if ($scope.handlers.onChangeMethodID) {
@@ -501,16 +565,22 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 										}, 0);
 								}
 							}
+							// make sure angularui model is corect before changing activeindex, otherwise angularui doesn't handle the change correctly
+							$timeout(function() {
+									$scope.model.activeTabIndex = $scope.model.tabIndex - 1;
+								}, 0);
+							
 							return true;
 						}
 						// make sure angularui model is corect before changing activeindex, otherwise angularui doesn't handle the change correctly
 						$timeout(function() {
-								if ($scope.model.tabs && $scope.model.tabs[$scope.model.tabIndex - 1] && $scope.model.tabs[$scope.model.tabIndex - 1].disabled === true) {
-									console.log("it should never get in here")
-									$scope.model.activeTabIndex = $scope.model.tabIndex - 1;
-								} else {
-									$scope.model.activeTabIndex = $scope.model.tabIndex - 1;
-								}
+							$scope.model.activeTabIndex = $scope.model.tabIndex - 1;
+//								if ($scope.model.tabs && $scope.model.tabs[$scope.model.tabIndex - 1] && $scope.model.tabs[$scope.model.tabIndex - 1].disabled === true) {
+//									// can happen if all tabs are disabled
+//									$scope.model.activeTabIndex = -1;
+//								} else {
+//									$scope.model.activeTabIndex = $scope.model.tabIndex - 1;
+//								}
 							}, 0);
 						
 						return true;
