@@ -1,11 +1,23 @@
 <button type="button" class='bts-button' ng-class="model.styleClass"
+    ng-if='model.showAs !== "html"'
 	svy-click='handlers.onActionMethodID($event)'
     svy-dblclick='handlers.onDoubleClickMethodID($event)'
  	svy-rightclick='handlers.onRightClickMethodID($event)'
 	sablo-tabseq='model.tabSeq'
 	ng-disabled="!model.enabled"
-     ng-if='model.visible'
-    ng-bind-html='model.text| htmlFilter| trustAsHtml:servoyApi.trustAsHtml()'
+    ng-if='model.visible'
  	id="{{::model.svyMarkupId}}">
           <span ng-class="model.imageStyleClass" aria-hidden="true"></span> {{model.text}}
+</button>
+
+<button type="button" class='bts-button' ng-class="model.styleClass"
+    ng-if='model.showAs === "html"'
+	svy-click='handlers.onActionMethodID($event)'
+    svy-dblclick='handlers.onDoubleClickMethodID($event)'
+ 	svy-rightclick='handlers.onRightClickMethodID($event)'
+	sablo-tabseq='model.tabSeq'
+	ng-disabled="!model.enabled"
+    ng-if='model.visible'
+    ng-bind-html='model.text | designFilter:servoyApi.isInDesigner() | htmlFilter| trustAsHtml:servoyApi.trustAsHtml()'
+ 	id="{{::model.svyMarkupId}}">
 </button>

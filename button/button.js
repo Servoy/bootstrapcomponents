@@ -4,7 +4,8 @@ angular.module('bootstrapcomponentsButton',['servoy']).directive('bootstrapcompo
       scope: {
        	model: "=svyModel",
        	handlers: "=svyHandlers",
-       	api: "=svyApi"
+        api: "=svyApi",
+        servoyApi: "=svyServoyapi"
       },
       controller: function($scope, $element, $attrs) {
     	  var tooltipState = null;
