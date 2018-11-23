@@ -82,18 +82,13 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 	
 			$scope.select = function(tab, oldSelection) {
 				if (tab && tab.containedForm) {
-<<<<<<< Updated upstream
 					if (oldSelection === -1) {
 						$scope.model.tabIndex = getTabIndex(tab) + 1;
 						tab.active = true;
 					} else if ($scope.model.tabs[$scope.model.tabIndex - 1] == tab || !$scope.model.tabs[$scope.model.tabIndex - 1]) {
 						
 						
-						$scope.svyServoyapi.formWillShow(tab.containedForm, tab.relationName);
-=======
-					if ($scope.model.tabs[$scope.model.tabIndex - 1] == tab) {
 						$scope.servoyApi.formWillShow(tab.containedForm, tab.relationName);
->>>>>>> Stashed changes
 						if (oldSelection !== undefined && oldSelection !== null && $scope.handlers.onChangeMethodID) {
 							var newSelection = getTabIndex(tab);
 							$timeout(function() {
@@ -288,17 +283,12 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 						var newTab = newValue && newValue.length > 0 ? newValue[newTabIndex - 1] : null;
 						var newForm = newTab ? newTab.containedForm : null;
 						if (newForm != oldForm) {
-<<<<<<< Updated upstream
-							if (oldForm) $scope.svyServoyapi.hideForm(oldForm);
-							if (newForm) $scope.svyServoyapi.formWillShow(newForm, newValue[newTabIndex - 1].relationName);
+							if (oldForm) $scope.servoyApi.hideForm(oldForm);
+							if (newForm) $scope.servoyApi.formWillShow(newForm, newValue[newTabIndex - 1].relationName);
 						} else if (newForm == oldForm && newTab && oldTab && newTab.disabled !== true && oldTab.disabled === true) {
 							// if the selected tab was previously disabled then call formWillShow. 
 							// Actually would be called only if the disabled form was selected by never had a formWillShow. Calling it twice it shouldn't harm
-							if (newForm) $scope.svyServoyapi.formWillShow(newForm, newValue[newTabIndex - 1].relationName);
-=======
-							if (oldForm) $scope.servoyApi.hideForm(oldForm);
 							if (newForm) $scope.servoyApi.formWillShow(newForm, newValue[newTabIndex - 1].relationName);
->>>>>>> Stashed changes
 						}
 						
 						if (newTabIndex != $scope.model.tabIndex) {
