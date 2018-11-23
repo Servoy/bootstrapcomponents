@@ -4,13 +4,13 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 		restrict: 'E',
 		scope: {
 			model: "=svyModel",
-			svyServoyapi: "=",
+			servoyApi: "=svyServoyapi",
 			handlers: "=svyHandlers",
 			api: "=svyApi"
 		},
 		controller: function($scope, $element, $attrs, webStorage) {
 	
-			if ($scope.svyServoyapi.isInDesigner()) return;
+			if ($scope.servoyApi.isInDesigner()) return;
 	
 			var getTabIndex = function(tab) {
 				if ($scope.model.tabs && tab) {
@@ -64,7 +64,7 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 							// this was a change
 							// temp set it to false, so it will not show the new form yet.
 							tab.active = false;
-							var promise = $scope.svyServoyapi.hideForm(currentContainedForm, null, null, tab.containedForm, tab.relationName);
+							var promise = $scope.servoyApi.hideForm(currentContainedForm, null, null, tab.containedForm, tab.relationName);
 							promise.then(function(ok) {
 								// we can't do much more then to set the back to true.
 								// maybe if 'ok' is false we should also push back the previous form??
@@ -75,13 +75,14 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 						currentTab = tab;
 						if (!tab.active) return "";
 					}
-					return $scope.svyServoyapi.getFormUrl(tab.containedForm);
+					return $scope.servoyApi.getFormUrl(tab.containedForm);
 				}
 				return "";
 			}
 	
 			$scope.select = function(tab, oldSelection) {
 				if (tab && tab.containedForm) {
+<<<<<<< Updated upstream
 					if (oldSelection === -1) {
 						$scope.model.tabIndex = getTabIndex(tab) + 1;
 						tab.active = true;
@@ -89,6 +90,10 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 						
 						
 						$scope.svyServoyapi.formWillShow(tab.containedForm, tab.relationName);
+=======
+					if ($scope.model.tabs[$scope.model.tabIndex - 1] == tab) {
+						$scope.servoyApi.formWillShow(tab.containedForm, tab.relationName);
+>>>>>>> Stashed changes
 						if (oldSelection !== undefined && oldSelection !== null && $scope.handlers.onChangeMethodID) {
 							var newSelection = getTabIndex(tab);
 							$timeout(function() {
@@ -101,7 +106,7 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 					} else {
 						tab.active = false;
 						$scope.model.tabs[$scope.model.tabIndex - 1].active = true;
-						var promise = $scope.svyServoyapi.hideForm($scope.model.tabs[$scope.model.tabIndex - 1].containedForm, null, null, tab.containedForm, tab.relationName);
+						var promise = $scope.servoyApi.hideForm($scope.model.tabs[$scope.model.tabIndex - 1].containedForm, null, null, tab.containedForm, tab.relationName);
 						promise.then(function(ok) {
 							if (ok) {
 								$scope.model.tabs[$scope.model.tabIndex - 1].active = false;
@@ -183,7 +188,7 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 					// find the first enabled tab
 					$scope.model.tabIndex = index;
 					$scope.model.tabs[index - 1].active = true;
-					$scope.svyServoyapi.formWillShow($scope.model.tabs[index - 1].containedForm, $scope.model.tabs[index - 1].relationName);
+					$scope.servoyApi.formWillShow($scope.model.tabs[index - 1].containedForm, $scope.model.tabs[index - 1].relationName);
 				}
 			}
 	
@@ -234,11 +239,11 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 						// else hide/show old/new form
 						
 						if (oldValue && $scope.model.tabs[oldValue - 1]) {
-							$scope.svyServoyapi.hideForm($scope.model.tabs[oldValue - 1].containedForm);
+							$scope.servoyApi.hideForm($scope.model.tabs[oldValue - 1].containedForm);
 							$scope.model.tabs[oldValue - 1].active = false;
 						}
 						if (newValue) {
-							var promise = $scope.svyServoyapi.formWillShow($scope.model.tabs[newValue - 1].containedForm, $scope.model.tabs[newValue - 1].relationName);
+							var promise = $scope.servoyApi.formWillShow($scope.model.tabs[newValue - 1].containedForm, $scope.model.tabs[newValue - 1].relationName);
 							$scope.model.tabs[newValue - 1].active = true;
 						}
 						if ($scope.$parent && $scope.$parent.formname) {
@@ -261,9 +266,9 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 			$scope.$watch("model.visible", function(newValue, oldValue) {
 					if ($scope.model.tabIndex && newValue !== oldValue && $scope.model.tabs && $scope.model.tabs[$scope.model.tabIndex - 1] && $scope.model.tabs[$scope.model.tabIndex - 1].containedForm) {
 						if (newValue) {
-							$scope.svyServoyapi.formWillShow($scope.model.tabs[$scope.model.tabIndex - 1].containedForm, $scope.model.tabs[$scope.model.tabIndex - 1].relationName);
+							$scope.servoyApi.formWillShow($scope.model.tabs[$scope.model.tabIndex - 1].containedForm, $scope.model.tabs[$scope.model.tabIndex - 1].relationName);
 						} else {
-							$scope.svyServoyapi.hideForm($scope.model.tabs[$scope.model.tabIndex - 1].containedForm);
+							$scope.servoyApi.hideForm($scope.model.tabs[$scope.model.tabIndex - 1].containedForm);
 						}
 					}
 				});
@@ -283,12 +288,17 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 						var newTab = newValue && newValue.length > 0 ? newValue[newTabIndex - 1] : null;
 						var newForm = newTab ? newTab.containedForm : null;
 						if (newForm != oldForm) {
+<<<<<<< Updated upstream
 							if (oldForm) $scope.svyServoyapi.hideForm(oldForm);
 							if (newForm) $scope.svyServoyapi.formWillShow(newForm, newValue[newTabIndex - 1].relationName);
 						} else if (newForm == oldForm && newTab && oldTab && newTab.disabled !== true && oldTab.disabled === true) {
 							// if the selected tab was previously disabled then call formWillShow. 
 							// Actually would be called only if the disabled form was selected by never had a formWillShow. Calling it twice it shouldn't harm
 							if (newForm) $scope.svyServoyapi.formWillShow(newForm, newValue[newTabIndex - 1].relationName);
+=======
+							if (oldForm) $scope.servoyApi.hideForm(oldForm);
+							if (newForm) $scope.servoyApi.formWillShow(newForm, newValue[newTabIndex - 1].relationName);
+>>>>>>> Stashed changes
 						}
 						
 						if (newTabIndex != $scope.model.tabIndex) {
@@ -309,7 +319,7 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 			}
 	
 			$scope.showEditorHint = function() {
-				return (!$scope.model.tabs || $scope.model.tabs.length == 0) && $scope.svyServoyapi.isInDesigner();
+				return (!$scope.model.tabs || $scope.model.tabs.length == 0) && $scope.servoyApi.isInDesigner();
 			}
 			// scrolling tabs section
 			var buttons = { };
@@ -486,7 +496,7 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 							// hide the current form
 							if (formToHide.containedForm && !formToShow) {
 								// TODO what if doesn't hide ?
-								$scope.svyServoyapi.hideForm(formToHide.containedForm);
+								$scope.servoyApi.hideForm(formToHide.containedForm);
 								if (formToHide.active) {
 									formToHide.active = false;
 								}
@@ -502,7 +512,7 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 								if (!formToShow.active) {
 									formToShow.active = true;
 								}
-								$scope.svyServoyapi.formWillShow(formToShow.containedForm, formToShow.relationName);
+								$scope.servoyApi.formWillShow(formToShow.containedForm, formToShow.relationName);
 								if ($scope.handlers.onChangeMethodID) {
 									$timeout(function() {
 											$scope.handlers.onChangeMethodID(1, $window.event ? $window.event : $.Event("change"));
