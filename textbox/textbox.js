@@ -71,6 +71,26 @@ angular.module('bootstrapcomponentsTextbox',['servoy']).directive('bootstrapcomp
 				inputEl[0].focus();
 			  }			  
     	  }
+		 var storedTooltip = false;
+		 // fill in the api defined in the spec file
+
+		 $scope.api.onDataChangeCallback = function(event, returnval) {
+			 var stringValue = typeof returnval == 'string'
+				if(returnval === false || stringValue) {
+					$element[0].focus();
+					ngModel.$setValidity("", false);
+					if (stringValue) {
+						if ( storedTooltip == false)
+							storedTooltip = $scope.model.toolTipText;
+						$scope.model.toolTipText = returnval;
+					}
+				}
+				else {
+					ngModel.$setValidity("", true);
+					if (storedTooltip !== false) $scope.model.toolTipText = storedTooltip;
+					storedTooltip = false;
+				}
+		}
 
     	  /**
     	   * Reset the dataProvider to null and change the inputType of the textbox.<br/>
