@@ -14,7 +14,8 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 			var options = {
 				widgetParent: $(document.body),
 				showTodayButton: true,
-				calendarWeeks: true
+				calendarWeeks: true,
+				useCurrent: false
 			}
 
 			var locale = $sabloApplication.getLocale();
@@ -28,6 +29,11 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 			})
 
 			function inputChanged(e) {
+				// SVY-13068 Set seconds to 0 as first set of the date or date from showTodayButton of 
+				// boostrap calendar component have seconds setted ( getDate() ), then when boostrap 
+				// do on show it sets seconds to 0, so we'll have different dataproviders and call incorrect onDataChange
+				e.date.set('seconds',0);
+				
 				if (e.date) ngModel.$setViewValue(e.date.toDate());
 				else ngModel.$setViewValue(null);
 				ngModel.$setValidity("", true);
