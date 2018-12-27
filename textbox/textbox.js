@@ -33,14 +33,19 @@ angular.module('bootstrapcomponentsTextbox',['servoy']).directive('bootstrapcomp
 					if (value) $svyProperties.addSelectOnEnter($element);
 					break;
     			  case "toolTipText":
-    				  if (tooltipState)
-    					  tooltipState(value);
-    				  else
-    					  tooltipState = $svyProperties.createTooltipState($element, value);
+    				  registerTooltip(value);
     				  break;
     			  }
     		  }
     	  });
+    	  
+    	  function registerTooltip(value) {
+    		  if (tooltipState)
+				  tooltipState(value);
+			  else
+				  tooltipState = $svyProperties.createTooltipState($element, value);
+    	  }
+    	  
     	  var destroyListenerUnreg = $scope.$on("$destroy", function() {
     		  destroyListenerUnreg();
     		  delete $scope.model[$sabloConstants.modelChangeNotifier];
@@ -82,13 +87,14 @@ angular.module('bootstrapcomponentsTextbox',['servoy']).directive('bootstrapcomp
 					if (stringValue) {
 						if ( storedTooltip == false)
 							storedTooltip = $scope.model.toolTipText;
-						$scope.model.toolTipText = returnval;
+						registerTooltip(returnval);
 					}
 				}
 				else {
 					ngModel.$setValidity("", true);
 					if (storedTooltip !== false) $scope.model.toolTipText = storedTooltip;
 					storedTooltip = false;
+					registerTooltip($scope.model.toolTipText );
 				}
 		}
 
