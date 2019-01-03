@@ -15,6 +15,15 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
       
       var hasRealValues = false;
 
+      $scope.$watch('model.isOpened', function(){   	
+		if($scope.model.isOpened){
+		      var bodyElements = document.querySelectorAll('.svy-body,.ui-grid-viewport');
+		      for(var i = 0; i < bodyElements.length; i++){
+		           bodyElements[i].addEventListener('scroll',$scope.fireRecalculating)
+		      }
+		}    			
+	  })
+	
 	$scope.$watch('model.valuelistID', function() {
 		if (!$scope.model.valuelistID || $scope.model.valuelistID.length == 0) return; // not loaded yet or already filtered
 		hasRealValues = false;
