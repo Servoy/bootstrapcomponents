@@ -35,6 +35,12 @@ angular.module('bootstrapcomponentsTextbox',['servoy']).directive('bootstrapcomp
     			  case "toolTipText":
     				  registerTooltip(value);
     				  break;
+    			  case "dataProviderID":
+    				 if(storedTooltip !== false){
+    					 storedTooltip = false;
+    					 registerTooltip($scope.model.toolTipText);
+    				 }
+    				  break;
     			  }
     		  }
     	  });
