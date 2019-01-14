@@ -23,7 +23,13 @@ angular.module('bootstrapcomponentsTextbox',['servoy']).directive('bootstrapcomp
     			  }	  
     		  })
     	  }
-
+    	  
+    	  var autocompleteAttribute = $element[0].getAttribute('autocomplete');
+    	  if( autocompleteAttribute !== null && child[0] && child[0].tagName === 'INPUT'){
+    		  $element[0].removeAttribute('autocomplete');
+    		  child[0].setAttribute('autocomplete', autocompleteAttribute);
+    	  }
+    	  
     	  var tooltipState = null;
     	  Object.defineProperty($scope.model, $sabloConstants.modelChangeNotifier, {
     		  configurable: true,
