@@ -12,7 +12,9 @@ angular.module('bootstrapcomponentsTextbox',['servoy']).directive('bootstrapcomp
     	  var formatState = null;
     	  var child = $element.children();
     	  var ngModel = child.controller("ngModel");
-
+    	  
+    	  $scope.model.autocomplete = $scope.model.autocomplete ? $scope.model.autocomplete : 'off';
+    	  
     	  if($scope.model.inputType == "text" || $scope.model.inputType == 'number') {
     		  $scope.$watch('model.format', function(){
     			  if ($scope.model.format)
@@ -22,12 +24,6 @@ angular.module('bootstrapcomponentsTextbox',['servoy']).directive('bootstrapcomp
     				  else formatState = $formatterUtils.createFormatState(child, $scope, ngModel,true,$scope.model.format);
     			  }	  
     		  })
-    	  }
-    	  
-    	  var autocompleteAttribute = $element[0].getAttribute('autocomplete');
-    	  if( autocompleteAttribute !== null && child[0] && child[0].tagName === 'INPUT'){
-    		  $element[0].removeAttribute('autocomplete');
-    		  child[0].setAttribute('autocomplete', autocompleteAttribute);
     	  }
     	  
     	  var tooltipState = null;
@@ -48,7 +44,7 @@ angular.module('bootstrapcomponentsTextbox',['servoy']).directive('bootstrapcomp
     				 }
     				  break;
     			  }
-    		  }
+			  }
     	  });
     	  
     	  function registerTooltip(value) {

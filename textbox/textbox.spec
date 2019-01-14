@@ -19,7 +19,8 @@
 			"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
 			"toolTipText" : { "type" : "tagstring"},
 	    	"visible" : "visible",	    
-	    	"selectOnEnter" : {"type" :"boolean", "tags": { "scope" :"design" }}
+	    	"selectOnEnter" : {"type" :"boolean", "tags": { "scope" :"design" }},
+	    	"autocomplete" : {"type" :"string", "tags": { "scope" :"design" }, "default": "off",  "values" :["off","name", "fname", "mname", "lname", "email", "tel", "street-address", "locality", "region", "postal-code", "country", "cc-name", "cc-number", "cc-csc", "cc-exp"] }
 	},
 	"handlers":
 	{
