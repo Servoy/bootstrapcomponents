@@ -75,6 +75,11 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 						currentTab = tab;
 						if (!tab.active) return "";
 					}
+					else
+					{
+						// keep latest instance
+						currentTab = tab;
+					}	
 					return $scope.servoyApi.getFormUrl(tab.containedForm);
 				}
 				return "";
