@@ -83,6 +83,34 @@
 				],
 				"delayUntilFormLoads": true,
 				"discardPreviouslyQueuedSimilarCalls": true
+	        },
+	        "disableDates": {
+				"parameters":[
+						{                                                                 
+						"name":"dateArray",
+						"type":"Date[]"
+						}             
+				]
+            }, 
+            "disableDays": {
+				"parameters":[
+						{                                                                 
+						"name":"dayArray",
+						"type":"Number[]"
+						}             
+				]
+            },
+            "setMinMaxDate": {
+				"parameters":[
+						{                                                                 
+                            "name":"minDate",
+                            "type":"Date"
+                        },
+                        {                                                                 
+                            "name":"maxDate",
+                            "type":"Date"
+						}              
+				]
 	        }
 	}
 

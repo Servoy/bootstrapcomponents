@@ -102,8 +102,65 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 				} else {
 					input[0].focus();
 				}
-			}			
-			
+            }
+                
+            /** 
+             * @param {Array<Date>} dateArray
+             * 
+             * Dates that should be disabled.
+             */
+            $scope.api.disableDates = function(dateArray) {
+                 var x = child.data('DateTimePicker');
+                 if (angular.isDefined(x)) {
+                    if(dateArray && dateArray.length > 0) {
+                        x.disabledDates(dateArray);
+                    } else {
+                        x.disabledDates(false);
+                    }
+                 }
+             };
+            
+            /** 
+             * @param {Array<Number>} dayArray
+             * 
+             * Days of the week that should be disabled. Values are 0 (Sunday) to 6 (Saturday). 
+             */
+            $scope.api.disableDays = function(dayArray) {
+                var x = child.data('DateTimePicker');
+                if (angular.isDefined(x)) {
+                    if(dayArray && dayArray.length > 0) {
+                        x.daysOfWeekDisabled(dayArray);
+                    } else {
+                        x.daysOfWeekDisabled(false);
+                    }
+                }
+            };
+
+
+            /** 
+             * @param {Date} minDate
+             * @param {Date} maxDate
+             * 
+             * Set the min date or max date that can be selected
+             */
+            $scope.api.setMinMaxDate = function(minDate, maxDate) {
+                var x = child.data('DateTimePicker');
+                if (angular.isDefined(x)) {
+                    x.minDate(false);
+                    x.maxDate(false);
+
+                    if(minDate) {
+                        minDate.setHours(0,0,0,0);
+                        x.minDate(minDate);
+                    } 
+
+                    if(maxDate) {
+                        maxDate.setHours(0,0,0,0);
+                        x.maxDate(maxDate);
+                    } 
+                }
+            };
+
 			$scope.api.getWidth = $apifunctions.getWidth($element[0]);
 			$scope.api.getHeight = $apifunctions.getHeight($element[0]);
 			$scope.api.getLocationX = $apifunctions.getX($element[0]);
