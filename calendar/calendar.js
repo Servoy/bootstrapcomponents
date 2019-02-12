@@ -32,9 +32,10 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 				// SVY-13068 Set seconds to 0 as first set of the date or date from showTodayButton of 
 				// boostrap calendar component have seconds setted ( getDate() ), then when boostrap 
 				// do on show it sets seconds to 0, so we'll have different dataproviders and call incorrect onDataChange
-				e.date.set('seconds',0);
-				
-				if (e.date) ngModel.$setViewValue(e.date.toDate());
+				if (e.date) {
+					e.date.set('seconds',0);
+					ngModel.$setViewValue(e.date.toDate());
+				}
 				else ngModel.$setViewValue(null);
 				ngModel.$setValidity("", true);
 				$scope.svyServoyapi.apply('dataProviderID');
