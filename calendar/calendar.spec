@@ -88,7 +88,7 @@
 				"parameters":[
 						{                                                                 
 						"name":"dateArray",
-						"type":"Date[]"
+						"type":"date[]"
 						}             
 				]
             }, 
@@ -96,7 +96,7 @@
 				"parameters":[
 						{                                                                 
 						"name":"dayArray",
-						"type":"Number[]"
+						"type":"int[]"
 						}             
 				]
             },
@@ -104,11 +104,11 @@
 				"parameters":[
 						{                                                                 
                             "name":"minDate",
-                            "type":"Date"
+                            "type":"date"
                         },
                         {                                                                 
                             "name":"maxDate",
-                            "type":"Date"
+                            "type":"date"
 						}              
 				]
 	        }
