@@ -1,7 +1,7 @@
 <span class='bts-label' ng-class="model.styleClass"
-	svy-click='handlers.onActionMethodID($event)'
-    svy-dblclick='handlers.onDoubleClickMethodID($event)'
- 	svy-rightclick='handlers.onRightClickMethodID($event)'
+	svy-click='handlers.onActionMethodID($event, getDataTarget($event))'
+    svy-dblclick='handlers.onDoubleClickMethodID($event, getDataTarget($event))'
+ 	svy-rightclick='handlers.onRightClickMethodID($event, getDataTarget($event))'
  	ng-bind-html='model.text| htmlFilter| trustAsHtml:servoyApi.trustAsHtml()'
 	sablo-tabseq='(handlers.onActionMethodID || handlers.onDoubleClickMethodID || handlers.onRightClickMethodID) ? model.tabSeq : -2'
 	ng-disabled='!model.enabled'

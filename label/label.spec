@@ -23,6 +23,9 @@
 								{
 						          "name":"event",
 								  "type":"JSEvent"
+								}, {
+						          "name":"dataTarget",
+								  "type":"string"
 								}
 							 ]
 	        },
@@ -32,6 +35,9 @@
 								{
 						          "name":"event",
 								  "type":"JSEvent"
+								}, {
+						          "name":"dataTarget",
+								  "type":"string"
 								}
 							 ]
 	        },
@@ -41,6 +47,9 @@
 								{
 						          "name":"event",
 								  "type":"JSEvent"
+								}, {
+						          "name":"dataTarget",
+								  "type":"string"
 								}
 							 ]
 	        }
