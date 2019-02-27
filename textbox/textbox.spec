@@ -20,7 +20,15 @@
 			"toolTipText" : { "type" : "tagstring"},
 	    	"visible" : "visible",	    
 	    	"selectOnEnter" : {"type" :"boolean", "tags": { "scope" :"design" }},
-	    	"autocomplete" : {"type" :"string", "tags": { "scope" :"design" }, "default": "off",  "values" :["off","name", "fname", "mname", "lname", "email", "tel", "street-address", "address-level1", "address-level2", "postal-code", "country", "cc-name", "cc-number", "cc-csc", "cc-exp"] }
+	    	"autocomplete" : 
+	    		{"type" :"string", "tags": { "scope" :"design" }, "default": "off",  
+	    			"values" :
+	    			[ 
+	    				"off", "name", "given-name", "additional-name", "family-name","nickname", "organization-title", "username", "new-password" , "current-password", "organization", "email", "street-address", "address-level1", 
+	    				"address-level2", "address-level3", "address-level4", "country", "country-name", "postal-code", "cc-name", "cc-given-name", "cc-additional-name", "cc-family-name", "cc-number", "cc-exp", "cc-exp-month", "cc-exp-year", "cc-csc", "cc-type", 
+	    				"transaction-currency", "transaction-amount", "language", "bday", "bday-day", "bday-month", "bday-year", "sex", "url", "tel", "tel-country-code", "tel-national","tel-area-code", "tel-local"
+	    		    ]
+	    	    }
 	},
 	"handlers":
 	{
