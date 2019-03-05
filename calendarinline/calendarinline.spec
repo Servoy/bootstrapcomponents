@@ -11,27 +11,12 @@
 	"model":
 	{
 	    "dataProviderID" : { "type":"dataprovider", "pushToServer": "allow","tags": { "scope" :"design" }, "ondatachange": { "onchange":"onDataChangeMethodID"}},
-	    "enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["dataProviderID","onActionMethodID","onDataChangeMethodID"] },
-	     "findmode" : { "type":"findmode", "tags":{"scope":"private"}}, 
-	    "format" : {"for":["dataProviderID"] , "type" :"format"},
-	    "readOnly" : { "type": "protected", "blockingOn": true, "default": false,"for": ["dataProviderID","onDataChangeMethodID"] },
-	    "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "default" : "form-control"},
-	    "placeholderText" : "tagstring",
-	    "tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
-	     "toolTipText" : { "type" : "tagstring"}, 
+	    "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }},
+	    "toolTipText" : { "type" : "tagstring"}, 
 	    "visible" : "visible"
 	},
 	"handlers":
 	{
-	        "onActionMethodID" : {
-
-	        	"parameters":[
-								{
-						          "name":"event",
-								  "type":"JSEvent"
-								}
-							 ]
-	        },
 	        "onDataChangeMethodID" : {
 	          "returns": "boolean",
 
@@ -44,24 +29,6 @@
 						          "name":"newValue",
 								  "type":"${dataproviderType}"
 								},
-								{
-						          "name":"event",
-								  "type":"JSEvent"
-								}
-							 ]
-	        },
-			"onFocusGainedMethodID" : {
-
-	        	"parameters":[
-								{
-						          "name":"event",
-								  "type":"JSEvent"
-								}
-							 ]
-	        },
-	        "onFocusLostMethodID" : {
-
-	        	"parameters":[
 								{
 						          "name":"event",
 								  "type":"JSEvent"

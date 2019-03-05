@@ -24,10 +24,6 @@ angular.module('bootstrapcomponentsCalendarinline',['servoy'])
 
 			child.datetimepicker(options);
 
-			$scope.$watch('model.format', function(){
-				setDateFormat($scope.model.format);
-			})
-
 			function inputChanged(e) {
 				if (e.date) {
 					$scope.model.dataProviderID = e.date.toDate();
@@ -35,25 +31,6 @@ angular.module('bootstrapcomponentsCalendarinline',['servoy'])
 					$scope.model.dataProviderID = null;
 				}
 				$scope.svyServoyapi.apply('dataProviderID');
-			}
-
-			var dateFormat = 'YYYY-MM-DD';
-
-			// helper function
-			function setDateFormat(format){
-				if(format && format.display){
-					dateFormat = moment().toMomentFormatString(format.display);
-				}
-				var x = child.data('DateTimePicker');
-				if (angular.isDefined(x)) { // can be undefined in find mode
-					x.format(dateFormat);
-					try {
-						$element.off("dp.change",inputChanged);
-					}
-					finally {
-						$element.on("dp.change",inputChanged);
-					}
-				}
 			}
 
 			$element.on("dp.change",inputChanged);
@@ -123,8 +100,6 @@ angular.module('bootstrapcomponentsCalendarinline',['servoy'])
 			var element = $element.children().first();
 			var inputElement = element.children().first();
 			
-			var isAnchored = $element.parent().hasClass('svy-wrapper');
-			
 			var tooltipState = null;
 			Object.defineProperty($scope.model, $sabloConstants.modelChangeNotifier, {
 				configurable : true,
@@ -136,12 +111,6 @@ angular.module('bootstrapcomponentsCalendarinline',['servoy'])
 							x.date(value);
 		                }
 					break;
-					case "size":
-						if (isAnchored) {
-							console.log(property + " - " + value.height);
-							$svyProperties.setCssProperty(inputElement, "height", value.height);
-						}
-						break;
 					case "toolTipText":
 						if (tooltipState)
 							tooltipState(value);
