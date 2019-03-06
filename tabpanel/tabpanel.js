@@ -289,11 +289,11 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 						var newForm = newTab ? newTab.containedForm : null;
 						if (newForm != oldForm) {
 							if (oldForm) $scope.servoyApi.hideForm(oldForm);
-							if (newForm) $scope.servoyApi.formWillShow(newForm, newValue[newTabIndex - 1].relationName);
+							if (newForm && newTab.disabled !== true) $scope.servoyApi.formWillShow(newForm, newValue[newTabIndex - 1].relationName);
 						} else if (newForm == oldForm && newTab && oldTab && newTab.disabled !== true && oldTab.disabled === true) {
 							// if the selected tab was previously disabled then call formWillShow. 
 							// Actually would be called only if the disabled form was selected by never had a formWillShow. Calling it twice it shouldn't harm
-							if (newForm) $scope.servoyApi.formWillShow(newForm, newValue[newTabIndex - 1].relationName);
+							if (newForm && newTab.disabled !== true) $scope.servoyApi.formWillShow(newForm, newValue[newTabIndex - 1].relationName);
 						}
 						
 						if (newTabIndex != $scope.model.tabIndex) {
@@ -464,11 +464,20 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 						}
 
 						// remove the tab
-						// $scope.model.tabs.splice(removeIndex - 1, 1);
-						for (var i = removeIndex - 1; i < $scope.model.tabs.length - 1; i++) {
-							$scope.model.tabs[i] = $scope.model.tabs[i + 1];
+						// create a new tabObject, so angular-ui is properly refreshed.
+						var newTabs = [];
+						for (var i = 0; i < $scope.model.tabs.length; i++) {
+							if (i == removeIndex - 1) continue;
+							newTabs.push($scope.model.tabs[i]);
 						}
-						$scope.model.tabs.length = $scope.model.tabs.length - 1;
+						$scope.model.tabs = newTabs;
+						
+						// $scope.model.tabs.splice(removeIndex - 1, 1);
+						
+						//	for (var i = removeIndex - 1; i < $scope.model.tabs.length - 1; i++) {
+						//		$scope.model.tabs[i] = $scope.model.tabs[i + 1];
+						//	}
+						//	$scope.model.tabs.length = $scope.model.tabs.length - 1;
 
 						// update the tabIndex
 						if ($scope.model.tabIndex >= removeIndex) {
