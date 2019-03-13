@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Ant-Version: Apache Ant 1.8.4
 CSS-ClientLibs: css/bootstrap/css/bootstrap.css;name=bootstrap;version
- =3.3.1
+ =3.4.1
 Bundle-SymbolicName: bootstrapcomponents
 Bundle-Name: Bootstrap Components
 Bundle-Version: 1.5.3
