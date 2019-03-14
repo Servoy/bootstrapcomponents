@@ -21,12 +21,12 @@
 	    	"visible" : "visible",	    
 	    	"selectOnEnter" : {"type" :"boolean", "tags": { "scope" :"design" }},
 	    	"autocomplete" : 
-	    		{"type" :"string", "tags": { "scope" :"design" }, "default": "off",  
+	    		{"type" :"string", "tags": { "scope" :"design"}, "default": "off",
 	    			"values" :
 	    			[ 
-	    				"off", "name", "given-name", "additional-name", "family-name","nickname", "organization-title", "username", "new-password" , "current-password", "organization", "email", "street-address", "address-level1", 
+	    				"off", "billing", "shipping", "home", "work", "mobile", "fax", "pager", "name", "given-name", "additional-name", "family-name","nickname", "organization-title", "username", "new-password" , "current-password", "organization", "email", "street-address", "address-level1", 
 	    				"address-level2", "address-level3", "address-level4", "country", "country-name", "postal-code", "cc-name", "cc-given-name", "cc-additional-name", "cc-family-name", "cc-number", "cc-exp", "cc-exp-month", "cc-exp-year", "cc-csc", "cc-type", 
-	    				"transaction-currency", "transaction-amount", "language", "bday", "bday-day", "bday-month", "bday-year", "sex", "url", "tel", "tel-country-code", "tel-national","tel-area-code", "tel-local"
+	    				"transaction-currency", "transaction-amount", "language", "bday", "bday-day", "bday-month", "bday-year", "sex", "url", "tel", "tel-country-code",  "tel-national","tel-area-code", "tel-local"
 	    		    ]
 	    	    }
 	},
