@@ -8,7 +8,7 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 			handlers: "=svyHandlers",
 			api: "=svyApi"
 		},
-		controller: function($scope, $element, $attrs, webStorage) {
+		controller: function($scope, $element, $attrs) {
 	
 			if ($scope.servoyApi.isInDesigner()) return;
 	
@@ -165,25 +165,33 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 			}
 	
 			if ($scope.model.tabs && $scope.model.tabs.length > 0) {
-				// find the first enabled tab
-				var index = getFirstEnabledTabIndex();
-				if (index === -1) {
-					index = 0;
-				}
-				if ($scope.$parent && $scope.$parent.formname) {
-					var key = $scope.$parent.formname + "_" + $element.attr('name') + "_tabindex";
-					var storageValue = webStorage.session.get(key);
-					if (storageValue) {
-						index = parseInt(storageValue);
-						if (index > $scope.model.tabs.length) {
-							// check if there is any enabled tab
-							index = getFirstEnabledTabIndex();
-							if (index === -1) {
-								index = 0;
-							}
-						}
+				
+				// check the latest enabled tab
+				var index = $scope.model.tabIndex;
+				if ($scope.model.tabs[index - 1] && $scope.model.tabs[index - 1].containedForm && $scope.model.tabs[index - 1].disabled !== true) {
+					// index is in a proper state
+				} else { // find the first enabled tab
+					index = getFirstEnabledTabIndex();
+					if (index === -1) {
+						index = 0;
 					}
-				}				
+				}
+
+//				if ($scope.$parent && $scope.$parent.formname) {
+//					var key = $scope.$parent.formname + "_" + $element.attr('name') + "_tabindex";
+//					var storageValue = webStorage.session.get(key);
+//					if (storageValue) {
+//						index = parseInt(storageValue);
+//						if (index > $scope.model.tabs.length) {
+//							// check if there is any enabled tab
+//							index = getFirstEnabledTabIndex();
+//							if (index === -1) {
+//								index = 0;
+//							}
+//						}
+//					}
+//				}
+				
 				if ($scope.model.tabs[index - 1] && $scope.model.tabs[index - 1].containedForm) {
 					// find the first enabled tab
 					$scope.model.tabIndex = index;
@@ -245,10 +253,6 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 						if (newValue) {
 							var promise = $scope.servoyApi.formWillShow($scope.model.tabs[newValue - 1].containedForm, $scope.model.tabs[newValue - 1].relationName);
 							$scope.model.tabs[newValue - 1].active = true;
-						}
-						if ($scope.$parent && $scope.$parent.formname) {
-							var key = $scope.$parent.formname + "_" + $element.attr('name') + "_tabindex";
-							webStorage.session.add(key, newValue);
 						}
 						if ($scope.handlers.onChangeMethodID) {
 							$timeout(function() {
@@ -559,4 +563,3 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 		}
 	}
 })
-
