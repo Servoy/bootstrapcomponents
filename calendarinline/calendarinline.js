@@ -1,5 +1,5 @@
 angular.module('bootstrapcomponentsCalendarinline',['servoy'])
-.directive('bootstrapcomponentsCalendarinline',  function($sabloApplication, $log, $apifunctions, $svyProperties, $sabloConstants) {  
+.directive('bootstrapcomponentsCalendarinline',  function($sabloApplication, $log, $apifunctions, $svyProperties, $sabloConstants, $applicationService) {  
 	return {
 		restrict: 'E',
 		scope: {
@@ -21,6 +21,12 @@ angular.module('bootstrapcomponentsCalendarinline',['servoy'])
 			if (locale.language) {
 				options.locale = locale.language;
 			}
+
+			var showISOWeeks = $applicationService.getUIProperty('ngCalendarShowISOWeeks');
+			if (showISOWeeks)
+			{
+				options.isoCalendarWeeks = true;
+			}	
 
 			child.datetimepicker(options);
 

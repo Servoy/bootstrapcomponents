@@ -1,4 +1,4 @@
-angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcomponentsCalendar', function($sabloApplication, $log, $apifunctions, $svyProperties, $sabloConstants) {  
+angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcomponentsCalendar', function($sabloApplication, $log, $apifunctions, $svyProperties, $sabloConstants, $applicationService) {  
 	return {
 		restrict: 'E',
 		scope: {
@@ -22,6 +22,13 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 			if (locale.language) {
 				options.locale = locale.language;
 			}
+			
+			var showISOWeeks = $applicationService.getUIProperty('ngCalendarShowISOWeeks');
+			if (showISOWeeks)
+			{
+				options.isoCalendarWeeks = true;
+			}	
+
 			child.datetimepicker(options);
 
 			$scope.$watch('model.format', function(){
@@ -175,7 +182,7 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 					switch (property) {
 					case "size":
 						if (isAnchored) {
-							console.log(property + " - " + value.height);
+							if ($log.debugEnabled) $log.debug("bootstrap calendar * " + property + " - " + value.height);
 							$svyProperties.setCssProperty(inputElement, "height", value.height);
 						}
 						break;

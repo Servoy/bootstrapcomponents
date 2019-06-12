@@ -44,7 +44,8 @@
 						          "name":"event",
 								  "type":"JSEvent"
 								}
-							 ]
+							 ],
+				"code": "return true"
 	        },
 	        "onFocusGainedMethodID" : {
 

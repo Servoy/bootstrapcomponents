@@ -8,7 +8,7 @@
 	"model":
 	{
 		"enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["onActionMethodID","onDoubleClickMethodID","onRightClickMethodID"] },
-	    "imageStyleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }},
+	    "imageStyleClass" : { "type" :"styleclass" },
 	    "tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }}, 
 	    "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" },"default": "btn btn-default", "values" :["btn","btn-default","btn-lg","btn-sm","btn-xs"]},
 	    "text" : {"type":"tagstring" , "initialValue":"Button", "tags": { "directEdit" : "true" }},
