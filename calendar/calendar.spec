@@ -90,7 +90,12 @@
 						{                                                                 
 						"name":"dateArray",
 						"type":"date[]"
-						}             
+						},
+						{
+							"name":"keepInvalid",
+                            "type":"boolean",
+                            "optional":true
+						}           
 				]
             }, 
             "disableDays": {
@@ -98,7 +103,12 @@
 						{                                                                 
 						"name":"dayArray",
 						"type":"int[]"
-						}             
+						},
+						{
+							"name":"keepInvalid",
+                            "type":"boolean",
+                            "optional":true
+						}           
 				]
             },
             "setMinMaxDate": {
@@ -110,7 +120,12 @@
                         {                                                                 
                             "name":"maxDate",
                             "type":"date"
-						}              
+						},
+						{
+							"name":"keepInvalid",
+                            "type":"boolean",
+                            "optional":true
+						}       
 				]
 	        }
 	}

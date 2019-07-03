@@ -110,10 +110,11 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
                 
             /** 
              * @param {Array<Date>} dateArray
+             * @param {Boolean} [keepInvalid]
              * 
              * Dates that should be disabled.
              */
-            $scope.api.disableDates = function(dateArray) {
+            $scope.api.disableDates = function(dateArray, keepInvalid) {
                  var x = child.data('DateTimePicker');
                  if (angular.isDefined(x)) {
                     if(dateArray && dateArray.length > 0) {
@@ -121,21 +122,30 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
                     } else {
                         x.disabledDates(false);
                     }
+                    
+                    if(keepInvalid) {
+                    	x.keepInvalid(keepInvalid)
+                    }
                  }
              };
             
             /** 
              * @param {Array<Number>} dayArray
+             * @param {Boolean} [keepInvalid]
              * 
              * Days of the week that should be disabled. Values are 0 (Sunday) to 6 (Saturday). 
              */
-            $scope.api.disableDays = function(dayArray) {
+            $scope.api.disableDays = function(dayArray, keepInvalid) {
                 var x = child.data('DateTimePicker');
                 if (angular.isDefined(x)) {
                     if(dayArray && dayArray.length > 0) {
                         x.daysOfWeekDisabled(dayArray);
                     } else {
                         x.daysOfWeekDisabled(false);
+                    }
+                    
+                    if(keepInvalid) {
+                    	x.keepInvalid(keepInvalid)
                     }
                 }
             };
@@ -144,10 +154,11 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
             /** 
              * @param {Date} minDate
              * @param {Date} maxDate
+             * @param {Boolean} [keepInvalid]
              * 
              * Set the min date or max date that can be selected
              */
-            $scope.api.setMinMaxDate = function(minDate, maxDate) {
+            $scope.api.setMinMaxDate = function(minDate, maxDate, keepInvalid) {
                 var x = child.data('DateTimePicker');
                 if (angular.isDefined(x)) {
                     x.minDate(false);
@@ -162,6 +173,10 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
                         maxDate.setHours(0,0,0,0);
                         x.maxDate(maxDate);
                     } 
+                    
+                    if(keepInvalid) {
+                    	x.keepInvalid(keepInvalid)
+                    }
                 }
             };
 
