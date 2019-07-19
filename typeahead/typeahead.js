@@ -13,7 +13,7 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
     	
       var resolvingDisplayValue = false;
       
-      var hasRealValues = false;
+      var hasRealValues = undefined;
 
       $scope.$watch('model.isOpened', function(){
       	var bodyElements = document.querySelectorAll('.svy-body,.ui-grid-viewport');
@@ -25,7 +25,15 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
 	  })
 	
 	$scope.$watch('model.valuelistID', function() {
-		if (!$scope.model.valuelistID || $scope.model.valuelistID.length == 0) return; // not loaded yet or already filtered
+		if (!$scope.model.valuelistID) return; // not loaded yet or already filtered
+		if ($scope.model.valuelistID.length == 0)
+		{
+			if (hasRealValues == undefined && $scope.model.valuelistID.hasDifferentTypes && $scope.model.valuelistID.hasDifferentTypes())
+			{
+				hasRealValues = true;
+			}	
+			return;
+		}
 		hasRealValues = false;
 		if ($scope.model.valuelistID.hasRealValues)
 		{	
