@@ -15,7 +15,9 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 				widgetParent: $(document.body),
 				showTodayButton: true,
 				calendarWeeks: true,
-				useCurrent: false
+                useCurrent: false,
+                focusOnShow: !$scope.model.pickerOnly,
+                ignoreReadonly: $scope.model.pickerOnly
 			}
 
 			var locale = $sabloApplication.getLocale();
