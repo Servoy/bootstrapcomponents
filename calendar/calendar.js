@@ -32,6 +32,35 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 			}	
 
 			child.datetimepicker(options);
+			
+			// set key binds
+			setKeyBinds();
+
+			function setKeyBinds() {
+				child.children("input").keydown(function (e) {
+					switch (e.keyCode) {
+					case 89: // y Yesterday
+						var x = child.data('DateTimePicker');
+						x.date(moment().add(-1, 'days'));
+						return false;
+						break;
+					case 66: // b Beginning ot the month
+						var x = child.data('DateTimePicker');
+						x.date(moment().startOf('month'));
+						return false;
+						break;
+					case 69: // e End of the month
+						var x = child.data('DateTimePicker');
+						x.date(moment().endOf('month'));
+						return false;
+						break;
+					default:
+						break;
+					}
+					
+					return true;
+				});
+			}
 
 			$scope.$watch('model.format', function(){
 				setDateFormat($scope.model.format);
