@@ -9,7 +9,7 @@
 	{
 			"containedForm": { "type" :"form"},
 			"relationName": "relation",
-			"waitForData" : "boolean",
+			"waitForData" : { "type" :"boolean", "default":true},
 			"styleClass" : { "type" :"styleclass"},
 			"height" : {"type":"int", "default":0},
 			"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
