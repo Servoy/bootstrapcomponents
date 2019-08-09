@@ -38,21 +38,45 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 
 			function setKeyBinds() {
 				child.children("input").keydown(function (e) {
+					
+					if (e.shiftKey || e.ctrlKey || e.altKey || e.metaKey) {
+						return true;
+					}
+					
 					switch (e.keyCode) {
 					case 89: // y Yesterday
 						var x = child.data('DateTimePicker');
 						x.date(moment().add(-1, 'days'));
-						return false;
+                    	e.stopPropagation();
+                        e.preventDefault();
 						break;
 					case 66: // b Beginning ot the month
 						var x = child.data('DateTimePicker');
 						x.date(moment().startOf('month'));
-						return false;
+                    	e.stopPropagation();
+                        e.preventDefault();
 						break;
 					case 69: // e End of the month
 						var x = child.data('DateTimePicker');
 						x.date(moment().endOf('month'));
-						return false;
+                    	e.stopPropagation();
+                        e.preventDefault();
+                        break;
+					case 107: // + Add 1 day
+						var x = child.data('DateTimePicker');
+						if (x.date()) {
+							x.date(x.date().clone().add(1, 'd'));
+						}
+                    	e.stopPropagation();
+                        e.preventDefault();
+						break;
+					case 109: // - Subtract 1 day
+						var x = child.data('DateTimePicker');
+						if (x.date()) {
+							x.date(x.date().clone().subtract(1, 'd'));
+						}
+                    	e.stopPropagation();
+                        e.preventDefault();
 						break;
 					default:
 						break;
@@ -60,6 +84,21 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 					
 					return true;
 				});
+
+				
+				var x = child.data('DateTimePicker');
+				var defaultBinding = x.keyBinds();
+				defaultBinding.left = function (widget) {
+					if (this.date()) {
+						this.date(this.date().clone().subtract(1, 'd'));
+					}
+		        }
+		        defaultBinding.right = function (widget) {
+					if (this.date()) {
+						this.date(this.date().clone().add(1, 'd'));
+					}
+		        }
+				x.keyBinds(defaultBinding);
 			}
 
 			$scope.$watch('model.format', function(){
