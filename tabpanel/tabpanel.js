@@ -193,6 +193,10 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 //				}
 				
 				if ($scope.model.tabs[index - 1] && $scope.model.tabs[index - 1].containedForm) {
+					// make sure everything is correctly initialized
+					for(i=0; i<$scope.model.tabs.length; i++) {
+						$scope.model.tabs[i].active = false;
+					}
 					// find the first enabled tab
 					$scope.model.tabIndex = index;
 					$scope.model.tabs[index - 1].active = true;
