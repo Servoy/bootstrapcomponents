@@ -40,6 +40,10 @@ angular.module('bootstrapcomponentsCalendarinline',['servoy'])
 			}
 
 			$element.on("dp.change",inputChanged);
+			
+			if ($scope.model.disabledDates) {
+                disableDates($scope.model.disabledDates);
+			}
                 
             /** 
              * @param {Array<Date>} dateArray
@@ -47,15 +51,21 @@ angular.module('bootstrapcomponentsCalendarinline',['servoy'])
              * Dates that should be disabled.
              */
             $scope.api.disableDates = function(dateArray) {
+            	 $scope.model.disabledDates = dateArray;
+            	 $scope.svyServoyapi.apply("disabledDates");
+            	 disableDates(dateArray)
+             };
+             
+             function disableDates(dateArray) {
                  var x = child.data('DateTimePicker');
                  if (angular.isDefined(x)) {
-                    if(dateArray && dateArray.length > 0) {
-                        x.disabledDates(dateArray);
-                    } else {
-                        x.disabledDates(false);
-                    }
-                 }
-             };
+                     if(dateArray && dateArray.length > 0) {
+                         x.disabledDates(dateArray);
+                     } else {
+                         x.disabledDates(false);
+                     }
+                  }
+             }
             
             /** 
              * @param {Array<Number>} dayArray
@@ -122,7 +132,19 @@ angular.module('bootstrapcomponentsCalendarinline',['servoy'])
 							tooltipState(value);
 						else
 							tooltipState = $svyProperties.createTooltipState(inputElement, value);
-					 break;			 
+					 break;
+					case "enabled":				    
+						var x = child.data('DateTimePicker');
+						if (value) {
+							x.enabledDates(false);
+							if ($scope.model.disabledDates) {
+								disableDates($scope.model.disabledDates);
+							}
+						} else {
+							var enabledDate = x.viewDate() ? x.viewDate() : new Date();
+							x.enabledDates([enabledDate]);
+						}
+					 break;	
 					}
 				}
 			});

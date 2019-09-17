@@ -11,8 +11,10 @@
 	"model":
 	{
 	    "dataProviderID" : { "type":"dataprovider", "pushToServer": "allow","tags": { "scope" :"design" }, "ondatachange": { "onchange":"onDataChangeMethodID"}},
+	    "enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["dataProviderID","onActionMethodID","onDataChangeMethodID"] },
 	    "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }},
 	    "toolTipText" : { "type" : "tagstring"}, 
+	    "disabledDates" : { "type" : "date[]",  "tags": { "scope" :"private" }}, 
 	    "visible" : "visible"
 	},
 	"handlers":
