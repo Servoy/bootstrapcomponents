@@ -12,12 +12,12 @@
 		"containerStyleClass": { "type": "styleclass" },
 		"closeIconStyleClass" : {"type":"styleclass", "default":"glyphicon glyphicon-remove close-icon", "tags": { "scope" :"design" }, "values":[]},
 		"showTabCloseIcon" : { "type": "boolean", "default": false },
-		"tabs": { "type": "tab[]", "pushToServer": "deep", "droppable": true },
+		"tabs": { "type": "tab[]", "pushToServer": "deep", "droppable": true, "tags": { "allowaccess": "visible"}},
 		"styleClass": { "type": "styleclass" },
 		"height": { "type": "int", "default": "500" },
-		"tabIndex": { "type": "int", "pushToServer": "shallow", "tags": { "scope": "runtime" }, "default": 1 },
+		"tabIndex": { "type": "int", "pushToServer": "shallow", "tags": { "scope": "runtime", "allowaccess": "visible" }, "default": 1},
 		"tabSeq": { "type": "tabseq", "tags": { "scope": "design" } },
-		"activeTabIndex": { "type": "int", "default": 0, "tags": { "scope": "runtime" }, "pushToServer": "shallow" },
+		"activeTabIndex": { "type": "int", "default": 0, "tags": { "scope": "runtime", "allowaccess": "visible"}, "pushToServer": "shallow"},
 		"visible": "visible"
 	},
 	
