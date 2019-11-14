@@ -6,7 +6,8 @@
 <uib-tabset  id="{{::model.svyMarkupId}}" active="model.activeTabIndex" class='bts-tabpanel relativeMaxSize' ng-class='model.styleClass' style="position: relative;" ng-if='model.visible' sablo-tabseq='model.tabSeq' sablo-tabseq-config="{container: true, reservedGap: 50}"  bs-tabpanel-initializer>
     <uib-tab ng-repeat="tab in model.tabs track by $index" ng-click="tabClicked(tab, $index, $event)" disable="tab.disabled">
       <uib-tab-heading>
-      	<img ng-show="tab.imageMediaID" ng-src='{{tab.imageMediaID}}'/>
+        <img ng-show="tab.imageMediaID" ng-src='{{tab.imageMediaID}}'/>
+        <span ng-if="tab.iconStyleClass != null" ng-class="tab.iconStyleClass"></span>
         <span ng-bind-html="tab.text| htmlFilter| trustAsHtml:servoyApi.trustAsHtml()"></span>
 		<i href ng-if="tab.hideCloseIcon !== true && model.showTabCloseIcon" ng-class='(model.closeIconStyleClass ? model.closeIconStyleClass + " bts-tabpanel-close-icon" : "bts-tabpanel-close-icon")'/>
       </uib-tab-heading>
