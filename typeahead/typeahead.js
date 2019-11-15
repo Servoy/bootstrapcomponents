@@ -76,7 +76,7 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
 			});
 
 			$scope.doSvyApply = function(force) {
-				if (force || angular.element('[uib-typeahead-popup]').attr('aria-hidden') == "true") {
+				if (force || angular.element('[uib-typeahead-popup]').attr('aria-hidden') == "true") {  // when drodown list is not shown
 					if ($scope.model.valuelistID) {
 						var hasMatchingDisplayValue = false;
 						for (var i = 0; i < $scope.model.valuelistID.length; i++) {
@@ -90,7 +90,8 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
 						{
 							if (hasRealValues) 
 							{
-								$scope.model.dataProviderID = null;
+								searchSelection();
+								return;
 							}
 							else
 							{
@@ -104,12 +105,65 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
 					}  
 					$scope.svyServoyapi.apply('dataProviderID');
 				}
-				else if (!hasRealValues && ($scope.model.dataProviderID != $scope.value))
+				else if (!hasRealValues && ($scope.model.dataProviderID != $scope.value)) // when valuelist has no realValues apply the change to the dataprovider
 				{
 					$scope.model.dataProviderID = $scope.value;
 					$scope.svyServoyapi.apply('dataProviderID');
-				}
+				} else if (hasRealValues) { // when valuelist has realValues and the user focus out from typeahead without clicking on a dropdown item
+			
+					if ($scope.model.valuelistID) {
 
+						// check if the selected value is in valuelist
+						var found = false;
+						// search for displayValue in valuelist
+						for (var i = 0; i < $scope.model.valuelistID.length; i++) {
+							if ($scope.value === $scope.model.valuelistID[i].displayValue) {
+								$scope.model.dataProviderID = $scope.model.valuelistID[i].realValue;
+								found = true;
+								break;
+							}
+						}
+						
+						// if no displayValue is found search serverside
+						if(!found) {
+							searchSelection();
+						} else {
+							$scope.svyServoyapi.apply('dataProviderID');
+						}
+					} else {	// if there is no valuelist
+						$scope.model.dataProviderID = $scope.value;
+						$scope.svyServoyapi.apply('dataProviderID');
+					}  
+				}
+				
+				// revert selection to last value
+				function searchSelection() {
+					
+					// check if the typed value exists serverside before reverting
+					$scope.model.valuelistID.filterList($scope.value).then(function(list) {
+						
+						// check if the value exists serverside
+						var hasMatchingDisplayValueServerSide = false;
+						if (list && list.length) {
+							for (var i = 0; i < $scope.model.valuelistID.length; i++) {
+								if ($scope.value === $scope.model.valuelistID[i].displayValue) {
+									$scope.model.dataProviderID = $scope.model.valuelistID[i].realValue;
+									$scope.svyServoyapi.apply('dataProviderID');
+									hasMatchingDisplayValueServerSide = true;
+									break;
+								}
+							}
+						}
+						
+						// if no matching value found serverside revert selection to last dataProviderID
+						if (!hasMatchingDisplayValueServerSide) {
+							$scope.model.valuelistID.getDisplayValue($scope.model.dataProviderID).then(function(displayValue) {
+								$scope.value = displayValue;
+							});
+						}
+					});
+					// TODO should handle promise error ?
+				}
 			}
 
 			var tooltipState = null;
