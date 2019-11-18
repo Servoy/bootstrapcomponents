@@ -33,6 +33,13 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 
 			child.datetimepicker(options);
 			
+			var calendarShowing = false;
+			$element.on("dp.show", function(){
+				calendarShowing = true;
+			});
+			$element.on("dp.hide", function(){
+				calendarShowing = false;
+			});
 			// set key binds
 			setKeyBinds();
 
@@ -89,12 +96,12 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 				var x = child.data('DateTimePicker');
 				var defaultBinding = x.keyBinds();
 				defaultBinding.left = function (widget) {
-					if (this.date()) {
+					if (calendarShowing && this.date()) {
 						this.date(this.date().clone().subtract(1, 'd'));
 					}
 		        }
 		        defaultBinding.right = function (widget) {
-					if (this.date()) {
+					if (calendarShowing && this.date()) {
 						this.date(this.date().clone().add(1, 'd'));
 					}
 		        }
@@ -158,6 +165,26 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 					$scope.$digest();
 				}	
 			});
+			
+			$scope.focusGained = function(event) {
+				if ($scope.model.format.edit && $scope.model.format.isMask) {
+					var settings = {};
+					settings.placeholder = $scope.model.format.placeHolder ? $scope.model.format.placeHolder : " ";
+					if ($scope.model.format.allowedCharacters)
+						settings.allowedCharacters = $scope.model.format.allowedCharacters;
+
+					$element.find('input').mask($scope.model.format.edit, settings);
+					// library doesn't handle well this scenario, forward focus event to make sure mask is set
+					if ($element.find('input').val() == '') $element.find('input').trigger("focus.mask");
+				}
+			}
+
+			$scope.focusLost = function(event) {
+				if ($scope.model.format.edit && $scope.model.format.isMask)
+				{
+					$element.find('input').unmask();
+				}
+			}
 			
 			/**
 			 * Set the focus to this calendar.
