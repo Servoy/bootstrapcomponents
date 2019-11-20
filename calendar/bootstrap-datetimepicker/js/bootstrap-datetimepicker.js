@@ -2583,7 +2583,7 @@
             },
             left: function (widget) {
                 if (!widget) {
-                    return;
+                    return false;
                 }
                 var d = this.date() || this.getMoment();
                 if (widget.find('.datepicker').is(':visible')) {
@@ -2592,7 +2592,7 @@
             },
             right: function (widget) {
                 if (!widget) {
-                    return;
+                    return false;
                 }
                 var d = this.date() || this.getMoment();
                 if (widget.find('.datepicker').is(':visible')) {

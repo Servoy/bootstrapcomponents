@@ -33,13 +33,6 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 
 			child.datetimepicker(options);
 			
-			var calendarShowing = false;
-			$element.on("dp.show", function(){
-				calendarShowing = true;
-			});
-			$element.on("dp.hide", function(){
-				calendarShowing = false;
-			});
 			// set key binds
 			setKeyBinds();
 
@@ -96,14 +89,18 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 				var x = child.data('DateTimePicker');
 				var defaultBinding = x.keyBinds();
 				defaultBinding.left = function (widget) {
-					if (calendarShowing && this.date()) {
+					if (widget && this.date()) {
 						this.date(this.date().clone().subtract(1, 'd'));
+						return;
 					}
+					return false;
 		        }
 		        defaultBinding.right = function (widget) {
-					if (calendarShowing && this.date()) {
+					if (widget && this.date()) {
 						this.date(this.date().clone().add(1, 'd'));
+						return;
 					}
+					return false;
 		        }
 				x.keyBinds(defaultBinding);
 			}
