@@ -11,14 +11,19 @@
 	"model":
 	{
 	    "dataProviderID" : { "type":"dataprovider", "pushToServer": "allow","tags": { "scope" :"design" }, "ondatachange": { "onchange":"onDataChangeMethodID"}},
+	    "disabledDates" : {"type":"date[]", "pushToServer": "shallow","tags": { "scope" :"private" }},
+	    "disabledDays" : {"type":"int[]", "pushToServer": "shallow","tags": { "scope" :"private" }},
 	    "enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["dataProviderID","onActionMethodID","onDataChangeMethodID"] },
-	     "findmode" : { "type":"findmode", "tags":{"scope":"private"}}, 
+	    "findmode" : { "type":"findmode", "tags":{"scope":"private"}}, 
 	    "format" : {"for":["dataProviderID"] , "type" :"format"},
+	    "keepInvalid": {"type" :"boolean", "pushToServer": "shallow", "default": false, "tags": { "scope" :"private" }},
+	    "maxDate" : {"type":"date", "pushToServer": "shallow","tags": { "scope" :"private" }},
+	    "minDate" : {"type":"date", "pushToServer": "shallow","tags": { "scope" :"private" }},
 	    "readOnly" : { "type": "protected", "blockingOn": true, "default": false,"for": ["dataProviderID","onDataChangeMethodID"] },
 	    "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "default" : "form-control"},
 	    "placeholderText" : "tagstring",
 	    "tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
-	     "toolTipText" : { "type" : "tagstring"}, 
+	    "toolTipText" : { "type" : "tagstring"}, 
 	    "visible" : "visible",
         "selectOnEnter" : {"type" :"boolean", "tags": { "scope" :"design" }},
         "pickerOnly": {"type" :"boolean", "default": false, "tags": { "scope" :"design" }}

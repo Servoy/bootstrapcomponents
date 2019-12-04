@@ -105,6 +105,28 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 				x.keyBinds(defaultBinding);
 			}
 
+			var x = child.data('DateTimePicker');
+			if ($scope.model.disabledDays)
+			{
+				x.daysOfWeekDisabled($scope.model.disabledDays);
+			}	
+			if ($scope.model.disabledDates)
+			{
+				x.disabledDates($scope.model.disabledDates);
+			}
+			if ($scope.model.maxDate)
+			{
+				x.maxDate($scope.model.maxDate);
+			}	
+			if ($scope.model.minDate)
+			{
+				x.minDate($scope.model.minDate);
+			}
+			if ($scope.model.keepInvalid)
+			{
+				x.keepInvalid($scope.model.keepInvalid);
+			}
+			
 			$scope.$watch('model.format', function(){
 				setDateFormat($scope.model.format);
 			})
@@ -213,12 +235,18 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
                  if (angular.isDefined(x)) {
                     if(dateArray && dateArray.length > 0) {
                         x.disabledDates(dateArray);
+                        $scope.model.disabledDates = dateArray;
                     } else {
                         x.disabledDates(false);
+                        $scope.model.disabledDates = null;
                     }
                     
-                    if(keepInvalid) {
-                    	x.keepInvalid(keepInvalid)
+                    if (keepInvalid !== undefined)
+                    {
+                    	 if(keepInvalid) {
+                         	x.keepInvalid(keepInvalid)
+                         }
+                    	$scope.model.keepInvalid = keepInvalid;
                     }
                  }
              };
@@ -234,12 +262,18 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
                 if (angular.isDefined(x)) {
                     if(dayArray && dayArray.length > 0) {
                         x.daysOfWeekDisabled(dayArray);
+                        $scope.model.disabledDays = dayArray;
                     } else {
                         x.daysOfWeekDisabled(false);
+                        $scope.model.disabledDays = dayArray;
                     }
                     
-                    if(keepInvalid) {
-                    	x.keepInvalid(keepInvalid)
+                    if (keepInvalid !== undefined)
+                    {
+                    	 if(keepInvalid) {
+                         	x.keepInvalid(keepInvalid)
+                         }
+                    	$scope.model.keepInvalid = keepInvalid;
                     }
                 }
             };
@@ -262,15 +296,21 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
                         minDate.setHours(0,0,0,0);
                         x.minDate(minDate);
                     } 
-
+                    $scope.model.minDate = minDate;
+                    
                     if(maxDate) {
                         maxDate.setHours(0,0,0,0);
                         x.maxDate(maxDate);
                     } 
+                    $scope.model.maxDate = maxDate;
                     
-                    if(keepInvalid) {
-                    	x.keepInvalid(keepInvalid)
-                    }
+                    if (keepInvalid !== undefined)
+                    {
+                    	 if(keepInvalid) {
+                         	x.keepInvalid(keepInvalid)
+                         }
+                    	$scope.model.keepInvalid = keepInvalid;
+                    }	
                 }
             };
 

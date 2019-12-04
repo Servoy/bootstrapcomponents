@@ -41,31 +41,23 @@ angular.module('bootstrapcomponentsCalendarinline',['servoy'])
 
 			$element.on("dp.change",inputChanged);
 			
-			if ($scope.model.disabledDates) {
-                disableDates($scope.model.disabledDates);
-			}
-                
-            /** 
+			/** 
              * @param {Array<Date>} dateArray
              * 
              * Dates that should be disabled.
              */
             $scope.api.disableDates = function(dateArray) {
-            	 $scope.model.disabledDates = dateArray;
-            	 $scope.svyServoyapi.apply("disabledDates");
-            	 disableDates(dateArray)
-             };
-             
-             function disableDates(dateArray) {
                  var x = child.data('DateTimePicker');
                  if (angular.isDefined(x)) {
-                     if(dateArray && dateArray.length > 0) {
-                         x.disabledDates(dateArray);
-                     } else {
-                         x.disabledDates(false);
-                     }
-                  }
-             }
+                    if(dateArray && dateArray.length > 0) {
+                        x.disabledDates(dateArray);
+                        $scope.model.disabledDates = dateArray;
+                    } else {
+                        x.disabledDates(false);
+                        $scope.model.disabledDates = null;
+                    }
+                 }
+             };
             
             /** 
              * @param {Array<Number>} dayArray
@@ -77,8 +69,10 @@ angular.module('bootstrapcomponentsCalendarinline',['servoy'])
                 if (angular.isDefined(x)) {
                     if(dayArray && dayArray.length > 0) {
                         x.daysOfWeekDisabled(dayArray);
+                        $scope.model.disabledDays = dayArray;
                     } else {
                         x.daysOfWeekDisabled(false);
+                        $scope.model.disabledDays = dayArray;
                     }
                 }
             };
@@ -100,11 +94,13 @@ angular.module('bootstrapcomponentsCalendarinline',['servoy'])
                         minDate.setHours(0,0,0,0);
                         x.minDate(minDate);
                     } 
-
+                    $scope.model.minDate = minDate;
+                    
                     if(maxDate) {
                         maxDate.setHours(0,0,0,0);
                         x.maxDate(maxDate);
                     } 
+                    $scope.model.maxDate = maxDate;
                 }
             };
 
@@ -148,6 +144,24 @@ angular.module('bootstrapcomponentsCalendarinline',['servoy'])
 					}
 				}
 			});
+			var x = child.data('DateTimePicker');
+			if ($scope.model.disabledDays)
+			{
+				x.daysOfWeekDisabled($scope.model.disabledDays);
+			}	
+			if ($scope.model.disabledDates)
+			{
+				x.disabledDates($scope.model.disabledDates);
+			}
+			if ($scope.model.maxDate)
+			{
+				x.maxDate($scope.model.maxDate);
+			}	
+			if ($scope.model.minDate)
+			{
+				x.minDate($scope.model.minDate);
+			}
+			
 			var destroyListenerUnreg = $scope.$on("$destroy", function() {
 				destroyListenerUnreg();
 				delete $scope.model[$sabloConstants.modelChangeNotifier];

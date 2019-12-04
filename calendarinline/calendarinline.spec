@@ -11,10 +11,13 @@
 	"model":
 	{
 	    "dataProviderID" : { "type":"dataprovider", "pushToServer": "allow","tags": { "scope" :"design" }, "ondatachange": { "onchange":"onDataChangeMethodID"}},
+	    "disabledDates" : {"type":"date[]", "pushToServer": "shallow","tags": { "scope" :"private" }},
+	    "disabledDays" : {"type":"int[]", "pushToServer": "shallow","tags": { "scope" :"private" }},
 	    "enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["dataProviderID","onActionMethodID","onDataChangeMethodID"] },
+	    "maxDate" : {"type":"date", "pushToServer": "shallow","tags": { "scope" :"private" }},
+	    "minDate" : {"type":"date", "pushToServer": "shallow","tags": { "scope" :"private" }},
 	    "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }},
 	    "toolTipText" : { "type" : "tagstring"}, 
-	    "disabledDates" : { "type" : "date[]",  "tags": { "scope" :"private" }}, 
 	    "visible" : "visible"
 	},
 	"handlers":
