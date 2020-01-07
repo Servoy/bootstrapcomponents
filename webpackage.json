@@ -2,7 +2,7 @@
     "name":"bootstrapcomponents",
     "displayName":"Bootstrap Components",
     "packageType": "Web-Component",
-    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Boostrap_logo.svg/1020px-Boostrap_logo.svg.png",
+    "icon": "https://raw.githubusercontent.com/Servoy/bootstrapextracomponents/master/bootstrapextracomponents/icon/bootstrap-solid.png",
     "description": "A set of components based on the bootstrap css, intended to be used together with the 12grid layout package (please install that package as well). You can build a responsive layout for your form using this combination or components and layouts.",
     "wikiUrl": "https://github.com/Servoy/bootstrapcomponents/wiki",
     "sourceUrl" : "https://github.com/Servoy/bootstrapcomponents",
@@ -31,5 +31,6 @@
 		{"version":"1.5.1","url":"https://github.com/Servoy/bootstrapcomponents/releases/download/v1.5.1/bootstrapcomponents.zip", "servoy-version":"8.3.1", "dependency":"12grid#>=1.0.3"},
 		{"version":"1.5.2","url":"https://github.com/Servoy/bootstrapcomponents/releases/download/v1.5.2/bootstrapcomponents.zip", "servoy-version":"8.3.1", "dependency":"12grid#>=1.0.3"},
 		{"version":"1.6.0","url":"https://github.com/Servoy/bootstrapcomponents/releases/download/v1.6.0/bootstrapcomponents.zip", "servoy-version":"8.4.0", "dependency":"12grid#>=1.0.3"},
-		{"version":"1.7.0","url":"https://github.com/Servoy/bootstrapcomponents/releases/download/v1.7.0/bootstrapcomponents.zip", "servoy-version":"2019.6", "dependency":"12grid#>=1.0.3"}
+		{"version":"1.7.0","url":"https://github.com/Servoy/bootstrapcomponents/releases/download/v1.7.0/bootstrapcomponents.zip", "servoy-version":"2019.6", "dependency":"12grid#>=1.0.3"},
+		{"version":"2.0.0","url":"https://github.com/Servoy/bootstrapcomponents/releases/download/v2.0.0/bootstrapcomponents.zip", "servoy-version":"2019.9", "dependency":"12grid#>=1.0.3"}
 ]}
