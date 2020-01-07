@@ -97,7 +97,7 @@ angular.module('bootstrapcomponentsCalendarinline',['servoy'])
                     $scope.model.minDate = minDate;
                     
                     if(maxDate) {
-                        maxDate.setHours(0,0,0,0);
+                    	maxDate.setHours(23,59,59,999);
                         x.maxDate(maxDate);
                     } 
                     $scope.model.maxDate = maxDate;
