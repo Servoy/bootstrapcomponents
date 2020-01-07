@@ -76,6 +76,11 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
 			});
 
 			$scope.doSvyApply = function(force) {
+				// when there is no input, we add a &nbsp;, see the template, that we just remove here,
+				// to have the correct value;
+				if($scope.value && $scope.value.length == 1) {
+					$scope.value = $scope.value.trim();
+				}
 				if (force || angular.element('[uib-typeahead-popup]').attr('aria-hidden') == "true") {  // when drodown list is not shown
 					if ($scope.model.valuelistID) {
 						var hasMatchingDisplayValue = false;
