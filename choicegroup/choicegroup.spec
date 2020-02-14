@@ -11,6 +11,7 @@
 	        "enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["dataProviderID","onActionMethodID","onDataChangeMethodID"] },
 	        "readOnly" : { "type": "protected", "blockingOn": true, "default": false, "for": ["dataProviderID","onDataChangeMethodID"], "tags": {"scope":"runtime"} },
 	        "inputType" : {"type" : "string" , "default" : "checkbox" ,"tags": { "scope" :"design" }, "values" : ["checkbox","radio"]},
+	        "size" : {"type" :"dimension",  "default" : {"width":140, "height":80}},
 	        "styleClass" : { "type" :"styleclass", "default" : "checkbox" , "tags": { "scope" :"design" }, "values" :["checkbox", "radio"]},
 	        "valuelistID" : { "type" : "valuelist", "tags": { "scope" :"design" }, "max":300},
 			"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
