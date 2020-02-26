@@ -453,6 +453,30 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 					});
 			}
 			
+				$scope.api.selectTabAt = function(idx) {
+						var previousIndex = $scope.model.tabIndex - 1;
+						$scope.model.activeTabIndex = previousIndex;
+						var tab = $scope.model.tabs[idx]
+						
+						// don't select disabled tab
+						if (tab.disabled === true) {
+							return;
+						}
+						if ($scope.handlers.onTabClickedMethodID) {
+							var dataTargetAttr = $(event.target).closest('[data-target]');
+							var dataTarget = dataTargetAttr ? dataTargetAttr.attr('data-target') : null;
+							$scope.handlers.onTabClickedMethodID($window.event ? $window.event : $.Event("tabclicked"), tabIndexClicked + 1, dataTarget).then(
+								function(result) {
+									if (result !== false) {
+										$scope.select(tab, previousIndex)
+									}
+								}
+							);
+						} else {
+							$scope.select(tab, previousIndex);
+						}					
+				}
+			
 				$scope.api.removeTabAt = function(removeIndex) {
 					// copied from the serverside code
 					if (removeIndex > 0 && removeIndex <= $scope.model.tabs.length) {

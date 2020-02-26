@@ -96,6 +96,14 @@
 				"type": "int"
 			}]
 
+		},
+		"selectTabAt": {
+			"returns": "boolean",
+			"parameters": [{
+				"name": "index",
+				"type": "int"
+			}]
+
 		}
 	},
 	
