@@ -5,7 +5,15 @@ angular.module('bootstrapcomponentsLabel',['servoy'])
       scope: {
        	model: "=svyModel",
        	handlers: "=svyHandlers",
-       	servoyApi: "=svyServoyapi"
+       	svyServoyapi: "="
+      },
+      link:  function($scope, $element, $attrs) {
+          $scope.isTrustedHTML = function() {
+              if($scope.svyServoyapi.trustAsHtml() || $scope.model.showAs === 'html') {
+                  return true;
+              }
+              return false;
+          }
       },
       controller: function($scope, $element, $attrs) {
     	  var templateUrl = $scope.model.labelFor ? "bootstrapcomponents/label/labelfor.html" : "bootstrapcomponents/label/label.html";
