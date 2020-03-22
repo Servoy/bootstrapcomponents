@@ -4,6 +4,8 @@
 	"version": 1,
 	"icon": "bootstrapcomponents/table/portal.png",
 	"definition": "bootstrapcomponents/table/table.js",
+	"deprecated": "true",
+	"replacement": "servoyextra-table",
 	"libraries": [{"name":"bootstrapcomponents-table-css", "version":"1.0", "url":"bootstrapcomponents/table/table.css", "mimetype":"text/css"}],
 	"model":
 	{
