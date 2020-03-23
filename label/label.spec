@@ -13,7 +13,7 @@
 			"styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "values" :["label","label-default","label-primary","label-success","label-info","label-warning","label-danger"]},
 	    	"text" : {"type":"tagstring" , "initialValue":"Label", "tags": { "directEdit" : "true" }},
             "tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
-            "showAs": { "type": "string", "values": [{"text":null}, {"html":"html"}], "tags": { "scope" :"design" }},
+            "showAs": { "type": "string", "values": ["html", "text", "trusted_html"], "default" : "html", "tags": { "scope" :"design" }},
 	    	"toolTipText" : { "type" : "tagstring"},
 	    	"visible" : "visible"
 	},

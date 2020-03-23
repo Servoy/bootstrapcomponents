@@ -13,7 +13,7 @@
 	    "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" },"default": "btn btn-default", "values" :["btn","btn-default","btn-lg","btn-sm","btn-xs"]},
 	    "text" : {"type":"tagstring" , "initialValue":"Button", "tags": { "directEdit" : "true" }},
 	    "size" : {"type" :"dimension",  "default" : {"width":80, "height":30}}, 
-        "showAs": { "type": "string", "values": [{"text":null}, {"html":"html"}]},
+        "showAs": { "type": "string", "values": [{"text":null}, {"html":"html"}, {"trusted_html":"trusted_html"}]},
 	    "toolTipText" : { "type" : "tagstring"}, 
 	    "visible" : "visible"
 	},

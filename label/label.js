@@ -5,11 +5,11 @@ angular.module('bootstrapcomponentsLabel',['servoy'])
       scope: {
        	model: "=svyModel",
        	handlers: "=svyHandlers",
-       	svyServoyapi: "="
+       	servoyApi: "=svyServoyapi"
       },
       link:  function($scope, $element, $attrs) {
           $scope.isTrustedHTML = function() {
-              if($scope.svyServoyapi.trustAsHtml() || $scope.model.showAs === 'html') {
+              if($scope.servoyApi.trustAsHtml() || $scope.model.showAs === 'trusted_html') {
                   return true;
               }
               return false;
