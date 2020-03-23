@@ -17,7 +17,7 @@
 	    "maxDate" : {"type":"date", "pushToServer": "shallow","tags": { "scope" :"private" }},
 	    "minDate" : {"type":"date", "pushToServer": "shallow","tags": { "scope" :"private" }},
 	    "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }},
-	    "size" : {"type" :"dimension",  "default" : {"width":250, "height":250}},
+	    "size" : {"type" :"dimension",  "default" : {"width":250, "height":280}},
 	    "toolTipText" : { "type" : "tagstring"}, 
 	    "visible" : "visible"
 	},

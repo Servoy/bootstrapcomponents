@@ -22,7 +22,7 @@
 	    "readOnly" : { "type": "protected", "blockingOn": true, "default": false,"for": ["dataProviderID","onDataChangeMethodID"] },
 	    "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "default" : "form-control"},
 	    "placeholderText" : "tagstring",
-	    "size" : {"type" :"dimension",  "default" : {"width":140, "height":20}},
+	    "size" : {"type" :"dimension",  "default" : {"width":140, "height":30}},
 	    "tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
 	    "toolTipText" : { "type" : "tagstring"}, 
 	    "visible" : "visible",

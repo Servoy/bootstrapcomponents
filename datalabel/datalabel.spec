@@ -11,7 +11,7 @@
 			"valuelistID" : { "type" : "valuelist", "tags": { "scope" :"design" }, "for": "dataProviderID", "max":1},
 			"enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["onActionMethodID","onDoubleClickMethodID","onRightClickMethodID"] },
 			"format" : {"for":["valuelistID","dataProviderID"] , "type" :"format"},
-			"size" : {"type" :"dimension",  "default" : {"width":80, "height":20}}, 
+			"size" : {"type" :"dimension",  "default" : {"width":80, "height":30}}, 
 			"styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "values" :["label","label-default","label-primary","label-success","label-info","label-warning","label-danger"]},
 	    	"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
 	    	"toolTipText" : { "type" : "tagstring"},
