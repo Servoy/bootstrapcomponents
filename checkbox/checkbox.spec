@@ -14,7 +14,7 @@
 	        "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "default":"checkbox"},
 	        "text" : { "type" : "tagstring" ,"default": "Checkbox" },
 			"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
-			"selectedValue" : { "type" : "string" },
+			"selectedValue" : { "type" : "string", "tags": { "doc" :"The value returned when the checkbox is checked (default is 1)" } },
 			"toolTipText" : { "type" : "tagstring"}, 
 	        "visible" : "visible"
 	},

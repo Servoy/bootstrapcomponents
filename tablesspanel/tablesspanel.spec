@@ -9,7 +9,7 @@
 	{
 			"containedForm": { "type" :"form"},
 			"relationName": "relation",
-			"waitForData" : { "type" :"boolean", "default":true},
+			"waitForData" : { "type" :"boolean", "default":true, "tags": { "doc": "When <code>true</code>, the form is rendered when all its latest data is loaded from the server. When <code>false</code>, the form is rendered faster, but could show stale data (not a problem when the form shown does not show dynamic data)" }},
 			"styleClass" : { "type" :"styleclass"},
 			"height" : {"type":"int", "default":0},
 			"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},

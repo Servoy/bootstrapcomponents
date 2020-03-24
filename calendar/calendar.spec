@@ -27,7 +27,7 @@
 	    "toolTipText" : { "type" : "tagstring"}, 
 	    "visible" : "visible",
         "selectOnEnter" : {"type" :"boolean", "tags": { "scope" :"design" }},
-        "pickerOnly": {"type" :"boolean", "default": false, "tags": { "scope" :"design", "tooltipText": "Whether to only allow date entry from the date picker or not" }}
+        "pickerOnly": {"type" :"boolean", "default": false, "tags": { "scope" :"design", "doc": "Whether to only allow date entry from the date picker or not" }}
 	    
 	},
 	"handlers":
