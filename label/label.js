@@ -7,6 +7,14 @@ angular.module('bootstrapcomponentsLabel',['servoy'])
        	handlers: "=svyHandlers",
        	servoyApi: "=svyServoyapi"
       },
+      link:  function($scope, $element, $attrs) {
+          $scope.isTrustedHTML = function() {
+              if($scope.servoyApi.trustAsHtml() || $scope.model.showAs === 'trusted_html') {
+                  return true;
+              }
+              return false;
+          }
+      },
       controller: function($scope, $element, $attrs) {
     	  var templateUrl = $scope.model.labelFor ? "bootstrapcomponents/label/labelfor.html" : "bootstrapcomponents/label/label.html";
     	  $http.get(templateUrl, {cache: $templateCache}).then(function(result) {

@@ -7,8 +7,15 @@ angular.module('bootstrapcomponentsDatalabel',['servoy'])
        	handlers: "=svyHandlers",
        	servoyApi: "=svyServoyapi"
       },
+      link:  function($scope, $element, $attrs) {
+          $scope.isTrustedHTML = function() {
+              if($scope.servoyApi.trustAsHtml() || $scope.model.showAs === 'trusted_html') {
+                  return true;
+              }
+              return false;
+          }
+      },
       controller: function($scope, $element, $attrs) {
-
     	  var tooltipState = null;
     	  Object.defineProperty($scope.model, $sabloConstants.modelChangeNotifier, {
     		  configurable: true,

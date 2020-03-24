@@ -1,5 +1,5 @@
 <button type="button" class='bts-button' ng-class="model.styleClass"
-    ng-if='model.showAs !== "html" && model.visible'
+    ng-if='model.showAs !== "html" && model.showAs !== "trusted_html" && model.visible'
 	svy-click='handlers.onActionMethodID($event)'
     svy-dblclick='handlers.onDoubleClickMethodID($event)'
  	svy-rightclick='handlers.onRightClickMethodID($event)'
@@ -10,12 +10,12 @@
 </button>
 
 <button type="button" class='bts-button' ng-class="model.styleClass"
-    ng-if='model.showAs === "html" && model.visible'
+    ng-if='(model.showAs === "html" || model.showAs === "trusted_html") && model.visible'
 	svy-click='handlers.onActionMethodID($event)'
     svy-dblclick='handlers.onDoubleClickMethodID($event)'
  	svy-rightclick='handlers.onRightClickMethodID($event)'
 	sablo-tabseq='model.tabSeq'
 	ng-disabled="!model.enabled"
-    ng-bind-html='model.text | designFilter:servoyApi.isInDesigner() | htmlFilter| trustAsHtml:servoyApi.trustAsHtml()'
+    ng-bind-html='model.text | htmlFilter| trustAsHtml:isTrustedHTML()'
  	id="{{::model.svyMarkupId}}">
 </button>
