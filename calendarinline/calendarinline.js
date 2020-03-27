@@ -138,7 +138,7 @@ angular.module('bootstrapcomponentsCalendarinline',['servoy'])
 							}
 						} else {
 							element.find("*").prop("disabled", true);
-							$('*').css('cursor','not-allowed');						}
+							element.find("*").css('cursor','not-allowed');						}
 					 break;	
 					}
 				}
