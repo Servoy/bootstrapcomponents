@@ -137,9 +137,8 @@ angular.module('bootstrapcomponentsCalendarinline',['servoy'])
 								disableDates($scope.model.disabledDates);
 							}
 						} else {
-							var enabledDate = x.viewDate() ? x.viewDate() : new Date();
-							x.enabledDates([enabledDate]);
-						}
+							element.find("*").prop("disabled", true);
+							$('*').css('cursor','not-allowed');						}
 					 break;	
 					}
 				}
