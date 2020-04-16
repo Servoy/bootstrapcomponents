@@ -137,8 +137,9 @@ angular.module('bootstrapcomponentsCalendarinline',['servoy'])
 								disableDates($scope.model.disabledDates);
 							}
 						} else {
-							element.find("*").prop("disabled", true);
-							element.find("*").css('cursor','not-allowed');						}
+							// add a random date, that is incorrect, to trick the datepicker to disable the whole month
+							x.enabledDates([moment(0,0,0)]);
+						}
 					 break;	
 					}
 				}
