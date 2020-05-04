@@ -14,7 +14,7 @@
 			"size" : {"type" :"dimension",  "default" : {"width":80, "height":30}}, 
 			"styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "values" :["label","label-default","label-primary","label-success","label-info","label-warning","label-danger"]},
             "tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
-            "showAs": { "type": "string", "values": ["html","trusted_html"], "default" :"html", "tags": { "scope" :"design" }},
+            "showAs": { "type": "string", "values": ["html", "text", "trusted_html"], "default" : "html", "tags": { "scope" :"design" }},
 	    	"toolTipText" : { "type" : "tagstring"},
 	    	"visible" : "visible"
 	},
