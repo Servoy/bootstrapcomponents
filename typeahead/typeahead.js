@@ -9,6 +9,15 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
 		},
 		link: function($scope, $element) {
 
+            $scope.getCorrectMatchTemplate = function() {
+                if($scope.model.showAs == 'text') {
+                    return 'bootstrapcomponents/typeahead/typeahead-match.html';
+                } else {
+                    //Return the bootstrap angular-ui default template
+                    return 'uib/template/typeahead/typeahead-match.html';
+                }
+            }
+            
 			$scope.onFocus = function(){
 				angular.element("[move-in-progress]").css("min-width",$element.outerWidth()+"px");
 				return true;

@@ -21,5 +21,6 @@
 		id="{{::model.svyMarkupId}}"
 		svy-selectonenter='model.selectOnEnter'
 		autocomplete="off"
-		typeahead-on-focus="onFocus()"
+        typeahead-on-focus="onFocus()"
+        typeahead-template-url='{{getCorrectMatchTemplate()}}'
 />
