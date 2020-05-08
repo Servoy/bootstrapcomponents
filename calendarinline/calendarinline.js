@@ -1,5 +1,5 @@
 angular.module('bootstrapcomponentsCalendarinline',['servoy'])
-.directive('bootstrapcomponentsCalendarinline',  function($sabloApplication, $log, $apifunctions, $svyProperties, $sabloConstants, $applicationService) {  
+.directive('bootstrapcomponentsCalendarinline',  function($sabloApplication, $log, $apifunctions, $svyProperties, $sabloConstants, $applicationService, $utils) {  
 	return {
 		restrict: 'E',
 		scope: {
@@ -29,6 +29,11 @@ angular.module('bootstrapcomponentsCalendarinline',['servoy'])
 			}	
 
 			child.datetimepicker(options);
+
+			var theDateTimePicker = child.data('DateTimePicker');
+			//this method sets locale tooltips for the buttons in the datepickers
+			$utils.getI18NCalendarMessages(theDateTimePicker);
+			
 
 			function inputChanged(e) {
 				if (e.date) {
