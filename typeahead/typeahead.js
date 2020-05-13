@@ -19,10 +19,18 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
             }
             
 			$scope.onFocus = function(){
+				$scope.startedTyping = false;
 				angular.element("[move-in-progress]").css("min-width",$element.outerWidth()+"px");
 				return true;
 			};
 
+			$element.on('keydown', function(evt) {
+				if (evt.which != 9)
+				{
+					$scope.startedTyping = true;
+				}	
+			});
+			
 			$scope.ngModel = $element.controller('ngModel');
 
 			var resolvingDisplayValue = false;
