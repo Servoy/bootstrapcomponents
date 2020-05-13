@@ -1,6 +1,7 @@
 {
 	"name": "bootstrapcomponents-calendarinline",
 	"displayName": "Calendar Inline",
+	"categoryName": "Input Control",
 	"version": 1,
 	"definition": "bootstrapcomponents/calendarinline/calendarinline.js",
 	"icon": "bootstrapcomponents/calendar/calendar.png",

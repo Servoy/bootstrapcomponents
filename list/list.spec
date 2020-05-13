@@ -1,6 +1,7 @@
 {
 	"name": "bootstrapcomponents-list",
 	"displayName": "Data List",
+	"categoryName": "Multi-Input Control",
 	"version": 1,
 	"icon": "bootstrapcomponents/list/listbox.png",
 	"definition": "bootstrapcomponents/list/list.js",

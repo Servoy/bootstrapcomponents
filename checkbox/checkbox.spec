@@ -1,6 +1,7 @@
 {
 	"name": "bootstrapcomponents-checkbox",
 	"displayName": "CheckBox",
+	"categoryName": "Input Control",
 	"version": 1,
 	"icon": "bootstrapcomponents/checkbox/checkbox.png",
 	"definition": "bootstrapcomponents/checkbox/checkbox.js",

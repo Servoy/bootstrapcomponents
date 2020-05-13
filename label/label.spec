@@ -1,6 +1,7 @@
 {
 	"name": "bootstrapcomponents-label",
 	"displayName": "Label",
+	"categoryName": "Buttons & Text",
 	"version": 1,
 	"icon": "bootstrapcomponents/label/label.png",
 	"definition": "bootstrapcomponents/label/label.js",

@@ -2,6 +2,7 @@
 	
 	"name": "bootstrapcomponents-tabpanel",
 	"displayName": "TabPanel",
+	"categoryName": "Form Containers",
 	"version": 1,
 	"icon": "bootstrapcomponents/tabpanel/tab.png",
 	"definition": "bootstrapcomponents/tabpanel/tabpanel.js",

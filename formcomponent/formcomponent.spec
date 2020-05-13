@@ -1,6 +1,7 @@
 {
 	"name": "bootstrapcomponents-formcomponent",
 	"displayName": "FormComponentContainer",
+	"categoryName": "Input Control",
 	"version": 1,
 	"icon": "bootstrapcomponents/formcomponent/formcomponent.png",
 	"definition": "bootstrapcomponents/formcomponent/formcomponent.js", 

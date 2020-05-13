@@ -1,6 +1,7 @@
 {
 	"name": "bootstrapcomponents-calendar",
 	"displayName": "Calendar",
+	"categoryName": "Input Control",
 	"version": 1,
 	"icon": "bootstrapcomponents/calendar/calendar.png",
 	"definition": "bootstrapcomponents/calendar/calendar.js",

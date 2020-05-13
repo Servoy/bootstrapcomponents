@@ -1,6 +1,7 @@
 {
 	"name": "bootstrapcomponents-typeahead",
 	"displayName": "Type Ahead ",
+	"categoryName": "Input Control",
 	"version": 1,
 	"icon": "bootstrapcomponents/typeahead/typeahead.png",
 	"definition": "bootstrapcomponents/typeahead/typeahead.js",

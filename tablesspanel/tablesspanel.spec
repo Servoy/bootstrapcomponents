@@ -1,6 +1,7 @@
 {
 	"name": "bootstrapcomponents-tablesspanel",
 	"displayName": "Tabless Panel",
+	"categoryName": "Form Containers",
 	"version": 1,
 	"icon": "bootstrapcomponents/tabpanel/tab.png",
 	"definition": "bootstrapcomponents/tablesspanel/tablesspanel.js",

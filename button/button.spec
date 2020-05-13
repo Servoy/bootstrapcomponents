@@ -1,6 +1,7 @@
 {
 	"name": "bootstrapcomponents-button",
 	"displayName": "Button",
+	"categoryName": "Buttons & Text",
 	"version": 1,
 	"icon": "bootstrapcomponents/button/button.png",
 	"definition": "bootstrapcomponents/button/button.js",

@@ -1,6 +1,7 @@
 {
 	"name": "bootstrapcomponents-imagemedia",
 	"displayName": "Image",
+	"categoryName": "Buttons & Text",
 	"version": 1,
 	"icon": "bootstrapcomponents/imagemedia/media.png",
 	"definition": "bootstrapcomponents/imagemedia/imagemedia.js",

@@ -1,6 +1,7 @@
 {
 	"name": "bootstrapcomponents-textarea",
 	"displayName": "TextArea",
+	"categoryName": "Input Control",
 	"version": 1,
 	"icon": "bootstrapcomponents/textarea/textarea.png",
 	"definition": "bootstrapcomponents/textarea/textarea.js",

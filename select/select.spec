@@ -1,6 +1,7 @@
 {
 	"name": "bootstrapcomponents-select",
 	"displayName": "Combobox",
+	"categoryName": "Input Control",
 	"version": 1,
 	"icon": "bootstrapcomponents/select/combobox.png",
 	"definition": "bootstrapcomponents/select/select.js",

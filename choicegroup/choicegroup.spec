@@ -1,6 +1,7 @@
 {
 	"name": "bootstrapcomponents-choicegroup",
 	"displayName": "Choice Group",
+	"categoryName": "Multi-Input Control",
 	"version": 1,
 	"definition": "bootstrapcomponents/choicegroup/choicegroup.js",
 	"libraries": [{"name":"bootstrapcomponents-choicegroup-css", "version":"1.0", "url":"bootstrapcomponents/choicegroup/choicegroup.css", "mimetype":"text/css"}],

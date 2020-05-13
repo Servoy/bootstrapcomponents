@@ -1,6 +1,7 @@
 {
 	"name": "bootstrapcomponents-textbox",
 	"displayName": "TextBox",
+	"categoryName": "Input Control",
 	"version": 1,
 	"icon": "bootstrapcomponents/textbox/textfield.png",
 	"definition": "bootstrapcomponents/textbox/textbox.js",

@@ -1,6 +1,7 @@
 {
 	"name": "bootstrapcomponents-datalabel",
 	"displayName": "DataLabel",
+	"categoryName": "Text & Buttons",
 	"version": 1,
 	"icon": "bootstrapcomponents/datalabel/datalabel.png",
 	"definition": "bootstrapcomponents/datalabel/datalabel.js",
