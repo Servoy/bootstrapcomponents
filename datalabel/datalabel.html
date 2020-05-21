@@ -1,4 +1,4 @@
-<span class='bts-datalabel' ng-class="model.styleClass"
+<span class='bts-datalabel' ng-class="[model.styleClass, model.styleClassExpression, model.imageStyleClass === 'fa' ? '' : model.imageStyleClass]"
 	svy-click='handlers.onActionMethodID($event)'
     svy-dblclick='handlers.onDoubleClickMethodID($event)'
  	svy-rightclick='handlers.onRightClickMethodID($event)'
@@ -9,7 +9,7 @@
  	id="{{::model.svyMarkupId}}">
 </span>
 
-<span class='bts-datalabel' ng-class="model.styleClass"
+<span class='bts-datalabel' ng-class="[model.styleClass, model.styleClassExpression, model.imageStyleClass === 'fa' ? '' : model.imageStyleClass]"
     svy-click='handlers.onActionMethodID($event)'
     svy-dblclick='handlers.onDoubleClickMethodID($event)'
     svy-rightclick='handlers.onRightClickMethodID($event)'

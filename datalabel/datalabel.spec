@@ -14,6 +14,8 @@
 			"format" : {"for":["valuelistID","dataProviderID"] , "type" :"format"},
 			"size" : {"type" :"dimension",  "default" : {"width":80, "height":30}}, 
 			"styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "values" :["label","label-default","label-primary","label-success","label-info","label-warning","label-danger"]},
+            "styleClassExpression" : { "type" :"dataprovider", "tags": { "scope" :"design" }}, 
+            "imageStyleClass": {"type":"styleclass", "default": "fa", "values":["fa", "far", "fas"]},
             "tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
             "showAs": { "type": "string", "values": ["html", "text", "trusted_html"], "default" : "html", "tags": { "scope" :"design" }},
 	    	"toolTipText" : { "type" : "tagstring"},

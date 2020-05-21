@@ -12,6 +12,7 @@
 	    	"labelFor" : { "type" : "labelfor", "tags": { "scope" :"design" } },
 	    	"size" : {"type" :"dimension",  "default" : {"width":80, "height":30}},
 			"styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "values" :["label","label-default","label-primary","label-success","label-info","label-warning","label-danger"]},
+	    	"imageStyleClass": {"type":"styleclass", "default": "fa", "values":["fa", "far", "fas"]},
 	    	"text" : {"type":"tagstring" , "initialValue":"Label", "tags": { "directEdit" : "true" }},
             "tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
             "showAs": { "type": "string", "values": ["html", "text", "trusted_html"], "default" : "html", "tags": { "scope" :"design" }},

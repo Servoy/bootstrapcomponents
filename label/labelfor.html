@@ -1,5 +1,5 @@
 <label  class='bts-label' for='{{model.labelFor}}'
-	 ng-class="model.styleClass"
+	 ng-class="[model.styleClass, model.imageStyleClass === 'fa' ? '' : model.imageStyleClass]"
 	 ng-bind-html='model.text| htmlFilter| trustAsHtml:isTrustedHTML()'
 	 ng-if='(model.showAs == "html" || model.showAs == "trusted_html") && model.visible'
 	 sablo-tabseq='(handlers.onActionMethodID || handlers.onDoubleClickMethodID || handlers.onRightClickMethodID) ? model.tabSeq : -2'
@@ -7,7 +7,7 @@
 >
 </label>
 <label  class='bts-label' for='{{model.labelFor}}'
-	 ng-class="model.styleClass"
+	 ng-class="[model.styleClass, model.imageStyleClass === 'fa' ? '' : model.imageStyleClass]"
 	 ng-if='model.showAs == "text" && model.visible'
 	 sablo-tabseq='(handlers.onActionMethodID || handlers.onDoubleClickMethodID || handlers.onRightClickMethodID) ? model.tabSeq : -2'
 	 id="{{::model.svyMarkupId}}"
