@@ -8,7 +8,7 @@
 	"definition": "bootstrapcomponents/tabpanel/tabpanel.js",
 	"libraries": [{ "name": "bootstrapcomponents-tabpanel-css", "version": "1.0", "url": "bootstrapcomponents/tabpanel/tabpanel.css", "mimetype": "text/css" }],
 	"serverscript": "bootstrapcomponents/tabpanel/tabpanel_server.js",
-	
+	"keywords": ['container'],
 	"model": {
 		"containerStyleClass": { "type": "styleclass" },
 		"closeIconStyleClass" : {"type":"styleclass", "default":"glyphicon glyphicon-remove close-icon", "tags": { "scope" :"design" }, "values":[]},

@@ -6,6 +6,7 @@
 	"icon": "bootstrapcomponents/tabpanel/tab.png",
 	"definition": "bootstrapcomponents/tablesspanel/tablesspanel.js",
 	"libraries": [{"name":"bootstrapcomponents-tablesspanel-css", "version":"1.0", "url":"bootstrapcomponents/tablesspanel/tablesspanel.css", "mimetype":"text/css"}],
+	"keywords": ['container'],
 	"model":
 	{
 			"containedForm": { "type" :"form"},

@@ -6,6 +6,7 @@
 	"icon": "bootstrapcomponents/button/button.png",
 	"definition": "bootstrapcomponents/button/button.js",
 	"libraries": [{"name":"bootstrapcomponents-button-css", "version":"1.0", "url":"bootstrapcomponents/button/button.css", "mimetype":"text/css"}],
+	"keywords": ['press', 'push'],
 	"model":
 	{
 		"enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["onActionMethodID","onDoubleClickMethodID","onRightClickMethodID"] },

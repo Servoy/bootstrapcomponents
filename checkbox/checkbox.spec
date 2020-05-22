@@ -6,6 +6,7 @@
 	"icon": "bootstrapcomponents/checkbox/checkbox.png",
 	"definition": "bootstrapcomponents/checkbox/checkbox.js",
 	"libraries": [{"name":"bootstrapcomponents-checkbox-css", "version":"1.0", "url":"bootstrapcomponents/checkbox/checkbox.css", "mimetype":"text/css"}],
+	"keywords": ['verify'],
 	"model":
 	{
 	        "dataProviderID" : { "type":"dataprovider", "pushToServer": "allow", "tags": { "scope" :"design" }, "ondatachange": { "onchange":"onDataChangeMethodID"}},

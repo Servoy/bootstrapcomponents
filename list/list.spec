@@ -10,6 +10,7 @@
 		{"name":"purejs-datalist-polyfill-js", "version":"1.0", "url":"bootstrapcomponents/list/lib/purejs-datalist-polyfill/datalist.polyfill.js", "mimetype":"text/javascript"},
 		{"name":"purejs-datalist-polyfill-css", "version":"1.0", "url":"bootstrapcomponents/list/lib/purejs-datalist-polyfill/style.css", "mimetype":"text/css"}
 		],
+	"keywords": [],
 	"model":
 	{
 	        "dataProviderID" : { "type":"dataprovider","pushToServer": "allow", "tags": { "scope" :"design" }, "ondatachange": { "onchange":"onDataChangeMethodID"}},

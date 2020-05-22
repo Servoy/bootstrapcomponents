@@ -6,6 +6,7 @@
 	"icon": "bootstrapcomponents/imagemedia/media.png",
 	"definition": "bootstrapcomponents/imagemedia/imagemedia.js",
 	"libraries": [{"name":"bootstrapcomponents-imagemedia-css", "version":"1.0", "url":"bootstrapcomponents/imagemedia/imagemedia.css", "mimetype":"text/css"}],
+	"keywords": ['picture', 'video'],
 	"model":
 	{
 			"alternate" : { "type" : "tagstring" },
