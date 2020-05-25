@@ -14,7 +14,7 @@
 	    	"size" : {"type" :"dimension",  "default" : {"width":80, "height":30}},
 			"styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "values" :["label","label-default","label-primary","label-success","label-info","label-warning","label-danger"]},
 	    	"styleClassExpression" : { "type" :"dataprovider", "tags": { "scope" :"design" }},
-	    	"imageStyleClass": {"type":"string", "tags": { "doc": "Example 'fas fa-search' or other <b>Font Awesome</b> icon.<br/> Please make sure you installed the Font Awesome service from the Servoy Package Manager. "}},
+	    	"imageStyleClass": {"type":"string", "tags": { "doc": "An icon style class property (glyphicon, material design or Font Awesome).<br/>Example 'fas fa-search' <br/>If you want to use Font Awesome classes you need to enable the Font Awesome service from the Servoy Package Manager. "}},
             "text" : {"type":"tagstring" , "initialValue":"Label", "tags": { "directEdit" : "true" }},
             "tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
             "showAs": { "type": "string", "values": ["html", "text", "trusted_html"], "default" : "html", "tags": { "scope" :"design" }},
