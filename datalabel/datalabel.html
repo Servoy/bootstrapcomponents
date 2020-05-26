@@ -1,21 +1,12 @@
-<span class='bts-datalabel' ng-class="[model.styleClass, model.styleClassExpression, model.imageStyleClass]"
+<span class='bts-datalabel' ng-class="[model.styleClass, model.styleClassExpression]"
 	svy-click='handlers.onActionMethodID($event)'
     svy-dblclick='handlers.onDoubleClickMethodID($event)'
  	svy-rightclick='handlers.onRightClickMethodID($event)'
- 	ng-bind-html='model.dataProviderID | formatFilter:model.format.display:model.format.type| designFilter:servoyApi.isInDesigner() | htmlFilter | trustAsHtml:isTrustedHTML()'
-	sablo-tabseq='(handlers.onActionMethodID || handlers.onDoubleClickMethodID || handlers.onRightClickMethodID) ? model.tabSeq : -2'
+ 	sablo-tabseq='(handlers.onActionMethodID || handlers.onDoubleClickMethodID || handlers.onRightClickMethodID) ? model.tabSeq : -2'
 	ng-disabled='!model.enabled'
-    ng-if='(model.showAs == "html" || model.showAs == "trusted_html") && model.visible'
  	id="{{::model.svyMarkupId}}">
-</span>
-
-<span class='bts-datalabel' ng-class="[model.styleClass, model.styleClassExpression, model.imageStyleClass]"
-    svy-click='handlers.onActionMethodID($event)'
-    svy-dblclick='handlers.onDoubleClickMethodID($event)'
-    svy-rightclick='handlers.onRightClickMethodID($event)'
-    ng-bind='model.dataProviderID | formatFilter:model.format.display:model.format.type| designFilter:servoyApi.isInDesigner()'
-    sablo-tabseq='(handlers.onActionMethodID || handlers.onDoubleClickMethodID || handlers.onRightClickMethodID) ? model.tabSeq : -2'
-    ng-disabled='!model.enabled'
-    ng-if='model.showAs == "text" && model.visible'
-    id="{{::model.svyMarkupId}}">
+ 	<span ng-class='model.imageStyleClass'></span>
+ 	<span ng-bind-html='model.dataProviderID | formatFilter:model.format.display:model.format.type| designFilter:servoyApi.isInDesigner() | htmlFilter | trustAsHtml:isTrustedHTML()'
+ 	ng-if='(model.showAs == "html" || model.showAs == "trusted_html") && model.visible'></span>
+ 	<span ng-bind='model.dataProviderID | formatFilter:model.format.display:model.format.type| designFilter:servoyApi.isInDesigner()' ng-if='model.showAs == "text" && model.visible'></span>
 </span>
