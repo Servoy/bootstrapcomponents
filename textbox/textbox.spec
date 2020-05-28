@@ -7,7 +7,7 @@
 	"definition": "bootstrapcomponents/textbox/textbox.js",
 	"serverscript": "bootstrapcomponents/textbox/textbox_server.js",
 	"libraries": [{"name":"bootstrapcomponents-textbox-css", "version":"1.0", "url":"bootstrapcomponents/textbox/textbox.css", "mimetype":"text/css"}],
-	"keywords": ['content'],
+	"keywords": ["content"],
 	"model":
 	{
 			"dataProviderID" : { "type":"dataprovider", "pushToServer": "allow","tags": { "scope" :"design" }, "ondatachange": { "onchange":"onDataChangeMethodID","callback":"onDataChangeCallback"}},

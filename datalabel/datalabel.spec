@@ -6,7 +6,7 @@
 	"icon": "bootstrapcomponents/datalabel/datalabel.png",
 	"definition": "bootstrapcomponents/datalabel/datalabel.js",
 	"libraries": [{"name":"bootstrapcomponents-datalabel-css", "version":"1.0", "url":"bootstrapcomponents/datalabel/datalabel.css", "mimetype":"text/css"}],
-	"keywords": ['tag'],
+	"keywords": ["tag"], 
 	"model":
 	{
 			"dataProviderID" : { "type":"dataprovider", "tags": { "scope": "design"}, "resolveValuelist" : true },

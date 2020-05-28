@@ -6,7 +6,7 @@
 	"icon": "bootstrapcomponents/label/label.png",
 	"definition": "bootstrapcomponents/label/label.js",
 	"libraries": [{"name":"bootstrapcomponents-label-css", "version":"1.0", "url":"bootstrapcomponents/label/label.css", "mimetype":"text/css"}],
-	"keywords": ['tag'],
+	"keywords": ["tag"],
 	"model":
 	{
 			"enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["onActionMethodID","onDoubleClickMethodID","onRightClickMethodID"] },

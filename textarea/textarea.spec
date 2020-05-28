@@ -6,7 +6,7 @@
 	"icon": "bootstrapcomponents/textarea/textarea.png",
 	"definition": "bootstrapcomponents/textarea/textarea.js",
 	"libraries": [{"name":"bootstrapcomponents-textarea-css", "version":"1.0", "url":"bootstrapcomponents/textarea/textarea.css", "mimetype":"text/css"}],
-	"keywords": ['content'],
+	"keywords": ["content"],
 	"model":
 	{
 			"dataProviderID" : { "type":"dataprovider", "pushToServer": "allow","tags": { "scope" :"design" }, "ondatachange": { "onchange":"onDataChangeMethodID"}},
