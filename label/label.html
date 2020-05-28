@@ -4,11 +4,12 @@
  	svy-rightclick='handlers.onRightClickMethodID($event, getDataTarget($event))'
  	sablo-tabseq='(handlers.onActionMethodID || handlers.onDoubleClickMethodID || handlers.onRightClickMethodID) ? model.tabSeq : -2'
 	ng-disabled='!model.enabled'
+	ng-if='model.visible'
 	id="{{::model.svyMarkupId}}">
-	<span ng-class='model.imageStyleClass' ng-if='model.imageStyleClass && model.visible'></span>
+	<span ng-class='model.imageStyleClass' ng-if='model.imageStyleClass'></span>
 	<span 
  		ng-bind-html='model.text| htmlFilter| trustAsHtml:isTrustedHTML()'
- 		ng-if='(model.showAs == "html" || model.showAs == "trusted_html") && model.visible'>
+ 		ng-if='model.showAs == "html" || model.showAs == "trusted_html"'>
 	</span>
-	<span ng-if='model.showAs == "text" && model.visible'>{{model.text}}</span>
+	<span ng-if='model.showAs == "text"'>{{model.text}}</span>
 </span>
