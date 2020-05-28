@@ -1,15 +1,14 @@
-<label  class='bts-label' for='{{model.labelFor}}'
-	 ng-class="[model.styleClass, model.styleClassExpression, model.imageStyleClass === 'fa' ? '' : model.imageStyleClass]"
-	 ng-bind-html='model.text| htmlFilter| trustAsHtml:isTrustedHTML()'
-	 ng-if='(model.showAs == "html" || model.showAs == "trusted_html") && model.visible'
-	 sablo-tabseq='(handlers.onActionMethodID || handlers.onDoubleClickMethodID || handlers.onRightClickMethodID) ? model.tabSeq : -2'
-	 id="{{::model.svyMarkupId}}"
->
-</label>
-<label  class='bts-label' for='{{model.labelFor}}'
-	 ng-class="[model.styleClass, model.styleClassExpression, model.imageStyleClass === 'fa' ? '' : model.imageStyleClass]"
-	 ng-if='model.showAs == "text" && model.visible'
-	 sablo-tabseq='(handlers.onActionMethodID || handlers.onDoubleClickMethodID || handlers.onRightClickMethodID) ? model.tabSeq : -2'
-	 id="{{::model.svyMarkupId}}"
->{{model.text}}
-</label>
+<span class='bts-label' ng-class="[model.styleClass, model.styleClassExpression]"
+	svy-click='handlers.onActionMethodID($event, getDataTarget($event))'
+    svy-dblclick='handlers.onDoubleClickMethodID($event, getDataTarget($event))'
+ 	svy-rightclick='handlers.onRightClickMethodID($event, getDataTarget($event))'
+ 	sablo-tabseq='(handlers.onActionMethodID || handlers.onDoubleClickMethodID || handlers.onRightClickMethodID) ? model.tabSeq : -2'
+	ng-disabled='!model.enabled'
+	id="{{::model.svyMarkupId}}">
+	<span ng-class='model.imageStyleClass' ng-if='model.imageStyleClass && model.visible'></span>
+	<label for='{{model.labelFor}}'
+ 		ng-bind-html='model.text| htmlFilter| trustAsHtml:isTrustedHTML()'
+	 	ng-if='(model.showAs == "html" || model.showAs == "trusted_html") && model.visible'>
+	</label>
+	<label for='{{model.labelFor}}' ng-if='model.showAs == "text" && model.visible'>{{model.text}}</label>
+</span>

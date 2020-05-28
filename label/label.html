@@ -5,7 +5,7 @@
  	sablo-tabseq='(handlers.onActionMethodID || handlers.onDoubleClickMethodID || handlers.onRightClickMethodID) ? model.tabSeq : -2'
 	ng-disabled='!model.enabled'
 	id="{{::model.svyMarkupId}}">
-	<span ng-class='model.imageStyleClass'></span>
+	<span ng-class='model.imageStyleClass' ng-if='model.imageStyleClass && model.visible'></span>
 	<span 
  		ng-bind-html='model.text| htmlFilter| trustAsHtml:isTrustedHTML()'
  		ng-if='(model.showAs == "html" || model.showAs == "trusted_html") && model.visible'>
