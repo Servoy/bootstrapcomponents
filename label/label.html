@@ -6,10 +6,11 @@
 	ng-disabled='!model.enabled'
 	ng-if='model.visible'
 	id="{{::model.svyMarkupId}}">
-	<span ng-class='model.imageStyleClass' ng-if='model.imageStyleClass'></span>
+	<span class='bts-label-icon' ng-class='model.imageStyleClass' ng-if='model.imageStyleClass'></span>
 	<span 
+		class='bts-label-text'
  		ng-bind-html='model.text| htmlFilter| trustAsHtml:isTrustedHTML()'
  		ng-if='model.showAs == "html" || model.showAs == "trusted_html"'>
 	</span>
-	<span ng-if='model.showAs == "text"'>{{model.text}}</span>
+	<span class='bts-label-text' ng-if='model.showAs == "text"'>{{model.text}}</span>
 </span>
