@@ -28,6 +28,9 @@ Web-Component: True
 Name: calendarinline/calendarinline.spec
 Web-Component: True
 
+Name: combobox/combobox.spec
+Web-Component: True
+
 Name: textbox/textbox.spec
 Web-Component: True
 
@@ -64,3 +67,5 @@ Web-Component: True
 Name: checkbox/checkbox.spec
 Web-Component: True
 
+Name: accordion/accordion.spec
+Web-Component: True

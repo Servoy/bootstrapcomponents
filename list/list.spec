@@ -1,7 +1,7 @@
 {
 	"name": "bootstrapcomponents-list",
-	"displayName": "Data List",
-	"categoryName": "Input Control",
+	"displayName": "Native Data List",
+	"categoryName": "Mobile",
 	"version": 1,
 	"icon": "bootstrapcomponents/list/listbox.png",
 	"definition": "bootstrapcomponents/list/list.js",

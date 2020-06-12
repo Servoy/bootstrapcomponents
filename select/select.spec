@@ -1,7 +1,7 @@
 {
 	"name": "bootstrapcomponents-select",
-	"displayName": "Combobox",
-	"categoryName": "Input Control",
+	"displayName": "Native Select",
+	"categoryName": "Mobile",
 	"version": 1,
 	"icon": "bootstrapcomponents/select/combobox.png",
 	"definition": "bootstrapcomponents/select/select.js",
@@ -17,7 +17,8 @@
 			"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
 			"toolTipText" : { "type" : "tagstring"},
 	        "visible" : "visible",
-	        "placeholderText" : { "type" : "tagstring", "displayTagsPropertyName" : "displaysTags" }
+	        "placeholderText" : { "type" : "tagstring", "displayTagsPropertyName" : "displaysTags" },
+			"selectSize" : {"type" :"int", "default": 1, "tags": { "scope" :"design" }}
 	},
 	"handlers":
 	{
