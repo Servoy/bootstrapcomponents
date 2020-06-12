@@ -144,27 +144,30 @@ angular.module('bootstrapcomponentsCalendarinline',['servoy'])
 						} else {
 							// add a random date, that is incorrect, to trick the datepicker to disable the whole month
 							x.enabledDates([moment(0,0,0)]);
+							//hide today button and "Select time" button when the calendar is disabled
+							theDateTimePicker.showTodayButton(false);
+							//this will hide the "Select time" button
+							theDateTimePicker.format('L');
 						}
 					 break;	
 					}
 				}
 			});
-			var x = child.data('DateTimePicker');
 			if ($scope.model.disabledDays)
 			{
-				x.daysOfWeekDisabled($scope.model.disabledDays);
+				theDateTimePicker.daysOfWeekDisabled($scope.model.disabledDays);
 			}	
 			if ($scope.model.disabledDates)
 			{
-				x.disabledDates($scope.model.disabledDates);
+				theDateTimePicker.disabledDates($scope.model.disabledDates);
 			}
 			if ($scope.model.maxDate)
 			{
-				x.maxDate($scope.model.maxDate);
+				theDateTimePicker.maxDate($scope.model.maxDate);
 			}	
 			if ($scope.model.minDate)
 			{
-				x.minDate($scope.model.minDate);
+				theDateTimePicker.minDate($scope.model.minDate);
 			}
 			
 			var destroyListenerUnreg = $scope.$on("$destroy", function() {
