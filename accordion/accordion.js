@@ -37,10 +37,6 @@ angular.module('bootstrapcomponentsAccordion', ['servoy'])
 				};
 			}
 
-			$scope.$watch("model.size", function (newVal) {
-				updateViewportStyle();
-			})
-
 			// window resize doesn't update the model size
 			$window.addEventListener('resize',function() { 
 				updateViewportStyle();
