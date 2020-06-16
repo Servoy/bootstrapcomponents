@@ -18,7 +18,8 @@
 			"toolTipText" : { "type" : "tagstring"},
 	        "visible" : "visible",
 	        "placeholderText" : { "type" : "tagstring", "displayTagsPropertyName" : "displaysTags" },
-			"selectSize" : {"type" :"int", "default": 1, "tags": { "scope" :"design" }}
+			"selectSize" : {"type" :"int", "default": 1, "tags": { "scope" :"design" }},
+			"multiselect" : { "type" : "boolean", "tags": { "scope" : "design" }, "default": false }
 	},
 	"handlers":
 	{

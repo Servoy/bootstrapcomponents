@@ -1,4 +1,4 @@
-angular.module('bootstrapcomponentsSelect',['servoy', 'bootstrapcomponentscommon']).directive('bootstrapcomponentsSelect', ['$log', '$svyProperties', '$sabloConstants','$filter', function($log, $svyProperties, $sabloConstants,$filter) {
+angular.module('bootstrapcomponentsSelect',['servoy', 'bootstrapcomponentscommon']).directive('bootstrapcomponentsSelect', ['$log', '$svyProperties', '$sabloConstants','$filter', '$http', '$templateCache','$compile', function($log, $svyProperties, $sabloConstants,$filter,$http,$templateCache,$compile) {
 	return {
 		restrict: 'E',
 		scope: {
@@ -9,6 +9,13 @@ angular.module('bootstrapcomponentsSelect',['servoy', 'bootstrapcomponentscommon
 			svyServoyapi: "="
 		},
 		link: function($scope, $element, $attrs) {
+
+			var isMultiSelect = $scope.model.multiselect;
+			var templateUrl = isMultiSelect ? "bootstrapcomponents/select/select_multiple.html" : "bootstrapcomponents/select/select.html";
+			$http.get(templateUrl, {cache: $templateCache}).then(function(result) {
+				$element.html(result.data);
+				$compile($element.contents())($scope);
+
 			/* 
 			 * Using ng-options
 			 * <!--ng-options='option.realValue as option.displayValue for option in model.valuelistID track by option.realValue'-->
@@ -54,13 +61,28 @@ angular.module('bootstrapcomponentsSelect',['servoy', 'bootstrapcomponentscommon
 			function updateDataprovider() {
 				if($scope.model.valuelistID) {
 					var selectComp = $element.find('select');
-					var selectedText = selectComp.find("option:selected").text();
+
+					var items = selectComp.find("option:selected").map(function() {
+						return $(this).text();
+					}).get();
+
+
 					var value = null;
 					for (i = 0; i < $scope.model.valuelistID.length; i++) {
-						if($scope.model.valuelistID[i].displayValue == selectedText) {
-							value = $scope.model.valuelistID[i].realValue;
-							break;
+						if(items.indexOf($scope.model.valuelistID[i].displayValue) != -1) {
+							if(isMultiSelect) {
+								if(value == null) value = [];
+								value.push($scope.model.valuelistID[i].realValue);
+							}
+							else {
+								value = $scope.model.valuelistID[i].realValue;
+								break;
+							}
 						}
+					}
+
+					if(isMultiSelect && value) {
+						value = value.join('\n');
 					}
 
 					if(($scope.model.dataProviderID +'') != (value +'')) {
@@ -109,8 +131,9 @@ angular.module('bootstrapcomponentsSelect',['servoy', 'bootstrapcomponentscommon
 				{
 					inputEl[0].focus();
 				}			  
-			}			
+			}
+		});
       },
-      templateUrl: 'bootstrapcomponents/select/select.html'
+      replace: true
     };
 }]);

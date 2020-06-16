@@ -1,0 +1,17 @@
+<select 	size='{{ model.selectSize }}'
+			svy-change='onChange($event)'
+			svy-focusgained='handlers.onFocusGainedMethodID($event)'
+			svy-focuslost='handlers.onFocusLostMethodID($event)'
+			ng-class='model.styleClass' class='bts-select'
+			ng-if='model.visible'
+			ng-disabled="model.readOnly || !model.enabled"
+			sablo-tabseq='model.tabSeq'
+			svy-autoapply
+			id="{{::model.svyMarkupId}}"
+			multiple>
+  			<option ng-if="showPlaceholder()" selected class="placeholderOption" ng-bind-html="model.placeholderText" hidden disabled></option>
+ 			<option ng-if="!showPlaceholder() && model.valuelistID && model.valuelistID.length && !isDPInValueList()" disabled ng-selected="!isDPInValueList()"
+					ng-bind-html="model.dataProviderID | bcShowDisplayValue:model.valuelistID" value="{{model.dataProviderID}}"></option>
+			<option ng-selected="model.dataProviderID.split('\n').indexOf(value.realValue) >= 0" ng-repeat="value in model.valuelistID" value="{{value.realValue}}" 
+					ng-bind-html="value.realValue | bcShowDisplayValue:model.valuelistID"></option>
+</select>
