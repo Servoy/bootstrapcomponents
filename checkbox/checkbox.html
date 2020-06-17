@@ -10,6 +10,7 @@
 					ng-disabled="model.readOnly || !model.enabled"
 					id="{{::model.svyMarkupId}}"
 					/>
-		 <span ng-bind="model.text"/>
+		 <span ng-bind="model.text"  ng-if='model.showAs != "html" && model.showAs != "trusted_html"'/>
+		 <span ng-bind-html='model.text| htmlFilter| trustAsHtml:isTrustedHTML()' ng-if='model.showAs == "html" || model.showAs == "trusted_html"'></span>
 	</label>
 </div>

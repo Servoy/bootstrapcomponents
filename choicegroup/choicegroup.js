@@ -6,10 +6,18 @@ angular.module('bootstrapcomponentsChoicegroup',['servoy']).directive('bootstrap
         model: "=svyModel",
         handlers: "=svyHandlers",
         api: "=svyApi",
-        svyServoyapi: "="
+        svyServoyapi: "=",
+        servoyApi: "=svyServoyapi"
       },
       link: function($scope, $element, $attrs) {
-          
+         
+    	  $scope.isTrustedHTML = function() {
+              if($scope.servoyApi.trustAsHtml() || $scope.model.showAs === 'trusted_html') {
+                  return true;
+              }
+              return false;
+          }
+    	  
           $scope.notNullOrEmpty = $utils.notNullOrEmpty  // adding it to the root scope doesn't fix the resolution of the comparator in the filter (in this directive). it has to be in local scope. TODO remove the need for this
           var allowNullinc=0;
     	  $scope.selection= []

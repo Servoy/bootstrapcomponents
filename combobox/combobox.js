@@ -24,6 +24,13 @@ angular.module('bootstrapcomponentsCombobox', ['servoy', 'ui.select'])
 				scope.$$childHead.$select.parserResult = { source: function() { return undefined }};	
 			} 
 			
+			scope.isTrustedHTML = function() {
+				if(scope.svyServoyapi.trustAsHtml() || scope.model.showAs === 'trusted_html') {
+					return true;
+				}
+				return false;
+			}
+			 
 			scope.$watch("model.format", function (newVal) {
 				if (newVal && newVal["text-transform"]) {
 					scope.style["text-transform"] = newVal["text-transform"];

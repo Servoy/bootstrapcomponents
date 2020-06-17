@@ -10,6 +10,13 @@ angular.module('bootstrapcomponentsCheckbox',['servoy']).directive('bootstrapcom
       },
       link: function($scope, $element, $attrs) {
 
+    	  $scope.isTrustedHTML = function() {
+              if($scope.svyServoyapi.trustAsHtml() || $scope.model.showAs === 'trusted_html') {
+                  return true;
+              }
+              return false;
+          }
+    	  
           $scope.selection = false;
           
           $scope.$watch('model.dataProviderID', function() 

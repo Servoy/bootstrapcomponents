@@ -21,6 +21,7 @@
 	        "format" : {"for":["valuelistID","dataProviderID"] , "type" :"format"},
 	        "readOnly" : { "type" : "readOnly", "oppositeOf" : "enabled"}, 
 	        "size" : {"type" :"dimension",  "default" : {"width":140, "height":30}},
+	        "showAs": { "type": "string", "values": [{"text":null}, {"html":"html"}, {"trusted_html":"trusted_html"}]},
 	        "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "values" :["form-control", "input-sm", "svy-padding-xs", "select2-container-svy-xs"]}, 
 	        "tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }}, 
 	        "toolTipText" : { "type" : "tagstring", "displayTagsPropertyName" : "displaysTags" }, 

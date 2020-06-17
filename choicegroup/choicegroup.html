@@ -7,6 +7,7 @@
         svy-click='handlers.onActionMethodID($event)'
         svy-focusgained='handlers.onFocusGainedMethodID($event)'
         ng-disabled="model.readOnly || !model.enabled"/>
-  	 <span ng-bind='item.displayValue'></span>
+  	 <span ng-bind='item.displayValue' ng-if='model.showAs != "html" && model.showAs != "trusted_html"'></span>
+  	 <span ng-bind-html='item.displayValue | htmlFilter| trustAsHtml:isTrustedHTML()' ng-if='model.showAs == "html" || model.showAs == "trusted_html"'></span>
   </label>
 </div>
