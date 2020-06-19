@@ -1,4 +1,4 @@
-.svy-wrapper .bts-accordion {
+.svy-wrapper > * > .bts-accordion {
     overflow: hidden;
     height: 100%;
     width: 100%;

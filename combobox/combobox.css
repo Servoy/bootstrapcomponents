@@ -11,6 +11,6 @@
 	height: 34px;
 }
 
-.svy-wrapper .bts-combobox .ui-select-match > .form-control {
+.svy-wrapper > * > .bts-combobox .ui-select-match > .form-control {
 	height: 100%;
 }
