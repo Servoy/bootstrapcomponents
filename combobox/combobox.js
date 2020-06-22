@@ -14,7 +14,6 @@ angular.module('bootstrapcomponentsCombobox', ['servoy', 'ui.select'])
 					width: '100%'
 			};
 
-			$scope.findMode = false;
 			var enableFilter = $applicationService.getUIProperty('Combobox.enableFilter');
 			$scope.enablefilter = enableFilter !== undefined && enableFilter != null ? enableFilter : true;
 		},

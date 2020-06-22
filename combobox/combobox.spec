@@ -13,18 +13,15 @@
 	"keywords": [],
 	"model":
 	{
-	        "dataProviderID" : { "type":"dataprovider", "pushToServer": "allow", "tags": { "scope": "design" }, "ondatachange": { "onchange":"onDataChangeMethodID", "callback":"onDataChangeCallback"}, "displayTagsPropertyName" : "displaysTags"}, 
-	        "displaysTags" : { "type" : "boolean", "tags": { "scope" : "design" } }, 
-	        "editable" : {"type":"boolean", "default":true}, 
+	        "dataProviderID" : { "type":"dataprovider", "pushToServer": "allow", "tags": { "scope": "design" }, "ondatachange": { "onchange":"onDataChangeMethodID", "callback":"onDataChangeCallback"}, "displayTagsPropertyName" : "displaysTags"},
 	        "enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["dataProviderID","onActionMethodID","onDataChangeMethodID","onFocusGainedMethodID","onFocusLostMethodID","onRightClickMethodID"] }, 
-	        "findmode" : { "type":"findmode", "tags":{"scope":"private"}, "for" : {"editable":true}}, 
 	        "format" : {"for":["valuelistID","dataProviderID"] , "type" :"format"},
 	        "readOnly" : { "type" : "readOnly", "oppositeOf" : "enabled"}, 
 	        "size" : {"type" :"dimension",  "default" : {"width":140, "height":30}},
 	        "showAs": { "type": "string", "values": [{"text":null}, {"html":"html"}, {"trusted_html":"trusted_html"}]},
 	        "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "values" :["form-control", "input-sm", "svy-padding-xs", "select2-container-svy-xs"]}, 
 	        "tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }}, 
-	        "toolTipText" : { "type" : "tagstring", "displayTagsPropertyName" : "displaysTags" }, 
+	        "toolTipText" : { "type" : "tagstring" }, 
 	        "valuelistID" : { "type" : "valuelist", "tags": { "scope" :"design", "logWhenOverMax":true}, "for": "dataProviderID", "max":500}, 
 	        "visible" : "visible" 
 	},
