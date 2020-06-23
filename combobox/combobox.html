@@ -14,7 +14,7 @@
  				<span ng-if='model.showAs != "html" && model.showAs != "trusted_html"'>{{($select.selected ? $select.selected : model.dataProviderID) | bcShowDisplayValue:model.valuelistID | formatFilter:model.format.display:model.format.type}}</span>
  				<span ng-bind-html='($select.selected ? $select.selected : model.dataProviderID) | bcShowDisplayValue:model.valuelistID | htmlFilter| trustAsHtml:isTrustedHTML()' ng-if='model.showAs == "html" || model.showAs == "trusted_html"'></span>
  			</ui-select-match>
-            <ui-select-choices repeat="item.realValue as item in model.valuelistID | filter: { displayValue : $select.search}">
+            <ui-select-choices repeat="item.realValue as item in model.valuelistID | propertyFormattedFilter: { displayValue : $select.search} : model.format.display:model.format.type">
               <div ng-style="style" ng-if='model.showAs != "html" && model.showAs != "trusted_html"'>{{item.realValue | bcShowDisplayValue:model.valuelistID | formatFilter:model.format.display:model.format.type}}</div>
               <div ng-style="style" ng-bind-html='item.displayValue | htmlFilter| trustAsHtml:isTrustedHTML()' ng-if='model.showAs == "html" || model.showAs == "trusted_html"'></div>
             </ui-select-choices>

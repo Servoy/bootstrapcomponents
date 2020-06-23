@@ -46,6 +46,18 @@ angular.module('bootstrapcomponentsCalendarinline',['servoy'])
 
 			$element.on("dp.change",inputChanged);
 			
+			function togglePickerEnabled() {
+				//this will toggle the "Select time" button, depending on the state of the calendar (enabled/disabled)		
+				var toggle = child.find('a[data-action="togglePicker"]');
+				if ($scope.model.enabled) {
+					if(toggle.length > 0) toggle[0].style.display = 'block';
+				} else {
+					if(toggle.length > 0) toggle[0].style.display = 'none';
+				}
+			}
+
+			$element.on("dp.show",togglePickerEnabled);
+			
 			/** 
              * @param {Array<Date>} dateArray
              * 
@@ -141,13 +153,13 @@ angular.module('bootstrapcomponentsCalendarinline',['servoy'])
 							if ($scope.model.disabledDates) {
 								disableDates($scope.model.disabledDates);
 							}
+							//show today button when the calendar is enabled
+							theDateTimePicker.showTodayButton(true);
 						} else {
 							// add a random date, that is incorrect, to trick the datepicker to disable the whole month
 							x.enabledDates([moment(0,0,0)]);
-							//hide today button and "Select time" button when the calendar is disabled
+							//hide today button when the calendar is disabled
 							theDateTimePicker.showTodayButton(false);
-							//this will hide the "Select time" button
-							theDateTimePicker.format('L');
 						}
 					 break;	
 					}
