@@ -7,7 +7,7 @@
 	"icon": "bootstrapcomponents/accordion/accordion.png",
 	"definition": "bootstrapcomponents/accordion/accordion.js",
 	"libraries": [{ "name": "bootstrapcomponents-accordion-css", "version": "1.0", "url": "bootstrapcomponents/accordion/accordion.css", "mimetype": "text/css" }],
-	"serverscript": "bootstrapcomponents/tabpanel/accordion_server.js",
+	"serverscript": "bootstrapcomponents/accordion/accordion_server.js",
 	"keywords": ["container"],
 	"model": {
 		"containerStyleClass": { "type": "styleclass" },
