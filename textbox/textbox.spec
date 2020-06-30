@@ -24,7 +24,7 @@
 	    	"visible" : "visible",	    
 	    	"selectOnEnter" : {"type" :"boolean", "tags": { "scope" :"design" }},
 	    	"autocomplete" : 
-	    		{"type" :"string","tags": { "scope" :"design", "valuesFieldType":"typeahead"}, "default": "off",
+	    		{"type" :"string","tags": { "scope" :"design", "valuesFieldType":"typeahead", "doc" : "Html autocomplete property of the input field."}, "default": "off",
 	    			"values" :
 	    			[ 
 	    				"billing", "shipping", "home", "work", "mobile", "fax", "pager", "name", "given-name", "additional-name", "family-name","nickname", "organization-title", "username", "new-password" , "current-password", "organization", "email", "street-address", "address-level1", 

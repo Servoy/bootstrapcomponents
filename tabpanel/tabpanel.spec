@@ -15,9 +15,9 @@
 		"showTabCloseIcon" : { "type": "boolean", "default": false },
 		"tabs": { "type": "tab[]", "pushToServer": "deep", "droppable": true, "tags": { "allowaccess": "visible"}},
 		"styleClass": { "type": "styleclass" },
-		"height": { "type": "int", "default": "500" },
+		"height": { "type": "int", "default": "500", "tags": { "doc" : "Minimum height of the tabpanel, should be used for responsive forms."} },
 		"tabIndex": { "type": "int", "pushToServer": "shallow", "tags": { "scope": "runtime", "allowaccess": "visible" }, "default": 1},
-		"tabSeq": { "type": "tabseq", "tags": { "scope": "design" } },
+		"tabSeq": { "type": "tabseq", "tags": { "scope": "design","doc" : "Tab sequence number of form containers is used for all nested components in the main form." } } },
 		"activeTabIndex": { "type": "int", "default": 0, "tags": { "scope": "runtime", "allowaccess": "visible"}, "pushToServer": "shallow"},
 		"visible": "visible"
 	},

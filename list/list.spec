@@ -21,7 +21,7 @@
 	       	"styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "default" : "form-control"},
 	        "valuelistID" : { "type" : "valuelist", "tags": { "scope" :"design" }, "for": "dataProviderID"},
 	        "placeholderText" : "tagstring",
-					"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
+			"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
 			"toolTipText" : { "type" : "tagstring"},
 	        "visible" : "visible"
 	},

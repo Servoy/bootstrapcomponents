@@ -18,7 +18,7 @@
             "styleClassExpression" : { "type" :"dataprovider", "tags": { "scope" :"design" }}, 
             "imageStyleClass": {"type":"string", "tags": { "doc": "An icon style class property (glyphicon, material design or Font Awesome).<br/>Example 'fas fa-search' <br/>If you want to use Font Awesome classes you need to enable the Font Awesome service from the Servoy Package Manager. "}},
             "tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
-            "showAs": { "type": "string", "values": ["html", "text", "trusted_html"], "default" : "html", "tags": { "scope" :"design" }},
+            "showAs": { "type": "string", "values": ["html", "text", "trusted_html"], "default" : "html", "tags": { "scope" :"design","doc" :"Option whether label text (coming from dataprovider) is shown as plain text, sanitized html or trusted html (as is)." }},
 	    	"toolTipText" : { "type" : "tagstring"},
 	    	"visible" : "visible"
 	},

@@ -17,7 +17,7 @@
 	        "text" : { "type" : "tagstring" ,"default": "Checkbox" },
 			"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
 			"selectedValue" : { "type" : "string", "tags": { "doc" :"The value returned when the checkbox is checked (default is 1)" } },
-			"showAs": { "type": "string", "values": [{"text":null}, {"html":"html"}, {"trusted_html":"trusted_html"}]},
+			"showAs": { "type": "string", "values": [{"text":null}, {"html":"html"}, {"trusted_html":"trusted_html"}],"tags": { "doc" :"Option whether checkbox text is shown as plain text, sanitized html or trusted html (as is)."}},
 			"toolTipText" : { "type" : "tagstring"}, 
 	        "visible" : "visible"
 	},

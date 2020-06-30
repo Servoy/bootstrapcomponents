@@ -10,12 +10,12 @@
 	"model":
 	{
 		"enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["onActionMethodID","onDoubleClickMethodID","onRightClickMethodID"] },
-	    "imageStyleClass" : { "type" :"styleclass" },
+	    "imageStyleClass" : { "type" :"styleclass" ,"tags": { "doc" :"For buttons showing as plain text, you can also specify an image styleclass to be displayed to the left. Can be font awesome icons."}},
 	    "tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }}, 
 	    "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" },"default": "btn btn-default", "values" :["btn","btn-default","btn-lg","btn-sm","btn-xs"]},
 	    "text" : {"type":"tagstring" , "initialValue":"Button", "tags": { "directEdit" : "true" }},
 	    "size" : {"type" :"dimension",  "default" : {"width":80, "height":30}}, 
-        "showAs": { "type": "string", "values": [{"text":null}, {"html":"html"}, {"trusted_html":"trusted_html"}]},
+        "showAs": { "type": "string", "values": [{"text":null}, {"html":"html"}, {"trusted_html":"trusted_html"}],"tags": { "doc" :"Option whether button text is shown as plain text, sanitized html or trusted html (as is)."}},
 	    "toolTipText" : { "type" : "tagstring"}, 
 	    "visible" : "visible"
 	},

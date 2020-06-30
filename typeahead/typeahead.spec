@@ -18,7 +18,7 @@
 	    "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "default" : "form-control"},
 	    "placeholderText" : "tagstring",
         "valuelistID" : { "type" : "valuelist", "tags": { "scope" :"design", "logWhenOverMax": false}, "for": "dataProviderID", "default":"autoVL", "pushToServer": "allow", "max":100},
-        "showAs": { "type": "string", "values": ["html", "text"], "default" : "html", "tags": { "scope" :"design" }},
+        "showAs": { "type": "string", "values": ["html", "text"], "default" : "html", "tags": { "scope" :"design","doc" :"Option typeahead options are shown as plain text or sanitized html." }},
 	    "tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
 	    "toolTipText" : { "type" : "tagstring"},
 	    "visible" : "visible",
