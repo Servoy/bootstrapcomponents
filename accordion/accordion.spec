@@ -80,7 +80,7 @@
 		"tab": {
 			"active": { "type": "boolean", "default": false, "tags": { "scope": "private" } },
 			"containedForm": "form",
-			"text": { "type": "tagstring", "tags": { "useAsCaptionInDeveloper" : true, "captionPriority" : 1 } },
+			"text": { "type": "tagstring", "tags": { "useAsCaptionInDeveloper" : true, "captionPriority" : 1 }, "default":"tab" },
 			"relationName": "relation",
 			"name": { "type": "string" },
 			"disabled": { "type": "boolean", "default": false }
