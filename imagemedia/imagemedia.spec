@@ -9,7 +9,7 @@
 	"keywords": ["picture", "video"],
 	"model":
 	{
-			"alternate" : { "type" : "tagstring" },
+			"alternate" : { "type" : "tagstring", "tags": { "doc" :"Value to be filled in alt html attribute of the img tag."}},
 			"enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["dataProviderID","onActionMethodID","onDataChangeMethodID"] }, 
 	        "dataProviderID" : { "type":"dataprovider", "tags": { "scope" :"design", "typeName": "mediaDataprovider" }, "ondatachange": { "onchange":"onDataChangeMethodID"}},
 	        "media" : { "type" :"media"},

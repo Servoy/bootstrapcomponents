@@ -10,10 +10,10 @@
 	"serverscript": "bootstrapcomponents/accordion/accordion_server.js",
 	"keywords": ["container"],
 	"model": {
-		"containerStyleClass": { "type": "styleclass" },
+		"containerStyleClass": { "type": "styleclass" ,"tags": { "doc" :"The CSS class(es) to be added to container element - parent of the form element."}},
 		"tabs": { "type": "tab[]", "pushToServer": "deep", "droppable": true, "tags": { "allowaccess": "visible"}},
-		"styleClass": { "type": "styleclass" },
-		"height": { "type": "int", "default": "500" },
+		"styleClass": { "type": "styleclass" ,"tags": { "doc" :"The CSS class(es) to be added to accordion element."}},
+		"height": { "type": "int", "default": "500", "tags": { "doc" : "Minimum height of the accordion, should be used for responsive forms."} },
 		"tabIndex": { "type": "int", "pushToServer": "shallow", "tags": { "scope": "runtime", "allowaccess": "visible" }, "default": 1},
 		"tabSeq": { "type": "tabseq", "tags": { "scope": "design" } },
 		"activeTabIndex": { "type": "int", "default": 0, "tags": { "scope": "runtime", "allowaccess": "visible"}, "pushToServer": "shallow"},
@@ -80,7 +80,7 @@
 		"tab": {
 			"active": { "type": "boolean", "default": false, "tags": { "scope": "private" } },
 			"containedForm": "form",
-			"text": { "type": "tagstring", "tags": { "useAsCaptionInDeveloper" : true, "captionPriority" : 1 } },
+			"text": { "type": "tagstring", "tags": { "useAsCaptionInDeveloper" : true, "captionPriority" : 1 }, "default":"tab" },
 			"relationName": "relation",
 			"name": { "type": "string" },
 			"disabled": { "type": "boolean", "default": false }

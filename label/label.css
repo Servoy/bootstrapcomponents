@@ -7,7 +7,6 @@
 .svy-wrapper > * > .bts-label.default-align {
 	display: flex;
     align-items: center;
-    justify-content: center;
 }
 
 .svy-wrapper > * > .bts-label.default-align > .bts-label-icon {
