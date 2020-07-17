@@ -5,6 +5,7 @@
  	sablo-tabseq='(handlers.onActionMethodID || handlers.onDoubleClickMethodID || handlers.onRightClickMethodID) ? model.tabSeq : -2'
 	ng-disabled='!model.enabled'
 	ng-if='model.visible'
+	svy-attributes='model.attributes'
 	id="{{::model.svyMarkupId}}">
 	<span class='bts-label-icon' ng-class='model.imageStyleClass' ng-if='model.imageStyleClass'></span>
 	<span 

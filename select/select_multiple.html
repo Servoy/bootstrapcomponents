@@ -7,6 +7,7 @@
 			ng-disabled="model.readOnly || !model.enabled"
 			sablo-tabseq='model.tabSeq'
 			svy-autoapply
+			svy-attributes='model.attributes'
 			id="{{::model.svyMarkupId}}"
 			multiple>
   			<option ng-if="showPlaceholder()" selected class="placeholderOption" ng-bind-html="model.placeholderText" hidden disabled></option>

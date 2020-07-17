@@ -1,4 +1,4 @@
-<div style='height:100%;width:100%;position:absolute;'>
+<div style='height:100%;width:100%;position:absolute;' svy-attributes='model.attributes'>
 	<div uib-accordion close-others="true" sablo-tabseq='model.tabSeq' sablo-tabseq-config="{container: true, reservedGap: 50}" ng-class='(model.styleClass ? model.styleClass : "")  + " bts-accordion"'>
 		<div uib-accordion-group ng-repeat="tab in model.tabs" is-disabled="tab.disabled" is-open="tab.active">
 			<uib-accordion-heading>

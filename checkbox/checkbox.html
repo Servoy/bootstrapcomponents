@@ -9,6 +9,7 @@
 					svy-focuslost='handlers.onFocusLostMethodID($event)'
 					ng-disabled="model.readOnly || !model.enabled"
 					id="{{::model.svyMarkupId}}"
+					svy-attributes='model.attributes'
 					/>
 		 <span ng-bind="model.text"  ng-if='model.showAs != "html" && model.showAs != "trusted_html"'/>
 		 <span ng-bind-html='model.text| htmlFilter| trustAsHtml:isTrustedHTML()' ng-if='model.showAs == "html" || model.showAs == "trusted_html"'></span>
