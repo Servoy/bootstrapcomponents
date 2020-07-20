@@ -1,4 +1,4 @@
-<div class='bts-radiogroup' ng-class='model.styleClass' ng-if='model.visible' id="{{::model.svyMarkupId}}">
+<div class='bts-radiogroup' ng-class='model.styleClass' ng-if='model.visible' id="{{::model.svyMarkupId}}" svy-attributes='model.attributes'>
   <label ng-repeat="item in model.valuelistID | filter:notNullOrEmpty('realValue')">
   	<input type="{{model.inputType}}" ng-model="selection[$index]"
   		ng-value="item.realValue"

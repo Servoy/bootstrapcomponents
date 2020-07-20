@@ -13,6 +13,7 @@
 	   ng-focus='focusGained($event)'
 	   ng-blur='focusLost($event)'
 	   id="{{::model.svyMarkupId}}"
-	   svy-selectonenter='model.selectOnEnter'/>
+	   svy-selectonenter='model.selectOnEnter'
+	   svy-attributes='model.attributes'/>
 	<span class="input-group-addon"  ng-show="!model.readOnly && model.enabled"><span class="glyphicon glyphicon-calendar"></span></span>
 </div>

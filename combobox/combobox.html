@@ -6,7 +6,8 @@
 		class='{{(model.styleClass ? model.styleClass : "")  + " bts-combobox"}}'
 		tabindex='-1'
 		sablo-tabseq='model.tabSeq'
-		on-select='onItemSelect($event)'>
+		on-select='onItemSelect($event)'
+		svy-attributes='model.attributes'>
  			<ui-select-match 
  				svy-rightclick='handlers.onRightClickMethodID($event)'
  				ng-style="style"

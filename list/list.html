@@ -12,6 +12,7 @@
 			ng-disabled="!model.enabled"
 			sablo-tabseq='model.tabSeq'
 			ng-readonly="model.readOnly || !model.editable"
+			svy-attributes='model.attributes'
 			id="{{::model.svyMarkupId}}"/>
 
 	<datalist id="{{::model.svyMarkupId}}_datalist">
