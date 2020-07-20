@@ -37,6 +37,16 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
 
 			var hasRealValues = undefined;
 
+			function getParentFormName() {
+				var parentForm = $scope.$parent;
+
+				while(parentForm && !parentForm.hasOwnProperty('formname')) {
+					parentForm = parentForm.$parent;
+				}
+
+				return parentForm ? parentForm['formname'] : null;
+			}
+
 			$scope.$watch('model.isOpened', function(){
 				var bodyElements = document.querySelectorAll('.svy-body,.ui-grid-viewport');
 				for(var i = 0; i < bodyElements.length; i++){
@@ -85,7 +95,8 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
 					if(!found)
 					{
 						$scope.value = null;
-						$scope.model.valuelistID.getDisplayValue($scope.model.dataProviderID).then(function(displayValue) {
+						// getDisplayValue does not need parentFormName starting from Servoy 2020.09
+						$scope.model.valuelistID.getDisplayValue($scope.model.dataProviderID, getParentFormName()).then(function(displayValue) {
 							$scope.value = displayValue;
 						});
 					}	
@@ -179,7 +190,8 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
 						
 						// if no matching value found serverside revert selection to last dataProviderID
 						if (!hasMatchingDisplayValueServerSide) {
-							$scope.model.valuelistID.getDisplayValue($scope.model.dataProviderID).then(function(displayValue) {
+							// getDisplayValue does not need parentFormName starting from Servoy 2020.09
+							$scope.model.valuelistID.getDisplayValue($scope.model.dataProviderID, getParentFormName()).then(function(displayValue) {
 								$scope.value = displayValue;
 							});
 						}
