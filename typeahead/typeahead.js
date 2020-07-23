@@ -114,6 +114,11 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
 						var hasMatchingDisplayValue = false;
 						for (var i = 0; i < $scope.model.valuelistID.length; i++) {
 							if ($scope.value === $scope.model.valuelistID[i].displayValue) {
+								if ($scope.model.dataProviderID === $scope.model.valuelistID[i].realValue)
+								{
+									// same value, do not send again to server
+									return;
+								}
 								$scope.model.dataProviderID = $scope.model.valuelistID[i].realValue;
 								hasMatchingDisplayValue = true;
 								break;
@@ -200,6 +205,25 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
 				}
 			}
 
+			var storedTooltip = false;
+			$scope.api.onDataChangeCallback = function(event, returnval) {
+				var stringValue = typeof returnval == 'string'
+					if (returnval === false || stringValue) {
+						$scope.ngModel.$setValidity("", false);
+						if (stringValue) {
+							if (storedTooltip == false)
+								storedTooltip = $scope.model.toolTipText;
+							registerTooltip(returnval);
+						}
+					} 
+					else {
+						$scope.ngModel.$setValidity("", true);
+						if (storedTooltip !== false) $scope.model.toolTipText = storedTooltip;
+						storedTooltip = false;
+						registerTooltip($scope.model.toolTipText );
+					}
+			}
+			
 			var tooltipState = null;
 			var formatState = null;
 			Object.defineProperty($scope.model, $sabloConstants.modelChangeNotifier, {
@@ -207,10 +231,7 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
 				value: function(property, value) {
 					switch (property) {
 					case "toolTipText":
-						if (tooltipState)
-							tooltipState(value);
-						else
-							tooltipState = $svyProperties.createTooltipState($element, value);
+						registerTooltip(value);
 						break;
 					case "format":
 						if (formatState)
@@ -223,6 +244,14 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
 					}
 				}
 			});
+			
+			 function registerTooltip(value) {
+	    		  if (tooltipState)
+					  tooltipState(value);
+				  else
+					  tooltipState = $svyProperties.createTooltipState($element, value);
+	    	  }
+			 
 			var destroyListenerUnreg = $scope.$on("$destroy", function() {
 				destroyListenerUnreg();
 				delete $scope.model[$sabloConstants.modelChangeNotifier];

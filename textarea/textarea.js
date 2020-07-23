@@ -13,14 +13,39 @@ angular.module('bootstrapcomponentsTextarea',['servoy']).directive('bootstrapcom
     		  value: function(property, value) {
     			  switch (property) {
     			  case "toolTipText":
-    				  if (tooltipState)
-    					  tooltipState(value);
-    				  else
-    					  tooltipState = $svyProperties.createTooltipState($element, value);
+    				  registerTooltip(value);
     				  break;
     			  }
     		  }
     	  });
+    	  
+    	  function registerTooltip(value) {
+    		  if (tooltipState)
+				  tooltipState(value);
+			  else
+				  tooltipState = $svyProperties.createTooltipState($element, value);
+    	  }
+    	  
+    	  var storedTooltip = false;
+    	  
+    	  $scope.api.onDataChangeCallback = function(event, returnval) {
+    		  	var ngModel = $element.children().controller("ngModel");
+				var stringValue = typeof returnval == 'string'
+				if (returnval === false || stringValue) {
+					ngModel.$setValidity("", false);
+					if (stringValue) {
+						if (storedTooltip == false)
+							storedTooltip = $scope.model.toolTipText;
+						registerTooltip(returnval);
+					}
+				} else {
+					ngModel.$setValidity("", true);
+					if (storedTooltip !== false)
+						$scope.model.toolTipText = storedTooltip;
+					storedTooltip = false;
+					registerTooltip($scope.model.toolTipText );
+				}
+			}
     	  var destroyListenerUnreg = $scope.$on("$destroy", function() {
     		  destroyListenerUnreg();
     		  delete $scope.model[$sabloConstants.modelChangeNotifier];

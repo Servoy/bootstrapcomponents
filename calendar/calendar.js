@@ -189,6 +189,24 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 				}	
 			});
 			
+			var storedTooltip = false;
+			$scope.api.onDataChangeCallback = function(event, returnval) {
+				var stringValue = typeof returnval == 'string'
+				if (returnval === false || stringValue) {
+					ngModel.$setValidity("", false);
+					if (stringValue) {
+						if (storedTooltip == false)
+							storedTooltip = $scope.model.toolTipText;
+						registerTooltip(returnval);
+					}
+				} else {
+					ngModel.$setValidity("", true);
+					if (storedTooltip !== false)
+						$scope.model.toolTipText = storedTooltip;
+					registerTooltip($scope.model.toolTipText );
+				}
+			}
+			
 			$scope.focusGained = function(event) {
 				if ($scope.model.format.edit && $scope.model.format.isMask) {
 					var settings = {};
@@ -340,10 +358,7 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 						}
 						break;
 					case "toolTipText":
-						if (tooltipState)
-							tooltipState(value);
-						else
-							tooltipState = $svyProperties.createTooltipState(inputElement, value);
+						registerTooltip(value);
 					 break;
  					case "selectOnEnter":
 						if (value)
@@ -352,6 +367,14 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 					}
 				}
 			});
+			
+			 function registerTooltip(value) {
+	    		  if (tooltipState)
+					  tooltipState(value);
+				  else
+					  tooltipState = $svyProperties.createTooltipState($element, value);
+	    	  }
+			 
 			var destroyListenerUnreg = $scope.$on("$destroy", function() {
 				destroyListenerUnreg();
 				delete $scope.model[$sabloConstants.modelChangeNotifier];

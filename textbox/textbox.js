@@ -84,7 +84,6 @@ angular.module('bootstrapcomponentsTextbox',['servoy']).directive('bootstrapcomp
 		 $scope.api.onDataChangeCallback = function(event, returnval) {
 			 var stringValue = typeof returnval == 'string'
 				if(returnval === false || stringValue) {
-					$element[0].focus();
 					ngModel.$setValidity("", false);
 					if (stringValue) {
 						if ( storedTooltip == false)
