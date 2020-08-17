@@ -166,6 +166,14 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 				if(format && format.display){
 					dateFormat = moment().toMomentFormatString(format.display);
 				}
+			    if ($scope.model.format && $scope.model.format.isMask)
+	            {
+	                // delete shortcut clears the date; this interferes(behaves strange) with mask, so cancel the shortcut in this scenario 
+	                var defaultBinding = theDateTimePicker.keyBinds();
+	                defaultBinding.delete = function (widget) {
+	                    // nop
+	                }
+	            }
 				var x = child.data('DateTimePicker');
 				if (angular.isDefined(x)) { // can be undefined in find mode
 					x.format(dateFormat);
