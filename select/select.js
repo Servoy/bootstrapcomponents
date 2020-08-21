@@ -104,7 +104,7 @@ angular.module('bootstrapcomponentsSelect',['servoy', 'bootstrapcomponentscommon
 			$scope.isDPInValueList = function() {
 				var isDPInValueList = false;
 				if($scope.model.valuelistID) {
-					for (i = 0; i < $scope.model.valuelistID.length; i++) {
+					for (var i = 0; i < $scope.model.valuelistID.length; i++) {
 						if($scope.model.dataProviderID == $scope.model.valuelistID[i].realValue) {
 							isDPInValueList = true;
 							break;
@@ -112,6 +112,18 @@ angular.module('bootstrapcomponentsSelect',['servoy', 'bootstrapcomponentscommon
 					}
 				}
 				return isDPInValueList;
+			}
+			
+			$scope.hasValueListEmptyValue = function () {
+				var allowEmptyValue = false;
+				if ($scope.model.valuelistID) {
+					// Checking for empty value at position 0. Shall i iterate the whole valuelist to search the empty value instead ?
+					var item = $scope.model.valuelistID[0];
+					if (item && (item.realValue === null || item.realValue === '')) {
+						return true;
+					}
+				}
+				return allowEmptyValue;
 			}
 
 			/**
