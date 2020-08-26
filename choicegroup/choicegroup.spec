@@ -20,7 +20,8 @@
 			"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
 			"toolTipText" : { "type" : "tagstring"},
 			"findmode" : { "type":"findmode", "tags":{"scope":"private"}, "for" : {"editable":true}}, 
-	        "visible" : "visible"
+	        "visible" : "visible",
+	        "scrollbars" : {"type" :"scrollbars", "tags": { "scope" :"design" }}
 	},
 	"handlers":
 	{

@@ -9,7 +9,13 @@
 	overflow-x: hidden;
 	word-break: break-all;
 	margin: 0;
-}
+}		
+
+.horizontaldirection > label{
+	float:left;
+	margin-right: 2px;
+}				
+					
 
 .svy-wrapper> * >.bts-radiogroup label {
 

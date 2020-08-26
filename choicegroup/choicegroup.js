@@ -1,4 +1,4 @@
-angular.module('bootstrapcomponentsChoicegroup',['servoy']).directive('bootstrapcomponentsChoicegroup', function($utils,$svyProperties, $sabloConstants) {  
+angular.module('bootstrapcomponentsChoicegroup',['servoy']).directive('bootstrapcomponentsChoicegroup', function($utils,$svyProperties, $sabloConstants, $scrollbarConstants) {  
     return {
       restrict: 'E',
       scope: {
@@ -110,7 +110,15 @@ angular.module('bootstrapcomponentsChoicegroup',['servoy']).directive('bootstrap
     					  tooltipState(value);
     				  else
     					  tooltipState = $svyProperties.createTooltipState($element, value);
-    				  break;
+					  break;
+					case "scrollbars":
+						var element = $element.children().first();
+						element.removeClass('horizontaldirection');
+						if ((value & $scrollbarConstants.VERTICAL_SCROLLBAR_NEVER) == $scrollbarConstants.VERTICAL_SCROLLBAR_NEVER) {// vertical scrollbar never
+							element.addClass('horizontaldirection');
+						}
+						$svyProperties.setScrollbars(element, value);
+						break;
     			  }
     		  }
     	  });
