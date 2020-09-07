@@ -21,7 +21,7 @@
 			"toolTipText" : { "type" : "tagstring"},
 			"findmode" : { "type":"findmode", "tags":{"scope":"private"}, "for" : {"editable":true}}, 
 	        "visible" : "visible",
-	        "scrollbars" : {"type" :"scrollbars", "tags": { "scope" :"design" }}
+	        "alignment": {"type": "string", "default": "vertical", "tags": {"scope": "design"}, "values" : ["vertical","horizontal"]}
 	},
 	"handlers":
 	{

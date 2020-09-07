@@ -111,10 +111,10 @@ angular.module('bootstrapcomponentsChoicegroup',['servoy']).directive('bootstrap
     				  else
     					  tooltipState = $svyProperties.createTooltipState($element, value);
 					  break;
-					case "scrollbars":
+					case "alignment":
 						var element = $element.children().first();
 						element.removeClass('horizontaldirection');
-						if ((value & $scrollbarConstants.VERTICAL_SCROLLBAR_NEVER) == $scrollbarConstants.VERTICAL_SCROLLBAR_NEVER) {// vertical scrollbar never
+						if (value == "horizontal") {
 							element.addClass('horizontaldirection');
 						}
 						$svyProperties.setScrollbars(element, value);
