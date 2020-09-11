@@ -22,8 +22,8 @@
 	    "tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
 	    "toolTipText" : { "type" : "tagstring"},
 	    "visible" : "visible",
-	    "selectOnEnter" : {"type" :"boolean", "tags": { "scope" :"design" }}
-	    
+	    "selectOnEnter" : {"type" :"boolean", "tags": { "scope" :"design" }},
+		"appendToBody" : {"type" :"boolean",  "default" : true}
 	},
 	"handlers":
 	{

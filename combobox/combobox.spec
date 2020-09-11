@@ -23,7 +23,8 @@
 	        "tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }}, 
 	        "toolTipText" : { "type" : "tagstring" }, 
 	        "valuelistID" : { "type" : "valuelist", "tags": { "scope" :"design", "logWhenOverMax":true}, "for": "dataProviderID", "max":500}, 
-	        "visible" : "visible" 
+	        "visible" : "visible",
+			"appendToBody" : {"type" :"boolean",  "default" : true}
 	},
 	"handlers":
 	{

@@ -8,7 +8,7 @@
 		ng-model="value"
 		typeahead-min-length="0"
 		typeahead-wait-ms="500"
-		typeahead-append-to-body="true"
+		typeahead-append-to-body="model.appendToBody"
 		typeahead-is-open="model.isOpened"
 		uib-typeahead="value.displayValue || '&nbsp;' | formatFilter:model.format.display:model.format.type
        			  for value in model.valuelistID.filterList($viewValue)"
