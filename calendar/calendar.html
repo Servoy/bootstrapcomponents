@@ -1,6 +1,6 @@
 <div class='input-group date bts-calendar'
     ng-model="model.dataProviderID"
-    ng-show='model.visible'>
+    ng-if='model.visible'>
 	<input type="text" 
 	   placeholder="{{model.placeholderText}}"
 	   svy-focusgained='handlers.onFocusGainedMethodID($event)'
