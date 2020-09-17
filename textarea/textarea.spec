@@ -19,7 +19,7 @@
 			"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
 			"toolTipText" : { "type" : "tagstring"},
 	    	"visible" : "visible",
-	    	"maxLength": { "type" : "tagstring"}
+	    	"maxLength": { "type" : "int"}
 	},
 	"handlers":
 	{

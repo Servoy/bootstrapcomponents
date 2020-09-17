@@ -8,13 +8,15 @@ angular.module('bootstrapcomponentsTextarea',['servoy']).directive('bootstrapcom
       },
       controller: function($scope, $element, $attrs) {
     	  var tooltipState = null;
+    	  $scope.maxLengthDefaultValue = 524288;
     	  Object.defineProperty($scope.model, $sabloConstants.modelChangeNotifier, {
     		  configurable: true,
     		  value: function(property, value) {
     			  switch (property) {
-    			  case "toolTipText":
-    				  registerTooltip(value);
-    				  break;
+        			  case "toolTipText": { 
+        				  registerTooltip(value);
+        				  break;
+        			  }
     			  }
     		  }
     	  });
