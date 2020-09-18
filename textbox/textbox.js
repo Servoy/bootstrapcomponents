@@ -10,8 +10,6 @@ angular.module('bootstrapcomponentsTextbox',['servoy']).directive('bootstrapcomp
       link: function($scope, $element, $attrs) {
     	  
     	  var formatState = null;
-    	  var child = $element.children();
-    	  var ngModel = child.controller("ngModel");
     	  
     	  $scope.model.autocomplete = $scope.model.autocomplete ? $scope.model.autocomplete : 'off';
     	  
@@ -21,7 +19,12 @@ angular.module('bootstrapcomponentsTextbox',['servoy']).directive('bootstrapcomp
     			  {
     				  if (formatState)
     					  formatState($scope.model.format);
-    				  else formatState = $formatterUtils.createFormatState(child, $scope, ngModel,true,$scope.model.format);
+    				  else
+    				  {	  
+    					  var child = $element.children();
+    			    	  var ngModel = child.controller("ngModel");
+    					  formatState = $formatterUtils.createFormatState(child, $scope, ngModel,true,$scope.model.format);
+    				  }
     			  }	  
     		  })
     	  }
@@ -82,6 +85,7 @@ angular.module('bootstrapcomponentsTextbox',['servoy']).directive('bootstrapcomp
 		 // fill in the api defined in the spec file
 
 		 $scope.api.onDataChangeCallback = function(event, returnval) {
+			 var ngModel = $element.children().controller("ngModel");
 			 var stringValue = typeof returnval == 'string'
 				if(returnval === false || stringValue) {
 					ngModel.$setValidity("", false);
