@@ -8,7 +8,8 @@
 			list="{{::model.svyMarkupId}}_datalist"
 			ng-blur='onBlur($event)'
 			ng-class='model.styleClass'
-			ng-show='model.visible'
+			ng-if='model.visible'
+			ng-init="inputRenderFinished()"
 			ng-disabled="!model.enabled"
 			sablo-tabseq='model.tabSeq'
 			ng-readonly="model.readOnly || !model.editable"

@@ -1,5 +1,6 @@
 <div class='bts-calendar-inline'
 	ng-class='model.styleClass'
-    ng-show='model.visible'
+    ng-if='model.visible'
+    ng-init="renderFinished()"
     svy-attributes='model.attributes'>
 </div>
