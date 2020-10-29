@@ -86,7 +86,7 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
 					var found = false;
 					for (var i = 0; i < $scope.model.valuelistID.length; i++) {
 						var item = $scope.model.valuelistID[i];
-						if (item.realValue === $scope.model.dataProviderID) {
+						if ((item.realValue + '') === ($scope.model.dataProviderID + '')) {
 							$scope.value = item.displayValue;
 							found = true;
 							break;
@@ -114,7 +114,7 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
 						var hasMatchingDisplayValue = false;
 						for (var i = 0; i < $scope.model.valuelistID.length; i++) {
 							if ($scope.value === $scope.model.valuelistID[i].displayValue) {
-								if ($scope.model.dataProviderID === $scope.model.valuelistID[i].realValue)
+								if (($scope.model.dataProviderID + '') === ($scope.model.valuelistID[i].realValue+''))
 								{
 									// same value, do not send again to server
 									return;
