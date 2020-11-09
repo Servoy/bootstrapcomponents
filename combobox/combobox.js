@@ -23,6 +23,15 @@ angular.module('bootstrapcomponentsCombobox', ['servoy', 'ui.select'])
 				scope.$$childHead.$select.parserResult = { source: function() { return undefined }};	
 			} 
 			
+			scope.isEmptyOrNull = function (item) {
+				var realValue = item.realValue;
+				var displayValue = item.displayValue;
+				if ((realValue === undefined || realValue === null || realValue === '') && (displayValue === undefined || displayValue === null || displayValue === ''  )) { 
+					return true; 
+				}
+				return false;
+			};
+			
 			scope.isTrustedHTML = function() {
 				if(scope.svyServoyapi.trustAsHtml() || scope.model.showAs === 'trusted_html') {
 					return true;
