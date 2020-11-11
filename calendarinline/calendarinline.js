@@ -13,7 +13,7 @@ angular.module('bootstrapcomponentsCalendarinline',['servoy'])
 				var child = $element.children();
 				var options = {
 						showTodayButton: true,
-						calendarWeeks: true,
+						calendarWeeks: $scope.model.calendarWeeks,
 						useCurrent: false,
 						inline: true
 				}

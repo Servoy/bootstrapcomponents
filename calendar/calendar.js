@@ -16,7 +16,7 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 				var options = {
 						widgetParent: $(document.body),
 						showTodayButton: true,
-						calendarWeeks: true,
+						calendarWeeks: $scope.model.calendarWeeks,
 						useCurrent: false,
 						focusOnShow: !$scope.model.pickerOnly,
 						ignoreReadonly: $scope.model.pickerOnly
