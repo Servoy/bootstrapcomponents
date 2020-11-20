@@ -1,4 +1,4 @@
-angular.module('bootstrapcomponentsCombobox', ['servoy', 'ui.select'])
+angular.module('bootstrapcomponentsCombobox', ['servoy', 'bootstrapcomponentscommon', 'ui.select'])
 .directive('bootstrapcomponentsCombobox', ['$timeout', '$apifunctions','$sabloConstants','$svyProperties','$applicationService', '$animate', function ($timeout, $apifunctions,$sabloConstants,$svyProperties,$applicationService,$animate) {
 	return {
 		restrict: 'E',
