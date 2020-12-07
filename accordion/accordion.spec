@@ -22,7 +22,7 @@
 	
 	"handlers": { 
 		"onChangeMethodID": {
-			"description": "Fired after a different tab is selected",
+			"doc": "Fired after a different tab is selected",
 			"parameters": [{
 				"name": "previousIndex",
 				"type": "int",

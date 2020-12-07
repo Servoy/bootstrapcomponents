@@ -24,7 +24,7 @@
 	
 	"handlers": { 
 		"onChangeMethodID": {
-			"description": "Fired after a different tab is selected",
+			"doc": "Fired after a different tab is selected",
 			"parameters": [{
 				"name": "previousIndex",
 				"type": "int",
@@ -35,7 +35,7 @@
 			}]
 		},
 		"onTabClickedMethodID": {
-			"description": "Fired when the user clicks on a tab. When false is returned, the tab switch is prevented",
+			"doc": "Fired when the user clicks on a tab. When false is returned, the tab switch is prevented",
 			"returns": "boolean",
 			"parameters": [{
 				"name": "event",
@@ -52,7 +52,7 @@
 			}]
 		},
 		"onTabCloseMethodID": {
-			"description": "Fired when the user clicks on the tab close icon. When false is returned, the tab close is prevented",
+			"doc": "Fired when the user clicks on the tab close icon. When false is returned, the tab close is prevented",
 			"returns": "boolean",
 			"parameters": [{
 				"name": "event",
