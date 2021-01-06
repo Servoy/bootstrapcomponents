@@ -3,3 +3,7 @@
 	height: 100%;
 	padding: 1px 5px;
 }
+
+ul[uib-typeahead-popup]{
+	z-index: 9999;
+}
