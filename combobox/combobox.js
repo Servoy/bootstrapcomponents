@@ -13,11 +13,16 @@ angular.module('bootstrapcomponentsCombobox', ['servoy', 'bootstrapcomponentscom
 					height: '100%',
 					width: '100%'
 			};
-
 			var enableFilter = $applicationService.getUIProperty('Combobox.enableFilter');
 			$scope.enablefilter = enableFilter !== undefined && enableFilter != null ? enableFilter : true;
 		},
 		link: function (scope, element, attrs) {
+           
+           scope.renderFinished = function() {
+                var container = element.querySelectorAll('.ui-select-choices');
+                $animate.enabled(container,false)
+           }
+             
 			// workaround for ui-select issue, that sets the select items formatter (scope.$$childHead.$select.parserResult) too late 
 			if(scope.$$childHead && scope.$$childHead.$select && (scope.$$childHead.$select.parserResult == undefined)) {
 				scope.$$childHead.$select.parserResult = { source: function() { return undefined }};	
