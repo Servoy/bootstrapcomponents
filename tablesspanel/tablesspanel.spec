@@ -7,6 +7,8 @@
 	"definition": "bootstrapcomponents/tablesspanel/tablesspanel.js",
 	"libraries": [{"name":"bootstrapcomponents-tablesspanel-css", "version":"1.0", "url":"bootstrapcomponents/tablesspanel/tablesspanel.css", "mimetype":"text/css"}],
 	"keywords": ["container"],
+	"deprecated": "This component will be replaced with formcontainer from the Servoy Core package in a next version.",
+	"replacement": "servoycore-formcontainer",
 	"model":
 	{
 			"containedForm": { "type" :"form"},
