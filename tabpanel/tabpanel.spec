@@ -118,7 +118,8 @@
 			"name": { "type": "string" },
 			"disabled": { "type": "boolean", "default": false },
 			"hideCloseIcon" : { "type": "boolean", "default": false },
-			"iconStyleClass" : { "type" :"styleclass" }
+			"iconStyleClass" : { "type" :"styleclass" },
+			"styleClass": { "type": "styleclass" }
 		}
 	}
 

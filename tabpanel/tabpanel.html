@@ -5,7 +5,7 @@
 </div>
 <uib-tabset  id="{{::model.svyMarkupId}}" active="model.activeTabIndex" class='bts-tabpanel relativeMaxSize' ng-class='model.styleClass' style="position: relative;" ng-if='model.visible' sablo-tabseq='model.tabSeq' sablo-tabseq-config="{container: true, reservedGap: 50}"  bs-tabpanel-initializer svy-attributes='model.attributes'>
     <uib-tab ng-repeat="tab in model.tabs track by $index" ng-click="tabClicked(tab, $index, $event)" disable="tab.disabled">
-      <uib-tab-heading>
+      <uib-tab-heading  ng-class='tab.styleClass'>
         <img ng-show="tab.imageMediaID" ng-src='{{tab.imageMediaID}}' alt={{tab.text}} />
         <span ng-if="tab.iconStyleClass != null" ng-class="tab.iconStyleClass"></span>
         <span ng-bind-html="tab.text| htmlFilter| trustAsHtml:servoyApi.trustAsHtml()"></span>
