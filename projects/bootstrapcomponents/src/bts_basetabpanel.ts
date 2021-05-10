@@ -15,7 +15,7 @@ export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBo
 
     @Input() activeTabIndex: number;
     @Output() activeTabIndexChange= new EventEmitter();
-    
+
 	@ContentChild(TemplateRef, { static: true })
 	templateRef: TemplateRef<any>;
 
@@ -39,7 +39,7 @@ export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBo
 			// quickly generate the id's for a the tab html id (and selecting it)
 			this.generateIDs();
             if (!changes['tabs'].firstChange) {
-                let index = this.getRealTabIndex();
+                const index = this.getRealTabIndex();
                 if (index >= 0) {
                     this.select(this.tabs[index]);
                 }
