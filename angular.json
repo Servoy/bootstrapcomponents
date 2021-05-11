@@ -27,6 +27,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
+            "preserveSymlinks": true,
             "main": "projects/bootstrapcomponents/src/test.ts",
             "tsConfig": "projects/bootstrapcomponents/tsconfig.spec.json",
             "karmaConfig": "projects/bootstrapcomponents/karma.conf.js"
@@ -35,6 +36,7 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
+            "preserveSymlinks": true,
             "lintFilePatterns": [
               "projects/bootstrapcomponents/src/**/*.ts",
               "projects/bootstrapcomponents/src/**/*.html"

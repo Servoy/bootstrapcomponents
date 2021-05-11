@@ -1,10 +1,9 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { runOnPushChangeDetection } from '../../testing';
+import { runOnPushChangeDetection } from '../testingutils';
 import { ServoyBootstrapImageMedia } from './imagemedia';
 import { By } from '@angular/platform-browser';
 import { SimpleChange } from '@angular/core';
-import { ServoyTestingModule } from '../../testing/servoytesting.module';
-import { ServoyPublicModule } from '@servoy/public';
+import { ServoyPublicTestingModule } from '@servoy/public';
 
 describe('ImagemediaComponent', () => {
     let component: ServoyBootstrapImageMedia;
@@ -14,7 +13,7 @@ describe('ImagemediaComponent', () => {
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             declarations: [ServoyBootstrapImageMedia],
-             imports: [ServoyTestingModule, ServoyPublicModule],
+             imports: [ServoyPublicTestingModule],
         })
             .compileComponents();
     }));

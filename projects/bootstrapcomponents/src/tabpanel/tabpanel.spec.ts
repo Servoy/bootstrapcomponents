@@ -3,12 +3,11 @@ import { SimpleChange } from '@angular/core';
 
 import { ServoyBootstrapTabpanel } from './tabpanel';
 import { Tab } from '../bts_basetabpanel';
-import { ServoyPublicModule, WindowRefService } from '@servoy/public';
+import { ServoyPublicTestingModule, WindowRefService } from '@servoy/public';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ServoyTestingModule } from '../../testing/servoytesting.module';
 import { ServoyApi } from '@servoy/public';
 import { By } from '@angular/platform-browser';
-import { runOnPushChangeDetection } from '../../testing';
+import { runOnPushChangeDetection } from '../testingutils';
 
 describe('TabpanelComponent', () => {
     let component: ServoyBootstrapTabpanel;
@@ -18,7 +17,7 @@ describe('TabpanelComponent', () => {
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             declarations: [ServoyBootstrapTabpanel],
-            imports: [NgbModule, ServoyTestingModule, ServoyPublicModule],
+            imports: [NgbModule, ServoyPublicTestingModule],
             providers: [WindowRefService]
         })
             .compileComponents();

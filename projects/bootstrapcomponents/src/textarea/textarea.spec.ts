@@ -1,14 +1,10 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { FormattingService, TooltipService } from '@servoy/public';
-import { ServoyPublicModule } from '@servoy/public';
-import { ServoyTestingModule } from '../../testing/servoytesting.module';
-import { LocaleService } from '../../ngclient/locale.service';
-import { I18NProvider } from '../../ngclient/services/i18n_provider.service';
+import { ServoyPublicTestingModule } from '@servoy/public';
 
 import { ServoyBootstrapTextarea } from './textarea';
 import { By } from '@angular/platform-browser';
-import { runOnPushChangeDetection } from '../../testing';
+import { runOnPushChangeDetection } from '../testingutils';
 
 describe('TextareaComponent', () => {
   let component: ServoyBootstrapTextarea;
@@ -18,8 +14,8 @@ describe('TextareaComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [ ServoyBootstrapTextarea ],
-      imports: [ServoyTestingModule, ServoyPublicModule, FormsModule],
-      providers: [I18NProvider, FormattingService, TooltipService, LocaleService ]
+      imports: [ServoyPublicTestingModule, FormsModule],
+      providers: [ ]
     })
     .compileComponents();
   });

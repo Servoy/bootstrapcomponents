@@ -1,10 +1,9 @@
 import { ComponentFixture, TestBed, waitForAsync, tick, fakeAsync } from '@angular/core/testing';
 import { ServoyApi } from '@servoy/public';
 import { ServoyBootstrapDatalabel } from './datalabel';
-import { ServoyPublicModule } from '@servoy/public';
-import { ServoyTestingModule } from '../../testing/servoytesting.module';
+import { ServoyPublicTestingModule } from '@servoy/public';
 
-import { runOnPushChangeDetection } from '../../testing';
+import { runOnPushChangeDetection } from '../testingutils';
 import { By } from '@angular/platform-browser';
 
 describe('ServoyBootstrapDatalabel', () => {
@@ -19,7 +18,7 @@ describe('ServoyBootstrapDatalabel', () => {
             declarations: [ServoyBootstrapDatalabel],
             providers: [],
             imports: [
-                ServoyTestingModule, ServoyPublicModule]
+                ServoyPublicTestingModule]
         })
             .compileComponents();
     }));

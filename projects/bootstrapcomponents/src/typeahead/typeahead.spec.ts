@@ -5,10 +5,9 @@ import { ServoyBootstrapTypeahead } from './typeahead';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormattingService, IValuelist, TooltipService } from '@servoy/public';
 import { ServoyPublicModule } from '@servoy/public';
-import { ServoyTestingModule } from '../../testing/servoytesting.module';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { runOnPushChangeDetection } from '../../testing';
+import { runOnPushChangeDetection } from '../testingutils';
 import { of } from 'rxjs';
 import { Format } from '@servoy/public';
 
@@ -37,7 +36,7 @@ describe('TypeaheadComponent', () => {
         TestBed.configureTestingModule({
             declarations: [ServoyBootstrapTypeahead],
             providers: [FormattingService, TooltipService],
-            imports: [ServoyPublicModule, ServoyTestingModule, NgbModule, FormsModule]
+            imports: [ServoyPublicModule, NgbModule, FormsModule]
         })
             .compileComponents();
     }));

@@ -1,13 +1,12 @@
 import { ComponentFixture, TestBed, waitForAsync, fakeAsync, tick } from '@angular/core/testing';
 
 import { ServoyBootstrapAccordion } from './accordion';
-import { ServoyPublicModule, WindowRefService, ServoyApi } from '@servoy/public'
+import { ServoyPublicTestingModule, WindowRefService, ServoyApi } from '@servoy/public'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ServoyTestingModule } from '../../testing/servoytesting.module';
 import { By } from '@angular/platform-browser';
-import { runOnPushChangeDetection } from '../../testing';
 import { Tab } from '../bts_basetabpanel';
 import { SimpleChange } from '@angular/core';
+import { runOnPushChangeDetection}  from '../testingutils';
 
 describe('ServoyBootstrapAccordion', () => {
     let component: ServoyBootstrapAccordion;
@@ -17,7 +16,7 @@ describe('ServoyBootstrapAccordion', () => {
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             declarations: [ServoyBootstrapAccordion],
-            imports: [NgbModule, ServoyTestingModule, ServoyPublicModule],
+            imports: [NgbModule, ServoyPublicTestingModule],
             providers: [WindowRefService]
         })
             .compileComponents();

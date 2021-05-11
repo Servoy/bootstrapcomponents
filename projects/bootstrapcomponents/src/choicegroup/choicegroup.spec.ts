@@ -2,9 +2,8 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ServoyBootstrapChoicegroup, ChoiceElementDirective } from './choicegroup';
 import { By } from '@angular/platform-browser';
-import { ServoyTestingModule } from '../../testing/servoytesting.module';
-import { ServoyPublicModule, NotNullOrEmptyPipe, IValuelist } from '@servoy/public';
-import { runOnPushChangeDetection } from '../../testing';
+import { ServoyPublicTestingModule, NotNullOrEmptyPipe, IValuelist } from '@servoy/public';
+import { runOnPushChangeDetection } from '../testingutils';
 import { SimpleChange } from '@angular/core';
 
 const mockData = [
@@ -29,7 +28,7 @@ describe('ChoicegroupComponent', () => {
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             declarations: [ServoyBootstrapChoicegroup, ChoiceElementDirective],
-            imports: [ServoyTestingModule, ServoyPublicModule],
+            imports: [ServoyPublicTestingModule],
             providers: [NotNullOrEmptyPipe]
         })
             .compileComponents();

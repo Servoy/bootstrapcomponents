@@ -1,10 +1,8 @@
 import { ComponentFixture, TestBed, waitForAsync, tick, fakeAsync } from '@angular/core/testing';
-import { ServoyApi } from '@servoy/public';
+import { ServoyApi, ServoyPublicTestingModule } from '@servoy/public';
 import { ServoyBootstrapButton } from './button';
-import { ServoyPublicModule } from '@servoy/public';
-import { ServoyTestingModule } from '../../testing/servoytesting.module';
 
-import { runOnPushChangeDetection } from '../../testing';
+import { runOnPushChangeDetection } from '../testingutils';
 import { By } from '@angular/platform-browser';
 
 describe('ServoyBootstrapButton', () => {
@@ -19,7 +17,7 @@ describe('ServoyBootstrapButton', () => {
             declarations: [ServoyBootstrapButton],
             providers: [],
             imports: [
-                ServoyTestingModule, ServoyPublicModule]
+                ServoyPublicTestingModule]
         })
             .compileComponents();
     }));

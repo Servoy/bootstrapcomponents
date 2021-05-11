@@ -2,16 +2,13 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ServoyBootstrapCalendarinline } from './calendarinline';
 
-import { ServoyPublicModule } from '@servoy/public';
-import { ServoyTestingModule } from '../../testing/servoytesting.module';
+import { ServoyPublicTestingModule } from '@servoy/public';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { OwlDateTimeIntl, OwlDateTimeModule, OwlNativeDateTimeModule } from '@danielmoncada/angular-datetime-picker';
 import { Renderer2 } from '@angular/core';
-import { LocaleService } from '../../ngclient/locale.service';
-import { I18NProvider } from '../../ngclient/services/i18n_provider.service';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { runOnPushChangeDetection } from '../../testing';
+import { runOnPushChangeDetection } from '../testingutils';
 import { By } from '@angular/platform-browser';
 
 describe('CalendarinlineComponent', () => {
@@ -24,9 +21,8 @@ describe('CalendarinlineComponent', () => {
         i18nProvider.getI18NMessages.and.returnValue(promise);
         TestBed.configureTestingModule({
             declarations: [ServoyBootstrapCalendarinline],
-            imports: [ServoyTestingModule, BrowserModule, ServoyPublicModule, OwlDateTimeModule, FormsModule, OwlNativeDateTimeModule, NoopAnimationsModule],
-            providers: [Renderer2, FormsModule, { provide: LocaleService, useValue: { getLocale: () => 'en' } }, { provide: I18NProvider, useValue: i18nProvider },
-                OwlDateTimeIntl]
+            imports: [BrowserModule, ServoyPublicTestingModule, OwlDateTimeModule, FormsModule, OwlNativeDateTimeModule, NoopAnimationsModule],
+            providers: [Renderer2, FormsModule, OwlDateTimeIntl]
         })
             .compileComponents();
     }));

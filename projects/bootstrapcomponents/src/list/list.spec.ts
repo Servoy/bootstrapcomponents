@@ -2,11 +2,10 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ServoyBootstrapList } from './list';
 import { ShowDisplayValuePipe } from '../lib/showDisplayValue.pipe';
-import { ServoyTestingModule } from '../../testing/servoytesting.module';
-import { IValuelist, ServoyPublicModule } from '@servoy/public';
+import { IValuelist, ServoyPublicTestingModule } from '@servoy/public';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
-import { runOnPushChangeDetection } from '../../testing';
+import { runOnPushChangeDetection } from '../testingutils';
 import { SimpleChange } from '@angular/core';
 
 const mockData = [
@@ -33,7 +32,7 @@ describe('ServoyBootstrapList', () => {
 
         TestBed.configureTestingModule({
             declarations: [ServoyBootstrapList, ShowDisplayValuePipe],
-            imports: [ServoyTestingModule, ServoyPublicModule]
+            imports: [ServoyPublicTestingModule]
         })
             .compileComponents();
     }));
