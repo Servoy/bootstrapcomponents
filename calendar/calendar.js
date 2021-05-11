@@ -176,6 +176,15 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 							// nop
 						}
 					}
+                    var editFormat = $scope.model.format ?  ($scope.model.format.edit ? $scope.model.format.edit : $scope.model.format.display ): null;
+                    if (editFormat && editFormat.indexOf('MMM') >= 0)
+                    {
+                        // disable today shortcut if month appears as text when editing 
+                        var defaultBinding = theDateTimePicker.keyBinds();
+                        defaultBinding.t = function (widget) {
+                            // nop
+                        }
+                    }
 					var x = child.data('DateTimePicker');
 					if (angular.isDefined(x)) { // can be undefined in find mode
 						x.format(dateFormat);
