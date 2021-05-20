@@ -1,19 +1,23 @@
-import { Renderer2, ChangeDetectorRef, Inject } from '@angular/core';
-import { Moment } from 'moment';
+import { Renderer2, ChangeDetectorRef, Inject, Input, Directive, EventEmitter, Output } from '@angular/core';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 import { DateTimeAdapter } from '@danielmoncada/angular-datetime-picker';
 import { DOCUMENT } from '@angular/common';
 import { getFirstDayOfWeek, ServoyPublicService } from '@servoy/public';
 import { DateTime } from 'luxon';
 
+@Directive()
 export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDivElement> {
+
+    @Input() disabledDays: number[];
+    @Output() disabledDaysChange = new EventEmitter();
+
+    @Input() disabledDates: Date[];
+    @Output() disabledDatesChange = new EventEmitter();
 
     public filter: any;
     public min: Date;
     public max: Date;
 
-    public globalDayArray: number[];
-    public globalDateArray: Date[];
 
     public firstDayOfWeek = 1;
     public hour12Timer = false;
@@ -29,15 +33,23 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
 
     }
 
+    public svyOnInit() {
+        super.svyOnInit();
+        this.filter = this.disabledDays || this.disabledDays ? this.filterImpl : null;
+    }
+
     public disableDays(dateArray: number[]) {
-        this.globalDayArray = dateArray;
-        this.filter = this.globalDateArray || this.globalDayArray ? this.filterImpl : null;
+        this.disabledDays = dateArray;
+        this.disabledDaysChange.emit(dateArray);
+        this.filter = this.disabledDays || this.disabledDays ? this.filterImpl : null;
         this.cdRef.detectChanges();
     }
 
     public disableDates(dateArray: Date[]) {
-        this.globalDateArray = dateArray;
-        this.filter = this.globalDateArray || this.globalDayArray ? this.filterImpl : null;
+        this.disabledDates = dateArray;
+        this.disabledDatesChange.emit(dateArray);
+        this.filter = this.disabledDates || this.disabledDates ? this.filterImpl : null;
+
         this.cdRef.detectChanges();
     }
 
@@ -48,8 +60,8 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
 
     private filterImpl = (d: Date): boolean => {
         let result = true;
-        if (this.globalDateArray) {
-            this.globalDateArray.forEach(el => {
+        if (this.disabledDates) {
+            this.disabledDates.forEach(el => {
                 const year = d.getUTCFullYear().toString();
                 const month = d.getUTCMonth().toString();
                 const day = d.getUTCDate() + 1;
@@ -60,9 +72,11 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
                 }
             });
         }
-        if (result && this.globalDayArray) {
-            result = !this.globalDayArray.includes(d.day());
+        if (result && this.disabledDays) {
+            let weekday = DateTime.fromJSDate(d).weekday; // 1 == monday, 7 == sunday
+            if (weekday === 7) weekday = 0;
+            result = !this.disabledDays.includes(weekday);
         }
         return result;
-    }
+    };
 }
