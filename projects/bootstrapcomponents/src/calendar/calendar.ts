@@ -82,7 +82,7 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
 
     public dateChanged(event) {
         if (event && event.value) {
-            this.dataProviderID = event.value.toDate();
+            this.dataProviderID = event.value;
         } else this.dataProviderID = null;
         super.pushUpdate();
     }

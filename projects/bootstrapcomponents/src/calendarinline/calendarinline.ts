@@ -1,7 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Renderer2, ChangeDetectorRef, ChangeDetectionStrategy, Inject } from '@angular/core';
 import { DateTimeAdapter } from '@danielmoncada/angular-datetime-picker';
-import { Moment } from 'moment';
 import { ServoyPublicService } from '@servoy/public';
 import { ServoyBootstrapBaseCalendar } from '../calendar/basecalendar';
 
@@ -18,9 +17,9 @@ export class ServoyBootstrapCalendarinline extends ServoyBootstrapBaseCalendar {
         super(renderer, cdRef, servoyService, dateTimeAdapter, doc);
     }
 
-    public dateChanged(event: Moment) {
+    public dateChanged(event: Date) {
         if (event) {
-            this.dataProviderID = event.toDate();
+            this.dataProviderID = event;
         } else this.dataProviderID = null;
         super.pushUpdate();
     }

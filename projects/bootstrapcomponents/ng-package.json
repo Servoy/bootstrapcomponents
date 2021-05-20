@@ -9,7 +9,7 @@
     "umdId": "servoy.bootstrapcomponents",
     "umdModuleIds": {
       "@servoy/public": "servoy.public",
-      "moment": "moment",
+      "luxon": "luxon",
       "@angular/core": "angular.core",
       "@ng-bootstrap/ng-bootstrap": "ng-bootstrap.ng-bootstrap",
       "@danielmoncada/angular-datetime-picker": "danielmoncada.angular-datetime-picker"

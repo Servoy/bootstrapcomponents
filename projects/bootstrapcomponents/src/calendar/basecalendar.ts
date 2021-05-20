@@ -1,10 +1,10 @@
 import { Renderer2, ChangeDetectorRef, Inject } from '@angular/core';
 import { Moment } from 'moment';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
-import * as moment from 'moment';
 import { DateTimeAdapter } from '@danielmoncada/angular-datetime-picker';
 import { DOCUMENT } from '@angular/common';
-import { ServoyPublicService } from '@servoy/public';
+import { getFirstDayOfWeek, ServoyPublicService } from '@servoy/public';
+import { DateTime } from 'luxon';
 
 export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDivElement> {
 
@@ -23,10 +23,9 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
             dateTimeAdapter: DateTimeAdapter<any>, @Inject(DOCUMENT) doc: Document) {
         super(renderer, cdRef, doc);
         dateTimeAdapter.setLocale(servoyService.getLocale());
-        const ld = moment.localeData();
-        this.firstDayOfWeek = ld.firstDayOfWeek();
-        const lts = ld.longDateFormat('LTS');
-        this.hour12Timer = lts.indexOf('a') >= 0 || lts.indexOf('A') >= 0;
+        this.firstDayOfWeek = getFirstDayOfWeek(servoyService.getLocale());
+        const lts = DateTime.now().setLocale(servoyService.getLocale()).toLocaleString(DateTime.DATETIME_FULL).toUpperCase();
+        this.hour12Timer = lts.indexOf('AM') >= 0 || lts.indexOf('PM') >= 0;
 
     }
 
@@ -47,13 +46,13 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
         if (maxDate) this.max = maxDate;
     }
 
-    private filterImpl = (d: Moment): boolean => {
+    private filterImpl = (d: Date): boolean => {
         let result = true;
         if (this.globalDateArray) {
             this.globalDateArray.forEach(el => {
-                const year = d.toDate().getUTCFullYear().toString();
-                const month = d.toDate().getUTCMonth().toString();
-                const day = d.toDate().getUTCDate() + 1;
+                const year = d.getUTCFullYear().toString();
+                const month = d.getUTCMonth().toString();
+                const day = d.getUTCDate() + 1;
                 if (el.getUTCFullYear().toString() === year &&
                     el.getUTCMonth().toString() === month &&
                     el.getUTCDate() === day) {
