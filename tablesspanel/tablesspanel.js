@@ -122,6 +122,7 @@ angular.module('bootstrapcomponentsTablesspanel',['servoy']).directive('bootstra
 			});
 
 			$scope.getContainerStyle = function() {
+                var style = {position:"relative"}
 				var height = 0;
 				if ($scope.model.height)
 				{
@@ -135,8 +136,12 @@ angular.module('bootstrapcomponentsTablesspanel',['servoy']).directive('bootstra
 					{
 						height = formState.properties.designSize.height; 
 					}	  
-				}	  
-				return {position:"relative", minHeight:height+"px"};
+				}
+                if (height > 0)
+                {
+                    style.minHeight = height+"px";
+                }	  
+				return style;
 			}
 
 			$scope.showEditorHint = function()
