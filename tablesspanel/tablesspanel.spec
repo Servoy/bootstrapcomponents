@@ -9,6 +9,7 @@
 	"keywords": ["container"],
 	"model":
 	{
+			"animation" : {"type" : "string", "values": [{"NONE": "none"},{"SLIDE-TOP": "slide-top"},{"SLIDE-BOTTOM": "slide-bottom"},{"SLIDE-LEFT": "slide-left"},{"SLIDE-RIGHT": "slide-right"}], "default": "none"},
 			"containedForm": { "type" :"form"},
 			"relationName": "relation",
 			"waitForData" : { "type" :"boolean", "default":true, "tags": { "doc": "When <code>true</code>, the form is rendered when all its latest data is loaded from the server. When <code>false</code>, the form is rendered faster, but could show stale data (not a problem when the form shown does not show dynamic data)" }},

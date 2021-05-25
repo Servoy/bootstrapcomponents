@@ -3,9 +3,140 @@
     height: 100%;
     width: 100%;
     min-height: 0 !important;
-}
+} 
 
 /* Default form's height to 100% if responsive form is contained within an anchored form */
 .svy-wrapper > * > .bts-tablesspanel > svy-formload > .svy-respform {
 	height: 100%;
+}
+
+/* Transition effect */
+.bts-tablesspanel-slide-left > .bts-tablesspanel.ng-enter, 
+.bts-tablesspanel-slide-left > .bts-tablesspanel.ng-leave,
+.bts-tablesspanel-slide-right > .bts-tablesspanel.ng-enter, 
+.bts-tablesspanel-slide-right > .bts-tablesspanel.ng-leave {
+  /* transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s; */
+  transition: all 0.75s ease-in;
+  display:inline-block;
+}
+
+.bts-tablesspanel-slide-top > .bts-tablesspanel.ng-enter, 
+.bts-tablesspanel-slide-top > .bts-tablesspanel.ng-leave,
+.bts-tablesspanel-slide-bottom > .bts-tablesspanel.ng-enter, 
+.bts-tablesspanel-slide-bottom > .bts-tablesspanel.ng-leave {
+  /* transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s; */
+  transition: all 0.75s ease-in;
+  display: block;
+}
+
+/****************************************
+*****************************************
+  			SLIDE LEFT TO RIGHT
+*****************************************
+*****************************************/
+
+.bts-tablesspanel-slide-left > .bts-tablesspanel.ng-enter,
+.svy-wrapper > .bts-tablesspanel-slide-left > .bts-tablesspanel.ng-enter  {
+  width:0;
+}
+.bts-tablesspanel-slide-left > .bts-tablesspanel.ng-enter.ng-enter-active,
+.svy-wrapper > .bts-tablesspanel-slide-left > .bts-tablesspanel.ng-enter.ng-enter-active {
+  width:100%;
+}
+
+.bts-tablesspanel-slide-left > .bts-tablesspanel.ng-leave,
+.svy-wrapper > .bts-tablesspanel-slide-left > .bts-tablesspanel.ng-leave {
+  width:100%;
+  overflow: visible !important;
+}
+.bts-tablesspanel-slide-left > .bts-tablesspanel.ng-leave.ng-leave-active,
+.svy-wrapper > .bts-tablesspanel-slide-left > .bts-tablesspanel.ng-leave.ng-leave-active {
+  width:0;
+}
+
+
+/****************************************
+*****************************************
+  			SLIDE RIGHT TO LEFT
+*****************************************
+*****************************************/
+
+.bts-tablesspanel-slide-right > .bts-tablesspanel.ng-enter,
+.svy-wrapper > .bts-tablesspanel-slide-right > .bts-tablesspanel.ng-enter  {
+  width:0;
+  right: 0;
+  left: 100%;
+}
+.bts-tablesspanel-slide-right > .bts-tablesspanel.ng-enter.ng-enter-active,
+.svy-wrapper > .bts-tablesspanel-slide-right > .bts-tablesspanel.ng-enter.ng-enter-active {
+  width:100%;
+  left:0;
+}
+
+.bts-tablesspanel-slide-right > .bts-tablesspanel.ng-leave,
+.svy-wrapper > .bts-tablesspanel-slide-right > .bts-tablesspanel.ng-leave {
+  width:100%;
+  overflow: visible !important;
+  right: 0;
+
+}
+.bts-tablesspanel-slide-right > .bts-tablesspanel.ng-leave.ng-leave-active,
+.svy-wrapper > .bts-tablesspanel-slide-right > .bts-tablesspanel.ng-leave.ng-leave-active {
+  width:0;
+  right: 100%;
+}
+
+/****************************************
+*****************************************
+  			SLIDE FROM TOP 
+*****************************************
+*****************************************/
+
+.bts-tablesspanel-slide-top > .bts-tablesspanel.ng-enter,
+.svy-wrapper > .bts-tablesspanel-slide-top > .bts-tablesspanel.ng-enter  {
+  height:0;
+}
+.bts-tablesspanel-slide-top > .bts-tablesspanel.ng-enter.ng-enter-active,
+.svy-wrapper > .bts-tablesspanel-slide-top > .bts-tablesspanel.ng-enter.ng-enter-active {
+  height:100%;
+}
+
+.bts-tablesspanel-slide-top > .bts-tablesspanel.ng-leave,
+.svy-wrapper > .bts-tablesspanel-slide-top > .bts-tablesspanel.ng-leave {
+  height:100%;
+  overflow: visible !important;
+}
+.bts-tablesspanel-slide-top > .bts-tablesspanel.ng-leave.ng-leave-active,
+.svy-wrapper > .bts-tablesspanel-slide-top > .bts-tablesspanel.ng-leave.ng-leave-active {
+  height:0;
+}
+
+/*****************************************
+******************************************
+  			 SLIDE FROM BOTTOM
+******************************************
+******************************************/
+
+.bts-tablesspanel-slide-bottom > .bts-tablesspanel.ng-enter,
+.svy-wrapper > .bts-tablesspanel-slide-bottom > .bts-tablesspanel.ng-enter  {
+  height:0;
+  bottom: 0;
+  top: 100%;
+}
+.bts-tablesspanel-slide-bottom > .bts-tablesspanel.ng-enter.ng-enter-active,
+.svy-wrapper > .bts-tablesspanel-slide-bottom > .bts-tablesspanel.ng-enter.ng-enter-active {
+  height:100%;
+  top: 0;
+}
+
+.bts-tablesspanel-slide-bottom > .bts-tablesspanel.ng-leave,
+.svy-wrapper > .bts-tablesspanel-slide-bottom > .bts-tablesspanel.ng-leave {
+  height:100%;
+  overflow: visible !important;
+  bottom: 0;
+}
+.bts-tablesspanel-slide-bottom > .bts-tablesspanel.ng-leave.ng-leave-active,
+.svy-wrapper > .bts-tablesspanel-slide-bottom > .bts-tablesspanel.ng-leave.ng-leave-active {
+  height:0;
+  bottom: 100%;
 }
