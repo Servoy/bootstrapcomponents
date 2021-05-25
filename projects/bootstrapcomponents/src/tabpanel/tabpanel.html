@@ -6,9 +6,9 @@
 			<div (click)="tabClicked(tab, i , $event)" [ngClass]='tab.styleClass'>
 				<img *ngIf="tab.imageMediaID" [src]='tab.imageMediaID' />
 				<span *ngIf="tab.iconStyleClass !== null" [class]="tab.iconStyleClass"></span>
+				<span [innerHTML]='tab?.text'></span>
 				<i *ngIf="tab.hideCloseIcon !== true && showTabCloseIcon" class="bts-tabpanel-close-icon"
 					[class]="closeIconStyleClass"></i>
-				<span [innerHTML]='tab?.text'></span>
 			</div>
 		</a>
 		<ng-template ngbNavContent>

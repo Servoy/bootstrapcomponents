@@ -31,8 +31,7 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
 	tabClicked(tab: Tab, tabIndexClicked: number, event: Event) {
 		if ((event.target as HTMLElement).classList.contains('bts-tabpanel-close-icon')) {
 			if (this.onTabCloseMethodID) {
-				const promise = this.onTabCloseMethodID(this.windowRefService.nativeWindow.event != null ?
-				                                this.windowRefService.nativeWindow.event : null /* TODO $.Event("tabclicked") */, tabIndexClicked + 1);
+				const promise = this.onTabCloseMethodID(event, tabIndexClicked + 1);
 				promise.then((ok) => {
 					if (ok) {
 						this.removeTabAt(tabIndexClicked + 1);
@@ -47,10 +46,9 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
 			}
 
 			if (this.onTabClickedMethodID) {
-				let dataTargetAttr = (event.target as Element).closest('[data-target]');
-				let dataTarget = dataTargetAttr ? dataTargetAttr.getAttribute('data-target') : null;
-				const promise = this.onTabClickedMethodID(this.windowRefService.nativeWindow.event != null ?
-				                                this.windowRefService.nativeWindow.event : null /*$.Event("tabclicked")*/, tabIndexClicked + 1, dataTarget);
+				const dataTargetAttr = (event.target as Element).closest('[data-target]');
+				const dataTarget = dataTargetAttr ? dataTargetAttr.getAttribute('data-target') : null;
+				const promise = this.onTabClickedMethodID(event, tabIndexClicked + 1, dataTarget);
 				promise.then((ok) => {
 					if (ok) {
 						this.select(this.tabs[tabIndexClicked]);
@@ -102,8 +100,10 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
 				} else {
 					this.tabIndex--;
 				}
-				this.tabIndexChange.emit(this.tabIndex);
 			}
+
+			// emit the change (otherwise the tab won't be removed)
+			this.tabIndexChange.emit(this.tabIndex);
 
 			// hide the form
 			if (formToHide) {

@@ -133,6 +133,18 @@
     height: 100%;
 }
 
+.bts-tabpanel-close-icon {
+	color: #333;
+	cursor: pointer;
+	transition: .25s;
+    margin-left: 3px;
+    margin-bottom: 3px;
+}
+
+.bts-tabpanel-close-icon:hover {
+	color: #e6e6e6;
+}
+
 .bts-check div {
     min-height: 20px;
     margin-bottom: 0;
