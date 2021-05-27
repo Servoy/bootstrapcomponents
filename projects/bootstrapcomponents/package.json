@@ -1,18 +1,19 @@
 {
   "name": "@servoy/bootstrapcomponents",
-  "version": "3.2.1-rc1",
+  "version": "3.2.0",
   "peerDependencies": {
-    "@angular/animations": "^11.2.13",
-    "@angular/cdk": "^11.2.12",
-    "@angular/common": "^11.2.13",
-    "@angular/core": "~11.2.13",
-    "@angular/forms": "^11.2.13",
-    "@danielmoncada/angular-datetime-picker": "^11.0.1",
-    "@ng-bootstrap/ng-bootstrap": "^9.1.0",
-    "luxon": "^1.27.0"
+    "@angular/animations": ">=12",
+    "@angular/cdk": ">=12",
+    "@angular/common": ">=12",
+    "@angular/core": ">=12",
+    "@angular/forms": ">=12",
+    "moment": "^2.29.1",
+    "luxon": ">=1"
   },
   "dependencies": {
-    "tslib": "^2.0.0"
+    "@danielmoncada/angular-datetime-picker": "^12.0.0",
+    "@ng-bootstrap/ng-bootstrap": "^9.1.1",
+    "tslib": "*"
   },
   "license": "MIT",
   "repository": {
