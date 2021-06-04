@@ -18,7 +18,6 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
 	@Input() showTabCloseIcon: boolean;
 	@Input() closeIconStyleClass: string;
 
-
 	constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, windowRefService: WindowRefService) {
 		super(renderer, cdRef, windowRefService);
 	}
@@ -170,5 +169,11 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
 			}
 		}
 		return -1;
+	}
+
+	getContainerStyle(element: HTMLElement) {
+		const marginTop = element.offsetWidth < element.scrollWidth ? 8 : 0;
+		return { position: 'absolute', minHeight: this.height + 'px', overflow: 'auto',
+			top: '39px', bottom: '0px', left: '0px', right: '0px', marginTop: marginTop + 'px'};
 	}
 }

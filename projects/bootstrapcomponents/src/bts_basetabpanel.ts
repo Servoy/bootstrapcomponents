@@ -74,7 +74,10 @@ export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBo
 		}
 		if (this.isValidTab(tab)) {
 			if ((tab !== undefined && this.selectedTab !== undefined && tab.containedForm === this.selectedTab.containedForm &&
-			              tab.relationName === this.selectedTab.relationName) || (tab === this.selectedTab)) return;
+			              tab.relationName === this.selectedTab.relationName)) {
+							this.setFormVisible(tab);
+							return;
+			} else if (tab === this.selectedTab) return;
 			if (this.selectedTab) {
 				if (this.selectedTab.containedForm && !this.waitingForServerVisibility[this.selectedTab.containedForm]) {
 					const formInWait = this.selectedTab.containedForm;
@@ -123,7 +126,8 @@ export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBo
 	}
 
 	setFormVisible(tab: Tab) {
-		if (tab.containedForm) this.servoyApi.formWillShow(tab.containedForm, tab.relationName).finally(() => this.cdRef.markForCheck());
+		if (tab.containedForm && (!this.selectedTab || tab.containedForm !== this.selectedTab.containedForm))
+			this.servoyApi.formWillShow(tab.containedForm, tab.relationName).finally(() => this.cdRef.markForCheck());
 		const oldSelected = this.selectedTab;
 		this.selectedTab = tab;
 		this.selectedTabID = tab._id;
