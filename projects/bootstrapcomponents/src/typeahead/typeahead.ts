@@ -39,6 +39,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
          this.renderer.listen( this.getFocusElement(), 'focus', () => {
             setTimeout(this.onFocus);
         });
+        this.instance.popupClass = 'ag-custom-component-popup';
     }
 
     onFocus = () => {

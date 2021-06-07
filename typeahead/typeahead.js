@@ -1,4 +1,4 @@
-angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapcomponentsTypeahead', ['formatFilterFilter','$svyProperties','$sabloConstants','$formatterUtils', function(formatFilter,$svyProperties, $sabloConstants,$formatterUtils) {
+angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapcomponentsTypeahead', ['formatFilterFilter','$svyProperties','$sabloConstants','$formatterUtils', '$timeout', function(formatFilter,$svyProperties, $sabloConstants,$formatterUtils, $timeout) {
 	return {
 		restrict: 'E',
 		scope: {
@@ -8,6 +8,12 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
 			api: "=svyApi"
 		},
 		link: function($scope, $element) {
+
+			// add custom class to the popup, needed by ng-grids (ag-grid) so it can be used in form editors (popups)
+			$timeout(function() {
+				var ariaOwns = $element.attr("aria-owns");
+				$("#" + ariaOwns).addClass("ag-custom-component-popup");
+			}, 0, false);
 
             $scope.getCorrectMatchTemplate = function() {
                 if($scope.model.showAs == 'text') {
