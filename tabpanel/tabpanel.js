@@ -280,42 +280,54 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 						}
 					}
 				});
-	
-			$scope.$watch("model.tabs", function(newValue, oldValue) {
-					if (newValue != oldValue) {
-						var oldTab = oldValue && oldValue.length > 0 && oldValue[$scope.model.tabIndex - 1] ? oldValue[$scope.model.tabIndex - 1] : null;
-						var oldForm = oldTab ? oldTab.containedForm : null;
-						var newTabIndex = $scope.model.tabIndex;
-						if (!newValue || newValue.length == 0) {
-							newTabIndex = 0;
-						} else if (newValue.length < newTabIndex) {
-							newTabIndex = newValue.length - 1;
-						} else if (newValue && newValue.length > 0 && !newTabIndex) {
-							newTabIndex = 1;
-						}
-						var newTab = newValue && newValue.length > 0 ? newValue[newTabIndex - 1] : null;
-						var newForm = newTab ? newTab.containedForm : null;
-						if (newForm != oldForm) {
-							if (oldForm) $scope.servoyApi.hideForm(oldForm);
-							if (newForm && newTab.disabled !== true) $scope.servoyApi.formWillShow(newForm, newValue[newTabIndex - 1].relationName);
-						} else if (newForm == oldForm && newTab && oldTab && newTab.disabled !== true && oldTab.disabled === true) {
-							// if the selected tab was previously disabled then call formWillShow. 
-							// Actually would be called only if the disabled form was selected by never had a formWillShow. Calling it twice it shouldn't harm
-							if (newForm && newTab.disabled !== true) $scope.servoyApi.formWillShow(newForm, newValue[newTabIndex - 1].relationName);
-						}
-						
-						if (newTabIndex != $scope.model.tabIndex) {
-							$scope.model.tabIndex = newTabIndex;
-						} else if (newTabIndex > 0) {
-							$scope.model.tabs[newTabIndex - 1].active = true;
-							
-							// make sure angularui model is corect before changing activeindex, otherwise angularui doesn't handle the change correctly
-							$timeout(function() {
-									$scope.model.activeTabIndex = $scope.model.tabIndex - 1;
-								}, 0);
-						}
+
+			// this should get called whenever a change in the tabs array or active tab could/should lead to ui/model/other var changes
+			function checkTabsArrayChanged(newValue, oldValue) {
+				var oldTab = oldValue && oldValue.length > 0 && oldValue[$scope.model.tabIndex - 1] ? oldValue[$scope.model.tabIndex - 1] : null;
+				var oldForm = oldTab ? oldTab.containedForm : null;
+				var newTabIndex = $scope.model.tabIndex;
+				if (!newValue || newValue.length == 0) {
+					newTabIndex = 0;
+				} else if (newValue.length < newTabIndex) {
+					newTabIndex = newValue.length - 1;
+				} else if (newValue && newValue.length > 0 && !newTabIndex) {
+					newTabIndex = 1;
+				}
+				var newTab = newValue && newValue.length > 0 ? newValue[newTabIndex - 1] : null;
+				var newForm = newTab ? newTab.containedForm : null;
+				if (newForm != oldForm) {
+					if (oldForm) $scope.servoyApi.hideForm(oldForm);
+					if (newForm && newTab.disabled !== true) $scope.servoyApi.formWillShow(newForm, newValue[newTabIndex - 1].relationName);
+				} else if (newForm == oldForm && newTab && oldTab && newTab.disabled !== true && oldTab.disabled === true) {
+					// if the selected tab was previously disabled then call formWillShow. 
+					// Actually would be called only if the disabled form was selected by never had a formWillShow. Calling it twice it shouldn't harm
+					if (newForm && newTab.disabled !== true) $scope.servoyApi.formWillShow(newForm, newValue[newTabIndex - 1].relationName);
+				}
+				
+				if (newTabIndex != $scope.model.tabIndex) {
+					$scope.model.tabIndex = newTabIndex;
+				} else if (newTabIndex > 0) {
+					$scope.model.tabs[newTabIndex - 1].active = true;
+					
+					// make sure angularui model is corect before changing activeindex, otherwise angularui doesn't handle the change correctly
+					$timeout(function() {
+							$scope.model.activeTabIndex = $scope.model.tabIndex - 1;
+						}, 0);
+				}				
+			}
+			
+			var oldTabs = angular.copy($scope.model.tabs); // we use modelChangeNotifier instead of a deep watch on tabs to catch any updates from server (add/remove/change of active or other tab)
+			// for example a remove followed by an add at last index will generate on server tabs array prop a change on index 3, so a shallow watch on model.tabs would not catch that but this does catch it
+
+			Object.defineProperty($scope.model, $sabloConstants.modelChangeNotifier, {
+				configurable: true,
+				value: function(property, value) {
+					if (property === "tabs") { // tabs or any sub-property of it changed
+						checkTabsArrayChanged($scope.model.tabs, oldTabs);
+						oldTabs = angular.copy($scope.model.tabs);
 					}
-				});
+				}
+			});
 	
 			$scope.getContainerStyle = function() {
 				return { position: "relative", minHeight: $scope.model.height + "px" };
