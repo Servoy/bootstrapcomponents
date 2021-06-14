@@ -17,6 +17,8 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
 
 	@Input() showTabCloseIcon: boolean;
 	@Input() closeIconStyleClass: string;
+	containerStyle = {position: 'absolute', minHeight: '0px', overflow: 'auto',
+		top: '39px', bottom: '0px', left: '0px', right: '0px', marginTop: '0px'};
 
 	constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, windowRefService: WindowRefService) {
 		super(renderer, cdRef, windowRefService);
@@ -172,8 +174,8 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
 	}
 
 	getContainerStyle(element: HTMLElement) {
-		const marginTop = element.offsetWidth < element.scrollWidth ? 8 : 0;
-		return { position: 'absolute', minHeight: this.height + 'px', overflow: 'auto',
-			top: '39px', bottom: '0px', left: '0px', right: '0px', marginTop: marginTop + 'px'};
+		this.containerStyle['minHeight'] = this.height + 'px';
+		this.containerStyle['marginTop'] = (element.offsetWidth < element.scrollWidth ? 8 : 0) + 'px';
+		return this.containerStyle;
 	}
 }
