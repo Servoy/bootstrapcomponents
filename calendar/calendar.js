@@ -227,6 +227,10 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 				}
 
 				$scope.focusGained = function(event) {
+					var editFormat = $scope.model.format ?  ($scope.model.format.edit ? $scope.model.format.edit : $scope.model.format.display ): null;
+					dateFormat = moment().toMomentFormatString(editFormat)					
+	                setDateFormat(dateFormat);
+						
 					if ($scope.model.format.edit && $scope.model.format.isMask) {
 						var settings = {};
 						settings.placeholder = $scope.model.format.placeHolder ? $scope.model.format.placeHolder : " ";
@@ -240,6 +244,7 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 				}
 
 				$scope.focusLost = function(event) {
+					setDateFormat($scope.model.format);
 					if ($scope.model.format.edit && $scope.model.format.isMask)
 					{
 						$element.find('input').unmask();
