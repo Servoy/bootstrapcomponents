@@ -78,13 +78,16 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
         }
     }
 
-    filterValues = (text$: Observable<string>) => {
-        const debouncedText$ = text$.pipe(debounceTime(200), distinctUntilChanged());
-        const clicksWithClosedPopup$ = this.click$.pipe(filter(() => !this.instance.isPopupOpen()));
-        const inputFocus$ = this.focus$;
+    filterValues = ( text$: Observable<string> ) => {
+        if ( this.editable === true && this.isEditable() ) {
+            const debouncedText$ = text$.pipe( debounceTime( 200 ), distinctUntilChanged() );
+            const clicksWithClosedPopup$ = this.click$.pipe( filter(() => !this.instance.isPopupOpen() ) );
+            const inputFocus$ = this.focus$;
 
-        return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(switchMap(term => (term === '' ? of(this.valuelistID)
-            : this.valuelistID.filterList(term))));
+            return merge( debouncedText$, inputFocus$, clicksWithClosedPopup$ ).pipe( switchMap( term => ( term === '' ? of( this.valuelistID )
+                : this.valuelistID.filterList( term ) ) ) );
+        }
+        return undefined;
     };
 
     isEditable() {
