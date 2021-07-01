@@ -86,8 +86,9 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
 
             return merge( debouncedText$, inputFocus$, clicksWithClosedPopup$ ).pipe( switchMap( term => ( term === '' ? of( this.valuelistID )
                 : this.valuelistID.filterList( term ) ) ) );
+        } else {
+            return of([]);
         }
-        return undefined;
     };
 
     isEditable() {
