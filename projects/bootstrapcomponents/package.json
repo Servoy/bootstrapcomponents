@@ -1,6 +1,6 @@
 {
   "name": "@servoy/bootstrapcomponents",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "peerDependencies": {
     "@angular/animations": ">=12",
     "@angular/cdk": ">=12",
@@ -9,11 +9,11 @@
     "@angular/forms": ">=12",
     "moment": "^2.29.1",
     "luxon": ">=1",
-    "bootstrap": "5.0.1"
+    "bootstrap": ">=5"
   },
   "dependencies": {
-    "@danielmoncada/angular-datetime-picker": "^12.0.0",
-    "@ng-bootstrap/ng-bootstrap": "^9.1.1",
+    "@danielmoncada/angular-datetime-picker": ">=12",
+    "@ng-bootstrap/ng-bootstrap": ">=10",
     "tslib": "*"
   },
   "license": "MIT",
