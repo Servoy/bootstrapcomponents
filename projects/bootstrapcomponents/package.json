@@ -8,12 +8,12 @@
     "@angular/core": ">=12",
     "@angular/forms": ">=12",
     "moment": "^2.29.1",
-    "luxon": ">=1",
-    "bootstrap": ">=5"
+    "luxon": ">=1"
   },
   "dependencies": {
     "@danielmoncada/angular-datetime-picker": ">=12",
     "@ng-bootstrap/ng-bootstrap": ">=10",
+    "bootstrap": ">=5",
     "tslib": "*"
   },
   "license": "MIT",
