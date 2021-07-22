@@ -8,7 +8,13 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
 			api: "=svyApi"
 		},
 		link: function($scope, $element) {
-
+            $scope.autoCompleteValue = function() {
+                if(window.navigator.userAgent.match(/chrome/i)) {
+                    return 'chrome-off';
+                } else {
+                    return 'off';
+                }
+            }
 			// add custom class to the popup, needed by ng-grids (ag-grid) so it can be used in form editors (popups)
 			$timeout(function() {
 				var ariaOwns = $element.attr("aria-owns");

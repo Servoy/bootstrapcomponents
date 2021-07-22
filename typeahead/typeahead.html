@@ -3,6 +3,7 @@
 		svy-focusgained='handlers.onFocusGainedMethodID($event)'
 		svy-focuslost='handlers.onFocusLostMethodID($event)'
 		type="text"
+        autocomplete="{{autoCompleteValue()}}"
 		ng-class='model.styleClass' class='bts-typeahead'
 		placeholder="{{model.placeholderText}}"
 		ng-model="value"
@@ -20,7 +21,6 @@
 		ng-readonly="model.readOnly || !model.editable"
 		id="{{::model.svyMarkupId}}"
 		svy-selectonenter='model.selectOnEnter'
-		autocomplete="off"
         typeahead-on-focus="onFocus()"
         typeahead-template-url='{{getCorrectMatchTemplate()}}'
         svy-attributes='model.attributes'

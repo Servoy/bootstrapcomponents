@@ -11,7 +11,17 @@ angular.module('bootstrapcomponentsTextbox',['servoy']).directive('bootstrapcomp
     	  
     	  var formatState = null;
     	  
-    	  $scope.model.autocomplete = $scope.model.autocomplete ? $scope.model.autocomplete : 'off';
+        $scope.autoCompleteValue = function() {
+            if($scope.model.autocomplete && $scope.model.autocomplete != "off") {
+                return $scope.model.autocomplete;
+            } else {
+                if(window.navigator.userAgent.match(/chrome/i)) {
+                    return 'chrome-off';
+                } else {
+                    return 'off';
+                }
+            }
+        }
     	  
     	  if($scope.model.inputType === "text") {
     		  $scope.$watch('model.format', function(){
