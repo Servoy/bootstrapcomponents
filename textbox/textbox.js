@@ -13,7 +13,7 @@ angular.module('bootstrapcomponentsTextbox',['servoy']).directive('bootstrapcomp
     	  
     	  $scope.model.autocomplete = $scope.model.autocomplete ? $scope.model.autocomplete : 'off';
     	  
-    	  if($scope.model.inputType == "text" || $scope.model.inputType == 'number') {
+    	  if($scope.model.inputType === "text") {
     		  $scope.$watch('model.format', function(){
     			  if ($scope.model.format)
     			  {
