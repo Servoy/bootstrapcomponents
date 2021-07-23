@@ -21,6 +21,13 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
         super(renderer, cdRef, doc);
     }
 
+    svyOnInit() {
+        super.svyOnInit();
+        if(this.autocomplete == 'off') {
+            this.autocomplete = window.navigator.userAgent.match(/chrome/i) ? 'chrome-off' : 'off';
+        }
+    }
+
     svyOnChanges(changes: SimpleChanges) {
         super.svyOnChanges(changes);
         if (changes.inputType) {

@@ -12,6 +12,7 @@
 		[svyTooltip]="toolTipText"
 		[ngbTypeahead]="filterValues"
         [container]="appendToBody?'body':null"
+        [autocomplete]="autocomplete"
 		[resultFormatter]="resultFormatter"
 		[inputFormatter]="inputFormatter"
 		(focus)="focus$.next('')"

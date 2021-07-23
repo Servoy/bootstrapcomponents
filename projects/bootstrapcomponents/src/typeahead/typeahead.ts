@@ -17,6 +17,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
     @Input() format: Format;
     @Input() valuelistID: IValuelist;
     @Input() appendToBody: boolean;
+    @Input() autocomplete = window.navigator.userAgent.match(/chrome/i) ? 'chrome-off' : 'off';
 
     @ViewChild('instance') instance: NgbTypeahead;
     focus$ = new Subject<string>();
