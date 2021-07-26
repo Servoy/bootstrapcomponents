@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, In
 import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
 import { merge, Observable, of, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs/operators';
-import { Format, FormattingService, IValuelist } from '@servoy/public';
+import { Format, FormattingService, IValuelist, WindowRefService } from '@servoy/public';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 
 @Component({
@@ -14,17 +14,20 @@ import { ServoyBootstrapBasefield } from '../bts_basefield';
 })
 export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInputElement> {
 
+    @ViewChild('instance') instance: NgbTypeahead;
+
     @Input() format: Format;
     @Input() valuelistID: IValuelist;
     @Input() appendToBody: boolean;
-    @Input() autocomplete = window.navigator.userAgent.match(/chrome/i) ? 'chrome-off' : 'off';
+    autocomplete: string;
 
-    @ViewChild('instance') instance: NgbTypeahead;
     focus$ = new Subject<string>();
     click$ = new Subject<string>();
 
-    constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, @Inject(DOCUMENT)  doc: Document, private formatService: FormattingService) {
+    constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, @Inject(DOCUMENT)  doc: Document, private formatService: FormattingService,
+        windowService: WindowRefService) {
         super(renderer, cdRef, doc);
+        this.autocomplete = windowService.nativeWindow.navigator.userAgent.match(/chrome/i) ? 'chrome-off' : 'off';
     }
 
     @HostListener('keydown', ['$event'])

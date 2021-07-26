@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, ChangeDetectorRef, Renderer2, ViewChild, Input, ElementRef, ChangeDetectionStrategy, Inject, Output, EventEmitter, SimpleChanges } from '@angular/core';
-import { Format } from '@servoy/public';
+import { Component, ChangeDetectorRef, Renderer2, Input, ChangeDetectionStrategy, Inject, Output, EventEmitter, SimpleChanges } from '@angular/core';
+import { Format, WindowRefService } from '@servoy/public';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 
 @Component({
@@ -17,14 +17,14 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
 
     @Output() inputTypeChange = new EventEmitter();
 
-    constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, @Inject(DOCUMENT) doc: Document) {
+    constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, @Inject(DOCUMENT) doc: Document, private windowService: WindowRefService) {
         super(renderer, cdRef, doc);
     }
 
     svyOnInit() {
         super.svyOnInit();
-        if(this.autocomplete == 'off') {
-            this.autocomplete = window.navigator.userAgent.match(/chrome/i) ? 'chrome-off' : 'off';
+        if(this.autocomplete === 'off') {
+            this.autocomplete = this.windowService.nativeWindow.navigator.userAgent.match(/chrome/i) ? 'chrome-off' : 'off';
         }
     }
 
