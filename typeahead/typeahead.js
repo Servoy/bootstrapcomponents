@@ -87,32 +87,33 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
 				}	
 			});
 
-
 			$scope.$watch('model.dataProviderID', function() {
-				if (!hasRealValues)
-				{
-					$scope.value = $scope.model.dataProviderID;
-				}
-				else
-				{
-					var found = false;
-					for (var i = 0; i < $scope.model.valuelistID.length; i++) {
-						var item = $scope.model.valuelistID[i];
-						if ((item.realValue + '') === ($scope.model.dataProviderID + '')) {
-							$scope.value = item.displayValue;
-							found = true;
-							break;
-						}
-					}
-					if(!found)
+				$timeout(function() { 
+					if (!hasRealValues)
 					{
-						$scope.value = null;
-						// getDisplayValue does not need parentFormName starting from Servoy 2020.09
-						$scope.model.valuelistID.getDisplayValue($scope.model.dataProviderID, getParentFormName()).then(function(displayValue) {
-							$scope.value = displayValue;
-						});
+						$scope.value = $scope.model.dataProviderID;
+					}
+					else
+					{
+						var found = false;
+						for (var i = 0; i < $scope.model.valuelistID.length; i++) {
+							var item = $scope.model.valuelistID[i];
+							if ((item.realValue + '') === ($scope.model.dataProviderID + '')) {
+								$scope.value = item.displayValue;
+								found = true;
+								break;
+							}
+						}
+						if(!found)
+						{
+							$scope.value = null;
+							// getDisplayValue does not need parentFormName starting from Servoy 2020.09
+							$scope.model.valuelistID.getDisplayValue($scope.model.dataProviderID, getParentFormName()).then(function(displayValue) {
+								$scope.value = displayValue;
+							});
+						}	
 					}	
-				}	
+				}, 10, true);
 			});
 
 			$scope.doSvyApply = function(force) {
