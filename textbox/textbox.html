@@ -1,6 +1,7 @@
 <input type="{{model.inputType}}"
 	    ng-class='model.styleClass' class='bts-textbox'
 	    ng-model="model.dataProviderID"
+		ng-model-options="{ allowInvalid: true}
 	    ng-disabled="!model.enabled"
 	    ng-readonly="model.readOnly || !model.editable"
 	    placeholder="{{model.placeholderText}}"
@@ -16,3 +17,4 @@
 		svy-selectonenter="model.selectOnEnter"
 		autocomplete="{{autoCompleteValue()}}"
 		svy-attributes='model.attributes'/>
+
