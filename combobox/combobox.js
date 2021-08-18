@@ -29,9 +29,8 @@ angular.module('bootstrapcomponentsCombobox', ['servoy', 'bootstrapcomponentscom
 			} 
 			
 			scope.isEmptyOrNull = function (item) {
-				var realValue = item.realValue;
 				var displayValue = item.displayValue;
-				if ((realValue === undefined || realValue === null || realValue === '') && (displayValue === undefined || displayValue === null || displayValue === ''  )) { 
+				if (displayValue === undefined || displayValue === null || displayValue === ''  ) { 
 					return true; 
 				}
 				return false;
