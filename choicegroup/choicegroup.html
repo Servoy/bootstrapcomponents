@@ -1,5 +1,5 @@
 <div class='bts-radiogroup' ng-class='model.styleClass' ng-hide='!model.visible' id="{{::model.svyMarkupId}}" svy-attributes='model.attributes'>
-  <label ng-repeat="item in model.valuelistID | filter:notNullOrEmpty('realValue') && notNullOrEmpty('displayValue')" ng-style="{'margin-right': '10px'}">
+  <label ng-repeat="item in model.valuelistID | filter:item && (notNullOrEmpty('realValue') || notNullOrEmpty('displayValue'))" ng-style="{'margin-right': '10px'}">
   	<input type="{{model.inputType}}" ng-model="selection[$index]"
   		ng-value="item.realValue"
   		ng-change="itemClicked($event,$index)"
