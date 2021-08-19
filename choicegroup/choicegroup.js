@@ -18,8 +18,8 @@ angular.module('bootstrapcomponentsChoicegroup',['servoy']).directive('bootstrap
               return false;
           }
     	  
-          $scope.notNullOrEmpty = $utils.notNullOrEmpty  // adding it to the root scope doesn't fix the resolution of the comparator in the filter (in this directive). it has to be in local scope. TODO remove the need for this
-          var allowNullinc=0;
+    	  $scope.notNullOrEmptyValueListItem = $utils.notNullOrEmptyValueListItem // TODO remove the need for this
+    	  var allowNullinc=0;
     	  $scope.selection= []
     	  
           $scope.$watch('model.dataProviderID', function() { 
