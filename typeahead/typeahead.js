@@ -113,7 +113,7 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
 							});
 						}	
 					}	
-				}, 10, true);
+				}, 50, true);
 			});
 
 			$scope.doSvyApply = function(force) {
