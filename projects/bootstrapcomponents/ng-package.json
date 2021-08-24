@@ -15,5 +15,5 @@
       "@danielmoncada/angular-datetime-picker": "danielmoncada.angular-datetime-picker"
     }
   },
-  "allowedNonPeerDependencies": ["@danielmoncada/angular-datetime-picker", "@ng-bootstrap/ng-bootstrap", "bootstrap"]
+  "allowedNonPeerDependencies": ["@danielmoncada/angular-datetime-picker", "@angular/cdk", "@ng-bootstrap/ng-bootstrap", "bootstrap"]
 }
