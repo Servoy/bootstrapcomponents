@@ -59,7 +59,13 @@ export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDi
             this.select( tabToSelect );
         }
     }
-
+    
+    getSelectedTabId() : any{
+        let id = super.getSelectedTabId();
+        if (id == null) return [];
+        return id;
+    }
+    
     tabClicked(tab: Tab,tabIndexClicked: number, event){
         this.select( this.tabs[tabIndexClicked] );
     }

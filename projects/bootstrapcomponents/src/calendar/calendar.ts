@@ -2,7 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Component, Renderer2, ElementRef, ViewChild, Input, ChangeDetectorRef, SimpleChanges, ChangeDetectionStrategy, Inject } from '@angular/core';
 import { DateTimeAdapter, OwlDateTimeComponent, OwlDateTimeIntl } from '@danielmoncada/angular-datetime-picker';
 import { PickerType } from '@danielmoncada/angular-datetime-picker/lib/date-time/date-time.class';
-import { Format  } from '@servoy/public';
+import { Format } from '@servoy/public';
 import { LoggerFactory, LoggerService, ServoyPublicService } from '@servoy/public';
 import { ServoyBootstrapBaseCalendar } from './basecalendar';
 
@@ -61,18 +61,20 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
             const change = changes[property];
             switch (property) {
                 case 'format':
-                    if (change.currentValue.type === 'DATETIME' && change.currentValue.display) {
-                        const format = change.currentValue.display;
-                        const showCalendar = format.indexOf('y') >= 0 || format.indexOf('M') >= 0;
-                        const showTime = format.indexOf('h') >= 0 || format.indexOf('H') >= 0 || format.indexOf('m') >= 0;
-                        if (showCalendar) {
-                            if (showTime) this.pickerType = 'both';
-                            else this.pickerType = 'calendar';
-                        } else this.pickerType = 'timer';
-                        this.showSecondsTimer = format.indexOf('s') >= 0;
-                        this.hour12Timer = format.indexOf('h') >= 0 || format.indexOf('a') >= 0 || format.indexOf('A') >= 0;
-                    } else {
-                        this.log.warn('wrong format or type given into the calendar field ' + JSON.stringify(change.currentValue));
+                    if (change.currentValue) {
+                        if (change.currentValue.type === 'DATETIME' && change.currentValue.display) {
+                            const format = change.currentValue.display;
+                            const showCalendar = format.indexOf('y') >= 0 || format.indexOf('M') >= 0;
+                            const showTime = format.indexOf('h') >= 0 || format.indexOf('H') >= 0 || format.indexOf('m') >= 0;
+                            if (showCalendar) {
+                                if (showTime) this.pickerType = 'both';
+                                else this.pickerType = 'calendar';
+                            } else this.pickerType = 'timer';
+                            this.showSecondsTimer = format.indexOf('s') >= 0;
+                            this.hour12Timer = format.indexOf('h') >= 0 || format.indexOf('a') >= 0 || format.indexOf('A') >= 0;
+                        } else {
+                            this.log.warn('wrong format or type given into the calendar field ' + JSON.stringify(change.currentValue));
+                        }
                     }
                     break;
             }

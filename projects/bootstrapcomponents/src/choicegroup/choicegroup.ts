@@ -52,6 +52,7 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
     }
 
     getFocusElement(): HTMLElement {
+        if (!this.input) return null;
         return this.input.nativeElement;
     }
     
