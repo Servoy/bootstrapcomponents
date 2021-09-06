@@ -24,9 +24,15 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 
 				var locale = $sabloApplication.getLocale();
 				if (locale.language) {
-					options.locale = locale.language;
+					locale = locale.language;
+                    if (moment && moment.locales().indexOf(locale) < 0){
+                        // component throws error if not supported locale , fallback to english
+                        $log.warn("language: " + locale +" not supported, falling back to english");
+                        locale = 'en';
+                    }
+                    options.locale = locale;
 				}
-
+                
 				var showISOWeeks = $applicationService.getUIProperty('ngCalendarShowISOWeeks');
 				if (showISOWeeks)
 				{
