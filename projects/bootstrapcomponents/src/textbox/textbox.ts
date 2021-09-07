@@ -1,6 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, ChangeDetectorRef, Renderer2, Input, ChangeDetectionStrategy, Inject, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { Format, WindowRefService } from '@servoy/public';
+import { DateTime } from 'luxon';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 
 @Component({
@@ -32,6 +33,19 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
         super.svyOnChanges(changes);
         if (changes.inputType) {
             this.renderer.setAttribute(this.elementRef.nativeElement, 'type', this.inputType);
+        }
+    }
+
+    onModelChange(newValue) {
+        if(newValue && typeof newValue.getTime === 'function' && isNaN(newValue.getTime())) {
+            // invalid date, force dataprovider display with invalid date text
+            this.dataProviderID = null;
+            this.cdRef.detectChanges();
+            this.dataProviderID = newValue;
+            this.cdRef.detectChanges();
+        }
+        else {
+            this.dataProviderID = newValue;
         }
     }
 
