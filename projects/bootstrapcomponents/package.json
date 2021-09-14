@@ -1,6 +1,6 @@
 {
   "name": "@servoy/bootstrapcomponents",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "peerDependencies": {
     "@angular/animations": ">=12",
     "@angular/common": ">=12",
