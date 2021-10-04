@@ -122,7 +122,7 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
 				if($scope.value && $scope.value.length == 1) {
 					$scope.value = $scope.value.trim();
 				}
-				if (force || angular.element('[uib-typeahead-popup]').attr('aria-hidden') == "true") {  // when drodown list is not shown
+				if (force ||  !$scope.model.isOpened) {  // when drodown list is not shown
 					if ($scope.model.valuelistID) {
 						var hasMatchingDisplayValue = false;
 						for (var i = 0; i < $scope.model.valuelistID.length; i++) {
