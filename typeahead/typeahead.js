@@ -158,8 +158,11 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
 				}
 				else if (!hasRealValues && ($scope.model.dataProviderID != $scope.value)) // when valuelist has no realValues apply the change to the dataprovider
 				{
-					$scope.model.dataProviderID = $scope.value;
-					$scope.svyServoyapi.apply('dataProviderID');
+                    $timeout(function(triggerValue){
+                        if (triggerValue == $scope.value) {
+                            $scope.doSvyApply(true);
+                        }
+                    },100,true,$scope.value)
 				} else if (hasRealValues) { // when valuelist has realValues and the user focus out from typeahead without clicking on a dropdown item
 			
 					if ($scope.model.valuelistID) {
