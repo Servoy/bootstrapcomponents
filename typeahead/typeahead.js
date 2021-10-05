@@ -116,7 +116,7 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
 				}, 50, true);
 			});
 
-			$scope.doSvyApply = function(force) {
+			$scope.doSvyApply = function(force, event) {
 				// when there is no input, we add a &nbsp;, see the template, that we just remove here,
 				// to have the correct value;
 				if($scope.value && $scope.value.length == 1) {
@@ -158,11 +158,20 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
 				}
 				else if (!hasRealValues && ($scope.model.dataProviderID != $scope.value)) // when valuelist has no realValues apply the change to the dataprovider
 				{
-                    $timeout(function(triggerValue){
-                        if (triggerValue == $scope.value) {
-                            $scope.doSvyApply(true);
-                        }
-                    },100,true,$scope.value)
+                    var apply = true;
+                    if (event && event.originalEvent && event.originalEvent.relatedTarget) {
+                        apply = !event.originalEvent.relatedTarget.parentElement.classList.contains("uib-typeahead-match");
+                    }
+                    if (apply) {
+                        $scope.model.dataProviderID = $scope.value;
+                        $scope.svyServoyapi.apply('dataProviderID');
+                    } else {
+                        $timeout(function(triggerValue){
+                            if (triggerValue == $scope.value) {
+                                $scope.doSvyApply(true);
+                            }
+                        },100,true,$scope.value)
+                    }
 				} else if (hasRealValues) { // when valuelist has realValues and the user focus out from typeahead without clicking on a dropdown item
 			
 					if ($scope.model.valuelistID) {
