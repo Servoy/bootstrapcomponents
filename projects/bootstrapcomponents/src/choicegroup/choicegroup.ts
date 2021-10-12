@@ -30,6 +30,10 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
     }
 
     svyOnChanges(changes: SimpleChanges) {
+        if (this.servoyApi.isInDesigner() && !this.valuelistID){
+            // this should only happen in preview
+            this.valuelistID = [{realValue:1,displayValue:"Item1"},{realValue:2,displayValue:"Item2"},{realValue:3,displayValue:"Item3"}] as IValuelist;
+        }
         for (const property of Object.keys(changes)) {
             switch (property) {
                 case 'dataProviderID':
@@ -52,7 +56,10 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
     }
 
     getFocusElement(): HTMLElement {
-        if (!this.input) return null;
+        if (!this.input){ 
+            // just a fallback for not getting NPEs
+            return this.elementRef.nativeElement;
+        }
         return this.input.nativeElement;
     }
     
