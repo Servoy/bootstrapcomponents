@@ -10,12 +10,12 @@
     </span>
     <span
         class="bts-label-text"
-        [innerHTML]="dataProviderID | formatFilter:format | htmlFilter | trustAsHtml:isTrustedHTML()"
+        [innerHTML]="dataProviderID | formatFilter:format | htmlFilter | trustAsHtml:isTrustedHTML() | designFilter:servoyApi.isInDesigner()"
         *ngIf="(showAs === 'html' || showAs === 'trusted_html')">
     </span>
     <span
         class="bts-label-text"
-        [textContent]="dataProviderID | formatFilter:format | htmlFilter | trustAsHtml:isTrustedHTML()"
+        [textContent]="dataProviderID | formatFilter:format | htmlFilter | trustAsHtml:isTrustedHTML() | designFilter:servoyApi.isInDesigner()"
         *ngIf="showAs == 'text'">
     </span>
 </span> 

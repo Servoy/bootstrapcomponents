@@ -28,3 +28,16 @@ export class ServoyBootstrapDatalabel extends ServoyBootstrapBaseLabel<HTMLSpanE
     }
 
 }
+
+@Pipe( { name: 'designFilter' } )
+export class DesignTextPipe implements PipeTransform {
+    constructor( ) {
+    }
+
+    transform( input: string, inDesigner: boolean ): any {
+        if ( inDesigner ) {
+            return 'DataLabel';
+        }
+        return input;
+    }
+}

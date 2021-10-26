@@ -10,7 +10,7 @@ import { ChoiceElementDirective } from './choicegroup/choicegroup';
 import { ServoyBootstrapChoicegroup } from './choicegroup/choicegroup';
 import { ServoyBootstrapCheckbox } from './checkbox/checkbox';
 import { ServoyBootstrapTextbox } from './textbox/textbox';
-import { ServoyBootstrapDatalabel } from './datalabel/datalabel';
+import { ServoyBootstrapDatalabel, DesignTextPipe } from './datalabel/datalabel';
 import { ServoyBootstrapList } from './list/list';
 import { ServoyBootstrapSelect } from './select/select';
 import { ServoyBootstrapAccordion } from './accordion/accordion';
@@ -46,7 +46,8 @@ import { Tab } from './bts_basetabpanel';
       ServoyBootstrapCombobox,
       ServoyBootstrapCalendar,
       ServoyBootstrapCalendarinline,
-      ShowDisplayValuePipe
+      ShowDisplayValuePipe,
+      DesignTextPipe
     ],
     providers: [],
     imports: [
