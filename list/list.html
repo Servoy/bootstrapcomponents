@@ -6,7 +6,7 @@
 			placeholder="{{model.placeholderText}}"
 			type="text"
 			list="{{::model.svyMarkupId}}_datalist"
-			ng-blur='onBlur($event)'
+			svy-change='onChange()'
 			ng-class='model.styleClass'
 			ng-if='model.visible'
 			ng-init="inputRenderFinished()"
