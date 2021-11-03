@@ -84,6 +84,7 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
 
     onModelChange(newValue) {
         const previousValue = this.dataProviderID;
+        if (newValue === "") newValue = null;
         this.dataProviderID = newValue;
         if(this.dataProviderID && isNaN(this.dataProviderID.getTime())) {
             // invalid date, restore previous value
