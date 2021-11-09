@@ -61,6 +61,11 @@
     display: block;
 }
 
+ngb-typeahead-window.dropdown-menu {
+    max-height: 200px;
+    overflow: auto;
+}
+
 .svy-wrapper > * > .bts-check {
   width: 100%;
   height: 100%;
