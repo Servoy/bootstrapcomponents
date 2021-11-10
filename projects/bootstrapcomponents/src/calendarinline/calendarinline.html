@@ -1,8 +1,10 @@
-<div #element [id]="servoyApi.getMarkupId()">
+<div #element class='bts-calendar-inline' 
+    [svyTooltip]="toolTipText"
+    [id]="servoyApi.getMarkupId()">
     <owl-date-time-inline 
         [ngModel]="dataProviderID" 
         (ngModelChange)="dateChanged($event)" 
-        [pickerType]="'calendar'" 
+        [pickerType]="'both'" 
         [min]="min" 
         [max]="max" 
         [firstDayOfWeek]="firstDayOfWeek"
