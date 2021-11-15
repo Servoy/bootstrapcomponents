@@ -222,3 +222,7 @@ label input {
 .bts-calendar-container .input-group-append {
     cursor: pointer;
 }
+
+body > .dropdown{
+    z-index: 9999 !important;
+}
