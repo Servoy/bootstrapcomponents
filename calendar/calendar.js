@@ -234,7 +234,7 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 
 				$scope.focusGained = function(event) {
 					var editFormat = $scope.model.format ?  ($scope.model.format.edit ? $scope.model.format.edit : $scope.model.format.display ): null;
-					dateFormat = moment().toMomentFormatString(editFormat)					
+					if(editFormat) dateFormat = moment().toMomentFormatString(editFormat)					
 	                setDateFormat(dateFormat);
 						
 					if ($scope.model.format.edit && $scope.model.format.isMask) {
