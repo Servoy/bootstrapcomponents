@@ -149,7 +149,7 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 					}
 					else ngModel.$setViewValue(null);
 					ngModel.$setValidity("", true);
-					$scope.svyServoyapi.apply('dataProviderID');
+					if(!$scope.model.readOnly)	$scope.svyServoyapi.apply('dataProviderID');
 				}
 
 				// when model change, update our view, set the date in the datepicker

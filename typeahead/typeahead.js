@@ -154,7 +154,7 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
 					{
 						$scope.model.dataProviderID = $scope.value;
 					}  
-					$scope.svyServoyapi.apply('dataProviderID');
+					if(!$scope.model.readOnly) $scope.svyServoyapi.apply('dataProviderID');
 				}
 				else if (!hasRealValues && ($scope.model.dataProviderID != $scope.value)) // when valuelist has no realValues apply the change to the dataprovider
 				{
