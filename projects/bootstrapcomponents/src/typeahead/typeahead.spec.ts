@@ -47,6 +47,7 @@ describe('TypeaheadComponent', () => {
         component = fixture.componentInstance;
         component.servoyApi = jasmine.createSpyObj('ServoyApi', ['getMarkupId', 'trustAsHtml', 'startEdit', 'registerComponent', 'unRegisterComponent']);
         mockData.hasRealValues = () => { return true};
+        mockData.filterList = () => of(mockData);
         component.valuelistID = mockData;
         component.format = new Format();
         component.format.type = 'TEXT';
