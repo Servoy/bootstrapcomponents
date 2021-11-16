@@ -88,8 +88,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
             const clicksWithClosedPopup$ = this.click$.pipe( filter(() => !this.instance.isPopupOpen() ) );
             const inputFocus$ = this.focus$;
 
-            return merge( debouncedText$, inputFocus$, clicksWithClosedPopup$ ).pipe( switchMap( term => ( term === '' ? of( this.valuelistID )
-                : this.valuelistID.filterList( term ) ) ) );
+            return merge( debouncedText$, inputFocus$, clicksWithClosedPopup$ ).pipe( switchMap( term => ( this.valuelistID.filterList( term ) ) ) );
         } else {
             return of([]);
         }
