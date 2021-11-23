@@ -1,5 +1,5 @@
-import { Component, Renderer2, Input, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
-import { WindowRefService } from '@servoy/public';
+import { Component, Renderer2, Input, ChangeDetectorRef, ChangeDetectionStrategy, ViewChild, ElementRef, AfterViewInit, OnDestroy, EventEmitter, Output } from '@angular/core';
+import { LoggerFactory, LoggerService, WindowRefService } from '@servoy/public';
 
 import { ServoyBootstrapBaseTabPanel, Tab } from '../bts_basetabpanel';
 import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
@@ -19,6 +19,8 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
 	@Input() closeIconStyleClass: string;
 	containerStyle = {position: 'absolute', minHeight: '0px', overflow: 'auto',
 		top: '39px', bottom: '0px', left: '0px', right: '0px', marginTop: '0px'};
+
+	private visibleTab: Tab;
 
 	constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, windowRefService: WindowRefService) {
 		super(renderer, cdRef, windowRefService);
@@ -177,5 +179,63 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
 		this.containerStyle['minHeight'] = this.height + 'px';
 		this.containerStyle['marginTop'] = (element.offsetWidth < element.scrollWidth ? 8 : 0) + 'px';
 		return this.containerStyle;
+	}
+
+	onVisibleTab(tab: Tab) {
+		this.visibleTab = tab;
+	}
+
+	getForm(tab: Tab) {
+		return this.visibleTab === tab ? super.getForm(tab) : null;
+	}
+}
+
+@Component({
+	selector: 'bootstrapcomponents-tabpanel-active-tab-visibility-listener',
+	template: '<div #element></div>'
+})
+export class BsTabpanelActiveTabVisibilityListener implements AfterViewInit, OnDestroy {
+
+    @Input() tab: Tab;
+	@Output() visibleTab: EventEmitter<Tab> = new EventEmitter();
+
+	@ViewChild('element') elementRef: ElementRef;
+
+	observer: MutationObserver;
+	log: LoggerService;
+
+	constructor(logFactory: LoggerFactory) {
+		this.log = logFactory.getLogger('bts-tabpanel');
+	}
+
+	ngAfterViewInit(): void {
+		if(typeof MutationObserver !== 'undefined') {
+			const tabNode = this.elementRef.nativeElement.parentNode.parentNode;
+
+			this.observer = new MutationObserver((mutations) => {
+				mutations.forEach((mutation) => {
+					if (mutation.attributeName === 'class') {
+						const oldValueA = mutation.oldValue ? mutation.oldValue.split(' ') : [];
+						if(oldValueA.indexOf('active') === -1 && mutation.target['classList'].contains('active')) {
+							this.visibleTab.emit(this.tab);
+						}
+					}
+				});
+			});
+
+			this.observer.observe(tabNode, {
+				attributes: true,
+				attributeOldValue: true
+			});
+		} else {
+			this.log.warn('MutationObserver not available, bootstrapcomponents-tabpanel may not work correctly.');
+			this.visibleTab.emit(this.tab);
+		}
+	}
+
+	ngOnDestroy(): void {
+		if(this.observer) {
+			this.observer.disconnect();
+		}
 	}
 }

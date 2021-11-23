@@ -12,6 +12,7 @@
 			</div>
 		</a>
 		<ng-template ngbNavContent>
+			<bootstrapcomponents-tabpanel-active-tab-visibility-listener [tab]="tab" (visibleTab)="onVisibleTab(tab)"></bootstrapcomponents-tabpanel-active-tab-visibility-listener>
 			<ng-template [ngTemplateOutlet]="templateRef" [ngTemplateOutletContext]="{name:getForm(tab)}">
 			</ng-template>
 		</ng-template>

@@ -24,6 +24,10 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 			}
 			var currentTab = null;
 			var currentContainedForm = null;
+			var visibleTab;
+			$scope.onVisibleTab = function(tab) {
+				visibleTab = tab;
+			}
 			
 			/**
 			 * @private 
@@ -79,8 +83,10 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 					{
 						// keep latest instance
 						currentTab = tab;
-					}	
-					return $scope.servoyApi.getFormUrl(tab.containedForm);
+					}
+					if(visibleTab == tab) {
+						return $scope.servoyApi.getFormUrl(tab.containedForm);
+					}
 				}
 				return "";
 			}
@@ -602,4 +608,23 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 			tabCtrl.setButton(element, attrs["bsTabpanelButton"]);
 		}
 	}
-})
+}).directive('bsTabpanelActiveTabVisibilityListener', ['$parse', function($parse){
+	return {
+		restrict: 'E',
+		scope: {
+			tab: "=",
+			onVisibleTab: "="
+		},
+		link: function (scope, element) {
+			scope.$watch(function() {
+				return element.parent().attr('class');
+			}, function(newValue, oldValue) {
+				var oldValueA = oldValue ? oldValue.split(" ") : [];
+				var classes = newValue.split(" ");
+				if(scope.tab.active && oldValueA.indexOf("active") == -1 && classes.indexOf("active") != -1) {
+					scope.onVisibleTab(scope.tab);
+				}
+		  });
+		}
+	}
+}])

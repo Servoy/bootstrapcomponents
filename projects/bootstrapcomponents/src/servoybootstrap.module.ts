@@ -15,7 +15,7 @@ import { ServoyBootstrapList } from './list/list';
 import { ServoyBootstrapSelect } from './select/select';
 import { ServoyBootstrapAccordion } from './accordion/accordion';
 import { ServoyBootstrapTypeahead } from './typeahead/typeahead';
-import { ServoyBootstrapTabpanel } from './tabpanel/tabpanel';
+import { BsTabpanelActiveTabVisibilityListener, ServoyBootstrapTabpanel } from './tabpanel/tabpanel';
 import { ServoyBootstrapTablesspanel } from './tablesspanel/tablesspanel';
 import { ServoyBootstrapCombobox } from './combobox/combobox';
 import { ServoyBootstrapCalendar } from './calendar/calendar';
@@ -47,7 +47,8 @@ import { Tab } from './bts_basetabpanel';
       ServoyBootstrapCalendar,
       ServoyBootstrapCalendarinline,
       ShowDisplayValuePipe,
-      DesignTextPipe
+      DesignTextPipe,
+      BsTabpanelActiveTabVisibilityListener
     ],
     providers: [],
     imports: [

@@ -11,6 +11,7 @@
         <span ng-bind-html="tab.text| htmlFilter| trustAsHtml:servoyApi.trustAsHtml()"></span>
 		<i href ng-if="tab.hideCloseIcon !== true && model.showTabCloseIcon" ng-class='(model.closeIconStyleClass ? model.closeIconStyleClass + " bts-tabpanel-close-icon" : "bts-tabpanel-close-icon")'/>
       </uib-tab-heading>
+      <bs-tabpanel-active-tab-visibility-listener tab="tab" on-visible-tab="onVisibleTab"></bs-tabpanel-active-tab-visibility-listener>
       <div ng-include="getForm(tab)" ng-class='model.containerStyleClass' ng-style='getContainerStyle()'></div>
     </uib-tab>
 </uib-tabset>
