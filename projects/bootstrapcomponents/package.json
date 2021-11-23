@@ -2,18 +2,17 @@
   "name": "@servoy/bootstrapcomponents",
   "version": "3.2.2",
   "peerDependencies": {
-    "@angular/animations": ">=12",
-    "@angular/common": ">=12",
-    "@angular/core": ">=12",
-    "@angular/forms": ">=12",
-    "moment": ">=2.29",
-    "luxon": ">=1"
+    "@angular/animations": "^13",
+    "@angular/common": "^13",
+    "@angular/core": "^13",
+    "@angular/forms": "^13",
+    "luxon": "*"
   },
   "dependencies": {
-    "@danielmoncada/angular-datetime-picker": ">=12",
-    "@angular/cdk": ">=12",
-    "@ng-bootstrap/ng-bootstrap": ">=10",
-    "bootstrap": ">=5",
+    "@danielmoncada/angular-datetime-picker": "^12",
+    "@angular/cdk": "^13",
+    "@ng-bootstrap/ng-bootstrap": "^10",
+    "bootstrap": "^5",
     "tslib": "*"
   },
   "license": "MIT",

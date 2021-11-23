@@ -5,15 +5,7 @@
       "svy_bootstrapcomponents.css"
     ],
   "lib": {
-    "entryFile": "src/public-api.ts",
-    "umdId": "servoy.bootstrapcomponents",
-    "umdModuleIds": {
-      "@servoy/public": "servoy.public",
-      "luxon": "luxon",
-      "@angular/core": "angular.core",
-      "@ng-bootstrap/ng-bootstrap": "ng-bootstrap.ng-bootstrap",
-      "@danielmoncada/angular-datetime-picker": "danielmoncada.angular-datetime-picker"
-    }
+    "entryFile": "src/public-api.ts"
   },
   "allowedNonPeerDependencies": ["@danielmoncada/angular-datetime-picker", "@angular/cdk", "@ng-bootstrap/ng-bootstrap", "bootstrap"]
 }

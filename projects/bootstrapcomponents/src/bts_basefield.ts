@@ -99,7 +99,7 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
                 if (this.storedTooltip === false) {
                     this.storedTooltip = this.toolTipText;
                 }
-                this.toolTipText = returnval;
+                this.toolTipText = returnval.toString();
             }
         } else {
             this.renderer.removeClass(this.getFocusElement(), 'ng-invalid');
