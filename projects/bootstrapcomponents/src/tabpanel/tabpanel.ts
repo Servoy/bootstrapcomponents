@@ -20,7 +20,7 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
 	containerStyle = {position: 'absolute', minHeight: '0px', overflow: 'auto',
 		top: '39px', bottom: '0px', left: '0px', right: '0px', marginTop: '0px'};
 
-	private visibleTab: Tab;
+	private visibleTabIndex: number;
 
 	constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, windowRefService: WindowRefService) {
 		super(renderer, cdRef, windowRefService);
@@ -182,11 +182,11 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
 	}
 
 	onVisibleTab(tab: Tab) {
-		this.visibleTab = tab;
+		this.visibleTabIndex = this.getTabIndex(tab);
 	}
 
 	getForm(tab: Tab) {
-		return this.visibleTab === tab ? super.getForm(tab) : null;
+		return this.visibleTabIndex === this.getTabIndex(tab) ? super.getForm(tab) : null;
 	}
 }
 

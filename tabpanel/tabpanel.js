@@ -24,9 +24,9 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 			}
 			var currentTab = null;
 			var currentContainedForm = null;
-			var visibleTab;
+			var visibleTabIndex;
 			$scope.onVisibleTab = function(tab) {
-				visibleTab = tab;
+				visibleTabIndex = getTabIndex(tab);
 			}
 			
 			/**
@@ -84,7 +84,7 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 						// keep latest instance
 						currentTab = tab;
 					}
-					if(visibleTab == tab) {
+					if(visibleTabIndex == getTabIndex(tab)) {
 						return $scope.servoyApi.getFormUrl(tab.containedForm);
 					}
 				}

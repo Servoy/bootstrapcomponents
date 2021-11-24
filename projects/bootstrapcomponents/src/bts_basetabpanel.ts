@@ -151,7 +151,7 @@ export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBo
         return false;
     }
 
-	private getTabIndex(tab: Tab) {
+	getTabIndex(tab: Tab) {
 		if (tab) {
 			for (let i = 0; i < this.tabs.length; i++) {
 				if (this.tabs[i] === tab) {
