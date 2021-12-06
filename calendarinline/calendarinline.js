@@ -152,12 +152,6 @@ angular.module('bootstrapcomponentsCalendarinline',['servoy'])
 					configurable : true,
 					value : function(property, value) {
 						switch (property) {
-//						case "dataProviderID":
-//							var x = child.data('DateTimePicker');
-//							if (angular.isDefined(x)) {
-//								x.date(value);
-//							}
-//							break;
 						case "toolTipText":
 							if (tooltipState)
 								tooltipState(value);
