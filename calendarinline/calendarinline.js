@@ -11,6 +11,8 @@ angular.module('bootstrapcomponentsCalendarinline',['servoy'])
 		link: function($scope, $element, $attrs) {
 			$scope.renderFinished = function() {
 				var child = $element.children();
+				var ngModel = child.controller("ngModel");
+				
 				var options = {
 						showTodayButton: true,
 						calendarWeeks: $scope.model.calendarWeeks,
@@ -44,6 +46,21 @@ angular.module('bootstrapcomponentsCalendarinline',['servoy'])
 					}
 					$scope.svyServoyapi.apply('dataProviderID');
 				}
+				
+				// when model change, update our view, set the date in the datepicker
+				ngModel.$render = function() {
+					try {
+						$element.off("dp.change",inputChanged);
+						var x = child.data('DateTimePicker');
+						if (x && !$scope.model.findmode) x.date(angular.isDefined(ngModel.$viewValue) ? ngModel.$viewValue : null); // set default date for widget open; turn undefined to null as well (undefined gives exception)
+						else {
+							// in find mode 
+							child.children("input").val(ngModel.$viewValue);
+						}
+					} finally {
+						$element.on("dp.change",inputChanged);
+					}
+				};
 
 				$element.on("dp.change",inputChanged);
 
@@ -135,12 +152,12 @@ angular.module('bootstrapcomponentsCalendarinline',['servoy'])
 					configurable : true,
 					value : function(property, value) {
 						switch (property) {
-						case "dataProviderID":
-							var x = child.data('DateTimePicker');
-							if (angular.isDefined(x)) {
-								x.date(value);
-							}
-							break;
+//						case "dataProviderID":
+//							var x = child.data('DateTimePicker');
+//							if (angular.isDefined(x)) {
+//								x.date(value);
+//							}
+//							break;
 						case "toolTipText":
 							if (tooltipState)
 								tooltipState(value);
