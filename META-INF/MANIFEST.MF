@@ -10,7 +10,7 @@ NG2-Module: ServoyBootstrapComponentsModule
 Entry-Point: dist/servoy/bootstrapcomponents
 Bundle-SymbolicName: bootstrapcomponents
 Bundle-Name: Bootstrap Components
-Bundle-Version: 3.2.2
+Bundle-Version: 3.2.3
 Created-By: 1.7.0_05-b06 (Oracle Corporation)
 Package-Type: Web-Component
 JS-ClientLibs: bootstrapcomponents/lib/js/bscomponents-common.js;name=
