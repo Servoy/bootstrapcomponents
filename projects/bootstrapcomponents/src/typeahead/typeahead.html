@@ -6,7 +6,7 @@
 		[hostComponent]="this"
 		[(ngModel)]="dataProviderID"
 		(change)="pushUpdate()"
-		(selectItem)="valueChanged($event.item)"
+		(selectItem)="valueChanged($event)"
 		[sabloTabseq]="tabSeq"
 		[editable]="isEditable()"
 		[svyTooltip]="toolTipText"

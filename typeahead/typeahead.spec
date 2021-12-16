@@ -23,7 +23,8 @@
 	    "toolTipText" : { "type" : "tagstring"},
 	    "visible" : "visible",
 	    "selectOnEnter" : {"type" :"boolean", "tags": { "scope" :"design" }},
-		"appendToBody" : {"type" :"boolean",  "default" : true}
+		"appendToBody" : {"type" :"boolean",  "default" : true},
+		"filteringDebounce" : {"type" :"int",  "default" : 500},
 	},
 	"handlers":
 	{

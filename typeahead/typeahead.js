@@ -115,7 +115,40 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
 					}	
 				}, 50, true);
 			});
-
+            
+            var lastFilteringPromise = null;
+            var keyCodeToTrigger = null;
+            $scope.filterList = function(value) {
+                var promise = $scope.model.valuelistID.filterList(value);
+                lastFilteringPromise = promise;
+                promise.finally(function() {
+                    if (lastFilteringPromise == promise){
+                        lastFilteringPromise = null;
+                        if (keyCodeToTrigger){
+                            // run now the delayed key event
+                            $timeout(function() {
+                                // we are already in apply, have to wait for next cycle
+                                var e = jQuery.Event("keydown");
+                                e.which = keyCodeToTrigger;
+                                e.keyCode = keyCodeToTrigger;
+                                $element.trigger(e);
+                                keyCodeToTrigger = null;
+                            })
+                        }
+                    }
+                });  
+               return promise;
+            }
+            
+            $scope.shouldSelect = function(event) {
+                // delay the selection by key (tab or enter) until filtering is done
+                if (lastFilteringPromise){
+                    keyCodeToTrigger = event.which;
+                    return false;
+                }
+                return true;
+            }
+            
 			$scope.doSvyApply = function(force, event) {
 				// when there is no input, we add a &nbsp;, see the template, that we just remove here,
 				// to have the correct value;

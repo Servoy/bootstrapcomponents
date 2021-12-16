@@ -1,8 +1,8 @@
 import { DOCUMENT } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, Inject, Input, Renderer2, SimpleChanges, ViewChild } from '@angular/core';
-import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTypeahead, NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
 import { merge, Observable, of, Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, filter, switchMap, take } from 'rxjs/operators';
 import { Format, FormattingService, IValuelist, WindowRefService } from '@servoy/public';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 
@@ -19,12 +19,13 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
     @Input() format: Format;
     @Input() valuelistID: IValuelist;
     @Input() appendToBody: boolean;
+    @Input() filteringDebounce: number;
     autocomplete: string;
 
     focus$ = new Subject<string>();
     click$ = new Subject<string>();
 
-    constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, @Inject(DOCUMENT)  doc: Document, private formatService: FormattingService,
+    constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, @Inject(DOCUMENT) doc: Document, private formatService: FormattingService,
         windowService: WindowRefService) {
         super(renderer, cdRef, doc);
         this.autocomplete = windowService.nativeWindow.navigator.userAgent.match(/chrome/i) ? 'chrome-off' : 'off';
@@ -40,7 +41,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
 
     svyOnInit() {
         super.svyOnInit();
-         this.renderer.listen( this.getFocusElement(), 'focus', () => {
+        this.renderer.listen(this.getFocusElement(), 'focus', () => {
             setTimeout(this.onFocus);
         });
         // add custom class to the popup, needed by ng-grids (ag-grid) so it can be used in form editors (popups)
@@ -82,13 +83,40 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
         }
     }
 
-    filterValues = ( text$: Observable<string> ) => {
-        if ( this.editable === true && this.isEditable() ) {
-            const debouncedText$ = text$.pipe( debounceTime( 200 ), distinctUntilChanged() );
-            const clicksWithClosedPopup$ = this.click$.pipe( filter(() => !this.instance.isPopupOpen() ) );
+    lastFilteringPromise: Observable<any> = null;
+    valueToApply: { displayValue: string; realValue: any } = null;
+
+    filterValues = (text$: Observable<string>) => {
+        if (this.editable === true && this.isEditable()) {
+            const debouncedText$ = text$.pipe(debounceTime(this.filteringDebounce), distinctUntilChanged());
+            const clicksWithClosedPopup$ = this.click$.pipe(filter(() => !this.instance.isPopupOpen()));
             const inputFocus$ = this.focus$;
 
-            return merge( debouncedText$, inputFocus$, clicksWithClosedPopup$ ).pipe( switchMap( term => ( this.valuelistID.filterList( term ) ) ) );
+            return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(switchMap(term => {
+                const promise = this.valuelistID.filterList(term)
+                this.lastFilteringPromise = promise;
+                promise.toPromise().finally(() => {
+                    if (this.lastFilteringPromise == promise) {
+                        this.lastFilteringPromise = null;
+                        if (this.valueToApply) {
+                            const tempValue = this.valueToApply;
+                            this.valueToApply = null;
+                            promise.pipe(take(1)).subscribe(items => {
+                                let value = items.find((item) => item.realValue == tempValue.realValue);
+                                // is the item still in valuelist after filter? apply that one, if not select the first one
+                                if (!value) {
+                                    value = items[0];
+                                }
+                                if (value) {
+                                    this.dataProviderID = value.realValue;
+                                    this.dataProviderIDChange.emit(this.dataProviderID);
+                                }
+                            });
+                        }
+                    }
+                });
+                return promise;
+            }));
         } else {
             return of([]);
         }
@@ -118,7 +146,13 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
         return this.formatService.format(result, this.format, false);
     };
 
-    valueChanged(value: { displayValue: string; realValue: any }) {
+    valueChanged(event: NgbTypeaheadSelectItemEvent) {
+        const value: { displayValue: string; realValue: any } = event.item;
+        if (this.lastFilteringPromise && value && value.realValue !== undefined) {
+            event.preventDefault();
+            this.valueToApply = value;
+            return;
+        }
         if (value && value.realValue !== undefined) this.dataProviderID = value.realValue;
         else if (value) this.dataProviderID = value;
         else this.dataProviderID = null;
