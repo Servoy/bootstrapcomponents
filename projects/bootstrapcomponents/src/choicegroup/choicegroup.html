@@ -1,5 +1,6 @@
 <div #element
     class="bts-radiogroup"
+    [svyTooltip]="toolTipText"
     [ngClass]="styleClass">
     <label *ngFor="let item of valuelistID | notNullOrEmpty; let i = index;">
         <input [type]="inputType"
@@ -8,7 +9,6 @@
             (change)="itemClicked($event, i)"
             [disabled]="readOnly || !enabled"
             [id]="servoyApi.getMarkupId()"
-            [svyTooltip]="toolTipText"
             [sabloTabseq]="tabSeq"
             [bootstrapBaseChoiceElement]="this"
             [index]="i"
