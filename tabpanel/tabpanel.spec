@@ -98,6 +98,9 @@
 			}]
 
 		},
+		"removeAllTabs": {
+            "returns": "boolean"
+        },
 		"selectTabAt": {
 			"returns": "boolean",
 			"parameters": [{

@@ -56,7 +56,25 @@ $scope.api.removeTabAt = function(index) {
         	   return true;
     	   }
     	   return false;
-  }
+}
+
+$scope.api.removeAllTabs = function() {
+	if (!$scope.model.tabs) return true;
+	
+	var formToHide = ($scope.model.tabIndex >= 1 && $scope.model.tabIndex <= $scope.model.tabs.length) ? $scope.model.tabs[$scope.model.tabIndex - 1] : undefined;
+
+	var formHideIsOK = true;
+	if (formToHide && formToHide.containedForm) {
+		formHideIsOK = servoyApi.hideForm(formToHide.containedForm);
+	}
+	
+	if (!formHideIsOK) return false;
+	
+	$scope.model.tabs = undefined;
+	$scope.model.tabIndex = 0;
+		
+	return true;
+}
 
 var getFirstEnabledTabIndex = function() {
 	for (var i = 0; $scope.model.tabs && i < $scope.model.tabs.length; i++) {
