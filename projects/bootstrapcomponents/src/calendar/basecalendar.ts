@@ -73,9 +73,8 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
             });
         }
         if (result && this.disabledDays) {
-            let weekday = DateTime.fromJSDate(d).weekday; // 1 == monday, 7 == sunday
-            if (weekday === 7) weekday = 0;
-            result = !this.disabledDays.includes(weekday);
+            const weekday = DateTime.fromJSDate(d).weekday; // 1 == monday, 7 == sunday
+            result = !this.disabledDays.includes(weekday === 7 ? 0 : weekday);
         }
         return result;
     };
