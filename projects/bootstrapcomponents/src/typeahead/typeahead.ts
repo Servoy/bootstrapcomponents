@@ -86,40 +86,41 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
     lastFilteringPromise: Observable<any> = null;
     valueToApply: { displayValue: string; realValue: any } = null;
 
-    filterValues = (text$: Observable<string>) => {
-        if (this.editable === true && this.isEditable()) {
-            const debouncedText$ = text$.pipe(debounceTime(this.filteringDebounce), distinctUntilChanged());
-            const clicksWithClosedPopup$ = this.click$.pipe(filter(() => !this.instance.isPopupOpen()));
-            const inputFocus$ = this.focus$;
+    filterValues = ( text$: Observable<string> ) => {
+        const debouncedText$ = text$.pipe( debounceTime( this.filteringDebounce ), distinctUntilChanged() );
+        const clicksWithClosedPopup$ = this.click$.pipe( filter(() => !this.instance.isPopupOpen() ) );
+        const inputFocus$ = this.focus$;
 
-            return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(switchMap(term => {
-                const promise = this.valuelistID.filterList(term)
+        return merge( debouncedText$, inputFocus$, clicksWithClosedPopup$ ).pipe( switchMap( term => {
+            const promise = this.valuelistID.filterList( term )
+            this.lastFilteringPromise = promise;
+            if ( this.editable === true ) {
+                const promise = this.valuelistID.filterList( term )
                 this.lastFilteringPromise = promise;
                 promise.toPromise().finally(() => {
-                    if (this.lastFilteringPromise == promise) {
+                    if ( this.lastFilteringPromise == promise ) {
                         this.lastFilteringPromise = null;
-                        if (this.valueToApply) {
+                        if ( this.valueToApply ) {
                             const tempValue = this.valueToApply;
                             this.valueToApply = null;
-                            promise.pipe(take(1)).subscribe(items => {
-                                let value = items.find((item) => item.realValue == tempValue.realValue);
+                            promise.pipe( take( 1 ) ).subscribe( items => {
+                                let value = items.find(( item ) => item.realValue == tempValue.realValue );
                                 // is the item still in valuelist after filter? apply that one, if not select the first one
-                                if (!value) {
+                                if ( !value ) {
                                     value = items[0];
                                 }
-                                if (value) {
+                                if ( value ) {
                                     this.dataProviderID = value.realValue;
-                                    this.dataProviderIDChange.emit(this.dataProviderID);
+                                    this.dataProviderIDChange.emit( this.dataProviderID );
                                 }
-                            });
+                            } );
                         }
                     }
-                });
+                } );
                 return promise;
-            }));
-        } else {
-            return of([]);
-        }
+            }
+            return Promise.resolve( [] );
+        } ) );
     };
 
     isEditable() {
