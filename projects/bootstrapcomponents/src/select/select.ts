@@ -32,7 +32,7 @@ export class ServoyBootstrapSelect extends ServoyBootstrapBasefield<HTMLSelectEl
                             this.selectedValues = ('' + this.dataProviderID).split('\n');
                         }
                         break;
-                    case 'placeholder':    
+                    case 'placeholder':
                         if (change.currentValue) this.renderer.setAttribute(this.getNativeElement(), 'placeholder', change.currentValue);
                         else this.renderer.removeAttribute(this.getNativeElement(), 'placeholder');
                         break;
@@ -65,7 +65,8 @@ export class ServoyBootstrapSelect extends ServoyBootstrapBasefield<HTMLSelectEl
 
     onChange(event) {
         this.renderer.removeAttribute(this.getNativeElement(), 'placeholder');
-        if (this.updateDataprovider() && this.onActionMethodID) {
+        this.updateDataprovider();
+        if (this.onActionMethodID) {
             this.onActionMethodID(event);
         }
     }
@@ -73,31 +74,28 @@ export class ServoyBootstrapSelect extends ServoyBootstrapBasefield<HTMLSelectEl
     updateDataprovider() {
         if (this.valuelistID) {
             let value = null;
-            for (let i = 0; i < this.valuelistID.length; i++) {
-                if (this.multiselect) {
+            if (this.multiselect) {
+                for (let i = 0; i < this.valuelistID.length; i++) {
                     if (this.selectedValues.indexOf(this.valuelistID[i].displayValue) != -1) {
                         if (value == null) value = [];
                         value.push(this.valuelistID[i].realValue);
                     }
-                } else {
-                    if (this.dataProviderID == this.valuelistID[i].displayValue) {
-                        value = this.valuelistID[i].realValue;
-                    }
                 }
+            }
+            else {
+                // already binded by ngmodel, just push it
+                value = this.dataProviderID;
             }
             if (this.multiselect && value) {
                 value = value.join('\n');
             }
-            if ((this.dataProviderID + '') != (value + '')) {
-                this.updateValue(value);
-                return true;
-            }
+            this.updateValue(value);
         }
-        return false;
     }
 
     updateValue(val: string) {
         this.dataProviderID = val;
         super.pushUpdate();
     }
+
 }
