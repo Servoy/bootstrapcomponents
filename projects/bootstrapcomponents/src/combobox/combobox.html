@@ -4,6 +4,7 @@
     [ngbTooltip]="tooltipContent"
     triggers="manual"
     #tooltip="ngbTooltip"
+    [container]="appendToBody?'body':null"
     [sabloTabseq]="tabSeq"
     [svyTooltip]="toolTipText"
     [svyStartEdit]="'dataProviderID'"

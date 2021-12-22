@@ -26,7 +26,6 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
     keyboardSelectValue: string = null;
     lastSelectValue: string = null;
     firstItemFound = false;
-    private kbSelection = null;
     private skipFocus = false;
 
     constructor(renderer: Renderer2, protected cdRef: ChangeDetectorRef, private formatService: FormattingService, @Inject(DOCUMENT) doc: Document) {
@@ -42,18 +41,13 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
         this.lastSelectValue = null;
         this.firstItemFound = false;
         if (this.isPrintableChar(event.key)) {
-            clearTimeout(this.kbSelection);
             if(event.key !== 'Backspace') this.keyboardSelectValue = (this.keyboardSelectValue ? this.keyboardSelectValue : '') + event.key;
             else this.keyboardSelectValue = this.keyboardSelectValue ? this.keyboardSelectValue.slice(0, -1) : '';
             this.lastSelectValue = this.keyboardSelectValue.slice();
-            this.refreshTooltip();
+            if (!this.lastSelectValue)  this.closeTooltip();
+            else this.refreshTooltip();
             this.cdRef.detectChanges();
-            this.kbSelection = setTimeout(() => {
-                this.scrollToFirstMatchingItem();
-                this.keyboardSelectValue = null;
-                this.lastSelectValue = null;
-                this.tooltip.close();
-            }, 1000);
+            this.scrollToFirstMatchingItem();
         }
     }
 
@@ -121,7 +115,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
                 }
             });
         } else {
-            this.lastSelectValue = null;
+            this.closeTooltip();
             this.requestFocus(this.mustExecuteOnFocus);
         }
     }
@@ -172,6 +166,12 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
                 }
             }
        }
+    }
+
+    private closeTooltip() {
+        this.keyboardSelectValue = null;
+        this.lastSelectValue = null;
+        this.tooltip.close();
     }
 
     // eslint-disable-next-line eqeqeq
