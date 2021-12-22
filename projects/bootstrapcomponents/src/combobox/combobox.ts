@@ -43,7 +43,8 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
         this.firstItemFound = false;
         if (this.isPrintableChar(event.key)) {
             clearTimeout(this.kbSelection);
-            this.keyboardSelectValue = (this.keyboardSelectValue ? this.keyboardSelectValue : '') + event.key;
+            if(event.key !== 'Backspace') this.keyboardSelectValue = (this.keyboardSelectValue ? this.keyboardSelectValue : '') + event.key;
+            else this.keyboardSelectValue = this.keyboardSelectValue ? this.keyboardSelectValue.slice(0, -1) : '';
             this.lastSelectValue = this.keyboardSelectValue.slice();
             this.refreshTooltip();
             this.cdRef.detectChanges();
@@ -52,7 +53,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
                 this.keyboardSelectValue = null;
                 this.lastSelectValue = null;
                 this.tooltip.close();
-            }, 300);
+            }, 1000);
         }
     }
 
@@ -81,7 +82,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
         const nonPrintableValue = [
             'Alt', 'AltGraph', 'CapsLock', 'Fn', 'Meta', 'NumLock', 'ScrollLock', 'Shift',
             'Enter', 'Tab', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'End', 'Home',
-            'PageUp', 'PageDown', 'Backspace', 'Delete', 'Insert', 'Del', 'Escape'
+            'PageUp', 'PageDown', 'Delete', 'Control', 'Insert', 'Del', 'Escape'
         ];
         if (nonPrintableValue.includes(key))
             return false;
