@@ -1,5 +1,5 @@
 <ng-template #tooltipContent>{{lastSelectValue}}</ng-template>
-<div [id]="servoyApi.getMarkupId()" class="bts-combobox-container" ngbDropdown (openChange)="openChange($event)"  [container]="appendToBody?'body':null" #element> 
+<div [id]="servoyApi.getMarkupId()" class="bts-combobox-container" ngbDropdown #comboboxDropdown="ngbDropdown" (openChange)="openChange($event)"  [container]="appendToBody?'body':null" #element> 
   <button class="bts-combobox form-control dropdown-toggle bts-dropdown" ngbDropdownToggle
     [ngbTooltip]="tooltipContent"
     triggers="manual"

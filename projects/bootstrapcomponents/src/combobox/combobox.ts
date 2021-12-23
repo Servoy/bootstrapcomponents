@@ -1,7 +1,7 @@
 import { Component, Renderer2, Input, SimpleChanges, ChangeDetectorRef, ViewChild, ViewChildren, QueryList, ElementRef, HostListener, ChangeDetectionStrategy, Inject } from '@angular/core';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 import { Format, FormattingService, IValuelist } from '@servoy/public';
-import { NgbDropdownItem, NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownItem, NgbTooltip, NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 import { DOCUMENT } from '@angular/common';
 
 @Component({
@@ -16,9 +16,10 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
     @Input() valuelistID: IValuelist;
     @Input() appendToBody: boolean;
 
-    @ViewChildren(NgbDropdownItem) menuItems: QueryList<NgbDropdownItem>;
-    @ViewChild('input') input: ElementRef<HTMLButtonElement>;
-    @ViewChild('tooltip') tooltip: NgbTooltip;
+    @ViewChildren( NgbDropdownItem ) menuItems: QueryList<NgbDropdownItem>;
+    @ViewChild( 'input' ) input: ElementRef<HTMLButtonElement>;
+    @ViewChild( NgbDropdown ) comboboxDropdown: NgbDropdown;
+    @ViewChild( 'tooltip' ) tooltip: NgbTooltip;
 
     formattedValue: any;
     valueComparator: (value: { displayValue: any; realValue: any }) => boolean;
@@ -41,6 +42,9 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
         this.lastSelectValue = null;
         this.firstItemFound = false;
         if (this.isPrintableChar(event.key)) {
+            if(document.activeElement === this.getFocusElement() && !this.comboboxDropdown.isOpen()){
+                this.comboboxDropdown.open();
+            }
             if(event.key !== 'Backspace') this.keyboardSelectValue = (this.keyboardSelectValue ? this.keyboardSelectValue : '') + event.key;
             else this.keyboardSelectValue = this.keyboardSelectValue ? this.keyboardSelectValue.slice(0, -1) : '';
             this.lastSelectValue = this.keyboardSelectValue.slice();
