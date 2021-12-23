@@ -24,7 +24,7 @@
 	    "visible" : "visible",
 	    "selectOnEnter" : {"type" :"boolean", "tags": { "scope" :"design" }},
 		"appendToBody" : {"type" :"boolean",  "default" : true},
-		"filteringDebounce" : {"type" :"int",  "default" : 500},
+		"filteringDebounce" : {"type" :"int",  "default" : 500}
 	},
 	"handlers":
 	{
