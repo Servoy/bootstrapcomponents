@@ -17,6 +17,7 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
     @Output() dataProviderIDChange = new EventEmitter();
     @Input() dataProviderID: any;
     @Input() readOnly: boolean;
+    @Input() findmode: boolean;
     @Input() editable: boolean;
     @Input() placeholderText: string;
     @Input() selectOnEnter: boolean;
