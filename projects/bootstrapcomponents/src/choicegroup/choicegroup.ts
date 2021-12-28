@@ -56,13 +56,13 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
     }
 
     getFocusElement(): HTMLElement {
-        if (!this.input){ 
+        if (!this.input){
             // just a fallback for not getting NPEs
             return this.elementRef.nativeElement;
         }
         return this.input.nativeElement;
     }
-    
+
     getDataproviderFromSelection() {
         let returnValue = '';
         this.selection.forEach((element, index) => {
@@ -99,16 +99,22 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
         if (this.inputType === 'radio') {
             this.dataProviderID = this.valuelistID[index + this.allowNullinc].realValue;
         } else {
-            const checkedTotal = this.selection.filter(a => a === true).length;
-            if (event.target.checked) {
-                if (checkedTotal > 1) {
-                    this.selection.map(() => false);
+            const prevValue = this.selection[index];
+            if (this.allowMultiselect || this.findmode) {
+                this.selection[index] = event.target.checked;
+                if(!this.findmode && this.allowNullinc === 0 &&  this.selection.filter(a => a === true).length === 0){
+                     this.selection[index] = true;
+                     event.target.checked = true;
                 }
-                this.selection[index] = true;
             } else {
-                event.target.checked = this.selection[index] = this.allowNullinc === 0 && checkedTotal <= 1 && !this.findmode;
-                changed = !event.target.checked;
+                this.selection.fill(false);
+                this.selection[index] = event.target.checked;
+                if (!this.selection[index] && this.allowNullinc === 0) {
+                     this.selection[index] = true;
+                     event.target.checked = true;
+                }
             }
+            changed = prevValue !== this.selection[index];
             this.dataProviderID = this.getDataproviderFromSelection();
         }
         if (changed) this.pushUpdate();
@@ -118,7 +124,7 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
     attachHandlers() {
         // just ignore this.
     }
-    
+
     attachEventHandlers(element: HTMLElement, index: number) {
         if (element) {
             this.renderer.listen(element, 'click', (event) => {
@@ -142,7 +148,7 @@ export class ChoiceElementDirective implements OnInit {
 
     constructor(private el: ElementRef) {
     }
-    
+
     ngOnInit(): void {
         this.bootstrapBaseChoiceElement.attachEventHandlers(this.el.nativeElement, this.index);
     }
