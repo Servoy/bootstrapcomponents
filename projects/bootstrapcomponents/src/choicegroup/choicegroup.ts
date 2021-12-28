@@ -32,7 +32,7 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
     svyOnChanges(changes: SimpleChanges) {
         if (this.servoyApi.isInDesigner() && !this.valuelistID){
             // this should only happen in preview
-            this.valuelistID = [{realValue:1,displayValue:"Item1"},{realValue:2,displayValue:"Item2"},{realValue:3,displayValue:"Item3"}] as IValuelist;
+            this.valuelistID = [{realValue:1,displayValue:'Item1'},{realValue:2,displayValue:'Item2'},{realValue:3,displayValue:'Item3'}] as IValuelist;
         }
         for (const property of Object.keys(changes)) {
             switch (property) {
@@ -42,6 +42,7 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
                 case 'valuelistID':
                     if (this.valuelistID && this.valuelistID.length > 0 && this.isValueListNull(this.valuelistID[0]))
                         this.allowNullinc = 1;
+                    else this.allowNullinc = 0;
                     this.setSelectionFromDataprovider();
                     break;
 
