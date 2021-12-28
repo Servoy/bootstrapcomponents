@@ -81,18 +81,13 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
         this.selection = [];
         if (this.dataProviderID === null || this.dataProviderID === undefined) return;
         const arr = (typeof this.dataProviderID === 'string') ? this.dataProviderID.split('\n') : [this.dataProviderID];
-        arr.forEach((element, index, array) => {
-            for (let i = 0; i < this.valuelistID.length; i++) {
-                const item = this.valuelistID[i];
-                if (item.realValue + '' === element + '' && !this.isValueListNull(item)) {
-                    if (this.inputType === 'radio') {
-                        if (arr.length > 1) this.selection = []; else this.selection[i - this.allowNullinc] = item.realValue;
-                    } else {
-                        this.selection[i - this.allowNullinc] = true;
-                    }
-                }
+        if (this.inputType === 'radio' && arr.length > 1) return;
+        for (let i = 0; i < this.valuelistID.length; i++) {
+            const item = this.valuelistID[i];
+            if (!this.isValueListNull(item)) {
+                this.selection[i - this.allowNullinc] = arr.find(value => item.realValue + '' === value + '') !== undefined;
             }
-        });
+        }
     }
 
     isValueListNull = (item) => (item.realValue === null || item.realValue === '') && item.displayValue === '';
