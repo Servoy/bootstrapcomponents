@@ -20,6 +20,7 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
 
     selection: any[] = [];
     allowNullinc = 0;
+    allowMultiselect = true;
 
     constructor(renderer: Renderer2, protected cdRef: ChangeDetectorRef, @Inject(DOCUMENT) doc: Document) {
         super(renderer, cdRef, doc);
@@ -38,6 +39,7 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
             switch (property) {
                 case 'dataProviderID':
                     this.setSelectionFromDataprovider();
+                    this.allowMultiselect = typeof this.dataProviderID === 'string';
                     break;
                 case 'valuelistID':
                     if (this.valuelistID && this.valuelistID.length > 0 && this.isValueListNull(this.valuelistID[0]))
