@@ -17,9 +17,9 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
 
 	@Input() showTabCloseIcon: boolean;
 	@Input() closeIconStyleClass: string;
+	@Input() cssPosition: { width: string; height: string };
     
-	containerStyle = {position: 'relative', minHeight: '0px', overflow: 'auto',
-		top: '39px', bottom: '0px', left: '0px', right: '0px', marginTop: '0px'};
+	containerStyle = {position: 'relative', minHeight: '0px', overflow: 'auto'};
 
 	private visibleTabIndex: number;
 
@@ -177,7 +177,17 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
 	}
 
 	getContainerStyle(element: HTMLElement) {
-		this.containerStyle['minHeight'] = this.height + 'px';
+        const navpane = element.querySelector('[ngbnavpane]');
+        if (navpane) {
+            this.renderer.setStyle(navpane, 'min-height',this.height + 'px' );
+            this.renderer.setStyle(navpane, 'position','relative' );
+        }
+        if (this.cssPosition && this.servoyApi.isInAbsoluteLayout()) {
+            const tabs = element.querySelector('ul');
+            this.containerStyle['height'] = (parseInt(this.cssPosition.height, 10 ) - tabs.clientHeight) + 'px';
+        } else {
+		  this.containerStyle['minHeight'] = this.height + 'px';
+		}
 		this.containerStyle['marginTop'] = (element.offsetWidth < element.scrollWidth ? 8 : 0) + 'px';
 		return this.containerStyle;
 	}
