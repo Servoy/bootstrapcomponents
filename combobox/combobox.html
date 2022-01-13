@@ -10,11 +10,12 @@
 		on-select='onItemSelect($event)'
 		svy-attributes='model.attributes'>
  			<ui-select-match 
+				placeholder="{{model.placeholderText}}"
  				svy-rightclick='handlers.onRightClickMethodID($event)'
  				ng-style="style"
  				svy-margin='model.margin'>
  				<span ng-if='model.showAs != "html" && !isTrustedHTML()'>{{($select.selected ? $select.selected : model.dataProviderID) | bcShowDisplayValue:model.valuelistID:true | formatFilter:model.format.display:model.format.type}}</span>
- 				<span ng-bind-html='($select.selected ? $select.selected : model.dataProviderID) | bcShowDisplayValue:model.valuelistID | htmlFilter| trustAsHtml:isTrustedHTML()' ng-if='model.showAs == "html" || isTrustedHTML()'></span>
+ 				<span ng-bind-html='($select.selected ? $select.selected : model.dataProviderID) | bcShowDisplayValue:model.valuelistID | model.placeholderText | htmlFilter| trustAsHtml:isTrustedHTML()' ng-if='model.showAs == "html" || isTrustedHTML()'></span>
  			</ui-select-match>
             <ui-select-choices ng-init="renderFinished()" repeat="item.realValue as item in model.valuelistID | propertyFormattedFilter: { displayValue : $select.search} : model.format.display:model.format.type">
               <div ng-style="style" ng-if='isEmptyOrNull(item)'>&nbsp;</div>

@@ -144,6 +144,11 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
                     this.formattedValue = this.dataProviderID;
             }
         }
+        if (this.formattedValue === "" || this.formattedValue === null || this.formattedValue === undefined) {
+            if (changes['placeholderText']) {
+                this.formattedValue = this.placeholderText;
+            }
+        }
         super.svyOnChanges(changes);
     }
 
