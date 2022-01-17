@@ -80,7 +80,7 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
     attachFocusListeners(nativeElement: HTMLElement) {
         if (this.onFocusGainedMethodID)
             this.renderer.listen(nativeElement, 'focus', (e) => {
-                if (this.mustExecuteOnFocus === true) {
+                if (this.mustExecuteOnFocus !== false) {
                     this.onFocusGainedMethodID(e);
                 }
                 this.mustExecuteOnFocus = true;
