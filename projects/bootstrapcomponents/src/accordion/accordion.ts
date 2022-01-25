@@ -34,7 +34,7 @@ export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDi
         let totalHeight = this.height;
         let wrapper = null;
         if (this.elementRef) {
-            wrapper = this.elementRef.nativeElement.closest('svy-wrapper');
+            wrapper = this.elementRef.nativeElement.closest('.svy-wrapper');
         }
         if (wrapper) {
             totalHeight = wrapper.offsetHeight;
