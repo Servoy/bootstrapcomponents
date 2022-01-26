@@ -1,4 +1,4 @@
-import { Component, Renderer2, Input, ChangeDetectorRef, ChangeDetectionStrategy, ViewChild, ElementRef, AfterViewInit, OnDestroy, EventEmitter, Output } from '@angular/core';
+import { Component, Renderer2, SimpleChanges, Input, ChangeDetectorRef, ChangeDetectionStrategy, ViewChild, ElementRef, AfterViewInit, OnDestroy, EventEmitter, Output } from '@angular/core';
 import { LoggerFactory, LoggerService, WindowRefService } from '@servoy/public';
 
 import { ServoyBootstrapBaseTabPanel, Tab } from '../bts_basetabpanel';
@@ -26,6 +26,16 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
 	constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, windowRefService: WindowRefService) {
 		super(renderer, cdRef, windowRefService);
 	}
+
+    svyOnInit() {
+        super.svyOnInit(); 
+        if(this.closeIconStyleClass === "glyphicon glyphicon-remove close-icon") this.closeIconStyleClass = "fas fa-times";
+    }
+
+    svyOnChanges( changes: SimpleChanges ) {
+        super.svyOnChanges( changes );
+        if(this.closeIconStyleClass === "glyphicon glyphicon-remove close-icon") this.closeIconStyleClass = "fas fa-times";
+    }
 
 	onTabChange(event: NgbNavChangeEvent) {
 		// do prevent it by default, so that the server side can decide of the swich can happen.
