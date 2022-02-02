@@ -131,6 +131,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
         return this.formatService.format(result.displayValue, this.format, false);
     };
 
+    private realToDisplay: Map<any, string> = new Map();
     inputFormatter = (result: any) => {
         if (result === null) return '';
         if (result.displayValue !== undefined) result = result.displayValue;
@@ -140,6 +141,19 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
             const value = this.valuelistID.find((item) => item.realValue == result);
             if (value) {
                 result = value.displayValue;
+            } else {
+                const display = this.realToDisplay.get(result);
+                if ( display === null || display === undefined ) {
+                    this.valuelistID.getDisplayValue( result ).subscribe( val => {
+                        if ( val ) {
+                            this.realToDisplay.set( result, val );
+                            this.instance.writeValue( result );
+                        }
+                    } );
+                    return '';
+                } else {
+                    result = display;
+                }
             }
         }
         return this.formatService.format(result, this.format, false);
