@@ -1,10 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { IValuelist } from '@servoy/public';
+import { map, Observable, of } from 'rxjs';
 
 @Pipe({name: 'showDisplayValue'})
 export class ShowDisplayValuePipe implements PipeTransform {
 
-    transform(input: any, ...args: any[]) {
+    transform(input: any, ...args: any[]): Observable<any> {
         let realValue = input;
         const valuelist: IValuelist = args[0];
         const noEscape = args[1];
@@ -16,7 +17,7 @@ export class ShowDisplayValuePipe implements PipeTransform {
             }
             for (let i = 0; i < valuelist.length; i++) {
                 if ((realValue + '') === (valuelist[i].realValue + '')) {
-                    return noParsedDisplayValue ? valuelist[i].displayValue : this.getParsedDisplayValue(valuelist[i].displayValue, noEscape);
+                    return of(noParsedDisplayValue ? valuelist[i].displayValue : this.getParsedDisplayValue(valuelist[i].displayValue, noEscape));
                 }
             }
             let hasRealValues = false;
@@ -28,16 +29,16 @@ export class ShowDisplayValuePipe implements PipeTransform {
                 }
             }
             if (hasRealValues) {
-                let displayValue = null;
-                valuelist.getDisplayValue(realValue).subscribe((val) => {
-                    displayValue = val;
-                });
-                return noParsedDisplayValue ? displayValue : this.getParsedDisplayValue(displayValue, noEscape);
+                if ( noParsedDisplayValue)
+                    return valuelist.getDisplayValue(realValue);
+                else 
+                    return valuelist.getDisplayValue(realValue).pipe(map(displayValue =>  this.getParsedDisplayValue(displayValue, noEscape)));
             }
-            if (valuelist.length == 0) return null;
+            if (valuelist.length === 0) return null;
 
-            return input;
+            return of (input);
         }
+        return null;
     }
 
     getParsedDisplayValue(value: string, noEscape: any) {

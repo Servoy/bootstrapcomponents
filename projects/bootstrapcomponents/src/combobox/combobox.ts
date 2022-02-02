@@ -148,8 +148,13 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
             else {
                 if (!this.valuelistID.hasRealValues())
                     this.formattedValue = this.formatService.format(this.dataProviderID, this.format, false);
-                else
+                else {
                     this.formattedValue = this.dataProviderID;
+                    this.valuelistID.getDisplayValue(this.dataProviderID).subscribe(val => {
+                        this.formattedValue = val
+                        this.cdRef.detectChanges();
+                    });
+                }
             }
         }
         if (this.formattedValue === "" || this.formattedValue === null || this.formattedValue === undefined) {

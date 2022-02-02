@@ -46,8 +46,7 @@ export class ServoyBootstrapSelect extends ServoyBootstrapBasefield<HTMLSelectEl
         if (!this.placeholderText || this.placeholderText.length === 0) {
             return false;
         }
-        const displayValue = this.showDisplayValuePipe.transform(this.dataProviderID, this.valuelistID, true, true);
-        return displayValue == null || (displayValue == '' && this.dataProviderID === null);
+        return this.dataProviderID === null;
     }
 
     isDPinValuelist() {

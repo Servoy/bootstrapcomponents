@@ -38,7 +38,13 @@ export class ServoyBootstrapList extends ServoyBootstrapBasefield<HTMLInputEleme
     if (this.valuelistID) {
       listValue = this.showDisplayValuePipe.transform(listValue, this.valuelistID);
     }
-    this.renderer.setProperty(this.elementRef.nativeElement, 'value', listValue);
+    if(listValue){
+        listValue.subscribe( val => {
+            if ( val ) {
+                this.renderer.setProperty(this.elementRef.nativeElement, 'value', val);
+            }
+        });
+    }
   }
 
   updateDataprovider() {
