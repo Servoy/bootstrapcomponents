@@ -22,7 +22,6 @@ import { ServoyBootstrapCalendar } from './calendar/calendar';
 import { ServoyBootstrapCalendarinline } from './calendarinline/calendarinline';
 import { ShowDisplayValuePipe } from './lib/showDisplayValue.pipe';
 import { ServoyBootstrapImageMedia } from './imagemedia/imagemedia';
-import { OwlDateTimeModule, OwlNativeDateTimeModule} from '@danielmoncada/angular-datetime-picker';
 import { NgbModule }  from '@ng-bootstrap/ng-bootstrap';
 import { Tab } from './bts_basetabpanel';
 
@@ -55,8 +54,6 @@ import { Tab } from './bts_basetabpanel';
       ServoyPublicModule,
       CommonModule,
       FormsModule,
-      OwlDateTimeModule,
-      OwlNativeDateTimeModule,
       NgbModule
     ],
     exports: [

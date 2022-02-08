@@ -9,7 +9,8 @@
     "luxon": "*"
   },
   "dependencies": {
-    "@danielmoncada/angular-datetime-picker": "^12",
+    "@eonasdan/tempus-dominus": "*",
+    "@popperjs/core": "^2",
     "@angular/cdk": "^13",
     "@ng-bootstrap/ng-bootstrap": "^10",
     "bootstrap": "^5",

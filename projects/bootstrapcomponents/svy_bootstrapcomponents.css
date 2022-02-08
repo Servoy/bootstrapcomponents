@@ -3,6 +3,13 @@
     max-height: 100%;
 }
 
+.svy-wrapper > * > * > .tempus-dominus-widget.inline {
+    width: 100%;
+}
+
+.tempus-dominus-widget.inline  {
+    box-shadow: unset;
+}
 .bts-accordion .card-body
 {
 	padding:0px;

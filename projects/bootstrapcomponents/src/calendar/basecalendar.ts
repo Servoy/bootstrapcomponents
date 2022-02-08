@@ -1,81 +1,154 @@
-import { Renderer2, ChangeDetectorRef, Inject, Input, Directive, EventEmitter, Output } from '@angular/core';
+import { Renderer2, ChangeDetectorRef, Inject, Input, Directive, EventEmitter, Output, SimpleChanges } from '@angular/core';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
-import { DateTimeAdapter } from '@danielmoncada/angular-datetime-picker';
 import { DOCUMENT } from '@angular/common';
 import { getFirstDayOfWeek, ServoyPublicService } from '@servoy/public';
-import { DateTime } from 'luxon';
+import { DateTime as LuxonDateTime } from 'luxon';
+import { Namespace, TempusDominus, Options, DateTime } from '@eonasdan/tempus-dominus';
+import { ChangeEvent } from '@eonasdan/tempus-dominus/types/event-types';
 
 @Directive()
 export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDivElement> {
 
     @Input() disabledDays: number[];
     @Output() disabledDaysChange = new EventEmitter();
-
     @Input() disabledDates: Date[];
     @Output() disabledDatesChange = new EventEmitter();
+    @Input() maxDate: Date;
+    @Output() maxDateChange = new EventEmitter();
+    @Input() minDate: Date;
+    @Output() minDateChange = new EventEmitter();
+    @Input() keepInvalid: boolean;
+    @Output() keepInvalidChange = new EventEmitter();
 
-    public filter: any;
-    public min: Date;
-    public max: Date;
+    @Input() calendarWeeks: boolean;
 
+    picker: TempusDominus;
 
-    public firstDayOfWeek = 1;
-    public hour12Timer = false;
+    readonly config: Options = {
+        allowInputToggle: false,
+        useCurrent: false,
+        display: {
+            components: {
+                useTwentyfourHour: true,
+                decades: true,
+                year: true,
+                month: true,
+                date: true,
+                hours: true,
+                minutes: true,
+                seconds: true
+            },
+            calendarWeeks: true,
+            buttons: {
+                today: true,
+                close: true,
+                clear: true,
+            },
+            inline: false
+        },
+        restrictions: {
+        },
+        hooks: {
+        },
+        localization: {
+            startOfTheWeek: 1,
+            locale: 'en'
+        }
+    };
 
     constructor(renderer: Renderer2, cdRef: ChangeDetectorRef,
-            servoyService: ServoyPublicService,
-            dateTimeAdapter: DateTimeAdapter<any>, @Inject(DOCUMENT) doc: Document) {
+        servoyService: ServoyPublicService, @Inject(DOCUMENT) doc: Document) {
         super(renderer, cdRef, doc);
-        dateTimeAdapter.setLocale(servoyService.getLocale());
-        this.firstDayOfWeek = getFirstDayOfWeek(servoyService.getLocale());
-        const lts = DateTime.now().setLocale(servoyService.getLocale()).toLocaleString(DateTime.DATETIME_FULL).toUpperCase();
-        this.hour12Timer = lts.indexOf('AM') >= 0 || lts.indexOf('PM') >= 0;
+        this.config.localization.startOfTheWeek = getFirstDayOfWeek(servoyService.getLocale());
+        const lts = LuxonDateTime.now().setLocale(servoyService.getLocale()).toLocaleString(LuxonDateTime.DATETIME_FULL).toUpperCase();
+        this.config.display.components.useTwentyfourHour = lts.indexOf('AM') >= 0 || lts.indexOf('PM') >= 0;
 
     }
 
     public svyOnInit() {
+        this.initializePicker();
         super.svyOnInit();
-        this.filter = this.disabledDays || this.disabledDays ? this.filterImpl : null;
     }
 
-    public disableDays(dateArray: number[]) {
-        this.disabledDays = dateArray;
+    svyOnChanges(changes: SimpleChanges) {
+        super.svyOnChanges(changes);
+         if (changes.dataProviderID) {
+            this.picker.dates.set(this.dataProviderID);
+            this.config.viewDate =this.dataProviderID;
+        }
+        if (changes.calendarWeeks && changes.calendarWeeks.currentValue)
+            this.config.display.calendarWeeks = changes.calendarWeeks.currentValue;
+        if (changes.minDate && changes.minDate.currentValue)
+            this.config.restrictions.minDate = DateTime.convert(changes.minDate.currentValue);
+        if (changes.maxDate && changes.maxDate.currentValue)
+            this.config.restrictions.maxDate = DateTime.convert(changes.maxDate.currentValue);
+        if (changes.disabledDays && changes.disabledDays.currentValue)
+            this.config.restrictions.daysOfWeekDisabled = changes.disabledDays.currentValue;
+        if (changes.disabledDates && changes.disabledDates.currentValue)
+            this.config.restrictions.disabledDates = this.convertDateArray(changes.disabledDates.currentValue);
+        if (changes.keepInvalid && changes.keepInvalid.currentValue !== undefined)
+            this.config.keepInvalid =  changes.keepInvalid.currentValue;
+        if (this.picker && (changes.calendarWeeks || changes.minDate
+             || changes.maxDate || changes.disabledDays || changes.disabledDates)) this.picker.updateOptions(this.config);
+    }
+    public disableDays(dateArray: number[], keepInvalid?: boolean) {
         this.disabledDaysChange.emit(dateArray);
-        this.filter = this.disabledDays || this.disabledDays ? this.filterImpl : null;
-        this.cdRef.detectChanges();
+        this.config.restrictions.daysOfWeekDisabled = dateArray;
+        this.checkInvalidAndPicker(keepInvalid);
     }
 
-    public disableDates(dateArray: Date[]) {
-        this.disabledDates = dateArray;
+    public disableDates(dateArray: Date[], keepInvalid?: boolean) {
         this.disabledDatesChange.emit(dateArray);
-        this.filter = this.disabledDates || this.disabledDates ? this.filterImpl : null;
 
-        this.cdRef.detectChanges();
+        this.config.restrictions.disabledDates = this.convertDateArray(dateArray);
+        this.checkInvalidAndPicker(keepInvalid);
     }
 
-    public setMinMaxDate(minDate: Date, maxDate: Date) {
-        if (minDate) this.min = minDate;
-        if (maxDate) this.max = maxDate;
+    public setMinMaxDate(minDate: Date, maxDate: Date, keepInvalid?: boolean) {
+        this.minDateChange.emit(minDate);
+        this.maxDateChange.emit(maxDate);
+        this.config.restrictions.minDate = DateTime.convert(minDate);
+        this.config.restrictions.maxDate = DateTime.convert(maxDate);
+        this.checkInvalidAndPicker(keepInvalid);
     }
 
-    private filterImpl = (d: Date): boolean => {
-        let result = true;
-        if (this.disabledDates) {
-            this.disabledDates.forEach(el => {
-                const year = d.getUTCFullYear().toString();
-                const month = d.getUTCMonth().toString();
-                const day = d.getUTCDate() + 1;
-                if (el.getUTCFullYear().toString() === year &&
-                    el.getUTCMonth().toString() === month &&
-                    el.getUTCDate() === day) {
-                    result = false;
-                }
+    initializePicker() {
+        if (!this.picker) {
+            this.picker = new TempusDominus(this.getNativeElement(), this.config);
+            this.picker.subscribe(Namespace.events.change, (event) => this.dateChanged(event));
+        }
+    }
+
+    public dateChanged(event: ChangeEvent) {
+        if (event.type === 'change.td') {
+            if (event.date && this.dataProviderID && event.date.getTime() === this.dataProviderID.getTime()) return;
+            this.dataProviderID = event.date;
+        } else this.dataProviderID = null;
+        super.pushUpdate();
+    }
+
+
+    ngOnDestroy() {
+        super.ngOnDestroy();
+        if (this.picker !== null) this.picker.dispose();
+    }
+
+    private checkInvalidAndPicker(keepInvalid: boolean) {
+        if (keepInvalid !== undefined) {
+            this.config.keepInvalid= keepInvalid;
+            this.keepInvalid = keepInvalid;
+            this.keepInvalidChange.emit(keepInvalid);
+        }
+        if (this.picker) this.picker.updateOptions(this.config);
+    }
+
+    private convertDateArray(dates: Date[]): DateTime[] {
+        const datetimeArray: DateTime[] = dates ? [] : null;
+        if (dates) {
+            dates.forEach((date, index) => {
+                datetimeArray[index] = DateTime.convert(date);
             });
         }
-        if (result && this.disabledDays) {
-            const weekday = DateTime.fromJSDate(d).weekday; // 1 == monday, 7 == sunday
-            result = !this.disabledDays.includes(weekday === 7 ? 0 : weekday);
-        }
-        return result;
-    };
+        return datetimeArray;
+    }
 }

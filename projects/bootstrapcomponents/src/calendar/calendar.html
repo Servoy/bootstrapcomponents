@@ -1,11 +1,14 @@
 <div class='input-group date bts-calendar-container'
+     data-td-target-input='nearest'
+     data-td-target-toggle='nearest'
 	[svyTooltip]="toolTipText"
     [id]="servoyApi.getMarkupId()"
     #element>
     <input class='bts-calendar form-control form-control svy-line-height-normal'
+        data-td-target='#datetimepicker1'
     	[sabloTabseq]="tabSeq"
 		[ngModel]="dataProviderID"
-		(ngModelChange)="onModelChange($event)"
+		(ngModelChange)="modelChange($event)"
 		[svyFormat]="format"
     	(change)="pushUpdate()"
      	[svyStartEdit]="'dataProviderID'"
@@ -14,8 +17,12 @@
         [readonly]="readOnly || pickerOnly"
         [findmode]="findmode"
      	#inputElement/>
-    <span [owlDateTimeTrigger]="datetime" class="input-group-append input-group-text" style="padding:7px;" [hidden]="readOnly || !enabled"><span class="far fa-calendar-alt"></span></span>
-    <owl-date-time #datetime [disabled]="readOnly || !enabled" [firstDayOfWeek]="firstDayOfWeek" [hour12Timer]="hour12Timer" [pickerType]="pickerType" [showSecondsTimer]="showSecondsTimer"></owl-date-time>
-	<input (dateTimeChange)="dateChanged($event)" [owlDateTime]="datetime" [value]="dataProviderID"  style="position:absolute;bottom:0px;width:0px;height:0px;border:0px;padding:0px"
-		[min]="min" [max]="max" [owlDateTimeFilter]="filter">
+   <span
+     tabindex='-1'
+     class='input-group-text'
+     style='height:100%'
+     data-td-target='#datetimepicker1'
+     data-td-toggle='datetimepicker'
+      [hidden]="readOnly || !enabled || findmode">
+     <span class='fas fa-calendar' ></span></span>
 </div>

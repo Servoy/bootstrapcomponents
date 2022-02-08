@@ -2,9 +2,8 @@ Manifest-Version: 1.0
 Ant-Version: Apache Ant 1.8.4
 CSS-ClientLibs: css/bootstrap/css/bootstrap.css;name=bootstrap;version
  =-1
-NG2-CSS-ClientLibs: ~@servoy/bootstrapcomponents/svy_bootstrapcomponents.css,
- ~@danielmoncada/angular-datetime-picker/assets/style/picker.min.css,
- ~bootstrap/dist/css/bootstrap.min.css
+NG2-CSS-ClientLibs: ~@servoy/bootstrapcomponents/svy_bootstrapcomponents.css;priority=1,
+ ~bootstrap/dist/css/bootstrap.min.css;priority=10
 NPM-PackageName: @servoy/bootstrapcomponents
 NG2-Module: ServoyBootstrapComponentsModule
 Entry-Point: dist/servoy/bootstrapcomponents
