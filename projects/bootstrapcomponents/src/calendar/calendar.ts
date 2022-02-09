@@ -76,6 +76,13 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
                 }
             }
         }
+        if (changes.findmode)
+            if (changes.findmode.currentValue) {
+                this.picker.dispose();
+                this.picker = null;
+            } else {
+                this.initializePicker();
+            }
         super.svyOnChanges(changes);
     }
 

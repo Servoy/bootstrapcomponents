@@ -72,9 +72,11 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
 
     svyOnChanges(changes: SimpleChanges) {
         super.svyOnChanges(changes);
-         if (changes.dataProviderID) {
-            this.picker.dates.set(this.dataProviderID);
-            this.config.viewDate =this.dataProviderID;
+         if (changes.dataProviderID && this.picker) {
+            const value = (this.dataProviderID instanceof Date) ? this.dataProviderID: null;
+            if (value) this.picker.dates.set(value);
+            else this.picker.dates.clear()
+            this.config.viewDate = value as DateTime;;
         }
         if (changes.calendarWeeks && changes.calendarWeeks.currentValue)
             this.config.display.calendarWeeks = changes.calendarWeeks.currentValue;
