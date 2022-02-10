@@ -72,11 +72,11 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
 
     svyOnChanges(changes: SimpleChanges) {
         super.svyOnChanges(changes);
-         if (changes.dataProviderID && this.picker) {
+         if (changes.dataProviderID && this.picker && !this.findmode) {
             const value = (this.dataProviderID instanceof Date) ? this.dataProviderID: null;
             if (value) this.picker.dates.set(value);
-            else this.picker.dates.clear()
-            this.config.viewDate = value as DateTime;;
+            else this.picker.dates.clear();
+            if (value) this.config.viewDate = value as DateTime;;
         }
         if (changes.calendarWeeks && changes.calendarWeeks.currentValue)
             this.config.display.calendarWeeks = changes.calendarWeeks.currentValue;
@@ -123,7 +123,8 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
 
     public dateChanged(event: ChangeEvent) {
         if (event.type === 'change.td') {
-            if (event.date && this.dataProviderID && event.date.getTime() === this.dataProviderID.getTime()) return;
+            if ( (event.date && this.dataProviderID && event.date.getTime() === this.dataProviderID.getTime()) ||
+             (!event.date && !this.dataProviderID)) return;
             this.dataProviderID = event.date;
         } else this.dataProviderID = null;
         super.pushUpdate();
