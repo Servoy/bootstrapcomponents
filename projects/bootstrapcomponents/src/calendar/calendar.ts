@@ -33,8 +33,8 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
         this.log = logFactory.getLogger('bts-calendar');
         this.config.hooks = {
             inputFormat: (_context: TempusDominus, date: DateTime) => formattingService.format(date, this.format, false),
-            inputParse: (_context: TempusDominus, date: DateTime) => {
-                const parsed  = formattingService.parse(date, this.format, false, this.dataProviderID);
+            inputParse: (_context: TempusDominus, value: string) => {
+                const parsed = this.formattingService.parse(value?value.trim():null, this.format, true, this.dataProviderID);
                 if (parsed instanceof Date) return  new DateTime(parsed);
                 return null;
             }
