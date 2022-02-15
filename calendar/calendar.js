@@ -234,9 +234,6 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 
 				$scope.focusGained = function(event) {
 					var editFormat = $scope.model.format ?  ($scope.model.format.edit ? $scope.model.format.edit : $scope.model.format.display ): null;
-					if(editFormat) dateFormat = moment().toMomentFormatString(editFormat)					
-	                setDateFormat(dateFormat);
-						
 					if ($scope.model.format.edit && $scope.model.format.isMask) {
 						var settings = {};
 						settings.placeholder = $scope.model.format.placeHolder ? $scope.model.format.placeHolder : " ";
@@ -246,14 +243,21 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 						$element.find('input').mask($scope.model.format.edit, settings);
 						// library doesn't handle well this scenario, forward focus event to make sure mask is set
 						if ($element.find('input').val() == '') $element.find('input').trigger("focus.mask");
+					} 
+					else if(editFormat){
+						dateFormat = moment().toMomentFormatString(editFormat)					
+		                setDateFormat(dateFormat);
+					} else {
+						setDateFormat(dateFormat);
 					}
 				}
 
 				$scope.focusLost = function(event) {
-					setDateFormat($scope.model.format);
 					if ($scope.model.format.edit && $scope.model.format.isMask)
 					{
 						$element.find('input').unmask();
+					} else {
+						setDateFormat($scope.model.format);
 					}
 				}
 
