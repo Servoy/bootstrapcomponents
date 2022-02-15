@@ -12,7 +12,7 @@
     "@eonasdan/tempus-dominus": "*",
     "@popperjs/core": "^2",
     "@angular/cdk": "^13",
-    "@ng-bootstrap/ng-bootstrap": "^11",
+    "@ng-bootstrap/ng-bootstrap": "^12",
     "bootstrap": "^5",
     "tslib": "*"
   },
