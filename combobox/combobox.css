@@ -14,3 +14,10 @@
 .svy-wrapper > * > .bts-combobox .ui-select-match > .form-control {
 	height: 100%;
 }
+
+.ui-select-placeholder {
+	position: absolute;
+	top: 50%;
+	-ms-transform: translateY(-50%);
+  	transform: translateY(-50%);
+}
