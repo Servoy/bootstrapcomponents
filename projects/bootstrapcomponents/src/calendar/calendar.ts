@@ -1,8 +1,8 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Renderer2, ElementRef, ViewChild, Input, ChangeDetectorRef, SimpleChanges, ChangeDetectionStrategy, Inject } from '@angular/core';
-import { DateTime, Namespace, TempusDominus } from '@eonasdan/tempus-dominus';
+import { DateTime, Namespace, TempusDominus } from '@servoy/tempus-dominus';
 import { Format, FormattingService } from '@servoy/public';
-import { LoggerFactory, LoggerService, ServoyPublicService } from '@servoy/public';
+import { LoggerFactory, ServoyPublicService } from '@servoy/public';
 import { ServoyBootstrapBaseCalendar } from './basecalendar';
 
 @Component({
@@ -18,8 +18,6 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
     @Input() format: Format;
     @Input() pickerOnly: boolean;
 
-    private log: LoggerService;
-
     private hasFocus = false;
     private isBlur = false;
 
@@ -29,11 +27,10 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
         private formattingService: FormattingService,
         servoyService: ServoyPublicService,
         @Inject(DOCUMENT) doc: Document) {
-        super(renderer, cdRef, servoyService, doc);
-        this.log = logFactory.getLogger('bts-calendar');
+        super(renderer, cdRef,servoyService, logFactory.getLogger('bts-calendar'), doc);
         this.config.hooks = {
-            inputFormat: (_context: TempusDominus, date: DateTime) => formattingService.format(date, this.format, false),
-            inputParse: (_context: TempusDominus, value: string) => {
+            inputFormat: (date: DateTime) => formattingService.format(date, this.format, false),
+            inputParse: (value: string) => {
                 const parsed = this.formattingService.parse(value?value.trim():null, this.format, true, this.dataProviderID);
                 if (parsed instanceof Date) return  new DateTime(parsed);
                 return null;
@@ -89,7 +86,7 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
         super.svyOnChanges(changes);
     }
 
-    public modelChange(event) {
+    public modelChange(event: any) {
         if (this.findmode) {
             this.dataProviderID = event;
             super.pushUpdate();

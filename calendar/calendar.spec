@@ -11,7 +11,7 @@
 	],
 	"ng2Config": {
         "dependencies": {
-           "csslibrary": ["~@eonasdan/tempus-dominus/dist/css/tempus-dominus.css;priority=5"]
+           "csslibrary": ["~@servoy/tempus-dominus/dist/css/tempus-dominus.css;priority=5"]
         }
     },
 	"keywords": ["agenda", "diary", "day", "month", "year"],

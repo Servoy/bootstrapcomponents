@@ -1,10 +1,10 @@
 import { Renderer2, ChangeDetectorRef, Inject, Input, Directive, EventEmitter, Output, SimpleChanges } from '@angular/core';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 import { DOCUMENT } from '@angular/common';
-import { getFirstDayOfWeek, ServoyPublicService } from '@servoy/public';
+import { getFirstDayOfWeek, LoggerService, ServoyPublicService } from '@servoy/public';
 import { DateTime as LuxonDateTime } from 'luxon';
-import { Namespace, TempusDominus, Options, DateTime } from '@eonasdan/tempus-dominus';
-import { ChangeEvent } from '@eonasdan/tempus-dominus/types/event-types';
+import { Namespace, TempusDominus, Options, DateTime } from '@servoy/tempus-dominus';
+import { ChangeEvent } from '@servoy/tempus-dominus/types/utilities/event-types';
 
 @Directive()
 export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDivElement> {
@@ -48,8 +48,6 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
         },
         restrictions: {
         },
-        hooks: {
-        },
         localization: {
             startOfTheWeek: 1,
             locale: 'en'
@@ -57,12 +55,15 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
     };
 
     constructor(renderer: Renderer2, cdRef: ChangeDetectorRef,
-        servoyService: ServoyPublicService, @Inject(DOCUMENT) doc: Document) {
+        servoyService: ServoyPublicService,
+        public log: LoggerService,
+        @Inject(DOCUMENT) doc: Document) {
         super(renderer, cdRef, doc);
+        this.config.localization.locale = servoyService.getLocale();
+        this.loadCalendarLocale(this.config.localization.locale);
         this.config.localization.startOfTheWeek = getFirstDayOfWeek(servoyService.getLocale());
         const lts = LuxonDateTime.now().setLocale(servoyService.getLocale()).toLocaleString(LuxonDateTime.DATETIME_FULL).toUpperCase();
         this.config.display.components.useTwentyfourHour = lts.indexOf('AM') >= 0 || lts.indexOf('PM') >= 0;
-
     }
 
     public svyOnInit() {
@@ -74,7 +75,7 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
         super.svyOnChanges(changes);
          if (changes.dataProviderID && this.picker && !this.findmode) {
             const value = (this.dataProviderID instanceof Date) ? this.dataProviderID: null;
-            if (value) this.picker.dates.set(value);
+            if (value) this.picker.dates.setValue(DateTime.convert(value));
             else this.picker.dates.clear();
             if (value) this.config.viewDate = value as DateTime;;
         }
@@ -153,5 +154,22 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
             });
         }
         return datetimeArray;
+    }
+
+      private loadCalendarLocale(locale: string) {
+        const index = locale.indexOf('-');
+        let language = locale;
+        if (index > 0) {
+            language = locale.substring(0, index);
+        }
+        language = language.toLowerCase();
+        import(`@servoy/tempus-dominus/dist/locales/${language}.js`).then(
+            (module: { localization: { [key: string]: string } }) => {
+                this.config.localization = module.localization;
+                if (this.picker !== null) this.picker.updateOptions(this.config);
+            },
+            () => {
+                this.log.info('Locale ' + locale + ' for calendar not found, default to english');
+            });
     }
 }
