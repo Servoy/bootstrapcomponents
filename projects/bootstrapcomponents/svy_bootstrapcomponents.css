@@ -183,7 +183,6 @@ ngb-typeahead-window.dropdown-menu {
 
 
 .bts-dropdown::after {
-    float: right;
     margin-top: initial;
 }
 
@@ -199,6 +198,7 @@ ngb-typeahead-window.dropdown-menu {
     display: inline-block;
     vertical-align: middle;
     max-width: calc(100% - 15px);
+    width: calc(100% - 15px);
 }
 
 div[ngbDropdownMenu] {
