@@ -27,7 +27,7 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 			var visibleTabIndex;
 			$scope.onVisibleTab = function(tab) {
 				visibleTabIndex = getTabIndex(tab);
-			}
+            }
 			
 			/**
 			 * @private 
@@ -61,35 +61,35 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 			}
 			
 			// get the form html.
-			$scope.getForm = function(tab) {
-				if (tab && tab.active && tab.containedForm) {
-					if (currentContainedForm !== tab.containedForm) {
-						if (currentContainedForm != null && currentTab == tab) {
-							// this was a change
-							// temp set it to false, so it will not show the new form yet.
-							tab.active = false;
-							var promise = $scope.servoyApi.hideForm(currentContainedForm, null, null, tab.containedForm, tab.relationName);
-							promise.then(function(ok) {
-								// we can't do much more then to set the back to true.
-								// maybe if 'ok' is false we should also push back the previous form??
-								tab.active = true;
-							})
-						}
-						currentContainedForm = tab.containedForm;
-						currentTab = tab;
+				$scope.getForm = function(tab) {
+					if (tab && tab.active && tab.containedForm) {
+						if (currentContainedForm !== tab.containedForm) {
+							if (currentContainedForm != null && currentTab == tab) {
+								// this was a change
+								// temp set it to false, so it will not show the new form yet.
+								tab.active = false;
+								var promise = $scope.servoyApi.hideForm(currentContainedForm, null, null, tab.containedForm, tab.relationName);
+								promise.then(function(ok) {
+									// we can't do much more then to set the back to true.
+									// maybe if 'ok' is false we should also push back the previous form??
+									tab.active = true;
+								})
+							}
+							currentContainedForm = tab.containedForm;
+							currentTab = tab;
 						if (!tab.active) return "";
-					}
+							}
 					else
 					{
-						// keep latest instance
-						currentTab = tab;
+							// keep latest instance
+							currentTab = tab;
+						}
+						if (visibleTabIndex == getTabIndex(tab)) {
+							return $scope.servoyApi.getFormUrl(tab.containedForm);
+						}
 					}
-					if(visibleTabIndex == getTabIndex(tab)) {
-						return $scope.servoyApi.getFormUrl(tab.containedForm);
-					}
+					return "";
 				}
-				return "";
-			}
 	
 			$scope.select = function(tab, oldSelection) {
 				if (tab && tab.containedForm) {
@@ -621,8 +621,8 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 			}, function(newValue, oldValue) {
 				var oldValueA = oldValue ? oldValue.split(" ") : [];
 				var classes = newValue.split(" ");
-				if(scope.tab.active && oldValueA.indexOf("active") == -1 && classes.indexOf("active") != -1) {
-					scope.onVisibleTab(scope.tab);
+				if(scope.tab.active && oldValueA.indexOf("active") == -1 && ( classes.indexOf("active") != -1 || classes.indexOf("active-add") != -1)) {				
+					scope.onVisibleTab(scope.tab);					
 				}
 		  });
 		}
