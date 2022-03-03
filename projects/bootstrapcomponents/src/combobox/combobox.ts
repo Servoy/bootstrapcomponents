@@ -149,7 +149,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
                 if (!this.valuelistID.hasRealValues())
                     this.formattedValue = this.formatService.format(this.dataProviderID, this.format, false);
                 else {
-                    this.formattedValue = this.dataProviderID;
+                    this.formattedValue = null;
                     this.valuelistID.getDisplayValue(this.dataProviderID).subscribe(val => {
                         this.formattedValue = val
                         this.cdRef.detectChanges();
