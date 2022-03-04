@@ -608,7 +608,7 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 			tabCtrl.setButton(element, attrs["bsTabpanelButton"]);
 		}
 	}
-}).directive('bsTabpanelActiveTabVisibilityListener', ['$parse', function($parse){
+}).directive('bsTabpanelActiveTabVisibilityListener', ['$animate', function($animate){
 	return {
 		restrict: 'E',
 		scope: {
@@ -616,12 +616,14 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 			onVisibleTab: "="
 		},
 		link: function (scope, element) {
+			var elementParent = element.parent();
+			$animate.enabled(elementParent, false);
 			scope.$watch(function() {
-				return element.parent().attr('class');
+				return elementParent.attr('class');
 			}, function(newValue, oldValue) {
 				var oldValueA = oldValue ? oldValue.split(" ") : [];
 				var classes = newValue.split(" ");
-				if(scope.tab.active && oldValueA.indexOf("active") == -1 && ( classes.indexOf("active") != -1 || classes.indexOf("active-add") != -1)) {				
+				if(scope.tab.active && oldValueA.indexOf("active") == -1 && classes.indexOf("active") != -1) {
 					scope.onVisibleTab(scope.tab);					
 				}
 		  });
