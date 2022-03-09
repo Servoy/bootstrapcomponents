@@ -339,6 +339,16 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
 				}
 			}
 		},
+		controller: function($scope, $element) {
+			$scope.enterPressed = function(event)
+			{
+				if ($scope.handlers.onActionMethodID) {
+					$scope.handlers.onActionMethodID(event)
+				}
+				$scope.value = $element.val();
+				$scope.doSvyApply(false, event);
+			};
+		},
 		templateUrl: 'bootstrapcomponents/typeahead/typeahead.html',
 		replace: true
 	};
