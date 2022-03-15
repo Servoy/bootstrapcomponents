@@ -6,7 +6,6 @@ import { ServoyBootstrapBasefield } from '../bts_basefield';
 @Component({
     selector: 'bootstrapcomponents-choicegroup',
     templateUrl: './choicegroup.html',
-    styleUrls: ['./choicegroup.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDivElement> {

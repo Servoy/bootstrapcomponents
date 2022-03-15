@@ -5,7 +5,6 @@ import { ServoyBootstrapBasefield } from '../bts_basefield';
 @Component({
     selector: 'bootstrapcomponents-checkbox',
     templateUrl: './checkbox.html',
-    styleUrls: ['./checkbox.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ServoyBootstrapCheckbox extends ServoyBootstrapBasefield<HTMLDivElement> {

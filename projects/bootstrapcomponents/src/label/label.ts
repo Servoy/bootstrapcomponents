@@ -4,7 +4,6 @@ import { Component, Input, Renderer2, ChangeDetectorRef, ChangeDetectionStrategy
 @Component({
     selector: 'bootstrapcomponents-label',
     templateUrl: './label.html',
-    styleUrls: ['./label.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ServoyBootstrapLabel extends ServoyBootstrapBaseLabel<HTMLSpanElement> {

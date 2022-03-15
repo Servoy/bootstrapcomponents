@@ -7,7 +7,6 @@ import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 @Component({
 	selector: 'bootstrapcomponents-tabpanel',
 	templateUrl: './tabpanel.html',
-	styleUrls: ['./tabpanel.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLUListElement> {

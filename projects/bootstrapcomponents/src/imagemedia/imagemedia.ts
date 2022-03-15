@@ -5,8 +5,7 @@ import { ServoyBootstrapBasefield } from '../bts_basefield';
 @Component({
   selector: 'bootstrapcomponents-imagemedia',
   templateUrl: './imagemedia.html',
-  styleUrls: ['./imagemedia.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ServoyBootstrapImageMedia extends ServoyBootstrapBasefield<HTMLImageElement> {
 

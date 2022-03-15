@@ -6,7 +6,6 @@ import { ServoyBootstrapBaseCalendar } from '../calendar/basecalendar';
 @Component({
     selector: 'bootstrapcomponents-calendarinline',
     templateUrl: './calendarinline.html',
-    styleUrls: ['./calendarinline.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ServoyBootstrapCalendarinline extends ServoyBootstrapBaseCalendar {

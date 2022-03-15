@@ -4,7 +4,6 @@ import { ServoyBootstrapBaseLabel } from '../bts_baselabel';
 @Component({
     selector: 'bootstrapcomponents-datalabel',
     templateUrl: './datalabel.html',
-    styleUrls: ['./datalabel.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ServoyBootstrapDatalabel extends ServoyBootstrapBaseLabel<HTMLSpanElement> {

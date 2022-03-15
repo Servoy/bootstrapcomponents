@@ -7,8 +7,7 @@ import { NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'bootstrapcomponents-accordion',
   templateUrl: './accordion.html',
-  styleUrls: ['./accordion.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDivElement> {
 

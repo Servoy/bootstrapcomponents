@@ -5,8 +5,7 @@ import { ServoyBootstrapBasefield } from '../bts_basefield';
 @Component({
   selector: 'bootstrapcomponents-textarea',
   templateUrl: './textarea.html',
-  styleUrls: ['./textarea.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ServoyBootstrapTextarea extends ServoyBootstrapBasefield<HTMLTextAreaElement> {
 

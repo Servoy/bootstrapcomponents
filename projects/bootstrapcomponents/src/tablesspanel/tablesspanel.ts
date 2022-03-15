@@ -5,7 +5,6 @@ import { ServoyBootstrapBaseComponent } from '../bts_basecomp';
 @Component({
     selector: 'bootstrapcomponents-tablesspanel',
     templateUrl: './tablesspanel.html',
-    styleUrls: ['./tablesspanel.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ServoyBootstrapTablesspanel extends ServoyBootstrapBaseComponent<HTMLDivElement> {
