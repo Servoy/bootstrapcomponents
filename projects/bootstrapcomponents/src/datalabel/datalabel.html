@@ -2,7 +2,8 @@
     class="bts-label"
     [ngClass]="[styleClass, styleClassExpression]"
     [sabloTabseq]="(onActionMethodID || onDoubleClickMethodID || onRightClickMethodID) ? tabSeq : -2"
-    [id]="servoyApi.getMarkupId()"> 
+    [id]="servoyApi.getMarkupId()"
+    [svyTooltip]="toolTipText"> 
     <span 
         class="bts-label-icon" 
         [ngClass]="imageStyleClass"
