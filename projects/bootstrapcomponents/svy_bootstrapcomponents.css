@@ -140,6 +140,23 @@ ngb-typeahead-window.dropdown-menu {
     margin: 0;
 }
 
+.svy-wrapper > * > .bts-tabpanel {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.svy-wrapper > * > .bts-tabpanel > .tab-content {
+    height: 100%;
+    width: 100%;
+}
+
+.svy-wrapper > * > .bts-tabpanel > .tab-content > .tab-pane {
+    height: 100%;
+    width: 100%;
+}
+
 .svy-wrapper > * > .bts-tablesspanel {
     overflow: auto;
     height: 100%;
