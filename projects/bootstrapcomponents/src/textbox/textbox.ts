@@ -48,7 +48,7 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
     }
 
     setInputType(inputType: string) {
-        const types = ["text", "password", "email", "tel", "date", "time", "datetime-local", "month", "week", "number", "color","search", "url"];
+        const types = ['text', 'password', 'email', 'tel', 'date', 'time', 'datetime-local', 'month', 'week', 'number', 'color','search', 'url'];
 
         if (types.indexOf(inputType) > -1) {
             this.renderer.setAttribute(this.elementRef.nativeElement, 'type', this.inputType);
