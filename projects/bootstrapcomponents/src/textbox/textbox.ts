@@ -41,8 +41,7 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
             this.cdRef.detectChanges();
             this.dataProviderID = newValue;
             this.cdRef.detectChanges();
-        }
-        else {
+        } else {
             this.dataProviderID = newValue;
         }
     }

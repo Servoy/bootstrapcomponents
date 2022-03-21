@@ -127,7 +127,7 @@ angular.module('bootstrapcomponentsTextbox', ['servoy']).directive('bootstrapcom
             /**
              * Reset the dataProvider to null and change the inputType of the textbox.<br/>
              * <b>Note:</b> the value of the dataProvider bound to this field will be automatically set to null
-             * @param {String} inputType allowed values for inputType are <i>text, tel, date, time, datetime-local, month, week, number, color</i>
+             * @param {String} inputType allowed values for inputType are <i>text, password, email, tel, date, time, datetime-local, month, week, number, color</i>
              * @example %%prefix%%%%elementName%%.inputType("tel");
              */
             $scope.api.setInputType = function(inputType) {
