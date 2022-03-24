@@ -6,6 +6,7 @@
 	"icon": "bootstrapcomponents/datalabel/datalabel.png",
 	"definition": "bootstrapcomponents/datalabel/datalabel.js",
 	"libraries": [{"name":"bootstrapcomponents-datalabel-css", "version":"1.0", "url":"bootstrapcomponents/datalabel/datalabel.css", "mimetype":"text/css"}],
+	"styleVariantCategory": "label", 
 	"keywords": ["tag"], 
 	"model":
 	{

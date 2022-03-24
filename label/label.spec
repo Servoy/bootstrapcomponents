@@ -6,6 +6,7 @@
 	"icon": "bootstrapcomponents/label/label.png",
 	"definition": "bootstrapcomponents/label/label.js",
 	"libraries": [{"name":"bootstrapcomponents-label-css", "version":"1.0", "url":"bootstrapcomponents/label/label.css", "mimetype":"text/css"}],
+	"styleVariantCategory": "label",
 	"keywords": ["tag"],
 	"model":
 	{
