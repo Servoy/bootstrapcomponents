@@ -73,7 +73,7 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
 
     svyOnChanges(changes: SimpleChanges) {
         super.svyOnChanges(changes);
-         if (changes.dataProviderID && this.picker && !this.findmode) {
+        if (changes.dataProviderID && this.picker && !this.findmode) {
             const value = (this.dataProviderID instanceof Date) ? DateTime.convert(this.dataProviderID) : null;
             this.picker.dates.setValue(value);
         }
@@ -88,9 +88,9 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
         if (changes.disabledDates && changes.disabledDates.currentValue)
             this.config.restrictions.disabledDates = this.convertDateArray(changes.disabledDates.currentValue);
         if (changes.keepInvalid && changes.keepInvalid.currentValue !== undefined)
-            this.config.keepInvalid =  changes.keepInvalid.currentValue;
+            this.config.keepInvalid = changes.keepInvalid.currentValue;
         if (this.picker && (changes.calendarWeeks || changes.minDate
-             || changes.maxDate || changes.disabledDays || changes.disabledDates)) this.picker.updateOptions(this.config);
+            || changes.maxDate || changes.disabledDays || changes.disabledDates)) this.picker.updateOptions(this.config);
     }
     public disableDays(dateArray: number[], keepInvalid?: boolean) {
         this.disabledDaysChange.emit(dateArray);
@@ -122,9 +122,16 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
 
     public dateChanged(event: ChangeEvent) {
         if (event.type === 'change.td') {
-            if ( (event.date && this.dataProviderID && event.date.getTime() === this.dataProviderID.getTime()) ||
-             (!event.date && !this.dataProviderID)) return;
-            this.dataProviderID = !event.date?null:event.date;;
+            if ((event.date && this.dataProviderID && event.date.getTime() === this.dataProviderID.getTime()) ||
+                (!event.date && !this.dataProviderID)) return;
+
+            // do not push invalid date, revert to old value
+            if (event.date && isNaN(event.date.getTime())) {
+                const value = (this.dataProviderID instanceof Date) ? DateTime.convert(this.dataProviderID) : null;
+                this.picker.dates.setValue(value);
+                return;
+            } 
+            this.dataProviderID = !event.date ? null : event.date;;
         } else this.dataProviderID = null;
         super.pushUpdate();
     }
@@ -137,7 +144,7 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
 
     private checkInvalidAndPicker(keepInvalid: boolean) {
         if (keepInvalid !== undefined) {
-            this.config.keepInvalid= keepInvalid;
+            this.config.keepInvalid = keepInvalid;
             this.keepInvalid = keepInvalid;
             this.keepInvalidChange.emit(keepInvalid);
         }
@@ -154,7 +161,7 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
         return datetimeArray;
     }
 
-      private loadCalendarLocale(locale: string) {
+    private loadCalendarLocale(locale: string) {
         const index = locale.indexOf('-');
         let language = locale;
         if (index > 0) {
