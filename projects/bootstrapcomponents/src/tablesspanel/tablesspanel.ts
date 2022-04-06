@@ -60,6 +60,13 @@ export class ServoyBootstrapTablesspanel extends ServoyBootstrapBaseComponent<HT
         }
     }
 
+    svyOnInit(): void {
+        super.svyOnInit();
+        if (this.servoyApi.isInDesigner() && !this.containedForm) {
+            this.getNativeElement().innerText = 'Select contained form';
+        }
+    }
+
     setRealContainedForm(formName: any, relationName: any) {
         if (this.formWillShowCalled !== formName && formName) {
             this.formWillShowCalled = formName;
