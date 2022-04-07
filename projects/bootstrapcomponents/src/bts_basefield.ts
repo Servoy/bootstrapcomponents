@@ -38,7 +38,9 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
         }
         if (this.onActionMethodID) {
             this.renderer.listen(this.getFocusElement(), 'keydown', e => {
-                if (e.keyCode === 13) this.onActionMethodID(e);
+                if (e.keyCode === 13) {
+                    setTimeout(() => this.onActionMethodID(e), 100);
+                }
             });
         }
         if (this.onRightClickMethodID) {
