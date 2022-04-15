@@ -109,6 +109,11 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
     getFocusElement() {
         return this.input.nativeElement;
     }
+    
+    requestFocus(mustExecuteOnFocusGainedMethod: boolean): void {
+        super.requestFocus(mustExecuteOnFocusGainedMethod);
+        this.comboboxDropdown.open();
+    }
 
     attachFocusListeners(nativeElement: HTMLElement) {
         if (this.onFocusGainedMethodID)
@@ -135,7 +140,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
             });
         } else {
             this.closeTooltip();
-            this.requestFocus(this.mustExecuteOnFocus);
+            super.requestFocus(this.mustExecuteOnFocus);
         }
     }
 
