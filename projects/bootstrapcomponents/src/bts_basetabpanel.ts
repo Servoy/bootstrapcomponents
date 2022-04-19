@@ -7,7 +7,7 @@ import { ServoyBootstrapBaseComponent } from './bts_basecomp';
 export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBootstrapBaseComponent<T> {
 	@Input() onChangeMethodID: (previousIndex: number, event: Event) => void;
 
-	@Input() height: number;
+	@Input() height: any;
 	@Input() tabs: Array<Tab>;
 
 	@Input() tabIndex: number;
