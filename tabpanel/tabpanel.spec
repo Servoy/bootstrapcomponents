@@ -13,7 +13,7 @@
 		"containerStyleClass": { "type": "styleclass" },
 		"closeIconStyleClass" : {"type":"styleclass", "default":"glyphicon glyphicon-remove close-icon", "tags": { "scope" :"design" }, "values":[]},
 		"showTabCloseIcon" : { "type": "boolean", "default": false },
-		"tabs": { "type": "tab[]", "pushToServer": "deep", "droppable": true, "tags": { "allowaccess": "visible"}},
+		"tabs": { "type": "tab[]", "pushToServer": "deep", "droppable": true, "tags": { "allowaccess": "visible", "wizard": "autoshow"}},
 		"styleClass": { "type": "styleclass" },
 		"height": { "type": "string", "default": "500", "tags": { "doc" : "Minimum height of the tabpanel, should be used for responsive forms."} },
 		"tabIndex": { "type": "int", "pushToServer": "shallow", "tags": { "scope": "runtime", "allowaccess": "visible" }, "default": 1},
@@ -114,7 +114,7 @@
 	"types": {
 		"tab": {
 			"active": { "type": "boolean", "default": false, "tags": { "scope": "private" } },
-			"containedForm": "form",
+			"containedForm": {"type":"form", "tags": {"wizard": "1", "wizardRelated": "relationName"}},
 			"imageMediaID": "media",
 			"text": { "type": "tagstring", "tags": { "useAsCaptionInDeveloper" : true, "captionPriority" : 1 } },
 			"relationName": "relation",
