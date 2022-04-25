@@ -24,7 +24,7 @@
     "@ng-bootstrap/ng-bootstrap": "12.0.0",
     "@popperjs/core": "^2.11.2",
     "@servoy/public": "^2022.3.0",
-    "@servoy/tempus-dominus": "6.0.0-beta4",
+    "@servoy/tempus-dominus": "6.0.0-beta5.1",
     "bootstrap": "5.1.3",
     "luxon": "2.3.0",
     "rxjs": "7.5.4",
