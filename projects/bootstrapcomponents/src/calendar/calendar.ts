@@ -27,14 +27,6 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
         servoyService: ServoyPublicService,
         @Inject(DOCUMENT) doc: Document) {
         super(renderer, cdRef,servoyService, logFactory.getLogger('bts-calendar'), doc);
-        this.config.hooks = {
-            inputFormat: (date: DateTime) => formattingService.format(date, this.format, false),
-            inputParse: (value: string) => {
-                const parsed = this.formattingService.parse(value?value.trim():null, this.format, true, this.dataProviderID);
-                if (parsed instanceof Date) return  new DateTime(parsed);
-                return null;
-            }
-        };
     }
 
 
@@ -112,6 +104,12 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
             }
             this.renderer.setProperty(this.inputElementRef.nativeElement, 'value', formatted);
             this.picker = new TempusDominus(this.getNativeElement(), this.config);
+            this.picker.dates.formatInput =  (date: DateTime) => this.formattingService.format(date, this.format, false);
+            this.picker.dates.parseInput =  (value: string) => {
+                const parsed = this.formattingService.parse(value?value.trim():null, this.format, true, this.dataProviderID);
+                if (parsed instanceof Date && !isNaN(parsed.getTime())) return  new DateTime(parsed);
+                return null;
+            };
             this.picker.subscribe(Namespace.events.change, (event) => this.dateChanged(event));
             if (this.onFocusGainedMethodID) {
                 this.picker.subscribe(Namespace.events.show, () => this.checkOnFocus());

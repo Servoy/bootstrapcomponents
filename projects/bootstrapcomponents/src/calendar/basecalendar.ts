@@ -130,7 +130,7 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
                 const value = (this.dataProviderID instanceof Date) ? DateTime.convert(this.dataProviderID) : null;
                 this.picker.dates.setValue(value);
                 return;
-            } 
+            }
             this.dataProviderID = !event.date ? null : event.date;;
         } else this.dataProviderID = null;
         super.pushUpdate();
