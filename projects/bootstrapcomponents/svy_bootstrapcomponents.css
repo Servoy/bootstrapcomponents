@@ -56,6 +56,34 @@
 	padding: 1px 5px;
 }
 
+.svy-wrapper .svy-form-floating {
+    height: 100%;
+}
+
+.svy-wrapper .bts-floatlabeltextbox {
+    width: 100%;
+    height: 100%;
+}
+
+.svy-wrapper .bts-floatlabeltextarea {
+    width: 100%;
+    height: 100%;
+}
+
+.svy-wrapper .bts-floatlabeltypeahead {
+    width: 100%;
+    height: 100%;
+}
+
+.svy-wrapper .bts-floatlabelcombobox
+{
+    width : 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .svy-wrapper > * > .bts-label {
 	width : 100%;
 	height: 100%;
@@ -249,4 +277,58 @@ label input {
 
 body > .dropdown{
     z-index: 9999 !important;
+}
+
+/* adapted from bs floating label*/
+.svy-form-floating {
+  position: relative;
+}
+
+.svy-form-floating  > label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%; /* allow textareas */
+    padding: 13px 5px 1px 5px;
+    pointer-events: none;
+    transform-origin: 0 0;
+    transition: opacity .1s ease-in-out,transform .1s ease-in-out;;
+  }
+
+.svy-form-floating  > .form-control {
+   padding: 18px 5px 1px 5px;
+}
+
+.svy-form-floating  > .form-control::placeholder {
+      color: transparent;
+}
+
+.svy-form-floating  > .form-control:focus,
+.svy-form-floating  > .form-control:not(:placeholder-shown) {
+    padding-top: 18px;
+    padding-bottom: 1px;
+}
+
+/* Duplicated because `:-webkit-autofill` invalidates other selectors when grouped */
+.svy-form-floating  > .form-control:-webkit-autofill {
+  padding-top: 18px;
+  padding-bottom: 1px;
+}
+    
+.svy-form-floating  > .form-select {
+    padding-top: 18px;
+    padding-bottom: 1px;
+}
+
+.svy-form-floating  > .form-control:focus ~ label,
+.svy-form-floating  > .form-control:not(:placeholder-shown) ~ label,
+.svy-form-floating  > .form-select ~ label{
+      opacity: .65;
+      transform: scale(.85) translateY(-.5rem) translateX(.15rem);
+}
+
+/* Duplicated because `:-webkit-autofill` invalidates other selectors when grouped */
+.svy-form-floating  > .form-control:-webkit-autofill ~ label{
+      opacity: .65;
+      transform: scale(.85) translateY(-.5rem) translateX(.15rem);
 }

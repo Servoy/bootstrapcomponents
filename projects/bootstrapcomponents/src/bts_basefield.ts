@@ -1,5 +1,5 @@
 import { ServoyBootstrapBaseComponent } from './bts_basecomp';
-import { Directive, Input, Output, EventEmitter, SimpleChanges, Renderer2, ChangeDetectorRef, Inject } from '@angular/core';
+import { Directive, Input, Output, EventEmitter, SimpleChanges, SimpleChange, Renderer2, ChangeDetectorRef, Inject } from '@angular/core';
 import { PropertyUtils } from '@servoy/public';
 import { DOCUMENT } from '@angular/common';
 
@@ -62,8 +62,7 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
                             this.renderer.setAttribute(this.getFocusElement(), 'readonly', 'readonly');
                         break;
                     case 'placeholderText':
-                        if (change.currentValue) this.renderer.setAttribute(this.getFocusElement(), 'placeholder', change.currentValue);
-                        else this.renderer.removeAttribute(this.getFocusElement(), 'placeholder');
+                       this.setPlaceHolderText(change);
                         break;
                     case 'selectOnEnter':
                         if (change.currentValue) PropertyUtils.addSelectOnEnter(this.getFocusElement(), this.renderer, this.doc);
@@ -115,7 +114,12 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
     pushUpdate() {
         this.dataProviderIDChange.emit(this.dataProviderID);
     }
-
+    
+    protected setPlaceHolderText(change : SimpleChange ){
+        if (change.currentValue) this.renderer.setAttribute(this.getFocusElement(), 'placeholder', change.currentValue);
+        else this.renderer.removeAttribute(this.getFocusElement(), 'placeholder'); 
+    }
+    
     public selectAll() {
         (this.getFocusElement() as HTMLInputElement).select();
     }

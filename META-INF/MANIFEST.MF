@@ -39,6 +39,18 @@ Web-Component: True
 Name: textbox/textbox.spec
 Web-Component: True
 
+Name: floatlabeltextbox/floatlabeltextbox.spec
+Web-Component: True
+
+Name: floatlabeltextarea/floatlabeltextarea.spec
+Web-Component: True
+
+Name: floatlabeltypeahead/floatlabeltypeahead.spec
+Web-Component: True
+
+Name: floatlabelcombobox/floatlabelcombobox.spec
+Web-Component: True
+
 Name: tablesspanel/tablesspanel.spec
 Web-Component: True
 

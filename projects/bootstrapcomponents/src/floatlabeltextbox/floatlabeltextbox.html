@@ -1,0 +1,21 @@
+<div class="svy-form-floating">
+    <input #element
+        [id]="servoyApi.getMarkupId()"
+        class="bts-floatlabeltextbox"
+        (change)="pushUpdate()"
+        [ngClass]="styleClass"
+        [ngModel]="dataProviderID"
+        (ngModelChange)="onModelChange($event)"
+        [svyFormat]="format"
+        [svyDecimalKeyConverter]="format"
+        [svyStartEdit]="'dataProviderID'"
+        [hostComponent]="this"
+        [svyTooltip]="toolTipText"
+        [sabloTabseq]="tabSeq"
+        [disabled]="!enabled"
+        [readOnly]="readOnly || !editable"
+        [autocomplete]="autocomplete"
+        [placeholder]="floatLabelText"
+    />
+    <label [for]="servoyApi.getMarkupId()">{{floatLabelText}}</label>
+</div>

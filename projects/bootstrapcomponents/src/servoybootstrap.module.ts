@@ -10,6 +10,10 @@ import { ChoiceElementDirective } from './choicegroup/choicegroup';
 import { ServoyBootstrapChoicegroup } from './choicegroup/choicegroup';
 import { ServoyBootstrapCheckbox } from './checkbox/checkbox';
 import { ServoyBootstrapTextbox } from './textbox/textbox';
+import { ServoyFloatLabelBootstrapTextbox } from './floatlabeltextbox/floatlabeltextbox';
+import { ServoyFloatLabelBootstrapTypeahead } from './floatlabeltypeahead/floatlabeltypeahead';
+import { ServoyFloatLabelBootstrapTextarea } from './floatlabeltextarea/floatlabeltextarea';
+import { ServoyFloatLabelBootstrapCombobox } from './floatlabelcombobox/floatlabelcombobox';
 import { ServoyBootstrapDatalabel, DesignTextPipe } from './datalabel/datalabel';
 import { ServoyBootstrapList } from './list/list';
 import { ServoyBootstrapSelect } from './select/select';
@@ -35,6 +39,10 @@ import { Tab } from './bts_basetabpanel';
       ChoiceElementDirective,
       ServoyBootstrapCheckbox,
       ServoyBootstrapTextbox,
+      ServoyFloatLabelBootstrapTextbox,
+      ServoyFloatLabelBootstrapTypeahead,
+      ServoyFloatLabelBootstrapTextarea,
+      ServoyFloatLabelBootstrapCombobox,
       ServoyBootstrapDatalabel,
       ServoyBootstrapList,
       ServoyBootstrapSelect,
@@ -64,6 +72,10 @@ import { Tab } from './bts_basetabpanel';
       ServoyBootstrapChoicegroup,
       ServoyBootstrapCheckbox,
       ServoyBootstrapTextbox,
+      ServoyFloatLabelBootstrapTextbox,
+      ServoyFloatLabelBootstrapTypeahead,
+      ServoyFloatLabelBootstrapTextarea,
+      ServoyFloatLabelBootstrapCombobox,
       ServoyBootstrapDatalabel,
       ServoyBootstrapList,
       ServoyBootstrapSelect,
