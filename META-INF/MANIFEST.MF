@@ -51,6 +51,9 @@ Web-Component: True
 Name: floatlabelcombobox/floatlabelcombobox.spec
 Web-Component: True
 
+Name: floatlabelcalendar/floatlabelcalendar.spec
+Web-Component: True
+
 Name: tablesspanel/tablesspanel.spec
 Web-Component: True
 

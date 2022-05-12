@@ -14,6 +14,7 @@ import { ServoyFloatLabelBootstrapTextbox } from './floatlabeltextbox/floatlabel
 import { ServoyFloatLabelBootstrapTypeahead } from './floatlabeltypeahead/floatlabeltypeahead';
 import { ServoyFloatLabelBootstrapTextarea } from './floatlabeltextarea/floatlabeltextarea';
 import { ServoyFloatLabelBootstrapCombobox } from './floatlabelcombobox/floatlabelcombobox';
+import { ServoyFloatLabelBootstrapCalendar } from './floatlabelcalendar/floatlabelcalendar';
 import { ServoyBootstrapDatalabel, DesignTextPipe } from './datalabel/datalabel';
 import { ServoyBootstrapList } from './list/list';
 import { ServoyBootstrapSelect } from './select/select';
@@ -43,6 +44,7 @@ import { Tab } from './bts_basetabpanel';
       ServoyFloatLabelBootstrapTypeahead,
       ServoyFloatLabelBootstrapTextarea,
       ServoyFloatLabelBootstrapCombobox,
+      ServoyFloatLabelBootstrapCalendar,
       ServoyBootstrapDatalabel,
       ServoyBootstrapList,
       ServoyBootstrapSelect,
@@ -76,6 +78,7 @@ import { Tab } from './bts_basetabpanel';
       ServoyFloatLabelBootstrapTypeahead,
       ServoyFloatLabelBootstrapTextarea,
       ServoyFloatLabelBootstrapCombobox,
+      ServoyFloatLabelBootstrapCalendar,
       ServoyBootstrapDatalabel,
       ServoyBootstrapList,
       ServoyBootstrapSelect,

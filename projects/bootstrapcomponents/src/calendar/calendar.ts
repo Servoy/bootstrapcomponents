@@ -23,7 +23,7 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
     constructor(renderer: Renderer2,
         cdRef: ChangeDetectorRef,
         logFactory: LoggerFactory,
-        private formattingService: FormattingService,
+        protected formattingService: FormattingService,
         servoyService: ServoyPublicService,
         @Inject(DOCUMENT) doc: Document) {
         super(renderer, cdRef,servoyService, logFactory.getLogger('bts-calendar'), doc);
