@@ -177,15 +177,15 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
 
     getStrongValue(value: any): any {
         let retValue = '';
-        if (this.openState && this.lastSelectValue && value && value.startsWith(this.lastSelectValue)) {
-            retValue = this.lastSelectValue;
+        if (this.openState && this.lastSelectValue && value && value.toLowerCase().startsWith(this.lastSelectValue.toLowerCase())) {
+            retValue = value.substring(0, this.lastSelectValue.length);
         }
         return retValue;
     }
 
     getRemainingValue(value: any): any {
         let retValue = value;
-        if (this.openState && this.lastSelectValue && value && value.startsWith(this.lastSelectValue)) {
+        if (this.openState && this.lastSelectValue && value && value.toLowerCase().startsWith(this.lastSelectValue.toLowerCase())) {
             retValue = value.substring(this.lastSelectValue.length);
         }
         return retValue;
@@ -194,7 +194,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
     scrollToFirstMatchingItem() {
         if (this.openState && this.lastSelectValue) {
             for (const item of this.menuItems) {
-                if (item.elementRef.nativeElement.innerText.startsWith(this.lastSelectValue) && !this.firstItemFound) {
+                if (item.elementRef.nativeElement.innerText.toLowerCase().startsWith(this.lastSelectValue.toLowerCase()) && !this.firstItemFound) {
                     this.firstItemFound = true;
                     item.elementRef.nativeElement.focus();
                 }
