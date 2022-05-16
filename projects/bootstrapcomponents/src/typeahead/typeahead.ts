@@ -15,6 +15,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
 
     @ViewChild('instance') instance: NgbTypeahead;
 
+    @Input() showAs: string;
     @Input() format: Format;
     @Input() valuelistID: IValuelist;
     @Input() appendToBody: boolean;
