@@ -11,6 +11,7 @@ import { NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDivElement> {
 
+    @ViewChild('content', { static: false, read: ElementRef}) contentElementRef: ElementRef<HTMLDivElement>;
     panelHeight: number;
 
     constructor(renderer: Renderer2,protected cdRef: ChangeDetectorRef, windowRefService: WindowRefService) {
@@ -31,15 +32,21 @@ export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDi
 
     private updateContentHeight() {
         let totalHeight = this.height;
+        let paneHeight = 49;
+        let borderWidth = 2;
         let wrapper = null;
-        if (this.elementRef) {
-            wrapper = this.elementRef.nativeElement.closest('.svy-wrapper');
+        if (this.contentElementRef) {
+            wrapper = this.contentElementRef.nativeElement.closest('.svy-wrapper');
         }
         if (wrapper) {
             totalHeight = wrapper.offsetHeight;
         }
-        if (this.tabs) {
-            totalHeight = totalHeight - 40 * this.tabs.length;
+        if (this.tabs && this.tabs.length > 0) {
+            const headerElement = this.getNativeElement().querySelector('.accordion-header') as HTMLDivElement;
+            if (headerElement){
+                paneHeight = headerElement.offsetHeight;
+            }
+            totalHeight = totalHeight - paneHeight * this.tabs.length - borderWidth ;
         }
         this.panelHeight = totalHeight;
     }

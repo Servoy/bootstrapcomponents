@@ -15,6 +15,11 @@
 	padding:0px;
 }
 
+.bts-accordion .accordion-body
+{
+    padding:0px !important;
+}
+
 .bts-accordion .card-header
 {
 	padding:0px;
