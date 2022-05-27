@@ -4,7 +4,6 @@
 	"categoryName": "Input Control",
 	"version": 1,
 	"icon": "bootstrapcomponents/floatlabeltypeahead/typeahead.png",
-	"definition": "bootstrapcomponents/floatlabeltypeahead/typeahead.js",
 	"keywords": ["suggestion", "auto complete"],
 	"model":
 	{

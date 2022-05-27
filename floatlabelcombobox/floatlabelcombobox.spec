@@ -4,7 +4,6 @@
 	"categoryName": "Input Control",
 	"version": 1,
 	"icon": "bootstrapcomponents/floatlabelcombobox/combobox.png",
-	"definition": "bootstrapcomponents/floatlabelcombobox/floatlabelcombobox.js",
 	"libraries": [
 	],
 	"keywords": [],

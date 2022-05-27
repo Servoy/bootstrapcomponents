@@ -4,7 +4,6 @@
 	"categoryName": "Input Control",
 	"version": 1,
 	"icon": "bootstrapcomponents/floatlabeltextarea/textarea.png",
-	"definition": "bootstrapcomponents/floatlabeltextarea/textarea.js",
 	"keywords": ["content"],
 	"model":
 	{
