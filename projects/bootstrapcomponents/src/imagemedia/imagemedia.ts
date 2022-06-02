@@ -1,6 +1,7 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, OnInit, Renderer2, Input, OnChanges, SimpleChanges, ChangeDetectorRef, ChangeDetectionStrategy, Inject } from '@angular/core';
+import { Component, OnInit, Renderer2, Input, SimpleChanges, ChangeDetectorRef, ChangeDetectionStrategy, Inject } from '@angular/core';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
+import { WindowRefService } from '@servoy/public';
 
 @Component({
   selector: 'bootstrapcomponents-imagemedia',
@@ -14,7 +15,7 @@ export class ServoyBootstrapImageMedia extends ServoyBootstrapBasefield<HTMLImag
 
     imageURL = 'bootstrapcomponents/imagemedia/images/empty.gif';
 
-    constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, @Inject(DOCUMENT) doc: Document) {
+    constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, @Inject(DOCUMENT) doc: Document, protected windowService: WindowRefService) {
         super(renderer, cdRef, doc);
     }
 
@@ -48,5 +49,28 @@ export class ServoyBootstrapImageMedia extends ServoyBootstrapBasefield<HTMLImag
         } else {
             this.imageURL = this.dataProviderID;
         }
+    }
+
+    download() {
+        if (this.dataProviderID) {
+            let x = 0, y = 0;
+            if (this.doc.all) {
+                x = this.windowService.nativeWindow.screenTop + 100;
+                y = this.windowService.nativeWindow.screenLeft + 100;
+            } else if (this.doc['layers']) {
+                x = this.windowService.nativeWindow.screenX + 100;
+                y = this.windowService.nativeWindow.screenY + 100;
+            } else { // firefox, need to switch the x and y?
+                y = this.windowService.nativeWindow.screenX + 100;
+                x = this.windowService.nativeWindow.screenY + 100;
+            }
+            this.windowService.nativeWindow.open(this.dataProviderID.url ? this.dataProviderID.url : this.dataProviderID, 'download', 'top=' + x + ',left=' + y + ',screenX=' + x
+                    + ',screenY=' + y + ',location=no,toolbar=no,menubar=no,width=310,height=140,resizable=yes');
+        }
+    }
+
+    clear() {
+        this.dataProviderID = null;
+        this.pushUpdate();
     }
 }

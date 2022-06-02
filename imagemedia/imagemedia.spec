@@ -11,7 +11,8 @@
 	{
 			"alternate" : { "type" : "tagstring", "tags": { "doc" :"Value to be filled in alt html attribute of the img tag."}},
 			"enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["dataProviderID","onActionMethodID","onDataChangeMethodID"] }, 
-	        "dataProviderID" : { "type":"dataprovider", "tags": { "scope" :"design", "typeName": "mediaDataprovider" }, "ondatachange": { "onchange":"onDataChangeMethodID"}},
+			"editable" : { "type": "protected", "blockingOn": false, "default": false, "for": ["dataProviderID","onDataChangeMethodID"] },
+	        "dataProviderID" : { "type":"dataprovider", "pushToServer": "allow", "tags": { "scope" :"design", "typeName": "mediaDataprovider" }, "ondatachange": { "onchange":"onDataChangeMethodID"}},
 	        "media" : { "type" :"media"},
 	        "readOnly" : { "type": "protected", "blockingOn": true, "default": false, "for": ["dataProviderID","onDataChangeMethodID"], "tags": {"scope":"runtime"} },
 	        "size" : {"type" :"dimension",  "default" : {"width":140, "height":80}},

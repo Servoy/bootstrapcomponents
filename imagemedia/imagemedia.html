@@ -1,10 +1,14 @@
-<img class='bts-media' ng-src='{{ model.media != null ? model.media : (model.dataProviderID != null && model.dataProviderID.url ? model.dataProviderID.url : (model.dataProviderID == null && svyServoyapi.isInDesigner() ? "bootstrapcomponents/imagemedia/media.png" : (model.dataProviderID == null ? "bootstrapcomponents/imagemedia/images/empty.gif" : model.dataProviderID))) }}'
-	ng-class='model.styleClass'
-	sablo-tabseq='model.tabSeq'
-	alt="{{model.alternate}}"
-	svy-click='handlers.onActionMethodID($event)'
- 	svy-rightclick='handlers.onRightClickMethodID($event)'
- 	ng-disabled='model.readOnly || !model.enabled'
- 	ng-if='model.visible'
- 	svy-attributes='model.attributes'
- 	id="{{::model.svyMarkupId}}"/>
+<div sablo-tabseq='model.tabSeq'
+	 class='svy-mediafield'
+	 ng-class='model.styleClass'
+	 svy-click='handlers.onActionMethodID($event)'
+	 svy-rightclick='handlers.onRightClickMethodID($event)'
+	 ng-disabled='model.readOnly || !model.enabled'
+	 ng-if='model.visible'
+	 svy-attributes='model.attributes'
+	 id="{{::model.svyMarkupId}}">
+	 <div ng-show="model.enabled == true && model.editable == true && !svyServoyapi.isInDesigner()" class="glyphicon glyphicon-download-alt" style="cursor: pointer;z-index: 1;width: 16px; height: 16px;" title="Save media" ng-click="download()"></div>
+	 <div ng-show="model.enabled == true && model.editable == true && !svyServoyapi.isInDesigner()" class="glyphicon glyphicon-cloud-upload" style="cursor: pointer;z-index: 1;width: 16px; height: 16px;" title="Load media" svy-fileupload="model.dataProviderID"></div>
+	 <div ng-show="model.enabled == true && model.editable == true && !svyServoyapi.isInDesigner()" class="glyphicon glyphicon-remove" style="cursor: pointer;z-index: 1;width: 16px; height: 16px;" title="Remove media" ng-click="clear()"></div>
+	 <img class='bts-media' ng-src='{{ model.media != null ? model.media : (model.dataProviderID != null && model.dataProviderID.url ? model.dataProviderID.url : (model.dataProviderID == null && svyServoyapi.isInDesigner() ? "bootstrapcomponents/imagemedia/media.png" : (model.dataProviderID == null ? "bootstrapcomponents/imagemedia/images/empty.gif" : model.dataProviderID))) }}' style='width: 100%;' 	 alt="{{model.alternate}}"/>
+</div>
