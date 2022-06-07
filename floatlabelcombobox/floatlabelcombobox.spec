@@ -12,7 +12,6 @@
 	        "dataProviderID" : { "type":"dataprovider", "pushToServer": "allow", "tags": { "scope": "design" }, "ondatachange": { "onchange":"onDataChangeMethodID", "callback":"onDataChangeCallback"}, "displayTagsPropertyName" : "displaysTags"},
 	        "enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["dataProviderID","onActionMethodID","onDataChangeMethodID","onFocusGainedMethodID","onFocusLostMethodID","onRightClickMethodID"] }, 
 			"format" : {"for":["valuelistID","dataProviderID"] , "type" :"format"},
-			"placeholderText" : "tagstring",
 			"floatLabelText" : "tagstring",
 	        "readOnly" : { "type" : "readOnly", "oppositeOf" : "enabled"}, 
 	        "size" : {"type" :"dimension",  "default" : {"width":140, "height":50}},

@@ -24,7 +24,6 @@
 	    "minDate" : {"type":"date", "pushToServer": "shallow","tags": { "scope" :"private" }},
 	    "readOnly" : { "type": "protected", "blockingOn": true, "default": false,"for": ["dataProviderID","onDataChangeMethodID"] },
 	    "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "default" : "form-control"},
-	    "placeholderText" : "tagstring",
 	    "floatLabelText" : "tagstring",
 	    "size" : {"type" :"dimension",  "default" : {"width":140, "height":50}},
 	    "tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},

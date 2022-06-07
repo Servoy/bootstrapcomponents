@@ -13,7 +13,6 @@
 			"inputType" : {"type":"string" , "pushToServer": "allow", "tags": { "scope" :"design", "valuesFieldType":"typeahead" }, "default" : "text",  "values" :["text", "password", "email", "tel", "date", "time", "datetime-local", "month", "week", "number", "color","search", "url"]},			
 			"readOnly" : { "type": "protected", "blockingOn": true, "default": false,"for": ["dataProviderID","onDataChangeMethodID"], "tags": {"scope":"runtime"} },
 			"editable" : { "type": "protected", "blockingOn": false, "default": true,"for": ["dataProviderID","onDataChangeMethodID"] },
-			"placeholderText" : "tagstring",
 			"floatLabelText" : "tagstring",
 			"size" : {"type" :"dimension",  "default" : {"width":140, "height":50}},
 			"styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "default": "form-control", "values" :["form-control", "input-sm"]},
