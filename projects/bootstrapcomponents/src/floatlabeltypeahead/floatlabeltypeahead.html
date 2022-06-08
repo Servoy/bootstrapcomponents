@@ -20,7 +20,7 @@
         [inputFormatter]="inputFormatter"
         (focus)="focus$.next('')"
         (click)="click$.next('')"
-        [resultTemplate]="rt"
+        [resultTemplate]="showAs == 'text' ? rtText : rtHTML"
         (keyup.arrowDown)="scroll()" (keyup.arrowUp)="scroll()"
         #instance="ngbTypeahead"
         #element
@@ -28,6 +28,10 @@
     <label [for]="servoyApi.getMarkupId()">{{floatLabelText}}</label>
 </div>
 
-<ng-template #rt let-r="result" let-t="term" let-formatter="formatter">
+<ng-template #rtHTML let-r="result" let-t="term" let-formatter="formatter">
   <svy-ngb-highlight [result]="formatter(r)" [term]="t"></svy-ngb-highlight>
+</ng-template>
+
+<ng-template #rtText let-r="result" let-t="term" let-formatter="formatter">
+  <ngb-highlight [result]="formatter(r)" [term]="t"></ngb-highlight>
 </ng-template>
