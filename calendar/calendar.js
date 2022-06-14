@@ -206,13 +206,14 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 
 				$element.on("dp.change",inputChanged);
 
-				$element.on("dp.error",function(){
+				var dpError = function(){
 					if (child.children("input").val() !== '')
 					{
 						ngModel.$setValidity("", false);
 						$scope.$digest();
 					}	
-				});
+				}
+				$element.on("dp.error",dpError);
 
 				var storedTooltip = false;
 				$scope.api.onDataChangeCallback = function(event, returnval) {
@@ -397,7 +398,13 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 						case "selectOnEnter":
 							if (value)
 								$svyProperties.addSelectOnEnter(inputElement);
-							break;					 
+							break;
+						case "visible":
+							if (!value) {
+								$element.off("dp.change",inputChanged);
+								$element.off("dp.error",dpError);
+							}
+							break;
 						}
 					}
 				});
