@@ -26,5 +26,10 @@ zip.addLocalFolder("./textarea/", "/textarea/");
 zip.addLocalFolder("./textbox/", "/textbox/");
 zip.addLocalFolder("./typeahead/", "/typeahead/");
 zip.addLocalFolder("./lib/", "/lib/");
+zip.addLocalFolder("./floatlabeltextbox/", "/floatlabeltextbox/");
+zip.addLocalFolder("./floatlabeltypeahead/", "/floatlabeltypeahead/");
+zip.addLocalFolder("./floatlabeltextarea/", "/floatlabeltextarea/");
+zip.addLocalFolder("./floatlabelcombobox/", "/floatlabelcombobox/");
+zip.addLocalFolder("./floatlabelcalendar/", "/floatlabelcalendar/");
 
 zip.writeZip("bootstrapcomponents.zip");
