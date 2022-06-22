@@ -19,3 +19,8 @@ export * from './textarea/textarea';
 export * from './textbox/textbox';
 export * from './typeahead/typeahead';
 export * from './servoybootstrap.module';
+export * from './floatlabeltextbox/floatlabeltextbox';
+export * from './floatlabeltypeahead/floatlabeltypeahead';
+export * from './floatlabeltextarea/floatlabeltextarea';
+export * from './floatlabelcombobox/floatlabelcombobox';
+export * from './floatlabelcalendar/floatlabelcalendar';
