@@ -1,11 +1,11 @@
 <div #element
     [sabloTabseq]="tabSeq"
     class='svy-mediafield'
-    [ngClass]="styleClass"
+    style="height: 100%;"
     [id]='servoyApi.getMarkupId()'
     [svyTooltip]="toolTipText">
     <div *ngIf="enabled && editable && !servoyApi.isInDesigner()" class="fas fa-download" style="cursor: pointer;z-index: 1;width: 16px; height: 16px;" title="Save media" (click)="download()"></div>
     <div *ngIf="enabled && editable && !servoyApi.isInDesigner()" class="fas fa-upload" style="cursor: pointer;z-index: 1;width: 16px; height: 16px;" title="Load media" svyUpload formname={{servoyApi.getFormName()}} [componentName]='name'></div>
     <div *ngIf="enabled && editable && !servoyApi.isInDesigner()" class="fas fa-trash-can" style="cursor: pointer;z-index: 1;width: 16px; height: 16px;" title="Remove media" (click)="clear()"></div>
-    <img class='bts-media' [src]="imageURL" style='width: 100%;' alt="{{alternate}}"/>
+    <img class='bts-media' [src]="imageURL" [ngStyle]='imgStyle()' alt="{{alternate}}"/>
 </div>    

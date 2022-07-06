@@ -73,4 +73,8 @@ export class ServoyBootstrapImageMedia extends ServoyBootstrapBasefield<HTMLImag
         this.dataProviderID = null;
         this.pushUpdate();
     }
+
+    imgStyle() {
+        return this.media == null && this.dataProviderID == null && this.servoyApi.isInDesigner() ? {} : { width: '100%' };
+    }
 }
