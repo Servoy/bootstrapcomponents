@@ -29,7 +29,7 @@
 			"headerStyleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }}, 
 			"headerText": {"type" :"string", "initialValue": "Header Text", "tags": { "useAsCaptionInDeveloper" : true, "captionPriority" : 1, "showInOutlineView" : true }},
 			"styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }},
-			"valuelist" : { "type" : "valuelist", "tags": { "scope" :"design" }, "for": "dataprovider"}
+			"valuelist" : { "type" : "valuelist",  "for": "dataprovider"}
 		}
 	},
 	"handlers":

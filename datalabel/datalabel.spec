@@ -10,7 +10,7 @@
 	"model":
 	{
 			"dataProviderID" : { "type":"dataprovider", "tags": { "scope": "design"}, "resolveValuelist" : true },
-			"valuelistID" : { "type" : "valuelist", "tags": { "scope" :"design" }, "for": "dataProviderID", "max":1},
+			"valuelistID" : { "type" : "valuelist",  "for": "dataProviderID", "max":1},
 			"enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["onActionMethodID","onDoubleClickMethodID","onRightClickMethodID"] },
 			"format" : {"for":["valuelistID","dataProviderID"] , "type" :"format"},
 			"size" : {"type" :"dimension",  "default" : {"width":80, "height":30}}, 

@@ -23,7 +23,7 @@
 	        "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "values" :["form-control", "input-sm", "svy-padding-xs", "select2-container-svy-xs"]}, 
 	        "tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }}, 
 	        "toolTipText" : { "type" : "tagstring" }, 
-	        "valuelistID" : { "type" : "valuelist", "tags": { "scope" :"design", "logWhenOverMax":true}, "for": "dataProviderID", "max":500}, 
+	        "valuelistID" : { "type" : "valuelist", "tags": { "logWhenOverMax":true}, "for": "dataProviderID", "max":500}, 
 	        "visible" : "visible",
 			"appendToBody" : {"type" :"boolean",  "default" : true}
 	},
