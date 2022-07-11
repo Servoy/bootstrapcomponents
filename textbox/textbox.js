@@ -10,7 +10,14 @@ angular.module('bootstrapcomponentsTextbox', ['servoy']).directive('bootstrapcom
         link: function($scope, $element, $attrs) {
 
             var formatState = null;
-
+            
+            $scope.onClick = function(event){
+                if ($scope.model.editable == false && $scope.handlers.onActionMethodID)
+                {
+                    $scope.handlers.onActionMethodID(event);
+                }   
+            }
+            
             $scope.autoCompleteValue = function() {
                 if ($scope.model.autocomplete && $scope.model.autocomplete != "off") {
                     return $scope.model.autocomplete;
