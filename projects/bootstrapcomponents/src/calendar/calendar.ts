@@ -98,11 +98,6 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
 
     initializePicker() {
         if (!this.picker) {
-            let formatted = '';
-            if (this.dataProviderID) {
-                formatted = this.formattingService.format(this.dataProviderID, this.format, false);
-            }
-            this.renderer.setProperty(this.inputElementRef.nativeElement, 'value', formatted);
             this.picker = new TempusDominus(this.getNativeElement(), this.config);
             this.picker.dates.formatInput =  (date: DateTime) => date?this.formattingService.format(date, this.format, false):'';
             this.picker.dates.parseInput =  (value: string) => {
