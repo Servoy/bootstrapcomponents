@@ -77,6 +77,10 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
             const value = (this.dataProviderID instanceof Date) ? DateTime.convert(this.dataProviderID) : null;
             this.picker.dates.setValue(value);
         }
+        if (this.dataProviderID) {
+            const value = (this.dataProviderID instanceof Date) ? DateTime.convert(this.dataProviderID) : null;
+            this.config.viewDate = value;
+       }
         if (changes.calendarWeeks && changes.calendarWeeks.currentValue)
             this.config.display.calendarWeeks = changes.calendarWeeks.currentValue;
         if (changes.minDate && changes.minDate.currentValue)

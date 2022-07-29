@@ -199,7 +199,9 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
         }
         if (this.cssPosition && this.servoyApi.isInAbsoluteLayout()) {
             const tabs = element.querySelector('ul');
-            this.containerStyle['height'] = (parseInt(this.cssPosition.height, 10) - tabs.clientHeight) + 'px';
+            this.containerStyle['height'] = 'calc(100% - ' + tabs.clientHeight + 'px)';
+            // should we set this to absolute ? it cannot be relative
+            delete this.containerStyle.position;
         } else {
             if (fullsize) {
                  this.containerStyle['height'] = this.height;
