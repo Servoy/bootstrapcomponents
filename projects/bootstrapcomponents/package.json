@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@angular/cdk": "<15",
-    "@ng-bootstrap/ng-bootstrap": "<13",
+    "@ng-bootstrap/ng-bootstrap": "<14",
     "@popperjs/core": "<3",
     "@servoy/tempus-dominus": "6.0.0-beta5.1",
     "bootstrap": "<6",
