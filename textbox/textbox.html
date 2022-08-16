@@ -1,5 +1,5 @@
-<input type="{{model.inputType}}"
-	    ng-class='model.styleClass' class='bts-textbox'
+<input type="{{model.inputType == 'password-with-eye' && model.showPass ? 'text' : model.inputType == 'password-with-eye' && !model.showPass ? 'password' : model.inputType}}"
+	    ng-class='model.styleClass' class="bts-textbox {{model.inputType == 'password-with-eye' ? 'svy-textbox-field' : ''}}"
 	    ng-model="model.dataProviderID"
 		ng-model-options="{ allowInvalid: true}"
 	    ng-disabled="!model.enabled"
@@ -18,4 +18,8 @@
 		svy-selectonenter="model.selectOnEnter"
 		autocomplete="{{autoCompleteValue()}}"
 		svy-attributes='model.attributes'/>
-
+<div id="svy-textbox-eyeDiv" ng-if="model.inputType == 'password-with-eye'"
+		ng-click="showHidePass()"
+		class="clickable svy-textbox-eye glyphicon {{model.showPass ? 'glyphicon-eye-open' : 'glyphicon-eye-close'}}"
+		ng-class="model.styleClass">
+</div>
