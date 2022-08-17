@@ -40,6 +40,15 @@ angular.module('bootstrapcomponentsDatalabel',['servoy'])
     	  for (key in $scope.model) {
     		  modelChangFunction(key, $scope.model[key]);
     	  }
+    	  
+    	  $scope.getDataTarget = function(event) {
+              var target = event.target;
+              var dataTarget = $(target).closest("[data-target]");
+              if (dataTarget && dataTarget[0]) {
+                  return dataTarget[0].getAttribute("data-target");
+              }
+              return null;
+          }
       },
       templateUrl: 'bootstrapcomponents/datalabel/datalabel.html'
     };
