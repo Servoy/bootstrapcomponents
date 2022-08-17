@@ -73,14 +73,10 @@ export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBo
 			this.generateIDs();
 		}
 		if (this.isValidTab(tab)) {
-			if ((tab !== undefined && this.selectedTab !== undefined && tab.containedForm === this.selectedTab.containedForm &&
-			              tab.relationName === this.selectedTab.relationName)) {
-							this.setFormVisible(tab);
-							return;
-			} else if (tab === this.selectedTab) return;
+			if (this.isValidTab(this.selectedTab) &&   tab === this.selectedTab) return;
 			if (this.selectedTab) {
-				if (this.selectedTab.containedForm && !this.waitingForServerVisibility[this.selectedTab.containedForm]) {
-					const formInWait = this.selectedTab.containedForm;
+				if (this.selectedTab.containedForm && !this.waitingForServerVisibility[this.selectedTab._id]) {
+					const formInWait = this.selectedTab._id;
 					this.waitingForServerVisibility[formInWait] = true;
 					const currentSelectedTab = this.selectedTab;
 					this.lastSelectedTab = tab;
@@ -95,12 +91,12 @@ export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBo
 							return;
 						}
 						if (ok) {
-							this.setFormVisible(tab);
+							this.setFormVisible(tab, false);
 						}
 					});
 				}
 			} else {
-				this.setFormVisible(tab);
+				this.setFormVisible(tab, true);
 			}
 		}
 	}
@@ -125,8 +121,8 @@ export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBo
 		return -1;
 	}
 
-	setFormVisible(tab: Tab) {
-		if (tab.containedForm && (!this.selectedTab || tab.containedForm !== this.selectedTab.containedForm))
+	setFormVisible(tab: Tab, callShow: boolean) {
+		if (callShow && tab.containedForm && this.isValidTab(this.selectedTab) && this.selectedTab !== tab)
 			this.servoyApi.formWillShow(tab.containedForm, tab.relationName).finally(() => this.cdRef.markForCheck());
 		const oldSelected = this.selectedTab;
 		this.selectedTab = tab;
@@ -142,8 +138,8 @@ export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBo
 
     isValidTab(tab: Tab) {
         if (this.tabs) {
-            for (const i of Object.keys(this.tabs)) {
-                if (this.tabs[i] === tab) {
+            for (const t of this.tabs) {
+                if (t === tab) {
                     return true;
                 }
             }
