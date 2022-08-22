@@ -122,7 +122,7 @@ export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBo
 	}
 
 	setFormVisible(tab: Tab, callShow: boolean) {
-		if (callShow && tab.containedForm && this.isValidTab(this.selectedTab) && this.selectedTab !== tab)
+		if (callShow && tab.containedForm && (!this.selectedTab  || (this.isValidTab(this.selectedTab) && this.selectedTab !== tab)))
 			this.servoyApi.formWillShow(tab.containedForm, tab.relationName).finally(() => this.cdRef.markForCheck());
 		const oldSelected = this.selectedTab;
 		this.selectedTab = tab;
