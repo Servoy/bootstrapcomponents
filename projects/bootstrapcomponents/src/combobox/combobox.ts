@@ -68,6 +68,10 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
         this.tooltip.autoClose = false;
     }
 
+	showAsHtml() {
+		return (this.showAs === 'html' || this.showAs === 'trusted_html');
+	}
+
     refreshTooltip() {
         if (!this.tooltip.isOpen()) {
             this.tooltip.open();
