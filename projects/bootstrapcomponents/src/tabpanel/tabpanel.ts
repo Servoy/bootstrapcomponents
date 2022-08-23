@@ -17,6 +17,7 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
     @Input() showTabCloseIcon: boolean;
     @Input() closeIconStyleClass: string;
     @Input() cssPosition: { width: string; height: string };
+    @Input() containerStyleClass: string;
 
     containerStyle = { position: 'relative', minHeight: '0px', overflow: 'auto' };
 
