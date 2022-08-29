@@ -36,24 +36,9 @@ export class ServoyBootstrapImageMedia extends ServoyBootstrapBasefield<HTMLImag
         }
     }
 
-    private updateImageURL() {
-        if (this.media) {
-            this.imageURL = this.media;
-            // do nothing if data provider changed but media is defined
-        } else if(this.dataProviderID && this.dataProviderID.url) {
-            this.imageURL = this.dataProviderID.url;
-        } else if (!this.dataProviderID && this.servoyApi.isInDesigner()) {
-            this.imageURL = 'bootstrapcomponents/imagemedia/media.png';
-        } else if (!this.dataProviderID){
-            this.imageURL = 'bootstrapcomponents/imagemedia/images/empty.gif';
-        } else {
-            this.imageURL = this.dataProviderID;
-        }
-    }
-
     download() {
         if (this.dataProviderID) {
-            let x = 0, y = 0;
+            let x = 0; let y = 0;
             if (this.doc.all) {
                 x = this.windowService.nativeWindow.screenTop + 100;
                 y = this.windowService.nativeWindow.screenLeft + 100;
@@ -74,7 +59,19 @@ export class ServoyBootstrapImageMedia extends ServoyBootstrapBasefield<HTMLImag
         this.pushUpdate();
     }
 
-    imgStyle() {
-        return this.media == null && this.dataProviderID == null && this.servoyApi.isInDesigner() ? {} : { width: '100%' };
+
+    private updateImageURL() {
+        if (this.media) {
+            this.imageURL = this.media;
+            // do nothing if data provider changed but media is defined
+        } else if(this.dataProviderID && this.dataProviderID.url) {
+            this.imageURL = this.dataProviderID.url;
+        } else if (!this.dataProviderID && this.servoyApi.isInDesigner()) {
+            this.imageURL = 'bootstrapcomponents/imagemedia/media.png';
+        } else if (!this.dataProviderID){
+            this.imageURL = 'bootstrapcomponents/imagemedia/images/empty.gif';
+        } else {
+            this.imageURL = this.dataProviderID;
+        }
     }
 }
