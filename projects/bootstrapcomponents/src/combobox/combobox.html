@@ -13,7 +13,7 @@
     [disabled]="readOnly || !enabled"
     [id]="servoyApi.getMarkupId() + '_btn'"
     #input>
-		<span *ngIf="showAsHtml()" class="bts-dropdown-text" [innerHtml]="formattedValue"></span>
+		<span *ngIf="showAsHtml()" class="bts-dropdown-text" [innerHtml]="formattedValue ? (formattedValue | trustAsHtml:isTrustedHTML()) : formattedValue"></span>
 		<span *ngIf="!showAsHtml()" class="bts-dropdown-text">{{formattedValue}}</span>
   </button>
   <div 
@@ -29,7 +29,7 @@
         [ngClass]="{active:valueComparator(value)}" 
         (click)="updateValue(value.realValue)">
           <!-- do not break the next line -->
-          <span *ngIf="showAsHtml()" [innerHtml]="value.displayValue | formatFilter:format | emptyValue"></span>
+          <span *ngIf="showAsHtml()" [innerHtml]="value.displayValue | formatFilter:format | htmlFilter | trustAsHtml:isTrustedHTML() | emptyValue"></span>
           <span *ngIf="!showAsHtml()"><strong>{{getStrongValue(value.displayValue | formatFilter:format | emptyValue)}}</strong>{{getRemainingValue(value.displayValue | formatFilter:format | emptyValue)}}</span>
       </button>
     </ng-container>
