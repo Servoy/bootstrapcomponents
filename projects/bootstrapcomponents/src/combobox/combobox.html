@@ -13,7 +13,7 @@
     [disabled]="readOnly || !enabled"
     [id]="servoyApi.getMarkupId() + '_btn'"
     #input>
-		<span *ngIf="showAsHtml()" class="bts-dropdown-text" [innerHtml]="formattedValue ? (formattedValue | trustAsHtml:isTrustedHTML()) : formattedValue"></span>
+		<span *ngIf="showAsHtml()" class="bts-dropdown-text" [innerHtml]="formattedValue ? (formattedValue | htmlFilter | trustAsHtml:isTrustedHTML()) : formattedValue"></span>
 		<span *ngIf="!showAsHtml()" class="bts-dropdown-text">{{formattedValue}}</span>
   </button>
   <div 
