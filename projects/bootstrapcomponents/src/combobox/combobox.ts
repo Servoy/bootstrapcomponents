@@ -3,6 +3,7 @@ import { ServoyBootstrapBasefield } from '../bts_basefield';
 import { Format, FormattingService, IValuelist } from '@servoy/public';
 import { NgbDropdownItem, NgbTooltip, NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 import { DOCUMENT } from '@angular/common';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'bootstrapcomponents-combobox',
@@ -28,6 +29,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
     lastSelectValue: string = null;
     firstItemFound = false;
     private skipFocus = false;
+    private valuelistDisplayValueSubscription: Subscription = null;
 
     constructor(renderer: Renderer2, protected cdRef: ChangeDetectorRef, protected formatService: FormattingService, @Inject(DOCUMENT) doc: Document) {
         super(renderer, cdRef, doc);
@@ -158,6 +160,10 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
     svyOnChanges(changes: SimpleChanges) {
         this.valueComparator =  this.valuelistID && this.valuelistID.isRealValueDate()? this.dateValueCompare: this.valueCompare;
         if (changes['dataProviderID'] && this.valuelistID) {
+            if(this.valuelistDisplayValueSubscription !== null) {
+                this.valuelistDisplayValueSubscription.unsubscribe();
+                this.valuelistDisplayValueSubscription = null;
+            }
             // eslint-disable-next-line eqeqeq
             const valueListElem = this.valuelistID.find(this.valueComparator);
             if (valueListElem) this.formattedValue = this.formatService.format(valueListElem.displayValue, this.format, false);
@@ -166,7 +172,8 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
                     this.formattedValue = this.formatService.format(this.dataProviderID, this.format, false);
                 else {
                     this.formattedValue = null;
-                    this.valuelistID.getDisplayValue(this.dataProviderID).subscribe(val => {
+                    this.valuelistDisplayValueSubscription = this.valuelistID.getDisplayValue(this.dataProviderID).subscribe(val => {
+                        this.valuelistDisplayValueSubscription = null;
                         this.formattedValue = val
                         this.cdRef.detectChanges();
                     });
