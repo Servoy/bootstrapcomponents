@@ -146,11 +146,7 @@ angular.module('bootstrapcomponentsTextbox', ['servoy']).directive('bootstrapcom
 
                 if (types.indexOf(inputType) > -1) {
                     $scope.model.dataProviderID = null;
-                    if (inputType == "password-eye") {
-                    	$scope.model.inputType = "password";
-                    } else {
-                    	$scope.model.inputType = inputType;
-                    }
+                    $scope.model.inputType = inputType;
                     $scope.svyServoyapi.apply('dataProviderID');
                     $scope.svyServoyapi.apply('inputType');
                     return true;

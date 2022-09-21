@@ -1,5 +1,5 @@
-<input type="{{model.inputType == 'password-with-eye' && model.showPass ? 'text' : model.inputType == 'password-with-eye' && !model.showPass ? 'password' : model.inputType}}"
-	    ng-class='model.styleClass' class="bts-textbox {{model.inputType == 'password-with-eye' ? 'svy-textbox-field' : ''}}"
+<input type="{{model.inputType == 'password-with-eye' && model.showPass ? 'text' : model.inputType == 'password-with-eye' ? 'password' : model.inputType}}"
+	    ng-class='model.styleClass' class="bts-textbox {{model.inputType == 'password-with-eye' ? 'svy-textbox-password-with-eye-field' : ''}}"
 	    ng-model="model.dataProviderID"
 		ng-model-options="{ allowInvalid: true}"
 	    ng-disabled="!model.enabled"

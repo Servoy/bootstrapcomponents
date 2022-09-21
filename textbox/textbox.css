@@ -4,13 +4,13 @@
 	padding: 1px 5px;
 }
 
-.svy-textbox-field:not(:focus) {
+.svy-textbox-password-with-eye-field:not(:focus) {
 	border-right: unset;
     border-top-right-radius: unset;
     border-bottom-right-radius: unset;
 }
 
-.svy-textbox-field:focus {
+.svy-textbox-password-with-eye-field:focus {
     border-top-right-radius: unset;
     border-bottom-right-radius: unset;  
 }
