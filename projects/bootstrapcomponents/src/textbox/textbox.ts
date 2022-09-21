@@ -13,9 +13,10 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
     @Input() format: Format;
     @Input() inputType: string;
     @Input() autocomplete: string;
-    @Input() showPass: boolean; 
 
     @Output() inputTypeChange = new EventEmitter();
+
+    showPass = false;
 
     constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, @Inject(DOCUMENT) doc: Document, protected windowService: WindowRefService) {
         super(renderer, cdRef, doc);
@@ -58,19 +59,8 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
         const types = ['text', 'password', 'password-with-eye', 'email', 'tel', 'date', 'time', 'datetime-local', 'month', 'week', 'number', 'color','search', 'url'];
 
         if (types.indexOf(inputType) > -1) {
-        	if (inputType == 'password-with-eye') {
-        		this.renderer.setAttribute(this.elementRef.nativeElement, 'type', 'password');
-        	} else {
-        		this.renderer.setAttribute(this.elementRef.nativeElement, 'type', this.inputType);
-        	}
-            
-            if (this.inputType !== inputType) {
-            	if (inputType == 'password-with-eye') {
-            		this.inputType = 'password';
-            	} else {
-            		this.inputType = inputType;
-            	}
-                
+			if (this.inputType !== inputType) {
+            	this.inputType = inputType;
                 this.inputTypeChange.emit(this.inputType);
             }
             const dp = this.dataProviderID;
@@ -85,7 +75,7 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
             return false;
         }
     }
-    
+
     showHidePass() {
 	    this.showPass = !this.showPass;
     }
