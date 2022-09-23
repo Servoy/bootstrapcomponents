@@ -92,12 +92,13 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
 
             // remove the tab
             // create a new tabObject, so angular-ui is properly refreshed.
-            const newTabs = [];
-            for (let i = 0; i < this.tabs.length; i++) {
-                if (i === removeIndex - 1) continue;
-                newTabs.push(this.tabs[i]);
-            }
-            this.tabs = newTabs;
+            //const newTabs = [];
+            //for (let i = 0; i < this.tabs.length; i++) {
+            //    if (i === removeIndex - 1) continue;
+            //    newTabs.push(this.tabs[i]);
+           // }
+            //this.tabs = newTabs;
+            this.tabs.splice(removeIndex - 1, 1);
 
 
             // update the tabIndex
@@ -115,9 +116,6 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
                     this.tabIndex--;
                 }
             }
-
-            // emit the change (otherwise the tab won't be removed)
-            this.tabIndexChange.emit(this.tabIndex);
 
             // hide the form
             if (formToHide) {
@@ -141,6 +139,14 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
                     }
                 }
             }
+            else{
+                 // make sure the visible tabindex is up to date in case the same form is kept visible but possibly with different index
+                 this.onVisibleTab(this.tabs[this.getRealTabIndex()]);
+            }
+            
+            // emit the change (otherwise the tab won't be removed)
+            this.tabsChange.emit(this.tabs);
+            this.tabIndexChange.emit(this.tabIndex);
         }
     }
 
