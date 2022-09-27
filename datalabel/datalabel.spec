@@ -25,7 +25,7 @@
 	"handlers":
 	{
 	        "onActionMethodID" : {
-
+                "doc": "Click event. dataTarget parameter is used to identify inner html elements (by their data-target attribute)",
 	        	"parameters":[
 								{
 						          "name":"event",
@@ -37,7 +37,7 @@
 							 ]
 	        },
 	        "onDoubleClickMethodID" : {
-
+                "doc": "DoubleClick event. dataTarget parameter is used to identify inner html elements (by their data-target attribute)",
 	        	"parameters":[
 								{
 						          "name":"event",
@@ -49,7 +49,7 @@
 							 ]
 	        },
 	        "onRightClickMethodID" : {
-
+                "doc": "RightClick event. dataTarget parameter is used to identify inner html elements (by their data-target attribute)",
 	        	"parameters":[
 								{
 						          "name":"event",
