@@ -7,7 +7,7 @@
 			<div [ngClass]='tab.styleClass'>
 				<img *ngIf="tab.imageMediaID" [src]='tab.imageMediaID' />
 				<span *ngIf="tab.iconStyleClass !== null" [class]="tab.iconStyleClass"></span>
-				<span [innerHTML]='tab?.text'></span>
+				<span [innerHTML]='tab?.text| htmlFilter | trustAsHtml: servoyApi.trustAsHtml()'></span>
 				<i *ngIf="tab.hideCloseIcon !== true && showTabCloseIcon" class="bts-tabpanel-close-icon"
 					[class]="closeIconStyleClass"></i>
 			</div>

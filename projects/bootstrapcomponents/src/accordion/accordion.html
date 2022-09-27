@@ -2,7 +2,7 @@
     <ngb-panel *ngFor="let tab of tabs;let i = index" [disabled]="tab.disabled || !tab.containedForm" [id]="tab._id">
       <ng-template ngbPanelTitle>
       	<div (click)="tabClicked(tab, i , $event)">
-        	<span [innerHTML]='tab?.text'></span>
+        	<span [innerHTML]='tab?.text| htmlFilter | trustAsHtml: servoyApi.trustAsHtml()'></span>
         </div>
       </ng-template>
       <ng-template ngbPanelContent>
