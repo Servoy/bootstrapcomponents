@@ -22,6 +22,7 @@
 	    "minDate" : {"type":"date", "pushToServer": "shallow","tags": { "scope" :"private" }},
 	    "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }},
 	    "size" : {"type" :"dimension",  "default" : {"width":250, "height":280}},
+	    "theme" : {"type":"string" , "tags": { "scope" :"design"}, "default" : "light",  "values" :["auto" , "dark", "light"]},
 	    "toolTipText" : { "type" : "tagstring"}, 
 	    "visible" : "visible"
 	},

@@ -3,8 +3,9 @@ import { ServoyBootstrapBasefield } from '../bts_basefield';
 import { DOCUMENT } from '@angular/common';
 import { getFirstDayOfWeek, LoggerService, ServoyPublicService } from '@servoy/public';
 import { DateTime as LuxonDateTime } from 'luxon';
-import { Namespace, TempusDominus, Options, DateTime } from '@servoy/tempus-dominus';
-import { ChangeEvent } from '@servoy/tempus-dominus/types/utilities/event-types';
+import { Namespace, TempusDominus, DateTime } from '@eonasdan/tempus-dominus';
+import { ChangeEvent } from '@eonasdan/tempus-dominus/types/utilities/event-types';
+import  Options from '@eonasdan/tempus-dominus/types/utilities/options';
 
 @Directive()
 export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDivElement> {
@@ -21,6 +22,7 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
     @Output() keepInvalidChange = new EventEmitter();
 
     @Input() calendarWeeks: boolean;
+    @Input() theme: string;
 
     picker: TempusDominus;
 
@@ -44,7 +46,8 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
                 close: true,
                 clear: true,
             },
-            inline: false
+            inline: false,
+            theme: 'light'
         },
         restrictions: {
         },
@@ -64,6 +67,9 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
         this.config.localization.startOfTheWeek = getFirstDayOfWeek(servoyService.getLocale());
         const lts = LuxonDateTime.now().setLocale(servoyService.getLocale()).toLocaleString(LuxonDateTime.DATETIME_FULL).toUpperCase();
         this.config.display.components.useTwentyfourHour = lts.indexOf('AM') >= 0 || lts.indexOf('PM') >= 0;
+        if (this.theme){
+            this.config.display.theme = this.theme as "auto" | "light" | "dark";
+        }
     }
 
     public svyOnInit() {
@@ -172,7 +178,7 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
             language = locale.substring(0, index);
         }
         language = language.toLowerCase();
-        import(`@servoy/tempus-dominus/dist/locales/${language}.js`).then(
+        import(`@eonasdan/tempus-dominus/dist/locales/${language}.js`).then(
             (module: { localization: { [key: string]: string } }) => {
                 this.config.localization = module.localization;
                 if (this.picker !== null) this.picker.updateOptions(this.config);

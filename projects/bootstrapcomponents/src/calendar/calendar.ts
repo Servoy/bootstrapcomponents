@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Renderer2, ElementRef, ViewChild, Input, ChangeDetectorRef, SimpleChanges, ChangeDetectionStrategy, Inject } from '@angular/core';
-import { DateTime, Namespace, TempusDominus } from '@servoy/tempus-dominus';
+import { DateTime, Namespace, TempusDominus } from '@eonasdan/tempus-dominus';
 import { Format, FormattingService } from '@servoy/public';
 import { LoggerFactory, ServoyPublicService } from '@servoy/public';
 import { ServoyBootstrapBaseCalendar } from './basecalendar';
