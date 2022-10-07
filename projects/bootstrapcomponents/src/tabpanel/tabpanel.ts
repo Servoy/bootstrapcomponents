@@ -73,8 +73,8 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
             }
         }
     }
-
-    removeTabAt(removeIndex: number) {
+       
+    async removeTabAt(removeIndex: number) {
         // copied from the serverside code
         if (removeIndex > 0 && removeIndex <= this.tabs.length) {
             let formToHide: Tab;
@@ -89,7 +89,13 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
                     formToShow = this.tabs[nextIndex - 1];
                 }
             }
-
+            if (formToHide)
+            {
+                 const ok = await this.servoyApi.hideForm(formToHide.containedForm, null, null, formToShow?.containedForm, formToShow?.relationName);
+                 if (!ok){
+                    return;
+                 }
+            }
             // remove the tab
             // create a new tabObject, so angular-ui is properly refreshed.
             //const newTabs = [];
@@ -117,21 +123,11 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
                 }
             }
 
-            // hide the form
             if (formToHide) {
-                // hide the current form
-                if (formToHide.containedForm && !formToShow) {
-                    // TODO what if doesn't hide ?
-                    this.servoyApi.hideForm(formToHide.containedForm);
-                }
-
                 // show the next form if the tabIndex was 1 and has not changed
                 if (formToShow && formToShow.containedForm) {
-                    // This will happen only when the first tab is the visible tab and i am closing the first tab.
-                    // The previous tab already call the onHide.. here i force the onShow of the "next" tab.. since the $scope.model.tabIndex doesn't change
-                    // Using ng-repeat="tab in model.tabs track by $index" to make angularui aware of the change.
-
-                    this.servoyApi.formWillShow(formToShow.containedForm, formToShow.relationName);
+                    this.selectedTab = formToShow;
+                    this.selectedTabID = formToShow._id;
                     if (this.onChangeMethodID) {
                         setTimeout(() => {
                             this.onChangeMethodID(1, this.windowRefService.nativeWindow.event != null ? this.windowRefService.nativeWindow.event : null /* TODO $.Event("change") */);

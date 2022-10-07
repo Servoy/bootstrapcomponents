@@ -22,7 +22,7 @@ export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBo
 
 	public selectedTabID: string;
 
-	private selectedTab: Tab;
+	public selectedTab: Tab;
 	private waitingForServerVisibility = {};
 	private lastSelectedTab: Tab;
 
