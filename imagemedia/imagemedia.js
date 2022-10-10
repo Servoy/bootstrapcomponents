@@ -54,10 +54,6 @@ angular.module('bootstrapcomponentsImagemedia',['servoy']).directive('bootstrapc
 			$scope.model.dataProviderID = null;
 			$scope.svyServoyapi.apply('dataProviderID');
 		}		  
-
-		$scope.imgStyle = function() {
-			return $scope.model.media == null && $scope.model.dataProviderID == null && $scope.svyServoyapi.isInDesigner() ? {} : { width: '100%' };
-		}
       },
       templateUrl: 'bootstrapcomponents/imagemedia/imagemedia.html'
     };

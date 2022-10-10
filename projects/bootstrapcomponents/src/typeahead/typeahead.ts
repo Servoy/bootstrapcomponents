@@ -1,9 +1,9 @@
 import { DOCUMENT } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, Inject, Input, Renderer2, SimpleChanges, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, Inject, Input, Renderer2, SimpleChanges, ViewChild, Directive } from '@angular/core';
 import { NgbTypeahead, NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
 import { merge, Observable, of, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, switchMap, take } from 'rxjs/operators';
-import { Format, FormattingService, IValuelist, WindowRefService } from '@servoy/public';
+import { Format, FormattingService, IValuelist, WindowRefService, IPopupSupportComponent } from '@servoy/public';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 
 @Component({
@@ -11,7 +11,7 @@ import { ServoyBootstrapBasefield } from '../bts_basefield';
     templateUrl: './typeahead.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInputElement> {
+export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInputElement> implements IPopupSupportComponent{
 
     @ViewChild('instance') instance: NgbTypeahead;
 
@@ -29,14 +29,6 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
         windowService: WindowRefService) {
         super(renderer, cdRef, doc);
         this.autocomplete = windowService.nativeWindow.navigator.userAgent.match(/chrome/i) ? 'chrome-off' : 'off';
-    }
-
-    @HostListener('keydown', ['$event'])
-    handleKeyDown(event: KeyboardEvent) {
-        if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
-            // stop propagation when using list form component (to not break the selection)
-            event.stopPropagation();
-        }
     }
 
     svyOnInit() {
@@ -170,5 +162,9 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
         else if (value) this.dataProviderID = value;
         else this.dataProviderID = null;
         this.dataProviderIDChange.emit(this.dataProviderID);
+    }
+    
+    closePopup(){
+        this.instance.dismissPopup();
     }
 }

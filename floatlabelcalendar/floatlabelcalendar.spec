@@ -6,7 +6,7 @@
 	"icon": "bootstrapcomponents/floatlabelcalendar/calendar.png",
 	"ng2Config": {
         "dependencies": {
-           "csslibrary": ["~@servoy/tempus-dominus/dist/css/tempus-dominus.css;priority=5"]
+           "csslibrary": ["~@eonasdan/tempus-dominus/dist/css/tempus-dominus.css;priority=5"]
         }
     },
 	"keywords": ["agenda", "diary", "day", "month", "year"],
@@ -27,6 +27,7 @@
 	    "floatLabelText" : "tagstring",
 	    "size" : {"type" :"dimension",  "default" : {"width":140, "height":50}},
 	    "tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
+	    "theme" : {"type":"string" , "tags": { "scope" :"design"}, "default" : "light",  "values" :["auto" , "dark", "light"]},
 	    "toolTipText" : { "type" : "tagstring"}, 
 	    "visible" : "visible",
         "selectOnEnter" : {"type" :"boolean", "tags": { "scope" :"design", "doc": "Whether to select the text when date field is focused." }},

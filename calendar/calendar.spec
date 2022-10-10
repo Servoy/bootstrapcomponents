@@ -11,7 +11,7 @@
 	],
 	"ng2Config": {
         "dependencies": {
-           "csslibrary": ["~@servoy/tempus-dominus/dist/css/tempus-dominus.css;priority=5"]
+           "csslibrary": ["~@eonasdan/tempus-dominus/dist/css/tempus-dominus.css;priority=5"]
         }
     },
 	"keywords": ["agenda", "diary", "day", "month", "year"],
@@ -32,6 +32,7 @@
 	    "placeholderText" : "tagstring",
 	    "size" : {"type" :"dimension",  "default" : {"width":140, "height":30}},
 	    "tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
+	    "theme" : {"type":"string" , "tags": { "scope" :"design"}, "default" : "light",  "values" :["auto" , "dark", "light"]},
 	    "toolTipText" : { "type" : "tagstring"}, 
 	    "visible" : "visible",
         "selectOnEnter" : {"type" :"boolean", "tags": { "scope" :"design", "doc": "Whether to select the text when date field is focused." }},

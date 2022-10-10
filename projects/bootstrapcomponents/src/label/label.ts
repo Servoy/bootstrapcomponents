@@ -23,13 +23,4 @@ export class ServoyBootstrapLabel extends ServoyBootstrapBaseLabel<HTMLSpanEleme
             });
         }
     }
-
-    private getDataTarget(event): any {
-        const dataTarget = event.target.closest('[data-target]');
-        if (dataTarget) {
-            return dataTarget.getAttribute('data-target');
-        }
-        return null;
-    }
-
 }

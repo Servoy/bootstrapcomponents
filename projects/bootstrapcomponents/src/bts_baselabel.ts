@@ -28,17 +28,17 @@ export class ServoyBootstrapBaseLabel<T extends HTMLElement> extends ServoyBoots
                     } else {
                         this.timeoutID = window.setTimeout(() => {
                             this.timeoutID = null;
-                            this.onActionMethodID(e);
+                            this.onActionMethodID(e, this.getDataTarget(e));
                         }, 250);
                     }
                 });
             } else {
-                    this.renderer.listen(this.getFocusElement(), 'click', e => this.onActionMethodID(e));
+                    this.renderer.listen(this.getFocusElement(), 'click', e => this.onActionMethodID(e, this.getDataTarget(e)));
             }
         }
         if (this.onRightClickMethodID) {
             this.renderer.listen(this.getFocusElement(), 'contextmenu', e => {
-                this.onRightClickMethodID(e); return false;
+                this.onRightClickMethodID(e, this.getDataTarget(e)); return false;
             });
         }
     }
@@ -48,5 +48,13 @@ export class ServoyBootstrapBaseLabel<T extends HTMLElement> extends ServoyBoots
             return true;
         }
         return false;
+    }
+
+    protected getDataTarget(event): any {
+        const dataTarget = event.target.closest('[data-target]');
+        if (dataTarget) {
+            return dataTarget.getAttribute('data-target');
+        }
+        return null;
     }
 }

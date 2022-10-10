@@ -8,7 +8,7 @@ angular.module('bootstrapcomponentsTextbox', ['servoy']).directive('bootstrapcom
             svyServoyapi: '=svyServoyapi'
         },
         link: function($scope, $element, $attrs) {
-
+        	$scope.model.showPass = false;
             var formatState = null;
             
             $scope.onClick = function(event){
@@ -28,6 +28,10 @@ angular.module('bootstrapcomponentsTextbox', ['servoy']).directive('bootstrapcom
                         return 'off';
                     }
                 }
+            }
+            
+            $scope.showHidePass = function() {
+            	$scope.model.showPass = !$scope.model.showPass;
             }
 
             if ($scope.model.inputType === "text") {
@@ -138,7 +142,7 @@ angular.module('bootstrapcomponentsTextbox', ['servoy']).directive('bootstrapcom
              * @example %%prefix%%%%elementName%%.inputType("tel");
              */
             $scope.api.setInputType = function(inputType) {
-                var types = ["text", "password", "email", "tel", "date", "time", "datetime-local", "month", "week", "number", "color","search", "url"];
+                var types = ["text", "password", "password-eye", "email", "tel", "date", "time", "datetime-local", "month", "week", "number", "color","search", "url"];
 
                 if (types.indexOf(inputType) > -1) {
                     $scope.model.dataProviderID = null;

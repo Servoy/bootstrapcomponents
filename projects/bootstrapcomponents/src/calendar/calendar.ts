@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Renderer2, ElementRef, ViewChild, Input, ChangeDetectorRef, SimpleChanges, ChangeDetectionStrategy, Inject } from '@angular/core';
-import { DateTime, Namespace, TempusDominus } from '@servoy/tempus-dominus';
+import { DateTime, Namespace, TempusDominus } from '@eonasdan/tempus-dominus';
 import { Format, FormattingService } from '@servoy/public';
 import { LoggerFactory, ServoyPublicService } from '@servoy/public';
 import { ServoyBootstrapBaseCalendar } from './basecalendar';
@@ -27,6 +27,54 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
         servoyService: ServoyPublicService,
         @Inject(DOCUMENT) doc: Document) {
         super(renderer, cdRef,servoyService, logFactory.getLogger('bts-calendar'), doc);
+        doc.addEventListener('keydown', (event) => {
+    		if (doc.querySelector('.tempus-dominus-widget') && doc.querySelector('.tempus-dominus-widget').classList.contains('show')) {
+        		const containerDays = doc.querySelector('.date-container-days') as HTMLElement;
+        		const previousMonth = doc.querySelector('.previous') as HTMLElement;
+        		const nextMonth = doc.querySelector('.next') as HTMLElement;
+        		const datePicker = doc.querySelector('span[data-td-target="#datetimepicker1"]') as HTMLElement;
+        		const clear = doc.querySelector('div[data-action="clear"]') as HTMLElement;
+        		const days = [];
+        		doc.querySelectorAll('div[data-action="selectDay"]').forEach((itm: HTMLElement) => days.push(itm));
+        		const activeDay = days.filter((itm: HTMLElement) => itm.classList.contains('active'))[0];
+        		const today = days.filter((itm: HTMLElement) => itm.classList.contains('today'))[0];
+        		const day = activeDay || today;
+        		const currentIndex = days.indexOf(day);
+        		if (event.key === 'Escape') {
+            		datePicker.click();
+        		} else if (event.key === 'Delete') {
+					clear.click();
+				} else if (containerDays.style.display === 'grid') {
+					if (currentIndex === -1) {
+						days[0].click();
+					} else if (event.key === 'ArrowLeft') {
+						if (days[currentIndex - 1]) {
+                    		days[currentIndex - 1].click();
+                		} else {
+                    		previousMonth.click();
+                		}
+            		} else if (event.key === 'ArrowRight') {
+                		if (days[currentIndex + 1]) {
+                    		days[currentIndex + 1].click();
+                		} else {
+                    		nextMonth.click();
+                		}
+            		} else if (event.key === 'ArrowUp') {
+                		if (days[currentIndex - 7]) {
+                    		days[currentIndex - 7].click();
+                		} else {
+                    		previousMonth.click();
+                		}
+            		} else if (event.key === 'ArrowDown') {
+                		if (days[currentIndex + 7]) {
+                    		days[currentIndex + 7].click();
+                		} else {
+                    		nextMonth.click();
+                		}
+            		}
+        		}
+    		}
+		});
     }
 
 

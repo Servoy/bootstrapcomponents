@@ -32,7 +32,15 @@ $scope.api.removeTabAt = function(index) {
     		   if ($scope.model.tabIndex === index)
     		   {
     			   formToHide =  $scope.model.tabs[index-1];
-    		   }	   
+    		   }
+    		   var formHideIsOK = true;
+    		   if (formToHide && formToHide.containedForm)
+               {
+                   formHideIsOK = servoyApi.hideForm(formToHide.containedForm);
+               }
+               
+               if (!formHideIsOK) return false;
+                
         	   for(var i = index - 1; i < $scope.model.tabs.length - 1; i++) {
         		   $scope.model.tabs[i] = $scope.model.tabs[i + 1];
         	   }
@@ -49,10 +57,6 @@ $scope.api.removeTabAt = function(index) {
         			   $scope.model.tabIndex--;
         		   }   
         	   }
-        	   if (formToHide && formToHide.containedForm)
-        	   {
-        		   return servoyApi.hideForm(formToHide.containedForm);
-        	   }	   
         	   return true;
     	   }
     	   return false;
