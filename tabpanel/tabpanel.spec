@@ -122,6 +122,7 @@
 			"disabled": { "type": "boolean", "default": false },
 			"hideCloseIcon" : { "type": "boolean", "default": false },
 			"iconStyleClass" : { "type" :"styleclass" },
+			"toolTipText" : "tagstring",
 			"styleClass": { "type": "styleclass" }
 		}
 	}

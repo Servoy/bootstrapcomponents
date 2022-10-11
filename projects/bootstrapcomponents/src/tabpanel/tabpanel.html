@@ -2,7 +2,7 @@
 <ul ngbNav #nav="ngbNav" class="nav text-nowrap flex-nowrap nav-tabs" style="overflow-x: auto; overflow-y: hidden;" [(activeId)]="selectedTabID" (navChange)="onTabChange($event)"
 	[id]="servoyApi.getMarkupId()" [sabloTabseq]="tabSeq" [sabloTabseqConfig]="{container: true, reservedGap: 50}">
 	<li *ngFor="let tab of tabs;let i = index"  (click)="tabClicked(tab, i , $event)" [ngbNavItem]="tab._id" [disabled]="tab.disabled || !tab.containedForm"
-		[id]="tab._id">
+		[id]="tab._id" [svyTooltip]="tab.toolTipText">
 		<a ngbNavLink >
 			<div [ngClass]='tab.styleClass'>
 				<img *ngIf="tab.imageMediaID" [src]='tab.imageMediaID' />

@@ -179,4 +179,5 @@ export class Tab extends BaseCustomObject {
 	hideCloseIcon: boolean;
 	iconStyleClass: string;
     styleClass: string;
+    toolTipText: string;
 }
