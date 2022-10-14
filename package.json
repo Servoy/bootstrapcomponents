@@ -23,7 +23,7 @@
     "@angular/forms": "14.2.0",
     "@ng-bootstrap/ng-bootstrap": "13.0.0",
     "@popperjs/core": "2.11.6",
-    "@servoy/public": "2022.9.2",
+    "@servoy/public": "2022.9.3",
     "@eonasdan/tempus-dominus": "6.2.4",
     "bootstrap": "5.2.0",
     "luxon": "3.0.3",

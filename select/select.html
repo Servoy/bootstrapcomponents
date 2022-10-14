@@ -9,7 +9,7 @@
 			svy-attributes='model.attributes'
 			id="{{::model.svyMarkupId}}">
   			<option ng-if="showPlaceholder()" selected class="placeholderOption" ng-bind-html="model.placeholderText" hidden disabled></option>
- 			<option ng-if="!showPlaceholder() && model.valuelistID && model.valuelistID.length  && !hasValueListEmptyValue() && !isDPInValueList()" disabled ng-selected="!isDPInValueList()"
+ 			<option ng-if="!showPlaceholder() && model.valuelistID && model.valuelistID.length && !isDPInValueList()" disabled ng-selected="!isDPInValueList()"
 					ng-bind-html="model.dataProviderID | bcShowDisplayValue:model.valuelistID" value="{{model.dataProviderID}}"></option>
 			<option ng-selected="(model.dataProviderID+'') === (value.realValue+'')" ng-repeat="value in model.valuelistID" value="{{value.realValue}}" 
 					ng-bind-html="value.realValue | bcShowDisplayValue:model.valuelistID"></option>

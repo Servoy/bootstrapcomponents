@@ -103,6 +103,7 @@ angular.module('bootstrapcomponentsSelect',['servoy', 'bootstrapcomponentscommon
 
 			$scope.isDPInValueList = function() {
 				var isDPInValueList = false;
+				if ($scope.model.dataProviderID == null && $scope.hasValueListEmptyValue()) return true;
 				if($scope.model.valuelistID) {
 					for (var i = 0; i < $scope.model.valuelistID.length; i++) {
 						if($scope.model.dataProviderID == $scope.model.valuelistID[i].realValue) {
