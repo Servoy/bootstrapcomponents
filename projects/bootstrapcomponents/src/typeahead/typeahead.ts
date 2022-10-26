@@ -21,6 +21,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
     @Input() appendToBody: boolean;
     @Input() filteringDebounce: number;
     autocomplete: string;
+    container: string;
 
     focus$ = new Subject<string>();
     click$ = new Subject<string>();
@@ -28,24 +29,15 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
     constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, @Inject(DOCUMENT) doc: Document, protected formatService: FormattingService,
         windowService: WindowRefService) {
         super(renderer, cdRef, doc);
+        
         this.autocomplete = windowService.nativeWindow.navigator.userAgent.match(/chrome/i) ? 'chrome-off' : 'off';
     }
 
     svyOnInit() {
         super.svyOnInit();
-        this.renderer.listen(this.getFocusElement(), 'focus', () => {
-            setTimeout(this.onFocus);
-        });
         // add custom class to the popup, needed by ng-grids (ag-grid) so it can be used in form editors (popups)
         this.instance.popupClass = 'ag-custom-component-popup';
     }
-
-    onFocus = () => {
-        const popup = this.doc.getElementById(this.instance.popupId);
-        if (popup) {
-            popup.style.width = this.getFocusElement().clientWidth + 'px';
-        }
-    };
 
     scroll() {
         if (!this.instance.isPopupOpen()) {
@@ -106,6 +98,10 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
                             } );
                         }
                     }
+                    const popup = this.doc.getElementById(this.instance.popupId);
+        			if (popup) {
+            			popup.style.width = this.getFocusElement().clientWidth + 'px';
+        			}
                 } );
                 return promise;
             }
