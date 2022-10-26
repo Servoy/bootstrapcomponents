@@ -104,6 +104,18 @@ angular.module('bootstrapcomponentsCheckbox',['servoy']).directive('bootstrapcom
 				input[0].focus();
 			}
 		}
+		
+		
+      },
+      controller: function($scope, $element, $attrs) {
+    	  $scope.getDataTarget = function(event) {
+              var target = event.target;
+              var dataTarget = $(target).closest("label").find("[data-target]");
+              if (dataTarget && dataTarget[0]) {
+                  return dataTarget[0].getAttribute("data-target");
+              }
+              return null;
+          }
       },
       templateUrl: 'bootstrapcomponents/checkbox/checkbox.html'
     };
