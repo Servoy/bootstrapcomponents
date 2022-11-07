@@ -112,7 +112,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
             if ( keysThatCloseTooltip.includes( key ) ) this.closeTooltip();
             return false;
         }
-        return !(key.match(/[\p{Cc}\p{Cn}\p{Cs}]+/gu))
+        return !(key.match(/[\p{Cc}\p{Cn}\p{Cs}]+/gu));
     }
 
     getDropDownWidth() {
