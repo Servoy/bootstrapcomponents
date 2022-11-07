@@ -98,9 +98,6 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
     }
 
     isPrintableChar( key: string ): boolean {
-
-        var regex = /^[\u0020-\u007e\u00a0-\u00ff]*$/;
-
         const nonPrintableValue = [
             'Alt', 'AltGraph', 'CapsLock', 'Fn', 'Meta', 'NumLock', 'ScrollLock', 'Command', 'Shift',
             'Enter', 'Tab', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'End', 'Home',
@@ -115,7 +112,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
             if ( keysThatCloseTooltip.includes( key ) ) this.closeTooltip();
             return false;
         }
-        return regex.test(key);
+        return !(key.match(/[\p{Cc}\p{Cn}\p{Cs}]+/gu))
     }
 
     getDropDownWidth() {
