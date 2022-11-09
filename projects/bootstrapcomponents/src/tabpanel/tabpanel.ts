@@ -208,6 +208,7 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
         } else {
             if (fullsize) {
                  this.containerStyle['height'] = this.height;
+                 if (this.getNativeElement()) this.renderer.setStyle(this.getNativeElement(), 'height', '100%');
             }
             else {
                 this.containerStyle['minHeight'] = this.height + 'px';
