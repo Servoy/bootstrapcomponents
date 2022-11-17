@@ -95,4 +95,13 @@ export class ServoyBootstrapCheckbox extends ServoyBootstrapBasefield<HTMLDivEle
         }
         return false;
     }
+    
+    
+    public override getDataTarget(event): any {
+		const dataTarget = event.target.closest('label').querySelector('[data-target]');
+        if (dataTarget) {
+            return dataTarget.getAttribute('data-target');
+        }
+        return null;
+	}
 }

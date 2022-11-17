@@ -152,10 +152,6 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
     }
 
     public getDataTarget(event): any {
-        const dataTarget = event.target.closest('label').querySelector('[data-target]');
-        if (dataTarget) {
-            return dataTarget.getAttribute('data-target');
-        }
         return null;
     }
 }
