@@ -44,8 +44,8 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
     }
 
     onModelChange(newValue) {
-        if(newValue && typeof newValue.getTime === 'function' && isNaN(newValue.getTime())) {
-            // invalid date, force dataprovider display with invalid date text
+        // if format or invalid date, force dataprovider display with formated value / invalid date text
+        if(this.format || (newValue && typeof newValue.getTime === 'function' && isNaN(newValue.getTime()))) {
             this.dataProviderID = null;
             this.cdRef.detectChanges();
             this.dataProviderID = newValue;

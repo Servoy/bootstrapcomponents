@@ -67,12 +67,12 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
         this.config.localization.startOfTheWeek = getFirstDayOfWeek(servoyService.getLocale());
         const lts = LuxonDateTime.now().setLocale(servoyService.getLocale()).toLocaleString(LuxonDateTime.DATETIME_FULL).toUpperCase();
         this.config.display.components.useTwentyfourHour = lts.indexOf('AM') >= 0 || lts.indexOf('PM') >= 0;
-        if (this.theme){
-            this.config.display.theme = this.theme as "auto" | "light" | "dark";
-        }
     }
 
     public svyOnInit() {
+        if (this.theme){
+            this.config.display.theme = this.theme as "auto" | "light" | "dark";
+        }
         this.initializePicker();
         super.svyOnInit();
     }

@@ -25,7 +25,7 @@ export class ServoyBootstrapCheckbox extends ServoyBootstrapBasefield<HTMLDivEle
         this.renderer.listen(this.getFocusElement(), 'click', (e) => {
             if (!this.readOnly && this.enabled) {
                 this.itemClicked(e);
-                if (this.onActionMethodID) this.onActionMethodID(e);
+                if (this.onActionMethodID) this.onActionMethodID(e, this.getDataTarget(e));
             }
         });
     }
@@ -88,4 +88,20 @@ export class ServoyBootstrapCheckbox extends ServoyBootstrapBasefield<HTMLDivEle
             return this.dataProviderID > 0;
         }
     }
+
+    isTrustedHTML(): boolean {
+        if (this.servoyApi.trustAsHtml() || this.showAs === 'trusted_html') {
+            return true;
+        }
+        return false;
+    }
+    
+    
+    public override getDataTarget(event): any {
+		const dataTarget = event.target.closest('label').querySelector('[data-target]');
+        if (dataTarget) {
+            return dataTarget.getAttribute('data-target');
+        }
+        return null;
+	}
 }

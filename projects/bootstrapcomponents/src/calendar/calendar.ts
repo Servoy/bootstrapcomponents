@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, Renderer2, ElementRef, ViewChild, Input, ChangeDetectorRef, SimpleChanges, ChangeDetectionStrategy, Inject } from '@angular/core';
+import { Component, Renderer2, ElementRef, ViewChild, Input, ChangeDetectorRef, SimpleChanges, ChangeDetectionStrategy, Inject, HostListener } from '@angular/core';
 import { DateTime, Namespace, TempusDominus } from '@eonasdan/tempus-dominus';
 import { Format, FormattingService } from '@servoy/public';
 import { LoggerFactory, ServoyPublicService } from '@servoy/public';
@@ -29,6 +29,25 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
         super(renderer, cdRef,servoyService, logFactory.getLogger('bts-calendar'), doc);
     }
 
+	@HostListener('keydown', ['$event'])
+  	onKeyDown(event: KeyboardEvent) {
+    	if (event.key === 'ArrowDown' || event.key === 'ArrowUp' || event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+			if (!this.picker.display.isVisible && event.key === 'ArrowDown') {
+				this.picker.show();
+			} else if (this.picker.display.isVisible) {
+				event.preventDefault();
+				this.dateChange(event.key);
+			}
+		} else if (event.key === 'Delete') {
+			if (this.picker.display.isVisible) {
+				this.picker.clear();
+			}
+		} else if (event.key === 'Escape' || event.key === 'Enter') {
+			if (this.picker.display.isVisible) {
+				this.picker.hide();
+			}
+		}
+  	}
 
     attachFocusListeners(nativeElement: any) {
         super.attachFocusListeners(nativeElement);
@@ -115,54 +134,40 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
         }
     }
 
-    onClick() {
-		if (!this.picker.display.isVisible) {
-			document.addEventListener('keydown', this.handleKeyDown);
-		} else {
-			document.removeEventListener('keydown', this.handleKeyDown);
-		}
-	}
-
-	private handleKeyDown(event) {
+	private dateChange(key: string) {
 		const picker = document.querySelector('.tempus-dominus-widget.show:not(.inline)');
 		if (picker) {
 			const containerDays: HTMLElement = picker.querySelector('.date-container-days');
 			const previousMonth: HTMLElement = picker.querySelector('.previous');
 			const nextMonth: HTMLElement = picker.querySelector('.next');
-			const clear: HTMLElement = picker.querySelector('div[data-action="clear"]');
-			const close: HTMLElement = picker.querySelector('div[data-action="close"]');
         	const days = [];
         	picker.querySelectorAll('div[data-action="selectDay"]').forEach((itm: HTMLElement) => days.push(itm));
         	const activeDay = days.filter((itm: HTMLElement) => itm.classList.contains('active'))[0];
         	const today = days.filter((itm: HTMLElement) => itm.classList.contains('today'))[0];
         	const day = activeDay || today;
         	const currentIndex = days.indexOf(day);
-        	if (event.key === 'Escape' || event.key === 'Enter') {
-				close.click();
-        	} else if (event.key === 'Delete') {
-				clear.click();
-			} else if (containerDays.style.display === 'grid') {
+        	if (containerDays.style.display === 'grid') {
 				if (currentIndex === -1) {
 					days[0].click();
-				} else if (event.key === 'ArrowLeft') {
+				} else if (key === 'ArrowLeft') {
 					if (days[currentIndex - 1]) {
                     	days[currentIndex - 1].click();
                 	} else {
                     	previousMonth.click();
                 	}
-            	} else if (event.key === 'ArrowRight') {
+            	} else if (key === 'ArrowRight') {
                 	if (days[currentIndex + 1]) {
                     	days[currentIndex + 1].click();
                 	} else {
                     	nextMonth.click();
                 	}
-            	} else if (event.key === 'ArrowUp') {
+            	} else if (key === 'ArrowUp') {
                 	if (days[currentIndex - 7]) {
                     	days[currentIndex - 7].click();
                 	} else {
                     	previousMonth.click();
                 	}
-            	} else if (event.key === 'ArrowDown') {
+            	} else if (key === 'ArrowDown') {
                 	if (days[currentIndex + 7]) {
                     	days[currentIndex + 7].click();
                 	} else {
