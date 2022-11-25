@@ -8,6 +8,7 @@ export class ServoyBootstrapBaseComponent<T extends HTMLElement> extends ServoyB
     @Input() enabled: boolean;
     @Input() size: { width: number; height: number };
     @Input() styleClass: string;
+    @Input() variant: string;
     @Input() tabSeq: number;
     @Input() text: string;
     @Input() toolTipText: string;
@@ -28,6 +29,11 @@ export class ServoyBootstrapBaseComponent<T extends HTMLElement> extends ServoyB
                             this.renderer.removeAttribute(this.getFocusElement(), 'disabled');
                         else
                             this.renderer.setAttribute(this.getFocusElement(), 'disabled', 'disabled');
+                        break;
+                    case 'variant':
+                        if (change.currentValue) {
+                            change.currentValue.filter((element: string) => element !== '').forEach((element: string) => this.renderer.addClass(this.getStyleClassElement(), element));
+                        }
                         break;
                     case 'styleClass':
                         if (change.previousValue) {

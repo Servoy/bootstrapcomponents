@@ -14,6 +14,7 @@
 	    "imageStyleClass" : { "type" :"styleclass" ,"tags": { "doc" :"For buttons showing as plain text, you can also specify an image styleclass to be displayed to the left. Can be font awesome icons."}},
 	    "tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }}, 
 	    "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" },"default": "btn btn-default", "values" :["btn","btn-default","btn-lg","btn-sm","btn-xs"]},
+	    "variant" : { "type" :"variant", "tags": { "scope" :"design" }},
 	    "text" : {"type":"tagstring" , "initialValue":"Button", "tags": { "directEdit" : "true" }},
 	    "size" : {"type" :"dimension",  "default" : {"width":80, "height":30}}, 
         "showAs": { "type": "string", "values": [{"text":null}, {"html":"html"}, {"trusted_html":"trusted_html"}],"tags": { "doc" :"Option whether button text is shown as plain text, sanitized html or trusted html (as is)."}},
