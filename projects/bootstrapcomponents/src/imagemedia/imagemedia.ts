@@ -19,6 +19,15 @@ export class ServoyBootstrapImageMedia extends ServoyBootstrapBasefield<HTMLImag
         super(renderer, cdRef, doc);
     }
 
+    svyOnInit(): void {
+		super.svyOnInit();
+     	if (this.onActionMethodID) {
+     		this.renderer.listen(this.getFocusElement(), 'click', e => {
+				this.onActionMethodID(e, this.getDataTarget(e));
+			});
+     	}
+	}
+
     svyOnChanges(changes: SimpleChanges): void {
         if (changes) {
             for ( const property of Object.keys(changes) ) {
