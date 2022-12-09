@@ -30,7 +30,9 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
     svyOnInit() {
         super.svyOnInit();
         if (this.closeIconStyleClass === "glyphicon glyphicon-remove close-icon") this.closeIconStyleClass = "fas fa-times";
-        this.selectTabAt(this.getFirstEnabledTabIndex()-1);
+        if (this.isTabDisabled(this.activeTabIndex)) {
+			this.selectTabAt(this.getFirstEnabledTabIndex()-1);
+		}
     }
 
     svyOnChanges(changes: SimpleChanges) {
@@ -188,6 +190,10 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
         }
         return -1;
     }
+    
+    isTabDisabled(index: number) {
+		return this.tabs[index].disabled;
+	}
 
     getContainerStyle(element: HTMLElement) {
         const navpane = element.querySelector('[ngbnavpane]');
