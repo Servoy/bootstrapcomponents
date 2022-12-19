@@ -49,6 +49,13 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
 		}
   	}
 
+  	@HostListener('click', ['$event'])
+  	onClick(event) {
+		if (this.picker.display.isVisible) {
+			this.picker.display.widget.addEventListener('click', () => this.getFocusElement().focus());
+		}
+  	}
+
     attachFocusListeners(nativeElement: any) {
         super.attachFocusListeners(nativeElement);
         if (this.onFocusGainedMethodID) {
@@ -86,13 +93,14 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
                 }
             }
         }
-        if (changes.findmode)
+        if (changes.findmode) {
             if (changes.findmode.currentValue) {
                 this.picker.dispose();
                 this.picker = null;
             } else {
                 this.initializePicker();
             }
+        }
         super.svyOnChanges(changes);
     }
 
