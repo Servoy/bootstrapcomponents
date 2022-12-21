@@ -59,6 +59,15 @@
     border-bottom-right-radius: unset;  
 }
 
+bootstrapcomponents-textbox {
+	position: relative;
+	display: flex;
+}
+
+.svy-wrapper bootstrapcomponents-textbox {
+	height: 100%;
+}
+
 .svy-textbox-eye {
 	position: absolute;
     top: 0;

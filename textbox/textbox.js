@@ -142,7 +142,7 @@ angular.module('bootstrapcomponentsTextbox', ['servoy']).directive('bootstrapcom
              * @example %%prefix%%%%elementName%%.inputType("tel");
              */
             $scope.api.setInputType = function(inputType) {
-                var types = ["text", "password", "password-eye", "email", "tel", "date", "time", "datetime-local", "month", "week", "number", "color","search", "url"];
+                var types = ["text", "password", "password-with-eye", "email", "tel", "date", "time", "datetime-local", "month", "week", "number", "color","search", "url"];
 
                 if (types.indexOf(inputType) > -1) {
                     $scope.model.dataProviderID = null;

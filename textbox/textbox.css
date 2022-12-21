@@ -33,3 +33,12 @@
     border-top-left-radius: unset;
     padding: unset;
 }
+
+data-bootstrapcomponents-textbox {
+	position: relative;
+    display: flex;
+}
+
+.svy-wrapper data-bootstrapcomponents-textbox {
+	height: 100%;
+}
