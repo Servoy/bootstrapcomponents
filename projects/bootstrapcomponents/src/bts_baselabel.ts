@@ -31,9 +31,13 @@ export class ServoyBootstrapBaseLabel<T extends HTMLElement> extends ServoyBoots
                             this.onActionMethodID(e, this.getDataTarget(e));
                         }, 250);
                     }
+                    return false;
                 });
             } else {
-                    this.renderer.listen(this.getFocusElement(), 'click', e => this.onActionMethodID(e, this.getDataTarget(e)));
+                    this.renderer.listen(this.getFocusElement(), 'click', e => {
+                        this.onActionMethodID(e, this.getDataTarget(e));
+                        return false;
+                    });
             }
         }
         if (this.onRightClickMethodID) {

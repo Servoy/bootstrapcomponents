@@ -134,10 +134,12 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
                 if (!this.skipFocus && this.mustExecuteOnFocus) this.onFocusGainedMethodID(e);
                 this.skipFocus = false;
                 this.mustExecuteOnFocus = true;
+                return false;
             });
         if (this.onFocusLostMethodID)
             this.renderer.listen(nativeElement, 'blur', (e) => {
                 if (!this.openState) this.onFocusLostMethodID(e);
+                return false;
             });
     }
 

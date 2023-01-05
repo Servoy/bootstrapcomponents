@@ -41,6 +41,7 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
                 if (e.keyCode === 13) {
                     setTimeout(() => this.onActionMethodID(e, this.getDataTarget(e)), 100);
                 }
+                return false;
             });
         }
         if (this.onRightClickMethodID) {
@@ -85,10 +86,12 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
                     this.onFocusGainedMethodID(e);
                 }
                 this.mustExecuteOnFocus = true;
+                return false;
             });
         if (this.onFocusLostMethodID)
             this.renderer.listen(nativeElement, 'blur', (e) => {
                 this.onFocusLostMethodID(e);
+                return false;
             });
     }
 

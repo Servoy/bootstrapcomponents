@@ -24,6 +24,7 @@ export class ServoyBootstrapImageMedia extends ServoyBootstrapBasefield<HTMLImag
      	if (this.onActionMethodID) {
      		this.renderer.listen(this.getFocusElement(), 'click', e => {
 				this.onActionMethodID(e, this.getDataTarget(e));
+				return false;
 			});
      	}
 	}

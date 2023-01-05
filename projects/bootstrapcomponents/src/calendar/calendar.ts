@@ -59,12 +59,18 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
     attachFocusListeners(nativeElement: any) {
         super.attachFocusListeners(nativeElement);
         if (this.onFocusGainedMethodID) {
-            this.renderer.listen(nativeElement, 'focus', () => this.checkOnFocus());
+            this.renderer.listen(nativeElement, 'focus', () => {
+                this.checkOnFocus();
+                return false;
+            });
             this.picker.subscribe(Namespace.events.show, () => this.checkOnFocus());
         }
 
         if (this.onFocusLostMethodID) {
-            this.renderer.listen(nativeElement, 'blur', () => this.checkOnBlur());
+            this.renderer.listen(nativeElement, 'blur', () => {
+                this.checkOnBlur();
+                return false;
+            });
             this.picker.subscribe(Namespace.events.hide, () => this.checkOnBlur());
         }
     }
