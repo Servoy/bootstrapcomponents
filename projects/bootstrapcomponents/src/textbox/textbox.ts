@@ -34,7 +34,6 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
                 if (this.editable === false) {
                     this.onActionMethodID(e);
                 }
-                return false;
             });
         }
     }
