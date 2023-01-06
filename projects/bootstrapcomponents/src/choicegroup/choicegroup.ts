@@ -129,7 +129,6 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
                     this.itemClicked(event, index);
                     if (this.onActionMethodID) this.onActionMethodID(event);
                 }
-                return false;
             });
             this.attachFocusListeners(element);
         }
