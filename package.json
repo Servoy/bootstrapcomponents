@@ -26,7 +26,7 @@
     "@servoy/public": "2022.12.0",
     "@eonasdan/tempus-dominus": "6.2.7",
     "bootstrap": "5.2.3",
-    "luxon": "3.1.1",
+    "luxon": "3.2.1",
     "rxjs": "7.8.0",
     "tslib": "2.4.1",
     "zone.js": "0.12.0"
