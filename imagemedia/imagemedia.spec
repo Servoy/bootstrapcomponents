@@ -14,7 +14,7 @@
 			"editable" : { "type": "protected", "blockingOn": false, "default": false, "for": ["dataProviderID","onDataChangeMethodID"] },
 	        "dataProviderID" : { "type":"dataprovider", "pushToServer": "allow", "tags": { "scope" :"design", "typeName": "mediaDataprovider" }, "ondatachange": { "onchange":"onDataChangeMethodID"}},
 	        "media" : { "type" :"media"},
-	        "readOnly" : { "type": "protected", "blockingOn": true, "default": false, "for": ["dataProviderID","onDataChangeMethodID"], "tags": {"scope":"runtime"} },
+	        "readOnly" : { "type": "protected", "blockingOn": true, "default": false, "for": ["dataProviderID","onDataChangeMethodID"], "tags": {"scope":"private"} },
 	        "size" : {"type" :"dimension",  "default" : {"width":140, "height":80}},
 	        "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "values" :["img-responsive","img-rounded","img-circle", "img-thumbnail","media-object"]},
 			"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
