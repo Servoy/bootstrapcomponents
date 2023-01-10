@@ -13,7 +13,7 @@
 	        "enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["dataProviderID","onActionMethodID","onDataChangeMethodID","onFocusGainedMethodID","onFocusLostMethodID","onRightClickMethodID"] }, 
 			"format" : {"for":["valuelistID","dataProviderID"] , "type" :"format"},
 			"floatLabelText" : "tagstring",
-	        "readOnly" : { "type" : "readOnly", "oppositeOf" : "enabled"}, 
+	        "readOnly" : { "type" : "readOnly", "oppositeOf" : "enabled", "tags": {"scope":"private"}}, 
 	        "size" : {"type" :"dimension",  "default" : {"width":140, "height":50}},
 	        "showAs": { "type": "string", "values": [{"text":null}, {"html":"html"}, {"trusted_html":"trusted_html"}]},
 	        "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "values" :["form-control", "input-sm", "svy-padding-xs", "select2-container-svy-xs"]}, 

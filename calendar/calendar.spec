@@ -27,7 +27,7 @@
 	    "keepInvalid": {"type" :"boolean", "pushToServer": "shallow", "default": false, "tags": { "scope" :"private" }},
 	    "maxDate" : {"type":"date", "pushToServer": "shallow","tags": { "scope" :"private" }},
 	    "minDate" : {"type":"date", "pushToServer": "shallow","tags": { "scope" :"private" }},
-	    "readOnly" : { "type": "protected", "blockingOn": true, "default": false,"for": ["dataProviderID","onDataChangeMethodID"] },
+	    "readOnly" : { "type": "protected", "blockingOn": true, "default": false,"for": ["dataProviderID","onDataChangeMethodID"], "tags": {"scope":"private"}},
 	    "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "default" : "form-control"},
 	    "placeholderText" : "tagstring",
 	    "size" : {"type" :"dimension",  "default" : {"width":140, "height":30}},
