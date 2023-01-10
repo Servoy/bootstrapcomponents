@@ -4,6 +4,7 @@
 	"categoryName": "Input Control",
 	"version": 1,
 	"icon": "bootstrapcomponents/floatlabelcalendar/calendar.png",
+	"serverscript": "bootstrapcomponents/calendar/calendar_server.js",
 	"ng2Config": {
         "dependencies": {
            "csslibrary": ["~@eonasdan/tempus-dominus/dist/css/tempus-dominus.css;priority=5"]

@@ -102,26 +102,6 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
         if (this.picker && (changes.calendarWeeks || changes.minDate
             || changes.maxDate || changes.disabledDays || changes.disabledDates)) this.picker.updateOptions(this.config);
     }
-    public disableDays(dateArray: number[], keepInvalid?: boolean) {
-        this.disabledDaysChange.emit(dateArray);
-        this.config.restrictions.daysOfWeekDisabled = dateArray;
-        this.checkInvalidAndPicker(keepInvalid);
-    }
-
-    public disableDates(dateArray: Date[], keepInvalid?: boolean) {
-        this.disabledDatesChange.emit(dateArray);
-
-        this.config.restrictions.disabledDates = this.convertDateArray(dateArray);
-        this.checkInvalidAndPicker(keepInvalid);
-    }
-
-    public setMinMaxDate(minDate: Date, maxDate: Date, keepInvalid?: boolean) {
-        this.minDateChange.emit(minDate);
-        this.maxDateChange.emit(maxDate);
-        this.config.restrictions.minDate = DateTime.convert(minDate);
-        this.config.restrictions.maxDate = DateTime.convert(maxDate);
-        this.checkInvalidAndPicker(keepInvalid);
-    }
 
     initializePicker() {
         if (!this.picker) {
