@@ -113,6 +113,7 @@
 	
 	"types": {
 		"tab": {
+            "_id": { "type": "string", "tags": { "scope": "private" }, "pushToServer": "reject" },
 			"active": { "type": "boolean", "default": false, "tags": { "scope": "private" } },
 			"containedForm": {"type":"form", "tags": {"wizard": {"order": "1", "wizardRelated": "relationName"}}},
 			"imageMediaID": "media",
