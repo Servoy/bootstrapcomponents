@@ -3,9 +3,7 @@ import { ServoyBootstrapBasefield } from '../bts_basefield';
 import { DOCUMENT } from '@angular/common';
 import { getFirstDayOfWeek, LoggerService, ServoyPublicService } from '@servoy/public';
 import { DateTime as LuxonDateTime } from 'luxon';
-import { Namespace, TempusDominus, DateTime } from '@eonasdan/tempus-dominus';
-import { ChangeEvent } from '@eonasdan/tempus-dominus/types/utilities/event-types';
-import  Options from '@eonasdan/tempus-dominus/types/utilities/options';
+import { Namespace, TempusDominus, DateTime, Options } from '@eonasdan/tempus-dominus';
 
 @Directive()
 export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDivElement> {
@@ -110,7 +108,7 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
         }
     }
 
-    public dateChanged(event: ChangeEvent) {
+    public dateChanged(event: any) {
         if (event.type === 'change.td') {
             if ((event.date && this.dataProviderID && event.date.getTime() === this.dataProviderID.getTime()) ||
                 (!event.date && !this.dataProviderID)) return;
