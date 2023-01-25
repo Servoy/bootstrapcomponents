@@ -29,7 +29,7 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
 
     svyOnInit() {
         super.svyOnInit();
-        if (this.closeIconStyleClass === "glyphicon glyphicon-remove close-icon") this.closeIconStyleClass = "fas fa-times";
+        if (this.closeIconStyleClass === 'glyphicon glyphicon-remove close-icon') this.closeIconStyleClass = 'fas fa-times';
         if (this.isTabDisabled(this.activeTabIndex)) {
 			this.selectTabAt(this.getFirstEnabledTabIndex()-1);
 		}
@@ -37,7 +37,7 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
 
     svyOnChanges(changes: SimpleChanges) {
         super.svyOnChanges(changes);
-        if (this.closeIconStyleClass === "glyphicon glyphicon-remove close-icon") this.closeIconStyleClass = "fas fa-times";
+        if (this.closeIconStyleClass === 'glyphicon glyphicon-remove close-icon') this.closeIconStyleClass = 'fas fa-times';
     }
 
     onTabChange(event: NgbNavChangeEvent) {
@@ -76,7 +76,7 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
             }
         }
     }
-       
+
     async removeTabAt(removeIndex: number) {
         // copied from the serverside code
         if (removeIndex > 0 && removeIndex <= this.tabs.length) {
@@ -92,8 +92,7 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
                     formToShow = this.tabs[nextIndex - 1];
                 }
             }
-            if (formToHide)
-            {
+            if (formToHide) {
                  const ok = await this.servoyApi.hideForm(formToHide.containedForm, null, null, formToShow?.containedForm, formToShow?.relationName);
                  if (!ok){
                     return;
@@ -137,12 +136,11 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
                         }, 0, false);
                     }
                 }
-            }
-            else{
+            } else {
                  // make sure the visible tabindex is up to date in case the same form is kept visible but possibly with different index
                  this.onVisibleTab(this.tabs[this.getRealTabIndex()]);
             }
-            
+
             // emit the change (otherwise the tab won't be removed)
             this.tabsChange.emit(this.tabs);
             this.tabIndexChange.emit(this.tabIndex);
@@ -190,14 +188,14 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
         }
         return -1;
     }
-    
+
     isTabDisabled(index: number) {
 		return this.tabs[index].disabled;
 	}
 
     getContainerStyle(element: HTMLElement) {
         const navpane = element.querySelector('[ngbnavpane]');
-        const fullsize = (this.height == '100%');
+        const fullsize = (this.height === '100%');
         if (navpane) {
             if (this.height > 0) this.renderer.setStyle(navpane, 'min-height', this.height + 'px');
             else this.renderer.setStyle(navpane, 'height', '100%');
@@ -216,8 +214,7 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
             if (fullsize) {
                  this.containerStyle['height'] = this.height;
                  if (this.getNativeElement()) this.renderer.setStyle(this.getNativeElement(), 'height', '100%');
-            }
-            else {
+            } else {
                 this.containerStyle['minHeight'] = this.height + 'px';
             }
         }
