@@ -3,7 +3,7 @@
      [ngClass]="styleClass" 
         class="bts-floatlabeltextarea"
         [disabled]="!enabled"
-        [readOnly]="!findmode && (readOnly || !editable)"
+        [readOnly]="readOnly || !editable"
         [sabloTabseq]="tabSeq"
         [(ngModel)]="dataProviderID"
         (change)="pushUpdate()"
@@ -12,8 +12,6 @@
         [placeholder]="floatLabelText"
         [svyStartEdit]="'dataProviderID'"
         [hostComponent]="this"
-        [findmode]="findmode"
-        [svyFormat]="format"
          maxLength="{{maxLength}}"
      >
     </textarea>
