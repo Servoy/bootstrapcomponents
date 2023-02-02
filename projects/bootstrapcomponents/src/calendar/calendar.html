@@ -13,7 +13,7 @@
      	[svyStartEdit]="'dataProviderID'"
       	[hostComponent]="this"
         [disabled]="!enabled"
-        [readonly]="readOnly || pickerOnly"
+        [readonly]="!findmode && (readOnly || pickerOnly)"
         [findmode]="findmode"
      	#inputElement/>
    <span

@@ -13,8 +13,9 @@
      	[svyStartEdit]="'dataProviderID'"
       	[hostComponent]="this"
         [disabled]="!enabled"
-        [readonly]="readOnly || pickerOnly"
+        [readonly]="!findmode && (readOnly || pickerOnly)"
         [findmode]="findmode"
+        [svyFormat]="format"
         [placeholder]="floatLabelText"
      	#inputElement/>
     <label [for]="servoyApi.getMarkupId()">{{floatLabelText}}</label> 	
