@@ -3,7 +3,7 @@
 	    ng-model="model.dataProviderID"
 		ng-model-options="{ allowInvalid: true}"
 	    ng-disabled="!model.enabled"
-	    ng-readonly="model.readOnly || !model.editable"
+	    ng-readonly="!model.findmode && (model.readOnly || !model.editable)"
 	    placeholder="{{model.placeholderText}}"
        	    svy-decimal-key-converter
 	    svy-focusgained='handlers.onFocusGainedMethodID($event)'

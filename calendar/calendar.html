@@ -8,7 +8,7 @@
 	   svy-focuslost='handlers.onFocusLostMethodID($event)'
 	   svy-enter='handlers.onActionMethodID($event)'
 	   ng-disabled="!model.enabled"
-	   ng-readonly="model.readOnly || model.pickerOnly"
+	   ng-readonly="!model.findmode && (model.readOnly || model.pickerOnly)"
        sablo-tabseq='model.tabSeq'
 	   ng-class='model.styleClass'
 	   ng-focus='focusGained($event)'

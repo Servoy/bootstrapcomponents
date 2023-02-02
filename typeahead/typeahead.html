@@ -19,7 +19,7 @@
 		ng-show='model.visible'
 		ng-disabled="!model.enabled"
 		sablo-tabseq='model.tabSeq'
-		ng-readonly="model.readOnly || !model.editable"
+		ng-readonly="!model.findmode && (model.readOnly || !model.editable)"
 		id="{{::model.svyMarkupId}}"
 		svy-selectonenter='model.selectOnEnter'
         typeahead-on-focus="onFocus()"
