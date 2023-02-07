@@ -9,7 +9,6 @@ export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBo
 
 	@Input() height: any;
 	@Input() tabs: Array<Tab>;
-    @Output() tabsChange = new EventEmitter();
 
 	@Input() tabIndex: number;
 	@Output() tabIndexChange = new EventEmitter();

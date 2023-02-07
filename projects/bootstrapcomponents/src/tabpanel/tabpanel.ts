@@ -51,11 +51,11 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
                 const promise = this.onTabCloseMethodID(event, tabIndexClicked + 1);
                 promise.then((ok) => {
                     if (ok) {
-                        this.removeTabAt(tabIndexClicked + 1);
+                         this.servoyApi.callServerSideApi('removeTabAt', [tabIndexClicked + 1]);
                     }
                 });
             } else {
-                this.removeTabAt(tabIndexClicked + 1);
+                this.servoyApi.callServerSideApi('removeTabAt', [tabIndexClicked + 1]);
             }
         } else {
             if (tab.disabled === true) {
@@ -74,76 +74,6 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
             } else {
                 this.select(this.tabs[tabIndexClicked]);
             }
-        }
-    }
-
-    async removeTabAt(removeIndex: number) {
-        // copied from the serverside code
-        if (removeIndex > 0 && removeIndex <= this.tabs.length) {
-            let formToHide: Tab;
-            let formToShow: Tab;
-            if (this.tabIndex === removeIndex) {
-                formToHide = this.tabs[removeIndex - 1];
-
-                const nextIndex = this.getFirstEnabledTabIndexNotAtIndex(this.tabIndex);
-                // if the tabIndex after removal will remain the same after removal, shall force showForm
-                if ((nextIndex > -1 && nextIndex === this.tabIndex + 1) && this.tabs.length > 1) {
-                    // get the tab at second position
-                    formToShow = this.tabs[nextIndex - 1];
-                }
-            }
-            if (formToHide) {
-                 const ok = await this.servoyApi.hideForm(formToHide.containedForm, null, null, formToShow?.containedForm, formToShow?.relationName);
-                 if (!ok){
-                    return;
-                 }
-            }
-            // remove the tab
-            // create a new tabObject, so angular-ui is properly refreshed.
-            //const newTabs = [];
-            //for (let i = 0; i < this.tabs.length; i++) {
-            //    if (i === removeIndex - 1) continue;
-            //    newTabs.push(this.tabs[i]);
-           // }
-            //this.tabs = newTabs;
-            this.tabs.splice(removeIndex - 1, 1);
-
-
-            // update the tabIndex
-            if (this.tabIndex >= removeIndex) {
-                if (this.tabIndex === removeIndex) {
-                    let newTabIndex = this.getFirstEnabledTabIndex();
-                    if (newTabIndex > - 1) {
-                        this.tabIndex = newTabIndex;
-                    } else {
-                        // deselect all tabs setting tabIndex to 0
-                        this.tabIndex = 0;
-                        newTabIndex = 0;
-                    }
-                } else {
-                    this.tabIndex--;
-                }
-            }
-
-            if (formToHide) {
-                // show the next form if the tabIndex was 1 and has not changed
-                if (formToShow && formToShow.containedForm) {
-                    this.selectedTab = formToShow;
-                    this.selectedTabID = formToShow._id;
-                    if (this.onChangeMethodID) {
-                        setTimeout(() => {
-                            this.onChangeMethodID(1, this.windowRefService.nativeWindow.event != null ? this.windowRefService.nativeWindow.event : null /* TODO $.Event("change") */);
-                        }, 0, false);
-                    }
-                }
-            } else {
-                 // make sure the visible tabindex is up to date in case the same form is kept visible but possibly with different index
-                 this.onVisibleTab(this.tabs[this.getRealTabIndex()]);
-            }
-
-            // emit the change (otherwise the tab won't be removed)
-            this.tabsChange.emit(this.tabs);
-            this.tabIndexChange.emit(this.tabIndex);
         }
     }
 
@@ -169,16 +99,6 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
         }
     }
 
-    getFirstEnabledTabIndexNotAtIndex(skipIndex: number) {
-        for (let i = 0; this.tabs && i < this.tabs.length; i++) {
-            const tab = this.tabs[i];
-            if (tab.disabled !== true && (skipIndex !== i + 1)) {
-                return i + 1;
-            }
-        }
-        return -1;
-    }
-
     getFirstEnabledTabIndex() {
         for (let i = 0; this.tabs && i < this.tabs.length; i++) {
             const tab = this.tabs[i];
@@ -190,7 +110,7 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
     }
 
     isTabDisabled(index: number) {
-		return this.tabs[index].disabled;
+		return this.tabs && this.tabs[index] && this.tabs[index].disabled;
 	}
 
     getContainerStyle(element: HTMLElement) {

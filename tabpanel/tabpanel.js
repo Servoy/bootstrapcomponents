@@ -44,22 +44,6 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 				return -1;
 			}
 			
-			/**
-			 * @private 
-			 * @param {Number} skipIndex ignore the tab at the given index
-			 * Get the first enabled tab not at index 
-			 * */
-			var getFirstEnabledTabIndexNotAtIndex = function(skipIndex) {
-				for (var i = 0; $scope.model.tabs && i < $scope.model.tabs.length; i++) {
-					var tab = $scope.model.tabs[i];
-					if (tab.disabled !== true && (skipIndex !== i +1 )) {
-						return i + 1;
-					}
-				}
-				// TODO can be refactored to return 0 ?
-				return -1;
-			}
-			
 			// get the form html.
 				$scope.getForm = function(tab) {
 					if (tab && tab.active && tab.containedForm) {
@@ -136,12 +120,12 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 						$scope.handlers.onTabCloseMethodID($window.event ? $window.event : $.Event("tabclicked"), tabIndexClicked + 1).then(
 							function(result) {
 								if (result !== false) {
-									$scope.api.removeTabAt(tabIndexClicked + 1);
+									 $scope.servoyApi.callServerSideApi("removeTabAt", [tabIndexClicked + 1]);
 								}
 							}
 						);
 					} else {
-						$scope.api.removeTabAt(tabIndexClicked + 1);
+					    $scope.servoyApi.callServerSideApi("removeTabAt", [tabIndexClicked + 1]);
 					}
 					
 					//event.preventDefault();
@@ -494,101 +478,6 @@ angular.module('bootstrapcomponentsTabpanel', ['servoy'])
 							$scope.select(tab, previousIndex);
 						}					
 				}
-			
-				$scope.api.removeTabAt = function(removeIndex) {
-					// copied from the serverside code
-					if (removeIndex > 0 && removeIndex <= $scope.model.tabs.length) {
-						var oldTabIndex = $scope.model.tabIndex;
-						var formToHide;
-						var formToShow;
-						if ($scope.model.tabIndex === removeIndex) {
-							formToHide = $scope.model.tabs[removeIndex - 1];
-
-							var nextIndex = getFirstEnabledTabIndexNotAtIndex($scope.model.tabIndex)
-							// if the tabIndex after removal will remain the same after removal, shall force showForm
-							if ((nextIndex > -1 && nextIndex === $scope.model.tabIndex + 1) && $scope.model.tabs.length > 1) {
-								console.log("index will not change")
-								// get the tab at second position
-								formToShow = $scope.model.tabs[nextIndex - 1];
-							}
-						}
-
-						// remove the tab
-						// create a new tabObject, so angular-ui is properly refreshed.
-						var newTabs = [];
-						for (var i = 0; i < $scope.model.tabs.length; i++) {
-							if (i == removeIndex - 1) continue;
-							newTabs.push($scope.model.tabs[i]);
-						}
-						$scope.model.tabs = newTabs;
-						
-						// $scope.model.tabs.splice(removeIndex - 1, 1);
-						
-						//	for (var i = removeIndex - 1; i < $scope.model.tabs.length - 1; i++) {
-						//		$scope.model.tabs[i] = $scope.model.tabs[i + 1];
-						//	}
-						//	$scope.model.tabs.length = $scope.model.tabs.length - 1;
-
-						// update the tabIndex
-						if ($scope.model.tabIndex >= removeIndex) {
-							if ($scope.model.tabIndex === removeIndex) {
-								var newTabIndex = getFirstEnabledTabIndex();
-								if (newTabIndex > - 1) {
-									$scope.model.tabIndex = newTabIndex;
-								} else {
-									// deselect all tabs setting tabIndex to 0
-									$scope.model.tabIndex = 0;
-									newTabIndex = 0;
-								}
-							} else {
-								$scope.model.tabIndex--;
-							}
-						}
-
-						// hide the form
-						if (formToHide) {
-							// hide the current form
-							if (formToHide.containedForm && !formToShow) {
-								// TODO what if doesn't hide ?
-								$scope.servoyApi.hideForm(formToHide.containedForm);
-								if (formToHide.active) {
-									formToHide.active = false;
-								}
-							}
-
-							// show the next form if the tabIndex was 1 and has not changed
-							if (formToShow && formToShow.containedForm) {
-								// This will happen only when the first tab is the visible tab and i am closing the first tab.
-								// The previous tab already call the onHide.. here i force the onShow of the "next" tab.. since the $scope.model.tabIndex doesn't change
-								// Using ng-repeat="tab in model.tabs track by $index" to make angularui aware of the change.
-								
-								// show the tab
-								if (!formToShow.active) {
-									formToShow.active = true;
-								}
-								$scope.servoyApi.formWillShow(formToShow.containedForm, formToShow.relationName);
-								if ($scope.handlers.onChangeMethodID) {
-									$timeout(function() {
-											$scope.handlers.onChangeMethodID(1, $window.event ? $window.event : $.Event("change"));
-										}, 0);
-								}
-							}
-							// make sure angularui model is corect before changing activeindex, otherwise angularui doesn't handle the change correctly
-							$timeout(function() {
-									$scope.model.activeTabIndex = $scope.model.tabIndex - 1;
-								}, 0);
-							return true;
-						}
-						// make sure angularui model is corect before changing activeindex, otherwise angularui doesn't handle the change correctly
-						$timeout(function() {
-								$scope.model.activeTabIndex = $scope.model.tabIndex - 1;
-							}, 0);
-						return true;
-					}
-					return false;
-				}
-
-	
 		},
 		templateUrl: 'bootstrapcomponents/tabpanel/tabpanel.html'
 	}
