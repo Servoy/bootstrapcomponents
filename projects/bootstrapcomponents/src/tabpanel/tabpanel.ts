@@ -30,7 +30,7 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
     svyOnInit() {
         super.svyOnInit();
         if (this.closeIconStyleClass === 'glyphicon glyphicon-remove close-icon') this.closeIconStyleClass = 'fas fa-times';
-        if (this.isTabDisabled(this.activeTabIndex)) {
+		if (this.tabs && this.tabIndex > 0 && this.isTabDisabled(this.tabIndex -1)) {
 			this.selectTabAt(this.getFirstEnabledTabIndex()-1);
 		}
     }
