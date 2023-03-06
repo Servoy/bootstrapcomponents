@@ -65,6 +65,14 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
         if (changes.format && this.valuelistID) {
             this.instance.writeValue(this.dataProviderID);
         }
+        if (changes.format) {
+            if (this.format && this.format.maxLength) {
+                this.renderer.setAttribute(this.elementRef.nativeElement, 'maxlength', this.format.maxLength + '');
+            } else{
+                this.renderer.removeAttribute(this.elementRef.nativeElement, 'maxlength');
+            }
+            if (this.valuelistID) this.instance.writeValue(this.dataProviderID);
+        }
     }
 
     lastFilteringPromise: Observable<any> = null;
