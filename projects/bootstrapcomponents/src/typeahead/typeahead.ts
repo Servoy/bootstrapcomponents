@@ -73,6 +73,11 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
             }
             if (this.valuelistID) this.instance.writeValue(this.dataProviderID);
         }
+        const allowEmptyValue = this.valuelistID[0]?.displayValue === '' && this.valuelistID[0]?.realValue === null;
+        if (!allowEmptyValue && changes.dataProviderID && changes.dataProviderID.currentValue === undefined && changes.dataProviderID.previousValue){
+			this.dataProviderID = changes.dataProviderID.previousValue;
+			this.dataProviderIDChange.emit(this.dataProviderID);
+		}
     }
 
     lastFilteringPromise: Observable<any> = null;
