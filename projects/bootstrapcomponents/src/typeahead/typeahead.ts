@@ -23,13 +23,19 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
     autocomplete: string;
     container: string;
 
+    currentValue: any;
+
     focus$ = new Subject<string>();
     click$ = new Subject<string>();
+
+    lastFilteringPromise: Observable<any> = null;
+    valueToApply: { displayValue: string; realValue: any } = null;
+
+    private realToDisplay: Map<any, string> = new Map();
 
     constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, @Inject(DOCUMENT) doc: Document, protected formatService: FormattingService,
         windowService: WindowRefService) {
         super(renderer, cdRef, doc);
-        
         this.autocomplete = windowService.nativeWindow.navigator.userAgent.match(/chrome/i) ? 'chrome-off' : 'off';
     }
 
@@ -73,15 +79,10 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
             }
             if (this.valuelistID) this.instance.writeValue(this.dataProviderID);
         }
-        const allowEmptyValue = this.valuelistID[0]?.displayValue === '' && this.valuelistID[0]?.realValue === null;
-        if (!allowEmptyValue && changes.dataProviderID && changes.dataProviderID.currentValue === undefined && changes.dataProviderID.previousValue){
-			this.dataProviderID = changes.dataProviderID.previousValue;
-			this.dataProviderIDChange.emit(this.dataProviderID);
-		}
+        if (changes.dataProviderID) {
+            this.currentValue = changes.dataProviderID.currentValue;
+        }
     }
-
-    lastFilteringPromise: Observable<any> = null;
-    valueToApply: { displayValue: string; realValue: any } = null;
 
     filterValues = ( text$: Observable<string> ) => {
         const debouncedText$ = text$.pipe( debounceTime( this.filteringDebounce ), distinctUntilChanged() );
@@ -122,6 +123,18 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
         } ) );
     };
 
+    pushUpdate() {
+        if (!this.dataProviderID && !this.isEditable()){
+		   const allowEmptyValue = this.valuelistID[0]?.displayValue === '' && this.valuelistID[0]?.realValue === null;
+		   if(!allowEmptyValue) {
+			   this.dataProviderID = this.currentValue;
+			   return;
+		   }
+		}
+		this.currentValue = this.dataProviderID;
+       super.pushUpdate();
+    }
+
     isEditable() {
         return this.valuelistID && !this.valuelistID.hasRealValues();
     }
@@ -132,19 +145,18 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
         return this.formatService.format(result.displayValue, this.format, false);
     };
 
-    private realToDisplay: Map<any, string> = new Map();
     inputFormatter = (result: any) => {
         if (result === null) return '';
         if (result.displayValue !== undefined) result = result.displayValue;
         else if (this.valuelistID.hasRealValues()) {
             // on purpose test with == so that "2" equals to 2
-            // eslint-disable-next-line eqeqeq
             const value = this.valuelistID.find((item) => {
+                // eslint-disable-next-line eqeqeq
                 if (item.realValue == result){
                     return true;
                 }
                 if (item.realValue instanceof Date && result instanceof Date){
-                    return item.realValue.getTime() === result.getTime()
+                    return item.realValue.getTime() === result.getTime();
                 }
                 return false;
             });
@@ -179,8 +191,9 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
         else if (value) this.dataProviderID = value;
         else this.dataProviderID = null;
         this.dataProviderIDChange.emit(this.dataProviderID);
+        this.currentValue = this.dataProviderID;
     }
-    
+
     closePopup(){
         this.instance.dismissPopup();
     }
