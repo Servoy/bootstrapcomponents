@@ -14,6 +14,7 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
     @Input() findmode: boolean;
     @Input() valuelistID: IValuelist;
     @Input() showAs: string;
+    @Input() alignment: string;
 
     @ViewChild('input') input: ElementRef<HTMLInputElement>;
 
@@ -30,9 +31,9 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
     }
 
     svyOnChanges(changes: SimpleChanges) {
-        if (this.servoyApi.isInDesigner() && !this.valuelistID){
+        if (this.servoyApi.isInDesigner() && !this.valuelistID) {
             // this should only happen in preview
-            this.valuelistID = [{realValue:1,displayValue:'Item1'},{realValue:2,displayValue:'Item2'},{realValue:3,displayValue:'Item3'}] as IValuelist;
+            this.valuelistID = [{ realValue: 1, displayValue: 'Item1' }, { realValue: 2, displayValue: 'Item2' }, { realValue: 3, displayValue: 'Item3' }] as IValuelist;
         }
         for (const property of Object.keys(changes)) {
             switch (property) {
@@ -46,19 +47,24 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
                     else this.allowNullinc = 0;
                     this.setSelectionFromDataprovider();
                     break;
-
+                case 'alignment':
+                    this.elementRef.nativeElement.classList.remove('horizontaldirection');
+                    if (this.alignment === "horizontal") {
+                        this.elementRef.nativeElement.classList.add('horizontaldirection');
+                    }
+                    break;
             }
         }
         super.svyOnChanges(changes);
     }
 
-    requestFocus( mustExecuteOnFocusGainedMethod: boolean ) {
+    requestFocus(mustExecuteOnFocusGainedMethod: boolean) {
         this.mustExecuteOnFocus = mustExecuteOnFocusGainedMethod;
-        ( this.getFocusElement() as HTMLElement ).focus();
+        (this.getFocusElement() as HTMLElement).focus();
     }
 
     getFocusElement(): HTMLElement {
-        if (!this.input){
+        if (!this.input) {
             // just a fallback for not getting NPEs
             return this.elementRef.nativeElement;
         }
@@ -99,16 +105,16 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
             const prevValue = this.selection[index];
             if (this.allowMultiselect || this.findmode) {
                 this.selection[index] = event.target.checked;
-                if(!this.findmode && this.allowNullinc === 0 &&  this.selection.filter(a => a === true).length === 0){
-                     this.selection[index] = true;
-                     event.target.checked = true;
+                if (!this.findmode && this.allowNullinc === 0 && this.selection.filter(a => a === true).length === 0) {
+                    this.selection[index] = true;
+                    event.target.checked = true;
                 }
             } else {
                 this.selection.fill(false);
                 this.selection[index] = event.target.checked;
                 if (!this.selection[index] && this.allowNullinc === 0) {
-                     this.selection[index] = true;
-                     event.target.checked = true;
+                    this.selection[index] = true;
+                    event.target.checked = true;
                 }
             }
             changed = prevValue !== this.selection[index];

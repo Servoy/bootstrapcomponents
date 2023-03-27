@@ -321,6 +321,11 @@ div[ngbDropdownMenu] {
     margin-bottom: 0px;
 }
 
+.horizontaldirection > label{
+    float:left;
+    margin-right: 2px;
+}               
+    
 label input {
 	margin-right: 7px;
 }
