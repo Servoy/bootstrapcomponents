@@ -129,7 +129,7 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
             this.picker.dates.formatInput =  (date: DateTime) => date?this.formattingService.format(date, this.format, false):'';
             this.picker.dates.parseInput =  (value: string) => {
                 const parsed = this.formattingService.parse(value?value.trim():null, this.format, true, this.dataProviderID);
-                if (parsed instanceof Date && !isNaN(parsed.getTime())) return  new DateTime(parsed);
+                if (parsed instanceof Date && !isNaN(parsed.getTime())) return  DateTime.convert(parsed, null, this.config.localization);
                 return null;
             };
             this.picker.subscribe(Namespace.events.change, (event) => this.dateChanged(event));

@@ -78,19 +78,19 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
     svyOnChanges(changes: SimpleChanges) {
         super.svyOnChanges(changes);
         if (changes.dataProviderID && this.picker && !this.findmode) {
-            const value = (this.dataProviderID instanceof Date) ? DateTime.convert(this.dataProviderID) : null;
+            const value = (this.dataProviderID instanceof Date) ? DateTime.convert(this.dataProviderID, null, this.config.localization) : null;
             this.picker.dates.setValue(value);
         }
         if (this.dataProviderID) {
-            const value = (this.dataProviderID instanceof Date) ? DateTime.convert(this.dataProviderID) : null;
+            const value = (this.dataProviderID instanceof Date) ? DateTime.convert(this.dataProviderID, null, this.config.localization) : null;
             this.config.viewDate = value;
        }
         if (changes.calendarWeeks && changes.calendarWeeks.currentValue)
             this.config.display.calendarWeeks = changes.calendarWeeks.currentValue;
         if (changes.minDate && changes.minDate.currentValue)
-            this.config.restrictions.minDate = DateTime.convert(changes.minDate.currentValue);
+            this.config.restrictions.minDate = DateTime.convert(changes.minDate.currentValue, null, this.config.localization);
         if (changes.maxDate && changes.maxDate.currentValue)
-            this.config.restrictions.maxDate = DateTime.convert(changes.maxDate.currentValue);
+            this.config.restrictions.maxDate = DateTime.convert(changes.maxDate.currentValue, null, this.config.localization);
         if (changes.disabledDays && changes.disabledDays.currentValue)
             this.config.restrictions.daysOfWeekDisabled = changes.disabledDays.currentValue;
         if (changes.disabledDates && changes.disabledDates.currentValue)
@@ -115,7 +115,7 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
 
             // do not push invalid date, revert to old value
             if (event.date && isNaN(event.date.getTime())) {
-                const value = (this.dataProviderID instanceof Date) ? DateTime.convert(this.dataProviderID) : null;
+                const value = (this.dataProviderID instanceof Date) ? DateTime.convert(this.dataProviderID, null, this.config.localization) : null;
                 this.picker.dates.setValue(value);
                 return;
             }
@@ -143,7 +143,7 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
         const datetimeArray: DateTime[] = dates ? [] : null;
         if (dates) {
             dates.forEach((date, index) => {
-                datetimeArray[index] = DateTime.convert(date);
+                datetimeArray[index] = DateTime.convert(date, null, this.config.localization);
             });
         }
         return datetimeArray;
