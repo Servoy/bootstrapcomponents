@@ -7,6 +7,11 @@
     width: 100%;
 }
 
+.svy-wrapper > * > .bts-calendar-inline > .tempus-dominus-widget .date-container-days {
+     grid-auto-rows: 30px;
+}
+
+
 .tempus-dominus-widget.inline  {
     box-shadow: unset;
 }
