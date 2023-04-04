@@ -73,6 +73,10 @@ bootstrapcomponents-textbox {
 	height: 100%;
 }
 
+.svy-wrapper .svy-layoutcontainer bootstrapcomponents-textbox {
+	height: unset;
+}
+
 .svy-textbox-eye {
 	position: absolute;
     top: 0;
