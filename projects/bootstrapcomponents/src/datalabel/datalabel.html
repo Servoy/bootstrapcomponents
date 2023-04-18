@@ -1,6 +1,6 @@
 <span #element
     class="bts-label"
-    [ngClass]="[styleClass ? styleClass : '', styleClassExpression ? styleClassExpression : '']"
+    [ngClass]="[styleClass ? styleClass : '', styleClassExpression ? styleClassExpression + '': '']"
     [sabloTabseq]="(onActionMethodID || onDoubleClickMethodID || onRightClickMethodID) ? tabSeq : -2"
     [id]="servoyApi.getMarkupId()"
     [svyTooltip]="toolTipText"> 
