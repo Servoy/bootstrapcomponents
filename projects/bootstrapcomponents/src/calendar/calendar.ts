@@ -31,6 +31,7 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
 
 	@HostListener('keydown', ['$event'])
   	onKeyDown(event: KeyboardEvent) {
+        if (!this.picker) return;
     	if (event.key === 'ArrowDown' || event.key === 'ArrowUp' || event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
 			if (!this.picker.display.isVisible && event.key === 'ArrowDown') {
 				this.picker.show();
@@ -51,7 +52,7 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
 
   	@HostListener('click', ['$event'])
   	onClick(event) {
-		if (this.picker.display.isVisible) {
+		if (this.picker && this.picker.display.isVisible) {
 			this.picker.display.widget.addEventListener('click', () => this.getFocusElement().focus());
 		}
   	}
@@ -87,7 +88,7 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
                     this.config.display.components.minutes = showTime;
                     this.config.display.components.seconds = showTime;
                     this.config.display.components.seconds = showSecondsTimer;
-                    if (this.picker !== null) this.picker.updateOptions(this.config);
+                    if (this.picker) this.picker.updateOptions(this.config);
                 } else {
                     this.log.warn('wrong format or type given into the calendar field ' + JSON.stringify(change.currentValue));
                 }

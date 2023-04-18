@@ -127,7 +127,7 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
 
     ngOnDestroy() {
         super.ngOnDestroy();
-        if (this.picker !== null) this.picker.dispose();
+        if (this.picker) this.picker.dispose();
     }
 
     private checkInvalidAndPicker(keepInvalid: boolean) {
@@ -159,7 +159,7 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
         import(`@eonasdan/tempus-dominus/dist/locales/${language}.js`).then(
             (module: { localization: { [key: string]: string } }) => {
                 this.config.localization = module.localization;
-                if (this.picker !== null) this.picker.updateOptions(this.config);
+                if (this.picker) this.picker.updateOptions(this.config);
             },
             () => {
                 this.log.info('Locale ' + locale + ' for calendar not found, default to english');
