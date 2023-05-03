@@ -1,6 +1,7 @@
 <textarea
 	    ng-class='model.styleClass' class='bts-textarea'
 	    ng-model="model.dataProviderID"
+	    ng-trim="false"
 		placeholder="{{model.placeholderText}}"
 	    svy-focusgained='handlers.onFocusGainedMethodID($event)'
 	   	svy-focuslost='handlers.onFocusLostMethodID($event)'
@@ -12,6 +13,7 @@
 	    ng-readonly="model.readOnly || !model.editable"
 		sablo-tabseq='model.tabSeq'
 		svy-attributes='model.attributes'
+		
 		id="{{::model.svyMarkupId}}"
 		maxlength="{{model.maxLength ? model.maxLength : maxLengthDefaultValue}}"
 	    >
