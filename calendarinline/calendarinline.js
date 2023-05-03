@@ -46,33 +46,9 @@ angular.module('bootstrapcomponentsCalendarinline',['servoy'])
 					if(format && format.display){
 						dateFormat = moment().toMomentFormatString(format.display);
 					}
-					if ($scope.model.format && $scope.model.format.isMask)
-					{
-						// delete shortcut clears the date; this interferes(behaves strange) with mask, so cancel the shortcut in this scenario 
-						var defaultBinding = theDateTimePicker.keyBinds();
-						defaultBinding.delete = function (widget) {
-							// nop
-						}
-					}
-                    var editFormat = $scope.model.format ?  ($scope.model.format.edit ? $scope.model.format.edit : $scope.model.format.display ): null;
-                    if (editFormat && editFormat.indexOf('MMM') >= 0)
-                    {
-                        // disable today shortcut if month appears as text when editing 
-                        var defaultBinding = theDateTimePicker.keyBinds();
-                        defaultBinding.t = function (widget) {
-                            // nop
-                        }
-                    }
 					var x = child.data('DateTimePicker');
 					if (angular.isDefined(x)) { // can be undefined in find mode
 						x.format(dateFormat);
-						try {
-							$element.off("dp.change",inputChanged);
-							x.date(angular.isDefined(ngModel.$viewValue) && !isNaN(ngModel.$viewValue) ? ngModel.$viewValue : null);
-						}
-						finally {
-							$element.on("dp.change",inputChanged);
-						}
 					}
 				}
 
