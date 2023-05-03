@@ -149,7 +149,7 @@ bootstrapcomponents-textbox {
 	width : 100%;
 	height: 100%;
 	display: block;
-	overflow: hidden;;
+	overflow: hidden;
 }
 
 .svy-wrapper > * > .default-align .bts-label-text {
@@ -160,6 +160,7 @@ bootstrapcomponents-textbox {
     width : 100%;
     height: 100%;
     display: block;
+    padding: 1px 5px;
 }
 
 ngb-typeahead-window.dropdown-menu {
@@ -191,6 +192,7 @@ ngb-typeahead-window.dropdown-menu {
 .svy-wrapper > * > * > .bts-calendar
 {
     height: 100%;
+    padding: 1px 5px;
 }
   
 .svy-wrapper > * > .bts-calendar-container {
@@ -362,7 +364,7 @@ body > .dropdown{
     padding: 13px 5px 1px 5px;
     pointer-events: none;
     transform-origin: 0 0;
-    transition: opacity .1s ease-in-out,transform .1s ease-in-out;;
+    transition: opacity .1s ease-in-out,transform .1s ease-in-out;
   }
 
 .svy-form-floating  > .form-control {
