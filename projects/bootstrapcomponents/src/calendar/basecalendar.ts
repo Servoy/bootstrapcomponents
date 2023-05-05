@@ -29,7 +29,6 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
         useCurrent: false,
         display: {
             components: {
-                useTwentyfourHour: true,
                 decades: true,
                 year: true,
                 month: true,
@@ -51,7 +50,8 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
         },
         localization: {
             startOfTheWeek: 1,
-            locale: 'en'
+            locale: 'en',
+            hourCycle: 'h23'
         }
     };
 
@@ -64,7 +64,9 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
         this.loadCalendarLocale(this.config.localization.locale);
         this.config.localization.startOfTheWeek = getFirstDayOfWeek(servoyService.getLocaleObject() ? servoyService.getLocaleObject().full : servoyService.getLocale());
         const lts = LuxonDateTime.now().setLocale(servoyService.getLocale()).toLocaleString(LuxonDateTime.DATETIME_FULL).toUpperCase();
-        this.config.display.components.useTwentyfourHour = lts.indexOf('AM') >= 0 || lts.indexOf('PM') >= 0;
+        if (lts.indexOf('AM') >= 0 || lts.indexOf('PM') >= 0) {
+			this.config.localization.hourCycle = 'h12';
+		}
     }
 
     public svyOnInit() {
@@ -127,7 +129,7 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
 
     ngOnDestroy() {
         super.ngOnDestroy();
-        if (this.picker !== null) this.picker.dispose();
+        if (this.picker) this.picker.dispose();
     }
 
     private checkInvalidAndPicker(keepInvalid: boolean) {
@@ -159,7 +161,7 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
         import(`@eonasdan/tempus-dominus/dist/locales/${language}.js`).then(
             (module: { localization: { [key: string]: string } }) => {
                 this.config.localization = module.localization;
-                if (this.picker !== null) this.picker.updateOptions(this.config);
+                if (this.picker) this.picker.updateOptions(this.config);
             },
             () => {
                 this.log.info('Locale ' + locale + ' for calendar not found, default to english');

@@ -31,6 +31,7 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
 
 	@HostListener('keydown', ['$event'])
   	onKeyDown(event: KeyboardEvent) {
+        if (!this.picker) return;
     	if (event.key === 'ArrowDown' || event.key === 'ArrowUp' || event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
 			if (!this.picker.display.isVisible && event.key === 'ArrowDown') {
 				this.picker.show();
@@ -51,7 +52,7 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
 
   	@HostListener('click', ['$event'])
   	onClick(event) {
-		if (this.picker.display.isVisible) {
+		if (this.picker && this.picker.display.isVisible) {
 			this.picker.display.widget.addEventListener('click', () => this.getFocusElement().focus());
 		}
   	}
@@ -78,7 +79,6 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
                     const showCalendar = format.indexOf('y') >= 0 || format.indexOf('M') >= 0;
                     const showTime = format.indexOf('h') >= 0 || format.indexOf('H') >= 0 || format.indexOf('m') >= 0;
                     const showSecondsTimer = format.indexOf('s') >= 0;
-                    this.config.display.components.useTwentyfourHour = !(format.indexOf('h') >= 0 || format.indexOf('a') >= 0 || format.indexOf('A') >= 0);
                     this.config.display.components.decades = showCalendar;
                     this.config.display.components.year = showCalendar;
                     this.config.display.components.month = showCalendar;
@@ -87,7 +87,14 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
                     this.config.display.components.minutes = showTime;
                     this.config.display.components.seconds = showTime;
                     this.config.display.components.seconds = showSecondsTimer;
-                    if (this.picker !== null) this.picker.updateOptions(this.config);
+                    if (format.indexOf('a') >= 0 || format.indexOf('A') >= 0 || format.indexOf('am') >= 0 || format.indexOf('AM') >= 0) {
+						this.config.localization.hourCycle = 'h12';
+					} else if (format.indexOf('H') >= 0) {
+						this.config.localization.hourCycle = 'h23';
+					} else if (format.indexOf('h') >= 0) {
+						this.config.localization.hourCycle = 'h12';
+					}
+                    if (this.picker) this.picker.updateOptions(this.config);
                 } else {
                     this.log.warn('wrong format or type given into the calendar field ' + JSON.stringify(change.currentValue));
                 }
@@ -125,7 +132,10 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
 
     initializePicker() {
         if (!this.picker) {
+            const currentValue = (this.inputElementRef.nativeElement as HTMLInputElement).value;
+            (this.inputElementRef.nativeElement as HTMLInputElement).value='';
             this.picker = new TempusDominus(this.getNativeElement(), this.config);
+            (this.inputElementRef.nativeElement as HTMLInputElement).value = currentValue;
             this.picker.dates.formatInput =  (date: DateTime) => date?this.formattingService.format(date, this.format, false):'';
             this.picker.dates.parseInput =  (value: string) => {
                 const parsed = this.formattingService.parse(value?value.trim():null, this.format, true, this.dataProviderID);

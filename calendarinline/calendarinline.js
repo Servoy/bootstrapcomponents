@@ -35,6 +35,22 @@ angular.module('bootstrapcomponentsCalendarinline',['servoy'])
 				//this method sets locale tooltips for the buttons in the datepickers
 				$utils.getI18NCalendarMessages(theDateTimePicker);
 
+				$scope.$watch('model.format', function(){
+					setDateFormat($scope.model.format);
+				})
+				
+				var dateFormat = 'YYYY-MM-DD';
+				
+				// helper function
+				function setDateFormat(format){
+					if(format && format.display){
+						dateFormat = moment().toMomentFormatString(format.display);
+					}
+					var x = child.data('DateTimePicker');
+					if (angular.isDefined(x)) { // can be undefined in find mode
+						x.format(dateFormat);
+					}
+				}
 
 				function inputChanged(e) {
 					if (e.date) {

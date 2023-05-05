@@ -153,8 +153,20 @@ angular.module('bootstrapcomponentsTextbox', ['servoy']).directive('bootstrapcom
                 } else {
                     return false;
                 }
-            }
+            }  
         },
+        controller: function ($scope, $element) {
+			$scope.enterPressed = function(event)
+			{
+				if ($scope.model.dataProviderID !== undefined) {
+					$scope.model.dataProviderID = $element.find('input').val();
+					$scope.svyServoyapi.apply('dataProviderID');
+				}
+				if ($scope.handlers.onActionMethodID) {
+					$scope.handlers.onActionMethodID(event)
+				}
+			};
+		},
         templateUrl: 'bootstrapcomponents/textbox/textbox.html'
     };
 })
