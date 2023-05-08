@@ -63,13 +63,13 @@ angular.module('bootstrapcomponentsSelect',['servoy', 'bootstrapcomponentscommon
 					var selectComp = $element.find('select');
 
 					var items = selectComp.find("option:selected").map(function() {
-						return $(this).text();
+						return $(this).val();
 					}).get();
 
 
 					var value = null;
 					for (i = 0; i < $scope.model.valuelistID.length; i++) {
-						if(items.indexOf($scope.model.valuelistID[i].displayValue) != -1) {
+						if(items.find(function (item) { return ($scope.model.valuelistID[i].realValue +'') == (item +''); })) {
 							if(isMultiSelect) {
 								if(value == null) value = [];
 								value.push($scope.model.valuelistID[i].realValue);
