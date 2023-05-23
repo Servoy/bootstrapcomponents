@@ -11,6 +11,9 @@
      grid-auto-rows: 30px;
 }
 
+.bts-calendar-inline-disabled {
+    pointer-events: none;
+}
 
 .tempus-dominus-widget.inline  {
     box-shadow: unset;
