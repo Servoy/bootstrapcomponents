@@ -88,7 +88,7 @@ bootstrapcomponents-textbox {
 	height: 100%;
 }
 
-.svy-wrapper .svy-layoutcontainer bootstrapcomponents-textbox {
+.svy-layoutcontainer > bootstrapcomponents-textbox {
 	height: unset;
 }
 
