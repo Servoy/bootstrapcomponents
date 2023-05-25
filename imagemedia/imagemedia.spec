@@ -16,10 +16,10 @@
 	        "media" : { "type" :"media"},
 	        "readOnly" : { "type": "protected", "blockingOn": true, "default": false, "for": ["dataProviderID","onDataChangeMethodID"], "tags": {"scope":"private"} },
 	        "size" : {"type" :"dimension",  "default" : {"width":140, "height":80}},
-	        "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "values" :["img-responsive","img-rounded","img-circle", "img-thumbnail","media-object"]},
+	        "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design", "doc": "Set the styleclasses that should be applied at to this component" }, "values" :["img-responsive","img-rounded","img-circle", "img-thumbnail","media-object"]},
 			"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
 			"toolTipText" : { "type" : "tagstring"}, 
-	        "visible" : "visible"
+	       "visible" : {"type" : "visible", "tags": {"doc": "Whether the button is visible or not"}}
 	},
 	"handlers":
 	{

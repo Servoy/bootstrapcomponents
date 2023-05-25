@@ -5,6 +5,7 @@
 	"version": 1,
 	"icon": "bootstrapcomponents/floatlabelcalendar/calendar.png",
 	"serverscript": "bootstrapcomponents/calendar/calendar_server.js",
+	"doc": "bootstrapcomponents/calendar/calendar_doc.js",
 	"ng2Config": {
         "dependencies": {
            "csslibrary": ["~@eonasdan/tempus-dominus/dist/css/tempus-dominus.css;priority=5"]
@@ -24,13 +25,13 @@
 	    "maxDate" : {"type":"date", "pushToServer": "shallow","tags": { "scope" :"private" }},
 	    "minDate" : {"type":"date", "pushToServer": "shallow","tags": { "scope" :"private" }},
 	    "readOnly" : { "type": "protected", "blockingOn": true, "default": false,"for": ["dataProviderID","onDataChangeMethodID"], "tags":{"scope":"private"}},
-	    "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "default" : "form-control"},
+	    "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design", "doc": "Set the styleclasses that should be applied at to this component" }, "default" : "form-control"},
 	    "floatLabelText" : "tagstring",
 	    "size" : {"type" :"dimension",  "default" : {"width":140, "height":50}},
 	    "tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
 	    "theme" : {"type":"string" , "tags": { "scope" :"design"}, "default" : "light",  "values" :["auto" , "dark", "light"]},
 	    "toolTipText" : { "type" : "tagstring"}, 
-	    "visible" : "visible",
+	   "visible" : {"type" : "visible", "tags": {"doc": "Whether the button is visible or not"}},
         "selectOnEnter" : {"type" :"boolean", "tags": { "scope" :"design", "doc": "Whether to select the text when date field is focused." }},
         "pickerOnly": {"type" :"boolean", "default": false, "tags": { "scope" :"design", "doc": "Whether to only allow date entry from the date picker or not (cannot type the date)." }}
 	    

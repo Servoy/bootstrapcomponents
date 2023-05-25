@@ -18,7 +18,7 @@
 		"selectionClass" : { "type": "styleclass", "default": "table-bootstrapcomponent-selected "},
 		"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
 		"toolTipText" : { "type" : "tagstring"},
-	 	"visible" : "visible"
+	 "visible" : {"type" : "visible", "tags": {"doc": "Whether the button is visible or not"}}
 	},
 	"types":
 	{

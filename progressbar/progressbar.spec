@@ -9,7 +9,7 @@
 	"icon": "bootstrapcomponents/progressbar/progress_bar.png",
 	"model":
 	{
-			"styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "default" : "progress-striped" , "values" :["progress-striped", "progress-striped active"]},
+			"styleClass" : { "type" :"styleclass", "tags": { "scope" :"design", "doc": "Set the styleclasses that should be applied at to this component" }, "default" : "progress-striped" , "values" :["progress-striped", "progress-striped active"]},
 			"value": "float",
 			"type": {"type": "string", "default":"info","values":["info", "success", "warning", "danger"]},
 			"animate": {"type":"boolean", "default":true},
@@ -17,7 +17,7 @@
 			"max" : {"type":"int", "default":100},
 			"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
 			"toolTipText" : { "type" : "tagstring"},
-	    	"visible" : "visible"
+	    "visible" : {"type" : "visible", "tags": {"doc": "Whether the button is visible or not"}}
 	},
 	"handlers":
 	{

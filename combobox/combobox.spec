@@ -1,10 +1,11 @@
 {
 	"name": "bootstrapcomponents-combobox",
-	"displayName": "Combobox ",
+	"displayName": "Combobox",
 	"categoryName": "Input Control",
 	"version": 1,
 	"icon": "bootstrapcomponents/combobox/combobox.png",
 	"definition": "bootstrapcomponents/combobox/combobox.js",
+	"doc": "bootstrapcomponents/combobox/combobox_doc.js",
 	"libraries": [
 		{"name":"bootstrapcomponents-combobox-css", "version":"1.0", "url":"bootstrapcomponents/combobox/combobox.css", "mimetype":"text/css"},
 		{"name":"ui-select", "version":"0.8.1", "url":"bootstrapcomponents/combobox/lib/select.js", "mimetype":"text/javascript"},
@@ -20,11 +21,11 @@
 	        "readOnly" : { "type" : "readOnly", "oppositeOf" : "enabled", "tags":{"scope":"private"}}, 
 	        "size" : {"type" :"dimension",  "default" : {"width":140, "height":30}},
 	        "showAs": { "type": "string", "values": [{"text":null}, {"html":"html"}, {"trusted_html":"trusted_html"}]},
-	        "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "values" :["form-control", "input-sm", "svy-padding-xs", "select2-container-svy-xs"]}, 
+	        "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design", "doc": "Set the styleclasses that should be applied at to this component" }, "values" :["form-control", "input-sm", "svy-padding-xs", "select2-container-svy-xs"]}, 
 	        "tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }}, 
 	        "toolTipText" : { "type" : "tagstring" }, 
 	        "valuelistID" : { "type" : "valuelist", "tags": { "logWhenOverMax":true}, "for": "dataProviderID", "max":500}, 
-	        "visible" : "visible",
+	       "visible" : {"type" : "visible", "tags": {"doc": "Whether the button is visible or not"}},
 			"appendToBody" : {"type" :"boolean",  "default" : true}
 	},
 	"handlers":
@@ -55,6 +56,7 @@
 								  "type":"JSEvent"
 								} 
 							 ],
+		    "code": "return true",
 			"doc": "Handle changed data, return false if the value should not be accepted.\nJSEvent.data will contain extra information about dataproviderid, its scope and the scope id (record datasource or form/global variable scope)"				 
 	        }, 
 	        "onFocusGainedMethodID" : {

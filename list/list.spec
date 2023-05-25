@@ -5,6 +5,7 @@
 	"version": 1,
 	"icon": "bootstrapcomponents/list/listbox.png",
 	"definition": "bootstrapcomponents/list/list.js",
+	"doc": "bootstrapcomponents/list/list_doc.js",
 	"libraries": [
 		{"name":"bootstrapcomponents-list-css", "version":"1.0", "url":"bootstrapcomponents/list/list.css", "mimetype":"text/css"}
 		],
@@ -21,7 +22,7 @@
 	        "placeholderText" : "tagstring",
 			"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
 			"toolTipText" : { "type" : "tagstring"},
-	        "visible" : "visible"
+	       "visible" : {"type" : "visible", "tags": {"doc": "Whether the button is visible or not"}}
 	},
 	"handlers":
 	{

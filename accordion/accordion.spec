@@ -6,6 +6,7 @@
 	"version": 1,
 	"icon": "bootstrapcomponents/accordion/accordion.png",
 	"definition": "bootstrapcomponents/accordion/accordion.js",
+	"doc": "bootstrapcomponents/accordion/accordion_doc.js",
 	"libraries": [{ "name": "bootstrapcomponents-accordion-css", "version": "1.0", "url": "bootstrapcomponents/accordion/accordion.css", "mimetype": "text/css" }],
 	"serverscript": "bootstrapcomponents/accordion/accordion_server.js",
 	"keywords": ["container"],
@@ -17,7 +18,7 @@
 		"tabIndex": { "type": "int", "pushToServer": "shallow", "tags": { "scope": "runtime", "allowaccess": "visible" }, "default": 1},
 		"tabSeq": { "type": "tabseq", "tags": { "scope": "design" } },
 		"activeTabIndex": { "type": "int", "default": 0, "tags": { "scope": "runtime", "allowaccess": "visible"}, "pushToServer": "shallow"},
-		"visible": "visible"
+		"visible" : {"type" : "visible", "tags": {"doc": "Whether the button is visible or not"}}
 	},
 	
 	"handlers": { 

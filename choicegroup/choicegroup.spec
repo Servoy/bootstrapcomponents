@@ -4,6 +4,7 @@
 	"categoryName": "Input Control",
 	"version": 1,
 	"definition": "bootstrapcomponents/choicegroup/choicegroup.js",
+	"doc": "bootstrapcomponents/choicegroup/choicegroup_doc.js",
 	"libraries": [{"name":"bootstrapcomponents-choicegroup-css", "version":"1.0", "url":"bootstrapcomponents/choicegroup/choicegroup.css", "mimetype":"text/css"}],
 	"icon": "bootstrapcomponents/choicegroup/radiobutton.png",
 	"keywords": ["select", "multiple", "options", "choices"],
@@ -15,12 +16,12 @@
 	        "inputType" : {"type" : "string" , "default" : "checkbox" ,"tags": { "scope" :"design" }, "values" : ["checkbox","radio"]},
 	        "size" : {"type" :"dimension",  "default" : {"width":140, "height":80}},
 	        "showAs": { "type": "string", "values": [{"text":null}, {"html":"html"}, {"trusted_html":"trusted_html"}],"tags": { "doc" :"Option whether choice text is shown as plain text, sanitized html or trusted html (as is)."}},
-	        "styleClass" : { "type" :"styleclass", "default" : "checkbox" , "tags": { "scope" :"design" }, "values" :["checkbox", "radio"]},
+	        "styleClass" : { "type" :"styleclass", "default" : "checkbox" , "tags": { "scope" :"design", "doc": "Set the styleclasses that should be applied at to this component" }, "values" :["checkbox", "radio"]},
 	        "valuelistID" : { "type" : "valuelist", "max":300},
 			"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
 			"toolTipText" : { "type" : "tagstring"},
 			"findmode" : { "type":"findmode", "tags":{"scope":"private"}, "for" : {"editable":true}}, 
-	        "visible" : "visible",
+	       "visible" : {"type" : "visible", "tags": {"doc": "Whether the button is visible or not"}},
 	        "alignment": {"type": "string", "default": "vertical", "tags": {"scope": "design"}, "values" : ["vertical","horizontal"]}
 	},
 	"handlers":

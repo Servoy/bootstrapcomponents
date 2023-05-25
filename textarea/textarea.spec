@@ -5,6 +5,7 @@
 	"version": 1,
 	"icon": "bootstrapcomponents/textarea/textarea.png",
 	"definition": "bootstrapcomponents/textarea/textarea.js",
+	"doc": "bootstrapcomponents/textarea/textarea_doc.js",
 	"libraries": [{"name":"bootstrapcomponents-textarea-css", "version":"1.0", "url":"bootstrapcomponents/textarea/textarea.css", "mimetype":"text/css"}],
 	"keywords": ["content"],
 	"model":
@@ -13,12 +14,12 @@
 			"enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["dataProviderID","onActionMethodID","onDataChangeMethodID"] },
 			"readOnly" : { "type": "protected", "blockingOn": true, "default": false,"for": ["dataProviderID","onDataChangeMethodID"], "tags": {"scope":"private"} },
 			"editable" : { "type": "protected", "blockingOn": false, "default": true,"for": ["dataProviderID","onDataChangeMethodID"] },
-			"styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "default": "form-control", "values" :["form-control", "input-sm"]},
+			"styleClass" : { "type" :"styleclass", "tags": { "scope" :"design", "doc": "Set the styleclasses that should be applied at to this component" }, "default": "form-control", "values" :["form-control", "input-sm"]},
 			"size" : {"type" :"dimension",  "default" : {"width":140, "height":140}}, 
 			"placeholderText" : "tagstring",
 			"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
 			"toolTipText" : { "type" : "tagstring"},
-	    	"visible" : "visible",
+	    "visible" : {"type" : "visible", "tags": {"doc": "Whether the button is visible or not"}},
 	    	"maxLength": { "type" : "int"}
 	},
 	"handlers":

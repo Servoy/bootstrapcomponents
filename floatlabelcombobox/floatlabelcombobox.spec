@@ -1,9 +1,10 @@
 {
 	"name": "bootstrapcomponents-floatlabelcombobox",
-	"displayName": "FloatLabel Combobox ",
+	"displayName": "FloatLabel Combobox",
 	"categoryName": "Input Control",
 	"version": 1,
 	"icon": "bootstrapcomponents/floatlabelcombobox/combobox.png",
+	"doc": "bootstrapcomponents/combobox/combobox_doc.js",
 	"libraries": [
 	],
 	"keywords": [],
@@ -16,11 +17,11 @@
 	        "readOnly" : { "type" : "readOnly", "oppositeOf" : "enabled", "tags": {"scope":"private"}}, 
 	        "size" : {"type" :"dimension",  "default" : {"width":140, "height":50}},
 	        "showAs": { "type": "string", "values": [{"text":null}, {"html":"html"}, {"trusted_html":"trusted_html"}]},
-	        "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "values" :["form-control", "input-sm", "svy-padding-xs", "select2-container-svy-xs"]}, 
+	        "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design", "doc": "Set the styleclasses that should be applied at to this component" }, "values" :["form-control", "input-sm", "svy-padding-xs", "select2-container-svy-xs"]}, 
 	        "tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }}, 
 	        "toolTipText" : { "type" : "tagstring" }, 
 	        "valuelistID" : { "type" : "valuelist", "tags": { "logWhenOverMax":true}, "for": "dataProviderID", "max":500}, 
-	        "visible" : "visible",
+	       "visible" : {"type" : "visible", "tags": {"doc": "Whether the button is visible or not"}},
 			"appendToBody" : {"type" :"boolean",  "default" : true}
 	},
 	"handlers":
