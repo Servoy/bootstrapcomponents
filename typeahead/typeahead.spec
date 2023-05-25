@@ -1,10 +1,11 @@
 {
 	"name": "bootstrapcomponents-typeahead",
-	"displayName": "Type Ahead ",
+	"displayName": "Type Ahead",
 	"categoryName": "Input Control",
 	"version": 1,
 	"icon": "bootstrapcomponents/typeahead/typeahead.png",
 	"definition": "bootstrapcomponents/typeahead/typeahead.js",
+	"doc": "bootstrapcomponents/typeahead/typeahead_doc.js",
 	"libraries": [{"name":"bootstrapcomponents-typeahead-css", "version":"1.0", "url":"bootstrapcomponents/typeahead/typeahead.css", "mimetype":"text/css"}],
 	"keywords": ["suggestion", "auto complete"],
 	"model":
@@ -16,13 +17,13 @@
 		"editable" : { "type": "protected", "blockingOn": false, "default": true,"for": ["dataProviderID","onDataChangeMethodID"] },
 		"findmode" : { "type":"findmode", "tags":{"scope":"private"}},
 		"size" : {"type" :"dimension",  "default" : {"width":140, "height":30}},
-	    "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design" }, "default" : "form-control"},
+	    "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design", "doc": "Set the styleclasses that should be applied at to this component" }, "default" : "form-control"},
 	    "placeholderText" : "tagstring",
         "valuelistID" : { "type" : "valuelist", "tags": {"logWhenOverMax": false}, "for": "dataProviderID", "default":"autoVL", "pushToServer": "allow", "max":100},
         "showAs": { "type": "string", "values": ["html", "text"], "default" : "html", "tags": { "scope" :"design","doc" :"Option typeahead options are shown as plain text or sanitized html." }},
 	    "tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
 	    "toolTipText" : { "type" : "tagstring"},
-	    "visible" : "visible",
+	   "visible" : {"type" : "visible", "tags": {"doc": "Whether the button is visible or not"}},
 	    "selectOnEnter" : {"type" :"boolean", "tags": { "scope" :"design" }},
 		"appendToBody" : {"type" :"boolean",  "default" : true},
 		"filteringDebounce" : {"type" :"int",  "default" : 500}

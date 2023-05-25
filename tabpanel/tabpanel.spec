@@ -6,6 +6,7 @@
 	"version": 1,
 	"icon": "bootstrapcomponents/tabpanel/tab.png",
 	"definition": "bootstrapcomponents/tabpanel/tabpanel.js",
+	"doc": "bootstrapcomponents/tabpanel/tabpanel_doc.js",
 	"libraries": [{ "name": "bootstrapcomponents-tabpanel-css", "version": "1.0", "url": "bootstrapcomponents/tabpanel/tabpanel.css", "mimetype": "text/css" }],
 	"serverscript": "bootstrapcomponents/tabpanel/tabpanel_server.js",
 	"keywords": ["container"],
@@ -14,12 +15,12 @@
 		"closeIconStyleClass" : {"type":"styleclass", "default":"glyphicon glyphicon-remove close-icon", "tags": { "scope" :"design" }, "values":[]},
 		"showTabCloseIcon" : { "type": "boolean", "default": false },
 		"tabs": { "type": "tab[]", "pushToServer": "deep", "droppable": true, "tags": { "allowaccess": "visible", "wizard": "autoshow"}},
-		"styleClass": { "type": "styleclass" },
+		"styleClass": { "type": "styleclass","tags": { "doc": "Set the styleclasses that should be applied at to this component" } },
 		"height": { "type": "string", "default": "500", "tags": { "doc" : "Minimum height of the tabpanel, should be used for responsive forms. Can be 100% (to take parent container height) or a number (in pixels)."} },
 		"tabIndex": { "type": "int", "pushToServer": "shallow", "tags": { "scope": "runtime", "allowaccess": "visible" }, "default": 1},
 		"tabSeq": { "type": "tabseq", "tags": { "scope": "design","doc" : "Tab sequence number of form containers is used for all nested components in the main form." } },
 		"activeTabIndex": { "type": "int", "default": 0, "tags": { "scope": "private", "allowaccess": "visible"}, "pushToServer": "shallow"},
-		"visible": "visible"
+	"visible" : {"type" : "visible", "tags": {"doc": "Whether the button is visible or not"}}
 	},
 	
 	"handlers": { 
