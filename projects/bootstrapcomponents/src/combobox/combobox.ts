@@ -37,10 +37,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
 
     @HostListener('keydown', ['$event'])
     handleKeyDown(event: KeyboardEvent) {
-        if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
-            // stop propagation when using list form component (to not break the selection)
-            event.stopPropagation();
-        }
+        event.stopPropagation();
         this.lastSelectValue = null;
         this.firstItemFound = false;
         if (this.isPrintableChar(event.key)) {
@@ -59,7 +56,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
            if(this.keyboardSelectValue) this.lastSelectValue = this.keyboardSelectValue.slice();
            if (!this.lastSelectValue) this.closeTooltip();
            else this.refreshTooltip();
-           
+
            this.cdRef.detectChanges();
            this.scrollToFirstMatchingItem();
        }
@@ -73,7 +70,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
 	showAsHtml() {
 		return (this.showAs === 'html' || this.showAs === 'trusted_html');
 	}
-	
+
 	isTrustedHTML() {
 		if(this.showAs === 'trusted_html') {
 			return true;
@@ -102,7 +99,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
             'Alt', 'AltGraph', 'CapsLock', 'Fn', 'Meta', 'NumLock', 'ScrollLock', 'Command', 'Shift',
             'Enter', 'Tab', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'End', 'Home',
             'PageUp', 'PageDown', 'Delete', 'Control', 'Insert', 'Del', 'Escape',
-            'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12', 'Dead' 
+            'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12', 'Dead'
         ];
         if ( nonPrintableValue.includes( key ) ) {
             const keysThatCloseTooltip = [
@@ -122,7 +119,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
     getFocusElement() {
         return this.input.nativeElement;
     }
-    
+
     requestFocus(mustExecuteOnFocusGainedMethod: boolean): void {
         super.requestFocus(mustExecuteOnFocusGainedMethod);
         this.comboboxDropdown.open();
@@ -174,13 +171,13 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
                     this.formattedValue = null;
                     this.valuelistDisplayValueSubscription = this.valuelistID.getDisplayValue(this.dataProviderID).subscribe(val => {
                         this.valuelistDisplayValueSubscription = null;
-                        this.formattedValue = val
+                        this.formattedValue = val;
                         this.cdRef.detectChanges();
                     });
                 }
             }
         }
-        if (this.formattedValue === "" || this.formattedValue === null || this.formattedValue === undefined) {
+        if (this.formattedValue === '' || this.formattedValue === null || this.formattedValue === undefined) {
             if (changes['placeholderText']) {
                 this.formattedValue = this.placeholderText;
             }
@@ -219,7 +216,6 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
         }
         return retValue;
     }
-
     scrollToFirstMatchingItem() {
         if (this.openState && this.lastSelectValue) {
             for (const item of this.menuItems) {
