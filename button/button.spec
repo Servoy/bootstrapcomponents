@@ -13,6 +13,7 @@
 	{
 		"enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["onActionMethodID","onDoubleClickMethodID","onRightClickMethodID"], "tags": {"doc": "Whether the component is enabled or not; blocks onAction, onDoubleClick, onRightClick events."} },
 	    "imageStyleClass" : { "type" :"styleclass" ,"tags": { "doc" :"For buttons showing as plain text, you can also specify an image styleclass to be displayed to the left. Can be font awesome icons."}},
+        "imagePosition" : {"type":"string" , "tags": { "scope" :"design"}, "default" : "ahead",  "values" :["ahead" , "behind"]},
 	    "tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design", "doc":"Tab sequence index of the form" }}, 
 	    "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design", "doc": "Button style class, typically one of the bootstrap button classes (e.g. 'btn btn-primary')" },"default": "btn btn-default", "values" :["btn","btn-default","btn-lg","btn-sm","btn-xs"]},
 	    "variant" : { "type" :"variant", "tags": { "scope" :"design", "doc": "Sets the variant of this button, this sets a certain set of styleclasses at runtime for which this variant is configured for" }},

@@ -7,11 +7,13 @@
 	ng-if='model.visible'
 	svy-attributes='model.attributes'
 	id="{{::model.svyMarkupId}}">
-	<span class='bts-label-icon' ng-class='model.imageStyleClass' ng-if='model.imageStyleClass'></span>
+
+    <span class='bts-label-icon' ng-class='model.imageStyleClass' ng-if='model.imageStyleClass && model.imagePosition === "ahead"'></span>
 	<span 
 		class='bts-label-text'
  		ng-bind-html='model.text| htmlFilter| trustAsHtml:isTrustedHTML()'
  		ng-if='model.showAs == "html" || model.showAs == "trusted_html"'>
 	</span>
 	<span class='bts-label-text' ng-if='model.showAs == "text"'>{{model.text}}</span>
+    <span class='bts-label-icon' ng-class='model.imageStyleClass' ng-if='model.imageStyleClass && model.imagePosition === "behind"'></span>
 </span>

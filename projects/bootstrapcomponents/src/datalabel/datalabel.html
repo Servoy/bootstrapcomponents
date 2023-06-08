@@ -4,12 +4,9 @@
     [sabloTabseq]="(onActionMethodID || onDoubleClickMethodID || onRightClickMethodID) ? tabSeq : -2"
     [id]="servoyApi.getMarkupId()"
     [svyTooltip]="toolTipText"> 
-    <span 
-        class="bts-label-icon" 
-        [ngClass]="imageStyleClass"
-        *ngIf="imageStyleClass">
-    </span>
-    <span
+
+     <span class="bts-label-icon" [ngClass]="imageStyleClass" *ngIf="imageStyleClass && imagePosition === 'ahead'"></span>
+     <span
         class="bts-label-text"
         [innerHTML]="dataProviderID | formatFilter:format | htmlFilter | trustAsHtml:isTrustedHTML() | designFilter:servoyApi.isInDesigner()"
         *ngIf="(showAs === 'html' || showAs === 'trusted_html')">
@@ -19,4 +16,6 @@
         [textContent]="dataProviderID | formatFilter:format | htmlFilter | trustAsHtml:isTrustedHTML() | designFilter:servoyApi.isInDesigner()"
         *ngIf="showAs == 'text'">
     </span>
-</span> 
+    <span class="bts-label-icon" [ngClass]="imageStyleClass" *ngIf="imageStyleClass && imagePosition === 'behind'"></span>
+
+</span>

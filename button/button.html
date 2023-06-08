@@ -7,7 +7,10 @@
 	ng-disabled="!model.enabled"
 	svy-attributes='model.attributes'
  	id="{{::model.svyMarkupId}}">
-          <span ng-class="model.imageStyleClass" aria-hidden="true"></span> {{model.text}}
+          
+    <span ng-class="model.imageStyleClass" aria-hidden="true" ng-if='model.imageStyleClass && model.imagePosition === "ahead"'></span> 
+    {{model.text}}
+    <span ng-class="model.imageStyleClass" aria-hidden="true" ng-if='model.imageStyleClass && model.imagePosition === "behind"'></span> 
 </button>
 
 <button type="button" class='bts-button' ng-class="model.styleClass"

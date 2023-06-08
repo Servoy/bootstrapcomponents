@@ -17,6 +17,7 @@
 			"styleClass" : { "type" :"styleclass", "tags": { "scope" :"design","doc":"CSS style class for this component"}, "default": "default-align", "values" :["label","label-default","label-primary","label-success","label-info","label-warning","label-danger"]},
             "styleClassExpression" : { "type" :"dataprovider", "tags": { "scope" :"design","doc":"A column or calculation that provides the CSS style class for this component" }}, 
             "imageStyleClass": {"type":"string", "tags": { "doc": "An icon style class property (glyphicon, material design or Font Awesome).<br/>Example 'fas fa-search' <br/>If you want to use Font Awesome classes you need to enable the Font Awesome service from the Servoy Package Manager. "}},
+            "imagePosition" : {"type":"string" , "tags": { "scope" :"design"}, "default" : "ahead",  "values" :["ahead" , "behind"]},
             "tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design","doc":"Tab sequence index of the form" }},
             "showAs": { "type": "string", "values": ["html", "text", "trusted_html"], "default" : "html", "tags": { "scope" :"design","doc" :"Option whether label text (coming from dataprovider) is shown as plain text, sanitized html or trusted html (as is). Inner html elements events can be identified using data-target attribute." }},
 	    	"toolTipText" : { "type" : "tagstring", "tags": { "doc":"Tooltip text shown when hovering over the component (i18n is supported)"}},
