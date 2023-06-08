@@ -215,7 +215,7 @@ ngb-typeahead-window.dropdown-menu {
     height: 100%;
 }
 
-.svy-wrapper > * > .bts-calendar-container .input-group-append {
+.svy-wrapper > * > .bts-calendar-container .input-group-append, .svy-wrapper > * > .bts-calendar-container .input-group-text {
     height: 100%;
 }
 
@@ -358,7 +358,7 @@ label input {
 
 :root { font-size: 14px;}
 
-.bts-calendar-container .input-group-append {
+.bts-calendar-container .input-group-append, .bts-calendar-container .input-group-text {
     cursor: pointer;
 }
 
