@@ -24,7 +24,7 @@ describe('ServoyBootstrapCombobox', () => {
         fixture = TestBed.createComponent(ServoyBootstrapCombobox);
         textField = fixture.debugElement.query(By.css('button'));
         component = fixture.componentInstance;
-        component.servoyApi = jasmine.createSpyObj('ServoyApi', ['getMarkupId', 'trustAsHtml', 'startEdit', 'registerComponent', 'unRegisterComponent']);
+        component.servoyApi = jasmine.createSpyObj('ServoyApi', ['getMarkupId', 'trustAsHtml', 'startEdit', 'registerComponent', 'unRegisterComponent', 'getClientProperty']);
         component.format = new Format();
         component.format.type = 'TEXT';
         fixture.detectChanges();
