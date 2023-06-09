@@ -10,7 +10,7 @@ export class ServoyBootstrapBaseLabel<T extends HTMLElement> extends ServoyBoots
     @Input() onDoubleClickMethodID: (e: Event, data?: any) => void;
 
     @Input() imageStyleClass: string;
-    @Input() imagePosition: string;
+    @Input() trailingImageStyleClass: string;
     @Input() showAs: string;
 
     constructor(renderer: Renderer2, protected cdRef: ChangeDetectorRef) {

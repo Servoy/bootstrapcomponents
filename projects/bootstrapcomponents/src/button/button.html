@@ -5,9 +5,9 @@
     [sabloTabseq]="tabSeq"
     [id]="servoyApi.getMarkupId()"
     [svyTooltip]="toolTipText">
-    <span [ngClass]="imageStyleClass" aria-hidden="true" *ngIf="imageStyleClass && imagePosition === 'ahead'"></span>
+    <span [ngClass]="imageStyleClass" aria-hidden="true" *ngIf="imageStyleClass"></span>
     {{text}}
-    <span [ngClass]="imageStyleClass" aria-hidden="true" *ngIf="imageStyleClass && imagePosition === 'behind'"></span>
+    <span [ngClass]="trailingImageStyleClass" aria-hidden="true" *ngIf="trailingImageStyleClass"></span>
 </button> 
 
 <button 

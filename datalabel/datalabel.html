@@ -8,9 +8,9 @@
  	id="{{::model.svyMarkupId}}"
  	svy-attributes='model.attributes'>
 
-    <span class='bts-label-icon' ng-class='model.imageStyleClass' ng-if='model.imageStyleClass && model.imagePosition === "ahead"'></span>
+    <span class='bts-label-icon' ng-class='model.imageStyleClass' ng-if='model.imageStyleClass'></span>
  	<span class='bts-label-text' ng-bind-html='model.dataProviderID | formatFilter:model.format.display:model.format.type| designFilter:servoyApi.isInDesigner() | htmlFilter | trustAsHtml:isTrustedHTML()'
  	ng-if='model.showAs == "html" || model.showAs == "trusted_html"'></span>
  	<span class='bts-label-text' ng-bind='model.dataProviderID | formatFilter:model.format.display:model.format.type| designFilter:servoyApi.isInDesigner()' ng-if='model.showAs == "text"'></span>
-    <span class='bts-label-icon' ng-class='model.imageStyleClass' ng-if='model.imageStyleClass && model.imagePosition === "behind"'></span>
+    <span class='bts-label-icon' ng-class='model.trailingImageStyleClass' ng-if='model.trailingImageStyleClass'></span>
 </span>

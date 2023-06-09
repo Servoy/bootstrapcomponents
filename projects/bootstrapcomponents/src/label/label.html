@@ -8,22 +8,22 @@
 </span>
 
 <ng-template #labelTemplate>
-    <span class='bts-label-icon' [ngClass]='imageStyleClass' *ngIf="imageStyleClass && imagePosition === 'ahead'"></span>
+    <span class='bts-label-icon' [ngClass]='imageStyleClass' *ngIf="imageStyleClass"></span>
     <span
         class="bts-label-text"
         [innerHTML]="text | htmlFilter | trustAsHtml:isTrustedHTML()"
         *ngIf="showAs === 'html' || showAs === 'trusted_html'">
     </span>
     <span class='bts-label-text' *ngIf='showAs == "text"'>{{text}}</span>
-    <span class='bts-label-icon' [ngClass]='imageStyleClass' *ngIf="imageStyleClass && imagePosition === 'behind'"></span>
+    <span class='bts-label-icon' [ngClass]='trailingImageStyleClass' *ngIf="trailingImageStyleClass"></span>
 </ng-template>
 
 <ng-template #labelForTemplate>
-    <span class='bts-label-icon' [ngClass]='imageStyleClass' *ngIf="imageStyleClass && imagePosition === 'ahead'"></span>
+    <span class='bts-label-icon' [ngClass]='imageStyleClass' *ngIf="imageStyleClass"></span>
     <label class='bts-label-text' for="{{labelFor}}"
          [innerHTML]="text | htmlFilter | trustAsHtml:isTrustedHTML()"
          *ngIf="showAs === 'html' || showAs === 'trusted_html'">
     </label>
     <label class='bts-label-text' for="{{labelFor}}" *ngIf='showAs == "text"'>{{text}}</label>
-    <span class='bts-label-icon' [ngClass]='imageStyleClass' *ngIf="imageStyleClass && imagePosition === 'behind'"></span>
+    <span class='bts-label-icon' [ngClass]='trailingImageStyleClass' *ngIf="trailingImageStyleClass"></span>
 </ng-template>
