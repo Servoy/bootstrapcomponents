@@ -25,7 +25,7 @@ export class ServoyBootstrapCheckbox extends ServoyBootstrapBasefield<HTMLDivEle
         this.renderer.listen(this.getFocusElement(), 'click', (e) => {
             if (!this.readOnly && this.enabled) {
                 this.itemClicked(e);
-                if (this.onActionMethodID) setTimeout(() => this.onActionMethodID(e, this.getDataTarget(e)), 100);
+                if (this.onActionMethodID) setTimeout(() => this.onActionMethodID(e, this.getDataTarget(e)));
             }
         });
     }
