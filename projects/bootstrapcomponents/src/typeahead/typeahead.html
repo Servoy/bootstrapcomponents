@@ -6,6 +6,7 @@
 		[hostComponent]="this"
 		[svyTabFix]="this"
 		[(ngModel)]="dataProviderID"
+		name="{{dataProviderID}}"
 		(change)="pushUpdate()"
 		(selectItem)="valueChanged($event)"
 		[sabloTabseq]="tabSeq"

@@ -153,7 +153,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
     inputFormatter = (result: any) => {
         if (result === null) return '';
         if (result.displayValue !== undefined) result = result.displayValue;
-        else if (this.valuelistID.hasRealValues()) {
+        else if (this.valuelistID?.hasRealValues()) {
             // on purpose test with == so that "2" equals to 2
             const value = this.valuelistID.find((item) => {
                 // eslint-disable-next-line eqeqeq
