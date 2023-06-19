@@ -168,7 +168,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
             if (value) {
                 result = value.displayValue;
             } else {
-                const display = this.realToDisplay.get(result);
+                let display = this.realToDisplay.get(result);
                 if ( display === null || display === undefined ) {
                     this.valuelistID.getDisplayValue( result ).subscribe( val => {
                         if ( val ) {
@@ -176,7 +176,9 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
                             this.instance.writeValue( result );
                         }
                     } );
-                    return '';
+                    display = this.realToDisplay.get(result); // in case the getDisplayValue above runs sync, before this return happen (uses of() not from())
+                    if (display === null || display === undefined) return '';
+                    else result = display;
                 } else {
                     result = display;
                 }
