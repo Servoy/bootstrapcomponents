@@ -20,8 +20,6 @@
 />
 <div id="svy-textbox-eyeDiv" *ngIf="inputType == 'password-with-eye'"
 		(click)="showHidePass()"
-		class="clickable svy-textbox-eye fa"
-		[class.fa-eye]="showPass"
-		[class.fa-eye-slash]="!showPass"
+		class="clickable svy-textbox-eye {{addClassForEye()}}"
 		[ngClass]="styleClass">
 </div>

@@ -30,6 +30,29 @@ angular.module('bootstrapcomponentsTextbox', ['servoy']).directive('bootstrapcom
                 }
             }
             
+            $scope.addClassForEye = function() {
+				var mainClass, openClass, closeClass;
+				if ($scope.model.styleClassForEye) {
+					var classes = $scope.model.styleClassForEye.split(' ');
+					if (classes.length === 3) {
+						[mainClass, openClass, closeClass]  = classes;
+					} else if (classes.length === 2) {
+						mainClass = '';
+						[openClass, closeClass]  = classes;
+					} else {
+						return '';
+					}
+				} else {
+					[mainClass, openClass, closeClass] = ['glyphicon', 'glyphicon-eye-open', 'glyphicon-eye-close'];
+				}
+				
+				if ($scope.model.showPass) {
+					return mainClass + ' ' + openClass;
+				}
+				return mainClass + ' ' + closeClass;
+            	
+            }
+            
             $scope.showHidePass = function() {
             	$scope.model.showPass = !$scope.model.showPass;
             }

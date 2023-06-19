@@ -96,7 +96,7 @@ bootstrapcomponents-textbox {
 	position: absolute;
     top: 0;
     height: 100%;
-    right: -30px;
+    right: 0px;
     width: 30px;   
 }
 
@@ -124,6 +124,10 @@ bootstrapcomponents-textbox {
 	padding: 1px 5px;
 }
 
+.bts-textbox.svy-textbox-password-with-eye-field {
+	width: calc(100% - 30px);
+}
+
 .svy-wrapper .svy-form-floating {
     height: 100%;
 }
@@ -131,6 +135,10 @@ bootstrapcomponents-textbox {
 .svy-wrapper .bts-floatlabeltextbox {
     width: 100%;
     height: 100%;
+}
+
+.bts-floatlabeltextbox.svy-textbox-password-with-eye-field {
+	width: calc(100% - 30px);
 }
 
 .svy-wrapper .bts-floatlabeltextarea {

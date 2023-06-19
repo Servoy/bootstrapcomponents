@@ -13,6 +13,7 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
     @Input() format: Format;
     @Input() inputType: string;
     @Input() autocomplete: string;
+    @Input() styleClassForEye: string;
 
     @Output() inputTypeChange = new EventEmitter();
 
@@ -74,4 +75,26 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
     showHidePass() {
 	    this.showPass = !this.showPass;
     }
+
+    addClassForEye() {
+		let mainClass: string; let openClass: string; let closeClass: string;
+		if (this.styleClassForEye) {
+			const classes = this.styleClassForEye.split(' ');
+			if (classes.length === 3) {
+				[mainClass, openClass, closeClass]  = classes;
+			} else if (classes.length === 2) {
+				mainClass = '';
+				[openClass, closeClass]  = classes;
+			} else {
+				return '';
+			}
+		} else {
+			[mainClass, openClass, closeClass] = ['fa', 'fa-eye', 'fa-eye-slash'];
+		}
+
+		if (this.showPass) {
+			return mainClass + ' ' + openClass;
+		}
+		return mainClass + ' ' + closeClass;
+	}
 }

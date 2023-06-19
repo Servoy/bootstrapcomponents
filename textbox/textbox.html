@@ -20,6 +20,6 @@
 		svy-attributes='model.attributes'/>
 <div id="svy-textbox-eyeDiv" ng-if="model.inputType == 'password-with-eye'"
 		ng-click="showHidePass()"
-		class="clickable svy-textbox-eye glyphicon {{model.showPass ? 'glyphicon-eye-open' : 'glyphicon-eye-close'}}"
+		class="clickable svy-textbox-eye {{addClassForEye()}}"
 		ng-class="model.styleClass">
 </div>
