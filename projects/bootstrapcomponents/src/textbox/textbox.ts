@@ -77,7 +77,7 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
     }
 
     addClassForEye() {
-		let mainClass: string; let openClass: string; let closeClass: string;
+		let [mainClass, openClass, closeClass] = ['fa', 'fa-eye', 'fa-eye-slash'];
 		if (this.styleClassForEye) {
 			const classes = this.styleClassForEye.split(' ');
 			if (classes.length === 3) {
@@ -85,11 +85,7 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
 			} else if (classes.length === 2) {
 				mainClass = '';
 				[openClass, closeClass]  = classes;
-			} else {
-				return '';
 			}
-		} else {
-			[mainClass, openClass, closeClass] = ['fa', 'fa-eye', 'fa-eye-slash'];
 		}
 
 		if (this.showPass) {
