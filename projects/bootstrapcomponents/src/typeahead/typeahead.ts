@@ -141,6 +141,9 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
     }
 
     isEditable() {
+		if (this.servoyApi.isInDesigner()) {
+			return true;
+		}
         return this.valuelistID && !this.valuelistID.hasRealValues();
     }
 
