@@ -30,9 +30,9 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
     svyOnInit() {
         super.svyOnInit();
         if (this.closeIconStyleClass === 'glyphicon glyphicon-remove close-icon') this.closeIconStyleClass = 'fas fa-times';
-		if (this.tabs && this.tabIndex > 0 && this.isTabDisabled(this.tabIndex -1)) {
-			this.selectTabAt(this.getFirstEnabledTabIndex()-1);
-		}
+        if (this.tabs && this.tabIndex > 0 && this.isTabDisabled(this.tabIndex - 1)) {
+            this.selectTabAt(this.getFirstEnabledTabIndex() - 1);
+        }
     }
 
     svyOnChanges(changes: SimpleChanges) {
@@ -51,7 +51,7 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
                 const promise = this.onTabCloseMethodID(event, tabIndexClicked + 1);
                 promise.then((ok) => {
                     if (ok) {
-                         this.servoyApi.callServerSideApi('removeTabAt', [tabIndexClicked + 1]);
+                        this.servoyApi.callServerSideApi('removeTabAt', [tabIndexClicked + 1]);
                     }
                 });
             } else {
@@ -110,8 +110,8 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
     }
 
     isTabDisabled(index: number) {
-		return this.tabs && this.tabs[index] && this.tabs[index].disabled;
-	}
+        return this.tabs && this.tabs[index] && this.tabs[index].disabled;
+    }
 
     getContainerStyle(element: HTMLElement) {
         const navpane = element.querySelector('[ngbnavpane]');
@@ -122,18 +122,28 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
             this.renderer.setStyle(navpane, 'position', 'relative');
             if (fullsize) {
                 const tabs = element.querySelector('ul');
-                this.renderer.setStyle(navpane.parentElement, 'height', 'calc(100% - ' + tabs.getClientRects()[0].height + 'px)');
+                let calcHeight = tabs.clientHeight;
+                const clientRects = tabs.getClientRects();
+                if (clientRects && clientRects.length > 0) {
+                    calcHeight = tabs.getClientRects()[0].height;
+                }
+                this.renderer.setStyle(navpane.parentElement, 'height', 'calc(100% - ' + calcHeight + 'px)');
             }
         }
         if (this.cssPosition && this.servoyApi.isInAbsoluteLayout()) {
             const tabs = element.querySelector('ul');
-            this.containerStyle['height'] = 'calc(100% - ' + tabs.getClientRects()[0].height + 'px)';
+            let calcHeight = tabs.clientHeight;
+            const clientRects = tabs.getClientRects();
+            if (clientRects && clientRects.length > 0) {
+                calcHeight = tabs.getClientRects()[0].height;
+            }
+            this.containerStyle['height'] = 'calc(100% - ' + calcHeight + 'px)';
             // should we set this to absolute ? it cannot be relative
             delete this.containerStyle.position;
         } else {
             if (fullsize) {
-                 this.containerStyle['height'] = this.height;
-                 if (this.getNativeElement()) this.renderer.setStyle(this.getNativeElement(), 'height', '100%');
+                this.containerStyle['height'] = this.height;
+                if (this.getNativeElement()) this.renderer.setStyle(this.getNativeElement(), 'height', '100%');
             } else {
                 this.containerStyle['minHeight'] = this.height + 'px';
             }
