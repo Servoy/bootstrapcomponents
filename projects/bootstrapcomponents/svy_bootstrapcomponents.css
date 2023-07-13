@@ -12,6 +12,10 @@
 }
 
 .bts-calendar-inline-disabled {
+	cursor: not-allowed;
+}
+
+.bts-calendar-inline-disabled > .tempus-dominus-widget {
     pointer-events: none;
 }
 
