@@ -31,15 +31,21 @@ export class ServoyBootstrapCheckbox extends ServoyBootstrapBasefield<HTMLDivEle
     }
 
     svyOnChanges(changes: SimpleChanges) {
+		super.svyOnChanges(changes);
         for (const property in changes) {
+			const change = changes[property];
             switch (property) {
                 case 'dataProviderID':
                     this.setSelectionFromDataprovider();
                     break;
-
+                case 'enabled':
+                    if (change.currentValue && !this.readOnly)
+                    	this.renderer.removeAttribute(this.getFocusElement(), 'disabled');
+                    else
+                    	this.renderer.setAttribute(this.getFocusElement(), 'disabled', 'disabled');
+                    break;
             }
         }
-        super.svyOnChanges(changes);
     }
 
     getFocusElement(): HTMLElement {
