@@ -20,6 +20,7 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
     @ViewChild(FormatDirective) svyFormat: FormatDirective;
 
     showPass = false;
+    classForEye = '';
 
     constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, @Inject(DOCUMENT) doc: Document, protected windowService: WindowRefService) {
         super(renderer, cdRef, doc);
@@ -43,6 +44,7 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
         super.svyOnChanges(changes);
         if (changes.inputType) {
             this.setInputType(this.inputType);
+            this.addClassForEye();
         }
     }
 
@@ -74,9 +76,10 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
 
     showHidePass() {
 	    this.showPass = !this.showPass;
+	    this.addClassForEye();
     }
 
-    addClassForEye() {
+    private addClassForEye() {
 		let [mainClass, openClass, closeClass] = ['fa', 'fa-eye', 'fa-eye-slash'];
 		if (this.styleClassForEye) {
 			const classes = this.styleClassForEye.split(' ');
@@ -87,10 +90,11 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
 				[openClass, closeClass]  = classes;
 			}
 		}
+		
+		this.classForEye = mainClass + ' ' + closeClass;
 
 		if (this.showPass) {
-			return mainClass + ' ' + openClass;
+			this.classForEye = mainClass + ' ' + openClass;
 		}
-		return mainClass + ' ' + closeClass;
 	}
 }

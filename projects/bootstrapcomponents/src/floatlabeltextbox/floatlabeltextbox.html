@@ -22,7 +22,7 @@
     />
     <div id="svy-textbox-eyeDiv" *ngIf="inputType == 'password-with-eye'"
 		(click)="showHidePass()"
-		class="clickable svy-textbox-eye {{addClassForEye()}}"
+		class="clickable svy-textbox-eye {{classForEye}}"
 		[ngClass]="styleClass">
 	</div>
     <label [for]="servoyApi.getMarkupId()">{{floatLabelText}}</label>
