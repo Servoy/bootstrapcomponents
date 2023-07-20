@@ -44,8 +44,10 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
         super.svyOnChanges(changes);
         if (changes.inputType) {
             this.setInputType(this.inputType);
-            this.addClassForEye();
         }
+        if (changes.styleClassForEye) {
+			this.addClassForEye();
+		}
     }
 
     onModelChange(newValue) {
