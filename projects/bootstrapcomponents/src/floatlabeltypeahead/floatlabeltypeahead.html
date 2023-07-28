@@ -5,6 +5,7 @@
         class='bts-floatlabeltypeahead'
         [svyStartEdit]="'dataProviderID'"
         [hostComponent]="this"
+        [svyTabFix]="this"
         [(ngModel)]="dataProviderID"
         (change)="pushUpdate()"
         (selectItem)="valueChanged($event)"
