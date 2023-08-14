@@ -159,8 +159,11 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
         }
         language = language.toLowerCase();
         import(`@eonasdan/tempus-dominus/dist/locales/${language}.js`).then(
-            (module: { localization: { [key: string]: string } }) => {
-                this.config.localization = module.localization;
+            (module: { localization: { [key: string]: string | number } }) => {
+                  const copy = Object.assign({}, module.localization);
+                copy.startOfTheWeek =   this.config.localization.startOfTheWeek;
+                copy.hourCycle = this.config.localization.hourCycle;
+                this.config.localization = copy;
                 if (this.picker) this.picker.updateOptions(this.config);
             },
             () => {
