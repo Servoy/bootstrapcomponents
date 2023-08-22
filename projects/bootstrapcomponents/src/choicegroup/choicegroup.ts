@@ -31,11 +31,13 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
     }
 
     svyOnChanges(changes: SimpleChanges) {
+		super.svyOnChanges(changes);
         if (this.servoyApi.isInDesigner() && !this.valuelistID) {
             // this should only happen in preview
             this.valuelistID = [{ realValue: 1, displayValue: 'Item1' }, { realValue: 2, displayValue: 'Item2' }, { realValue: 3, displayValue: 'Item3' }] as IValuelist;
         }
         for (const property of Object.keys(changes)) {
+			const change = changes[property];
             switch (property) {
                 case 'dataProviderID':
                     this.setSelectionFromDataprovider();
@@ -53,9 +55,15 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
                         this.elementRef.nativeElement.classList.add('horizontaldirection');
                     }
                     break;
+                case 'enabled':
+                    if (change.currentValue && !this.readOnly)
+                    	this.renderer.removeAttribute(this.getFocusElement(), 'disabled');
+                    else
+                    	this.renderer.setAttribute(this.getFocusElement(), 'disabled', 'disabled');
+                    break;
             }
         }
-        super.svyOnChanges(changes);
+        
     }
 
     requestFocus(mustExecuteOnFocusGainedMethod: boolean) {
