@@ -158,10 +158,11 @@ angular.module('bootstrapcomponentsTextbox', ['servoy']).directive('bootstrapcom
         controller: function ($scope, $element) {
 			$scope.enterPressed = function(event)
 			{
-				if ($scope.model.dataProviderID !== undefined) {
-					$scope.model.dataProviderID = $element.find('input').val();
-					$scope.svyServoyapi.apply('dataProviderID');
-				}
+                    var ngModel = $element.children().controller("ngModel");
+                    if (ngModel && ngModel.$parsers[0]) {
+                        $scope.model.dataProviderID = ngModel.$parsers[0]( $element.find('input').val());
+                        $scope.svyServoyapi.apply('dataProviderID');
+                    }
 				if ($scope.handlers.onActionMethodID) {
 					$scope.handlers.onActionMethodID(event)
 				}
