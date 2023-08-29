@@ -3,7 +3,8 @@
     [ngClass]="[styleClass ? styleClass : '', styleClassExpression ? styleClassExpression : '']"
     [sabloTabseq]="(onActionMethodID || onDoubleClickMethodID || onRightClickMethodID) ? tabSeq : -2"
     [id]="servoyApi.getMarkupId()"
-    [svyTooltip]="toolTipText">
+    [svyTooltip]="toolTipText"
+    [ngStyle]="{pointerEvents: enabled ? 'unset': 'none'}">
     <ng-container [ngTemplateOutlet]="labelFor?labelForTemplate:labelTemplate"></ng-container>
 </span>
 
