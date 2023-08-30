@@ -1,5 +1,6 @@
 <ng-template #tooltipContent>{{lastSelectValue}}</ng-template>
-<div [id]="servoyApi.getMarkupId()" class="bts-combobox-container" ngbDropdown #comboboxDropdown="ngbDropdown" (openChange)="openChange($event)"  [container]="appendToBody?'body':null" #element> 
+<div [id]="servoyApi.getMarkupId()" class="bts-combobox-container" ngbDropdown #comboboxDropdown="ngbDropdown" (openChange)="openChange($event)"  
+    [container]="appendToBody?'body':null" [dropdownClass]="styleClass" #element> 
   <button class="bts-combobox form-control dropdown-toggle bts-dropdown" ngbDropdownToggle
     [ngbTooltip]="tooltipContent"
     triggers="manual"
@@ -13,8 +14,8 @@
     [disabled]="readOnly || !enabled"
     [id]="servoyApi.getMarkupId() + '_btn'"
     #input>
-		<span *ngIf="showAsHtml()" class="bts-dropdown-text" [innerHtml]="formattedValue ? (formattedValue | htmlFilter | trustAsHtml:isTrustedHTML()) : formattedValue"></span>
-		<span *ngIf="!showAsHtml()" class="bts-dropdown-text">{{formattedValue}}</span>
+		<span *ngIf="showAsHtml()" class="bts-dropdown-text" [ngClass]="placeholderClass" [innerHtml]="formattedValue ? (formattedValue | htmlFilter | trustAsHtml:isTrustedHTML()) : formattedValue"></span>
+		<span *ngIf="!showAsHtml()" class="bts-dropdown-text" [ngClass]="placeholderClass">{{formattedValue}}</span>
   </button>
   <div 
     ngbDropdownMenu 

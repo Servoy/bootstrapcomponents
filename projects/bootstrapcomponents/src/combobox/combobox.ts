@@ -28,6 +28,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
     keyboardSelectValue: string = null;
     lastSelectValue: string = null;
     firstItemFound = false;
+    placeholderClass = null;
     private skipFocus = false;
     private valuelistDisplayValueSubscription: Subscription = null;
     private showPopupOnFocusGain = false;
@@ -191,8 +192,9 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
             }
         }
         if (this.formattedValue === '' || this.formattedValue === null || this.formattedValue === undefined) {
-            if (changes['placeholderText']) {
+            if (this.placeholderText) {
                 this.formattedValue = this.placeholderText;
+                this.placeholderClass = 'bts-combobox-placeholder';
             }
         }
         super.svyOnChanges(changes);
@@ -201,6 +203,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
     updateValue(realValue: any) {
         this.dataProviderID = realValue;
         this.dataProviderIDChange.emit(this.dataProviderID);
+        this.placeholderClass = null;
     }
 
     getRemainingValueBefore(value: any): any {
