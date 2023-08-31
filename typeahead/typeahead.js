@@ -123,25 +123,28 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
             var lastFilteringPromise = null;
             var keyCodeToTrigger = null;
             $scope.filterList = function(value) {
-                var promise = $scope.model.valuelistID.filterList(value);
-                lastFilteringPromise = promise;
-                promise.finally(function() {
-                    if (lastFilteringPromise == promise){
-                        lastFilteringPromise = null;
-                        if (keyCodeToTrigger){
-                            // run now the delayed key event
-                            $timeout(function() {
-                                // we are already in apply, have to wait for next cycle
-                                var e = jQuery.Event("keydown");
-                                e.which = keyCodeToTrigger;
-                                e.keyCode = keyCodeToTrigger;
-                                $element.trigger(e);
-                                keyCodeToTrigger = null;
-                            })
-                        }
-                    }
-                });  
-               return promise;
+				if ($scope.model.valuelistID) {
+					var promise = $scope.model.valuelistID.filterList(value);
+                	lastFilteringPromise = promise;
+                	promise.finally(function() {
+                    	if (lastFilteringPromise == promise){
+                        	lastFilteringPromise = null;
+                        	if (keyCodeToTrigger){
+                            	// run now the delayed key event
+                            	$timeout(function() {
+                                	// we are already in apply, have to wait for next cycle
+                                	var e = jQuery.Event("keydown");
+                                	e.which = keyCodeToTrigger;
+                                	e.keyCode = keyCodeToTrigger;
+                                	$element.trigger(e);
+                                	keyCodeToTrigger = null;
+                            	})
+                        	}
+                    	}
+                	});  
+               		return promise;
+				}
+				return null;
             }
             
             $scope.shouldSelect = function(event) {

@@ -125,16 +125,20 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
 
     pushUpdate() {
         if (!this.dataProviderID && !this.isEditable()){
-		   const allowEmptyValue = this.valuelistID[0]?.displayValue === '' && this.valuelistID[0]?.realValue === null;
-		   if(!allowEmptyValue) {
-			   if (this.valuelistID[0]?.displayValue && this.valuelistID[0]?.realValue && this.elementRef.nativeElement.value === this.valuelistID[0]?.displayValue) {
-                    this.dataProviderID = this.valuelistID[0]?.realValue;
-                    this.currentValue = this.dataProviderID;
-               } else {
-				  this.dataProviderID = this.currentValue;
-			   }
-			   return;
-		   }
+			if (this.valuelistID) {
+				const allowEmptyValue = this.valuelistID[0]?.displayValue === '' && this.valuelistID[0]?.realValue === null;
+				if(!allowEmptyValue) {
+					if (this.valuelistID[0]?.displayValue && this.valuelistID[0]?.realValue && this.elementRef.nativeElement.value === this.valuelistID[0]?.displayValue) {
+						this.dataProviderID = this.valuelistID[0]?.realValue;
+						this.currentValue = this.dataProviderID;
+					} else {
+						this.dataProviderID = this.currentValue;
+					}
+					return;
+				}
+			} else {
+				this.dataProviderID = this.elementRef.nativeElement.value;
+			}
 		}
 		this.currentValue = this.dataProviderID;
         super.pushUpdate();
