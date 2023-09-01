@@ -27,7 +27,7 @@
 			"parameters": [{
 				"name": "previousIndex",
 				"type": "int",
-				"description": "The previous tab index"
+				"doc": "The previous tab index"
 			}, {
 				"name": "event",
 				"type": "JSEvent"
