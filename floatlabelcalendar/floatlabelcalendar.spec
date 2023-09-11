@@ -27,6 +27,8 @@
 	    "readOnly" : { "type": "protected", "blockingOn": true, "default": false,"for": ["dataProviderID","onDataChangeMethodID"], "tags":{"scope":"private"}},
 	    "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design", "doc": "Set the styleclasses that should be applied at to this component" }, "default" : "form-control"},
 	    "floatLabelText" : "tagstring",
+	    "errorMessage" : "tagstring",
+		"errorShow" : {"type" : "boolean", "pushToServer": "allow", "tags":{"scope":"private"}},
 	    "size" : {"type" :"dimension",  "default" : {"width":140, "height":50}},
 	    "tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
 	    "theme" : {"type":"string" , "tags": { "scope" :"design"}, "default" : "light",  "values" :["auto" , "dark", "light"]},
@@ -141,7 +143,15 @@
                             "optional":true
 						}       
 				]
-	        }
+	        },
+	   		"toggleErrorMessage": {
+	   			"parameters":[
+						 	{
+								"name":"show",
+					 			"type":"boolean"
+							}
+						]
+	   		}
 	}
 
 }

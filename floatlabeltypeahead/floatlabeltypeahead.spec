@@ -17,6 +17,8 @@
 		"size" : {"type" :"dimension",  "default" : {"width":140, "height":50}},
 	    "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design", "doc": "Set the styleclasses that should be applied at to this component" }, "default" : "form-control"},
 	    "floatLabelText" : "tagstring",
+	    "errorMessage" : "tagstring",
+		"errorShow" : {"type" : "boolean", "pushToServer": "allow", "tags":{"scope":"private"}},
         "valuelistID" : { "type" : "valuelist", "tags": {  "logWhenOverMax": false}, "for": "dataProviderID","config": "valuelistConfig", "default":"autoVL", "pushToServer": "allow", "max":100},
         "valuelistConfig" : { "type" : "valuelistConfig"},
         "showAs": { "type": "string", "values": ["html", "text"], "default" : "html", "tags": { "scope" :"design","doc" :"Option typeahead options are shown as plain text or sanitized html." }},
@@ -89,7 +91,15 @@
 				],
 				"delayUntilFormLoads": true,
 				"discardPreviouslyQueuedSimilarCalls": true
-	        }
+	  	},
+	   	"toggleErrorMessage": {
+	   		"parameters":[
+						 	{
+								"name":"show",
+					 			"type":"boolean"
+							}
+						]
+	   	}
 	}
 
 }

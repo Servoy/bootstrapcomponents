@@ -14,6 +14,8 @@
 	        "enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["dataProviderID","onActionMethodID","onDataChangeMethodID","onFocusGainedMethodID","onFocusLostMethodID","onRightClickMethodID"] }, 
 			"format" : {"for":["valuelistID","dataProviderID"] , "type" :"format"},
 			"floatLabelText" : "tagstring",
+			"errorMessage" : "tagstring",
+			"errorShow" : {"type" : "boolean", "pushToServer": "allow", "tags":{"scope":"private"}},
 	        "readOnly" : { "type" : "readOnly", "oppositeOf" : "enabled", "tags": {"scope":"private"}}, 
 	        "size" : {"type" :"dimension",  "default" : {"width":140, "height":50}},
 	        "showAs": { "type": "string", "values": [{"text":null}, {"html":"html"}, {"trusted_html":"trusted_html"}]},
@@ -95,7 +97,15 @@
 				"delayUntilFormLoads": true,
 			"discardPreviouslyQueuedSimilarCalls": true
 
-	        }
+	        },
+	        "toggleErrorMessage": {
+	   			"parameters":[
+						 	{
+								"name":"show",
+					 			"type":"boolean"
+							}
+						]
+	   		}
 	}
 	 
 }

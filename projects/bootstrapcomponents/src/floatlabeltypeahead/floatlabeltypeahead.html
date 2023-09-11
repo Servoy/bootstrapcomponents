@@ -36,3 +36,5 @@
 <ng-template #rtText let-r="result" let-t="term" let-formatter="formatter">
   <ngb-highlight [result]="formatter(r)" [term]="t"></ngb-highlight>
 </ng-template>
+
+<div class="bts-floatlabeltypeahead-error-text" *ngIf="errorShow">{{errorMessage}}</div>

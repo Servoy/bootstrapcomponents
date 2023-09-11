@@ -1,3 +1,31 @@
+.bts-floatlabelcalendar-input-invalid + label,
+.bts-floatlabelcombobox-input-invalid + label,
+.bts-floatlabeltextarea-input-invalid + label,
+.bts-floatlabeltextbox-input-invalid + label,
+.bts-floatlabeltypeahead-input-invalid + label {
+	color: #dc3545;
+}
+
+.bts-floatlabelcalendar-input-invalid,
+.bts-floatlabelcombobox-input-invalid,
+.bts-floatlabeltextarea-input-invalid,
+.bts-floatlabeltextbox-input-invalid,
+.bts-floatlabeltypeahead-input-invalid {
+	border-color: #dc3545;
+}
+
+.bts-floatlabelcalendar-error-text,
+.bts-floatlabelcombobox-error-text,
+.bts-floatlabeltextarea-error-text,
+.bts-floatlabeltextbox-error-text,
+.bts-floatlabeltypeahead-error-text {
+	color: #dc3545;
+	font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .svy-wrapper > * > .bts-media {
 	max-width: 100%;
     max-height: 100%;
