@@ -19,6 +19,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
 
     @ViewChildren(NgbDropdownItem) menuItems: QueryList<NgbDropdownItem>;
     @ViewChild('input') input: ElementRef<HTMLButtonElement>;
+    @ViewChild('dropdown') dropdownElement: ElementRef<HTMLElement>;
     @ViewChild(NgbDropdown) comboboxDropdown: NgbDropdown;
     @ViewChild('tooltip') tooltip: NgbTooltip;
 
@@ -197,6 +198,18 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
                 this.placeholderClass = 'bts-combobox-placeholder';
             }
         }
+        if (changes['styleClass']) {
+            const change = changes['styleClass'];
+            if (change.previousValue) {
+                const array = change.previousValue.trim().split(' ');
+                array.filter((element: string) => element !== '').forEach((element: string) => this.renderer.removeClass(this.dropdownElement.nativeElement, element));
+            }
+            if (change.currentValue) {
+                const array = change.currentValue.trim().split(' ');
+                array.filter((element: string) => element !== '').forEach((element: string) => this.renderer.addClass(this.dropdownElement.nativeElement, element));
+            }
+        }
+
         super.svyOnChanges(changes);
     }
 
