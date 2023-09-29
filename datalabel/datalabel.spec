@@ -9,7 +9,7 @@
 	"keywords": ["tag"], 
 	"model":
 	{
-			"dataProviderID" : { "type":"dataprovider", "tags": { "scope": "design", "doc":"The column or variable to provide the data for this label."}, "resolveValuelist" : true },
+			"dataProviderID" : { "type":"dataprovider", "tags": { "wizard": true, "scope": "design", "doc":"The column or variable to provide the data for this label."}, "resolveValuelist" : true },
 			"valuelistID" : { "type" : "valuelist",  "for": "dataProviderID", "max":1, "tags": { "doc":"The value list which is used to get a display value for the actual columns real value like id -> name"}},
 			"enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["onActionMethodID","onDoubleClickMethodID","onRightClickMethodID"],"tags": {"doc": "Whether the component is enabled or not; blocks onAction, onDoubleClick, onRightClick events."} },
 			"format" : {"for":["valuelistID","dataProviderID"] , "type" :"format", "tags": { "doc":"A format to format the data shown"}},
