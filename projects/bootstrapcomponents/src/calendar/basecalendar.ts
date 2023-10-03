@@ -29,10 +29,12 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
         useCurrent: false,
         display: {
             components: {
+				calendar: true,
                 decades: true,
                 year: true,
                 month: true,
                 date: true,
+                clock: true,
                 hours: true,
                 minutes: true,
                 seconds: true

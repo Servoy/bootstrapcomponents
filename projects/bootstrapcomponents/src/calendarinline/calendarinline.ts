@@ -31,17 +31,21 @@ export class ServoyBootstrapCalendarinline extends ServoyBootstrapBaseCalendar {
             if (change.currentValue) {
                 if (change.currentValue.type === 'DATETIME' && change.currentValue.display) {
                     const format = change.currentValue.display;
-                    const showCalendar = format.indexOf('y') >= 0 || format.indexOf('M') >= 0;
-                    const showTime = format.indexOf('h') >= 0 || format.indexOf('H') >= 0 || format.indexOf('m') >= 0;
-                    const showSecondsTimer = format.indexOf('s') >= 0;
-                    this.config.display.components.decades = showCalendar;
-                    this.config.display.components.year = showCalendar;
-                    this.config.display.components.month = showCalendar;
-                    this.config.display.components.date = showCalendar;
-                    this.config.display.components.hours = showTime;
-                    this.config.display.components.minutes = showTime;
-                    this.config.display.components.seconds = showTime;
-                    this.config.display.components.seconds = showSecondsTimer;
+                    const showYear = format.indexOf('y') >= 0 || format.indexOf('Y') >= 0;
+                    const showMonth = (format.indexOf('m') >= 0 || format.indexOf('M') >= 0) && (format.indexOf('-') >= 0 || format.indexOf('/') >= 0);
+                    const showDate = format.indexOf('d') >= 0 || format.indexOf('D') >= 0;
+                    const showHour = format.indexOf('h') >= 0 || format.indexOf('H') >= 0;
+                    const showMinute = (format.indexOf('m') >= 0 || format.indexOf('M') >= 0) && format.indexOf(':') >= 0;
+                    const showSecond = format.indexOf('s') >= 0 || format.indexOf('S') >= 0;
+                    this.config.display.components.calendar = showYear || showMonth || showDate;
+                    this.config.display.components.decades = showYear;
+                    this.config.display.components.year = showYear;
+                    this.config.display.components.month = showMonth;
+                    this.config.display.components.date = showDate;
+                    this.config.display.components.clock = showHour || showMinute || showSecond;
+                    this.config.display.components.hours = showHour;
+                    this.config.display.components.minutes = showMinute;
+                    this.config.display.components.seconds = showSecond;
                     if (format.indexOf('a') >= 0 || format.indexOf('A') >= 0 || format.indexOf('am') >= 0 || format.indexOf('AM') >= 0) {
 						this.config.localization.hourCycle = 'h12';
 					} else if (format.indexOf('H') >= 0) {
@@ -50,6 +54,9 @@ export class ServoyBootstrapCalendarinline extends ServoyBootstrapBaseCalendar {
 						this.config.localization.hourCycle = 'h12';
 					}
                     if (this.picker !== null) this.picker.updateOptions(this.config);
+                    this.picker.dispose();
+                    this.picker = null;
+                    this.initializePicker();
                 } else {
                     this.log.warn('wrong format or type given into the calendar field ' + JSON.stringify(change.currentValue));
                 }
