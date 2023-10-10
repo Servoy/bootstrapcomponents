@@ -18,7 +18,8 @@
     ngbDropdownMenu 
     [attr.aria-labelledby]="servoyApi.getMarkupId() + '_btn'" 
     [ngStyle]="{ 'width.px': getDropDownWidth() }"
-    (keydown)="handleKeyDown($event)">
+    (keydown)="handleKeyDown($event)"
+    #dropdown>
     <ng-container *ngIf="openState">
       <button 
         *ngFor="let value of valuelistID; let idx = index" 
