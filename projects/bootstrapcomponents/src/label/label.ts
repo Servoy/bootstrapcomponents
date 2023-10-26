@@ -1,5 +1,5 @@
 import { ServoyBootstrapBaseLabel } from '../bts_baselabel';
-import { Component, Input, Renderer2, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, Renderer2, ChangeDetectorRef, ChangeDetectionStrategy, SimpleChanges } from '@angular/core';
 
 @Component({
     selector: 'bootstrapcomponents-label',
@@ -22,5 +22,26 @@ export class ServoyBootstrapLabel extends ServoyBootstrapBaseLabel<HTMLSpanEleme
                 this.onDoubleClickMethodID(e, this.getDataTarget(e));
             });
         }
+    }
+
+    svyOnChanges(changes: SimpleChanges) {
+        if (changes) {
+            for (const property of Object.keys(changes)) {
+                const change = changes[property];
+                switch (property) {
+                    case 'styleClassExpression':
+                        if (change.previousValue) {
+                            const array = change.previousValue.toString().trim().split(' ');
+                            array.filter((element: string) => element !== '').forEach((element: string) => this.renderer.removeClass(this.getStyleClassElement(), element));
+                        }
+                        if (change.currentValue) {
+                            const array = change.currentValue.toString().trim().split(' ');
+                            array.filter((element: string) => element !== '').forEach((element: string) => this.renderer.addClass(this.getStyleClassElement(), element));
+                        }
+                        break;
+                }
+            }
+        }
+        super.svyOnChanges(changes);
     }
 }
