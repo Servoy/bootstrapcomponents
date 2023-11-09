@@ -90,7 +90,11 @@
 	line-height: 0;
 	text-overflow: ellipsis;
     white-space: nowrap;
-    pointer-events: auto;
+}
+
+.svy-wrapper > * > .bts-button:disabled, .svy-layoutcontainer > * > .bts-button:disabled {
+	pointer-events: auto;
+	cursor: unset;
 }
 
 .svy-wrapper>*>.bts-textarea {
