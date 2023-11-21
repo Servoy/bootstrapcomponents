@@ -266,7 +266,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
     private valueCompare = (valueListValue: { displayValue: any; realValue: any }): boolean => valueListValue.realValue == this.dataProviderID;
 
     private dateValueCompare = (valueListValue: { displayValue: any; realValue: Date }): boolean => {
-        if (this.dataProviderID) {
+        if (this.dataProviderID && valueListValue.realValue) {
             return valueListValue.realValue.getTime() === this.dataProviderID.getTime();
         }
         return false;
