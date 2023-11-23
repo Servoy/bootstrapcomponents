@@ -61,6 +61,12 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
                         else
                             this.renderer.setAttribute(this.getFocusElement(), 'readonly', 'readonly');
                         break;
+                    case 'readOnly':
+                        if (change.currentValue || (!change.currentValue && !this.editable))
+                            this.renderer.setAttribute(this.getFocusElement(), 'readonly', 'readonly');
+                        else
+                        	this.renderer.removeAttribute(this.getFocusElement(), 'readonly'); 
+                        break;
                     case 'placeholderText':
                        this.setPlaceHolderText(change);
                         break;

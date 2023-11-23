@@ -65,8 +65,8 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
 
     svyOnChanges(changes: SimpleChanges) {
         super.svyOnChanges(changes);
-        if (changes.readOnly || changes.enabled) {
-            this.instance.setDisabledState(this.readOnly || !this.enabled);
+        if (changes.enabled || changes.findmode) {
+            this.instance.setDisabledState(!this.enabled && !this.findmode);
         }
         if (changes.format && this.valuelistID) {
             this.instance.writeValue(this.dataProviderID);
@@ -90,7 +90,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
         const inputFocus$ = this.focus$;
 
         return merge( debouncedText$, inputFocus$, clicksWithClosedPopup$ ).pipe( switchMap( term => {
-            if ( this.editable === true && this.valuelistID ) {
+            if ( this.editable === true && this.readOnly === false && this.valuelistID ) {
                 const promise = this.valuelistID.filterList( term )
                 this.lastFilteringPromise = promise;
                 promise.toPromise().finally(() => {
