@@ -27,9 +27,10 @@ export class ServoyBootstrapBaseComponent<T extends HTMLElement> extends ServoyB
                     case 'enabled':
                         if (change.currentValue)
                             this.renderer.removeAttribute(this.getFocusElement(), 'disabled');
-                        else
+                        else {
                             this.renderer.setAttribute(this.getFocusElement(), 'disabled', 'disabled');
                             this.renderer.removeAttribute(this.getFocusElement(), 'readonly');
+                        }
                         break;
                     case 'variant':
                         const styleClasses = this.styleClass?this.styleClass.trim().split(' '):[];

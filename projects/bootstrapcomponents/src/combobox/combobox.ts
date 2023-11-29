@@ -171,7 +171,9 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
 
     svyOnChanges(changes: SimpleChanges) {
         this.valueComparator = this.valuelistID && this.valuelistID.isRealValueDate() ? this.dateValueCompare : this.valueCompare;
-        if (changes['dataProviderID'] && this.valuelistID) {
+        if (changes['dataProviderID'] && this.findmode) {
+            this.formattedValue = this.dataProviderID;
+        } else if (changes['dataProviderID'] && this.valuelistID) {
             if (this.valuelistDisplayValueSubscription !== null) {
                 this.valuelistDisplayValueSubscription.unsubscribe();
                 this.valuelistDisplayValueSubscription = null;

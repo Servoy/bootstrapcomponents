@@ -10,7 +10,6 @@
 		(selectItem)="valueChanged($event)"
 		[sabloTabseq]="tabSeq"
 		[editable]="isEditable()"
-        [readOnly]="!findmode && (readOnly || !editable)"
 		[svyTooltip]="toolTipText"
 		[ngbTypeahead]="filterValues"
         [container]="appendToBody?'body':null"

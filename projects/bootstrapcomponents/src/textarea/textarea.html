@@ -3,7 +3,6 @@
     class="bts-textarea"
     placeholder="{{placeholderText}}"
     [disabled]="!enabled"
-    [readOnly]="readOnly || !editable"
     [sabloTabseq]="tabSeq"
 	[(ngModel)]="dataProviderID"
 	(change)="pushUpdate()"

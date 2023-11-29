@@ -17,6 +17,7 @@
 			"errorMessage" : "tagstring",
 			"errorShow" : {"type" : "boolean", "pushToServer": "allow", "tags":{"scope":"private"}},
 	        "readOnly" : { "type" : "readOnly", "oppositeOf" : "enabled", "tags": {"scope":"private"}}, 
+	        "findmode" : { "type":"findmode", "tags":{"scope":"private"}, "for" : {"enabled":true}},
 	        "size" : {"type" :"dimension",  "default" : {"width":140, "height":50}},
 	        "showAs": { "type": "string", "values": [{"text":null}, {"html":"html"}, {"trusted_html":"trusted_html"}]},
 	        "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design", "doc": "Set the styleclasses that should be applied at to this component" }, "values" :["form-control", "input-sm", "svy-padding-xs", "select2-container-svy-xs"]}, 

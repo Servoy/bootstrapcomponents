@@ -90,7 +90,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
         const inputFocus$ = this.focus$;
 
         return merge( debouncedText$, inputFocus$, clicksWithClosedPopup$ ).pipe( switchMap( term => {
-            if ( this.editable === true && this.readOnly === false && this.valuelistID ) {
+            if ( (this.findmode || (!this.readOnly && this.editable)) && this.valuelistID ) {
                 const promise = this.valuelistID.filterList( term )
                 this.lastFilteringPromise = promise;
                 promise.toPromise().finally(() => {

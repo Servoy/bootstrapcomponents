@@ -5,7 +5,6 @@
         (change)="updateDataprovider()"
         [svyTooltip]="toolTipText"
         [sabloTabseq]="tabSeq"
-        [readOnly]="readOnly || !editable"
         [id]="servoyApi.getMarkupId()"
     />
     <datalist [id]="servoyApi.getMarkupId() + '_datalist'" > 

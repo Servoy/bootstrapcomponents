@@ -55,18 +55,6 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
             for (const property of Object.keys(changes)) {
                 const change = changes[property];
                 switch (property) {
-                    case 'editable':
-                        if (change.currentValue && !this.readOnly)
-                            this.renderer.removeAttribute(this.getFocusElement(), 'readonly');
-                        else
-                            this.renderer.setAttribute(this.getFocusElement(), 'readonly', 'readonly');
-                        break;
-                    case 'readOnly':
-                        if (change.currentValue || (!change.currentValue && !this.editable))
-                            this.renderer.setAttribute(this.getFocusElement(), 'readonly', 'readonly');
-                        else
-                        	this.renderer.removeAttribute(this.getFocusElement(), 'readonly'); 
-                        break;
                     case 'placeholderText':
                        this.setPlaceHolderText(change);
                         break;
@@ -75,6 +63,13 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
                         break;
                 }
             }
+            if (changes.editable || changes.readOnly || changes.findmode) {
+				if (this.findmode || (!this.readOnly && this.editable)) {
+					this.renderer.removeAttribute(this.getFocusElement(), 'readonly');
+				} else {
+					this.renderer.setAttribute(this.getFocusElement(), 'readonly', 'readonly');
+				}
+			}
             super.svyOnChanges(changes);
         }
     }
