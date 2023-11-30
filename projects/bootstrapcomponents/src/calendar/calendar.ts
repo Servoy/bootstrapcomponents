@@ -112,6 +112,10 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
                 this.initializePicker();
             }
         }
+        if (changes.pickerOnly) {
+            // pickerOnly maps on the readonly flag so just set that boolean of the parent class
+            this.editable = !this.pickerOnly;
+        }
         super.svyOnChanges(changes);
     }
 
