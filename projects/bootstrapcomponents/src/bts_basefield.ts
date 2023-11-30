@@ -64,7 +64,10 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
                 }
             }
             if (changes.editable || changes.readOnly || changes.findmode) {
-				if (this.findmode || (!this.readOnly && this.editable)) {
+                const realFindmode = this.findmode === undefined? false: this.findmode; // default for find is false
+                const realReadonly = this.readOnly === undefined? false: this.readOnly; // default for readonly is false
+                const realEditable = this.editable === undefined? true: this.editable; // default for editable is true
+				if (realFindmode || (!realReadonly && realEditable)) {
 					this.renderer.removeAttribute(this.getFocusElement(), 'readonly');
 				} else {
 					this.renderer.setAttribute(this.getFocusElement(), 'readonly', 'readonly');
