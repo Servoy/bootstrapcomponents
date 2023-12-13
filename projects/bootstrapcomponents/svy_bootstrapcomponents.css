@@ -275,7 +275,7 @@ ngb-typeahead-window.dropdown-menu {
     align-items: center;
 }
 
-.svy-wrapper > * > .bts-label.default-align > .bts-label-icon {
+.svy-wrapper > * > .bts-label.default-align > .bts-label-icon, .svy-layoutcontainer > * > .bts-label.default-align > .bts-label-icon, .svy-tabpanel-tab-icon {
 	padding: 0 3px;
 }
 
