@@ -62,6 +62,12 @@
 	color: unset;
 }
 
+.svy-wrapper > * > .bts-accordion {
+	display: block;
+    height: 100%;
+    width: 100%;
+}
+
 .bts-accordion .card-body
 {
 	padding:0px;
