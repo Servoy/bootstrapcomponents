@@ -33,6 +33,9 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
         if (this.tabs && this.tabIndex > 0 && this.isTabDisabled(this.tabIndex - 1)) {
             this.selectTabAt(this.getFirstEnabledTabIndex() - 1);
         }
+        if (this.servoyApi.isInDesigner()) {
+		   this.elementRef.nativeElement.style.border = '1px solid lightblue';
+	   	}
     }
 
     svyOnChanges(changes: SimpleChanges) {
