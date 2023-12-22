@@ -28,9 +28,6 @@ export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDi
     svyOnInit() {
        super.svyOnInit();
        this.updateContentHeight();
-       if (this.servoyApi.isInDesigner()) {
-		   this.elementRef.nativeElement.style.border = '1px solid lightblue';
-	   }
     }
 
     private updateContentHeight() {
