@@ -19,7 +19,7 @@ export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDi
      }
 
     svyOnChanges( changes: SimpleChanges ) {
-        if ( changes['height']) {
+        if (changes['height'] || changes['tabs']) {
             this.updateContentHeight();
         }
         super.svyOnChanges(changes);
@@ -28,11 +28,6 @@ export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDi
     svyOnInit() {
        super.svyOnInit();
        this.updateContentHeight();
-       if (this.servoyApi.isInDesigner() && this.tabs === undefined) {
-		   this.renderer.addClass(this.elementRef.nativeElement, 'bts-accordion-designer');
-	   } else {
-		   this.renderer.removeClass(this.elementRef.nativeElement, 'bts-accordion-designer');
-	   }
     }
 
     private updateContentHeight() {
@@ -54,6 +49,18 @@ export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDi
             totalHeight = totalHeight - paneHeight * this.tabs.length - borderWidth ;
         }
         this.panelHeight = totalHeight;
+        
+        if (this.servoyApi.isInDesigner()){
+			if (this.tabs === undefined || this.tabs.length === 0 || (this.tabs.length > 0 && !this.contentElementRef)){
+				this.elementRef.nativeElement.style.display = "block";
+				if (!this.servoyApi.isInAbsoluteLayout()) {  // responsive form
+					this.elementRef.nativeElement.style.minHeight = `${this.height}px`;
+				} else { // css pos
+					this.elementRef.nativeElement.style.height = '100%';
+					this.elementRef.nativeElement.style.width = '100%';
+				}
+			}  	
+	   	}
     }
 
     onTabChange( event: NgbPanelChangeEvent ) {

@@ -62,12 +62,6 @@
 	color: unset;
 }
 
-.bts-accordion-designer {
-	display: block;
-    height: 100%;
-    width: 100%;
-}
-
 .bts-accordion .card-body
 {
 	padding:0px;
