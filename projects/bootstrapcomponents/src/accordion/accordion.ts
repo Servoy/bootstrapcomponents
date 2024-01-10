@@ -28,6 +28,11 @@ export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDi
     svyOnInit() {
        super.svyOnInit();
        this.updateContentHeight();
+       if (this.servoyApi.isInDesigner() && this.tabs === undefined) {
+		   this.renderer.addClass(this.elementRef.nativeElement, 'bts-accordion-designer');
+	   } else {
+		   this.renderer.removeClass(this.elementRef.nativeElement, 'bts-accordion-designer');
+	   }
     }
 
     private updateContentHeight() {
