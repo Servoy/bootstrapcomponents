@@ -1,3 +1,5 @@
+/* Checkbox is a standard input component that can have two states: checked and unchecked. */
+
 /**
  * Request the focus to this checkbox.
  * 

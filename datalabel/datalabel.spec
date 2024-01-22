@@ -5,6 +5,7 @@
 	"version": 1,
 	"icon": "bootstrapcomponents/datalabel/datalabel.png",
 	"definition": "bootstrapcomponents/datalabel/datalabel.js",
+    "doc": "bootstrapcomponents/datalabel/datalabel_doc.js",
 	"libraries": [{"name":"bootstrapcomponents-datalabel-css", "version":"1.0", "url":"bootstrapcomponents/datalabel/datalabel.css", "mimetype":"text/css"}],
 	"keywords": ["tag"], 
 	"model":

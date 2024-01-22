@@ -1,3 +1,5 @@
+/* The AccordionPanel component is a container similar to a TabPanel, but, instead of having tabs for showing / hiding forms, it has buttons that behave like an accordion, moving one way or the other. */
+
 /**
  *  Adds a tab to this accordion with that form and text on the given index
  */

@@ -3,7 +3,7 @@
     "displayName":"Bootstrap Components",
     "packageType": "Web-Component",
     "icon": "https://raw.githubusercontent.com/Servoy/bootstrapextracomponents/master/bootstrapextracomponents/icon/bootstrap-solid.png",
-    "description": "A set of components based on the bootstrap css, intended to be used together with the 12grid layout package (please install that package as well). You can build a responsive layout for your form using this combination or components and layouts.",
+    "description": "A set of basic components based on the bootstrap css.",
     "wikiUrl": "https://github.com/Servoy/bootstrapcomponents/wiki",
     "sourceUrl" : "https://github.com/Servoy/bootstrapcomponents",
     "releases" : [{"version":"1.0.1","url":"https://github.com/Servoy/bootstrapcomponents/releases/download/v1.0.1/bootstrapcomponents.zip"},

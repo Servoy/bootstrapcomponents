@@ -13,11 +13,11 @@
 	{
 		"enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["onActionMethodID","onDoubleClickMethodID","onRightClickMethodID"], "tags": {"doc": "Whether the component is enabled or not; blocks onAction, onDoubleClick, onRightClick events."} },
 	    "imageStyleClass" : { "type" :"styleclass" ,"tags": { "doc" :"For buttons showing as plain text, you can also specify an image styleclass to be displayed to the left. Can be font awesome icons."}},
-        "trailingImageStyleClass": {"type":"string", "tags": { "doc": "An icon style class property (glyphicon, material design or Font Awesome).<br/>Example 'fas fa-search' <br/>If you want to use Font Awesome classes you need to enable the Font Awesome service from the Servoy Package Manager. "}},
+        "trailingImageStyleClass": {"type":"string", "tags": { "doc": "An icon style class property (glyphicon, material design or Font Awesome).<br/>Example 'fas fa-search' <br/>If you want to use Font Awesome classes you need to enable the Font Awesome service from the Servoy Package Manager."}},
 	    "tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design", "doc":"Tab sequence index of the form" }}, 
 	    "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design", "doc": "Button style class, typically one of the bootstrap button classes (e.g. 'btn btn-primary')" },"default": "btn btn-default", "values" :["btn","btn-default","btn-lg","btn-sm","btn-xs"]},
 	    "variant" : { "type" :"variant", "tags": { "scope" :"design", "doc": "Sets the variant of this button, this sets a certain set of styleclasses at runtime for which this variant is configured for" }},
-	    "text" : {"type":"tagstring" , "initialValue":"Button", "tags": { "directEdit" : "true", "doc": "The text shown for the button (i18n is supported)" }},
+	    "text" : {"type":"tagstring", "initialValue":"Button", "tags": { "directEdit" : "true", "doc": "The text shown for the button (i18n is supported)" }},
 	    "size" : {"type" :"dimension",  "default" : {"width":80, "height":30}}, 
         "showAs": { "type": "string", "values": [{"text":null}, {"html":"html"}, {"trusted_html":"trusted_html"}],"tags": { "doc" :"Option whether button text is shown as plain text, sanitized html or trusted html (as is)."}},
 	    "toolTipText" : { "type" : "tagstring", "tags": {"doc": "Tooltip text shown when hovering over the button (i18n is supported)"}}, 

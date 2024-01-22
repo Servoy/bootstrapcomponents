@@ -1,3 +1,5 @@
+/* Combobox is a standard input component that allows the user to pick one of the options in it's drop-down list. */
+
 /**
 * Request the focus to this combobox.
 * @example %%prefix%%%%elementName%%.requestFocus();

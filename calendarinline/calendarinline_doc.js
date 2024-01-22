@@ -1,3 +1,5 @@
+/* Calendar-Inline is an inline input component. It shows a date-picker so the user can choose Date values for a bound data-provider.
+It is similar to the Calendar component, but this Calendar-Inline shows the date-picker the date-picker directly on the form, not in a popup when clicked. */
 
 /**
  * Set the min date or max date that can be selected
