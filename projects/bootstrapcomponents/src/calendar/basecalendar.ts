@@ -4,6 +4,7 @@ import { DOCUMENT } from '@angular/common';
 import { getFirstDayOfWeek, LoggerService, ServoyPublicService } from '@servoy/public';
 import { DateTime as LuxonDateTime } from 'luxon';
 import { Namespace, TempusDominus, DateTime, Options } from '@eonasdan/tempus-dominus';
+import { Localization } from '@eonasdan/tempus-dominus/types/utilities/options';
 
 @Directive()
 export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDivElement> {
@@ -21,6 +22,8 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
 
     @Input() calendarWeeks: boolean;
     @Input() theme: string;
+    
+    @Input() options: Options;
 
     picker: TempusDominus;
 
@@ -52,6 +55,7 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
         },
         localization: {
             startOfTheWeek: 1,
+            dayViewHeaderFormat: { month: 'long', year: 'numeric' },
             locale: 'en',
             hourCycle: 'h23'
         }
@@ -73,7 +77,7 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
 
     public svyOnInit() {
         if (this.theme){
-            this.config.display.theme = this.theme as "auto" | "light" | "dark";
+            this.config.display.theme = this.theme as 'auto' | 'light' | 'dark';
         }
         this.initializePicker();
         super.svyOnInit();
@@ -81,6 +85,9 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
 
     svyOnChanges(changes: SimpleChanges) {
         super.svyOnChanges(changes);
+        if (changes.options) {
+            Object.assign(this.config, this.options);
+        }
         if (changes.dataProviderID && this.picker && !this.findmode) {
             const value = (this.dataProviderID instanceof Date) ? DateTime.convert(this.dataProviderID, null, this.config.localization) : null;
             this.picker.dates.setValue(value);
@@ -101,7 +108,7 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
             this.config.restrictions.disabledDates = this.convertDateArray(changes.disabledDates.currentValue);
         if (changes.keepInvalid && changes.keepInvalid.currentValue !== undefined)
             this.config.keepInvalid = changes.keepInvalid.currentValue;
-        if (this.picker && (changes.calendarWeeks || changes.minDate
+        if (this.picker && (changes.calendarWeeks || changes.minDate || changes.options
             || changes.maxDate || changes.disabledDays || changes.disabledDates)) this.picker.updateOptions(this.config);
     }
 
@@ -123,7 +130,7 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
                 this.picker.dates.setValue(value);
                 return;
             }
-            this.dataProviderID = !event.date ? null : event.date;;
+            this.dataProviderID = !event.date ? null : event.date;
         } else this.dataProviderID = null;
         super.pushUpdate();
     }
@@ -161,10 +168,11 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
         }
         language = language.toLowerCase();
         import(`@eonasdan/tempus-dominus/dist/locales/${language}.js`).then(
-            (module: { localization: { [key: string]: string | number } }) => {
+            (module: { localization: Localization}) => {
                   const copy = Object.assign({}, module.localization);
                 copy.startOfTheWeek =   this.config.localization.startOfTheWeek;
                 copy.hourCycle = this.config.localization.hourCycle;
+                copy.dayViewHeaderFormat = this.config.localization.dayViewHeaderFormat;
                 this.config.localization = copy;
                 if (this.picker) this.picker.updateOptions(this.config);
             },

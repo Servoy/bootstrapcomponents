@@ -38,7 +38,8 @@
 	    "toolTipText" : { "type" : "tagstring"}, 
 	   "visible" : {"type" : "visible", "tags": {"doc": "Whether the button is visible or not"}},
         "selectOnEnter" : {"type" :"boolean", "tags": { "scope" :"design", "doc": "Whether to select the text when date field is focused." }},
-        "pickerOnly": {"type" :"boolean", "default": false, "tags": { "scope" :"design", "doc": "Whether to only allow date entry from the date picker or not (cannot type the date)." }}
+        "pickerOnly": {"type" :"boolean", "default": false, "tags": { "scope" :"design", "doc": "Whether to only allow date entry from the date picker or not (cannot type the date)." }},
+        "options": {"type": "json", "tags": {"doc": "See https://getdatepicker.com/6/options/ what options you can set, some could be overridden by the locale again"}}
 	    
 	},
 	"handlers":
