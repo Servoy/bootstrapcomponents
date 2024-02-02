@@ -66,7 +66,15 @@
 			}]
 		}
 	},
-	
+	"internalApi" : {
+	     "removeTabAt": {
+            "returns": "boolean",
+            "parameters": [{
+                "name": "index",
+                "type": "int"
+            }]
+        }
+	},
 	"api": {
 		"addTab": {
 			"returns": "tab",
