@@ -19,6 +19,7 @@ function removeTabAt(index) {}
 /**
  * Select the tab of the given index.
  * Return true if this was succesfull.
+ * @deprecated use tabIndex property instead.
  */
 function selectTabAt(index) {}
 

@@ -1,5 +1,6 @@
 /**
  * Selects the tab of the given index
+ * @deprecated use tabIndex property instead.
  */
 function selectTabAt(idx) {}
 

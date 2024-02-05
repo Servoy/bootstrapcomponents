@@ -115,7 +115,8 @@
 			"parameters": [{
 				"name": "index",
 				"type": "int"
-			}]
+			}],
+			"deprecated": "Should use tabIndex property instead."
 
 		}
 	},
