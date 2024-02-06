@@ -31,6 +31,7 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
 
 	@HostListener('keydown', ['$event'])
   	onKeyDown(event: KeyboardEvent) {
+		const shortcuts = ['t', 'y', 'b', 'e', '+', '-'];
         if (!this.picker) return;
     	if (event.key === 'ArrowDown' || event.key === 'ArrowUp' || event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
 			if (!this.picker.display.isVisible && event.key === 'ArrowDown') {
@@ -47,6 +48,24 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
 			if (this.picker.display.isVisible) {
 				this.picker.hide();
 			}
+		} else if(shortcuts.includes(event.key.toLowerCase())) {
+			let date = new Date();
+			if (event.key.toLowerCase() === 'y') {
+				date.setDate(date.getDate() - 1);
+			} else if (event.key.toLowerCase() === 'b') {
+				date.setDate(1);
+			} else if (event.key.toLowerCase() === 'e') {
+				const lastDayOfMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+				date.setDate(lastDayOfMonth);
+			} else if (event.key.toLowerCase() === '-') {
+				date = new Date(this.picker.dates.lastPicked);
+				date.setDate(date.getDate() - 1)
+			} else if (event.key.toLowerCase() === '+') {
+				date = new Date(this.picker.dates.lastPicked);
+				date.setDate(date.getDate() + 1)
+			}
+			this.picker.dates.setValue(DateTime.convert(date));
+			event.preventDefault();
 		}
   	}
 
