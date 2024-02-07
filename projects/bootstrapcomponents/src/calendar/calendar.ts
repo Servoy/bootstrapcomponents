@@ -31,7 +31,7 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
 
 	@HostListener('keydown', ['$event'])
   	onKeyDown(event: KeyboardEvent) {
-		const shortcuts = ['t', 'y', 'b', 'e', '+', '-'];
+		const shortcuts = ['KeyT', 'KeyY', 'KeyB', 'KeyE', 'NumpadAdd', 'NumpadSubtract'];
         if (!this.picker) return;
     	if (event.key === 'ArrowDown' || event.key === 'ArrowUp' || event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
 			if (!this.picker.display.isVisible && event.key === 'ArrowDown') {
@@ -48,23 +48,29 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
 			if (this.picker.display.isVisible) {
 				this.picker.hide();
 			}
-		} else if(shortcuts.includes(event.key.toLowerCase())) {
+		} else if(shortcuts.includes(event.code)) {
 			let date = new Date();
-			if (event.key.toLowerCase() === 'y') {
+			if (event.code === 'KeyY') {
 				date.setDate(date.getDate() - 1);
-			} else if (event.key.toLowerCase() === 'b') {
+			} else if (event.code === 'KeyB') {
 				date.setDate(1);
-			} else if (event.key.toLowerCase() === 'e') {
+			} else if (event.code === 'KeyE') {
 				const lastDayOfMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
 				date.setDate(lastDayOfMonth);
-			} else if (event.key.toLowerCase() === '-') {
-				date = new Date(this.picker.dates.lastPicked);
-				date.setDate(date.getDate() - 1)
-			} else if (event.key.toLowerCase() === '+') {
-				date = new Date(this.picker.dates.lastPicked);
-				date.setDate(date.getDate() + 1)
+			} else if (event.code === 'NumpadSubtract') {
+				if (this.picker.dates.lastPicked) {
+					date = new Date(this.picker.dates.lastPicked);
+					date.setDate(date.getDate() - 1);
+					this.picker.dates.setValue(DateTime.convert(date));
+				}
+			} else if (event.code === 'NumpadAdd') {
+				if (this.picker.dates.lastPicked) {
+					date = new Date(this.picker.dates.lastPicked);
+					date.setDate(date.getDate() + 1);
+					this.picker.dates.setValue(DateTime.convert(date));
+				}
 			}
-			this.picker.dates.setValue(DateTime.convert(date));
+			(event.code !== 'NumpadSubtract' && event.code !== 'NumpadAdd') && this.picker.dates.setValue(DateTime.convert(date));
 			event.preventDefault();
 		}
   	}
