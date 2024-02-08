@@ -54,25 +54,31 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 						if (e.shiftKey || e.ctrlKey || e.altKey || e.metaKey) {
 							return true;
 						}
-
+						
 						switch (e.keyCode) {
 						case 89: // y Yesterday
-							var x = child.data('DateTimePicker');
-							x.date(moment().add(-1, 'days'));
-							e.stopPropagation();
-							e.preventDefault();
+							if (!formatDateIsString() || child.find('input').val() == '') {
+								var x = child.data('DateTimePicker');
+								x.date(moment().add(-1, 'days'));
+								e.stopPropagation();
+								e.preventDefault();
+							}							
 							break;
 						case 66: // b Beginning ot the month
-							var x = child.data('DateTimePicker');
-							x.date(moment().startOf('month'));
-							e.stopPropagation();
-							e.preventDefault();
+							if (!formatDateIsString() || child.find('input').val() == '') {
+								var x = child.data('DateTimePicker');
+								x.date(moment().startOf('month'));
+								e.stopPropagation();
+								e.preventDefault();
+							}
 							break;
 						case 69: // e End of the month
-							var x = child.data('DateTimePicker');
-							x.date(moment().endOf('month'));
-							e.stopPropagation();
-							e.preventDefault();
+							if (!formatDateIsString() || child.find('input').val() == '') {
+								var x = child.data('DateTimePicker');
+								x.date(moment().endOf('month'));
+								e.stopPropagation();
+								e.preventDefault();
+							}
 							break;
 						case 107: // + Add 1 day
 							var x = child.data('DateTimePicker');
@@ -115,6 +121,24 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 						return false;
 					}
 					x.keyBinds(defaultBinding);
+				}
+				
+				function formatDateIsString() {
+					if ($scope.model.format) {
+						if ($scope.model.format.display) {
+							var format = $scope.model.format.display.toLowerCase();
+							if (format.includes('mmm') || format.includes('mmmm') || format.includes('ddd') || format.includes('dddd')) {
+								return true;
+							}
+						}
+						if ($scope.model.format.edit) {
+							var format = $scope.model.format.edit.toLowerCase();
+							if (format.includes('mmm') || format.includes('mmmm') || format.includes('ddd') || format.includes('dddd')) {
+								return true;
+							}
+						}
+					}
+					return false;
 				}
 
 				var x = child.data('DateTimePicker');

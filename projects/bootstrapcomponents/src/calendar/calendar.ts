@@ -50,28 +50,29 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
 			}
 		} else if(shortcuts.includes(event.code)) {
 			let date = new Date();
-			if (event.code === 'KeyY') {
-				date.setDate(date.getDate() - 1);
-			} else if (event.code === 'KeyB') {
-				date.setDate(1);
-			} else if (event.code === 'KeyE') {
-				const lastDayOfMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
-				date.setDate(lastDayOfMonth);
-			} else if (event.code === 'NumpadSubtract') {
+			if (event.code === 'NumpadSubtract') {
 				if (this.picker.dates.lastPicked) {
 					date = new Date(this.picker.dates.lastPicked);
 					date.setDate(date.getDate() - 1);
-					this.picker.dates.setValue(DateTime.convert(date));
+					this.updateDate(event, date);
 				}
 			} else if (event.code === 'NumpadAdd') {
 				if (this.picker.dates.lastPicked) {
 					date = new Date(this.picker.dates.lastPicked);
 					date.setDate(date.getDate() + 1);
-					this.picker.dates.setValue(DateTime.convert(date));
+					this.updateDate(event, date);
 				}
-			}
-			(event.code !== 'NumpadSubtract' && event.code !== 'NumpadAdd') && this.picker.dates.setValue(DateTime.convert(date));
-			event.preventDefault();
+			} else if (!this.formatDateIsString() || this.inputElementRef.nativeElement.value === '') {
+				if (event.code === 'KeyY') {
+					date.setDate(date.getDate() - 1);
+				} else if (event.code === 'KeyB') {
+					date.setDate(1);
+				} else if (event.code === 'KeyE') {
+					const lastDayOfMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+					date.setDate(lastDayOfMonth);
+				} 
+				this.updateDate(event, date);
+			}	
 		}
   	}
 
@@ -184,6 +185,29 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
             }
         }
     }
+    
+    private updateDate(event: KeyboardEvent, date: Date) {
+		this.picker.dates.setValue(DateTime.convert(date));
+		event.preventDefault();
+	}
+    
+    private formatDateIsString() {
+		if (this.format) {
+			if (this.format.display) {
+				const format = this.format.display.toLowerCase();
+				if (format.includes('mmm') || format.includes('mmmm') || format.includes('ddd') || format.includes('dddd')) {
+					return true;
+				}
+			}
+			if (this.format.edit) {
+				const format = this.format.edit.toLowerCase();
+				if (format.includes('mmm') || format.includes('mmmm') || format.includes('ddd') || format.includes('dddd')) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 
 	private dateChange(key: string) {
 		const picker = document.querySelector('.tempus-dominus-widget.show:not(.inline)');
