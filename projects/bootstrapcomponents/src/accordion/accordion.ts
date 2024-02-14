@@ -2,7 +2,6 @@ import { Component, Renderer2, ViewChild, SimpleChanges, ElementRef, ChangeDetec
 import { WindowRefService } from '@servoy/public';
 
 import { ServoyBootstrapBaseTabPanel,Tab } from '../bts_basetabpanel';
-import { NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'bootstrapcomponents-accordion',
@@ -63,10 +62,6 @@ export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDi
 	   	}
     }
 
-    onTabChange( event: NgbPanelChangeEvent ) {
-        // do prevent it by default, so that hte server side can decide of the swich can happen.
-        event.preventDefault();
-    }
 
     selectTabAt( selectionIndex: number ) {
         if ( selectionIndex >= 0 && selectionIndex < this.tabs.length ) {
