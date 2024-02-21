@@ -103,10 +103,10 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
                 if (change.currentValue.type === 'DATETIME' && change.currentValue.display) {
                     const format = change.currentValue.display;
                     const showYear = format.indexOf('y') >= 0 || format.indexOf('Y') >= 0;
-                    const showMonth = (format.indexOf('m') >= 0 || format.indexOf('M') >= 0) && (format.indexOf('-') >= 0 || format.indexOf('/') >= 0);
+                    const showMonth = format.indexOf('M') >= 0;
                     const showDate = format.indexOf('d') >= 0 || format.indexOf('D') >= 0;
                     const showHour = format.indexOf('h') >= 0 || format.indexOf('H') >= 0;
-                    const showMinute = (format.indexOf('m') >= 0 || format.indexOf('M') >= 0) && format.indexOf(':') >= 0;
+                    const showMinute = format.indexOf('m') >= 0;
                     const showSecond = format.indexOf('s') >= 0 || format.indexOf('S') >= 0;
                     this.config.display.components.calendar = showYear || showMonth || showDate;
                     this.config.display.components.decades = showYear;
