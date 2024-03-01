@@ -125,12 +125,6 @@ angular.module('bootstrapcomponentsCalendar',['servoy']).directive('bootstrapcom
 				
 				function formatDateIsString() {
 					if ($scope.model.format) {
-						if ($scope.model.format.display) {
-							var format = $scope.model.format.display.toLowerCase();
-							if (format.includes('mmm') || format.includes('mmmm') || format.includes('ddd') || format.includes('dddd')) {
-								return true;
-							}
-						}
 						if ($scope.model.format.edit) {
 							var format = $scope.model.format.edit.toLowerCase();
 							if (format.includes('mmm') || format.includes('mmmm') || format.includes('ddd') || format.includes('dddd')) {

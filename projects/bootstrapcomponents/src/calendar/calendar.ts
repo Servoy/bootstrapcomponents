@@ -193,12 +193,6 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
     
     private formatDateIsString() {
 		if (this.format) {
-			if (this.format.display) {
-				const format = this.format.display.toLowerCase();
-				if (format.includes('mmm') || format.includes('mmmm') || format.includes('ddd') || format.includes('dddd')) {
-					return true;
-				}
-			}
 			if (this.format.edit) {
 				const format = this.format.edit.toLowerCase();
 				if (format.includes('mmm') || format.includes('mmmm') || format.includes('ddd') || format.includes('dddd')) {
