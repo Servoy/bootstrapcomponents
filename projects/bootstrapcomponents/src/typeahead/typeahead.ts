@@ -180,7 +180,8 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
                     this.valuelistID.getDisplayValue( result ).subscribe( val => {
                         if ( val ) {
                             this.realToDisplay.set( result, val );
-                            this.instance.writeValue( result );
+                            // if dpid is changed do not write the old value
+                            if (result == this.dataProviderID ) this.instance.writeValue( result );
                         }
                     } );
                     display = this.realToDisplay.get(result); // in case the getDisplayValue above runs sync, before this return happen (uses of() not from())
