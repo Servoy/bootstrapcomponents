@@ -1,6 +1,6 @@
 <select #element
     *ngIf="multiselect; else notMultiselect"
-    (change)="onChange($event)"
+    (change)="onChange($event, null)"
     class="bts-select"
     [ngClass]="styleClass"
     [id]="servoyApi.getMarkupId()"
@@ -24,14 +24,13 @@
 
 <ng-template #notMultiselect>
     <select #element
-    (change)="onChange($event)"
+    (change)="onChange($event, element.value)"
     class="bts-select"
     [ngClass]="styleClass"
     [id]="servoyApi.getMarkupId()"
     [svyTooltip]="toolTipText"
     [sabloTabseq]="tabSeq"
-    [(ngModel)]="dataProviderID"
-    [svyStartEdit]="'dataProviderID'"
+    [svyStartEdit]="dataProviderID"
     [hostComponent]="this"
     [disabled]="readOnly || !enabled"
     >

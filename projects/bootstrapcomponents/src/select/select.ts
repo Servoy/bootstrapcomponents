@@ -62,8 +62,12 @@ export class ServoyBootstrapSelect extends ServoyBootstrapBasefield<HTMLSelectEl
         return isDPinValuelist;
     }
 
-    onChange(event) {
+    onChange(event, value) {
         this.renderer.removeAttribute(this.getNativeElement(), 'placeholder');
+        if (!this.multiselect) {
+            //in this case the event is the value
+            this.dataProviderID = (value && value != "null") ? value : null;
+        }
         this.updateDataprovider();
         if (this.onActionMethodID) {
             this.onActionMethodID(event);
