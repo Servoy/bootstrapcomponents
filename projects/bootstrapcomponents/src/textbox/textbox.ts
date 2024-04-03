@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, ChangeDetectorRef, Renderer2, Input, ChangeDetectionStrategy, Inject, Output, EventEmitter, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, ChangeDetectorRef, Renderer2, Input, ChangeDetectionStrategy, Inject, Output, EventEmitter, SimpleChanges, ViewChild, HostListener } from '@angular/core';
 import { Format, FormatDirective, WindowRefService } from '@servoy/public';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 
@@ -21,10 +21,21 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
 
     showPass = false;
     classForEye = '';
+    isDate = false;
 
     constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, @Inject(DOCUMENT) doc: Document, protected windowService: WindowRefService) {
         super(renderer, cdRef, doc);
     }
+    
+     @HostListener('keydown', ['$event'])
+     onKeyDown(event: KeyboardEvent) {
+		if (this.isDateType()) {
+			this.isDate = true;
+			if (event.key === 'Enter') {
+				this.changeDate();
+			}
+		}
+	 }
 
     svyOnInit() {
         super.svyOnInit();
@@ -51,9 +62,13 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
     }
 
     onModelChange(newValue) {
+		if (this.isDate) return; 
         // if format or invalid date, force dataprovider display with formated value / invalid date text
         if(this.format || (newValue && typeof newValue.getTime === 'function' && isNaN(newValue.getTime()))) {
             this.svyFormat.writeValue(newValue);
+            if (this.isDateType() && typeof newValue === 'string') {
+				newValue = new Date(newValue);
+			}
         } 
         this.dataProviderID = newValue;
     }
@@ -98,5 +113,22 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
 		if (this.showPass) {
 			this.classForEye = mainClass + ' ' + openClass;
 		}
+	}
+	
+	dateLostfocus(event) {
+		if (this.isDateType()) {
+			this.changeDate();
+		}
+	}
+	
+	isDateType() {
+		const types = ['date', 'datetime-local'];
+		return types.includes(this.inputType);
+	}
+	
+	changeDate() {
+		this.isDate = false;
+		this.onModelChange(this.elementRef.nativeElement.value);
+		this.pushUpdate();
 	}
 }

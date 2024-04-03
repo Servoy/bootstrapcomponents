@@ -16,6 +16,7 @@
     [autocomplete]="autocomplete"
 	[type]="inputType == 'password-with-eye' && showPass ? 'text' : inputType == 'password-with-eye' ? 'password' : inputType"
 	[findmode]="findmode"
+	(blur)="dateLostfocus($event)"
 />
 <div id="svy-textbox-eyeDiv" *ngIf="inputType == 'password-with-eye'"
 		(click)="showHidePass()"
