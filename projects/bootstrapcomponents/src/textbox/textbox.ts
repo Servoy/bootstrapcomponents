@@ -21,7 +21,7 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
 
     showPass = false;
     classForEye = '';
-    isDate = false;
+    isEditDate = false;
 
     constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, @Inject(DOCUMENT) doc: Document, protected windowService: WindowRefService) {
         super(renderer, cdRef, doc);
@@ -30,7 +30,7 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
      @HostListener('keydown', ['$event'])
      onKeyDown(event: KeyboardEvent) {
 		if (this.isDateType()) {
-			this.isDate = true;
+			this.isEditDate = true;
 			if (event.key === 'Enter') {
 				this.changeDate();
 			}
@@ -62,11 +62,11 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
     }
 
     onModelChange(newValue) {
-		if (this.isDate) return; 
+		if (this.isEditDate) return; 
         // if format or invalid date, force dataprovider display with formated value / invalid date text
         if(this.format || (newValue && typeof newValue.getTime === 'function' && isNaN(newValue.getTime()))) {
             this.svyFormat.writeValue(newValue);
-            if (this.isDateType() && typeof newValue === 'string') {
+            if (this.isDateType() && newValue !== null && newValue !== '' && typeof newValue === 'string') {
 				newValue = new Date(newValue);
 			}
         } 
@@ -127,8 +127,14 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
 	}
 	
 	changeDate() {
-		this.isDate = false;
+		this.isEditDate = false;
 		this.onModelChange(this.elementRef.nativeElement.value);
 		this.pushUpdate();
 	}
+	
+	pushUpdate() {
+		if (!this.isEditDate) {
+			this.dataProviderIDChange.emit(this.dataProviderID);
+		} 
+    }
 }
