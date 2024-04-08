@@ -66,9 +66,6 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
         // if format or invalid date, force dataprovider display with formated value / invalid date text
         if(this.format || (newValue && typeof newValue.getTime === 'function' && isNaN(newValue.getTime()))) {
             this.svyFormat.writeValue(newValue);
-            if (this.isDateType() && newValue !== null && newValue !== '' && typeof newValue === 'string') {
-				newValue = new Date(newValue);
-			}
         } 
         this.dataProviderID = newValue;
     }
@@ -122,19 +119,19 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
 	}
 	
 	isDateType() {
-		const types = ['date', 'datetime-local'];
+		const types = ['date', 'time', 'datetime-local', 'month', 'week'];
 		return types.includes(this.inputType);
 	}
-	
+		
 	changeDate() {
 		this.isEditDate = false;
-		this.onModelChange(this.elementRef.nativeElement.value);
+		this.svyFormat.input(this.elementRef.nativeElement.value);
 		this.pushUpdate();
 	}
 	
 	pushUpdate() {
 		if (!this.isEditDate) {
 			super.pushUpdate();
-		} 
-    }
+		}
+	}
 }
