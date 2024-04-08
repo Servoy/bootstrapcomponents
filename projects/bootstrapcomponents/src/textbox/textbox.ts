@@ -134,7 +134,7 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
 	
 	pushUpdate() {
 		if (!this.isEditDate) {
-			this.dataProviderIDChange.emit(this.dataProviderID);
+			super.pushUpdate();
 		} 
     }
 }
