@@ -39,6 +39,13 @@ export class ServoyBootstrapSelect extends ServoyBootstrapBasefield<HTMLSelectEl
                 }
             }
             super.svyOnChanges(changes);
+            if (changes.readOnly || changes.enabled) {
+                if (this.readOnly || !this.enabled) {
+                    this.renderer.setAttribute(this.getFocusElement(), 'disabled', 'disabled');
+                } else {
+                    this.renderer.removeAttribute(this.getFocusElement(), 'disabled');
+                }
+            }
         }
     }
 
