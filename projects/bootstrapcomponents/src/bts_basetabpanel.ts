@@ -46,7 +46,14 @@ export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBo
                 if (index >= 0) {
                     if (this.tabs[index] == this.selectedTab && this.selectedTab.containedForm != this.selectedTabContainedForm) {
                         // contained form was changed
-                        const promise = this.servoyApi.hideForm(this.selectedTabContainedForm, null, null, this.selectedTab.containedForm, this.selectedTab.relationName);
+                        let promise;
+                        if (this.selectedTabContainedForm)
+                        {
+                            promise = this.servoyApi.hideForm(this.selectedTabContainedForm, null, null, this.selectedTab.containedForm, this.selectedTab.relationName);
+                        }
+                        else {
+                             promise = this.servoyApi.formWillShow(this.selectedTab.containedForm, this.selectedTab.relationName);
+                        }
                         promise.then((ok) => {
                            this.selectedTabContainedForm = this.selectedTab.containedForm;
                            this.selectedTabID =  this.selectedTab._id;
