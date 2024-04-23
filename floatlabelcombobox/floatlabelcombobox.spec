@@ -16,7 +16,7 @@
 			"floatLabelText" : "tagstring",
 			"errorMessage" : "tagstring",
 			"errorShow" : {"type" : "boolean", "pushToServer": "allow", "tags":{"scope":"private"}},
-	        "readOnly" : { "type" : "readOnly", "oppositeOf" : "enabled", "tags": {"scope":"private"}}, 
+	        "readOnly" : { "type": "protected", "blockingOn": true, "default": false,"for": ["dataProviderID","onDataChangeMethodID"], "tags": {"scope":"private"} }, 
 	        "findmode" : { "type":"findmode", "tags":{"scope":"private"}, "for" : {"enabled":true}},
 	        "size" : {"type" :"dimension",  "default" : {"width":140, "height":50}},
 	        "showAs": { "type": "string", "values": [{"text":null}, {"html":"html"}, {"trusted_html":"trusted_html"}]},

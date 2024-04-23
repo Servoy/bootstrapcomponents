@@ -18,7 +18,7 @@
 	        "enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["dataProviderID","onActionMethodID","onDataChangeMethodID","onFocusGainedMethodID","onFocusLostMethodID","onRightClickMethodID"] }, 
 			"format" : {"for":["valuelistID","dataProviderID"] , "type" :"format"},
 			"placeholderText" : "tagstring",
-	        "readOnly" : { "type" : "readOnly", "oppositeOf" : "enabled", "tags":{"scope":"private"}}, 
+	        "readOnly" : { "type": "protected", "blockingOn": true, "default": false,"for": ["dataProviderID","onDataChangeMethodID"], "tags": {"scope":"private"} }, 
 	        "findmode" : { "type":"findmode", "tags":{"scope":"private"}, "for" : {"enabled":true}},
 	        "size" : {"type" :"dimension",  "default" : {"width":140, "height":30}},
 	        "showAs": { "type": "string", "values": [{"text":null}, {"html":"html"}, {"trusted_html":"trusted_html"}]},
