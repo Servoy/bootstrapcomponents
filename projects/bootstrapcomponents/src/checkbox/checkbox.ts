@@ -74,7 +74,6 @@ export class ServoyBootstrapCheckbox extends ServoyBootstrapBasefield<HTMLDivEle
                 this.dataProviderID = this.dataProviderID > 0 ? 0 : 1;
             }
         this.pushUpdate();
-        event.target.blur();
     }
 
     setSelectionFromDataprovider() {
