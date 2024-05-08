@@ -18,5 +18,5 @@
     [id]="servoyApi.getMarkupId()"
     [svyTooltip]="toolTipText">
     <span [ngClass]="imageStyleClass" aria-hidden="true"></span>
-    <div [outerHTML]="text | htmlFilter | trustAsHtml:isTrustedHTML()"></div>
+    <span [innerHTML]="text | htmlFilter | trustAsHtml:isTrustedHTML()"></span>
 </button>
