@@ -44,7 +44,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
         this.lastSelectValue = null;
         this.firstItemFound = false;
         if (this.isPrintableChar(event.key)) {
-            if (document.activeElement === this.getFocusElement() && !this.comboboxDropdown.isOpen()) {
+            if (this.doc.activeElement === this.getFocusElement() && !this.comboboxDropdown.isOpen()) {
                 this.comboboxDropdown.open();
             }
             if (event.key !== 'Backspace') this.keyboardSelectValue = (this.keyboardSelectValue ? this.keyboardSelectValue : '') + event.key;
@@ -138,15 +138,26 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
     }
 
     attachFocusListeners(nativeElement: HTMLElement) {
+        let skipPopupOpen = false;
         if (this.onFocusGainedMethodID || this.showPopupOnFocusGain)
             this.renderer.listen(nativeElement, 'focus', (e) => {
                 if (this.onFocusGainedMethodID && !this.skipFocus && this.mustExecuteOnFocus) this.onFocusGainedMethodID(e);
-                if (!this.skipFocus && this.showPopupOnFocusGain && !this.comboboxDropdown.isOpen()) {
+                if (!skipPopupOpen && !this.skipFocus && this.showPopupOnFocusGain && !this.comboboxDropdown.isOpen()) {
                     this.comboboxDropdown.open();
                 }
                 this.skipFocus = false;
+                skipPopupOpen = false;
                 this.mustExecuteOnFocus = true;
             });
+        if (this.showPopupOnFocusGain)
+        {
+            this.renderer.listen(nativeElement, 'mousedown', (e) => {
+               if (this.doc.activeElement !== nativeElement && !this.comboboxDropdown.isOpen()) {
+                    // ngbDropdownToggle on mouse click will open the dropdown, so ignore the next focus
+                   skipPopupOpen = true;
+                }
+            });
+        }    
         if (this.onFocusLostMethodID)
             this.renderer.listen(nativeElement, 'blur', (e) => {
                 if (!this.openState) this.onFocusLostMethodID(e);
