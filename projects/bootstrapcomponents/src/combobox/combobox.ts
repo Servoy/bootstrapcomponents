@@ -149,15 +149,14 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
                 skipPopupOpen = false;
                 this.mustExecuteOnFocus = true;
             });
-        if (this.showPopupOnFocusGain)
-        {
+        if (this.showPopupOnFocusGain) {
             this.renderer.listen(nativeElement, 'mousedown', (e) => {
-               if (this.doc.activeElement !== nativeElement && !this.comboboxDropdown.isOpen()) {
+                if (this.doc.activeElement !== nativeElement && !this.comboboxDropdown.isOpen()) {
                     // ngbDropdownToggle on mouse click will open the dropdown, so ignore the next focus
-                   skipPopupOpen = true;
+                    skipPopupOpen = true;
                 }
             });
-        }    
+        }
         if (this.onFocusLostMethodID)
             this.renderer.listen(nativeElement, 'blur', (e) => {
                 if (!this.openState) this.onFocusLostMethodID(e);
@@ -184,7 +183,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
         this.valueComparator = this.valuelistID && this.valuelistID.isRealValueDate() ? this.dateValueCompare : this.valueCompare;
         if (changes['dataProviderID'] && this.findmode) {
             this.formattedValue = this.dataProviderID;
-        } else if ( (changes['dataProviderID'] || changes['valuelistID']) && this.valuelistID) {
+        } else if ((changes['dataProviderID'] || changes['valuelistID']) && this.valuelistID) {
             if (this.valuelistDisplayValueSubscription !== null) {
                 this.valuelistDisplayValueSubscription.unsubscribe();
                 this.valuelistDisplayValueSubscription = null;
@@ -224,6 +223,14 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
         }
 
         super.svyOnChanges(changes);
+
+        if (changes.readOnly || changes.enabled) {
+            if (this.readOnly || !this.enabled) {
+                this.renderer.setAttribute(this.getFocusElement(), 'disabled', 'disabled');
+            } else {
+                this.renderer.removeAttribute(this.getFocusElement(), 'disabled');
+            }
+        }
     }
 
     updateValue(realValue: any) {

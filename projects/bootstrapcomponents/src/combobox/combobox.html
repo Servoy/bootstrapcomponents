@@ -12,7 +12,6 @@
     [hostComponent]="this"
     [svyFormat]="format"
     [findmode]="findmode"
-    [disabled]="readOnly || !enabled"
     [id]="servoyApi.getMarkupId() + '_btn'"
     #input>
 		<span *ngIf="showAsHtml()" class="bts-dropdown-text" [ngClass]="placeholderClass" [innerHtml]="formattedValue ? (formattedValue | htmlFilter | trustAsHtml:isTrustedHTML()) : formattedValue"></span>
