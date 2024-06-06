@@ -151,8 +151,9 @@ export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBo
         this.tabIndex = this.getTabIndex(this.selectedTab);
         this.tabIndexChange.emit(this.tabIndex);
         if (oldSelected && oldSelected !== tab && this.onChangeMethodID) {
+			const event = this.windowRefService.nativeWindow.event != null ? this.windowRefService.nativeWindow.event : null;
             setTimeout(() => {
-                this.onChangeMethodID(this.getTabIndex(oldSelected), this.windowRefService.nativeWindow.event != null ? this.windowRefService.nativeWindow.event : null /* TODO $.Event("change") */);
+                this.onChangeMethodID(this.getTabIndex(oldSelected), event /* TODO $.Event("change") */);
             }, 0, false);
         }
     }
