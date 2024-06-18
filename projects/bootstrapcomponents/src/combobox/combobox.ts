@@ -142,7 +142,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
         if (this.onFocusGainedMethodID || this.showPopupOnFocusGain)
             this.renderer.listen(nativeElement, 'focus', (e) => {
                 if (this.onFocusGainedMethodID && !this.skipFocus && this.mustExecuteOnFocus) this.onFocusGainedMethodID(e);
-                if (!skipPopupOpen && !this.skipFocus && this.showPopupOnFocusGain && !this.comboboxDropdown.isOpen()) {
+                if (!skipPopupOpen && this.showPopupOnFocusGain && !this.comboboxDropdown.isOpen()) {
                     this.comboboxDropdown.open();
                 }
                 this.skipFocus = false;
