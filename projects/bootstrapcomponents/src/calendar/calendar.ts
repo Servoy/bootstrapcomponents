@@ -1,7 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Renderer2, ElementRef, ViewChild, Input, ChangeDetectorRef, SimpleChanges, ChangeDetectionStrategy, Inject, HostListener } from '@angular/core';
 import { DateTime, Namespace, TempusDominus } from '@eonasdan/tempus-dominus';
-import { Format, FormattingService } from '@servoy/public';
+import { FormatDirective, Format, FormattingService } from '@servoy/public';
 import { LoggerFactory, ServoyPublicService } from '@servoy/public';
 import { ServoyBootstrapBaseCalendar } from './basecalendar';
 
@@ -13,6 +13,8 @@ import { ServoyBootstrapBaseCalendar } from './basecalendar';
 export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
 
     @ViewChild('inputElement') inputElementRef: ElementRef;
+	
+	@ViewChild(FormatDirective) svyFormat: FormatDirective;
 
     @Input() format: Format;
     @Input() pickerOnly: boolean;
@@ -150,6 +152,11 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
             this.dataProviderID = event;
             super.pushUpdate();
         }
+		
+		if (event !== '' && ((this.minDate && this.minDate > event) || (this.maxDate && this.maxDate < event))) {
+			// revert to old value
+			this.svyFormat.writeValue(this.dataProviderID);
+		}
     }
 
     public getNativeChild(): any {
