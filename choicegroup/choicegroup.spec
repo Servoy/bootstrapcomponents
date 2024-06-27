@@ -17,7 +17,7 @@
 	        "size" : {"type" :"dimension",  "default" : {"width":140, "height":80}},
 	        "showAs": { "type": "string", "values": [{"text":null}, {"html":"html"}, {"trusted_html":"trusted_html"}],"tags": { "doc" :"Option whether choice text is shown as plain text, sanitized html or trusted html (as is)."}},
 	        "styleClass" : { "type" :"styleclass", "default" : "checkbox" , "tags": { "scope" :"design", "doc": "Set the styleclasses that should be applied at to this component" }, "values" :["checkbox", "radio"]},
-	        "valuelistID" : { "type" : "valuelist", "max":300},
+	        "valuelistID" : { "type" : "valuelist", for: "dataProviderID", "max":300},
 			"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
 			"toolTipText" : { "type" : "tagstring"},
 			"findmode" : { "type":"findmode", "tags":{"scope":"private"}, "for" : {"editable":true}}, 
