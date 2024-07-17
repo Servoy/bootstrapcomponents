@@ -32,10 +32,10 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
     }
 
 	@HostListener('keydown', ['$event'])
-  	onKeyDown(event: KeyboardEvent) {
+	onKeyDown(event: KeyboardEvent) {
 		const shortcuts = ['KeyT', 'KeyY', 'KeyB', 'KeyE', 'NumpadAdd', 'NumpadSubtract'];
-        if (!this.picker) return;
-    	if (event.key === 'ArrowDown' || event.key === 'ArrowUp' || event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+        if (!this.picker || (this.readOnly || !this.enabled || this.findmode)) return;
+		if (event.key === 'ArrowDown' || event.key === 'ArrowUp' || event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
 			if (!this.picker.display.isVisible && event.key === 'ArrowDown') {
 				this.picker.show();
 			} else if (this.picker.display.isVisible) {
@@ -76,7 +76,7 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
 				this.updateDate(event, date);
 			}	
 		}
-  	}
+	}
 
   	@HostListener('click', ['$event'])
   	onClick(event) {
