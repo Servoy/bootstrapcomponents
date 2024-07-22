@@ -13,6 +13,8 @@ import { ServoyBootstrapBasefield } from '../bts_basefield';
 })
 export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInputElement> implements IPopupSupportComponent{
 
+    private readonly NULL_VALUE = 'TS_NULL_VALUE';
+    
     @ViewChild('instance') instance: NgbTypeahead;
 
     @Input() showAs: string;
@@ -61,6 +63,11 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
                 });
             }
         });
+    }
+
+    get dataProvider() { 
+        if (this.dataProviderID === null) return this.NULL_VALUE;
+        return this.dataProviderID;
     }
 
     svyOnChanges(changes: SimpleChanges) {
@@ -158,8 +165,10 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
     };
 
     inputFormatter = (result: any) => {
-        if (result === null) return '';
-        if (result.displayValue !== undefined) result = result.displayValue;
+        if (result === this.NULL_VALUE) {
+            result = null;
+        }
+        if (result?.displayValue !== undefined) result = result.displayValue;
         else if (this.valuelistID?.hasRealValues()) {
             // on purpose test with == so that "2" equals to 2
             const value = this.valuelistID.find((item) => {
