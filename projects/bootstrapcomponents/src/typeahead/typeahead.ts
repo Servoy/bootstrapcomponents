@@ -13,7 +13,7 @@ import { ServoyBootstrapBasefield } from '../bts_basefield';
 })
 export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInputElement> implements IPopupSupportComponent{
 
-    private readonly NULL_VALUE = 'TS_NULL_VALUE';
+    private readonly NULL_VALUE = 'SVY_TS_NULL_VALUE_';
     
     @ViewChild('instance') instance: NgbTypeahead;
 
