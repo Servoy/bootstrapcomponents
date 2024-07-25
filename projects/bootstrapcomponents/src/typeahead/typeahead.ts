@@ -69,7 +69,13 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
         if (this.dataProviderID === null) return this.NULL_VALUE;
         return this.dataProviderID;
     }
-
+    
+    set dataProvider(value){
+        if (value === this.NULL_VALUE) this.dataProviderID = null;
+        else this.dataProviderID = value;
+    
+    }
+ 
     svyOnChanges(changes: SimpleChanges) {
         super.svyOnChanges(changes);
         if (changes.enabled || changes.findmode) {

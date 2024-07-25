@@ -5,7 +5,7 @@
 		[svyStartEdit]="'dataProviderID'"
 		[hostComponent]="this"
 		[svyTabFix]="this"
-		[ngModel]="dataProvider"
+		[(ngModel)]="dataProvider"
 		(change)="pushUpdate()"
 		(selectItem)="valueChanged($event)"
 		[sabloTabseq]="tabSeq"
