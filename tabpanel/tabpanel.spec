@@ -125,7 +125,7 @@
 		"tab": {
             "_id": { "type": "string", "tags": { "scope": "private" }, "pushToServer": "reject" },
 			"active": { "type": "boolean", "default": false, "tags": { "scope": "private" } },
-			"containedForm": {"type":"form", "tags": {"wizard": {"order": "1", "wizardRelated": "relationName"}}},
+			"containedForm": {"type":"form", "tags": {"useAsCaptionInDeveloper" : true, "captionPriority" : 2, "wizard": {"order": "1", "wizardRelated": "relationName"}}},
 			"imageMediaID": "media",
 			"text": { "type": "tagstring", "tags": { "useAsCaptionInDeveloper" : true, "captionPriority" : 1, "wizard": "3" } },
 			"relationName": {"type":"relation", "tags": {"wizard": "2"}},
