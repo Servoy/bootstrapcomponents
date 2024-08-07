@@ -44,7 +44,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
     svyOnInit() {
         super.svyOnInit();
         // add custom class to the popup, needed by ng-grids (ag-grid) so it can be used in form editors (popups)
-        this.instance.popupClass = 'ag-custom-component-popup';
+       this.instance.popupClass = 'ag-custom-component-popup svy-typeahead-zindex';
     }
 
     scroll() {
