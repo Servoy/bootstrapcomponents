@@ -7,11 +7,13 @@
 */
 $scope.api.setMinMaxDate = function(minDate, maxDate, keepInvalid) {
 	if(minDate) {
+    minDate = new Date(minDate.getTime());
 		minDate.setHours(0,0,0,0);
 	}
 	$scope.model.minDate = minDate;
 
 	if(maxDate) {
+    maxDate = new Date(maxDate.getTime());
 		maxDate.setHours(23,59,59,999);
 	}
 	$scope.model.maxDate = maxDate;
