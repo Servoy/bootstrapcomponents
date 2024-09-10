@@ -2,6 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Component, Renderer2, Input, ChangeDetectorRef, SimpleChanges, ChangeDetectionStrategy, Inject } from '@angular/core';
 import { Format, LoggerFactory, ServoyPublicService } from '@servoy/public';
 import { ServoyBootstrapBaseCalendar } from '../calendar/basecalendar';
+import { DateTime } from '@eonasdan/tempus-dominus';
 
 @Component({
     selector: 'bootstrapcomponents-calendarinline',
@@ -10,11 +11,11 @@ import { ServoyBootstrapBaseCalendar } from '../calendar/basecalendar';
 })
 export class ServoyBootstrapCalendarinline extends ServoyBootstrapBaseCalendar {
 
-	@Input() format: Format;
+    @Input() format: Format;
 
     constructor(renderer: Renderer2, cdRef: ChangeDetectorRef,
         servoyService: ServoyPublicService, logFactory: LoggerFactory, @Inject(DOCUMENT) doc: Document) {
-        super(renderer, cdRef, servoyService,logFactory.getLogger('bts-inlinecalendar'),  doc);
+        super(renderer, cdRef, servoyService, logFactory.getLogger('bts-inlinecalendar'), doc);
         this.config.display.inline = true;
         this.config.display.buttons.close = false;
     }
@@ -26,6 +27,7 @@ export class ServoyBootstrapCalendarinline extends ServoyBootstrapBaseCalendar {
     }
 
     svyOnChanges(changes: SimpleChanges) {
+        super.svyOnChanges(changes);
         if (changes.format) {
             const change = changes.format;
             if (change.currentValue) {
@@ -47,29 +49,31 @@ export class ServoyBootstrapCalendarinline extends ServoyBootstrapBaseCalendar {
                     this.config.display.components.minutes = showMinute;
                     this.config.display.components.seconds = showSecond;
                     if (format.indexOf('a') >= 0 || format.indexOf('A') >= 0 || format.indexOf('am') >= 0 || format.indexOf('AM') >= 0) {
-						this.config.localization.hourCycle = 'h12';
-					} else if (format.indexOf('H') >= 0) {
-						this.config.localization.hourCycle = 'h23';
-					} else if (format.indexOf('h') >= 0) {
-						this.config.localization.hourCycle = 'h12';
-					}
-                    if (this.picker !== null) this.picker.updateOptions(this.config);
-                    this.picker.dispose();
-                    this.picker = null;
-                    this.initializePicker();
-                } else {
-                    this.log.warn('wrong format or type given into the calendar field ' + JSON.stringify(change.currentValue));
+                        this.config.localization.hourCycle = 'h12';
+                    } else if (format.indexOf('H') >= 0) {
+                        this.config.localization.hourCycle = 'h23';
+                    } else if (format.indexOf('h') >= 0) {
+                        this.config.localization.hourCycle = 'h12';
+                    }
+                    if (this.picker !== null) {
+                        this.picker.dispose();
+                        this.picker = null;
+                        this.initializePicker();
+                        const value = (this.dataProviderID instanceof Date) ? DateTime.convert(this.dataProviderID, null, this.config.localization) : null;
+                        this.picker.dates.setValue(value);
+                    }
                 }
+            } else {
+                this.log.warn('wrong format or type given into the calendar field ' + JSON.stringify(change.currentValue));
             }
         }
         if (changes.enabled) {
-			const nativeElem = this.elementRef.nativeElement;
-			if (changes.enabled.currentValue === true) {
-				nativeElem.classList.remove('bts-calendar-inline-disabled');
-			} else {
-				nativeElem.classList.add('bts-calendar-inline-disabled');
-			}
-		}
-        super.svyOnChanges(changes);
+            const nativeElem = this.elementRef.nativeElement;
+            if (changes.enabled.currentValue === true) {
+                nativeElem.classList.remove('bts-calendar-inline-disabled');
+            } else {
+                nativeElem.classList.add('bts-calendar-inline-disabled');
+            }
+        }
     }
 }
