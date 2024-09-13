@@ -1,0 +1,1 @@
+/* Image is a component that can show either a dataprovider based image (DB column/form or scope variable) or an image from the media section of your solution. When it is enabled and editable it also provides means to download and upload am image from/to the dataprovider.*/
