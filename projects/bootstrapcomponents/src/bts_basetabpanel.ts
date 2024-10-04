@@ -60,7 +60,14 @@ export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBo
                         }).finally(() => this.cdRef.markForCheck());
                     }
                     else {
-                        this.select(this.tabs[index]);
+						if (this.tabs[index].disabled) {
+							if (this.getFirstEnabledTabIndex() !== -1) {
+								this.select(this.tabs[this.getFirstEnabledTabIndex() - 1]);
+							}
+						} else {
+							this.select(this.tabs[index]);
+						}
+                        
                     }
                 }
             }
@@ -72,6 +79,16 @@ export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBo
         }
         super.svyOnChanges(changes);
     }
+	
+	getFirstEnabledTabIndex() {
+	        for (let i = 0; this.tabs && i < this.tabs.length; i++) {
+	            const tab = this.tabs[i];
+	            if (tab.disabled !== true) {
+	                return i + 1;
+	            }
+	        }
+	        return -1;
+	    }
 
     getForm(tab: Tab) {
         if (!this.selectedTab) {

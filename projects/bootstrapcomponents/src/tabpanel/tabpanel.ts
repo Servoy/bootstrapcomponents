@@ -99,24 +99,16 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
         }
     }
 
-    getFirstEnabledTabIndex() {
-        for (let i = 0; this.tabs && i < this.tabs.length; i++) {
-            const tab = this.tabs[i];
-            if (tab.disabled !== true) {
-                return i + 1;
-            }
-        }
-        return -1;
-    }
-
     isTabDisabled(index: number) {
         return this.tabs && this.tabs[index] && this.tabs[index].disabled;
     }
 
+	updateNavpaneTimeout: any;
+	updateNavpaneTimeoutCounter: number = 0;
     getContainerStyle(element: HTMLElement) {
         const navpane = element.querySelector('[ngbnavpane]');
         const fullsize = (this.height === '100%');
-        if (navpane) {
+		if (navpane && navpane.id.includes(`${this.getRealTabIndex()}`)) {
             if (this.height > 0) this.renderer.setStyle(navpane, 'min-height', this.height + 'px');
             else this.renderer.setStyle(navpane, 'height', '100%');
             this.renderer.setStyle(navpane, 'position', 'relative');
@@ -129,7 +121,14 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
                 }
                 this.renderer.setStyle(navpane.parentElement, 'height', 'calc(100% - ' + calcHeight + 'px)');
             }
-        }
+        } else {
+			if(this.updateNavpaneTimeoutCounter < 10) {
+				this.updateNavpaneTimeoutCounter++;
+				this.updateNavpaneTimeout = setTimeout(() => {
+					this.getContainerStyle(element);
+				}, 200);
+			}
+		}
         if (this.cssPosition && this.servoyApi.isInAbsoluteLayout()) {
             const tabs = element.querySelector('ul');
             let calcHeight = tabs.clientHeight;
