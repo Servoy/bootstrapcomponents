@@ -60,7 +60,7 @@ export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBo
                         }).finally(() => this.cdRef.markForCheck());
                     }
                     else {
-						if (this.tabs[index].disabled) {
+						if (this.tabs[index] && this.tabs[index].disabled) {
 							if (this.getFirstEnabledTabIndex() !== -1) {
 								this.select(this.tabs[this.getFirstEnabledTabIndex() - 1]);
 							}
