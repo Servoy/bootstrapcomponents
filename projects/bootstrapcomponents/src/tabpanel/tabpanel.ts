@@ -108,7 +108,7 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
     getContainerStyle(element: HTMLElement) {
         const navpane = element.querySelector('[ngbnavpane]');
         const fullsize = (this.height === '100%');
-		if (navpane && navpane.id.includes(`${this.getRealTabIndex()}`)) {
+		if (navpane) {
             if (this.height > 0) this.renderer.setStyle(navpane, 'min-height', this.height + 'px');
             else this.renderer.setStyle(navpane, 'height', '100%');
             this.renderer.setStyle(navpane, 'position', 'relative');
@@ -121,14 +121,13 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
                 }
                 this.renderer.setStyle(navpane.parentElement, 'height', 'calc(100% - ' + calcHeight + 'px)');
             }
-        } else {
-			if(this.updateNavpaneTimeoutCounter < 10) {
-				this.updateNavpaneTimeoutCounter++;
-				this.updateNavpaneTimeout = setTimeout(() => {
-					this.getContainerStyle(element);
-				}, 200);
-			}
-		}
+        }
+        if(this.updateNavpaneTimeoutCounter < 5) {
+            this.updateNavpaneTimeoutCounter++;
+            this.updateNavpaneTimeout = setTimeout(() => {
+                this.getContainerStyle(element);
+            }, 200);
+        }
         if (this.cssPosition && this.servoyApi.isInAbsoluteLayout()) {
             const tabs = element.querySelector('ul');
             let calcHeight = tabs.clientHeight;
