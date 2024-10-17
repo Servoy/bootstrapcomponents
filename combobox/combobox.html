@@ -1,4 +1,4 @@
- <ui-select ng-model="model.dataProviderID" theme="bootstrap" search-enabled="enablefilter" reset-search-input="true" append-to-body='{{ model.appendToBody }}'
+ <ui-select ng-model="model.dataProviderID" theme="bootstrap" search-enabled="enablefilter" reset-search-input="true" append-to-body='{{ model.appendToBody }}' ng-attr-name="{{ model.appendToBody ? getName() : '' }}"
  		id="{{::model.svyMarkupId}}" 
 		ng-if="model.visible"
  		ng-disabled="model.readOnly || !model.enabled"

@@ -17,7 +17,10 @@ angular.module('bootstrapcomponentsCombobox', ['servoy', 'bootstrapcomponentscom
 			$scope.enablefilter = enableFilter !== undefined && enableFilter != null ? enableFilter : true;
 		},
 		link: function (scope, element, attrs) {
-           
+           scope.getName = function() {
+                return element[0].getAttribute('name');
+           }
+
            scope.renderFinished = function() {
                 var container = element.querySelectorAll('.ui-select-choices');
                 $animate.enabled(container,false)
