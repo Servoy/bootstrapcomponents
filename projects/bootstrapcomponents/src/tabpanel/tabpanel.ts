@@ -1,4 +1,4 @@
-import { Component, Renderer2, SimpleChanges, Input, ChangeDetectorRef, ChangeDetectionStrategy, ViewChild, ElementRef, AfterViewInit, OnDestroy, EventEmitter, Output } from '@angular/core';
+import { Component, Renderer2, SimpleChanges, Input, ChangeDetectorRef, ChangeDetectionStrategy, ViewChild, ElementRef, AfterViewInit, OnDestroy, EventEmitter, Output, HostListener } from '@angular/core';
 import { LoggerFactory, LoggerService, WindowRefService } from '@servoy/public';
 
 import { ServoyBootstrapBaseTabPanel, Tab } from '../bts_basetabpanel';
@@ -26,6 +26,13 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
     constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, windowRefService: WindowRefService) {
         super(renderer, cdRef, windowRefService);
     }
+    
+    @HostListener('window:resize')
+      onResize(): void {
+        if (!this.servoyApi.isInAbsoluteLayout()) {
+            this.cdRef.detectChanges();
+        }
+      }
 
     svyOnInit() {
         super.svyOnInit();
@@ -150,6 +157,79 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
         }
         this.containerStyle['marginTop'] = (element.offsetWidth < element.scrollWidth ? 8 : 0) + 'px';
         return this.containerStyle;
+    }
+    
+    setCompStyleResponsiveFrm(element: HTMLElement, add: boolean) {
+        if (add) {
+            element.style.position = 'relative';
+            element.style.overflow = 'hidden';
+        } else {
+            element.style.removeProperty('position');
+            element.style.removeProperty('overflow');
+        }
+    }
+    
+    showArrows: boolean = false;
+    tabHeight: number = 0;
+    getNavStyle(element: HTMLElement): { [key: string]: string } {
+        this.showArrows = true;
+        const tabs = element.querySelector('ul');
+        this.tabHeight = tabs?.firstElementChild?.querySelector('a')?.getBoundingClientRect()?.height;
+        let tabsSize = 0;
+        const tabsArray = [...tabs.childNodes].filter(item => item instanceof HTMLElement);
+        tabsArray.forEach((item: HTMLElement) => {
+            tabsSize += item.clientWidth;
+        });
+        const style = {width: `${tabsSize}px`, position: 'relative', left: '15px', transition: 'left 0.5s ease-in-out', height: `${this.tabHeight}px`}
+        if (tabsSize < element.clientWidth) {
+            this.showArrows = false;
+            delete style.left;
+            delete style.width;
+        }
+        if (!this.servoyApi.isInAbsoluteLayout() && this.showArrows) {
+            this.setCompStyleResponsiveFrm(element, true);
+        } else {
+            this.setCompStyleResponsiveFrm(element, false);
+        }
+
+        return style;
+    }
+    
+    getArrowStyle(leftRight: 'left' | 'right'): { [key: string]: string } {
+        const cursorStyle = leftRight === 'left' ? 'not-allowed' : 'pointer';
+        return {
+            width: '15px',
+            position: 'absolute',
+            top: '0px',
+            height: `${this.tabHeight}px`,
+            background: 'white',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            cursor: cursorStyle,
+            [leftRight]: '0px'
+        };
+    }
+    
+    clickArrow(element: HTMLElement, moveRight: boolean) {
+        const arrowLeft: HTMLElement = element.querySelector('#arrowLeft');
+        const arrowRight: HTMLElement = element.querySelector('#arrowRight');
+        if ((moveRight && arrowRight.style.cursor === 'not-allowed') || (!moveRight && arrowLeft.style.cursor === 'not-allowed')) return;
+        const tabs: HTMLElement = element.querySelector('ul');
+        const tabSize = tabs.firstElementChild.clientWidth;
+        const oldValue = parseFloat(tabs.style.left) || 0;
+        const compWidth = tabs.closest('bootstrapcomponents-tabpanel').getBoundingClientRect().width;
+        const maxRight = tabs.clientWidth - compWidth;
+        let newValue = oldValue + (moveRight ? -tabSize : tabSize);
+        if (moveRight && newValue * -1 > maxRight) {
+            newValue = -maxRight - 15;
+            arrowRight.style.cursor = 'not-allowed';
+        } else if (!moveRight && newValue * -1 < 15) {
+            newValue = 15;
+            arrowLeft.style.cursor = 'not-allowed';
+        }
+        moveRight ? (arrowLeft.style.cursor = 'pointer') : (arrowRight.style.cursor = 'pointer');
+        tabs.style.left = `${newValue}px`;
     }
 
     onVisibleTab(tab: Tab) {

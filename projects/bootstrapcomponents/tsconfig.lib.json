@@ -8,6 +8,7 @@
     "types": [],
     "lib": [
       "dom",
+      "dom.iterable",
       "es2020"
     ]
   },

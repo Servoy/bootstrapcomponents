@@ -1,5 +1,5 @@
 <div class="bts-tabpanel" [sabloTabseq]="tabSeq" [sabloTabseqConfig]="{container: true, reservedGap: 50}" #element >
-<ul ngbNav #nav="ngbNav" class="nav text-nowrap flex-nowrap nav-tabs" style="overflow-x: auto; overflow-y: hidden;" [(activeId)]="selectedTabID" (navChange)="onTabChange($event)"
+<ul ngbNav #nav="ngbNav" class="nav text-nowrap flex-nowrap nav-tabs" [ngStyle]="getNavStyle(element)" [(activeId)]="selectedTabID" (navChange)="onTabChange($event)"
 	[id]="servoyApi.getMarkupId()">
 	<li *ngFor="let tab of tabs;let i = index"  (click)="tabClicked(tab, i , $event)" [ngbNavItem]="tab._id" [disabled]="tab.disabled || !tab.containedForm"
 		[id]="tab._id" [svyTooltip]="tab.toolTipText">
@@ -19,5 +19,7 @@
 		</ng-template>
 	</li>
 </ul>
+<div *ngIf="showArrows" id="arrowLeft" [ngStyle]="getArrowStyle('left')" (click)="clickArrow(element, false)"><i style="font-size: 20px;" class="fa-solid fa-angle-left"></i></div>
+<div *ngIf="showArrows" id="arrowRight" [ngStyle]="getArrowStyle('right')" (click)="clickArrow(element, true)"><i style="font-size: 20px;" class="fa-solid fa-angle-right"></i></div>
 <div [ngbNavOutlet]="nav" [ngClass]="containerStyleClass" [ngStyle]="getContainerStyle(element)"></div>
 </div>
