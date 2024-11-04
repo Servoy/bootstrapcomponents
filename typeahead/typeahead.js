@@ -179,7 +179,7 @@ angular.module('bootstrapcomponentsTypeahead', ['servoy']).directive('bootstrapc
 						}
 						if (!hasMatchingDisplayValue) 
 						{
-							if (hasRealValues) 
+							if (hasRealValues && !$scope.model.findmode) 
 							{
 								searchSelection();
 								return;
