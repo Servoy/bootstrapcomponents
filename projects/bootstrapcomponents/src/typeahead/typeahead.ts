@@ -11,7 +11,7 @@ import { ServoyBootstrapBasefield } from '../bts_basefield';
     templateUrl: './typeahead.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInputElement> implements IPopupSupportComponent{
+export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInputElement> implements IPopupSupportComponent {
 
     @ViewChild('instance') instance: NgbTypeahead;
 
@@ -74,7 +74,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
         if (changes.format) {
             if (this.format && this.format.maxLength) {
                 this.renderer.setAttribute(this.elementRef.nativeElement, 'maxlength', this.format.maxLength + '');
-            } else{
+            } else {
                 this.renderer.removeAttribute(this.elementRef.nativeElement, 'maxlength');
             }
             if (this.valuelistID) this.instance.writeValue(this.dataProviderID);
@@ -84,66 +84,70 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
         }
     }
 
-    filterValues = ( text$: Observable<string> ) => {
-        const debouncedText$ = text$.pipe( debounceTime( this.filteringDebounce ), distinctUntilChanged() );
-        const clicksWithClosedPopup$ = this.click$.pipe( filter(() => !this.instance.isPopupOpen() ) );
+    filterValues = (text$: Observable<string>) => {
+        const debouncedText$ = text$.pipe(debounceTime(this.filteringDebounce), distinctUntilChanged());
+        const clicksWithClosedPopup$ = this.click$.pipe(filter(() => !this.instance.isPopupOpen()));
         const inputFocus$ = this.focus$;
 
-        return merge( debouncedText$, inputFocus$, clicksWithClosedPopup$ ).pipe( switchMap( term => {
-            if ( this.editable === true ) {
-                const promise = this.valuelistID.filterList( term )
+        return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(switchMap(term => {
+            if (this.editable === true) {
+                const promise = this.valuelistID.filterList(term)
                 this.lastFilteringPromise = promise;
                 promise.toPromise().finally(() => {
-                    if ( this.lastFilteringPromise == promise ) {
+                    if (this.lastFilteringPromise == promise) {
                         this.lastFilteringPromise = null;
-                        if ( this.valueToApply ) {
+                        if (this.valueToApply) {
                             const tempValue = this.valueToApply;
                             this.valueToApply = null;
-                            promise.pipe( take( 1 ) ).subscribe( items => {
-                                let value = items.find(( item ) => item.realValue == tempValue.realValue );
+                            promise.pipe(take(1)).subscribe(items => {
+                                let value = items.find((item) => item.realValue == tempValue.realValue);
                                 // is the item still in valuelist after filter? apply that one, if not select the first one
-                                if ( !value ) {
+                                if (!value) {
                                     value = items[0];
                                 }
-                                if ( value ) {
+                                if (value) {
                                     this.dataProviderID = value.realValue;
-                                    this.dataProviderIDChange.emit( this.dataProviderID );
+                                    this.dataProviderIDChange.emit(this.dataProviderID);
                                 }
-                            } );
+                            });
                         }
                     }
                     const popup = this.doc.getElementById(this.instance.popupId);
-        			if (popup) {
-            			popup.style.width = this.getFocusElement().clientWidth + 'px';
-        			}
-                } );
+                    if (popup) {
+                        popup.style.width = this.getFocusElement().clientWidth + 'px';
+                    }
+                });
                 return promise;
             }
-            return Promise.resolve( [] );
-        } ) );
+            return Promise.resolve([]);
+        }));
     };
 
     pushUpdate() {
-        if (!this.dataProviderID && !this.isEditable()){
-		   const allowEmptyValue = this.valuelistID[0]?.displayValue === '' && this.valuelistID[0]?.realValue === null;
-		   if(!allowEmptyValue) {
-			   if (this.valuelistID[0]?.displayValue && this.valuelistID[0]?.realValue && this.elementRef.nativeElement.value === this.valuelistID[0]?.displayValue) {
-                    this.dataProviderID = this.valuelistID[0]?.realValue;
-                    this.currentValue = this.dataProviderID;
-               } else {
-				  this.dataProviderID = this.currentValue;
-			   }
-			   return;
-		   }
-		}
-		this.currentValue = this.dataProviderID;
+        if (!this.dataProviderID && (!this.isEditable() || this.findmode)) {
+            if (this.findmode) {
+                this.dataProviderID = this.elementRef.nativeElement.value;
+            } else {
+                const allowEmptyValue = this.valuelistID[0]?.displayValue === '' && this.valuelistID[0]?.realValue === null;
+                if (!allowEmptyValue) {
+                    if (this.valuelistID[0]?.displayValue && this.valuelistID[0]?.realValue && this.elementRef.nativeElement.value === this.valuelistID[0]?.displayValue) {
+                        this.dataProviderID = this.valuelistID[0]?.realValue;
+                        this.currentValue = this.dataProviderID;
+                    } else {
+                        this.dataProviderID = this.currentValue;
+                    }
+                    return;
+                }
+            }
+        }
+        this.currentValue = this.dataProviderID;
         super.pushUpdate();
     }
 
     isEditable() {
-		if (this.servoyApi.isInDesigner()) {
-			return true;
-		}
+        if (this.servoyApi.isInDesigner()) {
+            return true;
+        }
         return this.valuelistID && !this.valuelistID.hasRealValues();
     }
 
@@ -160,10 +164,10 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
             // on purpose test with == so that "2" equals to 2
             const value = this.valuelistID.find((item) => {
                 // eslint-disable-next-line eqeqeq
-                if (item.realValue == result){
+                if (item.realValue == result) {
                     return true;
                 }
-                if (item.realValue instanceof Date && result instanceof Date){
+                if (item.realValue instanceof Date && result instanceof Date) {
                     return item.realValue.getTime() === result.getTime();
                 }
                 return false;
@@ -172,13 +176,13 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
                 result = value.displayValue;
             } else {
                 const display = this.realToDisplay.get(result);
-                if ( display === null || display === undefined ) {
-                    this.valuelistID.getDisplayValue( result ).subscribe( val => {
-                        if ( val ) {
-                            this.realToDisplay.set( result, val );
-                            this.instance.writeValue( result );
+                if (display === null || display === undefined) {
+                    this.valuelistID.getDisplayValue(result).subscribe(val => {
+                        if (val) {
+                            this.realToDisplay.set(result, val);
+                            this.instance.writeValue(result);
                         }
-                    } );
+                    });
                     return '';
                 } else {
                     result = display;
@@ -202,7 +206,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
         this.currentValue = this.dataProviderID;
     }
 
-    closePopup(){
+    closePopup() {
         this.instance.dismissPopup();
     }
 }
