@@ -74,7 +74,12 @@ export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBo
         }
         if (changes['tabIndex']) {
             Promise.resolve(null).then(() => {
-                if (this.tabs) this.select(this.tabs[this.getRealTabIndex()]);
+                if (this.tabs) {
+                    const tabToSelect = this.tabs[this.getRealTabIndex()];
+                    if (tabToSelect && tabToSelect.disabled !== true) {
+                        this.select(tabToSelect);
+                    }
+                }
             });
         }
         super.svyOnChanges(changes);
