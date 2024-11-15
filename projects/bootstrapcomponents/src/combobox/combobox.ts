@@ -175,7 +175,12 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
             });
         } else {
             this.closeTooltip();
-            super.requestFocus(this.mustExecuteOnFocus);
+            const nativeElementBtn = this.elementRef.nativeElement.firstElementChild;
+            if (this.doc.activeElement !== nativeElementBtn) {
+                const event = new Event('blur');
+                nativeElementBtn.dispatchEvent(event);
+            }
+            this.skipFocus = false;
         }
     }
 
