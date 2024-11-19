@@ -118,6 +118,31 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
             this.picker.subscribe(Namespace.events.change, (event) => this.dateChanged(event));
         }
     }
+    
+    public updateConfig(format: string) {
+        const showYear = format.indexOf('y') >= 0;
+        const showMonth = format.indexOf('M') >= 0;
+        const showDate = format.indexOf('d') >= 0;
+        const showHour = format.indexOf('h') >= 0 || format.indexOf('H') >= 0;
+        const showMinute = format.indexOf('m') >= 0;
+        const showSecond = format.indexOf('s') >= 0;
+        this.config.display.components.calendar = showYear || showMonth || showDate;
+        this.config.display.components.decades = showYear;
+        this.config.display.components.year = showYear;
+        this.config.display.components.month = showMonth;
+        this.config.display.components.date = showDate;
+        this.config.display.components.clock = showHour || showMinute || showSecond;
+        this.config.display.components.hours = showHour;
+        this.config.display.components.minutes = showMinute;
+        this.config.display.components.seconds = showSecond;
+        if (format.indexOf('a') >= 0 || format.indexOf('A') >= 0 || format.indexOf('am') >= 0 || format.indexOf('AM') >= 0) {
+            this.config.localization.hourCycle = 'h12';
+        } else if (format.indexOf('H') >= 0) {
+            this.config.localization.hourCycle = 'h23';
+        } else if (format.indexOf('h') >= 0) {
+            this.config.localization.hourCycle = 'h12';
+        }
+    }
 
     public dateChanged(event: any) {
         if (event.type === 'change.td') {
