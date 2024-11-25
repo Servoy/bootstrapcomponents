@@ -51,6 +51,11 @@
     box-shadow: unset;
 }
 
+.tempus-dominus-widget.show {
+    position: absolute;
+    top: -9000px;
+}
+
 .tempus-dominus-widget.dark, 
 .tempus-dominus-widget.light,
 .tempus-dominus-widget.dark .date-container-days .dow,
