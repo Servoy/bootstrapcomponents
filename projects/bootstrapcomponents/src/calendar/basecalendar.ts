@@ -94,7 +94,9 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
         }
         if (this.dataProviderID) {
             const value = (this.dataProviderID instanceof Date) ? DateTime.convert(this.dataProviderID, null, this.config.localization) : null;
-            this.config.viewDate = value;
+            if (value)
+                this.config.viewDate = value;
+            else delete this.config.viewDate;
        }
         if (changes.calendarWeeks && changes.calendarWeeks.currentValue)
             this.config.display.calendarWeeks = changes.calendarWeeks.currentValue;
