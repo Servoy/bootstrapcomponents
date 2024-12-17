@@ -56,17 +56,6 @@
     top: -9000px;
 }
 
-.tempus-dominus-widget.dark, 
-.tempus-dominus-widget.light,
-.tempus-dominus-widget.dark .date-container-days .dow,
-.tempus-dominus-widget.light .date-container-days .dow,
-.tempus-dominus-widget.dark .date-container-days .cw:first-child,
-.tempus-dominus-widget.light .date-container-days .cw:first-child,
-.tempus-dominus-widget.dark .date-container-decades div:not(.no-highlight).old,
-.tempus-dominus-widget.light .date-container-decades div:not(.no-highlight).old {
-	color: unset;
-}
-
 .bts-accordion .card-body
 {
 	padding:0px;
