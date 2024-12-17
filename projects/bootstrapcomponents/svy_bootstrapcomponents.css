@@ -51,7 +51,7 @@
     box-shadow: unset;
 }
 
-.tempus-dominus-widget.show {
+.tempus-dominus-widget.show:not(.inline) {
     position: absolute;
     top: -9000px;
 }
