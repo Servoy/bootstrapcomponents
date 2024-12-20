@@ -34,6 +34,8 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
     valueToApply: { displayValue: string; realValue: any } = null;
 
     private realToDisplay: Map<any, string> = new Map();
+    
+    private displayValue: any;
 
     constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, @Inject(DOCUMENT) doc: Document, protected formatService: FormattingService,
         windowService: WindowRefService) {
@@ -104,7 +106,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
 
         return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(switchMap(term => {
             if ((this.findmode || (!this.readOnly && this.editable)) && this.valuelistID) {
-                const promise = this.valuelistID.filterList(term)
+                const promise = this.valuelistID.filterList(this.dataProviderID ? this.displayValue : term);
                 this.lastFilteringPromise = promise;
                 promise.toPromise().finally(() => {
                     if (this.lastFilteringPromise == promise) {
@@ -207,6 +209,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
                 }
             }
         }
+        this.displayValue = result;
         return this.formatService.format(result, this.format, false);
     };
 
