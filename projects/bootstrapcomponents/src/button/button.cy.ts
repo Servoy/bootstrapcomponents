@@ -56,7 +56,6 @@ describe('ButtonComponent', () => {
         const registerComponent = cy.stub(servoyApiSpy, 'registerComponent');
         cy.mount(ServoyBootstrapButton, config);
         cy.get('button').should('have.text', ' MyButton ').then(_ => {
-            console.log('button test');
             expect(registerComponent).to.been.called;
         });
     })
@@ -126,5 +125,40 @@ describe('ButtonComponent', () => {
         cy.get('button').click().then(_ => {
             expect(config.componentProperties.onActionMethodID).to.be.called.calledWith(Cypress.sinon.match.any,null);
         });
-    })
+    });
+
+    it('show a image style class', () => {
+        config.componentProperties.imageStyleClass = 'imageStyleClass';
+        config.componentProperties.trailingImageStyleClass = 'trailingImageStyleClass';
+        cy.mount(ServoyBootstrapButton, config).then(wrapper => {
+            cy.get('button span').should('have.class', 'imageStyleClass').then(_ => {
+                config.componentProperties.imageStyleClass = null
+            });
+            cy.get('button span').should('have.class', 'trailingImageStyleClass').then(_ => {
+                config.componentProperties.trailingImageStyleClass = null;
+                wrapper.component.trailingImageStyleClass = null;
+                wrapper.component.imageStyleClass = null;
+                wrapper.component.detectChanges();
+                cy.get('button span').should('not.exist');
+            });
+        });
+    });
+
+    it('show a image style class with html', () => {
+        config.componentProperties.imageStyleClass = 'imageStyleClass';
+        config.componentProperties.trailingImageStyleClass = 'trailingImageStyleClass';
+        config.componentProperties.showAs = 'trusted_html';
+        cy.mount(ServoyBootstrapButton, config).then(wrapper => {
+            cy.get('button span').should('have.class', 'imageStyleClass').then(_ => {
+                config.componentProperties.imageStyleClass = null
+            });
+            cy.get('button span').should('have.class', 'trailingImageStyleClass').then(_ => {
+                config.componentProperties.trailingImageStyleClass = null;
+                wrapper.component.trailingImageStyleClass = null;
+                wrapper.component.imageStyleClass = null;
+                wrapper.component.detectChanges();
+                cy.get('button span').should('not.exist');
+            });
+        });
+    });
 })
