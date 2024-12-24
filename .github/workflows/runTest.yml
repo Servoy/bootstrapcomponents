@@ -34,3 +34,14 @@ jobs:
         run: |
           npm install
           npm run cy:run
+          
+      - name: Upload artifacts on failure
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-artifacts
+          path: cypress/screenshots/
+          if-no-files-found: ignore
+          retention-days: 30
+          
+  
