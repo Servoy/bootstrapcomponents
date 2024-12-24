@@ -1,4 +1,4 @@
-name: Build and draft release Servoy Component
+name: Run the cypress component tests
 
 on:
   push:
