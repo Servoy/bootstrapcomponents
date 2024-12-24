@@ -1,0 +1,36 @@
+name: Build and draft release Servoy Component
+
+on:
+  push:
+    branches:
+      - master
+      - 20**
+      - v20**
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  build:
+
+      runs-on: ubuntu-latest
+
+      steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Find component directory
+        id: find_component_dir
+        run: echo "COMPONENT_DIR=$(find . -type d -name 'META-INF' -exec dirname {} \;)" >> $GITHUB_ENV
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+          cache: 'npm'
+          cache-dependency-path: ${{ env.COMPONENT_DIR }}/package-lock.json
+
+      - name: Install and build component
+        working-directory: ${{ env.COMPONENT_DIR }}
+        run: |
+          npm install
+          npm run cy:run
