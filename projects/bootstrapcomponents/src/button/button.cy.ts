@@ -1,7 +1,22 @@
 import { ServoyBootstrapButton } from "./button"
 import { MountConfig } from "cypress/angular"
 import { ServoyApi, ServoyApiTesting, ServoyBaseComponent, ServoyPublicTestingModule } from "@servoy/public"
+import { Component, Input, SimpleChange } from "@angular/core";
 
+@Component({
+    template: `<bootstrapcomponents-button [servoyApi]="servoyApi" [enabled]="enabled" [text]="text" [onActionMethodID]="onActionMethodID" [onDoubleClickMethodID]="onDoubleClickMethodID" [onRightClickMethodID]="onRightClickMethodID" [showAs]="showAs" [imageStyleClass]="imageStyleClass" [trailingImageStyleClass]="trailingImageStyleClass"></bootstrapcomponents-button>`
+})
+class WrapperComponent {
+    @Input() enabled = true;
+    @Input() text = 'MyButton';
+    @Input() onActionMethodID: (e: Event, data?: any) => void;
+    @Input() onDoubleClickMethodID: (e: Event, data?: any) => void;
+    @Input() onRightClickMethodID: (e: Event, data?: any) => void;
+    @Input() showAs: string;
+    @Input() imageStyleClass: string;
+    @Input() trailingImageStyleClass: string;
+    @Input() servoyApi: ServoyApi;
+}
 
 describe('ButtonComponent', () => {
     const servoyApiSpy = new ServoyApiTesting();
@@ -13,9 +28,41 @@ describe('ButtonComponent', () => {
     beforeEach(() => {
         config.componentProperties = {
             servoyApi: servoyApiSpy,
+            enabled: true,
             text: 'MyButton'
         }
     });
+
+    it('when button is mounted and registered and text is changed  through wrapper', () => {
+        const registerComponent = cy.stub(servoyApiSpy, 'registerComponent');
+        cy.mount(WrapperComponent, {
+            declarations: [ServoyBootstrapButton],
+            imports: [ ServoyPublicTestingModule],
+            componentProperties: config.componentProperties
+        }).then((wrapper) => {
+            cy.get('button').should('have.text', ' MyButton ').then(_ => {
+                expect(registerComponent).to.been.called;
+
+                wrapper.component.text = 'MyButton2';
+                wrapper.fixture.detectChanges();
+                cy.get('button').should('have.text', ' MyButton2 ')
+            });
+        });
+    })
+
+    it('when button enabled state is changed through wrapper', () => {
+        cy.mount(WrapperComponent, {
+            declarations: [ServoyBootstrapButton],
+            imports: [ ServoyPublicTestingModule],
+            componentProperties: config.componentProperties
+        }).then((wrapper) => {
+            cy.get('button').should('be.enabled').then(_ => {
+                wrapper.component.enabled = false
+                wrapper.fixture.detectChanges();
+                cy.get('button').should('be.disabled')
+            });
+        });
+    })
     
     it('can mount and has text set', () => {
         const registerComponent = cy.stub(servoyApiSpy, 'registerComponent');
@@ -28,10 +75,17 @@ describe('ButtonComponent', () => {
     it('when button is clicked', () => {
         expect(config.componentProperties.onActionMethodID).to.be.undefined;
         config.componentProperties.onActionMethodID = cy.spy().as('onActionMethodID');
-        cy.mount(ServoyBootstrapButton, config);
-        cy.get('button').click().then(_ => {
-            expect(config.componentProperties.onActionMethodID).to.be.called;
-        });
+        cy.mount(ServoyBootstrapButton, config).then(wrapper => {
+            cy.get('button').click().then(_ => {
+                expect(config.componentProperties.onActionMethodID).to.be.calledOnce;
+                wrapper.component.enabled = false;
+                // now detect changes will not work, we need to call ngOnChanges our self to update the button state
+                // see wrapper component above how that can work a bit nicer with just detectChanges
+                const changes = { enabled: new SimpleChange(true, false, false) };
+                wrapper.component.ngOnChanges(changes);
+                cy.get('button').should('be.disabled');
+            });
+        })
     })
 
     it('when button is double clicked', () => {
@@ -117,4 +171,5 @@ describe('ButtonComponent', () => {
             // });
         });
     });
+
 })
