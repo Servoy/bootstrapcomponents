@@ -41,12 +41,11 @@ describe('ButtonComponent', () => {
             componentProperties: config.componentProperties
         }).then((wrapper) => {
             cy.get('button').should('have.text', ' MyButton ').then(_ => {
-                expect(registerComponent).to.been.called;
-
                 wrapper.component.text = 'MyButton2';
                 wrapper.fixture.detectChanges();
                 cy.get('button').should('have.text', ' MyButton2 ')
             });
+            cy.wrap(registerComponent).should('be.called');
         });
     })
 
@@ -67,9 +66,8 @@ describe('ButtonComponent', () => {
     it('can mount and has text set', () => {
         const registerComponent = cy.stub(servoyApiSpy, 'registerComponent');
         cy.mount(ServoyBootstrapButton, config);
-        cy.get('button').should('have.text', ' MyButton ').then(_ => {
-            expect(registerComponent).to.been.called;
-        });
+        cy.get('button').should('have.text', ' MyButton ');
+        cy.wrap(registerComponent).should('be.called');
     })
 
     it('when button is clicked', () => {
@@ -92,9 +90,8 @@ describe('ButtonComponent', () => {
         expect(config.componentProperties.onDoubleClickMethodID).to.be.undefined;
         config.componentProperties.onDoubleClickMethodID = cy.spy().as('onDoubleClickMethodID');
         cy.mount(ServoyBootstrapButton, config);
-        cy.get('button').dblclick().then(_ => {
-            expect(config.componentProperties.onDoubleClickMethodID).to.be.called;
-        });
+        cy.get('button').dblclick();
+        cy.wrap(config.componentProperties.onDoubleClickMethodID).should('be.called');
     })
 
     it('when button is right clicked', () => {
@@ -103,9 +100,8 @@ describe('ButtonComponent', () => {
         expect(config.componentProperties.onActionMethodID).to.be.undefined;
         config.componentProperties.onRightClickMethodID = cy.spy().as('onRightClickMethodID');
         cy.mount(ServoyBootstrapButton, config);
-        cy.get('button').rightclick().then(_ => {
-            expect(config.componentProperties.onRightClickMethodID).to.be.called;
-        });
+        cy.get('button').rightclick()
+        cy.wrap(config.componentProperties.onRightClickMethodID).should('be.called');
     })
 
     it('when datatarget is clicked', () => {
@@ -117,12 +113,10 @@ describe('ButtonComponent', () => {
                 showAs: 'trusted_html'
         }
         cy.mount(ServoyBootstrapButton, config);
-        cy.get('button label').click().then(_ => {
-            expect(config.componentProperties.onActionMethodID).to.be.called.calledWith(Cypress.sinon.match.any,'test');
-        });
-        cy.get('button').click().then(_ => {
-            expect(config.componentProperties.onActionMethodID).to.be.called.calledWith(Cypress.sinon.match.any,null);
-        });
+        cy.get('button label').click()
+        cy.wrap(config.componentProperties.onActionMethodID).should('be.calledWith', Cypress.sinon.match.any,'test');
+        cy.get('button').click()
+        cy.wrap(config.componentProperties.onActionMethodID).should('be.calledWith',Cypress.sinon.match.any,null);
     })
 
     it('when datatarget is clicked not trusted html', () => {
@@ -134,12 +128,10 @@ describe('ButtonComponent', () => {
                 showAs: 'html'
         }
         cy.mount(ServoyBootstrapButton, config);
-        cy.get('button label').click().then(_ => {
-            expect(config.componentProperties.onActionMethodID).to.be.called.calledWith(Cypress.sinon.match.any,null);
-        });
-        cy.get('button').click().then(_ => {
-            expect(config.componentProperties.onActionMethodID).to.be.called.calledWith(Cypress.sinon.match.any,null);
-        });
+        cy.get('button label').click()
+        cy.wrap(config.componentProperties.onActionMethodID).should('be.calledWith',Cypress.sinon.match.any,null);
+        cy.get('button').click()
+        cy.wrap(config.componentProperties.onActionMethodID).should('be.calledWith',Cypress.sinon.match.any,null);
     });
 
     it('show a image style class', () => {
