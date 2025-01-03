@@ -15,7 +15,7 @@
 //
 //
 // -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
+// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => {  })
 //
 //
 // -- This is a dual command --
@@ -24,14 +24,35 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-//
-// declare global {
-//   namespace Cypress {
-//     interface Chainable {
-//       login(email: string, password: string): Chainable<void>
-//       drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
-//     }
-//   }
-// }
+
+
+declare global {
+  namespace Cypress {
+    // interface Chainable {
+    //   login(email: string, password: string): Chainable<void>
+    //   drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
+    //   dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
+    //   visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
+    // }
+    interface Chainer<Subject> {
+        (chainer: 'have.selection', type: string): Chainable<Subject>
+    }
+  }
+}
+
+
+// Add custom Chai assertion
+chai.Assertion.addMethod('selection', function (expectedText: string) {
+  const inputElement = this._obj[0] as HTMLInputElement;
+  const selectedText = inputElement.value.substring(inputElement.selectionStart!, inputElement.selectionEnd!);
+  this.assert(
+    selectedText === expectedText,
+    `Expected selected text to be #{exp} but got #{act}`,
+    `Expected selected text to not be #{exp}`,
+    expectedText, // Expected
+    selectedText // Actual
+  );
+});
+
+
+export {}
