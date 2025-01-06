@@ -79,7 +79,9 @@ describe('ServoyBootstrapTextarea Component', () => {
     it('should mount and register the component', () => {
         const registerComponent = cy.stub(servoyApiSpy, 'registerComponent');
         cy.mount(WrapperComponent, config).then((wrapper) => {
-            cy.get('textarea').should('exist').then(_ => {
+            // you need to test if the value is there for the component to be fully initialized
+            // just getting the textarea can result in that it is not fully mounted yet (svnOnchanges not called yet)
+            cy.get('textarea').should('have.value', 'initialValue').then(_ => {
                 expect(registerComponent).to.have.been.called;
             });
         });
@@ -104,7 +106,7 @@ describe('ServoyBootstrapTextarea Component', () => {
             const component = wrapper.component;
             const spy = cy.spy(component, 'onDataProviderIDChange');
 
-            cy.get('textarea').type('New Value').blur().then(() => {
+            cy.get('textarea').should('have.value', 'initialValue').type('New Value').blur().then(() => {
                 expect(spy).to.have.been.calledWith('initialValueNew Value');
             });
         });
@@ -117,7 +119,7 @@ describe('ServoyBootstrapTextarea Component', () => {
             const component = wrapper.component;
             const spy = cy.spy(component, 'onDataProviderIDChange');
 
-            cy.get('textarea').focus().should('have.selection', 'initialValue').type('New Value').blur().then(() => {
+            cy.get('textarea').should('have.value', 'initialValue').focus().should('have.selection', 'initialValue').type('New Value').blur().then(() => {
                 expect(spy).to.have.been.calledWith('New Value');
             });
         });
@@ -140,11 +142,11 @@ describe('ServoyBootstrapTextarea Component', () => {
             const focusGainedSpy = cy.spy(component, 'onFocusGained');
             const focusLostSpy = cy.spy(component, 'onFocusLost');
 
-            cy.get('textarea').focus().then(() => {
+            cy.get('textarea').should('have.value', 'initialValue').focus().then(() => {
                 expect(focusGainedSpy).to.have.been.called;
             });
 
-            cy.get('textarea').blur().then(() => {
+            cy.get('textarea').should('have.value', 'initialValue').blur().then(() => {
                 expect(focusLostSpy).to.have.been.called;
             });
         });

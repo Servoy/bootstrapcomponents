@@ -20,7 +20,7 @@ class WrapperComponent {
     onFocusLostMethodID: (e: Event, data?: any) => void;
     onRightClickMethodID: (e: Event, data?: any) => void;
 
-    format: Format;
+    format: Format = {type: 'TEXT'} as Format
     autocomplete: string;
     styleClassForEye: string;
     readOnly: boolean;
@@ -69,7 +69,7 @@ describe('ServoyBootstrapTextbox', () => {
         const registerComponent = cy.stub(servoyApiSpy, 'registerComponent');
         cy.mount(WrapperComponent, config).then((wrapper) => {
             cy.get('input').should('exist').then(_ => {
-                expect(registerComponent).to.have.been.called;
+                cy.wrap(registerComponent).should('be.called');
             });
         });
     });
@@ -113,7 +113,10 @@ describe('ServoyBootstrapTextbox', () => {
         config.componentProperties.selectOnEnter = true;
         config.componentProperties.dataProviderID = 'myvalue';
         cy.mount(WrapperComponent, config).then(_ => {
-            cy.get('input').focus().then(() => {
+            // you need to test if the value is there for the component to be fully initialized
+            // just getting the input (of the textbox) can result in that it is not fully mounted yet (svnOnchanges not called yet)
+            // and focus() will bomb out because the Format property is not yet set
+            cy.get('input').should('have.value', 'myvalue').focus().then(() => {
                 // see the commands.ts file in the cypress/support folder for the have.selection example
                 cy.get('input').should('have.selection', 'myvalue');
             });
@@ -124,8 +127,8 @@ describe('ServoyBootstrapTextbox', () => {
         const onFocusGainedMethodID = cy.stub();
         config.componentProperties.onFocusGainedMethodID = onFocusGainedMethodID;
         cy.mount(WrapperComponent, config).then(_ => {
-            cy.get('input').focus().then(() => {
-                expect(onFocusGainedMethodID).to.have.been.called;
+            cy.get('input').should('have.value', 'initialValue').focus().then(() => {
+                cy.wrap(onFocusGainedMethodID).should('be.called');
             });
         });
     });
@@ -134,8 +137,8 @@ describe('ServoyBootstrapTextbox', () => {
         const onFocusLostMethodID = cy.stub();
         config.componentProperties.onFocusLostMethodID = onFocusLostMethodID;
         cy.mount(WrapperComponent, config).then(_ => {
-            cy.get('input').focus().blur().then(() => {
-                expect(onFocusLostMethodID).to.have.been.called;
+            cy.get('input').should('have.value', 'initialValue').focus().blur().then(() => {
+                cy.wrap(onFocusLostMethodID).should('be.called');
             });
         });
     });
@@ -163,7 +166,7 @@ describe('ServoyBootstrapTextbox', () => {
         const inputTypeChange = cy.stub();
         config.componentProperties.inputTypeChange = inputTypeChange;
         cy.mount(WrapperComponent, config).then(wrapper => {
-            cy.get('input').then(() => {
+            cy.get('input').should('have.value', 'initialValue').then(() => {
                 wrapper.component.element.setInputType('password');
                 expect(inputTypeChange).to.have.been.calledWith('password');
                 wrapper.component.element.setInputType('password');
