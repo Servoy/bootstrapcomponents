@@ -1,4 +1,4 @@
-import { Component, Renderer2, AfterViewInit, ViewChild, ElementRef, SimpleChanges, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Renderer2, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 
 import { ServoyBootstrapBaseLabel } from '../bts_baselabel';
 

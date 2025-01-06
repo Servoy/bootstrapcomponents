@@ -1,21 +1,46 @@
-import { ServoyBootstrapButton } from "./button"
-import { MountConfig } from "cypress/angular"
-import { ServoyApi, ServoyApiTesting, ServoyBaseComponent, ServoyPublicTestingModule } from "@servoy/public"
-import { Component, Input, SimpleChange } from "@angular/core";
+/* eslint-disable @typescript-eslint/no-unused-expressions */
+import { ServoyBootstrapButton } from './button'
+import { MountConfig } from 'cypress/angular'
+import { ServoyApi, ServoyApiTesting, ServoyPublicTestingModule } from '@servoy/public'
+import { Component, Input, SimpleChange, ViewChild, viewChildren } from '@angular/core';
 
 @Component({
-    template: `<bootstrapcomponents-button [servoyApi]="servoyApi" [enabled]="enabled" [text]="text" [onActionMethodID]="onActionMethodID" [onDoubleClickMethodID]="onDoubleClickMethodID" [onRightClickMethodID]="onRightClickMethodID" [showAs]="showAs" [imageStyleClass]="imageStyleClass" [trailingImageStyleClass]="trailingImageStyleClass"></bootstrapcomponents-button>`
+    template: `
+        <bootstrapcomponents-button 
+            [servoyApi]="servoyApi" 
+            [enabled]="enabled" 
+            [text]="text" 
+            [onActionMethodID]="onActionMethodID" 
+            [onDoubleClickMethodID]="onDoubleClickMethodID" 
+            [onRightClickMethodID]="onRightClickMethodID" 
+            [showAs]="showAs" 
+            [imageStyleClass]="imageStyleClass" 
+            [trailingImageStyleClass]="trailingImageStyleClass"
+            [styleClass]="styleClass"
+            [variant]="variant"
+            [tabSeq]="tabSeq"
+            [toolTipText]="toolTipText"
+            #element>
+        </bootstrapcomponents-button>
+    `
 })
 class WrapperComponent {
-    @Input() enabled = true;
-    @Input() text = 'MyButton';
-    @Input() onActionMethodID: (e: Event, data?: any) => void;
-    @Input() onDoubleClickMethodID: (e: Event, data?: any) => void;
-    @Input() onRightClickMethodID: (e: Event, data?: any) => void;
-    @Input() showAs: string;
-    @Input() imageStyleClass: string;
-    @Input() trailingImageStyleClass: string;
-    @Input() servoyApi: ServoyApi;
+    enabled = true;
+    text = 'MyButton';
+    onActionMethodID: (e: Event, data?: any) => void;
+    onDoubleClickMethodID: (e: Event, data?: any) => void;
+    onRightClickMethodID: (e: Event, data?: any) => void;
+    showAs: string;
+    imageStyleClass: string;
+    trailingImageStyleClass: string;
+    servoyApi: ServoyApi;
+
+    styleClass: string;
+    variant: string[];
+    tabSeq: number;
+    toolTipText: string;
+
+    @ViewChild('element') element: ServoyBootstrapButton;
 }
 
 describe('ButtonComponent', () => {
@@ -25,21 +50,23 @@ describe('ButtonComponent', () => {
         imports: [ ServoyPublicTestingModule],
     } 
 
+    const configWrapper: MountConfig<WrapperComponent> = {
+        declarations: [ServoyBootstrapButton],
+        imports: [ ServoyPublicTestingModule]
+    }
+
     beforeEach(() => {
         config.componentProperties = {
             servoyApi: servoyApiSpy,
             enabled: true,
             text: 'MyButton'
         }
+        configWrapper.componentProperties = config.componentProperties;
     });
 
     it('when button is mounted and registered and text is changed  through wrapper', () => {
         const registerComponent = cy.stub(servoyApiSpy, 'registerComponent');
-        cy.mount(WrapperComponent, {
-            declarations: [ServoyBootstrapButton],
-            imports: [ ServoyPublicTestingModule],
-            componentProperties: config.componentProperties
-        }).then((wrapper) => {
+        cy.mount(WrapperComponent, configWrapper).then((wrapper) => {
             cy.get('button').should('have.text', ' MyButton ').then(_ => {
                 wrapper.component.text = 'MyButton2';
                 wrapper.fixture.detectChanges();
@@ -50,11 +77,7 @@ describe('ButtonComponent', () => {
     })
 
     it('when button enabled state is changed through wrapper', () => {
-        cy.mount(WrapperComponent, {
-            declarations: [ServoyBootstrapButton],
-            imports: [ ServoyPublicTestingModule],
-            componentProperties: config.componentProperties
-        }).then((wrapper) => {
+        cy.mount(WrapperComponent, configWrapper).then((wrapper) => {
             cy.get('button').should('be.enabled').then(_ => {
                 wrapper.component.enabled = false
                 wrapper.fixture.detectChanges();
@@ -134,6 +157,37 @@ describe('ButtonComponent', () => {
         cy.wrap(config.componentProperties.onActionMethodID).should('be.calledWith',Cypress.sinon.match.any,null);
     });
 
+    it('show a style class', () => {
+        cy.mount(WrapperComponent, configWrapper).then(wrapper => {
+            cy.get('button').should('not.have.class', 'mystyleclass').then(_ => {
+                wrapper.component.styleClass = 'mystyleclass';
+                wrapper.fixture.detectChanges();
+                cy.get('button').should('have.class', 'mystyleclass')
+            });
+        });
+    });
+
+    it('show more then 1 style class', () => {
+        configWrapper.componentProperties.styleClass = 'mystyleclass';
+        cy.mount(WrapperComponent, configWrapper).then(wrapper => {
+            cy.get('button').should('have.class', 'mystyleclass').then(_ => {
+                wrapper.component.styleClass = 'classA classB';
+                wrapper.fixture.detectChanges();
+                cy.get('button').should('have.class', 'classA').should('have.class', 'classB');
+            });
+        });
+    });
+
+    it('show more variant classes', () => {
+        cy.mount(WrapperComponent, configWrapper).then(wrapper => {
+            cy.get('button').should('not.have.class', 'varianta').then(_ => {
+                wrapper.component.variant = ['variantA', 'variantB'];
+                wrapper.fixture.detectChanges();
+                cy.get('button').should('have.class', 'variantA').should('have.class', 'variantB');
+            });
+        });
+    });
+
     it('show a image style class', () => {
         config.componentProperties.imageStyleClass = 'imageStyleClass';
         config.componentProperties.trailingImageStyleClass = 'trailingImageStyleClass';
@@ -163,5 +217,32 @@ describe('ButtonComponent', () => {
             // });
         });
     });
+
+    it('should update the tooltip dynamically', () => {
+        cy.mount(WrapperComponent, configWrapper).then((wrapper) => {
+          wrapper.component.toolTipText = 'Updated tooltip';
+          wrapper.fixture.detectChanges();
+          cy.get('button').trigger('pointerenter').then(() => {
+              cy.get('div[id="mktipmsg"]').should('have.text', 'Updated tooltip');
+          });
+        });
+      });
+
+    it('should focus the button when requestFocus is called', () => {
+        cy.mount(WrapperComponent, configWrapper).then((wrapper) => {
+            cy.get('button').should('have.text', ' MyButton ').then(_ => {
+                wrapper.component.element.requestFocus(false);
+                cy.get('button').should('have.focus');
+            });
+        });
+    });
+
+    // not sure if we can tes this because i think SabloTabSeq directive needs a parent that triggers the calculation
+    //   it('should hava a tabindex set', () => {
+    //     configWrapper.componentProperties.tabSeq = 5;
+    //     cy.mount(WrapperComponent, configWrapper).then((wrapper) => {
+    //       cy.get('button').should('have.attr', 'tabindex', '5');
+    //     });
+    //   });
 
 })
