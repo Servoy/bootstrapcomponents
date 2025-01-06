@@ -7,7 +7,7 @@ export class ServoyBootstrapBaseComponent<T extends HTMLElement> extends ServoyB
 
     @Input() enabled: boolean;
     @Input() styleClass: string;
-    @Input() variant: string;
+    @Input() variant: string[];
     @Input() tabSeq: number;
     @Input() text: string;
     @Input() toolTipText: string;
