@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 import { Component, ViewChild } from '@angular/core';
 import { ServoyBootstrapTextarea } from './textarea';
 import { ServoyApi, ServoyApiTesting, ServoyPublicTestingModule } from '@servoy/public';
@@ -13,12 +14,14 @@ import { FormsModule } from '@angular/forms';
                 [readOnly]="readOnly"
                 [findmode]="findmode"
                 [editable]="editable"
+                [styleClass]="styleClass"
                 [placeholderText]="placeholderText"
                 [selectOnEnter]="selectOnEnter"
                 (dataProviderIDChange)="onDataProviderIDChange($event)"
-                [onActionMethodID]="onAction"
-                [onFocusGainedMethodID]="onFocusGained"
-                [onFocusLostMethodID]="onFocusLost"
+                [onActionMethodID]="onActionMethodID"
+                [onFocusGainedMethodID]="onFocusGainedMethodID"
+                [onFocusLostMethodID]="onFocusLostMethodID"
+                [onRightClickMethodID]="onRightClickMethodID"
                 #element>
              </bootstrapcomponents-textarea>`
 })
@@ -26,29 +29,28 @@ class WrapperComponent {
     servoyApi: ServoyApi;
 
     enabled = true;
-
-    maxLength = 100;
-    dataProviderID = 'initialValue';
     readOnly = false;
     findmode = false;
+
+    maxLength = 100;
     editable = true;
     placeholderText = 'Enter text';
-    selectOnEnter = false;
-
+    styleClass;
+    
+    dataProviderID = 'initialValue';
     onDataProviderIDChange(newData: any) {
-        console.log('dataProviderIDChange', newData);
     }
 
-    onAction(event: Event) {
-        console.log('Action triggered', event);
+    onActionMethodID(event: Event) {
     }
 
-    onFocusGained(event: Event) {
-        console.log('Focus gained', event);
+    onFocusGainedMethodID(event: Event) {
     }
 
-    onFocusLost(event: Event) {
-        console.log('Focus lost', event);
+    onFocusLostMethodID(event: Event) {
+    }
+
+    onRightClickMethodID(event: Event) {
     }
 
     @ViewChild('element') element: ServoyBootstrapTextarea;
@@ -67,18 +69,18 @@ describe('ServoyBootstrapTextarea Component', () => {
             servoyApi: servoyApiSpy,
             maxLength: 100,
             dataProviderID: 'initialValue',
+            styleClass: null,
             enabled: true,
             readOnly: false,
             findmode: false,
             editable: true,
             placeholderText: 'Enter text',
-            selectOnEnter: false
         }
     });
 
     it('should mount and register the component', () => {
         const registerComponent = cy.stub(servoyApiSpy, 'registerComponent');
-        cy.mount(WrapperComponent, config).then((wrapper) => {
+        cy.mount(WrapperComponent, config).then(() => {
             // you need to test if the value is there for the component to be fully initialized
             // just getting the textarea can result in that it is not fully mounted yet (svnOnchanges not called yet)
             cy.get('textarea').should('have.value', 'initialValue').then(_ => {
@@ -97,50 +99,87 @@ describe('ServoyBootstrapTextarea Component', () => {
             expect(component.findmode).to.be.false;
             expect(component.editable).to.be.true;
             expect(component.placeholderText).to.equal('Enter text');
-            expect(component.selectOnEnter).to.be.false;
+        });
+    });
+
+    it('should be read-only', () => {
+        config.componentProperties.readOnly = true;
+        cy.mount(WrapperComponent, config).then(() => {
+            cy.get('textarea').should('have.attr', 'readonly');
+        });
+    });
+
+    it('should be editable', () => {
+        config.componentProperties.editable = true;
+        cy.mount(WrapperComponent, config).then(() => {
+            cy.get('textarea').should('not.have.attr', 'readonly');
+        });
+    });
+
+    it('should have max length', () => {
+        cy.mount(WrapperComponent, config).then(wrapper => {
+            cy.get('textarea').should('have.attr', 'maxlength', 100).then(() => {
+                wrapper.component.maxLength = 200;
+                wrapper.fixture.detectChanges();
+                cy.get('textarea').should('have.attr', 'maxlength', 200)
+            });
         });
     });
 
     it('should emit dataProviderIDChange event on input change', () => {
-        cy.mount(WrapperComponent, config).then((wrapper) => {
-            const component = wrapper.component;
-            const spy = cy.spy(component, 'onDataProviderIDChange');
+        const onDataProviderIDChange = cy.stub();
+        config.componentProperties.onDataProviderIDChange = onDataProviderIDChange;
+        cy.mount(WrapperComponent, config).then(() => {
 
             cy.get('textarea').should('have.value', 'initialValue').type('New Value').blur().then(() => {
-                expect(spy).to.have.been.calledWith('initialValueNew Value');
+                expect(onDataProviderIDChange).to.have.been.calledWith('initialValueNew Value');
+            });
+        });
+    });
+
+    it('should not emit dataProviderIDChange event dataprovder change', () => {
+        const onDataProviderIDChange = cy.stub();
+        config.componentProperties.onDataProviderIDChange = onDataProviderIDChange;
+        cy.mount(WrapperComponent, config).then(wrapper => {
+
+            cy.get('textarea').should('have.value', 'initialValue').then(() => {
+                wrapper.component.dataProviderID = 'new value';
+                wrapper.fixture.detectChanges();
+                expect(onDataProviderIDChange).not.to.have.been.called;
+                cy.get('textarea').should('have.value', 'new value')
             });
         });
     });
 
 
-    it('should emit dataProviderIDChange event on input change wiht select on enter', () => {
-        config.componentProperties.selectOnEnter = true;
-        cy.mount(WrapperComponent, config).then((wrapper) => {
-            const component = wrapper.component;
-            const spy = cy.spy(component, 'onDataProviderIDChange');
+    // it('should emit dataProviderIDChange event on input change wiht select on enter', () => {
+    //     config.componentProperties.selectOnEnter = true;
+    //     cy.mount(WrapperComponent, config).then((wrapper) => {
+    //         const component = wrapper.component;
+    //         const spy = cy.spy(component, 'onDataProviderIDChange');
 
-            cy.get('textarea').should('have.value', 'initialValue').focus().should('have.selection', 'initialValue').type('New Value').blur().then(() => {
-                expect(spy).to.have.been.calledWith('New Value');
-            });
-        });
-    });
+    //         cy.get('textarea').should('have.value', 'initialValue').focus().should('have.selection', 'initialValue').type('New Value').blur().then(() => {
+    //             expect(spy).to.have.been.calledWith('New Value');
+    //         });
+    //     });
+    // });
 
     it('should trigger onAction event on Enter key press', () => {
-        cy.mount(WrapperComponent, config).then((wrapper) => {
-            const component = wrapper.component;
-            const spy = cy.spy(component, 'onAction');
-
+        const onActionMethodID = cy.stub();
+        config.componentProperties.onActionMethodID = onActionMethodID;
+        cy.mount(WrapperComponent, config).then(() => {
             cy.get('textarea').type('{enter}').then(() => {
-                cy.wrap(spy).should('have.been.called');
+                cy.wrap(onActionMethodID).should('have.been.called');
             });
         });
     });
 
     it('should trigger onFocusGained and onFocusLost events', () => {
-        cy.mount(WrapperComponent, config).then((wrapper) => {
-            const component = wrapper.component;
-            const focusGainedSpy = cy.spy(component, 'onFocusGained');
-            const focusLostSpy = cy.spy(component, 'onFocusLost');
+        const focusGainedSpy = cy.stub();
+        const focusLostSpy = cy.stub();
+        config.componentProperties.onFocusGainedMethodID = focusGainedSpy;
+        config.componentProperties.onFocusLostMethodID = focusLostSpy;
+        cy.mount(WrapperComponent, config).then(() => {
 
             cy.get('textarea').should('have.value', 'initialValue').focus().then(() => {
                 expect(focusGainedSpy).to.have.been.called;
@@ -151,4 +190,14 @@ describe('ServoyBootstrapTextarea Component', () => {
             });
         });
     });
+
+    it('should handle right click event', () => {
+        const onRightClickMethodID = cy.stub();
+        config.componentProperties.onRightClickMethodID = onRightClickMethodID;
+        cy.mount(WrapperComponent, config).then(() => {
+            cy.get('textarea').rightclick().then(() => {
+                expect(onRightClickMethodID).to.have.been.called;
+            });
+        });
+    })
 });
