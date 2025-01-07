@@ -33,7 +33,8 @@ jobs:
         with:
             # Cache node_modules and Puppeteer chrome
             path: |
-              ~/..angular
+              .angular
+              .cache
               node_modules
             key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
             restore-keys: |
