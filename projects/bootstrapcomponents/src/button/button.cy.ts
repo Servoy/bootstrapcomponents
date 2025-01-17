@@ -22,7 +22,8 @@ import { Component, Input, SimpleChange, ViewChild, viewChildren } from '@angula
             [toolTipText]="toolTipText"
             #element>
         </bootstrapcomponents-button>
-    `
+    `,
+    standalone: false
 })
 class WrapperComponent {
     enabled = true;

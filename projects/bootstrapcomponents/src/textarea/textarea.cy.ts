@@ -23,7 +23,8 @@ import { FormsModule } from '@angular/forms';
                 [onFocusLostMethodID]="onFocusLostMethodID"
                 [onRightClickMethodID]="onRightClickMethodID"
                 #element>
-             </bootstrapcomponents-textarea>`
+             </bootstrapcomponents-textarea>`,
+    standalone: false
 })
 class WrapperComponent {
     servoyApi: ServoyApi;

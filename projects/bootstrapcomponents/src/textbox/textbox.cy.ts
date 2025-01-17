@@ -13,7 +13,8 @@ import { wrap } from 'cypress/types/lodash';
                 [placeholderText]="placeholderText" [selectOnEnter]="selectOnEnter" [inputType]="inputType" (inputTypeChange)="inputTypeChange($event)" 
                 [dataProviderID]="dataProviderID" (dataProviderIDChange)="dataProviderIDChange($event)" [styleClassForEye]="styleClassForEye"
                 [styleClass]="styleClass" [variant]="variant" [toolTipText]="toolTipText" [tabSeq]="tabSeq" #element>
-                </bootstrapcomponents-textbox>`
+                </bootstrapcomponents-textbox>`,
+    standalone: false
 })
 class WrapperComponent {
     servoyApi: ServoyApi;
