@@ -7,7 +7,8 @@ import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 @Component({
     selector: 'bootstrapcomponents-tabpanel',
     templateUrl: './tabpanel.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLUListElement> {
 
@@ -243,7 +244,8 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
 
 @Component({
     selector: 'bootstrapcomponents-tabpanel-active-tab-visibility-listener',
-    template: '<div #element></div>'
+    template: '<div #element></div>',
+    standalone: false
 })
 export class BsTabpanelActiveTabVisibilityListener implements AfterViewInit, OnDestroy {
 

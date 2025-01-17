@@ -4,9 +4,10 @@ import { WindowRefService } from '@servoy/public';
 import { ServoyBootstrapBaseTabPanel,Tab } from '../bts_basetabpanel';
 
 @Component({
-  selector: 'bootstrapcomponents-accordion',
-  templateUrl: './accordion.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'bootstrapcomponents-accordion',
+    templateUrl: './accordion.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDivElement> {
 

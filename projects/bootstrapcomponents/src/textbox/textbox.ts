@@ -6,7 +6,8 @@ import { ServoyBootstrapBasefield } from '../bts_basefield';
 @Component({
     selector: 'bootstrapcomponents-textbox',
     templateUrl: './textbox.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputElement> {
 

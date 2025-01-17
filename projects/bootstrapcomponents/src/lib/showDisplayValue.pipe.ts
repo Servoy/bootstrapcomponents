@@ -2,7 +2,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { IValuelist } from '@servoy/public';
 import { map, Observable, of } from 'rxjs';
 
-@Pipe({name: 'showDisplayValue'})
+@Pipe({
+    name: 'showDisplayValue',
+    standalone: false
+})
 export class ShowDisplayValuePipe implements PipeTransform {
 
     transform(input: any, ...args: any[]): Observable<any> {

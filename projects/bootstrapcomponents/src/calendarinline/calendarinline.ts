@@ -7,7 +7,8 @@ import { DateTime } from '@eonasdan/tempus-dominus';
 @Component({
     selector: 'bootstrapcomponents-calendarinline',
     templateUrl: './calendarinline.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ServoyBootstrapCalendarinline extends ServoyBootstrapBaseCalendar {
 

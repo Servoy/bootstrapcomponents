@@ -9,7 +9,8 @@ import { ServoyBootstrapBasefield } from '../bts_basefield';
 @Component({
     selector: 'bootstrapcomponents-typeahead',
     templateUrl: './typeahead.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInputElement> implements IPopupSupportComponent {
 

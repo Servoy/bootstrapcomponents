@@ -8,7 +8,8 @@ import { ServoyBootstrapBaseCalendar } from './basecalendar';
 @Component({
     selector: 'bootstrapcomponents-calendar',
     templateUrl: './calendar.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
 

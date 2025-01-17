@@ -6,7 +6,8 @@ import { ServoyBootstrapTextbox } from '../textbox/textbox';
 @Component({
     selector: 'bootstrapcomponents-floatlabeltextbox',
     templateUrl: './floatlabeltextbox.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ServoyFloatLabelBootstrapTextbox extends ServoyBootstrapTextbox {
     

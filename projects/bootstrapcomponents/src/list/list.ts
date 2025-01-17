@@ -5,11 +5,12 @@ import { DOCUMENT } from '@angular/common';
 import { IValuelist } from '@servoy/public';
 
 @Component({
-  selector: 'bootstrapcomponents-list',
-  templateUrl: './list.html',
-  styleUrls: ['./list.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [ShowDisplayValuePipe]
+    selector: 'bootstrapcomponents-list',
+    templateUrl: './list.html',
+    styleUrls: ['./list.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [ShowDisplayValuePipe],
+    standalone: false
 })
 export class ServoyBootstrapList extends ServoyBootstrapBasefield<HTMLInputElement> {
 

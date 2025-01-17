@@ -4,7 +4,8 @@ import { ServoyBootstrapBaseLabel } from '../bts_baselabel';
 @Component({
     selector: 'bootstrapcomponents-datalabel',
     templateUrl: './datalabel.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ServoyBootstrapDatalabel extends ServoyBootstrapBaseLabel<HTMLSpanElement> {
 
@@ -28,7 +29,10 @@ export class ServoyBootstrapDatalabel extends ServoyBootstrapBaseLabel<HTMLSpanE
 
 }
 
-@Pipe( { name: 'designFilter' } )
+@Pipe( {
+    name: 'designFilter',
+    standalone: false
+} )
 export class DesignTextPipe implements PipeTransform {
     constructor( ) {
     }

@@ -4,9 +4,10 @@ import { ServoyBootstrapBasefield } from '../bts_basefield';
 import { WindowRefService } from '@servoy/public';
 
 @Component({
-  selector: 'bootstrapcomponents-imagemedia',
-  templateUrl: './imagemedia.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'bootstrapcomponents-imagemedia',
+    templateUrl: './imagemedia.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ServoyBootstrapImageMedia extends ServoyBootstrapBasefield<HTMLImageElement> {
 

@@ -5,7 +5,8 @@ import { ServoyBootstrapTextarea } from '../textarea/textarea';
 @Component({
     selector: 'bootstrapcomponents-floatlabeltextarea',
     templateUrl: './floatlabeltextarea.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ServoyFloatLabelBootstrapTextarea extends ServoyBootstrapTextarea {
     

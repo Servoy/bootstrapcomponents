@@ -9,7 +9,8 @@ import { IValuelist } from '@servoy/public';
     templateUrl: './select.html',
     styleUrls: ['./select.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [ShowDisplayValuePipe]
+    providers: [ShowDisplayValuePipe],
+    standalone: false
 })
 export class ServoyBootstrapSelect extends ServoyBootstrapBasefield<HTMLSelectElement> {
 

@@ -6,7 +6,8 @@ import { ServoyBootstrapBasefield } from '../bts_basefield';
 @Component({
     selector: 'bootstrapcomponents-choicegroup',
     templateUrl: './choicegroup.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDivElement> {
 
@@ -150,7 +151,8 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
 }
 
 @Directive({
-    selector: '[bootstrapBaseChoiceElement]'
+    selector: '[bootstrapBaseChoiceElement]',
+    standalone: false
 })
 export class ChoiceElementDirective implements OnInit {
 

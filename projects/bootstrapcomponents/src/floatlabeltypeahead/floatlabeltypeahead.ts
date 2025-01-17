@@ -6,7 +6,8 @@ import { ServoyBootstrapTypeahead } from '../typeahead/typeahead';
 @Component({
     selector: 'bootstrapcomponents-floatlabeltypeahead',
     templateUrl: './floatlabeltypeahead.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ServoyFloatLabelBootstrapTypeahead extends ServoyBootstrapTypeahead {
     

@@ -6,7 +6,8 @@ import { DOCUMENT } from '@angular/common';
 @Component({
     selector: 'bootstrapcomponents-floatlabelcombobox',
     templateUrl: './floatlabelcombobox.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ServoyFloatLabelBootstrapCombobox extends ServoyBootstrapCombobox{
 

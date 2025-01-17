@@ -8,7 +8,8 @@ import { Subscription } from 'rxjs';
 @Component({
     selector: 'bootstrapcomponents-combobox',
     templateUrl: './combobox.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivElement> {
 

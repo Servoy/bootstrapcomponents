@@ -1,16 +1,16 @@
 {
   "name": "@servoy/bootstrapcomponents",
-  "version": "2024.12.1",
+  "version": "2025.3.0",
   "peerDependencies": {
-    "@angular/animations": "^18",
-    "@angular/common": "^18",
-    "@angular/core": "^18",
-    "@angular/forms": "^18",
+    "@angular/animations": "^19",
+    "@angular/common": "^19",
+    "@angular/core": "^19",
+    "@angular/forms": "^19",
     "luxon": "*"
   },
   "dependencies": {
-    "@angular/cdk": "^18",
-    "@ng-bootstrap/ng-bootstrap": "^17",
+    "@angular/cdk": "^19",
+    "@ng-bootstrap/ng-bootstrap": "^18",
     "@popperjs/core": "<3",
     "@eonasdan/tempus-dominus": "^6.9.11",
     "bootstrap": "<6",

@@ -5,7 +5,8 @@ import { ServoyBootstrapBaseLabel } from '../bts_baselabel';
 @Component( {
     selector: 'bootstrapcomponents-button',
     templateUrl: './button.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 } )
 export class ServoyBootstrapButton extends ServoyBootstrapBaseLabel<HTMLButtonElement> {
 

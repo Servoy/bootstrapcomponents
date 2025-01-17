@@ -7,7 +7,8 @@ import { ServoyBootstrapCalendar } from '../calendar/calendar';
 @Component({
     selector: 'bootstrapcomponents-floatlabelcalendar',
     templateUrl: './floatlabelcalendar.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ServoyFloatLabelBootstrapCalendar extends ServoyBootstrapCalendar {
 
