@@ -4,26 +4,25 @@ It is similar to the Calendar component, but this Calendar-Inline shows the date
 /**
  * Set the min date or max date that can be selected
  *  
-* @param {Date} minDate
-* @param {Date} maxDate
-* 
-*/
+ * @param {date} minDate The earliest date that can be selected in the Servoy component.
+ * @param {date} maxDate The latest date that can be selected in the Servoy component. 
+ */
 function setMinMaxDate(minDate, maxDate) {
 }
 
 /**
  *  Dates that should be disabled.
  *
- * @param {Array<Date>} dateArray
-* 
-*/
+ * @param {Array<Date>} dateArray An array of dates to be disabled in the component.
+ * 
+ */
 function disableDates(dateArray) {
 }
 
 /** 
-* Days of the week that should be disabled. Values are 0 (Sunday) to 6 (Saturday).
+* Days of the week that should be disabled.
 * 
-* @param {Array<Number>} dayArray
+* @param {Array<Number>} dayArray An array of numbers representing the days of the week to be disabled, where 0 corresponds to Sunday and 6 to Saturday.
 * 
 */
 function disableDays(dayArray) {

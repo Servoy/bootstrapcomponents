@@ -5,6 +5,7 @@
 	"version": 1,
 	"icon": "bootstrapcomponents/tabpanel/tab.png",
 	"definition": "bootstrapcomponents/tablesspanel/tablesspanel.js",
+	"doc": "bootstrapcomponents/tablesspanel/tablesspanel_doc.js",
 	"libraries": [{"name":"bootstrapcomponents-tablesspanel-css", "version":"1.0", "url":"bootstrapcomponents/tablesspanel/tablesspanel.css", "mimetype":"text/css"}],
 	"keywords": ["container"],
 	"deprecated": "This component will be replaced with formcontainer from the Servoy Core package in the 2021.06 version of Servoy.",

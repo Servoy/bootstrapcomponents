@@ -5,6 +5,7 @@
     "version": 1,
     "icon": "bootstrapcomponents/label/label.png",
     "definition": "bootstrapcomponents/label/label.js",
+    "doc": "bootstrapcomponents/label/label_doc.js",
     "libraries": [{ "name": "bootstrapcomponents-label-css", "version": "1.0", "url": "bootstrapcomponents/label/label.css", "mimetype": "text/css" }],
     "keywords": ["tag"],
     "styleVariantCategory": "label",

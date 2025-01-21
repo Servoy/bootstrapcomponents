@@ -94,7 +94,7 @@
 		"getTabAt": {
 			"returns": "tab",
 			"parameters": [{
-				"name": "i",
+				"name": "index",
 				"type": "int"
 			}]
 
