@@ -11,7 +11,7 @@ function selectTabAt(idx) {}
  * @param {String} tabText The tab text that should be displayed
  * @param {Number} [index] Give an index where the tab should be placed, default at the end.
  * 
- * @return {Tab} The newly created tab object that represents the added form in the tab panel.
+ * @return {CustomType<bootstrapcomponents-tabpanel.tab>} The newly created tab object that represents the added form in the tab panel.
  */
  function addTab(form, tabText, index) {}
 
@@ -33,7 +33,7 @@ function removeAllTabs() {}
 /**
  * Retrieves the tab at the specified index from the tabs model.
  * @param {Number} index The 1-based index of the tab to retrieve.
- * @return {Tab} The tab object at the specified index, or null if the index is out of range.
+ * @return {CustomType<bootstrapcomponents-tabpanel.tab>} The tab object at the specified index, or null if the index is out of range.
  */
 function getTabAt() {
 }

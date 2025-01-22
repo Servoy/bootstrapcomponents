@@ -7,7 +7,7 @@
  * @param {String} tabText The text to be displayed on the tab for the added form.
  * @param {Number} [index] Optional. The position at which the tab should be added. If not provided, the tab is added at the end.
  * 
- * @return {Tab} The newly created tab object that represents the added form in the accordion component.
+ * @return {CustomType<bootstrapcomponents-accordion.tab>} The newly created tab object that represents the added form in the accordion component.
  */
  function addTab (form, tabText, index) {}
 
@@ -15,7 +15,7 @@
  *  Return the Tab of the given index.
  * 
  * @param {Number} i The 0-based index of the tab to retrieve from the accordion component.
- * @return {Tab} The Tab object at the specified index in the accordion component.
+ * @return {CustomType<bootstrapcomponents-accordion.tab>} The tab object at the specified index in the accordion component.
  */
  function getTabAt (index) {}
 
