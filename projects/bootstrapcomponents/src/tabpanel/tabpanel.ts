@@ -173,16 +173,18 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
     showArrows: boolean = false;
     tabHeight: number = 0;
     getNavStyle(element: HTMLElement): { [key: string]: string } {
-        this.showArrows = true;
         const tabs = element.querySelector('ul');
         this.tabHeight = tabs?.firstElementChild?.querySelector('a')?.getBoundingClientRect()?.height;
         let tabsSize = 0;
         const tabsArray = [...tabs.childNodes].filter(item => item instanceof HTMLElement);
         tabsArray.forEach((item: HTMLElement) => {
-            tabsSize += item.clientWidth;
+            tabsSize += item.getBoundingClientRect().width;
         });
         const style = {width: `${tabsSize}px`, position: 'relative', left: '15px', transition: 'left 0.5s ease-in-out', height: `${this.tabHeight}px`}
-        if (tabsSize < element.clientWidth) {
+        const elementWidth = Math.ceil(element.getBoundingClientRect().width);
+        if (Math.round(tabsSize) > elementWidth) {
+            this.showArrows = true;
+        } else {
             this.showArrows = false;
             delete style.left;
             delete style.width;
@@ -217,7 +219,7 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
         const arrowRight: HTMLElement = element.querySelector('#arrowRight');
         if ((moveRight && arrowRight.style.cursor === 'not-allowed') || (!moveRight && arrowLeft.style.cursor === 'not-allowed')) return;
         const tabs: HTMLElement = element.querySelector('ul');
-        const tabSize = tabs.firstElementChild.clientWidth;
+        const tabSize = tabs.firstElementChild.getBoundingClientRect().width;
         const oldValue = parseFloat(tabs.style.left) || 0;
         const compWidth = tabs.closest('bootstrapcomponents-tabpanel').getBoundingClientRect().width;
         const maxRight = tabs.clientWidth - compWidth;
