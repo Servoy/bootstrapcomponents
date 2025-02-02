@@ -57,7 +57,7 @@ export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBo
                         promise.then((ok) => {
                            this.selectedTabContainedForm = this.selectedTab.containedForm;
                            this.selectedTabID =  this.selectedTab._id;
-                        }).finally(() => this.cdRef.markForCheck());
+                        }).finally(() => this.cdRef.detectChanges());
                     }
                     else {
 						if (this.tabs[index] && this.tabs[index].disabled) {
@@ -165,7 +165,7 @@ export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBo
 
     setFormVisible(tab: Tab, callShow: boolean) {
         if (callShow && tab.containedForm && (!this.selectedTab || (this.isValidTab(this.selectedTab) && this.selectedTab !== tab)))
-            this.servoyApi.formWillShow(tab.containedForm, tab.relationName).finally(() => this.cdRef.markForCheck());
+            this.servoyApi.formWillShow(tab.containedForm, tab.relationName).finally(() => this.cdRef.detectChanges());
         const oldSelected = this.selectedTab;
         this.selectedTab = tab;
         this.selectedTabID = tab._id;
