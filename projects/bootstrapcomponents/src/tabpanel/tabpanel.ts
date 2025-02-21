@@ -174,7 +174,12 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
     tabHeight: number = 0;
     getNavStyle(element: HTMLElement): { [key: string]: string } {
         const tabs = element.querySelector('ul');
-        this.tabHeight = tabs?.firstElementChild?.querySelector('a')?.getBoundingClientRect()?.height;
+        const tabAnchor = tabs?.firstElementChild?.querySelector('a');
+        this.tabHeight = tabAnchor?.getBoundingClientRect()?.height;
+        if (tabAnchor) {
+            const anchorStyle = getComputedStyle(tabAnchor);
+            this.tabHeight = this.tabHeight + parseFloat(anchorStyle.marginTop) + parseFloat(anchorStyle.marginBottom);
+        }
         let tabsSize = 0;
         const tabsArray = [...tabs.childNodes].filter(item => item instanceof HTMLElement);
         tabsArray.forEach((item: HTMLElement) => {
