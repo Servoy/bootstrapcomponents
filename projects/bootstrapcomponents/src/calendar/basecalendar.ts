@@ -31,6 +31,7 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
         allowInputToggle: false,
         useCurrent: false,
         display: {
+            keyboardNavigation: true,
             components: {
 				calendar: true,
                 decades: true,
