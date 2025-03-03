@@ -1,47 +1,6 @@
 /* The AccordionPanel component is a container similar to a TabPanel, but, instead of having tabs for showing / hiding forms, it has buttons that behave like an accordion, moving one way or the other. */
 
 /**
- * The CSS class(es) to be added to container element - parent of the form element.
- */
-var containerStyleClass;
-
-var tabs;
-
-/**
- * The CSS class(es) to be added to accordion element.
- */
-var styleClass;
-
-/**
- * Minimum height of the accordion, should be used for responsive forms.
- */
-var height;
-
-var tabIndex;
-
-var tabSeq;
-
-var activeTabIndex;
-
-/**
- * Whether the button is visible or not
- */
-var visible;
-
-
-
-var handlers = {
-    /**
-     * Fired after a different tab is selected
-     * 
-     * @param {Number} previousIndex The previous tab index
-     * @param {JSEvent} event
-     */
-    onChangeMethodID: function() {}
-};
-
-
-/**
  *  Adds a tab to this accordion with that form and text on the given index
  * 
  * @param {Form} form The form to be added as a new tab in the accordion component.
