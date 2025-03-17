@@ -5,6 +5,14 @@ export default defineConfig({
     devServer: {
       framework: "angular",
       bundler: "webpack",
+      webpackConfig: {
+        module: {
+            rules: [{
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader'],
+            }],
+        },
+      },
     },
     specPattern: "**/*.cy.ts",
   },
