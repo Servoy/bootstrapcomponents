@@ -75,3 +75,21 @@ function removeTabAt(index) {}
  */
 function selectTabAt(index) {}
 
+
+
+var svy_types = {
+
+    tab: {
+
+        containedForm : null,
+
+        text : null,
+
+        relationName : null,
+
+        name : null,
+
+        disabled : null,
+
+    }
+}

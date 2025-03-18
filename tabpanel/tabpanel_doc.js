@@ -99,3 +99,30 @@ function removeAllTabs() {}
  */
 function getTabAt() {
 }
+
+var svy_types = {
+
+    tab: {
+
+        containedForm : null,
+
+        imageMediaID : null,
+
+        text : null,
+
+        relationName : null,
+
+        name : null,
+
+        disabled : null,
+
+        hideCloseIcon : null,
+
+        iconStyleClass : null,
+
+        toolTipText : null,
+
+        styleClass : null,
+
+    }
+}
