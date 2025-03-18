@@ -1,4 +1,5 @@
 import { defineConfig } from "cypress";
+import * as path from 'path';
 
 export default defineConfig({
   component: {
@@ -8,7 +9,11 @@ export default defineConfig({
       webpackConfig: {
         module: {
             rules: [{
-                test: /\.css$/i,
+                test: /\.css$/,
+                include: [
+                    path.resolve(__dirname, './node_modules/@eonasdan/tempus-dominus/dist/css/tempus-dominus.css'),
+                    path.resolve(__dirname, './node_modules/bootstrap/dist/css/bootstrap.min.css'),
+                ],
                 use: ['style-loader', 'css-loader'],
             }],
         },
