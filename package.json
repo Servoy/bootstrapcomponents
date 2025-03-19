@@ -18,7 +18,7 @@
     "@angular/common": "19.2.0",
     "@angular/core": "19.2.0",
     "@angular/forms": "19.2.0",
-    "@eonasdan/tempus-dominus": "6.10.0",
+    "@eonasdan/tempus-dominus": "6.10.2",
     "@ng-bootstrap/ng-bootstrap": "18.0.0",
     "@popperjs/core": "2.11.8",
     "@servoy/public": "2025.3.0",
