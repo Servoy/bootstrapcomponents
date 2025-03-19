@@ -134,7 +134,7 @@ describe('ServoyBootstrapCheckbox', () => {
         const onFocusGainedMethodID = cy.stub();
         config.componentProperties.onFocusGainedMethodID = onFocusGainedMethodID;
         cy.mount(WrapperComponent, config).then(() => {
-            cy.get('input').should('have.not.checked').focus().then(() => {
+            cy.get('input').should('have.not.checked').click().then(() => {
                 cy.wrap(onFocusGainedMethodID).should('be.called');
             });
         });
@@ -144,7 +144,7 @@ describe('ServoyBootstrapCheckbox', () => {
         const onFocusLostMethodID = cy.stub();
         config.componentProperties.onFocusLostMethodID = onFocusLostMethodID;
         cy.mount(WrapperComponent, config).then(() => {
-            cy.get('input').should('have.not.checked').focus().blur().then(() => {
+            cy.get('input').should('have.not.checked').click().blur().then(() => {
                 cy.wrap(onFocusLostMethodID).should('be.called');
             });
         });

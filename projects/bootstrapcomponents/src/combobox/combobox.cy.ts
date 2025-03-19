@@ -152,7 +152,7 @@ describe('ServoyBootstrapCombobox', () => {
         const onFocusGainedMethodID = cy.stub();
         config.componentProperties.onFocusGainedMethodID = onFocusGainedMethodID;
         cy.mount(WrapperComponent, config).then(() => {
-            cy.get('button').focus().then(() => {
+            cy.get('button').click().then(() => {
                 cy.wrap(onFocusGainedMethodID).should('be.called');
             });
         });
@@ -162,7 +162,7 @@ describe('ServoyBootstrapCombobox', () => {
         const onFocusLostMethodID = cy.stub();
         config.componentProperties.onFocusLostMethodID = onFocusLostMethodID;
         cy.mount(WrapperComponent, config).then(() => {
-            cy.get('button').focus().then(() => {
+            cy.get('button').click().then(() => {
                 cy.get('body').click(0, 0).then(() => {
                     cy.wrap(onFocusLostMethodID).should('be.called');
                 });

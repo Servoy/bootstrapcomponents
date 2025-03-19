@@ -115,7 +115,7 @@ describe('ServoyBootstrapImageMedia', () => {
         config.componentProperties.onActionMethodID = onActionMethodID;
         cy.mount(WrapperComponent, config).then(() => {
             cy.wrap(onActionMethodID).should('be.not.called');
-            cy.get('.svy-mediafield').should('exist').focus().click({ force: true }).then(() => {
+            cy.get('.svy-mediafield').should('exist').click({ force: true }).then(() => {
                 cy.wrap(onActionMethodID).should('be.called');
             });
         });
