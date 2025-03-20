@@ -111,9 +111,7 @@ describe('ServoyBootstrapAccordion', () => {
         cy.mount(WrapperComponent, config).then((wrapper) => {
             wrapper.fixture.detectChanges();
             wrapper.component.element.selectTabAt(1);
-            cy.then(() => {
-                cy.wrap(wrapper.component.element).should('have.property', 'tabIndex', 2);
-            });
+            cy.waitForValueEquals(() => wrapper.component.element.tabIndex, 2);
 
             cy.then(() => {
                 const tab = new Tab();
@@ -130,7 +128,7 @@ describe('ServoyBootstrapAccordion', () => {
                 cy.get('button').eq(1).should('have.text', 'tab2');
                 cy.get('button').eq(2).should('have.text', 'tab3');
                 cy.get('button').eq(3).should('have.text', 'tab4');
-                cy.wrap(wrapper.component.element).should('have.property', 'tabIndex', 2);
+                cy.wrap(wrapper.component.element.tabIndex).should('eq', 2);
 
                 cy.then(() => {
                     const tabs = wrapper.component.tabs.slice();
@@ -141,7 +139,7 @@ describe('ServoyBootstrapAccordion', () => {
                     cy.get('button').eq(0).should('have.text', 'tab1');
                     cy.get('button').eq(1).should('have.text', 'tab3');
                     cy.get('button').eq(2).should('have.text', 'tab4');
-                    cy.wrap(wrapper.component.element).should('have.property', 'tabIndex', 2);
+                    cy.wrap(wrapper.component.element.tabIndex).should('eq', 2);
 
                     cy.then(() => {
                         const tabs = wrapper.component.tabs.slice();
@@ -151,7 +149,7 @@ describe('ServoyBootstrapAccordion', () => {
                         cy.get('button').should('have.length', 2);
                         cy.get('button').eq(0).should('have.text', 'tab3');
                         cy.get('button').eq(1).should('have.text', 'tab4');
-                        cy.wrap(wrapper.component.element).should('have.property', 'tabIndex', 2);
+                        cy.wrap(wrapper.component.element.tabIndex).should('eq', 2);
                     });
                 });
             });
