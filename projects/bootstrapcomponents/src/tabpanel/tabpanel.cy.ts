@@ -58,16 +58,19 @@ describe('ServoyBootstrapTabpanel', () => {
         tab.name = 'tab1';
         tab.containedForm = 'form1';
         tab.text = 'tab1';
+        tab.disabled = false;
         tabs[0] = tab;
         tab = new Tab();
         tab.name = 'tab2';
         tab.containedForm = 'form2';
         tab.text = 'tab2';
+        tab.disabled = false;
         tabs[1] = tab;
         tab = new Tab();
         tab.name = 'tab3';
         tab.containedForm = 'form3';
         tab.text = 'tab3';
+        tab.disabled = false;
         tabs[2] = tab;
         config.componentProperties = {
             servoyApi: servoyApiSpy,
@@ -101,7 +104,7 @@ describe('ServoyBootstrapTabpanel', () => {
                 cy.wrap(onChangeMethodID).should('have.been.called');
                 cy.wrap(wrapper.component.element).should('have.property', 'tabIndex', 2);
 
-                cy.wrap(wrapper).then(() => {
+                cy.then(() => {
                     wrapper.component.element.tabIndex = 1;
                     wrapper.component.element.svyOnChanges({ 'tabIndex': new SimpleChange(2, 1, false) });
                     wrapper.fixture.detectChanges();
@@ -112,21 +115,22 @@ describe('ServoyBootstrapTabpanel', () => {
         });
     });
 
-    // FIXME test is not working
     it('should handle tabs edit', () => {
         cy.mount(WrapperComponent, config).then((wrapper) => {
             wrapper.fixture.detectChanges();
             wrapper.component.element.selectTabAt(1);
-            cy.wrap(wrapper.component.element.tabIndex).should('eq', 2);
+            cy.then(() => {
+                cy.wrap(wrapper.component.element.tabIndex).should('eq', 2);
+            });
 
             cy.then(() => {
                 const tab = new Tab();
                 tab.name = 'tab4';
                 tab.containedForm = 'form4';
                 tab.text = 'tab4';
-                tab.disabled = false
+                tab.disabled = false;
                 const tabs = wrapper.component.tabs.slice();
-                tabs.push(tab)
+                tabs.push(tab);
                 wrapper.component.tabs = tabs;
                 wrapper.fixture.detectChanges();
                 cy.get('li').should('have.length', 4);

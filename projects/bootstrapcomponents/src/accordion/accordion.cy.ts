@@ -14,7 +14,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
             [height]="height"
             [onChangeMethodID]="onChangeMethodID"
             [styleClass]="styleClass"
-            [tabSeq]="tabSeq"
+            [tabIndex]="tabIndex"
             [tabs]="tabs"
             #element>
         </bootstrapcomponents-accordion>
@@ -28,7 +28,8 @@ class WrapperComponent {
     onChangeMethodID: (data?: any, e?: Event) => void;
     servoyApi: ServoyApi;
 
-    tabSeq: number;
+    tabIndex: number;
+    tabs: Tab[];
     styleClass: string;
 
     @ViewChild('element') element: ServoyBootstrapAccordion;
@@ -48,16 +49,19 @@ describe('ServoyBootstrapAccordion', () => {
         tab.name = 'tab1';
         tab.containedForm = 'form1';
         tab.text = 'tab1';
+        tab.disabled = false;
         tabs[0] = tab;
         tab = new Tab();
         tab.name = 'tab2';
         tab.containedForm = 'form2';
         tab.text = 'tab2';
+        tab.disabled = false;
         tabs[1] = tab;
         tab = new Tab();
         tab.name = 'tab3';
         tab.containedForm = 'form3';
         tab.text = 'tab3';
+        tab.disabled = false;
         tabs[2] = tab;
         config.componentProperties = {
             servoyApi: servoyApiSpy,
@@ -92,7 +96,7 @@ describe('ServoyBootstrapAccordion', () => {
                 cy.wrap(onChangeMethodID).should('have.been.called');
                 cy.wrap(wrapper.component.element).should('have.property', 'tabIndex', 2);
 
-                cy.wrap(wrapper).then(() => {
+                cy.then(() => {
                     wrapper.component.element.tabIndex = 1;
                     wrapper.component.element.svyOnChanges({ 'tabIndex': new SimpleChange(2, 1, false) });
                     wrapper.fixture.detectChanges();
@@ -103,55 +107,54 @@ describe('ServoyBootstrapAccordion', () => {
         });
     });
 
-    // FIXME test is not working
-    /*it('should handle tabs edit', () => {
+    it('should handle tabs edit', () => {
         cy.mount(WrapperComponent, config).then((wrapper) => {
-            cy.wrap(wrapper.component.element.tabIndex).should('eq', 1);
-
+            wrapper.fixture.detectChanges();
             wrapper.component.element.selectTabAt(1);
-            cy.wrap(wrapper).then(() => {
-                cy.wrap(wrapper.component.element.tabIndex).should('eq', 2);
+            cy.then(() => {
+                cy.wrap(wrapper.component.element).should('have.property', 'tabIndex', 2);
             });
 
-            cy.wrap(wrapper).then(() => {
+            cy.then(() => {
                 const tab = new Tab();
                 tab.name = 'tab4';
                 tab.containedForm = 'form4';
                 tab.text = 'tab4';
-                wrapper.component.element.tabs.push(tab);
-                wrapper.component.element.svyOnChanges({ 'tabs': new SimpleChange(null, wrapper.component.element.tabs, false) });
+                tab.disabled = false;
+                const tabs = wrapper.component.tabs.slice();
+                tabs.push(tab);
+                wrapper.component.tabs = tabs;
                 wrapper.fixture.detectChanges();
+                cy.get('button').should('have.length', 4);
+                cy.get('button').eq(0).should('have.text', 'tab1');
+                cy.get('button').eq(1).should('have.text', 'tab2');
+                cy.get('button').eq(2).should('have.text', 'tab3');
+                cy.get('button').eq(3).should('have.text', 'tab4');
+                cy.wrap(wrapper.component.element).should('have.property', 'tabIndex', 2);
 
-                cy.wrap(wrapper).then(() => {
-                    cy.get('button').should('have.length', 4);
-                    cy.get('button').eq(0).should('have.text', 'tab1');
-                    cy.get('button').eq(1).should('have.text', 'tab2');
-                    cy.get('button').eq(2).should('have.text', 'tab3');
-                    cy.get('button').eq(3).should('have.text', 'tab4');
-                    cy.wrap(wrapper.component.element.tabIndex).should('eq', 2);
-
-                    wrapper.component.element.tabs.splice(1, 1);
-                    wrapper.component.element.svyOnChanges({ 'tabs': new SimpleChange(null, wrapper.component.element.tabs, false) });
+                cy.then(() => {
+                    const tabs = wrapper.component.tabs.slice();
+                    tabs.splice(1, 1);
+                    wrapper.component.tabs = tabs;
                     wrapper.fixture.detectChanges();
-                    cy.wrap(wrapper).then(() => {
-                        cy.get('button').should('have.length', 3);
-                        cy.get('button').eq(0).should('have.text', 'tab1');
-                        cy.get('button').eq(1).should('have.text', 'tab3');
-                        cy.get('button').eq(2).should('have.text', 'tab4');
-                        cy.wrap(wrapper.component.element.tabIndex).should('eq', 2);
+                    cy.get('button').should('have.length', 3);
+                    cy.get('button').eq(0).should('have.text', 'tab1');
+                    cy.get('button').eq(1).should('have.text', 'tab3');
+                    cy.get('button').eq(2).should('have.text', 'tab4');
+                    cy.wrap(wrapper.component.element).should('have.property', 'tabIndex', 2);
 
-                        wrapper.component.element.tabs.splice(0, 1);
-                        wrapper.component.element.svyOnChanges({ 'tabs': new SimpleChange(null, wrapper.component.element.tabs, false) });
+                    cy.then(() => {
+                        const tabs = wrapper.component.tabs.slice();
+                        tabs.splice(0, 1);
+                        wrapper.component.tabs = tabs;
                         wrapper.fixture.detectChanges();
-                        cy.wrap(wrapper).then(() => {
-                            cy.get('button').should('have.length', 2);
-                            cy.get('button').eq(0).should('have.text', 'tab3');
-                            cy.get('button').eq(1).should('have.text', 'tab4');
-                            cy.wrap(wrapper.component.element.tabIndex).should('eq', 2);
-                        });
+                        cy.get('button').should('have.length', 2);
+                        cy.get('button').eq(0).should('have.text', 'tab3');
+                        cy.get('button').eq(1).should('have.text', 'tab4');
+                        cy.wrap(wrapper.component.element).should('have.property', 'tabIndex', 2);
                     });
                 });
             });
         });
-    });*/
+    });
 });
