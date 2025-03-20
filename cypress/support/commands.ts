@@ -37,9 +37,26 @@ declare global {
     interface Chainer<Subject> {
         (chainer: 'have.selection', type: string): Chainable<Subject>
     }
+    interface Chainable {
+        /**
+         * Waits for a resolved value to equal an expected value.
+         * @param resolveValueFn - A function that resolves the value to check.
+         * @param expectedValue - The value to compare against.
+         */
+        waitForValueEquals(resolveValueFn: () => any, expectedValue: any): Chainable<void>;
+    }
   }
 }
 
+Cypress.Commands.add(
+  'waitForValueEquals',
+  (resolveValueFn: () => any, expectedValue: any) => {
+    cy.wrap(null).should(() => {
+      const value = resolveValueFn(); // Dynamically get the current value
+      expect(value).to.equal(expectedValue); // Check if the value equals the expected value
+    });
+  }
+);
 
 // Add custom Chai assertion
 chai.Assertion.addMethod('selection', function (expectedText: string) {

@@ -119,9 +119,7 @@ describe('ServoyBootstrapTabpanel', () => {
         cy.mount(WrapperComponent, config).then((wrapper) => {
             wrapper.fixture.detectChanges();
             wrapper.component.element.selectTabAt(1);
-            cy.then(() => {
-                cy.wrap(wrapper.component.element.tabIndex).should('eq', 2);
-            });
+            cy.waitForValueEquals(() => wrapper.component.element.tabIndex, 2);
 
             cy.then(() => {
                 const tab = new Tab();
