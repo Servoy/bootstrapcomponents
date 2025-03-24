@@ -1,12 +1,26 @@
-/* Calendar is an input control component. It allows using a date-picker to choose Date values for a bound data-provider.
-The key difference compared to the Calendar-Inline component is that this Calendar component is an input field that the shows the date-picker in a popup only when clicked; whereas the Calendar-Inline shows the date-picker directly on the form. */
+/**
+ * Calendar is an input control component. It allows using a date-picker to choose Date values for a bound data-provider.
+ * The key difference compared to the Calendar-Inline component is that this Calendar component is an input field that the shows the date-picker in a popup only when clicked; whereas the Calendar-Inline shows the date-picker directly on the form. 
+ */
 
+/**
+ * Indicates whether calendar week numbers should be displayed.
+ */
 var calendarWeeks;
 
+/**
+ * The bound data provider identifier representing the Date value.
+ */
 var dataProviderID;
 
+/**
+ * Flag indicating whether the calendar is enabled for user interaction.
+ */
 var enabled;
 
+/**
+ * The date format string used to display and parse the date.
+ */
 var format;
 
 /**
@@ -14,85 +28,39 @@ var format;
  */
 var styleClass;
 
-var floatLabelText;
-
-var errorMessage;
-
-var size;
-
-var tabSeq;
-
-var theme;
-
-var toolTipText;
-
 /**
- * Whether the button is visible or not
+ * Placeholder text displayed when no date is selected.
  */
-var visible;
-
-/**
- * Whether to select the text when date field is focused.
- */
-var selectOnEnter;
-
-/**
- * Whether to only allow date entry from the date picker or not (cannot type the date).
- */
-var pickerOnly;
-
-
-var handlers = {
-    /**
-     * @param {JSEvent} event
-     */
-    onActionMethodID: function() {},
-
-    /**
-     * Handle changed data, return false if the value should not be accepted.
-     * JSEvent.data will contain extra information about dataproviderid, its scope and the scope id (record datasource or form/global variable scope)
-     *
-     * @param {${dataproviderType}} oldValue
-     * @param {${dataproviderType}} newValue
-     * @param {JSEvent} event
-     *
-     * @returns {Boolean}
-     */
-    onDataChangeMethodID: function() {},
-
-    /**
-     * @param {JSEvent} event
-     */
-    onFocusGainedMethodID: function() {},
-
-    /**
-     * @param {JSEvent} event
-     */
-    onFocusLostMethodID: function() {}
-};
-
-
-var calendarWeeks;
-
-var dataProviderID;
-
-var enabled;
-
-var format;
-
-/**
- * Set the styleclasses that should be applied at to this component
- */
-var styleClass;
-
 var placeholderText;
 
+/**
+ * Text to be shown as a floating label in the calendar input field.
+ */
+var floatLabelText;
+
+/**
+ * Error message to be displayed if the entered date is invalid.
+ */
+var errorMessage;
+
+/**
+ * The dimensions of the calendar component (width and height).
+ */
 var size;
 
+/**
+ * The tab sequence order for keyboard navigation.
+ */
 var tabSeq;
 
+/**
+ * The visual theme applied to the calendar (e.g. light or dark).
+ */
 var theme;
 
+/**
+ * The tooltip text shown when hovering over the calendar.
+ */
 var toolTipText;
 
 /**
@@ -115,10 +83,9 @@ var pickerOnly;
  */
 var options;
 
-
 var handlers = {
     /**
-     * @param {JSEvent} event
+     * @param {JSEvent} event The event object containing information about the action event
      */
     onActionMethodID: function() {},
 
@@ -126,21 +93,21 @@ var handlers = {
      * Handle changed data, return false if the value should not be accepted.
      * JSEvent.data will contain extra information about dataproviderid, its scope and the scope id (record datasource or form/global variable scope)
      *
-     * @param {${dataproviderType}} oldValue
-     * @param {${dataproviderType}} newValue
-     * @param {JSEvent} event
+     * @param {${dataproviderType}} oldValue The previous date value from the data provider
+     * @param {${dataproviderType}} newValue The new date value to be set in the data provider
+     * @param {JSEvent} event The event object associated with the data change
      *
-     * @returns {Boolean}
+     * @returns {Boolean} True if the new date value is accepted, false otherwise
      */
     onDataChangeMethodID: function() {},
 
     /**
-     * @param {JSEvent} event
+     * @param {JSEvent} event The event object containing details about the focus event
      */
     onFocusGainedMethodID: function() {},
 
     /**
-     * @param {JSEvent} event
+     * @param {JSEvent} event The event object containing details about the focus loss event
      */
     onFocusLostMethodID: function() {}
 };

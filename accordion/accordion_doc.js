@@ -1,10 +1,15 @@
-/* The AccordionPanel component is a container similar to a TabPanel, but, instead of having tabs for showing / hiding forms, it has buttons that behave like an accordion, moving one way or the other. */
+/**
+ *  The AccordionPanel component is a container similar to a TabPanel, but, instead of having tabs for showing / hiding forms, it has buttons that behave like an accordion, moving one way or the other. 
+ */
 
 /**
  * The CSS class(es) to be added to container element - parent of the form element.
  */
 var containerStyleClass;
 
+/**
+ * Array of tabs within the accordion component.
+ */
 var tabs;
 
 /**
@@ -17,10 +22,19 @@ var styleClass;
  */
 var height;
 
+/**
+ * The index used for tab order when setting focus.
+ */
 var tabIndex;
 
+/**
+ * The tab sequence order used during design.
+ */
 var tabSeq;
 
+/**
+ * The index of the currently active tab in the accordion.
+ */
 var activeTabIndex;
 
 /**
@@ -34,7 +48,7 @@ var handlers = {
      * Fired after a different tab is selected
      *
      * @param {Number} previousIndex The previous tab index
-     * @param {JSEvent} event
+     * @param {JSEvent} event The event object associated with the tab change
      */
     onChangeMethodID: function() {}
 };
@@ -79,17 +93,34 @@ function selectTabAt(index) {}
 
 var svy_types = {
 
+    /**
+     * Defines a tab object for the AccordionPanel component.
+     */
     tab: {
 
-        containedForm : null,
+        /**
+         * The form contained within the tab.
+         */
+        containedForm: null,
 
-        text : null,
+        /**
+         * The text displayed on the tab.
+         */
+        text: null,
 
-        relationName : null,
+        /**
+         * The relation name associated with the tab used for linking forms.
+         */
+        relationName: null,
 
-        name : null,
+        /**
+         * The unique name identifier of the tab.
+         */
+        name: null,
 
-        disabled : null,
-
+        /**
+         * Whether the tab is disabled.
+         */
+        disabled: null
     }
 }

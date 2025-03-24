@@ -1,9 +1,17 @@
-/* Checkbox is a standard input component that can have two states: checked and unchecked. */
+/**
+ * Checkbox is a standard input component that can have two states: checked and unchecked. 
+ */
 
 var dataProviderID;
 
+/**
+ * Flag indicating whether the checkbox is enabled for user interaction.
+ */
 var enabled;
 
+/**
+ * Dimensions of the checkbox (width and height).
+ */
 var size;
 
 /**
@@ -11,8 +19,14 @@ var size;
  */
 var styleClass;
 
+/**
+ * The text label displayed next to the checkbox.
+ */
 var text;
 
+/**
+ * Tab sequence order for keyboard navigation.
+ */
 var tabSeq;
 
 /**
@@ -25,6 +39,9 @@ var selectedValue;
  */
 var showAs;
 
+/**
+ * Tooltip text displayed when hovering over the checkbox.
+ */
 var toolTipText;
 
 /**
@@ -37,8 +54,8 @@ var handlers = {
     /**
      * Click event. dataTarget parameter is used to identify inner html elements (by their data-target attribute)
      *
-     * @param {JSEvent} event
-     * @param {String} dataTarget
+     * @param {JSEvent} event The event object containing details about the click event (e.g. target element, mouse coordinates)
+     * @param {String} dataTarget The identifier for inner html elements defined by their data-target attribute
      */
     onActionMethodID: function() {},
 
@@ -46,21 +63,21 @@ var handlers = {
      * Handle changed data, return false if the value should not be accepted.
      * JSEvent.data will contain extra information about dataproviderid, its scope and the scope id (record datasource or form/global variable scope)
      *
-     * @param {${dataproviderType}} oldValue
-     * @param {${dataproviderType}} newValue
-     * @param {JSEvent} event
+     * @param {${dataproviderType}} oldValue The previous value from the data provider
+     * @param {${dataproviderType}} newValue The new value to be set in the data provider
+     * @param {JSEvent} event The event object associated with the data change
      *
-     * @returns {Boolean}
+     * @return {Boolean} True if the new value is accepted, false otherwise
      */
     onDataChangeMethodID: function() {},
 
     /**
-     * @param {JSEvent} event
+     * @param {JSEvent} event The event object containing details about the focus gained event (e.g. target element, timestamp)
      */
     onFocusGainedMethodID: function() {},
 
     /**
-     * @param {JSEvent} event
+     * @param {JSEvent} event The event object containing details about the focus lost event (e.g. target element, timestamp)
      */
     onFocusLostMethodID: function() {}
 };

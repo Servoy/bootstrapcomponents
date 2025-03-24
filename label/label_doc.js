@@ -1,4 +1,6 @@
-/* Label is a label component that can show dynamic text and (optionally) an image. */
+/**
+ * Label is a label component that can show dynamic text and (optionally) an image. 
+ */
 
 var enabled;
 
@@ -7,6 +9,9 @@ var enabled;
  */
 var labelFor;
 
+/**
+ * Dimensions of the label component (width and height).
+ */
 var size;
 
 /**
@@ -34,8 +39,14 @@ var imageStyleClass;
  */
 var trailingImageStyleClass;
 
+/**
+ * The text content displayed by the label (i18n supported).
+ */
 var text;
 
+/**
+ * Tab sequence index for keyboard navigation.
+ */
 var tabSeq;
 
 /**
@@ -43,6 +54,9 @@ var tabSeq;
  */
 var showAs;
 
+/**
+ * Tooltip text displayed when hovering over the label (i18n supported).
+ */
 var toolTipText;
 
 /**
@@ -55,24 +69,24 @@ var handlers = {
     /**
      * Click event. dataTarget parameter is used to identify inner html elements (by their data-target attribute)
      *
-     * @param {JSEvent} event
-     * @param {String} dataTarget
+     * @param {JSEvent} event the event object containing details about the click event e.g. target element, mouse coordinates
+     * @param {String} dataTarget the identifier for inner html elements, identified via the data-target attribute
      */
     onActionMethodID: function() {},
 
     /**
      * DoubleClick event. dataTarget parameter is used to identify inner html elements (by their data-target attribute)
      *
-     * @param {JSEvent} event
-     * @param {String} dataTarget
+     * @param {JSEvent} event the event object containing details about the double-click event e.g. target element, click timing
+     * @param {String} dataTarget the identifier for inner html elements, identified via the data-target attribute
      */
     onDoubleClickMethodID: function() {},
 
     /**
      * RightClick event. dataTarget parameter is used to identify inner html elements (by their data-target attribute)
      *
-     * @param {JSEvent} event
-     * @param {String} dataTarget
+     * @param {JSEvent} event the event object containing details about the right-click event e.g. target element, context menu trigger
+     * @param {String} dataTarget the identifier for inner html elements, identified via the data-target attribute
      */
     onRightClickMethodID: function() {}
 };

@@ -1,4 +1,6 @@
-/* A simple button. It can contain text as well as (optionally) an icon before or after the text. */
+/**
+ *  A simple button. It can contain text as well as (optionally) an icon before or after the text. 
+ */
 
 /**
  * Whether the component is enabled or not; blocks onAction, onDoubleClick, onRightClick events.
@@ -35,6 +37,9 @@ var variant;
  */
 var text;
 
+/**
+ * The size of the button, defining its width and height in pixels.
+ */
 var size;
 
 /**
@@ -57,21 +62,21 @@ var handlers = {
     /**
      * Fired when the button is clicked
      *
-     * @param {JSEvent} event
+     * @param {JSEvent} event The event object containing details about the click event (e.g., target element, mouse coordinates).
      */
     onActionMethodID: function() {},
 
     /**
      * Fired when the button is double clicked
      *
-     * @param {JSEvent} event
+     * @param {JSEvent} event * @param {JSEvent} event The event object containing details about the double-click event (e.g., target element, click timing).
      */
     onDoubleClickMethodID: function() {},
 
     /**
      * Fired when the button is right clicked
      *
-     * @param {JSEvent} event
+     * @param {JSEvent} event The event object containing details about the right-click event (e.g., target element, context menu trigger).
      */
     onRightClickMethodID: function() {}
 };

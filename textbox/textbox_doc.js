@@ -1,15 +1,41 @@
+/**
+ *  TextBox is a text input component styled with Bootstrap. It allows users to enter single-line text values.
+ *  The component supports various input types (e.g. text, password, email, etc.) and includes features such as autocomplete and error messaging.
+ */
+
+/**
+ * Bound data provider identifier for the text field value.
+ */
 var dataProviderID;
 
+/**
+ * Flag indicating whether the text box is enabled for user interaction.
+ */
 var enabled;
 
+/**
+ * Format string used to display and parse the text box value.
+ */
 var format;
 
+/**
+ * The type of input for the text field (e.g. text, password, email, tel, etc.).
+ */
 var inputType;
 
+/**
+ * Flag indicating whether the text box is editable.
+ */
 var editable;
 
+/**
+ * Placeholder text displayed when the text box is empty.
+ */
 var placeholderText;
 
+/**
+ * Dimensions (width and height) of the text box component.
+ */
 var size;
 
 /**
@@ -22,8 +48,14 @@ var styleClass;
  */
 var styleClassForEye;
 
+/**
+ * Tab sequence order for keyboard navigation.
+ */
 var tabSeq;
 
+/**
+ * Tooltip text displayed when hovering over the text box.
+ */
 var toolTipText;
 
 /**
@@ -41,7 +73,9 @@ var autocomplete;
 
 var handlers = {
     /**
-     * @param {JSEvent} event
+     * Fired when the text box action is triggered (for example, when the Enter key is pressed).
+     *
+     * @param {JSEvent} event the event object containing details about the action event e.g. target element, key pressed
      */
     onActionMethodID: function() {},
 
@@ -49,103 +83,32 @@ var handlers = {
      * Handle changed data, return false if the value should not be accepted.
      * JSEvent.data will contain extra information about dataproviderid, its scope and the scope id (record datasource or form/global variable scope)
      *
-     * @param {${dataproviderType}} oldValue
-     * @param {${dataproviderType}} newValue
-     * @param {JSEvent} event
-     *
-     * @returns {Boolean}
+     * @param {${dataproviderType}} oldValue the previous value from the data provider
+     * @param {${dataproviderType}} newValue the new value to be set in the data provider
+     * @param {JSEvent} event the event object associated with the data change
+     * 
+     * @return {Boolean} true if the new value is accepted, false otherwise
      */
     onDataChangeMethodID: function() {},
 
     /**
-     * @param {JSEvent} event
+     * Fired when the text box gains focus.
+     *
+     * @param {JSEvent} event the event object containing details about the focus gained event e.g. target element, timestamp
      */
     onFocusGainedMethodID: function() {},
 
     /**
-     * @param {JSEvent} event
+     * Fired when the text box loses focus.
+     *
+     * @param {JSEvent} event the event object containing details about the focus lost event e.g. target element, timestamp
      */
     onFocusLostMethodID: function() {},
 
     /**
-     * @param {JSEvent} event
-     */
-    onRightClickMethodID: function() {}
-};
-
-var dataProviderID;
-
-var enabled;
-
-var format;
-
-var inputType;
-
-var editable;
-
-var floatLabelText;
-
-var errorMessage;
-
-var size;
-
-/**
- * Set the styleclasses that should be applied at to this component
- */
-var styleClass;
-
-/**
- * Set the styleclasses for the eye when inputType on this component is password-with-eye, you need to add main(not manadatory), eye and eye-slash classes in this order, default value for NG is 'glyphicon glyphicon-eye-open glyphicon-eye-close' and for TiNG 'fa fa-eye fa-eye-slash'
- */
-var styleClassForEye;
-
-var tabSeq;
-
-var toolTipText;
-
-/**
- * Whether the button is visible or not
- */
-var visible;
-
-var selectOnEnter;
-
-/**
- * Html autocomplete property of the input field.
- */
-var autocomplete;
-
-
-var handlers = {
-    /**
-     * @param {JSEvent} event
-     */
-    onActionMethodID: function() {},
-
-    /**
-     * Handle changed data, return false if the value should not be accepted.
-     * JSEvent.data will contain extra information about dataproviderid, its scope and the scope id (record datasource or form/global variable scope)
+     * Fired when the text box is right-clicked.
      *
-     * @param {${dataproviderType}} oldValue
-     * @param {${dataproviderType}} newValue
-     * @param {JSEvent} event
-     *
-     * @returns {Boolean}
-     */
-    onDataChangeMethodID: function() {},
-
-    /**
-     * @param {JSEvent} event
-     */
-    onFocusGainedMethodID: function() {},
-
-    /**
-     * @param {JSEvent} event
-     */
-    onFocusLostMethodID: function() {},
-
-    /**
-     * @param {JSEvent} event
+     * @param {JSEvent} event the event object containing details about the right-click event e.g. target element, mouse coordinates
      */
     onRightClickMethodID: function() {}
 };

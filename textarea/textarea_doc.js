@@ -1,20 +1,46 @@
+/**
+ *  TextArea is a multi-line text input component that allows users to enter and edit text.
+ */
+
+/**
+ * Bound data provider identifier for the textarea's value.
+ */
 var dataProviderID;
 
+/**
+ * Flag indicating whether the textarea is enabled for user interaction.
+ */
 var enabled;
 
+/**
+ * Flag indicating whether the textarea is editable.
+ */
 var editable;
+
 
 /**
  * Set the styleclasses that should be applied at to this component
  */
 var styleClass;
 
+/**
+ * Dimensions (width and height) of the textarea component.
+ */
 var size;
 
+/**
+ * Placeholder text displayed when the textarea is empty.
+ */
 var placeholderText;
 
+/**
+ * Tab sequence order for keyboard navigation.
+ */
 var tabSeq;
 
+/**
+ * Tooltip text displayed when hovering over the textarea.
+ */
 var toolTipText;
 
 /**
@@ -22,12 +48,17 @@ var toolTipText;
  */
 var visible;
 
+/**
+ * Maximum length allowed for the textarea input.
+ */
 var maxLength;
 
 
 var handlers = {
     /**
-     * @param {JSEvent} event
+     * Fired when an action is triggered on the textarea.
+     *
+     * @param {JSEvent} event the event object containing details about the action event e.g. target element, event type
      */
     onActionMethodID: function() {},
 
@@ -35,89 +66,32 @@ var handlers = {
      * Handle changed data, return false if the value should not be accepted.
      * JSEvent.data will contain extra information about dataproviderid, its scope and the scope id (record datasource or form/global variable scope)
      *
-     * @param {${dataproviderType}} oldValue
-     * @param {${dataproviderType}} newValue
-     * @param {JSEvent} event
+     * @param {${dataproviderType}} oldValue the previous value from the data provider
+     * @param {${dataproviderType}} newValue the new value to be set in the data provider
+     * @param {JSEvent} event the event object associated with the data change
      *
-     * @returns {Boolean}
+     * @return {Boolean} true if the new value is accepted, false otherwise
      */
     onDataChangeMethodID: function() {},
 
     /**
-     * @param {JSEvent} event
+     * Fired when the textarea gains focus.
+     *
+     * @param {JSEvent} event the event object containing details about the focus gained event e.g. target element, timestamp
      */
     onFocusGainedMethodID: function() {},
 
     /**
-     * @param {JSEvent} event
+     * Fired when the textarea loses focus.
+     *
+     * @param {JSEvent} event the event object containing details about the focus lost event e.g. target element, timestamp
      */
     onFocusLostMethodID: function() {},
 
     /**
-     * @param {JSEvent} event
-     */
-    onRightClickMethodID: function() {}
-};
-
-var dataProviderID;
-
-var enabled;
-
-var editable;
-
-/**
- * Set the styleclasses that should be applied at to this component
- */
-var styleClass;
-
-var size;
-
-var floatLabelText;
-
-var errorMessage;
-
-var tabSeq;
-
-var toolTipText;
-
-/**
- * Whether the button is visible or not
- */
-var visible;
-
-var maxLength;
-
-
-var handlers = {
-    /**
-     * @param {JSEvent} event
-     */
-    onActionMethodID: function() {},
-
-    /**
-     * Handle changed data, return false if the value should not be accepted.
-     * JSEvent.data will contain extra information about dataproviderid, its scope and the scope id (record datasource or form/global variable scope)
+     * Fired when the textarea is right-clicked.
      *
-     * @param {${dataproviderType}} oldValue
-     * @param {${dataproviderType}} newValue
-     * @param {JSEvent} event
-     *
-     * @returns {Boolean}
-     */
-    onDataChangeMethodID: function() {},
-
-    /**
-     * @param {JSEvent} event
-     */
-    onFocusGainedMethodID: function() {},
-
-    /**
-     * @param {JSEvent} event
-     */
-    onFocusLostMethodID: function() {},
-
-    /**
-     * @param {JSEvent} event
+     * @param {JSEvent} event the event object containing details about the right-click event e.g. target element, mouse coordinates
      */
     onRightClickMethodID: function() {}
 };

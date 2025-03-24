@@ -1,8 +1,13 @@
-/* Calendar-Inline is an inline input component. It shows a date-picker so the user can choose Date values for a bound data-provider.
-It is similar to the Calendar component, but this Calendar-Inline shows the date-picker the date-picker directly on the form, not in a popup when clicked. */
+/**
+ *  Calendar-Inline is an inline input component. It shows a date-picker so the user can choose Date values for a bound data-provider.
+ * It is similar to the Calendar component, but this Calendar-Inline shows the date-picker the date-picker directly on the form, not in a popup when clicked. 
+ */
 
 var calendarWeeks;
 
+/**
+ * Bound data provider identifier for the date value.
+ */
 var dataProviderID;
 
 /**
@@ -10,6 +15,9 @@ var dataProviderID;
  */
 var format;
 
+/**
+ * Flag indicating whether the calendar is enabled for user interaction.
+ */
 var enabled;
 
 /**
@@ -17,10 +25,19 @@ var enabled;
  */
 var styleClass;
 
+/**
+ * Dimensions of the calendar component (width and height).
+ */
 var size;
 
+/**
+ * Visual theme applied to the calendar (e.g. light or dark).
+ */
 var theme;
 
+/**
+ * Tooltip text displayed when hovering over the calendar.
+ */
 var toolTipText;
 
 /**
@@ -34,11 +51,11 @@ var handlers = {
      * Handle changed data, return false if the value should not be accepted.
      * JSEvent.data will contain extra information about dataproviderid, its scope and the scope id (record datasource or form/global variable scope)
      *
-     * @param {${dataproviderType}} oldValue
-     * @param {${dataproviderType}} newValue
-     * @param {JSEvent} event
+     * @param {${dataproviderType}} oldValue The previous date value from the data provider
+     * @param {${dataproviderType}} newValue The new date value to be set in the data provider
+     * @param {JSEvent} event The event object associated with the data change
      *
-     * @returns {Boolean}
+     * @return {Boolean} True if the new date value is accepted, false otherwise
      */
     onDataChangeMethodID: function() {}
 };

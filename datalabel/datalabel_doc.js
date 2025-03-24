@@ -1,4 +1,6 @@
-/* DataLabel is a label component that can show dynamic text and (optionally) an image. */
+/** 
+ * DataLabel is a label component that can show dynamic text and (optionally) an image. 
+ */
 
 /**
  * The column or variable to provide the data for this label.
@@ -70,8 +72,8 @@ var handlers = {
     /**
      * Click event. dataTarget parameter is used to identify inner html elements (by their data-target attribute)
      *
-     * @param {JSEvent} event
-     * @param {String} dataTarget
+     * @param {JSEvent} event the event object containing details about the click event e.g. target element, mouse coordinates
+     * @param {String} dataTarget the identifier for inner HTML elements, identified via the data-target attribute
      */
     onActionMethodID: function() {},
 
@@ -86,8 +88,8 @@ var handlers = {
     /**
      * RightClick event. dataTarget parameter is used to identify inner html elements (by their data-target attribute)
      *
-     * @param {JSEvent} event
-     * @param {String} dataTarget
+     * @param {JSEvent} event the event object containing details about the right-click event e.g. target element, context menu trigger
+     * @param {String} dataTarget the identifier for inner HTML elements, identified via the data-target attribute
      */
     onRightClickMethodID: function() {}
 };

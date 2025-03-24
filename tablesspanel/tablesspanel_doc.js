@@ -1,7 +1,16 @@
-/* tablesspanel */
+/** 
+ * Tabless Panel is a container component that displays a form without the visual tab headers typically found in a tab panel.
+ */
 
+
+/**
+ * The form that is contained within this tabless panel.
+ */
 var containedForm;
 
+/**
+ * The relation name used to link the contained form to its parent data.
+ */
 var relationName;
 
 /**

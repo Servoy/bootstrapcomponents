@@ -1,9 +1,25 @@
+/**
+ * The TabPanel component is a container that organizes multiple forms into a tabbed interface.
+ */
+
+/**
+ * The CSS style class applied to the container element of the TabPanel.
+ */
 var containerStyleClass;
 
+/**
+ * The CSS style class applied to the close icon used in the TabPanel's tab headers.
+ */
 var closeIconStyleClass;
 
+/**
+ * Flag indicating whether the close icon is displayed on the tabs.
+ */
 var showTabCloseIcon;
 
+/**
+ * An array of tab objects contained within the TabPanel.
+ */
 var tabs;
 
 /**
@@ -16,6 +32,9 @@ var styleClass;
  */
 var height;
 
+/**
+ * The tab index used for keyboard navigation of the TabPanel.
+ */
 var tabIndex;
 
 /**
@@ -28,34 +47,33 @@ var tabSeq;
  */
 var visible;
 
-
 var handlers = {
     /**
      * Fired after a different tab is selected
      *
-     * @param {Number} previousIndex
-     * @param {JSEvent} event
+     * @param {Number} previousIndex The previous tab index before the change
+     * @param {JSEvent} event The event object associated with the tab change
      */
     onChangeMethodID: function() {},
 
     /**
      * Fired when the user clicks on a tab. When false is returned, the tab switch is prevented
      *
-     * @param {JSEvent} event
-     * @param {Number} clickedTabIndex
-     * @param {String} dataTarget
+     * @param {JSEvent} event The event object that triggered the action
+     * @param {Number} clickedTabIndex The index of the tab that was clicked
+     * @param {String} dataTarget The identifier of the closest data-target attribute, if available
      *
-     * @returns {Boolean}
+     * @return {Boolean} True to allow the tab switch, false to prevent it
      */
     onTabClickedMethodID: function() {},
 
     /**
      * Fired when the user clicks on the tab close icon. When false is returned, the tab close is prevented
      *
-     * @param {JSEvent} event
-     * @param {Number} clickedTabIndex
+     * @param {JSEvent} event The event object that triggered the action
+     * @param {Number} clickedTabIndex The index of the tab that was clicked
      *
-     * @returns {Boolean}
+     * @returns {Boolean} True to allow closing the tab, false to prevent it
      */
     onTabCloseMethodID: function() {}
 };
@@ -102,27 +120,60 @@ function getTabAt() {
 
 var svy_types = {
 
+    /**
+     * Represents a tab in the tabpanel.
+     */
     tab: {
 
-        containedForm : null,
+        /**
+         * The form contained within the tab.
+         */
+        containedForm: null,
 
-        imageMediaID : null,
+        /**
+         * The media identifier for the tab's icon.
+         */
+        imageMediaID: null,
 
-        text : null,
+        /**
+         * The text displayed on the tab.
+         */
+        text: null,
 
-        relationName : null,
+        /**
+         * The relation name associated with the tab, if applicable.
+         */
+        relationName: null,
 
-        name : null,
+        /**
+         * The unique name identifier of the tab.
+         */
+        name: null,
 
-        disabled : null,
+        /**
+         * Flag indicating whether the tab is disabled.
+         */
+        disabled: null,
 
-        hideCloseIcon : null,
+        /**
+         * When true, the close icon is hidden for this tab.
+         */
+        hideCloseIcon: null,
 
-        iconStyleClass : null,
+        /**
+         * CSS style classes for the tab's icon.
+         */
+        iconStyleClass: null,
 
-        toolTipText : null,
+        /**
+         * Tooltip text displayed when hovering over the tab.
+         */
+        toolTipText: null,
 
-        styleClass : null,
+        /**
+         * Additional CSS style classes applied to the tab.
+         */
+        styleClass: null,
 
     }
 }
