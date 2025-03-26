@@ -72,16 +72,16 @@ var handlers = {
     /**
      * Click event. dataTarget parameter is used to identify inner html elements (by their data-target attribute)
      *
-     * @param {JSEvent} event the event object containing details about the click event e.g. target element, mouse coordinates
-     * @param {String} dataTarget the identifier for inner HTML elements, identified via the data-target attribute
+     * @param {JSEvent} event The event object containing details about the click event e.g. target element, mouse coordinates
+     * @param {String} dataTarget The identifier for inner HTML elements, identified via the data-target attribute
      */
     onActionMethodID: function() {},
 
     /**
      * DoubleClick event. dataTarget parameter is used to identify inner html elements (by their data-target attribute)
      *
-     * @param {JSEvent} event
-     * @param {String} dataTarget
+     * @param {JSEvent} event The event object containing details about the double click event e.g. target element, mouse coordinates
+     * @param {String} dataTarget The identifier for inner HTML elements, identified via the data-target attribute
      */
     onDoubleClickMethodID: function() {},
 

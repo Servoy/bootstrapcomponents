@@ -73,7 +73,7 @@ var handlers = {
      * @param {JSEvent} event The event object that triggered the action
      * @param {Number} clickedTabIndex The index of the tab that was clicked
      *
-     * @returns {Boolean} True to allow closing the tab, false to prevent it
+     * @return {Boolean} True to allow closing the tab, false to prevent it
      */
     onTabCloseMethodID: function() {}
 };
@@ -88,7 +88,7 @@ function selectTabAt(idx) {}
  * Adds a tab with the given form and tab text on the given index.
  * 
  * @param {Form} form The name of the form to add as a tab
- * @param {String} tabText The tab text that should be displayed
+ * @param {Tagstring} tabText The tab text that should be displayed
  * @param {Number} [index] Give an index where the tab should be placed, default at the end.
  * 
  * @return {CustomType<bootstrapcomponents-tabpanel.tab>} The newly created tab object that represents the added form in the tab panel.
@@ -118,6 +118,9 @@ function removeAllTabs() {}
 function getTabAt() {
 }
 
+/**
+ * Type definitions for bootstrapcomponents-tabpanel types.
+ */
 var svy_types = {
 
     /**

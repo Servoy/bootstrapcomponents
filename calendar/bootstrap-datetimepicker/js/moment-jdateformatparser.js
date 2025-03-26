@@ -121,7 +121,7 @@
      *
      * @function toJDFString
      * @param {String}  formatString    The format String to be translated.
-     * @returns {String}
+     * @return {String}
      */
     moment.fn.toMomentFormatString = function (formatString) {
       if (!javaDateFormats[formatString]) {
@@ -135,7 +135,7 @@
      *
      * @function formatWithJDF
      * @param {String}  formatString    The format String to be translated.
-     * @returns {String}
+     * @return {String}
      */
     moment.fn.formatWithJDF = function (formatString) {
       return this.format(this.toMomentFormatString(formatString));
@@ -146,7 +146,7 @@
      *
      * @function toJDFString
      * @param {String}  formatString    The format String to be translated.
-     * @returns {String}
+     * @return {String}
      */
     moment.fn.toJDFString = function (formatString) {
       if (!momentDateFormats[formatString]) {
@@ -182,7 +182,7 @@
    * @function translateFormat
    * @param {String}  formatString    The unmodified format string
    * @param {Object}  mapping         The date format mapping object
-   * @returns {String}
+   * @return {String}
    */
   var translateFormat = function (formatString, mapping) {
     var len = formatString.length,
@@ -217,7 +217,7 @@
    * @param {Number}  beginIndex      The begin index of the continuous format characters.
    * @param {Number}  currentIndex    The last index of the continuous format characters.
    * @param {String}  resultString    The result format String.
-   * @returns {String}
+   * @return {String}
    * @private
    */
   var _appendMappedString = function (formatString, mapping, beginIndex, currentIndex, resultString) {

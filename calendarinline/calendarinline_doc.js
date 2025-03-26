@@ -51,8 +51,8 @@ var handlers = {
      * Handle changed data, return false if the value should not be accepted.
      * JSEvent.data will contain extra information about dataproviderid, its scope and the scope id (record datasource or form/global variable scope)
      *
-     * @param {${dataproviderType}} oldValue The previous date value from the data provider
-     * @param {${dataproviderType}} newValue The new date value to be set in the data provider
+     * @param {dataproviderType} oldValue The previous date value from the data provider
+     * @param {dataproviderType} newValue The new date value to be set in the data provider
      * @param {JSEvent} event The event object associated with the data change
      *
      * @return {Boolean} True if the new date value is accepted, false otherwise

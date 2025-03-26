@@ -58,7 +58,7 @@ var handlers = {
  *  Adds a tab to this accordion with that form and text on the given index
  * 
  * @param {Form} form The form to be added as a new tab in the accordion component.
- * @param {String} tabText The text to be displayed on the tab for the added form.
+ * @param {Tagstring} tabText The text to be displayed on the tab for the added form.
  * @param {Number} [index] Optional. The position at which the tab should be added. If not provided, the tab is added at the end.
  * 
  * @return {CustomType<bootstrapcomponents-accordion.tab>} The newly created tab object that represents the added form in the accordion component.
@@ -90,7 +90,9 @@ function removeTabAt(index) {}
 function selectTabAt(index) {}
 
 
-
+/**
+ * Type definitions for bootstrapcomponents-accordion types.
+ */
 var svy_types = {
 
     /**

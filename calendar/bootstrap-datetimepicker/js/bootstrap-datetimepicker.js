@@ -2319,7 +2319,7 @@
         /**
          * Returns the component's model current viewDate, a moment object or null if not set. Passing a null value unsets the components model current moment. Parsing of the newDate parameter is made using moment library with the options.format and options.useStrict components configuration.
          * @param {Takes string, viewDate, moment, null parameter.} newDate
-         * @returns {viewDate.clone()}
+         * @return {viewDate.clone()}
          */
         picker.viewDate = function (newDate) {
             if (arguments.length === 0) {
