@@ -83,6 +83,16 @@ var appendToBody;
  */
 var filteringDebounce;
 
+/**
+ * The text displayed as a floating label when the typeahead input is focused or contains a value.
+ */
+var floatLabelText;
+
+/**
+ * Error message displayed when the input value is invalid or fails validation.
+ */
+var errorMessage;
+
 
 var handlers = {
     /**

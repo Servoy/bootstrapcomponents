@@ -5,6 +5,7 @@
 	"version": 1,
 	"icon": "bootstrapcomponents/formcomponent/formcomponent.png",
 	"definition": "bootstrapcomponents/formcomponent/formcomponent.js", 
+	"doc": "bootstrapcomponents/formcomponent/formcomponent_doc.js", 
 	"libraries": [],
 	"deprecated" : "true",
 	"replacement": "servoycore-formcomponent",	
