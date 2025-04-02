@@ -63,17 +63,6 @@ export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDi
 	   	}
     }
 
-
-    selectTabAt( selectionIndex: number ) {
-        if ( selectionIndex >= 0 && selectionIndex < this.tabs.length ) {
-            let tabToSelect = this.tabs[selectionIndex];
-            if ( tabToSelect.disabled == true ) {
-                return;
-            }
-            this.select( tabToSelect );
-        }
-    }
-    
     getSelectedTabId() : any{
         let id = super.getSelectedTabId();
         if (id == null) return [];
@@ -81,6 +70,6 @@ export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDi
     }
     
     tabClicked(tab: Tab,tabIndexClicked: number, event){
-        this.select( this.tabs[tabIndexClicked] );
+       this.servoyApi.callServerSideApi('setTabIndexInternal', [tabIndexClicked +1]);
     }
 }

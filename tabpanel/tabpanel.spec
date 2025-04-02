@@ -67,8 +67,16 @@
 		}
 	},
 	"internalApi" : {
+		"onShow" : {},
+		"onHide" : {},
 	     "removeTabAt": {
             "returns": "boolean",
+            "parameters": [{
+                "name": "index",
+                "type": "int"
+            }]
+        },
+        "setTabIndexInternal": {
             "parameters": [{
                 "name": "index",
                 "type": "int"
@@ -111,7 +119,6 @@
             "returns": "boolean"
         },
 		"selectTabAt": {
-			"returns": "boolean",
 			"parameters": [{
 				"name": "index",
 				"type": "int"

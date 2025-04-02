@@ -1,5 +1,5 @@
 <div class="bts-tabpanel" [sabloTabseq]="tabSeq" [sabloTabseqConfig]="{container: true, reservedGap: 50}" #element >
-<ul ngbNav #nav="ngbNav" class="nav text-nowrap flex-nowrap nav-tabs" [ngStyle]="getNavStyle(element)" [(activeId)]="selectedTabID" (navChange)="onTabChange($event)"
+<ul ngbNav #nav="ngbNav" class="nav text-nowrap flex-nowrap nav-tabs" [ngStyle]="getNavStyle(element)" [activeId]="getSelectedTabId()" (navChange)="onTabChange($event)"
 	[id]="servoyApi.getMarkupId()">
 	<li *ngFor="let tab of tabs;let i = index"  (click)="tabClicked(tab, i , $event)" [ngbNavItem]="tab._id" [disabled]="tab.disabled || !tab.containedForm"
 		[id]="tab._id" [svyTooltip]="tab.toolTipText">

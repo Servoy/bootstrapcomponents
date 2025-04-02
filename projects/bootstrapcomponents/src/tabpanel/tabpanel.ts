@@ -38,9 +38,6 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
     svyOnInit() {
         super.svyOnInit();
         if (this.closeIconStyleClass === 'glyphicon glyphicon-remove close-icon') this.closeIconStyleClass = 'fas fa-times';
-        if (this.tabs && this.tabIndex > 0 && this.isTabDisabled(this.tabIndex - 1)) {
-            this.selectTabAt(this.getFirstEnabledTabIndex() - 1);
-        }
     }
 
     svyOnChanges(changes: SimpleChanges) {
@@ -76,33 +73,11 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
                 const promise = this.onTabClickedMethodID(event, tabIndexClicked + 1, dataTarget);
                 promise.then((ok) => {
                     if (ok) {
-                        this.select(this.tabs[tabIndexClicked]);
+                        this.servoyApi.callServerSideApi('setTabIndexInternal', [tabIndexClicked +1]);
                     }
                 });
             } else {
-                this.select(this.tabs[tabIndexClicked]);
-            }
-        }
-    }
-
-    selectTabAt(selectionIndex: number) {
-        if (selectionIndex >= 0 && selectionIndex < this.tabs.length) {
-            const tabToSelect = this.tabs[selectionIndex];
-            if (tabToSelect.disabled === true) {
-                return;
-            }
-            if (this.onTabClickedMethodID) {
-                /*var dataTargetAttr = $(event.target).closest('[data-target]');
-                var dataTarget = dataTargetAttr ? dataTargetAttr.attr('data-target') : null;*/
-                const promise = this.onTabClickedMethodID(this.windowRefService.nativeWindow.event != null ?
-                    this.windowRefService.nativeWindow.event : null /*$.Event("tabclicked")*/, selectionIndex, null);
-                promise.then((ok) => {
-                    if (ok) {
-                        this.select(tabToSelect);
-                    }
-                });
-            } else {
-                this.select(tabToSelect);
+               this.servoyApi.callServerSideApi('setTabIndexInternal', [tabIndexClicked +1]);
             }
         }
     }

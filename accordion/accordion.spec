@@ -68,7 +68,6 @@
 
 		},
 		"selectTabAt": {
-			"returns": "boolean",
 			"parameters": [{
 				"name": "index",
 				"type": "int"
@@ -76,7 +75,16 @@
 			"deprecated": "Should use tabIndex property instead."
 		}
 	},
-	
+	"internalApi" : {
+		"onShow" : {},
+		"onHide" : {},
+		"setTabIndexInternal": {
+            "parameters": [{
+                "name": "index",
+                "type": "int"
+            }]
+        }
+	},
 	"types": {
 		"tab": {
 		    "_id": { "type": "string", "tags": { "scope": "private" }, "pushToServer": "reject" },
