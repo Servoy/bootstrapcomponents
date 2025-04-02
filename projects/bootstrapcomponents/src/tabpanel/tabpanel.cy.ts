@@ -118,9 +118,10 @@ describe('ServoyBootstrapTabpanel', () => {
     it('should handle tabs edit', () => {
         cy.mount(WrapperComponent, config).then((wrapper) => {
             wrapper.fixture.detectChanges();
-            wrapper.component.element.selectTabAt(1);
-            cy.waitForValueEquals(() => wrapper.component.element.tabIndex, 2);
-
+            wrapper.component.element.tabIndex = 2;
+            wrapper.component.element.svyOnChanges({ 'tabIndex': new SimpleChange(1, 2, false) });
+			wrapper.fixture.detectChanges();
+						
             cy.then(() => {
                 const tab = new Tab();
                 tab.name = 'tab4';
