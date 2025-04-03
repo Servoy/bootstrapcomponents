@@ -91,7 +91,8 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
     getContainerStyle(element: HTMLElement) {
         const navpane = element.querySelector('[ngbnavpane]');
         const fullsize = (this.height === '100%');
-		if (navpane) {
+		if (navpane && navpane.classList.contains('show')) {
+            this.updateNavpaneTimeoutCounter = 0;
             if (this.height > 0) this.renderer.setStyle(navpane, 'min-height', this.height + 'px');
             else this.renderer.setStyle(navpane, 'height', '100%');
             this.renderer.setStyle(navpane, 'position', 'relative');
