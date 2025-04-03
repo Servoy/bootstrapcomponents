@@ -90,7 +90,7 @@ $scope.setters.setTabIndex = function(index) {
 $scope.setters.setContainedForm = function(tab, form) {
 	var currentTab = $scope.api.getTabAt($scope.model.tabIndex);
 	if (isShowing && currentTab && tab.form == currentTab.form) {
-		if (tab.containedForm != form && (tab.containedForm && !servoyApi.hideForm(tab.containedForm)) {
+		if (tab.containedForm != form && (tab.containedForm && !servoyApi.hideForm(tab.containedForm))) {
 			return false;
 		}
 
