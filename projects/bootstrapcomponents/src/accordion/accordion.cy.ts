@@ -85,6 +85,8 @@ describe('ServoyBootstrapAccordion', () => {
 		const onChangeMethodID = cy.stub();
 		config.componentProperties.onChangeMethodID = onChangeMethodID;
 
+        const callServerSideApiSpy = cy.stub(servoyApiSpy, 'callServerSideApi');
+
 		cy.mount(WrapperComponent, config).then((wrapper) => {
 			// Check if all tabs exist and have correct text
 			cy.get('button').should('have.length', 3);
@@ -93,12 +95,13 @@ describe('ServoyBootstrapAccordion', () => {
 			cy.get('button').eq(2).should('have.text', 'tab3');
 
             cy.get('button').eq(1).click().then(() => {
+                cy.wrap(callServerSideApiSpy).should('be.calledWith', 'setTabIndexInternal', [2]);
                 wrapper.component.tabIndex = 2;
                 wrapper.fixture.detectChanges();
                 cy.wrap(wrapper.component.element.tabIndex).should('eq', 2);
 
                 cy.then(() => {
-                    wrapper.component.element.tabIndex = 1;
+                    wrapper.component.tabIndex = 1;
                     wrapper.fixture.detectChanges();
                     cy.wrap(wrapper.component.element.tabIndex).should('eq', 1);
                 });

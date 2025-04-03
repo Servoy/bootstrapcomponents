@@ -94,6 +94,8 @@ describe('ServoyBootstrapTabpanel', () => {
         const onChangeMethodID = cy.stub();
         config.componentProperties.onChangeMethodID = onChangeMethodID;
 
+        const callServerSideApiSpy = cy.stub(servoyApiSpy, 'callServerSideApi');
+
         cy.mount(WrapperComponent, config).then((wrapper) => {
             cy.get('li').should('have.length', 3);
             cy.get('li span').eq(0).should('have.text', 'tab1');
@@ -101,6 +103,7 @@ describe('ServoyBootstrapTabpanel', () => {
             cy.get('li span').eq(2).should('have.text', 'tab3');
 
             cy.get('a').eq(1).click(0, 0, {force: true}).then(() => {
+                cy.wrap(callServerSideApiSpy).should('be.calledWith', 'setTabIndexInternal', [2]);
                 wrapper.component.tabIndex = 2;
                 cy.wrap(wrapper.component.element).should('have.property', 'tabIndex', 2);
 
