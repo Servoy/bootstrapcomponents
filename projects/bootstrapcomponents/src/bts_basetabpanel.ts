@@ -33,13 +33,8 @@ export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBo
 			// quickly generate the id's for a the tab html id (and selecting it)
 			this.generateIDs();
 		}
-		if (changes['tabIndex'] && changes['tabIndex'].previousValue && changes['tabIndex'].previousValue !== changes['tabIndex'].currentValue) {
-			setTimeout(() => {
-				this.cdRef.detectChanges();
-				if (this.onChangeMethodID) {
-					this.onChangeMethodID(changes['tabIndex'].previousValue, this.windowRefService.nativeWindow.event != null ? this.windowRefService.nativeWindow.event : null /* TODO $.Event("change") */);
-				}
-			},0);
+		if (changes['tabIndex'] && changes['tabIndex'].previousValue && changes['tabIndex'].previousValue !== changes['tabIndex'].currentValue && this.onChangeMethodID) {
+			this.onChangeMethodID(changes['tabIndex'].previousValue, this.windowRefService.nativeWindow.event != null ? this.windowRefService.nativeWindow.event : null /* TODO $.Event("change") */);
 		}
 		super.svyOnChanges(changes);
 	}
