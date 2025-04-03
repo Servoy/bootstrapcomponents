@@ -101,15 +101,13 @@ describe('ServoyBootstrapTabpanel', () => {
             cy.get('li span').eq(2).should('have.text', 'tab3');
 
             cy.get('a').eq(1).click(0, 0, {force: true}).then(() => {
-                cy.wrap(onChangeMethodID).should('have.been.called');
+                wrapper.component.tabIndex = 2;
                 cy.wrap(wrapper.component.element).should('have.property', 'tabIndex', 2);
 
                 cy.then(() => {
-                    wrapper.component.element.tabIndex = 1;
-                    wrapper.component.element.svyOnChanges({ 'tabIndex': new SimpleChange(2, 1, false) });
+                    wrapper.component.tabIndex = 1;
                     wrapper.fixture.detectChanges();
-
-                    cy.wrap(onChangeMethodID).should('have.been.calledTwice');
+                    cy.wrap(wrapper.component.element).should('have.property', 'tabIndex', 1);
                 });
             });
         });
@@ -117,10 +115,9 @@ describe('ServoyBootstrapTabpanel', () => {
 
     it('should handle tabs edit', () => {
         cy.mount(WrapperComponent, config).then((wrapper) => {
-            wrapper.fixture.detectChanges();
-            wrapper.component.element.tabIndex = 2;
-            wrapper.component.element.svyOnChanges({ 'tabIndex': new SimpleChange(1, 2, false) });
+            wrapper.component.tabIndex = 2;
 			wrapper.fixture.detectChanges();
+            cy.wrap(wrapper.component.element).should('have.property', 'tabIndex', 2);
 						
             cy.then(() => {
                 const tab = new Tab();

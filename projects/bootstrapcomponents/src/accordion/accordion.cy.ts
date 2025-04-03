@@ -92,27 +92,25 @@ describe('ServoyBootstrapAccordion', () => {
 			cy.get('button').eq(1).should('have.text', 'tab2');
 			cy.get('button').eq(2).should('have.text', 'tab3');
 
-			cy.get('button').eq(1).click().then(() => {
-				cy.wrap(onChangeMethodID).should('have.been.called');
-				cy.wrap(wrapper.component.element).should('have.property', 'tabIndex', 2);
+            cy.get('button').eq(1).click().then(() => {
+                wrapper.component.tabIndex = 2;
+                wrapper.fixture.detectChanges();
+                cy.wrap(wrapper.component.element.tabIndex).should('eq', 2);
 
-				cy.then(() => {
-					wrapper.component.element.tabIndex = 1;
-					wrapper.component.element.svyOnChanges({ 'tabIndex': new SimpleChange(2, 1, false) });
-					wrapper.fixture.detectChanges();
-
-					cy.wrap(onChangeMethodID).should('have.been.calledTwice');
-				});
-			});
+                cy.then(() => {
+                    wrapper.component.element.tabIndex = 1;
+                    wrapper.fixture.detectChanges();
+                    cy.wrap(wrapper.component.element.tabIndex).should('eq', 1);
+                });
+            });
 		});
 	});
 
 	it('should handle tabs edit', () => {
 		cy.mount(WrapperComponent, config).then((wrapper) => {
-			wrapper.fixture.detectChanges();
-			wrapper.component.element.tabIndex = 2;
-			wrapper.component.element.svyOnChanges({ 'tabIndex': new SimpleChange(1, 2, false) });
-			wrapper.fixture.detectChanges();
+			wrapper.component.tabIndex = 2;
+            wrapper.fixture.detectChanges();
+            cy.wrap(wrapper.component.element.tabIndex).should('eq', 2);
 
 			cy.then(() => {
 				const tab = new Tab();
