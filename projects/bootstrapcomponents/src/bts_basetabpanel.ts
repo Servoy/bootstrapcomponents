@@ -53,7 +53,9 @@ export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBo
 		}
 		const tabIndex = this.getRealTabIndex();
 		if (tabIndex > 0) {
-			return this.tabs[tabIndex]._id;
+			if (this.tabs[tabIndex]) {
+				return this.tabs[tabIndex]._id;
+			}
 		} else if (this.tabs && this.tabs.length > 0) return this.tabs[0]._id;
 		return null;
 	}
