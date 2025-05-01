@@ -68,6 +68,10 @@ jobs:
       if: env.release_exists == 'true'
       run: |
           gh release delete _${{ env.BRANCH_NAME }} --cleanup-tag --yes
+          while git fetch --tags --prune-tags; git tag -l | grep _${{ env.BRANCH_NAME }}; do
+              sleep 2;
+              printf "still waiting...\n"
+          done
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
       
