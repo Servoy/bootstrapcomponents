@@ -233,10 +233,13 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
         }
     }
 
-    updateValue(realValue: any) {
+    updateValue(realValue: any, event: Event) {
         this.dataProviderID = realValue;
         this.dataProviderIDChange.emit(this.dataProviderID);
         this.placeholderClass = null;
+        if (this.onActionMethodID) {
+            this.onActionMethodID(event, this.getDataTarget(event));
+        }
     }
 
     getRemainingValueBefore(value: any): any {
