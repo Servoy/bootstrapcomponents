@@ -29,7 +29,7 @@
         ngbDropdownItem 
         class="svy-ngbdropdownitem" 
         [ngClass]="{active:valueComparator(value)}" 
-        (click)="updateValue(value.realValue)">
+        (click)="updateValue(value.realValue, $event)">
           <!-- do not break the next line -->
           <span *ngIf="showAsHtml()" [innerHtml]="value.displayValue | formatFilter:format | htmlFilter | trustAsHtml:isTrustedHTML() | emptyValue"></span>
           <span *ngIf="!showAsHtml()">{{getRemainingValueBefore(value.displayValue | formatFilter:format | emptyValue)}}<strong>{{getStrongValue(value.displayValue | formatFilter:format | emptyValue)}}</strong>{{getRemainingValueAfter(value.displayValue | formatFilter:format | emptyValue)}}</span>

@@ -199,4 +199,19 @@ describe('ServoyFloatLabelBootstrapCombobox', () => {
             });
         });
     });
+    
+    it('should handle onaction  event', () => {
+        const onActionMethodID = cy.stub();
+        config.componentProperties.onActionMethodID = onActionMethodID;
+        cy.mount(WrapperComponent, config).then(() => {
+            cy.wrap(onActionMethodID).should('be.not.called');
+            cy.get('button span').should('have.text', 'one').then(() => {
+                cy.get('button').focus().then(() => {
+                    cy.get('button.dropdown-item').last().click(0, 0).then(() => {
+                        cy.wrap(onActionMethodID).should('be.called');
+                    });
+                });
+            });
+        });
+    });
 });
