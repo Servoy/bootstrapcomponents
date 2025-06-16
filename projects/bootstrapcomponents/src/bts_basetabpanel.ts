@@ -60,7 +60,12 @@ export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBo
                         }).finally(() => this.cdRef.markForCheck());
                     }
                     else {
-                        this.select(this.tabs[index]);
+						setTimeout(() => {
+							// wait for tabindex changes that come later
+						     if (index == this.getRealTabIndex()){
+								this.select(this.tabs[index]);
+							 }         
+						 }, 0);
                     }
                 }
             }
