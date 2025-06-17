@@ -42,9 +42,9 @@ export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBo
 			// quickly generate the id's for a the tab html id (and selecting it)
 			this.generateIDs();
 			if (!changes['tabs'].firstChange && this.selectedTab) {
-				const index = this.getRealTabIndex();
-				if (index >= 0) {
-					if (this.tabs[index] == this.selectedTab && this.selectedTab.containedForm != this.selectedTabContainedForm) {
+				const realTabIndex = this.getRealTabIndex();
+				if (realTabIndex >= 0) {
+					if (this.tabs[realTabIndex] == this.selectedTab && this.selectedTab.containedForm != this.selectedTabContainedForm) {
 						// contained form was changed
 						let promise;
 						if (this.selectedTabContainedForm) {
@@ -61,13 +61,13 @@ export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBo
 					else {
 						setTimeout(() => {
 							// wait for tabindex changes that come later
-							if (index == this.getRealTabIndex()) {
-								if (this.tabs[index] && this.tabs[index].disabled) {
+							if (realTabIndex == this.getRealTabIndex()) {
+								if (this.tabs[realTabIndex] && this.tabs[realTabIndex].disabled) {
 									if (this.getFirstEnabledTabIndex() !== -1) {
 										this.select(this.tabs[this.getFirstEnabledTabIndex() - 1]);
 									}
 								} else {
-									this.select(this.tabs[index]);
+									this.select(this.tabs[realTabIndex]);
 								}
 							}
 						}, 0);
