@@ -15,8 +15,8 @@
     <ng-template [ngTemplateOutlet]="commonOptions"></ng-template>
     <option
         *ngFor="let value of valuelistID"
-        [value]="value.realValue"
-        [selected]="dataProviderID?.split('\n').indexOf(value.realValue) >= 0"
+        [value]="`${value.realValue}`"
+        [selected]="dataProviderID?.split('\n').indexOf(`${value.realValue}`) >= 0"
         [innerHTML]="value.realValue | showDisplayValue:valuelistID:true | async">
     </option>
 </select>
@@ -35,7 +35,7 @@
     <ng-template [ngTemplateOutlet]="commonOptions"></ng-template>
     <option
         *ngFor="let value of valuelistID"
-        [value]="value.realValue"
+        [value]="`${value.realValue}`"
         [selected]="(dataProviderID + '') === (value.realValue + '')"
         [innerHTML]="value.realValue | showDisplayValue:valuelistID:true | async">
     </option>
@@ -52,10 +52,19 @@
     selected>
 </option>
 <option
-    *ngIf="!showPlaceholder() && valuelistID && valuelistID.length && !isDPinValuelist()"
+    *ngIf="!showPlaceholder() && valuelistID && valuelistID.length && !isDPinValuelist() && !multiselect"
     disabled
     [selected]="!isDPinValuelist()"
     [innerHTML]="dataProviderID | showDisplayValue:valuelistID:true | async"
     [value]="dataProviderID">
 </option>
+<ng-container *ngIf="!showPlaceholder() && valuelistID && valuelistID.length && !isDPinValuelist() && multiselect">
+    <option
+        *ngFor="let value of disabledDP()"
+        disabled
+        [selected]="!isDPinValuelist()"
+        [innerHTML]="value | showDisplayValue:valuelistID:true | async"
+        [value]="value">
+    </option>
+</ng-container>
 </ng-template>

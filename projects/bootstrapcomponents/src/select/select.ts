@@ -60,14 +60,27 @@ export class ServoyBootstrapSelect extends ServoyBootstrapBasefield<HTMLSelectEl
     isDPinValuelist() {
         let isDPinValuelist = false;
         if (this.valuelistID) {
-            for (let i = 0; i < this.valuelistID.length; i++) {
-                if (this.dataProviderID == this.valuelistID[i].realValue) {
-                    isDPinValuelist = true;
-                    break;
+            if (this.multiselect) {
+                const vlValues = this.valuelistID.map(item => typeof item.realValue === 'string' ? item.realValue : `${item.realValue}`);
+                const dpValues = this.dataProviderID ? this.dataProviderID.split('\n') : [];
+                isDPinValuelist = dpValues.every(dpValue => vlValues.includes(dpValue));
+            } else {
+                for (let i = 0; i < this.valuelistID.length; i++) {
+                    const realValue = typeof this.valuelistID[i].realValue === 'string' ? this.valuelistID[i].realValue : `${this.valuelistID[i].realValue}`;
+                    if (this.dataProviderID.includes(realValue)) {
+                        isDPinValuelist = true;
+                        break;
+                    }
                 }
             }
         }
         return isDPinValuelist;
+    }
+    
+    disabledDP(): string[] {
+        const vlValues = this.valuelistID.map(item => typeof item.realValue === 'string' ? item.realValue : `${item.realValue}`);
+        const dpValues = this.dataProviderID ? this.dataProviderID.split('\n') : [];
+        return dpValues.filter(dpValue => !vlValues.includes(dpValue));
     }
 
     onChange(event, value) {
@@ -86,10 +99,18 @@ export class ServoyBootstrapSelect extends ServoyBootstrapBasefield<HTMLSelectEl
         if (this.valuelistID) {
             let value = null;
             if (this.multiselect) {
+                if (this.selectedValues.length > 1) { return; }
                 for (let i = 0; i < this.valuelistID.length; i++) {
-                    if (this.selectedValues.indexOf(this.valuelistID[i].displayValue) != -1) {
-                        if (value == null) value = [];
-                        value.push(this.valuelistID[i].realValue);
+                    const realValue = typeof this.valuelistID[i].realValue === 'string' ? this.valuelistID[i].realValue : `${this.valuelistID[i].realValue}`;
+                    const realSelectedValue = `${this.selectedValues[0]}`;
+                    if (realSelectedValue.indexOf(realValue) != -1) {
+                        if (value == null) value = this.dataProviderID ? this.dataProviderID.split('\n') : [];
+                        if (value.indexOf(realValue) == -1) {
+                            value.push(realValue);
+                        } else {
+                            // remove it if it was already there
+                            value.splice(value.indexOf(realValue), 1);
+                        }
                     }
                 }
             }
@@ -98,7 +119,7 @@ export class ServoyBootstrapSelect extends ServoyBootstrapBasefield<HTMLSelectEl
                 value = this.dataProviderID;
             }
             if (this.multiselect && value) {
-                value = value.join('\n');
+                value = value.length > 1 ? value.join('\n') : value[0];
             }
             this.updateValue(value);
         }

@@ -11,3 +11,9 @@
 .placeholder {
     color:gray !important;
 }
+
+option[disabled] {
+    cursor: default;
+    background-color: #eee;
+    opacity: 1;
+}
