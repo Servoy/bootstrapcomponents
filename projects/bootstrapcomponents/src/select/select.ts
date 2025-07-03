@@ -128,5 +128,9 @@ export class ServoyBootstrapSelect extends ServoyBootstrapBasefield<HTMLSelectEl
         this.dataProviderID = val;
         super.pushUpdate();
     }
+    
+    toString(value: any): string {
+        return String(value);
+    }
 
 }
