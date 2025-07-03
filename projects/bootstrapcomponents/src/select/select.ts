@@ -65,8 +65,7 @@ export class ServoyBootstrapSelect extends ServoyBootstrapBasefield<HTMLSelectEl
                 isDPinValuelist = this.dataProviderID.split('\n').every(dpValue => vlValues.includes(dpValue));
             } else {
                 for (let i = 0; i < this.valuelistID.length; i++) {
-                    const realValue = typeof this.valuelistID[i].realValue === 'string' ? this.valuelistID[i].realValue : String(this.valuelistID[i].realValue);
-                    if (this.dataProviderID.includes(realValue)) {
+                    if (this.dataProviderID == this.valuelistID[i].realValue ) {
                         isDPinValuelist = true;
                         break;
                     }
