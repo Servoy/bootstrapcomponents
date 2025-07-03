@@ -19,6 +19,7 @@ $scope.api.addTab = function(form, tabText, index) {
 }
 
 $scope.api.getTabAt = function(index) {
+	if (!$scope.model.tabs) return null;
 	if (index > 0 && index <= $scope.model.tabs.length) {
 		return $scope.model.tabs[index - 1];
 	}
