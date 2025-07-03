@@ -59,14 +59,13 @@ export class ServoyBootstrapSelect extends ServoyBootstrapBasefield<HTMLSelectEl
 
     isDPinValuelist() {
         let isDPinValuelist = false;
-        if (this.valuelistID) {
+        if (this.valuelistID && this.dataProviderID) {
             if (this.multiselect) {
-                const vlValues = this.valuelistID.map(item => typeof item.realValue === 'string' ? item.realValue : `${item.realValue}`);
-                const dpValues = this.dataProviderID ? this.dataProviderID.split('\n') : [];
-                isDPinValuelist = dpValues.every(dpValue => vlValues.includes(dpValue));
+                const vlValues = this.valuelistID.map(item => typeof item.realValue === 'string' ? item.realValue : String(item.realValue));
+                isDPinValuelist = this.dataProviderID.split('\n').every(dpValue => vlValues.includes(dpValue));
             } else {
                 for (let i = 0; i < this.valuelistID.length; i++) {
-                    const realValue = typeof this.valuelistID[i].realValue === 'string' ? this.valuelistID[i].realValue : `${this.valuelistID[i].realValue}`;
+                    const realValue = typeof this.valuelistID[i].realValue === 'string' ? this.valuelistID[i].realValue : String(this.valuelistID[i].realValue);
                     if (this.dataProviderID.includes(realValue)) {
                         isDPinValuelist = true;
                         break;
@@ -78,7 +77,7 @@ export class ServoyBootstrapSelect extends ServoyBootstrapBasefield<HTMLSelectEl
     }
     
     disabledDP(): string[] {
-        const vlValues = this.valuelistID.map(item => typeof item.realValue === 'string' ? item.realValue : `${item.realValue}`);
+        const vlValues = this.valuelistID.map(item => typeof item.realValue === 'string' ? item.realValue : String(item.realValue));
         const dpValues = this.dataProviderID ? this.dataProviderID.split('\n') : [];
         return dpValues.filter(dpValue => !vlValues.includes(dpValue));
     }
@@ -101,8 +100,8 @@ export class ServoyBootstrapSelect extends ServoyBootstrapBasefield<HTMLSelectEl
             if (this.multiselect) {
                 if (this.selectedValues.length > 1) { return; }
                 for (let i = 0; i < this.valuelistID.length; i++) {
-                    const realValue = typeof this.valuelistID[i].realValue === 'string' ? this.valuelistID[i].realValue : `${this.valuelistID[i].realValue}`;
-                    const realSelectedValue = `${this.selectedValues[0]}`;
+                    const realValue = typeof this.valuelistID[i].realValue === 'string' ? this.valuelistID[i].realValue : String(this.valuelistID[i].realValue);
+                    const realSelectedValue = String(this.selectedValues[0]);
                     if (realSelectedValue.indexOf(realValue) != -1) {
                         if (value == null) value = this.dataProviderID ? this.dataProviderID.split('\n') : [];
                         if (value.indexOf(realValue) == -1) {
