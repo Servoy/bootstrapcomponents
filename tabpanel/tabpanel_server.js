@@ -1,3 +1,5 @@
+var isShowing = false;
+
 $scope.api.addTab = function(form, tabText, index) {
 	if (!$scope.model.tabs) $scope.model.tabs = [];
 	var insertPosition = (index == undefined) ? $scope.model.tabs.length : ((index < 1 || index > $scope.model.tabs.length) ? $scope.model.tabs.length : index - 1);
