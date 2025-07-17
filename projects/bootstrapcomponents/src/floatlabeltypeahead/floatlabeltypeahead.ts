@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, ChangeDetectorRef, Renderer2, Input, ChangeDetectionStrategy, Inject, Output, EventEmitter, SimpleChanges, SimpleChange } from '@angular/core';
-import { WindowRefService, FormattingService } from '@servoy/public';
+import { WindowRefService, FormattingService, ServoyPublicService} from '@servoy/public';
 import { ServoyBootstrapTypeahead } from '../typeahead/typeahead';
 
 @Component({
@@ -16,8 +16,11 @@ export class ServoyFloatLabelBootstrapTypeahead extends ServoyBootstrapTypeahead
     @Input() errorShow: boolean;
     @Output() errorShowChange = new EventEmitter();
      
-    constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, @Inject(DOCUMENT) doc: Document, protected formatService: FormattingService, protected windowService: WindowRefService) {
-        super(renderer, cdRef, doc, formatService, windowService);
+    constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, @Inject(DOCUMENT) doc: Document, 
+		protected formatService: FormattingService, 
+		protected servoyService: ServoyPublicService,
+		protected windowService: WindowRefService) {
+        super(renderer, cdRef, doc, formatService, servoyService, windowService);
     }
 
     svyOnInit() {

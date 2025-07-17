@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, In
 import { NgbTypeahead, NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
 import { merge, Observable, of, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, switchMap, take } from 'rxjs/operators';
-import { Format, FormattingService, IValuelist, WindowRefService, IPopupSupportComponent } from '@servoy/public';
+import { Format, FormattingService, IValuelist, ServoyPublicService, WindowRefService, IPopupSupportComponent } from '@servoy/public';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 
 @Component({
@@ -27,6 +27,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
 	container: string;
 
 	currentValue: any;
+	showPopupOnFocusGain: boolean;
 
 	focus$ = new Subject<string>();
 	click$ = new Subject<string>();
@@ -36,7 +37,9 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
 
 	private realToDisplay: Map<any, string> = new Map();
 
-	constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, @Inject(DOCUMENT) doc: Document, protected formatService: FormattingService,
+	constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, @Inject(DOCUMENT) doc: Document, 
+		protected formatService: FormattingService,
+		protected servoyService: ServoyPublicService,
 		windowService: WindowRefService) {
 		super(renderer, cdRef, doc);
 		this.autocomplete = windowService.nativeWindow.navigator.userAgent.match(/chrome/i) ? 'chrome-off' : 'off';
@@ -44,8 +47,33 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
 
 	svyOnInit() {
 		super.svyOnInit();
+		this.renderer.listen(this.getFocusElement(), 'focus', () => {
+			setTimeout(this.onFocus);
+		});
 		// add custom class to the popup, needed by ng-grids (ag-grid) so it can be used in form editors (popups)
 		this.instance.popupClass = 'ag-custom-component-popup svy-typeahead-zindex';
+		this.showPopupOnFocusGain = this.servoyApi.getClientProperty('TypeAhead.showPopupOnFocusGain');
+		if (this.showPopupOnFocusGain === null || this.showPopupOnFocusGain === undefined) {
+			this.showPopupOnFocusGain = this.servoyService.getUIProperty('TypeAhead.showPopupOnFocusGain');
+		}
+	}
+
+	onFocus = () => {
+		const popup = this.doc.getElementById(this.instance.popupId);
+		if (popup) {
+			popup.style.width = this.getFocusElement().clientWidth + 'px';
+		}
+	};
+	
+	focusGained() {
+		if (((this.showPopupOnFocusGain || this.showPopupOnFocusGain === null || this.showPopupOnFocusGain === undefined) && this.editable && !this.readOnly) || this.findmode) {
+			this.focus$.next('');
+		}
+	}
+	onClick() {
+		if (((this.showPopupOnFocusGain || this.showPopupOnFocusGain === null || this.showPopupOnFocusGain === undefined) && this.editable && !this.readOnly) || this.findmode) {
+			this.click$.next('');
+		}
 	}
 
 	scroll() {
