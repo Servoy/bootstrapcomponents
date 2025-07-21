@@ -1,0 +1,57 @@
+{
+    "BtnBlueGradient": {
+        "category": "button", 
+        "displayName": "Blue Gradient",
+        "classes": [ "btn", "btn-blue-gradient" ]   
+    },
+    "BtnCloud": {
+        "category": "button", 
+        "displayName": "Cloud Button",
+        "classes": [ "btn", "btn-cloud" ]   
+    },
+    "BtnPill": {
+        "category": "button", 
+        "displayName": "Pill Button",
+        "classes": [ "btn", "btn-pill" ]   
+    },
+    "BtnDiamond": {
+        "category": "button", 
+        "displayName": "Diamond Button",
+        "classes": [ "btn", "btn-diamond" ]   
+    },
+    "BtnNeon": {
+        "category": "button", 
+        "displayName": "Neon Button",
+        "classes": [ "btn", "btn-neon" ]   
+    },
+    "GradientFormLabel": {
+        "category": "label", 
+        "displayName": "Gradient Form Label",
+        "classes": [ "gradient-form-label"]   
+    },
+    "GradientTextSunlight": {
+        "category": "label", 
+        "displayName": "Gradient Text with Sunlight",
+        "classes": [ "gradient-text-sunlight"]   
+    },
+    "BtnGlow": {
+        "category": "button", 
+        "displayName": "Glow Button",
+        "classes": [ "btn", "btn-glow" ]   
+    },
+    "BtnSkewed": {
+        "category": "button", 
+        "displayName": "Skewed Button",
+        "classes": [ "btn", "btn-skewed" ]   
+    },
+    "Btn3D": {
+        "category": "button", 
+        "displayName": "3D Button",
+        "classes": [ "btn", "btn-3d" ]   
+    },
+    "BtnOutline": {
+        "category": "button", 
+        "displayName": "Fancy Outline",
+        "classes": [ "btn", "btn-fancy-outline" ]   
+    }
+}

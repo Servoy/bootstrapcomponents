@@ -1,0 +1,301 @@
+/* Custom Button Styles for Button Demo */
+
+/* Cloud Button */
+.btn-cloud {
+  background-color: #f8f9fa;
+  border-radius: 30px;
+  border: 2px solid #e9ecef;
+  color: #495057;
+  position: relative;
+  padding: 8px 20px;
+  padding-left: 60px; /* Increased left padding to make room for clouds */
+  transition: all 0.3s ease;
+  overflow: visible;
+  
+  /* First cloud */
+  &::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 15px;
+    width: 30px;
+    height: 30px;
+    background-color: #a8d8ff; /* Blue-ish cloud */
+    border: 2px solid #7ab9f0;
+    border-radius: 50%;
+    z-index: 1;
+    transition: all 0.3s ease;
+  }
+  
+  /* Second cloud */
+  &::after {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: 35px;
+    width: 20px;
+    height: 20px;
+    background-color: #a8d8ff; /* Blue-ish cloud */
+    border: 2px solid #7ab9f0;
+    border-radius: 50%;
+    z-index: 1;
+    transition: all 0.3s ease;
+  }
+  
+  &:hover {
+    background-color: #a8d8ff; /* Button becomes blue-ish */
+    color: #1a4977; /* Darker text for contrast */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+    
+    /* Invert cloud colors on hover */
+    &::before, &::after {
+      background-color: #f8f9fa; /* Clouds become white */
+      border: 2px solid #e9ecef;
+    }
+  }
+  
+  &:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Pill Button */
+.btn-pill {
+  border-radius: 50px;
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(106, 17, 203, 0.4);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 20px rgba(106, 17, 203, 0.6);
+    background: linear-gradient(135deg, #5a0cb1 0%, #1565e6 100%);
+  }
+  
+  &:active {
+    transform: translateY(1px);
+    box-shadow: 0 3px 10px rgba(106, 17, 203, 0.4);
+  }
+}
+
+/* Diamond Button */
+.btn-diamond {
+  width: 120px;
+  height: 120px;
+  background-color: #20c997;
+  color: white;
+  transform: rotate(45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  box-shadow: 0 4px 15px rgba(32, 201, 151, 0.4);
+  transition: all 0.3s ease;
+  
+  span {
+    transform: rotate(-45deg);
+    display: block;
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+  }
+  
+  &:hover {
+    background-color: #15a87a;
+    box-shadow: 0 7px 20px rgba(32, 201, 151, 0.6);
+  }
+  
+  &:active {
+    box-shadow: 0 3px 10px rgba(32, 201, 151, 0.4);
+  }
+}
+
+/* Neon Button */
+.btn-neon {
+  background-color: transparent;
+  color: #ff00ff;
+  border: 2px solid #ff00ff;
+  border-radius: 5px;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 2px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(255, 0, 255, 0.5), 
+              0 0 20px rgba(255, 0, 255, 0.3), 
+              0 0 30px rgba(255, 0, 255, 0.1);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ff00ff;
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  
+  &:hover {
+    color: white;
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.8), 
+                0 0 30px rgba(255, 0, 255, 0.6), 
+                0 0 45px rgba(255, 0, 255, 0.4);
+  }
+  
+  &:hover::before {
+    transform: scaleX(1);
+  }
+  
+  &:active {
+    box-shadow: 0 0 5px rgba(255, 0, 255, 0.5);
+  }
+}
+
+/* Glow Button */
+.btn-glow {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: bold;
+  position: relative;
+  transition: all 0.3s ease;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 8px;
+    background-color: #007bff;
+    z-index: -1;
+    transition: all 0.3s ease;
+  }
+  
+  &:hover {
+    color: white;
+    transform: translateY(-3px);
+  }
+  
+  &:hover::before {
+    opacity: 0.7;
+    transform: scale(1.2);
+    filter: blur(15px);
+    box-shadow: 0 0 15px #007bff, 0 0 30px #007bff, 0 0 45px #007bff;
+  }
+  
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+/* Skewed Button */
+.btn-skewed {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  font-weight: bold;
+  position: relative;
+  transform: skewX(-10deg);
+  transition: all 0.3s ease;
+  
+  span {
+    display: inline-block;
+    transform: skewX(10deg);
+  }
+  
+  &:hover {
+    background-color: #5a6268;
+    transform: skewX(-10deg) translateY(-3px);
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.2);
+  }
+  
+  &:active {
+    transform: skewX(-10deg) translateY(-1px);
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* 3D Button */
+.btn-3d {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-weight: bold;
+  position: relative;
+  box-shadow: 0 6px 0 #1e7e34, 0 8px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.1s ease;
+  
+  &:hover {
+    background-color: #218838;
+    box-shadow: 0 4px 0 #1e7e34, 0 6px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(2px);
+  }
+  
+  &:active {
+    background-color: #1e7e34;
+    box-shadow: 0 1px 0 #1e7e34, 0 2px 4px rgba(0, 0, 0, 0.2);
+    transform: translateY(5px);
+  }
+}
+
+/* Fancy Outline Button */
+.btn-fancy-outline {
+  background-color: transparent;
+  color: #17a2b8;
+  border: 2px solid #17a2b8;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-weight: bold;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  z-index: 1;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background-color: #17a2b8;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    transition: all 0.5s ease;
+  }
+  
+  &:hover {
+    color: white;
+  }
+  
+  &:hover::before {
+    width: 300%;
+    height: 300%;
+  }
+  
+  &:active {
+    transform: scale(0.95);
+  }
+}
