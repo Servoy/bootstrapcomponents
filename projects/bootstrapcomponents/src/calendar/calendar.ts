@@ -1,7 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Renderer2, ElementRef, ViewChild, Input, ChangeDetectorRef, SimpleChanges, ChangeDetectionStrategy, Inject, HostListener } from '@angular/core';
 import { DateTime, Namespace, TempusDominus } from '@eonasdan/tempus-dominus';
-import { FormatDirective, Format, FormattingService } from '@servoy/public';
+import { FormatDirective, Format, FormattingService, PopupStateService } from '@servoy/public';
 import { LoggerFactory, ServoyPublicService } from '@servoy/public';
 import { ServoyBootstrapBaseCalendar } from './basecalendar';
 
@@ -28,7 +28,8 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
         logFactory: LoggerFactory,
         protected formattingService: FormattingService,
         servoyService: ServoyPublicService,
-        @Inject(DOCUMENT) doc: Document) {
+        @Inject(DOCUMENT) doc: Document,
+        protected popupStateService: PopupStateService) {
         super(renderer, cdRef,servoyService, logFactory.getLogger('bts-calendar'), doc);
     }
 
@@ -97,6 +98,10 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
             this.renderer.listen(nativeElement, 'blur', () => this.checkOnBlur());
             this.picker.subscribe(Namespace.events.hide, () => this.checkOnBlur());
         }
+        
+        this.picker.subscribe(Namespace.events.show, () => this.popupStateService.activatePopup(this.getNativeElement().id));
+        this.picker.subscribe(Namespace.events.hide, () => this.popupStateService.deactivatePopup(this.getNativeElement().id));
+            
     }
 
     svyOnChanges(changes: SimpleChanges) {

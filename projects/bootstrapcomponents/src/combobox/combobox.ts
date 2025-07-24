@@ -1,6 +1,6 @@
 import { Component, Renderer2, Input, SimpleChanges, ChangeDetectorRef, ViewChild, ViewChildren, QueryList, ElementRef, HostListener, ChangeDetectionStrategy, Inject } from '@angular/core';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
-import { Format, FormattingService, IValuelist, ServoyPublicService } from '@servoy/public';
+import { Format, FormattingService, IValuelist, ServoyPublicService, PopupStateService } from '@servoy/public';
 import { NgbDropdownItem, NgbTooltip, NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 import { DOCUMENT } from '@angular/common';
 import { Subscription } from 'rxjs';
@@ -35,7 +35,8 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
     private valuelistDisplayValueSubscription: Subscription = null;
     private showPopupOnFocusGain = false;
 
-    constructor(renderer: Renderer2, protected cdRef: ChangeDetectorRef, protected formatService: FormattingService, @Inject(DOCUMENT) doc: Document, protected servoyService: ServoyPublicService) {
+    constructor(renderer: Renderer2, protected cdRef: ChangeDetectorRef, protected formatService: FormattingService, 
+        @Inject(DOCUMENT) doc: Document, protected servoyService: ServoyPublicService, protected popupStateService: PopupStateService) {
         super(renderer, cdRef, doc);
     }
 
@@ -47,6 +48,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
         if (this.isPrintableChar(event.key)) {
             if (this.doc.activeElement === this.getFocusElement() && !this.comboboxDropdown.isOpen()) {
                 this.comboboxDropdown.open();
+                this.popupStateService.activatePopup(this.getNativeElement().id);
             }
             if (event.key !== 'Backspace') this.keyboardSelectValue = (this.keyboardSelectValue ? this.keyboardSelectValue : '') + event.key;
             else this.keyboardSelectValue = this.keyboardSelectValue ? this.keyboardSelectValue.slice(0, -1) : '';
@@ -63,6 +65,10 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
 
             this.cdRef.detectChanges();
             this.scrollToFirstMatchingItem();
+        }
+        
+        if (event.key === 'Escape') {
+            this.openChange(false);
         }
     }
 
@@ -136,6 +142,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
         super.requestFocus(mustExecuteOnFocusGainedMethod);
         if (this.showPopupOnFocusGain) {
             this.comboboxDropdown.open();
+            this.popupStateService.activatePopup(this.getNativeElement().id);
         }
     }
 
@@ -146,6 +153,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
                 if (this.onFocusGainedMethodID && !this.skipFocus && this.mustExecuteOnFocus) this.onFocusGainedMethodID(e);
                 if (!skipPopupOpen && this.showPopupOnFocusGain && !this.comboboxDropdown.isOpen()) {
                     this.comboboxDropdown.open();
+                    this.popupStateService.activatePopup(this.getNativeElement().id);
                 }
                 this.skipFocus = false;
                 skipPopupOpen = false;
@@ -169,6 +177,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
         this.openState = state;
         this.skipFocus = true;
         if (state) {
+            this.popupStateService.activatePopup(this.getNativeElement().id);
             setTimeout(() => {
                 const item = this.menuItems.find((element) => element.nativeElement.classList.contains('active'));
                 if (item) {
@@ -176,11 +185,15 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
                 }
             });
         } else {
+            this.popupStateService.deactivatePopup(this.getNativeElement().id);
             this.closeTooltip();
             const nativeElementBtn = this.elementRef.nativeElement.firstElementChild;
             if (this.doc.activeElement !== nativeElementBtn) {
                 const event = new Event('blur');
                 nativeElementBtn.dispatchEvent(event);
+            }
+            if (this.comboboxDropdown.isOpen()) {
+                this.comboboxDropdown.close();
             }
             this.skipFocus = false;
         }

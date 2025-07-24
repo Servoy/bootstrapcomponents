@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, In
 import { NgbTypeahead, NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
 import { merge, Observable, of, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, switchMap, take } from 'rxjs/operators';
-import { Format, FormattingService, IValuelist, ServoyPublicService, WindowRefService, IPopupSupportComponent } from '@servoy/public';
+import { Format, FormattingService, IValuelist, ServoyPublicService, WindowRefService, IPopupSupportComponent, PopupStateService } from '@servoy/public';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 
 @Component({
@@ -40,15 +40,24 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
 	constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, @Inject(DOCUMENT) doc: Document, 
 		protected formatService: FormattingService,
 		protected servoyService: ServoyPublicService,
-		windowService: WindowRefService) {
+		windowService: WindowRefService,
+        protected popupStateService: PopupStateService) {
 		super(renderer, cdRef, doc);
 		this.autocomplete = windowService.nativeWindow.navigator.userAgent.match(/chrome/i) ? 'chrome-off' : 'off';
 	}
+    
+    @HostListener('keydown', ['$event'])
+    onKeyDown(event: KeyboardEvent) {
+        if (event.key === 'Escape') {
+            this.popupStateService.deactivatePopup(this.getNativeElement().id);
+        }
+    }
 
 	svyOnInit() {
 		super.svyOnInit();
 		this.renderer.listen(this.getFocusElement(), 'focus', () => {
 			setTimeout(this.onFocus);
+            this.popupStateService.activatePopup(this.getNativeElement().id);
 		});
 		// add custom class to the popup, needed by ng-grids (ag-grid) so it can be used in form editors (popups)
 		this.instance.popupClass = 'ag-custom-component-popup svy-typeahead-zindex';
@@ -260,6 +269,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
 	}
 
 	closePopup() {
+        this.popupStateService.deactivatePopup(this.getNativeElement().id);
 		this.instance.dismissPopup();
 	}
 }
