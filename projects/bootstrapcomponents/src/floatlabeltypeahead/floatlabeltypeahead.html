@@ -1,31 +1,31 @@
 <div class="svy-form-floating">
-    <input
-        [id]="servoyApi.getMarkupId()"
-        type="text"
-        class='bts-floatlabeltypeahead'
-        [svyStartEdit]="'dataProviderID'"
-        [hostComponent]="this"
-        [svyTabFix]="this"
-        [(ngModel)]="dataProviderID"
-        (change)="pushUpdate()"
-        (selectItem)="valueChanged($event)"
-        [sabloTabseq]="tabSeq"
-        [editable]="isEditable()"
-        [svyTooltip]="toolTipText"
-        [placeholder]="floatLabelText"
-        [ngbTypeahead]="filterValues"
-        [container]="appendToBody?'body':null"
-        [autocomplete]="autocomplete"
-        [resultFormatter]="resultFormatter"
-        [inputFormatter]="inputFormatter"
-		(focus)="focusGained()"
-		(click)="onClick()"
-        [resultTemplate]="showAs == 'text' ? rtText : rtHTML"
-        (keyup.arrowDown)="scroll()" (keyup.arrowUp)="scroll()"
-        #instance="ngbTypeahead"
-        #element
+  <input
+    [id]="servoyApi.getMarkupId()"
+    type="text"
+    class='bts-floatlabeltypeahead'
+    [svyStartEdit]="'dataProviderID'"
+    [hostComponent]="this"
+    [svyTabFix]="this"
+    [(ngModel)]="dataProviderID"
+    (change)="pushUpdate()"
+    (selectItem)="valueChanged($event)"
+    [sabloTabseq]="tabSeq"
+    [editable]="isEditable()"
+    [svyTooltip]="toolTipText"
+    [placeholder]="floatLabelText"
+    [ngbTypeahead]="filterValues"
+    [container]="appendToBody?'body':null"
+    [autocomplete]="autocomplete"
+    [resultFormatter]="resultFormatter"
+    [inputFormatter]="inputFormatter"
+    (focus)="focusGained()"
+    (click)="onClick()"
+    [resultTemplate]="showAs == 'text' ? rtText : rtHTML"
+    (keyup.arrowDown)="scroll()" (keyup.arrowUp)="scroll()"
+    #instance="ngbTypeahead"
+    #element
     />
-    <label [for]="servoyApi.getMarkupId()">{{floatLabelText}}</label>
+  <label [for]="servoyApi.getMarkupId()">{{floatLabelText}}</label>
 </div>
 
 <ng-template #rtHTML let-r="result" let-t="term" let-formatter="formatter">
@@ -36,4 +36,6 @@
   <ngb-highlight [result]="formatter(r)" [term]="t"></ngb-highlight>
 </ng-template>
 
-<div class="bts-floatlabeltypeahead-error-text" *ngIf="errorShow">{{errorMessage}}</div>
+@if (errorShow) {
+  <div class="bts-floatlabeltypeahead-error-text">{{errorMessage}}</div>
+}

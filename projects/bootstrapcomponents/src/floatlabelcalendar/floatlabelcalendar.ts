@@ -1,5 +1,5 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, Renderer2, Input, ChangeDetectorRef, ChangeDetectionStrategy, SimpleChanges, Inject, Output, EventEmitter, SimpleChange } from '@angular/core';
+
+import { Component, Renderer2, Input, ChangeDetectorRef, ChangeDetectionStrategy, SimpleChanges, Inject, Output, EventEmitter, SimpleChange, DOCUMENT } from '@angular/core';
 import { FormattingService } from '@servoy/public';
 import { LoggerFactory, ServoyPublicService, PopupStateService } from '@servoy/public';
 import { ServoyBootstrapCalendar } from '../calendar/calendar';

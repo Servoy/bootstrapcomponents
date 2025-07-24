@@ -1,7 +1,7 @@
-import { Component, Input, Renderer2, SimpleChanges, ChangeDetectorRef, ChangeDetectionStrategy, Inject } from '@angular/core';
+import { Component, Input, Renderer2, SimpleChanges, ChangeDetectorRef, ChangeDetectionStrategy, Inject, DOCUMENT } from '@angular/core';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 import { ShowDisplayValuePipe } from '../lib/showDisplayValue.pipe';
-import { DOCUMENT } from '@angular/common';
+
 import { IValuelist } from '@servoy/public';
 
 @Component({

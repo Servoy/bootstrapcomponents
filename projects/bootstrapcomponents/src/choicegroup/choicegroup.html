@@ -1,25 +1,31 @@
 <div #element
-    class="bts-radiogroup"
-    [svyTooltip]="toolTipText"
-    [ngClass]="styleClass">
-    <label *ngFor="let item of valuelistID | notNullOrEmpty; let i = index;">
-        <input [type]="inputType"
-            [checked]="selection[i]"
-            [value]="item.realValue"
-            (change)="itemClicked($event, i)"
-            [disabled]="readOnly || !enabled"
-            [id]="servoyApi.getMarkupId()"
-            [sabloTabseq]="tabSeq"
-            [bootstrapBaseChoiceElement]="this"
-            [index]="i"
-            #input/>
-            <span 
-                [textContent]="item.displayValue"
-                *ngIf="showAs != 'html' && showAs != 'trusted_html'">
-             </span>
-            <span 
-                [innerHtml]="item.displayValue | htmlFilter | trustAsHtml: servoyApi.trustAsHtml()"
-                *ngIf="showAs == 'html' || showAs == 'trusted_html'">
-            </span>
+  class="bts-radiogroup"
+  [svyTooltip]="toolTipText"
+  [ngClass]="styleClass">
+  @for (item of valuelistID | notNullOrEmpty; track item; let i = $index) {
+    <label>
+      <input [type]="inputType"
+        [checked]="selection[i]"
+        [value]="item.realValue"
+        (change)="itemClicked($event, i)"
+        [disabled]="readOnly || !enabled"
+        [id]="servoyApi.getMarkupId()"
+        [sabloTabseq]="tabSeq"
+        [bootstrapBaseChoiceElement]="this"
+        [index]="i"
+        #input/>
+      @if (showAs != 'html' && showAs != 'trusted_html') {
+        <span
+          [textContent]="item.displayValue"
+          >
+        </span>
+      }
+      @if (showAs == 'html' || showAs == 'trusted_html') {
+        <span
+          [innerHtml]="item.displayValue | htmlFilter | trustAsHtml: servoyApi.trustAsHtml()"
+          >
+        </span>
+      }
     </label>
+  }
 </div>

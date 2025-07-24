@@ -1,7 +1,7 @@
 import { ServoyBootstrapBaseComponent } from './bts_basecomp';
-import { Directive, Input, Output, EventEmitter, SimpleChanges, SimpleChange, Renderer2, ChangeDetectorRef, Inject } from '@angular/core';
+import { Directive, Input, Output, EventEmitter, SimpleChanges, SimpleChange, Renderer2, ChangeDetectorRef, Inject, DOCUMENT } from '@angular/core';
 import { PropertyUtils } from '@servoy/public';
-import { DOCUMENT } from '@angular/common';
+
 
 @Directive()
 // eslint-disable-next-line

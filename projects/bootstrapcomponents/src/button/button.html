@@ -1,22 +1,28 @@
-<button
-    #element 
-    class="bts-button" 
-    *ngIf="showAs !== 'html' && showAs !== 'trusted_html'"
+@if (showAs !== 'html' && showAs !== 'trusted_html') {
+  <button
+    #element
+    class="bts-button"
     [sabloTabseq]="tabSeq"
     [id]="servoyApi.getMarkupId()"
     [svyTooltip]="toolTipText">
-    <span [ngClass]="imageStyleClass" aria-hidden="true" *ngIf="imageStyleClass"></span>
+    @if (imageStyleClass) {
+      <span [ngClass]="imageStyleClass" aria-hidden="true"></span>
+    }
     {{text}}
-    <span [ngClass]="trailingImageStyleClass" aria-hidden="true" *ngIf="trailingImageStyleClass"></span>
-</button> 
+    @if (trailingImageStyleClass) {
+      <span [ngClass]="trailingImageStyleClass" aria-hidden="true"></span>
+    }
+  </button>
+}
 
-<button 
-	#element
-    class="bts-button" 
-    *ngIf="(showAs === 'html' || showAs === 'trusted_html')"
+@if ((showAs === 'html' || showAs === 'trusted_html')) {
+  <button
+    #element
+    class="bts-button"
     [sabloTabseq]="tabSeq"
     [id]="servoyApi.getMarkupId()"
     [svyTooltip]="toolTipText">
     <span [ngClass]="imageStyleClass" aria-hidden="true"></span>
     <span [innerHTML]="text | htmlFilter | trustAsHtml:isTrustedHTML()"></span>
-</button>
+  </button>
+}

@@ -1,5 +1,5 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, ChangeDetectorRef, Renderer2, Input, ChangeDetectionStrategy, Inject, Output, EventEmitter, SimpleChanges, SimpleChange } from '@angular/core';
+
+import { Component, ChangeDetectorRef, Renderer2, Input, ChangeDetectionStrategy, Inject, Output, EventEmitter, SimpleChanges, SimpleChange, DOCUMENT } from '@angular/core';
 import { WindowRefService, FormattingService, ServoyPublicService, PopupStateService} from '@servoy/public';
 import { ServoyBootstrapTypeahead } from '../typeahead/typeahead';
 

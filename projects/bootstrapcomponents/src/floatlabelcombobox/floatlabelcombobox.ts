@@ -1,7 +1,7 @@
-import { Component, Renderer2, Input, SimpleChanges, ChangeDetectorRef, ViewChild, ViewChildren, QueryList, Output, EventEmitter, ElementRef, HostListener, ChangeDetectionStrategy, Inject } from '@angular/core';
+import { Component, Renderer2, Input, SimpleChanges, ChangeDetectorRef, ViewChild, ViewChildren, QueryList, Output, EventEmitter, ElementRef, HostListener, ChangeDetectionStrategy, Inject, DOCUMENT } from '@angular/core';
 import { ServoyBootstrapCombobox } from '../combobox/combobox';
 import { FormattingService, ServoyPublicService, PopupStateService} from '@servoy/public';
-import { DOCUMENT } from '@angular/common';
+
 
 @Component({
     selector: 'bootstrapcomponents-floatlabelcombobox',

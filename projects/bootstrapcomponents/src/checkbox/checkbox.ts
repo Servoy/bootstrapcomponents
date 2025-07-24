@@ -1,5 +1,5 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, OnInit, Renderer2, SimpleChanges, ElementRef, AfterViewInit, Input, ViewChild, ChangeDetectorRef, ChangeDetectionStrategy, Inject } from '@angular/core';
+
+import { Component, OnInit, Renderer2, SimpleChanges, ElementRef, AfterViewInit, Input, ViewChild, ChangeDetectorRef, ChangeDetectionStrategy, Inject, DOCUMENT } from '@angular/core';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 
 @Component({

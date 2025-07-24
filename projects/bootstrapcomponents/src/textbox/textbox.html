@@ -1,24 +1,26 @@
 <input #element
-    [id]="servoyApi.getMarkupId()"
-    class="bts-textbox"
-	[class.svy-textbox-password-with-eye-field]="inputType == 'password-with-eye'"
-    (change)="pushUpdate()"
-    [ngClass]="styleClass"
-    [ngModel]="dataProviderID"
-    (ngModelChange)="onModelChange($event)"
-    [svyFormat]="format"
-    [svyDecimalKeyConverter]="format"
-    [svyStartEdit]="'dataProviderID'"
-    [hostComponent]="this"
-    [svyTooltip]="toolTipText"
-    [sabloTabseq]="tabSeq"
-    [disabled]="!enabled"
-    [autocomplete]="autocomplete"
-	[type]="inputType == 'password-with-eye' && showPass ? 'text' : inputType == 'password-with-eye' ? 'password' : inputType"
-	[findmode]="findmode"
-/>
-<div id="svy-textbox-eyeDiv" *ngIf="inputType == 'password-with-eye'"
-		(click)="showHidePass()"
-		class="clickable svy-textbox-eye {{classForEye}}"
-		[ngClass]="styleClass">
-</div>
+  [id]="servoyApi.getMarkupId()"
+  class="bts-textbox"
+  [class.svy-textbox-password-with-eye-field]="inputType == 'password-with-eye'"
+  (change)="pushUpdate()"
+  [ngClass]="styleClass"
+  [ngModel]="dataProviderID"
+  (ngModelChange)="onModelChange($event)"
+  [svyFormat]="format"
+  [svyDecimalKeyConverter]="format"
+  [svyStartEdit]="'dataProviderID'"
+  [hostComponent]="this"
+  [svyTooltip]="toolTipText"
+  [sabloTabseq]="tabSeq"
+  [disabled]="!enabled"
+  [autocomplete]="autocomplete"
+  [type]="inputType == 'password-with-eye' && showPass ? 'text' : inputType == 'password-with-eye' ? 'password' : inputType"
+  [findmode]="findmode"
+  />
+@if (inputType == 'password-with-eye') {
+  <div id="svy-textbox-eyeDiv"
+    (click)="showHidePass()"
+    class="clickable svy-textbox-eye {{classForEye}}"
+    [ngClass]="styleClass">
+  </div>
+}

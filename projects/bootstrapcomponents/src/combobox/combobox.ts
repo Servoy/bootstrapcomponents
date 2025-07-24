@@ -1,8 +1,8 @@
-import { Component, Renderer2, Input, SimpleChanges, ChangeDetectorRef, ViewChild, ViewChildren, QueryList, ElementRef, HostListener, ChangeDetectionStrategy, Inject } from '@angular/core';
+import { Component, Renderer2, Input, SimpleChanges, ChangeDetectorRef, ViewChild, ViewChildren, QueryList, ElementRef, HostListener, ChangeDetectionStrategy, Inject, DOCUMENT } from '@angular/core';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 import { Format, FormattingService, IValuelist, ServoyPublicService, PopupStateService } from '@servoy/public';
 import { NgbDropdownItem, NgbTooltip, NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
-import { DOCUMENT } from '@angular/common';
+
 import { Subscription } from 'rxjs';
 
 @Component({

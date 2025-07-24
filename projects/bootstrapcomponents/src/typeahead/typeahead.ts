@@ -1,5 +1,5 @@
-import { DOCUMENT } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, Inject, Input, Renderer2, SimpleChanges, ViewChild, Directive } from '@angular/core';
+
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, Inject, Input, Renderer2, SimpleChanges, ViewChild, Directive, DOCUMENT } from '@angular/core';
 import { NgbTypeahead, NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
 import { merge, Observable, of, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, switchMap, take } from 'rxjs/operators';

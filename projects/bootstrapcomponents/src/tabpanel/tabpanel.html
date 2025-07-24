@@ -1,25 +1,37 @@
 <div class="bts-tabpanel" [sabloTabseq]="tabSeq" [sabloTabseqConfig]="{container: true, reservedGap: 50}" #element >
-<ul ngbNav #nav="ngbNav" class="nav text-nowrap flex-nowrap nav-tabs" [ngStyle]="getNavStyle(element)" [activeId]="getSelectedTabId()" (navChange)="onTabChange($event)"
-	[id]="servoyApi.getMarkupId()">
-	<li *ngFor="let tab of tabs;let i = index"  (click)="tabClicked(tab, i , $event)" [ngbNavItem]="tab._id" [disabled]="tab.disabled || !tab.containedForm"
-		[id]="tab._id" [svyTooltip]="tab.toolTipText">
-		<a ngbNavLink >
-			<div [ngClass]='tab.styleClass'>
-				<img *ngIf="tab.imageMediaID" [src]='tab.imageMediaID' />
-				<span *ngIf="tab.iconStyleClass !== null && tab.iconStyleClass !== undefined" [class]="tab.iconStyleClass + ' svy-tabpanel-tab-icon'"></span>
-				<span [innerHTML]='tab?.text| htmlFilter | trustAsHtml: servoyApi.trustAsHtml()'></span>
-				<i *ngIf="tab.hideCloseIcon !== true && showTabCloseIcon" class="bts-tabpanel-close-icon"
-					[class]="closeIconStyleClass"></i>
-			</div>
-		</a>
-		<ng-template ngbNavContent style="min-height: 600px">
-			<bootstrapcomponents-tabpanel-active-tab-visibility-listener [tab]="tab" (visibleTab)="onVisibleTab(tab)"></bootstrapcomponents-tabpanel-active-tab-visibility-listener>
-			<ng-template [ngTemplateOutlet]="templateRef" [ngTemplateOutletContext]="{name:getForm(tab)}">
-			</ng-template>
-		</ng-template>
-	</li>
-</ul>
-<div *ngIf="showArrows" id="arrowLeft" [ngStyle]="getArrowStyle('left')" (click)="clickArrow(element, false)"><i style="font-size: 20px;" class="fa-solid fa-angle-left"></i></div>
-<div *ngIf="showArrows" id="arrowRight" [ngStyle]="getArrowStyle('right')" (click)="clickArrow(element, true)"><i style="font-size: 20px;" class="fa-solid fa-angle-right"></i></div>
-<div [ngbNavOutlet]="nav" [ngClass]="containerStyleClass" [ngStyle]="getContainerStyle(element)"></div>
+  <ul ngbNav #nav="ngbNav" class="nav text-nowrap flex-nowrap nav-tabs" [ngStyle]="getNavStyle(element)" [activeId]="getSelectedTabId()" (navChange)="onTabChange($event)"
+    [id]="servoyApi.getMarkupId()">
+    @for (tab of tabs; track tab; let i = $index) {
+      <li  (click)="tabClicked(tab, i , $event)" [ngbNavItem]="tab._id" [disabled]="tab.disabled || !tab.containedForm"
+        [id]="tab._id" [svyTooltip]="tab.toolTipText">
+        <a ngbNavLink >
+          <div [ngClass]='tab.styleClass'>
+            @if (tab.imageMediaID) {
+              <img [src]='tab.imageMediaID' />
+            }
+            @if (tab.iconStyleClass !== null && tab.iconStyleClass !== undefined) {
+              <span [class]="tab.iconStyleClass + ' svy-tabpanel-tab-icon'"></span>
+            }
+            <span [innerHTML]='tab?.text| htmlFilter | trustAsHtml: servoyApi.trustAsHtml()'></span>
+            @if (tab.hideCloseIcon !== true && showTabCloseIcon) {
+              <i class="bts-tabpanel-close-icon"
+              [class]="closeIconStyleClass"></i>
+            }
+          </div>
+        </a>
+        <ng-template ngbNavContent style="min-height: 600px">
+          <bootstrapcomponents-tabpanel-active-tab-visibility-listener [tab]="tab" (visibleTab)="onVisibleTab(tab)"></bootstrapcomponents-tabpanel-active-tab-visibility-listener>
+          <ng-template [ngTemplateOutlet]="templateRef" [ngTemplateOutletContext]="{name:getForm(tab)}">
+          </ng-template>
+        </ng-template>
+      </li>
+    }
+  </ul>
+  @if (showArrows) {
+    <div id="arrowLeft" [ngStyle]="getArrowStyle('left')" (click)="clickArrow(element, false)"><i style="font-size: 20px;" class="fa-solid fa-angle-left"></i></div>
+  }
+  @if (showArrows) {
+    <div id="arrowRight" [ngStyle]="getArrowStyle('right')" (click)="clickArrow(element, true)"><i style="font-size: 20px;" class="fa-solid fa-angle-right"></i></div>
+  }
+  <div [ngbNavOutlet]="nav" [ngClass]="containerStyleClass" [ngStyle]="getContainerStyle(element)"></div>
 </div>

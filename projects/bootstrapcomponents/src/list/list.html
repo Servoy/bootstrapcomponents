@@ -1,17 +1,18 @@
 <div class="bts-list">
-    <input #element
-        type="text"
-        [attr.list]="servoyApi.getMarkupId() + '_datalist'"
-        (change)="updateDataprovider()"
-        [svyTooltip]="toolTipText"
-        [sabloTabseq]="tabSeq"
-        [id]="servoyApi.getMarkupId()"
+  <input #element
+    type="text"
+    [attr.list]="servoyApi.getMarkupId() + '_datalist'"
+    (change)="updateDataprovider()"
+    [svyTooltip]="toolTipText"
+    [sabloTabseq]="tabSeq"
+    [id]="servoyApi.getMarkupId()"
     />
-    <datalist [id]="servoyApi.getMarkupId() + '_datalist'" > 
-        <option 
-            *ngFor="let value of valuelistID"
-            [value]="value.realValue | showDisplayValue:valuelistID:true | async"
-            [selected]="dataProviderID == value.realValue">
-        </option>
-    </datalist>
+  <datalist [id]="servoyApi.getMarkupId() + '_datalist'" >
+    @for (value of valuelistID; track value) {
+      <option
+        [value]="value.realValue | showDisplayValue:valuelistID:true | async"
+        [selected]="dataProviderID == value.realValue">
+      </option>
+    }
+  </datalist>
 </div>

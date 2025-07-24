@@ -1,6 +1,6 @@
-import { Renderer2, ChangeDetectorRef, Inject, Input, Directive, EventEmitter, Output, SimpleChanges } from '@angular/core';
+import { Renderer2, ChangeDetectorRef, Inject, Input, Directive, EventEmitter, Output, SimpleChanges, DOCUMENT } from '@angular/core';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
-import { DOCUMENT } from '@angular/common';
+
 import { getFirstDayOfWeek, LoggerService, ServoyPublicService } from '@servoy/public';
 import { DateTime as LuxonDateTime } from 'luxon';
 import { Namespace, TempusDominus, DateTime, Options } from '@eonasdan/tempus-dominus';

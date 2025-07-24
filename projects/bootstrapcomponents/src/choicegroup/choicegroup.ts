@@ -1,5 +1,5 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, OnInit, Input, Renderer2, ElementRef, Directive, ViewChild, SimpleChanges, ChangeDetectorRef, ChangeDetectionStrategy, Inject } from '@angular/core';
+
+import { Component, OnInit, Input, Renderer2, ElementRef, Directive, ViewChild, SimpleChanges, ChangeDetectorRef, ChangeDetectionStrategy, Inject, DOCUMENT } from '@angular/core';
 import { IValuelist } from '@servoy/public';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 

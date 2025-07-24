@@ -1,5 +1,5 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, Renderer2, Input, ChangeDetectorRef, SimpleChanges, ChangeDetectionStrategy, Inject } from '@angular/core';
+
+import { Component, Renderer2, Input, ChangeDetectorRef, SimpleChanges, ChangeDetectionStrategy, Inject, DOCUMENT } from '@angular/core';
 import { Format, LoggerFactory, ServoyPublicService } from '@servoy/public';
 import { ServoyBootstrapBaseCalendar } from '../calendar/basecalendar';
 import { DateTime } from '@eonasdan/tempus-dominus';

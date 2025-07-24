@@ -1,5 +1,5 @@
-<select #element
-    *ngIf="multiselect; else notMultiselect"
+@if (multiselect) {
+  <select #element
     (change)="onChange($event, null)"
     class="bts-select"
     [ngClass]="styleClass"
@@ -13,16 +13,16 @@
     multiple
     >
     <ng-template [ngTemplateOutlet]="commonOptions"></ng-template>
-    <option
-        *ngFor="let value of valuelistID"
+    @for (value of valuelistID; track value) {
+      <option
         [value]="toString(value.realValue)"
         [selected]="dataProviderID?.split('\n').indexOf(toString(value.realValue)) >= 0"
         [innerHTML]="value.realValue | showDisplayValue:valuelistID:true | async">
-    </option>
-</select>
-
-<ng-template #notMultiselect>
-    <select #element
+      </option>
+    }
+  </select>
+} @else {
+  <select #element
     (change)="onChange($event, element.value)"
     class="bts-select"
     [ngClass]="styleClass"
@@ -33,38 +33,43 @@
     [hostComponent]="this"
     >
     <ng-template [ngTemplateOutlet]="commonOptions"></ng-template>
-    <option
-        *ngFor="let value of valuelistID"
+    @for (value of valuelistID; track value) {
+      <option
         [value]="toString(value.realValue)"
         [selected]="toString(dataProviderID) === toString(value.realValue)"
         [innerHTML]="value.realValue | showDisplayValue:valuelistID:true | async">
-    </option>
-</select>
-</ng-template>
+      </option>
+    }
+  </select>
+}
+
 
 <ng-template #commonOptions>
+  @if (showPlaceholder()) {
     <option
-    *ngIf="showPlaceholder()"
-    class="placeholderOption"
-    [innerHTML]="placeholderText"
-    hidden
-    disabled
-    selected>
-</option>
-<option
-    *ngIf="!showPlaceholder() && valuelistID && valuelistID.length && !isDPinValuelist() && !multiselect"
-    disabled
-    [selected]="!isDPinValuelist()"
-    [innerHTML]="dataProviderID | showDisplayValue:valuelistID:true | async"
-    [value]="dataProviderID">
-</option>
-<ng-container *ngIf="!showPlaceholder() && valuelistID && valuelistID.length && !isDPinValuelist() && multiselect">
+      class="placeholderOption"
+      [innerHTML]="placeholderText"
+      hidden
+      disabled
+      selected>
+    </option>
+  }
+  @if (!showPlaceholder() && valuelistID && valuelistID.length && !isDPinValuelist() && !multiselect) {
     <option
-        *ngFor="let value of disabledDP()"
+      disabled
+      [selected]="!isDPinValuelist()"
+      [innerHTML]="dataProviderID | showDisplayValue:valuelistID:true | async"
+      [value]="dataProviderID">
+    </option>
+  }
+  @if (!showPlaceholder() && valuelistID && valuelistID.length && !isDPinValuelist() && multiselect) {
+    @for (value of disabledDP(); track value) {
+      <option
         disabled
         [selected]="!isDPinValuelist()"
         [innerHTML]="value | showDisplayValue:valuelistID:true | async"
         [value]="value">
-    </option>
-</ng-container>
+      </option>
+    }
+  }
 </ng-template>

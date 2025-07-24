@@ -1,5 +1,5 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, Renderer2, ElementRef, ViewChild, Input, ChangeDetectorRef, SimpleChanges, ChangeDetectionStrategy, Inject, HostListener } from '@angular/core';
+
+import { Component, Renderer2, ElementRef, ViewChild, Input, ChangeDetectorRef, SimpleChanges, ChangeDetectionStrategy, Inject, HostListener, DOCUMENT } from '@angular/core';
 import { DateTime, Namespace, TempusDominus } from '@eonasdan/tempus-dominus';
 import { FormatDirective, Format, FormattingService, PopupStateService } from '@servoy/public';
 import { LoggerFactory, ServoyPublicService } from '@servoy/public';

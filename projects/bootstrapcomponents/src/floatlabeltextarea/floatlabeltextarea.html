@@ -1,20 +1,22 @@
 <div class="svy-form-floating">
-    <textarea #element
-     [ngClass]="styleClass" 
-        class="bts-floatlabeltextarea"
-        [disabled]="!enabled"
-        [readOnly]="readOnly || !editable"
-        [sabloTabseq]="tabSeq"
-        [(ngModel)]="dataProviderID"
-        (change)="pushUpdate()"
-        [svyTooltip]="toolTipText"
-        [id]="servoyApi.getMarkupId()"
-        [placeholder]="floatLabelText"
-        [svyStartEdit]="'dataProviderID'"
-        [hostComponent]="this"
-         maxLength="{{maxLength}}"
-     >
-    </textarea>
-    <label [for]="servoyApi.getMarkupId()">{{floatLabelText}}</label>
+  <textarea #element
+    [ngClass]="styleClass"
+    class="bts-floatlabeltextarea"
+    [disabled]="!enabled"
+    [readOnly]="readOnly || !editable"
+    [sabloTabseq]="tabSeq"
+    [(ngModel)]="dataProviderID"
+    (change)="pushUpdate()"
+    [svyTooltip]="toolTipText"
+    [id]="servoyApi.getMarkupId()"
+    [placeholder]="floatLabelText"
+    [svyStartEdit]="'dataProviderID'"
+    [hostComponent]="this"
+    maxLength="{{maxLength}}"
+    >
+  </textarea>
+  <label [for]="servoyApi.getMarkupId()">{{floatLabelText}}</label>
 </div>
-<div class="bts-floatlabeltextarea-error-text" *ngIf="errorShow">{{errorMessage}}</div>
+@if (errorShow) {
+  <div class="bts-floatlabeltextarea-error-text">{{errorMessage}}</div>
+}

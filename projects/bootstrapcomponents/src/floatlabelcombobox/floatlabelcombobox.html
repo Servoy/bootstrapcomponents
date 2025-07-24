@@ -1,5 +1,5 @@
 <ng-template #tooltipContent>{{lastSelectValue}}</ng-template>
-<div [id]="servoyApi.getMarkupId()" class="svy-form-floating bts-combobox-container" ngbDropdown #comboboxDropdown="ngbDropdown" (openChange)="openChange($event)"  [container]="appendToBody?'body':null" #element> 
+<div [id]="servoyApi.getMarkupId()" class="svy-form-floating bts-combobox-container" ngbDropdown #comboboxDropdown="ngbDropdown" (openChange)="openChange($event)"  [container]="appendToBody?'body':null" #element>
   <button class="bts-floatlabelcombobox form-control dropdown-toggle bts-dropdown" ngbDropdownToggle
     [ngbTooltip]="tooltipContent"
     triggers="manual"
@@ -14,24 +14,26 @@
     [id]="servoyApi.getMarkupId() + '_btn'"
     #input><span class="bts-dropdown-text">{{formattedValue}}</span></button>
     <label [for]="servoyApi.getMarkupId()">{{floatLabelText}}</label>
-  <div 
-    ngbDropdownMenu 
-    [attr.aria-labelledby]="servoyApi.getMarkupId() + '_btn'" 
-    [ngStyle]="{ 'width.px': getDropDownWidth() }"
-    (keydown)="handleKeyDown($event)"
-    #dropdown>
-    <ng-container *ngIf="openState">
-      <button 
-        *ngFor="let value of valuelistID; let idx = index" 
-        ngbDropdownItem 
-        class="svy-ngbdropdownitem" 
-        [ngClass]="{active:valueComparator(value)}" 
-        (click)="updateValue(value.realValue, $event)">
-          <!-- do not break the next line -->
-          {{getRemainingValueBefore(value.displayValue | formatFilter:format | emptyValue)}}<strong>{{getStrongValue(value.displayValue | formatFilter:format | emptyValue)}}</strong>{{getRemainingValueAfter(value.displayValue | formatFilter:format | emptyValue)}}
-      </button>
-    </ng-container>
+    <div
+      ngbDropdownMenu
+      [attr.aria-labelledby]="servoyApi.getMarkupId() + '_btn'"
+      [ngStyle]="{ 'width.px': getDropDownWidth() }"
+      (keydown)="handleKeyDown($event)"
+      #dropdown>
+      @if (openState) {
+        @for (value of valuelistID; track value; let idx = $index) {
+          <button
+            ngbDropdownItem
+            class="svy-ngbdropdownitem"
+            [ngClass]="{active:valueComparator(value)}"
+            (click)="updateValue(value.realValue, $event)">
+            <!-- do not break the next line -->
+            {{getRemainingValueBefore(value.displayValue | formatFilter:format | emptyValue)}}<strong>{{getStrongValue(value.displayValue | formatFilter:format | emptyValue)}}</strong>{{getRemainingValueAfter(value.displayValue | formatFilter:format | emptyValue)}}
+          </button>
+        }
+      }
+    </div>
   </div>
-</div>
-<div class="bts-floatlabelcombobox-error-text" *ngIf="errorShow">{{errorMessage}}</div>
- 
+  @if (errorShow) {
+    <div class="bts-floatlabelcombobox-error-text">{{errorMessage}}</div>
+  }

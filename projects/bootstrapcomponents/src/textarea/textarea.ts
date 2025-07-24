@@ -1,5 +1,5 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, Input, ChangeDetectorRef, Renderer2, ChangeDetectionStrategy, Inject } from '@angular/core';
+
+import { Component, Input, ChangeDetectorRef, Renderer2, ChangeDetectionStrategy, Inject, DOCUMENT } from '@angular/core';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 
 @Component({
