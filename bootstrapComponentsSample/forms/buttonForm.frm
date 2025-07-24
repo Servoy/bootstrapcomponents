@@ -68,7 +68,7 @@
 "width":"300"
 },
 "styleClass":"label-blue-gradient",
-"text":"Button API Methods"
+"text":"Button Dynamics"
 },
 "name":"lbl_api_methods",
 "typeName":"bootstrapcomponents-label",
@@ -179,7 +179,7 @@
 <\/div>",
 "toolTipText":"Trusted HTML button"
 },
-"name":"button_3",
+"name":"btn_trusted_html",
 "styleClass":"btn-warning",
 "typeName":"bootstrapcomponents-button",
 "typeid":47,
@@ -221,7 +221,7 @@
 "text":"Cloud Button",
 "variant":"BtnCloud"
 },
-"name":"button_13",
+"name":"btn_cloud",
 "typeName":"bootstrapcomponents-button",
 "typeid":47,
 "uuid":"631D97E9-D448-49F8-AF3D-723319EE143E"
@@ -495,7 +495,7 @@
 "top":"1010",
 "width":"150"
 },
-"onActionMethodID":"D3927054-F127-4E9C-813E-898BAD76EA5C",
+"onActionMethodID":"02B259B0-0C0B-47AF-ACC2-F0F91E288EBA",
 "styleClass":"btn-outline-info",
 "text":"Change Text",
 "toolTipText":"Demonstrates setText() method"
@@ -691,7 +691,7 @@
 "top":"1010",
 "width":"150"
 },
-"onActionMethodID":"8D5BA85F-2B56-403F-8D2B-DBC743BF2BF3",
+"onActionMethodID":"02B259B0-0C0B-47AF-ACC2-F0F91E288EBA",
 "styleClass":"btn-outline-info",
 "text":"Change Style",
 "toolTipText":"Demonstrates setStyleClass() method"
@@ -844,7 +844,7 @@
 "top":"1010",
 "width":"150"
 },
-"onActionMethodID":"E47E8660-CF2B-427A-AFF7-C381CD87E7A3",
+"onActionMethodID":"02B259B0-0C0B-47AF-ACC2-F0F91E288EBA",
 "styleClass":"btn-outline-info",
 "text":"Toggle Enabled",
 "toolTipText":"Demonstrates setEnabled() method"
@@ -952,7 +952,7 @@
 "top":"1050",
 "width":"150"
 },
-"onActionMethodID":"BCB3650A-66C8-4521-933C-963D55F71E6C",
+"onActionMethodID":"02B259B0-0C0B-47AF-ACC2-F0F91E288EBA",
 "styleClass":"btn-outline-info",
 "text":"Toggle Visibility",
 "toolTipText":"Demonstrates setVisible() method"
@@ -996,10 +996,12 @@
 "top":"960",
 "width":"200"
 },
-"onActionMethodID":"5320DF2E-F048-4A24-9B01-57C2070F6AF8",
+"enabledDataProvider":"enabledDataProvider",
+"onActionMethodID":"b6243e84-a776-4224-b37a-da18b8a8387e",
 "styleClass":"btn-outline-primary",
 "text":"Target Button",
-"toolTipText":"This button will be modified by API methods"
+"toolTipText":"This button will be modified by API methods",
+"visibleDataProvider":"visibleDataProvider"
 },
 "name":"btn_api_target",
 "styleClass":"btn-outline-primary",
@@ -1061,7 +1063,7 @@
 "top":"1050",
 "width":"150"
 },
-"onActionMethodID":"E4649CCF-B2F7-42F2-A47C-767D228072FC",
+"onActionMethodID":"02B259B0-0C0B-47AF-ACC2-F0F91E288EBA",
 "styleClass":"btn-outline-info",
 "text":"Add Icon",
 "toolTipText":"Demonstrates setImageStyleClass() method"
@@ -1211,7 +1213,7 @@
 "top":"1050",
 "width":"150"
 },
-"onActionMethodID":"A7FAAD2A-9CD9-40BB-9A86-CE0426B51748",
+"onActionMethodID":"02B259B0-0C0B-47AF-ACC2-F0F91E288EBA",
 "styleClass":"btn-outline-info",
 "text":"Request Focus",
 "toolTipText":"Demonstrates requestFocus() method"

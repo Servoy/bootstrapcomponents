@@ -37,6 +37,7 @@ function onAction(event) {
 function loadComponentForm(formTitle, formName) {
 	forms.baseComponentForm.setTitle(formTitle);
 	forms.baseComponentForm.setContainedForm(forms[formName]);
+	scopes.global.setStatusMessage(formName + ' loaded');
 }
 
 /**

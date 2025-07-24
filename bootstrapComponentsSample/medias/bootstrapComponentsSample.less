@@ -2,6 +2,8 @@
 @import 'custom_servoy_theme_properties.less';
 // Import custom button styles for the button demo
 @import 'buttons.less';
+// Import custom label styles for the label demo
+@import 'labels.less';
 // Add your custom less/css to this file you can use the same less properties that are specified in the above properties.less
 
 /* Chrome-only scrollbar styling */
@@ -35,6 +37,15 @@
 	overflow: hidden;
 	padding-left: 20px;
 	padding-right: 20px;
+}
+
+.footer-orange
+{
+	border: solid #ff8000;
+	border-width: 2px 0px 0px 0px;
+	width: 100%;
+	box-sizing: border-box;
+	overflow: hidden;
 }
 
 .label-blue-gradient {
@@ -124,6 +135,20 @@
 		transform: skewX(-25deg);
 		animation: sunlight 3s 1 forwards;
 	}
+}
+
+.gradient-form-label-static {
+	font-size: 26px;
+	font-style: oblique;
+	font-stretch: wider;
+	background-clip: text;
+	-webkit-background-clip: text;
+	color: transparent;
+	background-image: linear-gradient(to right, #1a5a9b 0%, #3498db 50%, #4e9ad1 100%);
+	position: relative;
+	overflow: hidden;
+	border: solid #ff8000;
+	border-width: 0px 0px 2px 0px;
 }
 
 @keyframes sunlight {

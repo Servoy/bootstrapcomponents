@@ -1,0 +1,239 @@
+/* Custom Label Styles for Label Demo */
+
+/* Basic Text Styling */
+.label-plain {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #333;
+}
+
+.label-bold {
+  font-weight: bold;
+}
+
+.label-italic {
+  font-style: italic;
+}
+
+.label-bold-italic {
+  font-weight: bold;
+  font-style: italic;
+}
+
+/* Font Sizes */
+.label-small {
+  font-size: 12px;
+}
+
+.label-medium {
+  font-size: 16px;
+}
+
+.label-large {
+  font-size: 20px;
+}
+
+.label-xlarge {
+  font-size: 24px;
+}
+
+/* Text Alignment */
+.label-left {
+  text-align: left;
+}
+
+.label-center {
+  text-align: center;
+}
+
+.label-right {
+  text-align: right;
+}
+
+/* Text Colors (using Bootstrap color classes as base) */
+.label-primary {
+  color: #007bff;
+}
+
+.label-success {
+  color: #28a745;
+}
+
+.label-danger {
+  color: #dc3545;
+}
+
+.label-warning {
+  color: #ffc107;
+}
+
+.label-info {
+  color: #17a2b8;
+}
+
+/* Special Styling */
+.label-underline {
+  text-decoration: underline;
+}
+
+.label-strikethrough {
+  text-decoration: line-through;
+}
+
+.label-uppercase {
+  text-transform: uppercase;
+}
+
+.label-lowercase {
+  text-transform: lowercase;
+}
+
+.label-capitalize {
+  text-transform: capitalize;
+}
+
+/* Gradient Text */
+.label-gradient {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(to right, #ff8000 0%, #ff9933 50%, #ffb366 100%);
+}
+
+/* Shadow Text */
+.label-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== LABEL VARIANTS ===== */
+
+/* Gradient Form Label - existing variant */
+.gradient-form-label {
+  font-size: 16px;
+  font-weight: bold;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(45deg, #3498db 0%, #2ecc71 100%);
+  padding: 5px 10px;
+  border-bottom: 2px solid #3498db;
+}
+
+/* Gradient Text with Sunlight - existing variant */
+.gradient-text-sunlight {
+  font-size: 18px;
+  font-weight: bold;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(to right, #f1c40f 0%, #e67e22 50%, #e74c3c 100%);
+  text-shadow: 0 0 10px rgba(241, 196, 15, 0.5);
+  position: relative;
+}
+
+/* Neon Label */
+.label-neon {
+  color: #ff00ff;
+  font-weight: bold;
+  text-shadow: 0 0 5px rgba(255, 0, 255, 0.7),
+              0 0 10px rgba(255, 0, 255, 0.5),
+              0 0 15px rgba(255, 0, 255, 0.3);
+  letter-spacing: 2px;
+}
+
+/* Pill Label */
+.label-pill {
+  display: inline-block;
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  color: white;
+  border-radius: 50px;
+  padding: 5px 15px;
+  font-weight: bold;
+  box-shadow: 0 2px 10px rgba(106, 17, 203, 0.3);
+}
+
+/* 3D Label */
+.label-3d {
+  color: #28a745;
+  font-weight: bold;
+  text-shadow: 0 1px 0 #ccc,
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25);
+}
+
+/* Badge Label */
+.label-badge {
+  display: inline-block;
+  background-color: #dc3545;
+  color: white;
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Tag Label */
+.label-tag {
+  display: inline-block;
+  background-color: #f8f9fa;
+  color: #495057;
+  border-left: 4px solid #17a2b8;
+  padding: 4px 10px;
+  font-weight: bold;
+  border-radius: 0 4px 4px 0;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -8px;
+    width: 8px;
+    height: 8px;
+    background-color: #17a2b8;
+    border-radius: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+/* Fancy Label */
+.label-fancy {
+  display: inline-block;
+  background-color: white;
+  color: #333;
+  padding: 5px 15px;
+  font-weight: bold;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 100%);
+    z-index: 2;
+    animation: shine 3s infinite;
+  }
+  
+  @keyframes shine {
+    to {
+      left: 100%;
+    }
+  }
+}

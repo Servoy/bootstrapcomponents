@@ -6,20 +6,21 @@
 "encapsulation":108,
 "items":[
 {
-"cssPosition":"0,0,-1,0,300,40",
+"cssPosition":"0,0,-1,0,100,47",
 "json":{
 "cssPosition":{
 "bottom":"-1",
-"height":"40",
+"height":"47",
 "left":"0",
 "right":"0",
 "top":"0",
-"width":"300"
+"width":"100"
 },
-"text":"Form name",
-"variant":"GradientFormLabel"
+"styleClass":"gradient-form-label",
+"text":"Form name"
 },
 "name":"label_form",
+"styleClass":"gradient-form-label",
 "typeName":"bootstrapcomponents-label",
 "typeid":47,
 "uuid":"47DDAA0F-2C7B-4C71-88A8-88E08EEFA76E"
@@ -51,6 +52,7 @@
 ],
 "name":"baseComponentForm",
 "navigatorID":"-1",
+"onLoadMethodID":"-1",
 "scrollbars":36,
 "showInMenu":true,
 "size":"100,100",

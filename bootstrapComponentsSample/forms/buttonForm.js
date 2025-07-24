@@ -1,9 +1,22 @@
 /**
  * Button Component Demo
  * This file contains event handlers and functionality for the button demo form
- *
- * @properties={typeid:35,uuid:"f2a3b4c5-d6e7-f8a9-b0c1-d2e3f4a5b6c7"}
  */
+
+
+/**
+ * @type {Boolean}
+ *
+ * @properties={typeid:35,uuid:"1FFB00E0-CD12-4BBB-B447-5E0FD681F017",variableType:-4}
+ */
+var visibleDataProvider = true;
+
+/**
+ * @type {Boolean}
+ * 
+ * @properties={typeid:35,uuid:"115F8F11-2F56-49F7-AF11-892B99712D32",variableType:-4}
+ */
+var enabledDataProvider = true;
 
 /**
  * Helper function to show button events using dialog
@@ -14,7 +27,7 @@
 function showButtonEvent(event) {
 	var timestamp = new Date().toLocaleTimeString();
 	var message = timestamp + ': ' + event.getType() + ' event on ' + event.getElementName();
-	plugins.dialogs.showInfoDialog('Button Event', message);
+	scopes.global.setStatusMessage(message);
 }
 
 /**
@@ -54,7 +67,9 @@ function onLoad(event) {
  * @properties={typeid:24,uuid:"07B2DF69-19C4-4546-9853-C8F14B54802E"}
  */
 function onButtonClick(event) {
-	showButtonEvent(event, 'Click');
+	var timestamp = new Date().toLocaleTimeString();
+	var message = timestamp + ': ' + event.getType() + 'ButtonClick event on ' + event.getElementName();
+	scopes.global.setStatusMessage(message);
 }
 
 /**
@@ -64,7 +79,9 @@ function onButtonClick(event) {
  * @properties={typeid:24,uuid:"FC6D4A81-1AEA-483E-A659-09EA9B75F9B7"}
  */
 function onButtonDoubleClick(event) {
-	showButtonEvent(event, 'Double Click');
+	var timestamp = new Date().toLocaleTimeString();
+	var message = timestamp + ': ' + event.getType() + 'ButtonDoubleClick event on ' + event.getElementName();
+	scopes.global.setStatusMessage(message);
 }
 
 /**
@@ -74,7 +91,9 @@ function onButtonDoubleClick(event) {
  * @properties={typeid:24,uuid:"1A057D9E-1581-4907-99A7-0CD456C6E660"}
  */
 function onButtonRightClick(event) {
-	showButtonEvent(event, 'Right Click');
+	var timestamp = new Date().toLocaleTimeString();
+	var message = timestamp + ': ' + event.getType() + 'ButtonRightClick event on ' + event.getElementName();
+	scopes.global.setStatusMessage(message);
 }
 
 /**
@@ -84,181 +103,167 @@ function onButtonRightClick(event) {
  * @properties={typeid:24,uuid:"62f18f9a-a045-4733-b06d-9702482738a8"}
  */
 function updateApiStatus(message) {
-	var targetBtn = elements.btn_api_target;
 	var statusText = 'Status: ' + message;
-	
-	// Update the status label
 	elements.lbl_api_status.text = statusText;
 }
 
 /**
- * Change the text of the target button
- * @param {JSEvent} event the event that triggered the action
+ * Cycles through predefined text options for a button
+ * 
+ * @param {RuntimeWebComponent<bootstrapcomponents-button_abs>} button - the button to change
  *
- * @properties={typeid:24,uuid:"D3927054-F127-4E9C-813E-898BAD76EA5C"}
+ * @properties={typeid:24,uuid:"28401F20-8A17-46C5-9513-E843356068BD"}
  */
-function onChangeText(event) {
-	var targetBtn = elements.btn_api_target;
-	var currentText = targetBtn.text;
-	
-	// Toggle between different text values
-	if (currentText === 'Target Button') {
-		targetBtn.text = 'Hello World';
-	} else if (currentText === 'Hello World') {
-		targetBtn.text = 'Click Me!';
-	} else {
-		targetBtn.text = 'Target Button';
-	}
-	
-	// Update status display
-	updateApiStatus('changed text to Hello World');
+function cycleButtonText(button) {
+	var textOptions = ['Target Button', 'Hello World', 'Click Me!'];
+	var currentIndex = textOptions.indexOf(button.text);
+	var nextIndex = (currentIndex + 1) % textOptions.length;
+	button.text = textOptions[nextIndex];
+	updateApiStatus('changed text to "' + button.text + '"');
 }
 
 /**
- * Change the style class of the target button
- * @param {JSEvent} event the event that triggered the action
+ * Toggles between outline and solid button styles
+ * @param {RuntimeWebComponent<bootstrapcomponents-button_abs>} button - the button to change
  *
- * @properties={typeid:24,uuid:"8D5BA85F-2B56-403F-8D2B-DBC743BF2BF3"}
+ * @properties={typeid:24,uuid:"B6280A05-545D-4263-97C1-D4D5FB43871A"}
  */
-function onChangeStyle(event) {
-	/**
-	 * @type {RuntimeWebComponent<bootstrapcomponents-button_abs>}
-	 */
-	var targetBtn = elements.btn_api_target;
-	// Cycle through Bootstrap button styles
-	if (targetBtn.hasStyleClass('btn-outline-primary')) {
-		targetBtn.removeStyleClass('btn-outline-primary');
-		targetBtn.addStyleClass('btn-primary');
+function toggleButtonStyle(button) {
+	if (button.hasStyleClass('btn-outline-primary')) {
+		button.removeStyleClass('btn-outline-primary');
+		button.addStyleClass('btn-primary');
 		updateApiStatus('changed style to btn-primary');
-		
-	} else if (targetBtn.hasStyleClass('btn-primary')) {
-		targetBtn.removeStyleClass('btn-primary');
-		targetBtn.addStyleClass('btn-success');
+	} else if (button.hasStyleClass('btn-primary')) {
+		button.removeStyleClass('btn-primary');
+		button.addStyleClass('btn-success');
 		updateApiStatus('changed style to btn-success');
-		
-	} else if (targetBtn.hasStyleClass('btn-success')) {
-		targetBtn.removeStyleClass('btn-success');
-		targetBtn.addStyleClass('btn-warning');
-		updateApiStatus('changed style to btn-warning');
-		
-	} else if (targetBtn.hasStyleClass('btn-warning')) {
-		targetBtn.removeStyleClass('btn-warning');
-		targetBtn.addStyleClass('btn-danger');
-		updateApiStatus('changed style to btn-danger');
-		
-	} else if (targetBtn.hasStyleClass('btn-danger')) {
-		targetBtn.removeStyleClass('btn-danger');
-		targetBtn.addStyleClass('btn-info');
-		updateApiStatus('changed style to btn-info');
-		
-	} else if (targetBtn.hasStyleClass('btn-info')) {
-		targetBtn.removeStyleClass('btn-info');
-		targetBtn.addStyleClass('btn-outline-primary');
+	} else if (button.hasStyleClass('btn-success')) {
+		button.removeStyleClass('btn-success');
+		button.addStyleClass('btn-outline-primary');
 		updateApiStatus('changed style to btn-outline-primary');
-		
 	} else {
-		targetBtn.addStyleClass('btn btn-outline-primary');
+		button.addStyleClass('btn btn-outline-primary');
 		updateApiStatus('added style btn-outline-primary');
 	}
 }
 
 /**
- * Toggle the enabled state of the target button
- * @param {JSEvent} event the event that triggered the action
+ * Toggles the enabled state of a button
+ * 
+ * @param {RuntimeWebComponent<bootstrapcomponents-button_abs>} button - the button to change
  *
- * @properties={typeid:24,uuid:"E47E8660-CF2B-427A-AFF7-C381CD87E7A3"}
+ * @properties={typeid:24,uuid:"91F42342-2E3D-4100-9042-D765830E2BE7"}
  */
-function onToggleEnabled(event) {
-	var targetBtn = elements.btn_api_target;
-	
-	// Toggle enabled state
-	targetBtn.enabled = !targetBtn.enabled;
-	
-	// Update status display
-	updateApiStatus('enabled = ' + targetBtn.enabled);
+function toggleButtonEnabled(button) {
+	enabledDataProvider = !enabledDataProvider;
+	button.enabled = !button.enabled;
+	updateApiStatus('enabled = ' + button.enabled);
 }
 
 /**
- * Toggle the visibility of the target button
- * @param {JSEvent} event the event that triggered the action
- *
- * @properties={typeid:24,uuid:"BCB3650A-66C8-4521-933C-963D55F71E6C"}
+ * Toggles the visibility of a button
+ * 
+ * * @param {RuntimeWebComponent<bootstrapcomponents-button_abs>} button - the button to change
+ * 
+ * @properties={typeid:24,uuid:"E2D191D9-F932-40F3-B632-F47E4297CDDF"}
  */
-function onToggleVisibility(event) {
-	var targetBtn = elements.btn_api_target;
+function toggleButtonVisibility(button) {
 	
-	// Toggle visibility
-	targetBtn.visible = !targetBtn.visible;
+	visibleDataProvider = !visibleDataProvider
 	
 	// Update status display
-	updateApiStatus('visible = ' + targetBtn.visible);
+	updateApiStatus('visible = ' + button.visible);
 	
 	// If button is now invisible, show a message
-	if (!targetBtn.visible) {
-		plugins.dialogs.showInfoDialog('Button Hidden', 'The target button is now hidden. Click "Toggle Visibility" again to show it.');
+	if (!button.visible) {
+		updateApiStatus('visible = false: the button is now hidden. Click "Toggle Visibility" again to show it.');
 	}
 }
 
 /**
- * Toggle the icon of the target button
- * @param {JSEvent} event the event that triggered the action
+ * Cycles through icon options for a button
+ * 
+ * * @param {RuntimeWebComponent<bootstrapcomponents-button_abs>} button - the button to change
  *
- * @properties={typeid:24,uuid:"E4649CCF-B2F7-42F2-A47C-767D228072FC"}
+ * @properties={typeid:24,uuid:"DAF26581-264B-4F12-837A-6CA897BC1B4C"}
  */
-function onToggleIcon(event) {
-	var targetBtn = elements.btn_api_target;
-	var currentIcon = targetBtn.imageStyleClass;
+function toggleButtonIcon(button) {
+	var currentIcon = button.imageStyleClass;
 	
-	// Cycle through different Font Awesome icons
-	if (!currentIcon && !targetBtn.trailingImageStyleClass) {
+	if (!currentIcon && !button.trailingImageStyleClass) {
 		// Add leading icon (star)
-		targetBtn.imageStyleClass = 'fas fa-star';
+		button.imageStyleClass = 'fas fa-star';
 		elements.btn_api_icon.text = 'Change Icon';
 		updateApiStatus('added leading icon: fas fa-star');
 		
 	} else if (currentIcon === 'fas fa-star') {
 		// Change to heart icon
-		targetBtn.imageStyleClass = 'fas fa-heart';
+		button.imageStyleClass = 'fas fa-heart';
 		updateApiStatus('changed leading icon to: fas fa-heart');
 		
 	} else if (currentIcon === 'fas fa-heart') {
 		// Move to trailing position with cog icon
-		targetBtn.imageStyleClass = null;
-		targetBtn.trailingImageStyleClass = 'fas fa-cog';
+		button.imageStyleClass = null;
+		button.trailingImageStyleClass = 'fas fa-cog';
 		updateApiStatus('moved to trailing icon: fas fa-cog');
 		
-	} else if (targetBtn.trailingImageStyleClass === 'fas fa-cog') {
+	} else if (button.trailingImageStyleClass === 'fas fa-cog') {
 		// Remove all icons
-		targetBtn.imageStyleClass = null;
-		targetBtn.trailingImageStyleClass = null;
+		button.imageStyleClass = null;
+		button.trailingImageStyleClass = null;
 		elements.btn_api_icon.text = 'Add Icon';
 		updateApiStatus('removed all icons');
 	}
-	
 }
 
 /**
- * Request focus for the target button
- * @param {JSEvent} event the event that triggered the action
+ * Sets focus on the target button
+ * 
+ * @param {RuntimeWebComponent<bootstrapcomponents-button_abs>} button - the button to change
  *
- * @properties={typeid:24,uuid:"A7FAAD2A-9CD9-40BB-9A86-CE0426B51748"}
+ * @properties={typeid:24,uuid:"BB556AC6-38CC-43E7-97A9-BFA18FBC8FF4"}
  */
-function onRequestFocus(event) {
-	updateApiStatus('Focus is on the target button. Press \'Space\' to verify');
-	
-	// Request focus for the target button
-	elements.btn_api_target.requestFocus();
+function setButtonFocus(button) {
+	updateApiStatus('Focus is on the button. Press \'Space\' to verify');
+	button.requestFocus();
 }
+
 /**
  * Fired when the button is clicked.
  *
  * @param {JSEvent} event
  *
- * @properties={typeid:24,uuid:"5320DF2E-F048-4A24-9B01-57C2070F6AF8"}
+ * @properties={typeid:24,uuid:"02B259B0-0C0B-47AF-ACC2-F0F91E288EBA"}
  */
-function onTargetBtnAction(event) {
-	var timestamp = new Date().toLocaleTimeString();
-	var message = timestamp + ': ' + event.getType() + ' event on ' + event.getElementName();
-	updateApiStatus(message);
-
+function onAPIAction(event) {
+	var targetBtn = elements.btn_api_target;
+	var elementName = event.getElementName();
+	
+	switch (elementName) {
+		case 'btn_api_text':
+			cycleButtonText(targetBtn);
+			break;
+			
+		case 'btn_api_style':
+			toggleButtonStyle(targetBtn);
+			break;
+			
+		case 'btn_api_enabled':
+			toggleButtonEnabled(targetBtn);
+			break;
+			
+		case 'btn_api_visible':
+			toggleButtonVisibility(targetBtn);
+			break;
+			
+		case 'btn_api_icon':
+			toggleButtonIcon(targetBtn);
+			break;
+			
+		case 'btn_api_focus':
+			setButtonFocus(targetBtn);
+			break;
+	}
+	
+	scopes.global.setStatusMessage(elementName + ' clicked');
 }

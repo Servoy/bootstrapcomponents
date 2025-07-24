@@ -24,15 +24,41 @@
         "displayName": "Neon Button",
         "classes": [ "btn", "btn-neon" ]   
     },
-    "GradientFormLabel": {
-        "category": "label", 
-        "displayName": "Gradient Form Label",
-        "classes": [ "gradient-form-label"]   
-    },
+    
     "GradientTextSunlight": {
         "category": "label", 
         "displayName": "Gradient Text with Sunlight",
         "classes": [ "gradient-text-sunlight"]   
+    },
+    "LabelNeon": {
+        "category": "label", 
+        "displayName": "Neon Label",
+        "classes": [ "label-neon"]   
+    },
+    "LabelPill": {
+        "category": "label", 
+        "displayName": "Pill Label",
+        "classes": [ "label-pill"]   
+    },
+    "Label3D": {
+        "category": "label", 
+        "displayName": "3D Label",
+        "classes": [ "label-3d"]   
+    },
+    "LabelBadge": {
+        "category": "label", 
+        "displayName": "Badge Label",
+        "classes": [ "label-badge"]   
+    },
+    "LabelTag": {
+        "category": "label", 
+        "displayName": "Tag Label",
+        "classes": [ "label-tag"]   
+    },
+    "LabelFancy": {
+        "category": "label", 
+        "displayName": "Fancy Label",
+        "classes": [ "label-fancy"]   
     },
     "BtnGlow": {
         "category": "button", 

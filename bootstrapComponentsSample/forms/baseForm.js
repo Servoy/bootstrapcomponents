@@ -7,16 +7,11 @@
  * @properties={typeid:24,uuid:"C2E808B8-F1EF-4144-A40C-2D7293E61C20"}
  */
 function onLoad(event) {
-	/**
-	 * @type {RuntimeForm}
-	 */
-	var firstForm = forms['buttonForm'];
-	forms.baseComponentForm.setTitle('Button');
-	forms.formDemoContainer.elements.demo_container.containedForm = firstForm
-		
 	var tabSeq = forms.selectorForm.controller.getTabSequence();
 	if (tabSeq.length > 0) {
 		forms.selectorForm.controller.focusField(tabSeq[0], false);
 		forms.selectorForm.elements.btn_Button.addStyleClass('selected');
 	}
+	
+	forms.selectorForm.loadComponentForm('Button', 'buttonForm')
 }
