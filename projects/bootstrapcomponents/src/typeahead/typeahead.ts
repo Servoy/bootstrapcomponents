@@ -104,13 +104,14 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
 	}
 
 	get dataProvider() {
-		if (this.dataProviderID === null) return this.NULL_VALUE;
+//		if (this.dataProviderID === null) return this.NULL_VALUE;
 		return this.dataProviderID;
 	}
 
 	set dataProvider(value) {
-		if (value === this.NULL_VALUE) this.dataProviderID = null;
-		else this.dataProviderID = value;
+//		if (value === this.NULL_VALUE) this.dataProviderID = null;
+//		else 
+			this.dataProviderID = value;
 
 	}
 
@@ -132,6 +133,9 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
 		}
 		if (changes.dataProviderID) {
 			this.currentValue = changes.dataProviderID.currentValue;
+			if (this.dataProviderID === null ) {
+				this.dataProviderID = this.NULL_VALUE;
+			}
 		}
 	}
 
