@@ -1,10 +1,9 @@
-
 /**
  * Callback method when form is (re)loaded.
  *
  * @param {JSEvent} event the event that triggered the action
  *
- * @properties={typeid:24,uuid:"C2E808B8-F1EF-4144-A40C-2D7293E61C20"}
+ * @properties={"typeid":24,"uuid":"DB12AD13-C1EB-4CC9-BB17-EF073C51A455"}
  */
 function onLoad(event) {
 	var tabSeq = forms.selectorForm.controller.getTabSequence();

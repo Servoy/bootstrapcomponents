@@ -1,95 +1,95 @@
 {
-"customProperties":{
-"formComponent":false,
-"useCssPosition":true
-},
-"encapsulation":108,
-"items":[
-{
-"cssPosition":"95,20,80,230,50,330",
-"json":{
-"containedForm":"50A5F0C7-E3D7-46ED-B540-067DE27CEE25",
-"cssPosition":{
-"bottom":"80",
-"height":"330",
-"left":"230",
-"right":"20",
-"top":"95",
-"width":"50"
-}
-},
-"name":"base_container",
-"typeName":"servoycore-formcontainer",
-"typeid":47,
-"uuid":"0F4C43F9-067F-438D-93DE-48BA421493B3"
-},
-{
-"cssPosition":"0,20,-1,20,600,80",
-"json":{
-"containedForm":"81729363-34B7-4133-BFEF-AE8D615EECC7",
-"cssPosition":{
-"bottom":"-1",
-"height":"80",
-"left":"20",
-"right":"20",
-"top":"0",
-"width":"600"
-}
-},
-"name":"header_container",
-"typeName":"servoycore-formcontainer",
-"typeid":47,
-"uuid":"53AB51D3-3336-4BD1-833A-53D0D0666C31"
-},
-{
-"cssPosition":"95,-1,80,20,190,330",
-"json":{
-"containedForm":"C1464DBB-F64C-4A26-ADDE-49988E556817",
-"cssPosition":{
-"bottom":"80",
-"height":"330",
-"left":"20",
-"right":"-1",
-"top":"95",
-"width":"190"
-}
-},
-"name":"selector_container",
-"typeName":"servoycore-formcontainer",
-"typeid":47,
-"uuid":"73EB2EE0-9E62-433B-870C-8DB4F3994C7D"
-},
-{
-"height":497,
-"partType":5,
-"typeid":19,
-"uuid":"C47000A0-7A19-436B-B3E0-0B4474BCF0BD"
-},
-{
-"cssPosition":"-1,20,0,20,200,60",
-"json":{
-"containedForm":"BFB49B04-85CA-4574-B4B1-D8FD3AB325FE",
-"cssPosition":{
-"bottom":"0",
-"height":"60",
-"left":"20",
-"right":"20",
-"top":"-1",
-"width":"200"
-}
-},
-"name":"footer_container",
-"typeName":"servoycore-formcontainer",
-"typeid":47,
-"uuid":"D01F2C50-1081-4C1B-8080-6F1C0349599F"
-}
-],
-"name":"baseForm",
-"navigatorID":"-1",
-"onLoadMethodID":"C2E808B8-F1EF-4144-A40C-2D7293E61C20",
-"scrollbars":36,
-"showInMenu":true,
-"size":"640,480",
-"typeid":3,
-"uuid":"319D5CA4-444D-416E-80C1-4791D42EF0CB"
+    "customProperties":{
+        "formComponent":false,
+        "useCssPosition":true
+    },
+    "encapsulation":108,
+    "items":[
+        {
+            "cssPosition":"0,20,-1,20,600,80",
+            "json":{
+                "containedForm":"5F70DBC3-8746-4B6E-842C-4A743C512580",
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"80",
+                    "left":"20",
+                    "right":"20",
+                    "top":"0",
+                    "width":"600"
+                }
+            },
+            "name":"header_container",
+            "typeName":"servoycore-formcontainer",
+            "typeid":47,
+            "uuid":"0C591D6B-2A48-4EE5-B9E4-63559B3AD71A"
+        },
+        {
+            "cssPosition":"95,-1,80,20,190,330",
+            "json":{
+                "containedForm":"0067EA7C-6B03-49EE-8493-4FF93F39B5B3",
+                "cssPosition":{
+                    "bottom":"80",
+                    "height":"330",
+                    "left":"20",
+                    "right":"-1",
+                    "top":"95",
+                    "width":"190"
+                }
+            },
+            "name":"selector_container",
+            "typeName":"servoycore-formcontainer",
+            "typeid":47,
+            "uuid":"0E5C23EE-F6B5-4C79-9E12-B967C145182D"
+        },
+        {
+            "height":497,
+            "partType":5,
+            "typeid":19,
+            "uuid":"24FAE7EA-24EB-4894-B070-8619BFBD2C1C"
+        },
+        {
+            "cssPosition":"95,20,80,230,50,330",
+            "json":{
+                "containedForm":"0EB2BFC9-0054-4EEB-854C-AC83E1AAF9FF",
+                "cssPosition":{
+                    "bottom":"80",
+                    "height":"330",
+                    "left":"230",
+                    "right":"20",
+                    "top":"95",
+                    "width":"50"
+                }
+            },
+            "name":"base_container",
+            "typeName":"servoycore-formcontainer",
+            "typeid":47,
+            "uuid":"3181F0AC-038C-4638-B0DD-1FED8EED6039"
+        },
+        {
+            "cssPosition":"-1,20,0,20,200,60",
+            "json":{
+                "containedForm":"4B660C3E-E6AF-489A-B08D-7C6629BFB51A",
+                "cssPosition":{
+                    "bottom":"0",
+                    "height":"60",
+                    "left":"20",
+                    "right":"20",
+                    "top":"-1",
+                    "width":"200"
+                }
+            },
+            "name":"footer_container",
+            "typeName":"servoycore-formcontainer",
+            "typeid":47,
+            "uuid":"C7F14FE1-FD06-4D2A-BE9E-C8754587039E"
+        }
+    ],
+    "name":"baseForm",
+    "navigatorID":"-1",
+    "onLoadMethodID":"DB12AD13-C1EB-4CC9-BB17-EF073C51A455",
+    "scrollbars":36,
+    "showInMenu":true,
+    "size":"640,480",
+    "typeid":3,
+    "uuid":"E7BAB1E8-0242-43DF-87DC-648E0D568841"
 }

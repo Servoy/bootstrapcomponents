@@ -1,59 +1,59 @@
 {
-"customProperties":{
-"formComponent":false,
-"useCssPosition":true
-},
-"encapsulation":108,
-"items":[
-{
-"cssPosition":"10,-1,-1,0,147,55",
-"json":{
-"cssPosition":{
-"bottom":"-1",
-"height":"55",
-"left":"0",
-"right":"-1",
-"top":"10",
-"width":"147"
-},
-"media":"3A7BD231-E8EC-47D1-B99E-24415B6E806A"
-},
-"name":"servoy_logo",
-"typeName":"bootstrapcomponents-imagemedia",
-"typeid":47,
-"uuid":"60E35703-4C7A-4081-9F6F-30137D78B381"
-},
-{
-"height":80,
-"partType":5,
-"typeid":19,
-"uuid":"A9BF60FE-6C92-4D2A-BDD7-585E37143C5B"
-},
-{
-"cssPosition":"10,0,-1,-1,422,55",
-"json":{
-"cssPosition":{
-"bottom":"-1",
-"height":"55",
-"left":"-1",
-"right":"0",
-"top":"10",
-"width":"422"
-},
-"text":"Bootstrap package demo",
-"variant":"GradientTextSunlight"
-},
-"name":"example_label",
-"typeName":"bootstrapcomponents-label",
-"typeid":47,
-"uuid":"F375932F-A5F6-4ACF-B9EF-865CC75D215F"
-}
-],
-"name":"headerForm",
-"navigatorID":"-1",
-"showInMenu":true,
-"size":"590,80",
-"styleClass":"banner-orange",
-"typeid":3,
-"uuid":"81729363-34B7-4133-BFEF-AE8D615EECC7"
+    "customProperties":{
+        "formComponent":false,
+        "useCssPosition":true
+    },
+    "encapsulation":108,
+    "items":[
+        {
+            "cssPosition":"10,0,-1,-1,422,55",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"55",
+                    "left":"-1",
+                    "right":"0",
+                    "top":"10",
+                    "width":"422"
+                },
+                "text":"Bootstrap package demo",
+                "variant":"GradientTextSunlight"
+            },
+            "name":"example_label",
+            "typeName":"bootstrapcomponents-label",
+            "typeid":47,
+            "uuid":"42CBA76B-8067-4B67-8356-61536AEB4E6A"
+        },
+        {
+            "height":80,
+            "partType":5,
+            "typeid":19,
+            "uuid":"7CCCCE6A-5E39-4B04-9D0A-6AB75D29B931"
+        },
+        {
+            "cssPosition":"10,-1,-1,0,147,55",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"55",
+                    "left":"0",
+                    "right":"-1",
+                    "top":"10",
+                    "width":"147"
+                },
+                "media":"01535DE5-9763-4AD7-9D11-6857FDC3371B"
+            },
+            "name":"servoy_logo",
+            "typeName":"bootstrapcomponents-imagemedia",
+            "typeid":47,
+            "uuid":"AB7C593D-435C-41C2-BC42-489926E18AA5"
+        }
+    ],
+    "name":"headerForm",
+    "navigatorID":"-1",
+    "showInMenu":true,
+    "size":"590,80",
+    "styleClass":"banner-orange",
+    "typeid":3,
+    "uuid":"5F70DBC3-8746-4B6E-842C-4A743C512580"
 }

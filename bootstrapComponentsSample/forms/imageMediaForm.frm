@@ -1,36 +1,36 @@
 {
-"customProperties":{
-"formComponent":false,
-"useCssPosition":true
-},
-"extendsID":"-1",
-"items":[
-{
-"height":480,
-"partType":5,
-"typeid":19,
-"uuid":"39244AFF-356B-4B75-97F9-96B0770587D3"
-},
-{
-"cssPosition":"109,-1,-1,126,229,30",
-"json":{
-"cssPosition":{
-"bottom":"-1",
-"height":"30",
-"left":"126",
-"right":"-1",
-"top":"109",
-"width":"229"
-},
-"text":"image media"
-},
-"name":"label_1",
-"typeName":"bootstrapcomponents-label",
-"typeid":47,
-"uuid":"9FCFDABF-0D8F-496C-8FFF-68091577116F"
-}
-],
-"name":"imageMediaForm",
-"typeid":3,
-"uuid":"d6e7f8a9-b0c1-2d3e-4f5a-6b7c8d9e0f1a"
+    "customProperties":{
+        "formComponent":false,
+        "useCssPosition":true
+    },
+    "extendsID":"-1",
+    "items":[
+        {
+            "cssPosition":"109,-1,-1,126,229,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"126",
+                    "right":"-1",
+                    "top":"109",
+                    "width":"229"
+                },
+                "text":"image media"
+            },
+            "name":"label_1",
+            "typeName":"bootstrapcomponents-label",
+            "typeid":47,
+            "uuid":"8038E2F7-A9CE-4681-AAA4-1906B4AEDC99"
+        },
+        {
+            "height":480,
+            "partType":5,
+            "typeid":19,
+            "uuid":"C847CBC9-C1AF-48CE-A7D9-9BC8081E49C7"
+        }
+    ],
+    "name":"imageMediaForm",
+    "typeid":3,
+    "uuid":"30A3C437-895C-4E8E-9EBF-B3BF5800AB66"
 }

@@ -3,18 +3,17 @@
  * This file contains event handlers and functionality for the button demo form
  */
 
-
 /**
  * @type {Boolean}
  *
- * @properties={typeid:35,uuid:"1FFB00E0-CD12-4BBB-B447-5E0FD681F017",variableType:-4}
+ * @properties={"typeid":35,"uuid":"A51EB9D3-72FC-46F6-AEE1-6DAF3368E89D","variableType":-4}
  */
 var visibleDataProvider = true;
 
 /**
  * @type {Boolean}
  * 
- * @properties={typeid:35,uuid:"115F8F11-2F56-49F7-AF11-892B99712D32",variableType:-4}
+ * @properties={"typeid":35,"uuid":"1CB9ADDB-78B2-4E13-87B4-AB36B2CE40AA","variableType":-4}
  */
 var enabledDataProvider = true;
 
@@ -22,7 +21,7 @@ var enabledDataProvider = true;
  * Helper function to show button events using dialog
  * @param {JSEvent} event - The event that triggered the action
  *
- * @properties={typeid:24,uuid:"b6243e84-a776-4224-b37a-da18b8a8387e"}
+ * @properties={"typeid":24,"uuid":"37411D25-131C-4FEC-B718-F8D11B650192"}
  */
 function showButtonEvent(event) {
 	var timestamp = new Date().toLocaleTimeString();
@@ -34,7 +33,7 @@ function showButtonEvent(event) {
  * Show a warning dialog
  * @param {String} message - The message to display
  *
- * @properties={typeid:24,uuid:"95139e16-56f7-44b2-b4ca-7b4806a5745e"}
+ * @properties={"typeid":24,"uuid":"DD5552CD-E02D-40F2-959E-B367CF3C7971"}
  */
 function showWarning(message) {
 	plugins.dialogs.showWarningDialog('Button Warning', message);
@@ -44,7 +43,7 @@ function showWarning(message) {
  * Show an error dialog
  * @param {String} message - The message to display
  *
- * @properties={typeid:24,uuid:"a5b6c7d8-e9f0-a1b2-c3d4-e5f6a7b8c9d0"}
+ * @properties={"typeid":24,"uuid":"651F49BF-2CD0-42E8-B75B-AB534C12B3E6"}
  */
 function showError(message) {
 	plugins.dialogs.showErrorDialog('Button Error', message);
@@ -54,7 +53,7 @@ function showError(message) {
  * Initialize the form
  * @param {JSEvent} event the event that triggered the action
  *
- * @properties={typeid:24,uuid:"f0c7b7b2-5beb-4e09-bc37-1bc904b8cbcd"}
+ * @properties={"typeid":24,"uuid":"0CE056BC-B9A3-4986-A7C2-9859D4CCCC37"}
  */
 function onLoad(event) {
 	// Form loaded
@@ -64,7 +63,7 @@ function onLoad(event) {
  * Handle click event for the Click Me button
  * @param {JSEvent} event the event that triggered the action
  *
- * @properties={typeid:24,uuid:"07B2DF69-19C4-4546-9853-C8F14B54802E"}
+ * @properties={"typeid":24,"uuid":"A681FC65-17F8-45A6-A880-4DEB16BDDA13"}
  */
 function onButtonClick(event) {
 	var timestamp = new Date().toLocaleTimeString();
@@ -76,7 +75,7 @@ function onButtonClick(event) {
  * Handle double click event for the Double Click Me button
  * @param {JSEvent} event the event that triggered the action
  *
- * @properties={typeid:24,uuid:"FC6D4A81-1AEA-483E-A659-09EA9B75F9B7"}
+ * @properties={"typeid":24,"uuid":"9EDC3D1B-CA4C-4BD9-A239-71596DE69F4D"}
  */
 function onButtonDoubleClick(event) {
 	var timestamp = new Date().toLocaleTimeString();
@@ -88,7 +87,7 @@ function onButtonDoubleClick(event) {
  * Handle right click event for the Right Click Me button
  * @param {JSEvent} event the event that triggered the action
  *
- * @properties={typeid:24,uuid:"1A057D9E-1581-4907-99A7-0CD456C6E660"}
+ * @properties={"typeid":24,"uuid":"C0C5AFCB-8C66-46EF-98BE-18D8ADFC621F"}
  */
 function onButtonRightClick(event) {
 	var timestamp = new Date().toLocaleTimeString();
@@ -100,7 +99,7 @@ function onButtonRightClick(event) {
  * Updates the status label with the current state of the target button
  * @private
  *
- * @properties={typeid:24,uuid:"62f18f9a-a045-4733-b06d-9702482738a8"}
+ * @properties={"typeid":24,"uuid":"4C9B87D4-7F13-4C31-96C8-76B7382E11A6"}
  */
 function updateApiStatus(message) {
 	var statusText = 'Status: ' + message;
@@ -112,7 +111,7 @@ function updateApiStatus(message) {
  * 
  * @param {RuntimeWebComponent<bootstrapcomponents-button_abs>} button - the button to change
  *
- * @properties={typeid:24,uuid:"28401F20-8A17-46C5-9513-E843356068BD"}
+ * @properties={"typeid":24,"uuid":"6FA04DCF-F699-424D-A3C0-92BC8C0AFA43"}
  */
 function cycleButtonText(button) {
 	var textOptions = ['Target Button', 'Hello World', 'Click Me!'];
@@ -126,7 +125,7 @@ function cycleButtonText(button) {
  * Toggles between outline and solid button styles
  * @param {RuntimeWebComponent<bootstrapcomponents-button_abs>} button - the button to change
  *
- * @properties={typeid:24,uuid:"B6280A05-545D-4263-97C1-D4D5FB43871A"}
+ * @properties={"typeid":24,"uuid":"28810CC8-A3D2-4E55-8259-C54E34A4DFF1"}
  */
 function toggleButtonStyle(button) {
 	if (button.hasStyleClass('btn-outline-primary')) {
@@ -152,7 +151,7 @@ function toggleButtonStyle(button) {
  * 
  * @param {RuntimeWebComponent<bootstrapcomponents-button_abs>} button - the button to change
  *
- * @properties={typeid:24,uuid:"91F42342-2E3D-4100-9042-D765830E2BE7"}
+ * @properties={"typeid":24,"uuid":"E9D9E80D-6F2D-4444-A8FD-308C8A24D2C0"}
  */
 function toggleButtonEnabled(button) {
 	enabledDataProvider = !enabledDataProvider;
@@ -164,7 +163,7 @@ function toggleButtonEnabled(button) {
  * 
  * * @param {RuntimeWebComponent<bootstrapcomponents-button_abs>} button - the button to change
  * 
- * @properties={typeid:24,uuid:"E2D191D9-F932-40F3-B632-F47E4297CDDF"}
+ * @properties={"typeid":24,"uuid":"87F5F72E-98B8-4648-81CB-C1E8699EF134"}
  */
 function toggleButtonVisibility(button) {
 	
@@ -184,7 +183,7 @@ function toggleButtonVisibility(button) {
  * 
  * * @param {RuntimeWebComponent<bootstrapcomponents-button_abs>} button - the button to change
  *
- * @properties={typeid:24,uuid:"DAF26581-264B-4F12-837A-6CA897BC1B4C"}
+ * @properties={"typeid":24,"uuid":"5460BC87-5439-486D-81A2-76FD06670C52"}
  */
 function toggleButtonIcon(button) {
 	var currentIcon = button.imageStyleClass;
@@ -220,7 +219,7 @@ function toggleButtonIcon(button) {
  * 
  * @param {RuntimeWebComponent<bootstrapcomponents-button_abs>} button - the button to change
  *
- * @properties={typeid:24,uuid:"BB556AC6-38CC-43E7-97A9-BFA18FBC8FF4"}
+ * @properties={"typeid":24,"uuid":"90643D79-40DF-49FF-9AFB-EF631DDAD97E"}
  */
 function setButtonFocus(button) {
 	updateApiStatus('Focus is on the button. Press \'Space\' to verify');
@@ -232,7 +231,7 @@ function setButtonFocus(button) {
  *
  * @param {JSEvent} event
  *
- * @properties={typeid:24,uuid:"02B259B0-0C0B-47AF-ACC2-F0F91E288EBA"}
+ * @properties={"typeid":24,"uuid":"FC1A499B-9EA8-43AD-BE13-F23BDEA30B03"}
  */
 function onAPIAction(event) {
 	var targetBtn = elements.btn_api_target;

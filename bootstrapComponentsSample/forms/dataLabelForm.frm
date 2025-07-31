@@ -1,36 +1,36 @@
 {
-"customProperties":{
-"formComponent":false,
-"useCssPosition":true
-},
-"extendsID":"-1",
-"items":[
-{
-"height":480,
-"partType":5,
-"typeid":19,
-"uuid":"9A628A78-0DB5-47EF-90E8-2714941E502B"
-},
-{
-"cssPosition":"24,-1,-1,92,80,30",
-"json":{
-"cssPosition":{
-"bottom":"-1",
-"height":"30",
-"left":"92",
-"right":"-1",
-"top":"24",
-"width":"80"
-},
-"text":"datalabel"
-},
-"name":"label_9",
-"typeName":"bootstrapcomponents-label",
-"typeid":47,
-"uuid":"B09C53A5-2A72-492E-8355-71EEFA71852F"
-}
-],
-"name":"dataLabelForm",
-"typeid":3,
-"uuid":"b4c5d6e7-f8a9-0b1c-2d3e-4f5a6b7c8d9e"
+    "customProperties":{
+        "formComponent":false,
+        "useCssPosition":true
+    },
+    "extendsID":"-1",
+    "items":[
+        {
+            "cssPosition":"24,-1,-1,92,80,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"92",
+                    "right":"-1",
+                    "top":"24",
+                    "width":"80"
+                },
+                "text":"datalabel"
+            },
+            "name":"label_9",
+            "typeName":"bootstrapcomponents-label",
+            "typeid":47,
+            "uuid":"653D678C-7848-4DD9-954B-52445B3CCB89"
+        },
+        {
+            "height":480,
+            "partType":5,
+            "typeid":19,
+            "uuid":"69F6AE6E-4A2D-4A06-8B18-5CCC9D74CF14"
+        }
+    ],
+    "name":"dataLabelForm",
+    "typeid":3,
+    "uuid":"B686160D-9565-4A09-80AA-19F00A95EB69"
 }

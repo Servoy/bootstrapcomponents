@@ -1,61 +1,61 @@
 {
-"customProperties":{
-"formComponent":false,
-"useCssPosition":true
-},
-"encapsulation":108,
-"items":[
-{
-"cssPosition":"0,0,-1,0,100,47",
-"json":{
-"cssPosition":{
-"bottom":"-1",
-"height":"47",
-"left":"0",
-"right":"0",
-"top":"0",
-"width":"100"
-},
-"styleClass":"gradient-form-label",
-"text":"Form name"
-},
-"name":"label_form",
-"styleClass":"gradient-form-label",
-"typeName":"bootstrapcomponents-label",
-"typeid":47,
-"uuid":"47DDAA0F-2C7B-4C71-88A8-88E08EEFA76E"
-},
-{
-"height":100,
-"partType":5,
-"typeid":19,
-"uuid":"B40D5C14-7E4C-4F00-A338-3D2B79232B31"
-},
-{
-"cssPosition":"60,0,0,0,100,10",
-"json":{
-"containedForm":"F4BA973A-5E17-4E0F-B01B-0B1EC87A4FA9",
-"cssPosition":{
-"bottom":"0",
-"height":"10",
-"left":"0",
-"right":"0",
-"top":"60",
-"width":"100"
-}
-},
-"name":"component_container",
-"typeName":"servoycore-formcontainer",
-"typeid":47,
-"uuid":"D10B4105-B059-411F-918C-D31118C155E2"
-}
-],
-"name":"baseComponentForm",
-"navigatorID":"-1",
-"onLoadMethodID":"-1",
-"scrollbars":36,
-"showInMenu":true,
-"size":"100,100",
-"typeid":3,
-"uuid":"50A5F0C7-E3D7-46ED-B540-067DE27CEE25"
+    "customProperties":{
+        "formComponent":false,
+        "useCssPosition":true
+    },
+    "encapsulation":108,
+    "items":[
+        {
+            "height":100,
+            "partType":5,
+            "typeid":19,
+            "uuid":"1006ED83-CA15-4641-ADF7-37C6004992AD"
+        },
+        {
+            "cssPosition":"60,0,0,0,100,10",
+            "json":{
+                "containedForm":"5A99832A-D29D-4B23-9832-C98EFC542426",
+                "cssPosition":{
+                    "bottom":"0",
+                    "height":"10",
+                    "left":"0",
+                    "right":"0",
+                    "top":"60",
+                    "width":"100"
+                }
+            },
+            "name":"component_container",
+            "typeName":"servoycore-formcontainer",
+            "typeid":47,
+            "uuid":"69EAC64B-4630-419A-B627-39A775EE936F"
+        },
+        {
+            "cssPosition":"0,0,-1,0,100,47",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"47",
+                    "left":"0",
+                    "right":"0",
+                    "top":"0",
+                    "width":"100"
+                },
+                "styleClass":"gradient-form-label",
+                "text":"Form name"
+            },
+            "name":"label_form",
+            "styleClass":"gradient-form-label",
+            "typeName":"bootstrapcomponents-label",
+            "typeid":47,
+            "uuid":"DBDD76C3-ABC4-4193-99CF-AB47488E4BE1"
+        }
+    ],
+    "name":"baseComponentForm",
+    "navigatorID":"-1",
+    "onLoadMethodID":"-1",
+    "scrollbars":36,
+    "showInMenu":true,
+    "size":"100,100",
+    "typeid":3,
+    "uuid":"0EB2BFC9-0054-4EEB-854C-AC83E1AAF9FF"
 }

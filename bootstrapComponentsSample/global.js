@@ -1,22 +1,22 @@
 /**
  * @type {String}
  *
- * @properties={typeid:35,uuid:"AE3CC0AE-883C-4509-A150-4A61CD52DAB2"}
+ * @properties={"typeid":35,"uuid":"1457B35E-8DEE-4EF6-8B9D-C4ED2C49C6A3"}
  */
-var footerStatus;
+var footerStatus = '';
 
 /**
  * TODO generated, please specify type and doc for the params
  * @param {String} message
  *
- * @properties={typeid:24,uuid:"5A523287-6158-4262-A6A3-1A4DFF524D07"}
+ * @properties={"typeid":24,"uuid":"702E361B-BB17-4549-9E9D-13C874DB3DED"}
  */
 function setStatusMessage(message) {
 	footerStatus = message;
 }
 
 /**
- * @properties={typeid:24,uuid:"1AAAE083-C8E9-462B-B6FF-2C4975669BF5"}
+ * @properties={"typeid":24,"uuid":"747CBC5A-A9ED-4632-884C-AB5ACC7361E9"}
  * 
  * @return {String}
  */

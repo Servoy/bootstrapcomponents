@@ -1,67 +1,66 @@
 /**
  * @type {String}
  *
- * @properties={typeid:35,uuid:"6E613B6F-B799-42E8-8814-5741C0010D8B"}
+ * @properties={"typeid":35,"uuid":"8A6363FA-7660-4CFE-9518-5A7D68BFC58D"}
  */
 var styleClassProvider_vl = 'cool';
 
 /**
  * @type {String}
  *
- * @properties={typeid:35,uuid:"CEFAF230-BFEC-4FB7-AD64-81BE147BE24B"}
+ * @properties={"typeid":35,"uuid":"CB54CBC5-95B3-4279-A525-7298E3188799"}
  */
 var username_input = 'John Doe';
 
 /**
  * @type {Boolean}
  *
- * @properties={typeid:35,uuid:"D4E5F6A7-B8C9-0D1E-2F3A-4B5C6D7E8F9A",variableType:-4}
+ * @properties={"typeid":35,"uuid":"D1A6C16B-50B6-40FD-AD5D-6FCCF74EE93C","variableType":-4}
  */
 var visibleDataProvider = true;
 
 /**
  * @type {Boolean}
  *
- * @properties={typeid:35,uuid:"E5F6A7B8-C9D0-1E2F-3A4B-5C6D7E8F9A0B",variableType:-4}
+ * @properties={"typeid":35,"uuid":"239B83F6-B845-4FA0-B76E-85C411AF34C0","variableType":-4}
  */
 var enabledDataProvider = true;
 
 /**
  * @type {String}
  *
- * @properties={typeid:35,uuid:"064EC9A5-9FAD-4E89-802B-9BF06F1038ED"}
+ * @properties={"typeid":35,"uuid":"7FF1F8A2-C090-4C38-916D-3D53B9DBC8C5"}
  */
 var styleClassProvider = 'label-primary';
 
 /**
  * @type {String}
  *
- * @properties={typeid:35,uuid:"BB8F51C2-B890-4C5F-B48C-D91E25461386"}
+ * @properties={"typeid":35,"uuid":"0EFEDB9B-B753-4D88-BF6A-A9381DE4D311"}
  */
 var user_comments = 'The Form Association and Accessibility section demonstrates how to properly link labels to form elements using ' + 
 	'the labelFor property. This creates proper HTML "for" attributes that associate labels with their corresponding inputs, improving ' +
 	'usability and accessibility. When a user clicks on a label, the associated input receives focus, which is especially helpful for small ' +
 	'form controls forms more accessible to all users.';
 
-
 /**
  * @type {String}
  *
- * @properties={typeid:35,uuid:"95D3D5D4-7E25-47F0-B68B-E97ECF01B96E"}
+ * @properties={"typeid":35,"uuid":"0DD611E7-4347-42E0-947B-D8B7DCCA84BE"}
  */
 var click_event_message = 'Click a label to see event details here';
 
 /**
  * @type {String}
  *
- * @properties={typeid:35,uuid:"9D36AF47-5858-44E0-B5DC-287048C490E5"}
+ * @properties={"typeid":35,"uuid":"BC36D908-BC7A-45AC-B441-6CAEA1F53DD4"}
  */
 var double_click_event_message = 'Double-click a label to see event details here';
 
 /**
  * @type {String}
  *
- * @properties={typeid:35,uuid:"6C7A3C93-D44A-4931-ACF1-531957208B9B"}
+ * @properties={"typeid":35,"uuid":"559AAA46-0E79-4F36-B43E-845D29A7E491"}
  */
 var right_click_event_message = 'Right-click a label to see event details here';
 
@@ -73,7 +72,7 @@ var right_click_event_message = 'Right-click a label to see event details here';
  *
  * @protected
  *
- * @properties={typeid:24,uuid:"A4B5C6D7-E8F9-0A1B-2C3D-4E5F6A7B8C9D"}
+ * @properties={"typeid":24,"uuid":"6C2B9CBE-0886-4BEF-8413-17E53FE00800"}
  */
 function onLabelClick(event, dataTarget) {
     
@@ -91,7 +90,7 @@ function onLabelClick(event, dataTarget) {
  *
  * @protected
  *
- * @properties={typeid:24,uuid:"B5C6D7E8-F9A0-1B2C-3D4E-05F6A7B8C9D0"}
+ * @properties={"typeid":24,"uuid":"BD602D3C-76B9-446B-9AB1-8F7014DC4876"}
  */
 function onLabelDoubleClick(event, dataTarget) {
     var source = event.getSource();
@@ -112,7 +111,7 @@ function onLabelDoubleClick(event, dataTarget) {
  *
  * @protected
  *
- * @properties={typeid:24,uuid:"C6D7E8F9-A0B1-2C3D-4E5F-06A7B8C9D0E1"}
+ * @properties={"typeid":24,"uuid":"79BC6684-DBDE-42BC-AE98-4812411CF61D"}
  */
 function onLabelRightClick(event, dataTarget) {
     var source = event.getSource();
@@ -130,7 +129,7 @@ function onLabelRightClick(event, dataTarget) {
  * Updates the status label with the current state of the target label
  * @private
  *
- * @properties={typeid:24,uuid:"1CC152B8-65B5-4C6F-93A9-7113462F9B76"}
+ * @properties={"typeid":24,"uuid":"546634E5-C8CD-4C97-849A-49DC56E12743"}
  */
 function updateApiStatus(message) {
     var statusText = 'Status: ' + message;
@@ -142,7 +141,7 @@ function updateApiStatus(message) {
  * 
  * @param {RuntimeWebComponent<bootstrapcomponents-label_abs>} label - the label to change
  *
- * @properties={typeid:24,uuid:"29ADF162-E5BB-45FD-9B05-3DD915C00822"}
+ * @properties={"typeid":24,"uuid":"1DAC6AE5-B70C-4395-8843-1B4BC4267E1D"}
  */
 function cycleLabelText(label) {
     var textOptions = ['Hello World', 'Click Me!', 'Target Label'];
@@ -152,12 +151,11 @@ function cycleLabelText(label) {
     updateApiStatus('changed text to "' + label.text + '"');
 }
 
- 
 /**
  * Toggles between different label styles
  * @param {RuntimeWebComponent<bootstrapcomponents-label_abs>} label - the label to change
  *
- * @properties={typeid:24,uuid:"F3A4B5C6-D7E8-9F0A-1B2C-003D4E5F6A7B"}
+ * @properties={"typeid":24,"uuid":"92FA9FF2-46D9-441E-8F3E-37F34E3B1535"}
  */
 function toggleLabelStyle(label) {
     if (label.hasStyleClass('label-default')) {
@@ -183,7 +181,7 @@ function toggleLabelStyle(label) {
  * 
  * @param {RuntimeWebComponent<bootstrapcomponents-label_abs>} label - the label to change
  *
- * @properties={typeid:24,uuid:"A1B2C3D4-E5F6-7A8B-9C0D-1E2F3A4B5C6D"}
+ * @properties={"typeid":24,"uuid":"2BD80652-4C44-4654-88EA-88B6BAFAB8A9"}
  */
 function toggleLabelEnabled(label) {
     enabledDataProvider = !enabledDataProvider;
@@ -196,7 +194,7 @@ function toggleLabelEnabled(label) {
  * 
  * @param {RuntimeWebComponent<bootstrapcomponents-label_abs>} label - the label to change
  * 
- * @properties={typeid:24,uuid:"B2C3D4E5-F6A7-8B9C-0D1E-02F3A4B5C6D7"}
+ * @properties={"typeid":24,"uuid":"D9A6F223-7F7D-42AF-B577-34B3FF21CCF1"}
  */
 function toggleLabelVisibility(label) {
     visibleDataProvider = !visibleDataProvider;
@@ -216,7 +214,7 @@ function toggleLabelVisibility(label) {
  * 
  * @param {RuntimeWebComponent<bootstrapcomponents-label_abs>} label - the label to change
  *
- * @properties={typeid:24,uuid:"C3D4E5F6-A7B8-9C0D-1E2F-03A4B5C6D7E8"}
+ * @properties={"typeid":24,"uuid":"4A973AA5-8EB5-49C7-9917-61941203FEA2"}
  */
 function toggleLabelHtmlMode(label) {
     var htmlContent = '<div style="display: flex; align-items: center;">' +
@@ -243,7 +241,7 @@ function toggleLabelHtmlMode(label) {
  *
  * @param {JSEvent} event
  *
- * @properties={typeid:24,uuid:"265280A5-3F61-4D4F-8DDB-F0EDA0FCB037"}
+ * @properties={"typeid":24,"uuid":"4AB3F978-5F19-44FA-92B7-3EEF5EA58DDC"}
  */
 function onLabelAPIAction(event) {
     var targetLabel = elements.lbl_api_target;
@@ -279,7 +277,7 @@ function onLabelAPIAction(event) {
  *
  * @return {Boolean}
  *
- * @properties={typeid:24,uuid:"DE5AC8BB-65C8-4F9F-966E-1A956A6C6519"}
+ * @properties={"typeid":24,"uuid":"3697AA14-328F-4278-9D7E-C2840D92EDAD"}
  */
 function onDataChange(oldValue, newValue, event) {
 	switch (newValue) {
@@ -305,7 +303,7 @@ function onDataChange(oldValue, newValue, event) {
  * @param {JSEvent} event
  * @param {String} dataTarget
  *
- * @properties={typeid:24,uuid:"005CA2A4-9E3E-4D35-9F8D-6980FCE462DA"}
+ * @properties={"typeid":24,"uuid":"7EF561BE-6785-446B-988A-D47119714CA8"}
  */
 function onTestAction(event, dataTarget) {
 	// TODO Auto-generated method stub

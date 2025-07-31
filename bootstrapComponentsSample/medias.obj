@@ -1,70 +1,70 @@
 [
 {
-"encapsulation":0,
-"mimeType":"text/css",
-"name":"bootstrapComponentsSample.less",
-"typeid":37,
-"uuid":"2CDBD93F-095A-44BA-87E8-183AAE96AC1C"
+    "encapsulation":0,
+    "mimeType":"text/css",
+    "name":"bootstrapComponentsSample.less",
+    "typeid":37,
+    "uuid":"CFEA538E-DC01-4367-9608-7E795A8FA7A7"
 },
 {
-"encapsulation":0,
-"name":"buttons.less",
-"typeid":37,
-"uuid":"D7D1A733-4608-4DD7-8EA7-6E35B1D84273"
+    "encapsulation":0,
+    "name":"buttons.less",
+    "typeid":37,
+    "uuid":"6218481C-7974-45D5-880D-223FDC943DE3"
 },
 {
-"encapsulation":0,
-"mimeType":"text/css",
-"name":"custom_servoy_theme_properties.less",
-"typeid":37,
-"uuid":"6DA4AD22-73AB-4400-AEAE-F08349F9F7E6"
+    "encapsulation":0,
+    "mimeType":"text/css",
+    "name":"custom_servoy_theme_properties.less",
+    "typeid":37,
+    "uuid":"C5DF5572-E954-4F82-BD95-2F1789644F84"
 },
 {
-"encapsulation":0,
-"mimeType":"text/css",
-"name":"example.less",
-"typeid":37,
-"uuid":"500A7DA0-079A-4C9C-8AB2-488EB643F39E"
+    "encapsulation":0,
+    "mimeType":"text/css",
+    "name":"example.less",
+    "typeid":37,
+    "uuid":"910B8356-42C9-42A8-ABA2-5BA0D052B8D8"
 },
 {
-"encapsulation":0,
-"name":"labels.less",
-"typeid":37,
-"uuid":"4FE1564D-955B-452B-92D2-72A6258D2345"
+    "encapsulation":0,
+    "name":"labels.less",
+    "typeid":37,
+    "uuid":"29999390-F208-4F57-A897-FCC6F92E6CB0"
 },
 {
-"encapsulation":0,
-"mimeType":"image/png",
-"name":"logo.png",
-"typeid":37,
-"uuid":"52A6ED88-D4D5-40EC-B071-F1F90DBBDD7E"
+    "encapsulation":0,
+    "mimeType":"image/png",
+    "name":"logo.png",
+    "typeid":37,
+    "uuid":"E6A7DC14-6C81-4CDE-A30A-F0125DF23E5D"
 },
 {
-"encapsulation":0,
-"mimeType":"text/css",
-"name":"manifest.json",
-"typeid":37,
-"uuid":"7993ED23-24AE-4FC2-904F-A82E70035EEB"
+    "encapsulation":0,
+    "mimeType":"text/css",
+    "name":"manifest.json",
+    "typeid":37,
+    "uuid":"84279E6B-1891-4125-B1E4-9D22F683070A"
 },
 {
-"encapsulation":0,
-"mimeType":"image/png",
-"name":"Servoy.png",
-"typeid":37,
-"uuid":"3A7BD231-E8EC-47D1-B99E-24415B6E806A"
+    "encapsulation":0,
+    "mimeType":"image/png",
+    "name":"Servoy.png",
+    "typeid":37,
+    "uuid":"01535DE5-9763-4AD7-9D11-6857FDC3371B"
 },
 {
-"encapsulation":0,
-"mimeType":"text/css",
-"name":"variants.json",
-"typeid":37,
-"uuid":"C47D3BAE-C8DF-4718-8877-D48639A80FDE"
+    "encapsulation":0,
+    "mimeType":"text/css",
+    "name":"variants.json",
+    "typeid":37,
+    "uuid":"52A68544-F020-4286-9DFE-60F1312C61FB"
 },
 {
-"encapsulation":0,
-"mimeType":"text/css",
-"name":"webapp144.png",
-"typeid":37,
-"uuid":"A5E650D4-B8C1-4D4A-9E3D-D9FF239B2CCE"
+    "encapsulation":0,
+    "mimeType":"text/css",
+    "name":"webapp144.png",
+    "typeid":37,
+    "uuid":"CA69EFD0-4035-4D01-A828-E920016C2D96"
 }
 ]
