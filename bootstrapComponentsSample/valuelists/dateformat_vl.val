@@ -1,0 +1,23 @@
+{
+    "addEmptyValue":1,
+    "customValues":"dd-MM-yyyy\
+dd-MM-yyyy HH:mm\
+MM/dd/yyyy\
+MM/dd/yyyy hh:mm aa\
+dd.MM.yyyy\
+yyyy-MM-dd\
+EEEE, MMMM d, yyyy\
+dd MMM yyyy\
+HH:mm:ss\
+yyyy-MM-dd'T'HH:mm:ss.SSS Z\
+dd MMMM yyyy 'at' HH:mm:ss z\
+ww 'week of' yyyy\
+DDD 'day of' yyyy\
+EEE MMM dd HH:mm:ss z yyyy\
+yyyy'年'MM'月'dd'日'",
+    "displayValueType":12,
+    "name":"dateformat_vl",
+    "realValueType":12,
+    "typeid":34,
+    "uuid":"E6A0F118-7B4C-4BCF-A888-998DC369C2FB"
+}

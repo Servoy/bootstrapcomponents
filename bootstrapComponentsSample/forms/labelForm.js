@@ -43,24 +43,25 @@ var user_comments = 'The Form Association and Accessibility section demonstrates
 	'usability and accessibility. When a user clicks on a label, the associated input receives focus, which is especially helpful for small ' +
 	'form controls forms more accessible to all users.';
 
+
 /**
  * @type {String}
  *
- * @properties={typeid:35,uuid:"D1E2F3A4-B5C6-7D8E-9F0A-1B2C3D4E5F6A"}
+ * @properties={typeid:35,uuid:"95D3D5D4-7E25-47F0-B68B-E97ECF01B96E"}
  */
 var click_event_message = 'Click a label to see event details here';
 
 /**
  * @type {String}
  *
- * @properties={typeid:35,uuid:"E2F3A4B5-C6D7-8E9F-0A1B-2C3D4E5F6A7B"}
+ * @properties={typeid:35,uuid:"9D36AF47-5858-44E0-B5DC-287048C490E5"}
  */
 var double_click_event_message = 'Double-click a label to see event details here';
 
 /**
  * @type {String}
  *
- * @properties={typeid:35,uuid:"F3A4B5C6-D7E8-9F0A-1B2C-3D4E5F6A7B8C"}
+ * @properties={typeid:35,uuid:"6C7A3C93-D44A-4931-ACF1-531957208B9B"}
  */
 var right_click_event_message = 'Right-click a label to see event details here';
 

@@ -156,7 +156,6 @@ function toggleButtonStyle(button) {
  */
 function toggleButtonEnabled(button) {
 	enabledDataProvider = !enabledDataProvider;
-	button.enabled = !button.enabled;
 	updateApiStatus('enabled = ' + button.enabled);
 }
 
