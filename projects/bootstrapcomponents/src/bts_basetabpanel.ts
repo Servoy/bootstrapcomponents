@@ -121,6 +121,7 @@ export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBo
 			if (this.isValidTab(this.selectedTab) && tab === this.selectedTab) return;
 			if (this.selectedTab && tab && this.selectedTab.containedForm === tab.containedForm && this.selectedTab.relationName === tab.relationName){
 				this.selectedTab = tab;
+				this.selectedTabID = tab._id;
 				return; // already selected
 			} 
 			if (this.selectedTab) {
