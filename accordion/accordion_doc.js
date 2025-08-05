@@ -77,7 +77,7 @@ var handlers = {
  * Removes a tab of the given index.
  * Return true if this was sucessfull.
  * 
- * @param {Number} index The 0-based position of the tab to be removed from the accordion component.
+ * @param {Number} index The 1-based position of the tab to be removed from the accordion component.
  * @return {Boolean} True if the tab was successfully removed; false otherwise.
  */
 function removeTabAt(index) {}
