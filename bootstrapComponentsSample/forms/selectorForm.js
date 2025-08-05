@@ -5,7 +5,7 @@
  *
  * @param {JSEvent} event The event that triggered the action
  *
- * @properties={"typeid":24,"uuid":"48CD9723-BAB1-4424-9088-0D272159495A"}
+ * @properties={"typeid":24,"uuid":"C548711B-4B33-41B0-A998-E0F2BCF74C7A"}
  */
 function onAction(event) {
 	var elementName = event.getElementName();
@@ -31,7 +31,7 @@ function onAction(event) {
  * @param {String} formTitle The name which will appear in the header
  * @param {String} formName The name of the form to load
  *
- * @properties={"typeid":24,"uuid":"402D1E25-9928-4B29-BDE5-AF46A69F4161"}
+ * @properties={"typeid":24,"uuid":"6674FC12-88FD-467A-BACB-FC0966E63DEE"}
  */
 function loadComponentForm(formTitle, formName) {
 	forms.baseComponentForm.setTitle(formTitle);
@@ -43,7 +43,7 @@ function loadComponentForm(formTitle, formName) {
  * Removes the 'selected' class from all buttons in the selector form.
  *
  * @private
- * @properties={"typeid":24,"uuid":"FF92F6D6-5946-4D18-AFBA-16E77BB63527"}
+ * @properties={"typeid":24,"uuid":"C9FAE2DE-5A97-4D54-8EA6-0EF84629627E"}
  */
 function clearButtonSelection() {
 	// Get all elements in the form

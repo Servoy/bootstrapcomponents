@@ -21,16 +21,16 @@
             "name":"label_12",
             "typeName":"bootstrapcomponents-label",
             "typeid":47,
-            "uuid":"1073618E-45B0-4971-B8C6-2A27638D5AD2"
+            "uuid":"7D8ED89F-ECC4-4B6C-8124-2C1913711B26"
         },
         {
             "height":480,
             "partType":5,
             "typeid":19,
-            "uuid":"F0231BA1-8EAA-4E3B-A5B7-0B04F8EB34A3"
+            "uuid":"8B6B52DE-769C-4515-AA07-65B34ECF9C56"
         }
     ],
     "name":"tabpanelForm",
     "typeid":3,
-    "uuid":"CEAE2304-47F2-4B0E-A4B2-9C8FF850B656"
+    "uuid":"887BB69D-F2A7-45CA-8818-F21065C54A29"
 }

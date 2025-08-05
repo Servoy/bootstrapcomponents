@@ -3,7 +3,7 @@
  *
  * @param {JSEvent} event the event that triggered the action
  *
- * @properties={"typeid":24,"uuid":"DB12AD13-C1EB-4CC9-BB17-EF073C51A455"}
+ * @properties={"typeid":24,"uuid":"DF2EE7F7-692B-47F5-865F-43B11B0936A4"}
  */
 function onLoad(event) {
 	var tabSeq = forms.selectorForm.controller.getTabSequence();

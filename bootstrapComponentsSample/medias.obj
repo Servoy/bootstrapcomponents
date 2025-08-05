@@ -4,67 +4,73 @@
     "mimeType":"text/css",
     "name":"bootstrapComponentsSample.less",
     "typeid":37,
-    "uuid":"CFEA538E-DC01-4367-9608-7E795A8FA7A7"
+    "uuid":"9D11F82A-CCD1-4217-9FEE-4CFBAA333683"
 },
 {
     "encapsulation":0,
     "name":"buttons.less",
     "typeid":37,
-    "uuid":"6218481C-7974-45D5-880D-223FDC943DE3"
+    "uuid":"BC931D97-82C1-45E6-B586-96D3B8AF95EC"
 },
 {
     "encapsulation":0,
     "mimeType":"text/css",
     "name":"custom_servoy_theme_properties.less",
     "typeid":37,
-    "uuid":"C5DF5572-E954-4F82-BD95-2F1789644F84"
+    "uuid":"72379454-7819-4E17-9E16-42FF671ABA2B"
 },
 {
     "encapsulation":0,
     "mimeType":"text/css",
     "name":"example.less",
     "typeid":37,
-    "uuid":"910B8356-42C9-42A8-ABA2-5BA0D052B8D8"
+    "uuid":"0D768183-325C-4336-A9F3-7F321E76115F"
+},
+{
+    "encapsulation":0,
+    "name":"inlinecalendar.less",
+    "typeid":37,
+    "uuid":"32241952-DF09-45EF-B1C3-EE74F2767D96"
 },
 {
     "encapsulation":0,
     "name":"labels.less",
     "typeid":37,
-    "uuid":"29999390-F208-4F57-A897-FCC6F92E6CB0"
+    "uuid":"59535BE8-6A62-4D49-920B-34CA28488B16"
 },
 {
     "encapsulation":0,
     "mimeType":"image/png",
     "name":"logo.png",
     "typeid":37,
-    "uuid":"E6A7DC14-6C81-4CDE-A30A-F0125DF23E5D"
+    "uuid":"DDFDFD0A-A3E6-4D75-92B4-78A8ADF0AAE7"
 },
 {
     "encapsulation":0,
     "mimeType":"text/css",
     "name":"manifest.json",
     "typeid":37,
-    "uuid":"84279E6B-1891-4125-B1E4-9D22F683070A"
+    "uuid":"47E54FD2-6A12-4D6D-A4F5-2DD28A23C0C8"
 },
 {
     "encapsulation":0,
     "mimeType":"image/png",
     "name":"Servoy.png",
     "typeid":37,
-    "uuid":"01535DE5-9763-4AD7-9D11-6857FDC3371B"
+    "uuid":"420DC461-4233-4A26-BBBE-F546C3EA903A"
 },
 {
     "encapsulation":0,
     "mimeType":"text/css",
     "name":"variants.json",
     "typeid":37,
-    "uuid":"52A68544-F020-4286-9DFE-60F1312C61FB"
+    "uuid":"E7C4105C-09C7-40C7-9D02-03BD321797BD"
 },
 {
     "encapsulation":0,
     "mimeType":"text/css",
     "name":"webapp144.png",
     "typeid":37,
-    "uuid":"CA69EFD0-4035-4D01-A828-E920016C2D96"
+    "uuid":"C76858D8-0097-49DC-B7AF-97E1BB5A3AEC"
 }
 ]

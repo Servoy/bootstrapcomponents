@@ -6,12 +6,6 @@
     "encapsulation":108,
     "items":[
         {
-            "height":40,
-            "partType":5,
-            "typeid":19,
-            "uuid":"01B30DFB-42A9-4CC5-A906-787A87CD1F46"
-        },
-        {
             "cssPosition":"0,0,0,0,574,40",
             "json":{
                 "cssPosition":{
@@ -29,7 +23,13 @@
             "styleClass":"footer-orange",
             "typeName":"bootstrapcomponents-textarea",
             "typeid":47,
-            "uuid":"0EF0AC26-9A92-4BAD-B541-AB5641FDA1FA"
+            "uuid":"16A7F9B2-2618-4373-B866-91C7197978F8"
+        },
+        {
+            "height":40,
+            "partType":5,
+            "typeid":19,
+            "uuid":"8F22B12D-C170-42D0-80DA-C6C0E800E216"
         }
     ],
     "name":"footerForm",
@@ -38,5 +38,5 @@
     "showInMenu":true,
     "size":"640,40",
     "typeid":3,
-    "uuid":"4B660C3E-E6AF-489A-B08D-7C6629BFB51A"
+    "uuid":"363DD773-28D0-4623-919D-523AA395B26C"
 }

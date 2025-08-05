@@ -20,13 +20,13 @@
             "name":"demo_container",
             "typeName":"servoycore-formcontainer",
             "typeid":47,
-            "uuid":"787F1A49-E464-4214-ACBC-27414D3FCB99"
+            "uuid":"5048397E-BD4B-4754-B791-4412796796E6"
         },
         {
             "height":100,
             "partType":5,
             "typeid":19,
-            "uuid":"8CD1997D-764E-4EE0-BE96-D6B0B7968FAF"
+            "uuid":"B9BFADF9-5B2A-4E9A-A06B-E4EB146DCEDF"
         }
     ],
     "name":"formDemoContainer",
@@ -34,5 +34,5 @@
     "showInMenu":true,
     "size":"100,100",
     "typeid":3,
-    "uuid":"5A99832A-D29D-4B23-9832-C98EFC542426"
+    "uuid":"F5A3FC99-4C58-4FB4-B201-CECCE2B99EDE"
 }

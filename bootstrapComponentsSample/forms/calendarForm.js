@@ -1,7 +1,7 @@
 /**
  * @type {Object}
  * 
- * @properties={"typeid":35,"uuid":"66E49DC1-34D6-496D-B4F7-5772D8A59DAA","variableType":-4}
+ * @properties={"typeid":35,"uuid":"B691C21C-FDCC-4E1F-9FBB-F584B4193133","variableType":-4}
  */
 var side_by_side_option = {
 	  display: {
@@ -12,7 +12,7 @@ var side_by_side_option = {
 /**
  * @type {Object}
  * 
- * @properties={"typeid":35,"uuid":"1280FFC0-E9FA-403A-839D-4FD78B8AE53F","variableType":-4}
+ * @properties={"typeid":35,"uuid":"2C344011-724B-46C8-AB0F-F548788DDB11","variableType":-4}
  */
 var calendar_time_only_option = {
 	display: {
@@ -23,7 +23,7 @@ var calendar_time_only_option = {
 /**
  * @type {Object}
  * 
- * @properties={"typeid":35,"uuid":"5825BFFD-5656-4166-89D4-FA38EDFA3DFB","variableType":-4}
+ * @properties={"typeid":35,"uuid":"B7185483-CE84-45D8-8E8B-9125B4F79C7D","variableType":-4}
  */
 var dark_theme_option = {
 	  display: {
@@ -34,7 +34,7 @@ var dark_theme_option = {
 /**
  * @type {Object}
  * 
- * @properties={"typeid":35,"uuid":"52F4E4F5-E6A3-4CBA-A6D6-67913218C056","variableType":-4}
+ * @properties={"typeid":35,"uuid":"1F919B19-D9A0-4A55-AA4E-D04220D84338","variableType":-4}
  */
 var month_view_option = {
 	  display: {
@@ -45,7 +45,7 @@ var month_view_option = {
 /**
  * @type {Object}
  * 
- * @properties={"typeid":35,"uuid":"0448A562-58F7-4D30-80BE-70C9D4918618","variableType":-4}
+ * @properties={"typeid":35,"uuid":"F74E24A4-E6E6-4907-8CFA-B6EF24F48868","variableType":-4}
  */
 var inline_option = {
 	  display: {
@@ -56,7 +56,7 @@ var inline_option = {
 /**
  * @type {Object}
  * 
- * @properties={"typeid":35,"uuid":"6D90CE9A-CD44-4217-8D90-E57171348547","variableType":-4}
+ * @properties={"typeid":35,"uuid":"C5990A98-5B2D-4255-9D1A-CC9586447A66","variableType":-4}
  */
 var custom_icons_option = {
 	  display: {
@@ -75,7 +75,7 @@ var custom_icons_option = {
 /**
  * @type {Object}
  * 
- * @properties={"typeid":35,"uuid":"D88B5D17-F755-4F52-9244-2647B28BD3FA","variableType":-4}
+ * @properties={"typeid":35,"uuid":"520A8728-0C85-453B-89F2-B2E7B8DFC0A6","variableType":-4}
  */
 var today_only_button_option = {
 	  display: {
@@ -88,7 +88,7 @@ var today_only_button_option = {
 };
 
 /**
- * @properties={"typeid":35,"uuid":"75F96522-BA1B-43D5-99CA-6F8020F9975D","variableType":-4}
+ * @properties={"typeid":35,"uuid":"D86A5BB5-BC70-4ADF-A4EB-FC937FEBC358","variableType":-4}
  */
 const dayMap = {
         sunday: 0,
@@ -102,34 +102,34 @@ const dayMap = {
 
 /**
  * @type {String}
- * @properties={"typeid":35,"uuid":"6F7AB0F9-5EA7-403E-97A4-657A4DE62AB8"}
+ * @properties={"typeid":35,"uuid":"F9942146-6EF7-4D11-9954-7D40ACE9B158"}
  */
 var disabledDaysDP = null;
 
 /**
  * @type {Array<Number>}
- * @properties={"typeid":35,"uuid":"8D9CECBC-CA7A-434E-AF3F-AF5952154CCD","variableType":-4}
+ * @properties={"typeid":35,"uuid":"A72EDB8B-257C-409B-89F6-CF09E0A02857","variableType":-4}
  */
 var disabledDays = [];
 
 /**
  * @type {Boolean}
  *
- * @properties={"typeid":35,"uuid":"F73E4B73-58FF-49A3-849E-512EFB0A6DEF","variableType":-4}
+ * @properties={"typeid":35,"uuid":"6C31E4A1-7FDB-4EA3-80C1-656A94AFD4BB","variableType":-4}
  */
 var keepInvalidDP = false;
 
 /**
  * @type {Date}
  *
- * @properties={"typeid":35,"uuid":"F48DBB6A-79D0-4DCD-8CB6-032C9EF5FA6F","variableType":93}
+ * @properties={"typeid":35,"uuid":"6EBA8EAD-32A4-44FC-BEA9-EAEAF3CBF5AB","variableType":93}
  */
 var minMaxDP = new Date();
 
 /**
  * @type {Date}
  *
- * @properties={"typeid":35,"uuid":"99E391A1-6EB2-444B-BE74-9128AF621CA8","variableType":93}
+ * @properties={"typeid":35,"uuid":"7D3CACB8-213E-4BA1-84E1-C8EAC0A55CA7","variableType":93}
  */
 var maxdateDP = (function() {
     var dateNo = new Date().getTime() + (21 * 24 * 60 * 60 * 1000); // 3 weeks in ms
@@ -139,59 +139,59 @@ var maxdateDP = (function() {
 /**
  * @type {Date}
  *
- * @properties={"typeid":35,"uuid":"19BD92F6-69AD-41F0-9237-71B1C1F6026F","variableType":93}
+ * @properties={"typeid":35,"uuid":"E76731ED-3EEA-44E7-B9CA-3946BC75C98C","variableType":93}
  */
 var mindateDP = new Date();
 
 /**
  * @type {Date}
  *
- * @properties={"typeid":35,"uuid":"79477B8B-9B07-4EE1-B980-3852C6768543","variableType":93}
+ * @properties={"typeid":35,"uuid":"5F285BC3-ABAA-4E78-BDAA-76E641F08218","variableType":93}
  */
 var customDate = new Date();
 
 /**
  * @type {String}
  *
- * @properties={"typeid":35,"uuid":"FA039CD7-43FB-40BB-BFD8-09957FE8B76E"}
+ * @properties={"typeid":35,"uuid":"C7A4431E-7257-4BD0-8A50-AF5B86F518ED"}
  */
 var placeholder_dp = 'Select a date';
 
 /**
  * @type {String}
  *
- * @properties={"typeid":35,"uuid":"EB59DCD6-8E78-4DA1-9DBC-49B4A8889AF0"}
+ * @properties={"typeid":35,"uuid":"95F94CDD-DA36-4184-98C5-6C01A8206D88"}
  */
 var tooltip_dp = 'This is a demo calendar for basic configuration';
 
 /**
- * @properties={"typeid":35,"uuid":"513B858F-3769-4EE9-9593-B5AEE05EDEEF","variableType":-4}
+ * @properties={"typeid":35,"uuid":"9BAE1401-3D07-411B-BCD1-F612D839F97D","variableType":-4}
  */
 var enableDP = true;
 
 /**
- * @properties={"typeid":35,"uuid":"B7885E03-A8D6-4A7A-AECF-B9CB2770EB18","variableType":-4}
+ * @properties={"typeid":35,"uuid":"A7BC8DC3-B14B-48AB-BA44-452363D0CA18","variableType":-4}
  */
 var visibleDP = true;
 
 /**
  * @type {String}
  *
- * @properties={"typeid":35,"uuid":"F49EB0F1-D50B-458E-8F88-DC38274E1F1C"}
+ * @properties={"typeid":35,"uuid":"A476A6D7-0A2E-47A5-ADB5-926202649BAB"}
  */
 var base_message_dp = 'Day-Month-Year with time in 24-hour format (e.g., 28-07-2025 21:38)\n\nFormat uses: d=day, M=month, y=year, H=hour(0-23), m=minute';
 
 /**
  * @type {String}
  *
- * @properties={"typeid":35,"uuid":"B447C8A6-8961-440B-928B-B7248D755B80"}
+ * @properties={"typeid":35,"uuid":"A67C81C3-7C09-4913-9A7D-2E0EFF381CE4"}
  */
 var format_dp = 'MM/dd/yyyy hh:mm aa';
 
 /**
  * @type {Date}
  *
- * @properties={"typeid":35,"uuid":"D6229B40-D31A-4A99-AA48-9EA9B4B4CD03","variableType":93}
+ * @properties={"typeid":35,"uuid":"87CD6FF8-FAB7-4157-B460-A961DC5B5E8C","variableType":93}
  */
 var date_dp = new Date();
 
@@ -200,7 +200,7 @@ var date_dp = new Date();
  *
  * @param {JSEvent} event
  *
- * @properties={"typeid":24,"uuid":"D65F0B2B-E72A-437A-9A69-7C6F1E924589"}
+ * @properties={"typeid":24,"uuid":"AD2F40D7-32BA-43F4-AE9D-DD7FA90E280F"}
  */
 function onToggleEnabled(event) {
 	enableDP = !enableDP;
@@ -214,7 +214,7 @@ function onToggleEnabled(event) {
  *
  * @param {JSEvent} event
  *
- * @properties={"typeid":24,"uuid":"2C1F5291-4D67-4617-9153-6203AA49A653"}
+ * @properties={"typeid":24,"uuid":"B3CF40CB-B052-4ED6-8E3A-0DC1D8B2D79E"}
  */
 function onToggleVisible(event) {
 	visibleDP = !visibleDP;
@@ -233,7 +233,7 @@ function onToggleVisible(event) {
  *
  * @param {JSEvent} event
  *
- * @properties={"typeid":24,"uuid":"01E77CEE-B928-4A7A-A94D-3C4EE11CBF15"}
+ * @properties={"typeid":24,"uuid":"33F94AAB-53D7-4A67-A795-BE4326E8293C"}
  */
 function onStyleclassChange(event) {
 	var calendar = elements.basic_calendar;
@@ -271,7 +271,7 @@ function onStyleclassChange(event) {
  *
  * @param {JSEvent} event
  *
- * @properties={"typeid":24,"uuid":"E6E2A0C4-AC74-417A-AA9C-F4FB89D44013"}
+ * @properties={"typeid":24,"uuid":"20D2428E-9154-4EA7-889B-29215B134929"}
  */
 function onApplyTooltip(event) {
 	elements.basic_calendar.toolTipText = tooltip_dp;
@@ -284,7 +284,7 @@ function onApplyTooltip(event) {
  *
  * @param {JSEvent} event
  *
- * @properties={"typeid":24,"uuid":"27C9F3FF-19C9-4FE4-974F-0326C01946A3"}
+ * @properties={"typeid":24,"uuid":"5DE64A6B-2145-4A3C-A037-8844CB3AFF33"}
  */
 function onApplyPlaceholder(event) {
 	date_dp = null;
@@ -297,7 +297,7 @@ function onApplyPlaceholder(event) {
  * TODO generated, please specify type and doc for the params
  * @param message
  *
- * @properties={"typeid":24,"uuid":"3DD63A2F-6DA6-4AC9-8CDB-388A263C4C17"}
+ * @properties={"typeid":24,"uuid":"AB0AC1F4-5681-4698-9A06-1ACD87E43140"}
  */
 function updateBaseCalendarStatus(message) {
 	base_message_dp = message;
@@ -313,7 +313,7 @@ function updateBaseCalendarStatus(message) {
  *
  * @return {Boolean}
  *
- * @properties={"typeid":24,"uuid":"8A1AA003-877F-4FE6-A1D0-F491F2D33B7E"}
+ * @properties={"typeid":24,"uuid":"371BB50B-614F-4E5C-9900-6FCA2AE99B6E"}
  */
 function onFormatDataChange(oldValue, newValue, event) {
 	elements.basic_calendar.format = newValue; 
@@ -375,7 +375,7 @@ function onFormatDataChange(oldValue, newValue, event) {
  *
  * @param {JSEvent} event
  *
- * @properties={"typeid":24,"uuid":"22526422-F28D-403D-B612-BDD2E08D6995"}
+ * @properties={"typeid":24,"uuid":"B46908D6-8A5C-4A90-A0B9-7AAFF548DA75"}
  */
 function onBasicResetAction(event) {
 	date_dp = new Date();
@@ -397,7 +397,7 @@ function onBasicResetAction(event) {
  *
  * @return {Boolean}
  *
- * @properties={"typeid":24,"uuid":"FCAA706D-3EF8-42AD-856D-E75EDF6C27AB"}
+ * @properties={"typeid":24,"uuid":"65042871-53EB-4103-8147-770A421D4C35"}
  */
 function onMinDataChange(oldValue, newValue, event) {
 	if (newValue < maxdateDP) {
@@ -419,7 +419,7 @@ function onMinDataChange(oldValue, newValue, event) {
  *
  * @return {Boolean}
  *
- * @properties={"typeid":24,"uuid":"4028CBD6-AC98-4ADB-8BFC-41244748590B"}
+ * @properties={"typeid":24,"uuid":"24C3BC5F-A249-4C8A-BDFB-B6220CFF88C1"}
  */
 function onMaxDataChange(oldValue, newValue, event) {
 	if (newValue > mindateDP) {
@@ -436,7 +436,7 @@ function onMaxDataChange(oldValue, newValue, event) {
  *
  * @param {JSEvent} event
  *
- * @properties={"typeid":24,"uuid":"1F07515E-6217-4C3B-BB73-FE54172F6577"}
+ * @properties={"typeid":24,"uuid":"2224D593-EB48-4792-801C-3AC249104DFD"}
  */
 function onTest(event) {
 	application.output('Test btn pressed');
@@ -447,7 +447,7 @@ function onTest(event) {
  *
  * @param {JSEvent} event the event that triggered the action
  *
- * @properties={"typeid":24,"uuid":"60D94C0B-EE28-4040-AB33-253088C39391"}
+ * @properties={"typeid":24,"uuid":"778A469D-248F-4F29-B703-FD95B0F01153"}
  */
 function onCalendarFormLoad(event) {
 	elements.minmax_calendar.setMinMaxDate(mindateDP, maxdateDP);
@@ -459,7 +459,7 @@ function onCalendarFormLoad(event) {
  *
  * @param {JSEvent} event
  *
- * @properties={"typeid":24,"uuid":"DB6678E4-B1D1-4A6F-9114-6F0DF6084732"}
+ * @properties={"typeid":24,"uuid":"F30CE255-A370-4DAE-9214-728BDDFA0A0B"}
  */
 function onAddMinDisabledDate(event) {
 	elements.minmax_calendar.disableDates([mindateDP], keepInvalidDP);
@@ -471,7 +471,7 @@ function onAddMinDisabledDate(event) {
  *
  * @param {JSEvent} event
  *
- * @properties={"typeid":24,"uuid":"69A40173-C8FC-4D54-BE16-05A7874B6FD4"}
+ * @properties={"typeid":24,"uuid":"B64F30BD-F591-41C1-B522-5D70DC550D90"}
  */
 function onAddMaxDisabledDate(event) {
 	elements.minmax_calendar.disableDates([maxdateDP], keepInvalidDP);
@@ -488,7 +488,7 @@ function onAddMaxDisabledDate(event) {
  *
  * @return {Boolean}
  *
- * @properties={"typeid":24,"uuid":"1C1C9E54-5AAC-482E-85EC-E0EAB25B7EB5"}
+ * @properties={"typeid":24,"uuid":"69895246-1B35-4E35-A220-6113F0BD79A9"}
  */
 function onDisableDaysChange(oldValue, newValue, event) {
     var disabledDaysArray = newValue
@@ -507,7 +507,7 @@ function onDisableDaysChange(oldValue, newValue, event) {
  *
  * @param {JSEvent} event
  *
- * @properties={"typeid":24,"uuid":"635A9141-E0CA-4D63-8F64-E69ED182D43F"}
+ * @properties={"typeid":24,"uuid":"67DAC413-7A98-476F-89C3-DFBF1B04E4C8"}
  */
 function onRestrictionsReset(event) {
 	elements.minmax_calendar.disableDates([]);
@@ -522,7 +522,7 @@ function onRestrictionsReset(event) {
 /**
  * @param {JSEvent} event
  *
- * @properties={"typeid":24,"uuid":"BBD09181-DF5A-4D84-BC9A-D5A1F709C5A7"}
+ * @properties={"typeid":24,"uuid":"67C1ECE1-9A07-47FA-AEE0-A8DA2B966D51"}
  */
 function onDateClick(event) {
 	updateBaseCalendarStatus('Calendar date clicked: ' + event.getElementName());
@@ -538,7 +538,7 @@ function onDateClick(event) {
  *
  * @return {Boolean}
  *
- * @properties={"typeid":24,"uuid":"9FC87968-9BED-4DC6-886B-D857C750FC6B"}
+ * @properties={"typeid":24,"uuid":"6F58DE76-85F8-4334-B2E8-D37C0F570DDB"}
  */
 function onCalendarDataChange(oldValue, newValue, event) {
 	updateBaseCalendarStatus('Calendar date changed: ' + newValue);
@@ -548,7 +548,7 @@ function onCalendarDataChange(oldValue, newValue, event) {
 /**
  * @param {JSEvent} event
  *
- * @properties={"typeid":24,"uuid":"2C899371-F389-40A7-A1D2-00257A7DF750"}
+ * @properties={"typeid":24,"uuid":"259B988E-9DC6-4B98-AE50-157CA7FA474F"}
  */
 function onCalendarFocusGained(event) {
 	scopes.global.setStatusMessage('Calendar focus gained: ' + event.getElementName());
@@ -557,14 +557,14 @@ function onCalendarFocusGained(event) {
 /**
  * @param {JSEvent} event
  *
- * @properties={"typeid":24,"uuid":"D5BB8F78-9D28-4C19-B0DD-F1D9FAAF798F"}
+ * @properties={"typeid":24,"uuid":"62963C69-B1E2-4C2E-B905-B32E76B89910"}
  */
 function onCalendarFocusLost(event) {
 	scopes.global.setStatusMessage('Calendar focus lost: ' + event.getElementName());
 }
 
 /**
- * @properties={"typeid":24,"uuid":"14C26CF7-0087-49C5-8BF5-974315340C92"}
+ * @properties={"typeid":24,"uuid":"BDF6AE69-6402-43C7-9545-1FB98F5D35C2"}
  */
 function initCustomModes() {
 	// Apply options to each calendar example

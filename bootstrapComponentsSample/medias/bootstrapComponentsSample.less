@@ -1,10 +1,15 @@
 // import of the custom servoy theme properties that will import the hidden servoy theme, this imported file is for customizing the default servoy theme properties 
 @import 'custom_servoy_theme_properties.less';
-// Import custom button styles for the button demo
+
 @import 'buttons.less';
-// Import custom label styles for the label demo
 @import 'labels.less';
+@import 'inlinecalendar.less';
 // Add your custom less/css to this file you can use the same less properties that are specified in the above properties.less
+
+/* calendar settings */
+.tempus-dominus-widget .date-container-days div:not(.no-highlight).disabled {
+	color: 		#adb5bd !important;
+}
 
 /* Chrome-only scrollbar styling */
 

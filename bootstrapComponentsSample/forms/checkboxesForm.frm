@@ -6,12 +6,6 @@
     "extendsID":"-1",
     "items":[
         {
-            "height":480,
-            "partType":5,
-            "typeid":19,
-            "uuid":"0C328F3B-DF7C-4881-B624-8D01DFCF81D8"
-        },
-        {
             "cssPosition":"51,-1,-1,107,242,30",
             "json":{
                 "cssPosition":{
@@ -27,10 +21,16 @@
             "name":"label_6",
             "typeName":"bootstrapcomponents-label",
             "typeid":47,
-            "uuid":"444F719D-972A-4693-BE35-944011603B8E"
+            "uuid":"162F53BC-DF5F-40B5-BA97-4C6A2BBE5A35"
+        },
+        {
+            "height":480,
+            "partType":5,
+            "typeid":19,
+            "uuid":"56551087-E6DD-42A8-8ED2-EB4A3CB7303D"
         }
     ],
     "name":"checkboxesForm",
     "typeid":3,
-    "uuid":"2BFE2339-27B7-4B97-A4EB-79514EA3D818"
+    "uuid":"8C5326DC-75D4-4045-AB53-CD8269B0F47D"
 }

@@ -9,7 +9,7 @@
             "height":480,
             "partType":5,
             "typeid":19,
-            "uuid":"070BE025-C9E6-46F4-B878-1E94D150F656"
+            "uuid":"9A5F5C31-D9F7-4086-9505-A026FCA62741"
         },
         {
             "cssPosition":"96,-1,-1,121,235,30",
@@ -27,10 +27,10 @@
             "name":"label_2",
             "typeName":"bootstrapcomponents-label",
             "typeid":47,
-            "uuid":"6928029F-7EDE-4C72-9937-96F2A071C6A0"
+            "uuid":"B2119A66-5109-40A1-B05E-C01510AA21F8"
         }
     ],
     "name":"selectForm",
     "typeid":3,
-    "uuid":"8266ECA1-0B23-44B4-993D-9BA91210155F"
+    "uuid":"D4F7B228-243A-4481-945D-8B1469D93E55"
 }

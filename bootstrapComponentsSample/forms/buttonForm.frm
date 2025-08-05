@@ -6,627 +6,92 @@
     "extendsID":"-1",
     "items":[
         {
-            "cssPosition":"43,-1,-1,248,100,30",
-            "formIndex":2,
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"248",
-                    "right":"-1",
-                    "top":"43",
-                    "width":"100"
-                },
-                "formIndex":2,
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
-                "styleClass":"btn-danger",
-                "text":"Danger",
-                "toolTipText":"btn-danger"
-            },
-            "name":"btn_danger",
-            "styleClass":"btn-danger",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"01B51974-968F-4210-8BEE-361B61C8F4C6"
-        },
-        {
-            "cssPosition":"921,0,-1,0,300,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"0",
-                    "right":"0",
-                    "top":"921",
-                    "width":"300"
-                },
-                "styleClass":"label-blue-gradient",
-                "text":"Button Dynamics"
-            },
-            "name":"lbl_api_methods",
-            "styleClass":"label-blue-gradient",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"0CB4186D-6CEF-4A58-B48A-55E39871B60A"
-        },
-        {
-            "cssPosition":"1050,-1,-1,348,150,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"348",
-                    "right":"-1",
-                    "top":"1050",
-                    "width":"150"
-                },
-                "onActionMethodID":"FC1A499B-9EA8-43AD-BE13-F23BDEA30B03",
-                "styleClass":"btn-outline-info",
-                "text":"Request Focus",
-                "toolTipText":"Demonstrates requestFocus() method"
-            },
-            "name":"btn_api_focus",
-            "styleClass":"btn-outline-info",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"0D0DF154-AF2A-4043-B0D9-5A093C926EB1"
-        },
-        {
-            "cssPosition":"216,-1,-1,573,130,38",
+            "cssPosition":"860,-1,-1,428,180,38",
             "json":{
                 "cssPosition":{
                     "bottom":"-1",
                     "height":"38",
-                    "left":"573",
+                    "left":"428",
                     "right":"-1",
-                    "top":"216",
-                    "width":"130"
-                },
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
-                "text":"Skewed Button",
-                "toolTipText":"BtnSkewed",
-                "variant":"BtnSkewed"
-            },
-            "name":"btn_skewed",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"11EB473C-2029-42B8-BA62-D13B4D389F27"
-        },
-        {
-            "cssPosition":"355,-1,-1,509,150,24",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"24",
-                    "left":"509",
-                    "right":"-1",
-                    "top":"355",
-                    "width":"150"
-                },
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
-                "styleClass":"btn-primary btn-xs",
-                "text":"Extra Small Primary",
-                "toolTipText":"btn-primary btn-xs"
-            },
-            "name":"btn_extrasmall_size",
-            "styleClass":"btn-primary btn-xs",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"13F2524B-9D9A-4E4C-A1E1-F0947D0234E1"
-        },
-        {
-            "cssPosition":"563,-1,-1,408,180,38",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"38",
-                    "left":"408",
-                    "right":"-1",
-                    "top":"563",
+                    "top":"860",
                     "width":"180"
                 },
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
-                "showAs":"text_icon",
+                "onRightClickMethodID":"88606D19-989B-44E8-9747-4EB71631912D",
                 "styleClass":"btn-warning",
-                "text":"Favorite",
-                "toolTipText":"Right-aligned icon",
-                "trailingImageStyleClass":"fas fa-star"
+                "text":"Right Click Me",
+                "toolTipText":"Demonstrates onRightClick event"
             },
-            "name":"btn_icon_right",
+            "name":"btn_event_rightclick",
             "styleClass":"btn-warning",
             "typeName":"bootstrapcomponents-button",
             "typeid":47,
-            "uuid":"14D74523-F218-4FC3-A29C-354D6F2FB07B"
+            "uuid":"02FD0B34-82CA-47DE-B096-6F8331467411"
         },
         {
-            "cssPosition":"624,0,-1,0,300,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"0",
-                    "right":"0",
-                    "top":"624",
-                    "width":"300"
-                },
-                "styleClass":"label-blue-gradient",
-                "text":"Button States"
-            },
-            "name":"lbl_button_states",
-            "styleClass":"label-blue-gradient",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"15115643-BFDF-4893-B471-1F3714426D4C"
-        },
-        {
-            "cssPosition":"216,-1,-1,236,133,41",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"41",
-                    "left":"236",
-                    "right":"-1",
-                    "top":"216",
-                    "width":"133"
-                },
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
-                "text":"Pill Button",
-                "toolTipText":"BtnPill",
-                "variant":"BtnPill"
-            },
-            "name":"btn_pill",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"1822EE26-5950-4429-8A3D-0EC4B15E03E1"
-        },
-        {
-            "cssPosition":"216,-1,-1,383,173,45",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"45",
-                    "left":"383",
-                    "right":"-1",
-                    "top":"216",
-                    "width":"173"
-                },
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
-                "text":"Neon Button",
-                "toolTipText":"BtnNeon",
-                "variant":"BtnNeon"
-            },
-            "name":"btn_neon",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"1D6E0B27-D209-4BC8-975A-0339961B7971"
-        },
-        {
-            "cssPosition":"1010,-1,-1,28,150,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"28",
-                    "right":"-1",
-                    "top":"1010",
-                    "width":"150"
-                },
-                "onActionMethodID":"FC1A499B-9EA8-43AD-BE13-F23BDEA30B03",
-                "styleClass":"btn-outline-info",
-                "text":"Change Text",
-                "toolTipText":"Demonstrates setText() method"
-            },
-            "name":"btn_api_text",
-            "styleClass":"btn-outline-info",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"1FA7E85B-7127-4F12-96B3-2D16F915F360"
-        },
-        {
-            "cssPosition":"821,0,-1,0,300,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"0",
-                    "right":"0",
-                    "top":"821",
-                    "width":"300"
-                },
-                "styleClass":"label-blue-gradient",
-                "text":"Button Event Methods"
-            },
-            "name":"lbl_events_methods",
-            "styleClass":"label-blue-gradient",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"22DA16D0-D8BE-4F66-92B3-0E9BB07149E6"
-        },
-        {
-            "cssPosition":"143,-1,-1,236,123,34",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"34",
-                    "left":"236",
-                    "right":"-1",
-                    "top":"143",
-                    "width":"123"
-                },
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
-                "text":"Blue Gradient",
-                "toolTipText":"BtnBlueGradient",
-                "variant":"BtnBlueGradient"
-            },
-            "name":"btn_blue_grad",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"26688AF0-13E5-41B5-8825-1F08A0E017D7"
-        },
-        {
-            "cssPosition":"410,-1,-1,510,150,24",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"24",
-                    "left":"510",
-                    "right":"-1",
-                    "top":"410",
-                    "width":"150"
-                },
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
-                "styleClass":"btn-info btn-xs",
-                "text":"Extra Small Info",
-                "toolTipText":"btn-info btn-xs"
-            },
-            "name":"btn_xs_info",
-            "styleClass":"btn-info btn-xs",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"2848B86D-C506-4A34-A83E-DB151E884A1D"
-        },
-        {
-            "cssPosition":"960,-1,-1,248,300,38",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"38",
-                    "left":"248",
-                    "right":"-1",
-                    "top":"960",
-                    "width":"300"
-                },
-                "styleClass":"label-default",
-                "text":"Status: Default state"
-            },
-            "name":"lbl_api_status",
-            "styleClass":"label-default",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"2E9FED52-E820-43EB-BC7A-A3A0F4DC8ECC"
-        },
-        {
-            "cssPosition":"1050,-1,-1,188,150,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"188",
-                    "right":"-1",
-                    "top":"1050",
-                    "width":"150"
-                },
-                "onActionMethodID":"FC1A499B-9EA8-43AD-BE13-F23BDEA30B03",
-                "styleClass":"btn-outline-info",
-                "text":"Add Icon",
-                "toolTipText":"Demonstrates setImageStyleClass() method"
-            },
-            "name":"btn_api_icon",
-            "styleClass":"btn-outline-info",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"40C2847C-E5D4-464D-B9C1-875C664CECC8"
-        },
-        {
-            "cssPosition":"767,-1,-1,241,200,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"241",
-                    "right":"-1",
-                    "top":"767",
-                    "width":"200"
-                },
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
-                "showAs":"trusted_html",
-                "styleClass":"btn-warning",
-                "text":"<div style=\"display: flex; align-items: center;\">\
-  <i class=\"fas fa-shield-alt\" style=\"color: #0275d8; margin-right: 8px;\"><\/i>\
-  <span style=\"font-weight: bold;\">Trusted<\/span>\
-  <span style=\"margin: 0 4px;\">HTML<\/span>\
-  <i class=\"fas fa-code\" style=\"color: #5cb85c; margin-left: 5px;\"><\/i>\
-<\/div>",
-                "toolTipText":"Trusted HTML button"
-            },
-            "name":"btn_trusted_html",
-            "styleClass":"btn-warning",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"47EE7F48-4191-4E02-8B7B-5A2A88998639"
-        },
-        {
-            "cssPosition":"515,-1,-1,408,180,38",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"38",
-                    "left":"408",
-                    "right":"-1",
-                    "top":"515",
-                    "width":"180"
-                },
-                "imageStyleClass":"fas fa-trash",
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
-                "styleClass":"btn-danger",
-                "text":"Delete",
-                "toolTipText":"Button with Font Awesome icon"
-            },
-            "name":"btn_icon_delete",
-            "styleClass":"btn-danger",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"4832BBD9-C977-4CC5-880C-4E93DF9C61E5"
-        },
-        {
-            "cssPosition":"1050,-1,-1,28,150,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"28",
-                    "right":"-1",
-                    "top":"1050",
-                    "width":"150"
-                },
-                "onActionMethodID":"FC1A499B-9EA8-43AD-BE13-F23BDEA30B03",
-                "styleClass":"btn-outline-info",
-                "text":"Toggle Visibility",
-                "toolTipText":"Demonstrates setVisible() method"
-            },
-            "name":"btn_api_visible",
-            "styleClass":"btn-outline-info",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"497BD367-0FE1-44CF-9E1F-F6E0D481B666"
-        },
-        {
-            "cssPosition":"43,-1,-1,358,100,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"358",
-                    "right":"-1",
-                    "top":"43",
-                    "width":"100"
-                },
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
-                "styleClass":"btn-outline-primary",
-                "text":"Outline P",
-                "toolTipText":"btn-outline-primary"
-            },
-            "name":"btn_outline_prim",
-            "styleClass":"btn-outline-primary",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"4A3918D0-B708-45B3-9A9A-EC9F4CF3D8A7"
-        },
-        {
-            "cssPosition":"100,0,-1,0,300,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"0",
-                    "right":"0",
-                    "top":"100",
-                    "width":"300"
-                },
-                "styleClass":"label-blue-gradient",
-                "text":"Button Variants"
-            },
-            "name":"lbl_button_variants",
-            "styleClass":"label-blue-gradient",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"4AD4DB71-007F-4077-9A65-19426422F497"
-        },
-        {
-            "cssPosition":"767,-1,-1,28,200,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"28",
-                    "right":"-1",
-                    "top":"767",
-                    "width":"200"
-                },
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
-                "showAs":"html",
-                "styleClass":"btn-info",
-                "text":"<div style=\"display: flex; align-items: center; justify-content: center;\">\
-  <span style=\"color: #ff6600; font-weight: bold; margin-right: 5px;\">★<\/span>\
-  <span style=\"background: linear-gradient(to right, #3498db, #9b59b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold; font-size: 1.1em;\">HTML<\/span>\
-  <span style=\"margin: 0 5px; font-size: 0.9em;\">with<\/span>\
-  <span style=\"color: #2ecc71; font-weight: bold; text-decoration: underline;\">Styling<\/span>\
-  <span style=\"color: #ff6600; font-weight: bold; margin-left: 5px;\">★<\/span>\
-<\/div>",
-                "toolTipText":"HTML button"
-            },
-            "name":"btn_html",
-            "styleClass":"btn-info",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"5846C5A7-265B-486A-97BE-C530AB9169A8"
-        },
-        {
-            "cssPosition":"515,-1,-1,597,180,38",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"38",
-                    "left":"597",
-                    "right":"-1",
-                    "top":"515",
-                    "width":"180"
-                },
-                "imageStyleClass":"fas fa-check",
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
-                "styleClass":"btn-outline-success",
-                "text":"Confirm",
-                "toolTipText":"Outline button with icon"
-            },
-            "name":"btn_icon_outline",
-            "styleClass":"btn-outline-success",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"59AF72D6-5C04-42D1-AA48-145AF6790C0D"
-        },
-        {
-            "cssPosition":"563,-1,-1,597,180,38",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"38",
-                    "left":"597",
-                    "right":"-1",
-                    "top":"563",
-                    "width":"180"
-                },
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
-                "styleClass":"btn-secondary",
-                "text":"Settings",
-                "toolTipText":"Button with Font Awesome icon",
-                "trailingImageStyleClass":"fas fa-cog"
-            },
-            "name":"btn_icon_settings",
-            "styleClass":"btn-secondary",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"5F32BF62-C18B-4ED1-830F-27C1C70CF42D"
-        },
-        {
-            "cssPosition":"216,-1,-1,734,130,38",
+            "cssPosition":"143,-1,-1,734,130,38",
             "json":{
                 "cssPosition":{
                     "bottom":"-1",
                     "height":"38",
                     "left":"734",
                     "right":"-1",
-                    "top":"216",
+                    "top":"143",
                     "width":"130"
                 },
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
-                "text":"3D Button",
-                "toolTipText":"Btn3D",
-                "variant":"Btn3D"
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
+                "text":"Glow Button",
+                "toolTipText":"BtnGlow",
+                "variant":"BtnGlow"
             },
-            "name":"btn_3d",
+            "name":"btn_glow",
             "typeName":"bootstrapcomponents-button",
             "typeid":47,
-            "uuid":"5F3BF925-0109-4EF4-8537-1CE4518DBC93"
+            "uuid":"06474478-D5B2-49A6-89E4-2BA2A1B2B1AF"
         },
         {
-            "cssPosition":"960,-1,-1,28,200,38",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"38",
-                    "left":"28",
-                    "right":"-1",
-                    "top":"960",
-                    "width":"200"
-                },
-                "enabledDataProvider":"enabledDataProvider",
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
-                "styleClass":"btn-outline-primary",
-                "text":"Target Button",
-                "toolTipText":"This button will be modified by API methods",
-                "visibleDataProvider":"visibleDataProvider"
-            },
-            "name":"btn_api_target",
-            "styleClass":"btn-outline-primary",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"621C6960-A4B6-4964-8C3A-46E8AD0363B1"
-        },
-        {
-            "cssPosition":"515,-1,-1,28,180,38",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"38",
-                    "left":"28",
-                    "right":"-1",
-                    "top":"515",
-                    "width":"180"
-                },
-                "imageStyleClass":"fas fa-search",
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
-                "styleClass":"btn-primary",
-                "text":"Search",
-                "toolTipText":"Button with Font Awesome icon"
-            },
-            "name":"btn_icon_search",
-            "styleClass":"btn-primary",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"6C1FE271-3E3C-49D6-8C52-C9D1F3FB5388"
-        },
-        {
-            "cssPosition":"143,-1,-1,568,140,38",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"38",
-                    "left":"568",
-                    "right":"-1",
-                    "top":"143",
-                    "width":"140"
-                },
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
-                "text":"Fancy Outline",
-                "toolTipText":"BtnOutline",
-                "variant":"BtnOutline"
-            },
-            "name":"btn_fancy",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"6E3EDEDA-6882-4257-A809-E52BA14A5783"
-        },
-        {
-            "cssPosition":"355,-1,-1,349,150,30",
+            "cssPosition":"410,-1,-1,350,150,30",
             "json":{
                 "cssPosition":{
                     "bottom":"-1",
                     "height":"30",
-                    "left":"349",
+                    "left":"350",
                     "right":"-1",
-                    "top":"355",
+                    "top":"410",
                     "width":"150"
                 },
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
-                "styleClass":"btn-primary btn-sm",
-                "text":"Small Primary",
-                "toolTipText":"btn-primary btn-sm"
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
+                "styleClass":"btn-danger btn-sm",
+                "text":"Small Danger",
+                "toolTipText":"btn-danger btn-sm"
             },
-            "name":"btn_small_size",
-            "styleClass":"btn-primary btn-sm",
+            "name":"btn_small_danger",
+            "styleClass":"btn-danger btn-sm",
             "typeName":"bootstrapcomponents-button",
             "typeid":47,
-            "uuid":"709FC8BA-FEC2-44C3-8123-C31C7E86520F"
+            "uuid":"0C98BCC6-03BC-4A06-8393-455CBCDB3AEC"
+        },
+        {
+            "cssPosition":"563,-1,-1,28,180,38",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"38",
+                    "left":"28",
+                    "right":"-1",
+                    "top":"563",
+                    "width":"180"
+                },
+                "imageStyleClass":"fas fa-arrow-right",
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
+                "styleClass":"btn-outline-default",
+                "text":"",
+                "toolTipText":"Icon only button"
+            },
+            "name":"btn_icon_only",
+            "styleClass":"btn-outline-default",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"12C94D6B-0A88-4BC4-8804-6E8C3C0DFD6E"
         },
         {
             "cssPosition":"43,-1,-1,798,100,30",
@@ -639,7 +104,7 @@
                     "top":"43",
                     "width":"100"
                 },
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
                 "styleClass":"btn-outline-info",
                 "text":"Outline I",
                 "toolTipText":"btn-outline-info"
@@ -648,7 +113,53 @@
             "styleClass":"btn-outline-info",
             "typeName":"bootstrapcomponents-button",
             "typeid":47,
-            "uuid":"73F26187-8569-407F-8C13-C7604E2FF898"
+            "uuid":"1EB3126F-F87A-431E-B74F-DB8835D9D49E"
+        },
+        {
+            "cssPosition":"563,-1,-1,217,180,38",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"38",
+                    "left":"217",
+                    "right":"-1",
+                    "top":"563",
+                    "width":"180"
+                },
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
+                "styleClass":"btn-info",
+                "text":"Profile",
+                "toolTipText":"Button with Font Awesome icon",
+                "trailingImageStyleClass":"fas fa-user"
+            },
+            "name":"btn_icon_user",
+            "styleClass":"btn-info",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"21049856-A335-4FB4-AB24-2FBAA7F92394"
+        },
+        {
+            "cssPosition":"563,-1,-1,597,180,38",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"38",
+                    "left":"597",
+                    "right":"-1",
+                    "top":"563",
+                    "width":"180"
+                },
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
+                "styleClass":"btn-secondary",
+                "text":"Settings",
+                "toolTipText":"Button with Font Awesome icon",
+                "trailingImageStyleClass":"fas fa-cog"
+            },
+            "name":"btn_icon_settings",
+            "styleClass":"btn-secondary",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"2A1F902D-878E-4D2B-8C3E-2F3BC1B0FB54"
         },
         {
             "cssPosition":"0,0,-1,0,300,30",
@@ -668,29 +179,7 @@
             "styleClass":"label-blue-gradient",
             "typeName":"bootstrapcomponents-label",
             "typeid":47,
-            "uuid":"78562DE3-A405-47C8-BBBF-4F488B296699"
-        },
-        {
-            "cssPosition":"43,-1,-1,688,100,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"688",
-                    "right":"-1",
-                    "top":"43",
-                    "width":"100"
-                },
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
-                "styleClass":"btn-outline-success",
-                "text":"Outline S",
-                "toolTipText":"btn-outline-success"
-            },
-            "name":"btn_outline_sec",
-            "styleClass":"btn-outline-success",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"7D0A33F3-DC37-4569-961D-17A394E0F0E4"
+            "uuid":"2C1E3B8A-D17E-44D4-826D-1725B661889D"
         },
         {
             "cssPosition":"355,-1,-1,28,150,46",
@@ -703,7 +192,7 @@
                     "top":"355",
                     "width":"150"
                 },
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
                 "styleClass":"btn-primary btn-lg",
                 "text":"Large Button",
                 "toolTipText":"btn-lg"
@@ -712,207 +201,49 @@
             "styleClass":"btn-primary btn-lg",
             "typeName":"bootstrapcomponents-button",
             "typeid":47,
-            "uuid":"80ADCC56-979F-45A9-82B3-80FB1EF23F80"
+            "uuid":"302D8CB4-B5AB-490E-B317-715646CF4EFA"
         },
         {
-            "cssPosition":"515,-1,-1,218,180,38",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"38",
-                    "left":"218",
-                    "right":"-1",
-                    "top":"515",
-                    "width":"180"
-                },
-                "imageStyleClass":"fas fa-download",
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
-                "styleClass":"btn-success",
-                "text":"Download",
-                "toolTipText":"Button with Font Awesome icon"
-            },
-            "name":"btn_icon_download",
-            "styleClass":"btn-success",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"81235622-8D83-46D9-B40F-A6BF602AFD42"
-        },
-        {
-            "cssPosition":"1010,-1,-1,188,150,30",
+            "cssPosition":"821,0,-1,0,300,30",
             "json":{
                 "cssPosition":{
                     "bottom":"-1",
                     "height":"30",
-                    "left":"188",
+                    "left":"0",
+                    "right":"0",
+                    "top":"821",
+                    "width":"300"
+                },
+                "styleClass":"label-blue-gradient",
+                "text":"Button Event Methods"
+            },
+            "name":"lbl_events_methods",
+            "styleClass":"label-blue-gradient",
+            "typeName":"bootstrapcomponents-label",
+            "typeid":47,
+            "uuid":"364C0108-3294-4260-8844-E801A4712FBC"
+        },
+        {
+            "cssPosition":"1010,-1,-1,28,150,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"28",
                     "right":"-1",
                     "top":"1010",
                     "width":"150"
                 },
-                "onActionMethodID":"FC1A499B-9EA8-43AD-BE13-F23BDEA30B03",
+                "onActionMethodID":"8D0096F5-DDF1-4236-A569-21539AF0B770",
                 "styleClass":"btn-outline-info",
-                "text":"Change Style",
-                "toolTipText":"Demonstrates setStyleClass() method"
+                "text":"Change Text",
+                "toolTipText":"Demonstrates setText() method"
             },
-            "name":"btn_api_style",
+            "name":"btn_api_text",
             "styleClass":"btn-outline-info",
             "typeName":"bootstrapcomponents-button",
             "typeid":47,
-            "uuid":"83E642B2-1265-4597-8144-6533161FF9DD"
-        },
-        {
-            "cssPosition":"664,-1,-1,28,150,38",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"38",
-                    "left":"28",
-                    "right":"-1",
-                    "top":"664",
-                    "width":"150"
-                },
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
-                "styleClass":"btn-primary",
-                "text":"Normal",
-                "toolTipText":"Normal button state"
-            },
-            "name":"btn_state_normal",
-            "styleClass":"btn-primary",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"869A6B1E-7BD6-456D-9DB6-0C770504E701"
-        },
-        {
-            "cssPosition":"860,-1,-1,428,180,38",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"38",
-                    "left":"428",
-                    "right":"-1",
-                    "top":"860",
-                    "width":"180"
-                },
-                "onRightClickMethodID":"C0C5AFCB-8C66-46EF-98BE-18D8ADFC621F",
-                "styleClass":"btn-warning",
-                "text":"Right Click Me",
-                "toolTipText":"Demonstrates onRightClick event"
-            },
-            "name":"btn_event_rightclick",
-            "styleClass":"btn-warning",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"9D587F3E-5FA8-4410-8BAC-157ED84C1E52"
-        },
-        {
-            "cssPosition":"410,-1,-1,350,150,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"350",
-                    "right":"-1",
-                    "top":"410",
-                    "width":"150"
-                },
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
-                "styleClass":"btn-danger btn-sm",
-                "text":"Small Danger",
-                "toolTipText":"btn-danger btn-sm"
-            },
-            "name":"btn_small_danger",
-            "styleClass":"btn-danger btn-sm",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"9D598F77-7EBC-4306-9BFA-20EF8C73D088"
-        },
-        {
-            "cssPosition":"43,-1,-1,28,100,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"28",
-                    "right":"-1",
-                    "top":"43",
-                    "width":"100"
-                },
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
-                "styleClass":"btn-primary",
-                "text":"Primary",
-                "toolTipText":"btn-primary"
-            },
-            "name":"btn_primary",
-            "styleClass":"btn-primary",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"9DFFDEFC-93B1-418D-B375-FE14CFABACF6"
-        },
-        {
-            "cssPosition":"860,-1,-1,28,180,38",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"38",
-                    "left":"28",
-                    "right":"-1",
-                    "top":"860",
-                    "width":"180"
-                },
-                "onActionMethodID":"A681FC65-17F8-45A6-A880-4DEB16BDDA13",
-                "styleClass":"btn-primary",
-                "text":"Click Me",
-                "toolTipText":"Demonstrates onAction event"
-            },
-            "name":"btn_event_click",
-            "styleClass":"btn-primary",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"A1C0F171-2F18-44EF-B307-2C10F20A9809"
-        },
-        {
-            "cssPosition":"563,-1,-1,28,180,38",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"38",
-                    "left":"28",
-                    "right":"-1",
-                    "top":"563",
-                    "width":"180"
-                },
-                "imageStyleClass":"fas fa-arrow-right",
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
-                "styleClass":"btn-outline-default",
-                "text":"",
-                "toolTipText":"Icon only button"
-            },
-            "name":"btn_icon_only",
-            "styleClass":"btn-outline-default",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"A1DB3B16-2A65-4D2F-82C8-0BF77D6E9A9F"
-        },
-        {
-            "cssPosition":"410,-1,-1,190,150,38",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"38",
-                    "left":"190",
-                    "right":"-1",
-                    "top":"410",
-                    "width":"150"
-                },
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
-                "styleClass":"btn-warning",
-                "text":"Normal Warning",
-                "toolTipText":"btn-warning"
-            },
-            "name":"btn_normal_warning",
-            "styleClass":"btn-warning",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"A6307E36-F80B-48C8-B67B-47C330A859BC"
+            "uuid":"411B9844-D070-475B-9DEF-9472C2E73552"
         },
         {
             "cssPosition":"355,-1,-1,189,150,38",
@@ -925,7 +256,7 @@
                     "top":"355",
                     "width":"150"
                 },
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
                 "styleClass":"btn-primary",
                 "text":"Normal Primary",
                 "toolTipText":"btn-primary"
@@ -934,7 +265,75 @@
             "styleClass":"btn-primary",
             "typeName":"bootstrapcomponents-button",
             "typeid":47,
-            "uuid":"A8761063-D047-4CEA-A798-5776BF2CCBBB"
+            "uuid":"44D1B06F-21D6-4D65-82C4-893AF4CF3250"
+        },
+        {
+            "cssPosition":"43,-1,-1,358,100,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"358",
+                    "right":"-1",
+                    "top":"43",
+                    "width":"100"
+                },
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
+                "styleClass":"btn-outline-primary",
+                "text":"Outline P",
+                "toolTipText":"btn-outline-primary"
+            },
+            "name":"btn_outline_prim",
+            "styleClass":"btn-outline-primary",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"4ABB5FC1-0361-496C-844F-12A1DA18E09F"
+        },
+        {
+            "cssPosition":"664,-1,-1,28,150,38",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"38",
+                    "left":"28",
+                    "right":"-1",
+                    "top":"664",
+                    "width":"150"
+                },
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
+                "styleClass":"btn-primary",
+                "text":"Normal",
+                "toolTipText":"Normal button state"
+            },
+            "name":"btn_state_normal",
+            "styleClass":"btn-primary",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"4C521073-0331-4EF8-960F-E3B16D7A27D1"
+        },
+        {
+            "cssPosition":"43,-1,-1,248,100,30",
+            "formIndex":2,
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"248",
+                    "right":"-1",
+                    "top":"43",
+                    "width":"100"
+                },
+                "formIndex":2,
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
+                "styleClass":"btn-danger",
+                "text":"Danger",
+                "toolTipText":"btn-danger"
+            },
+            "name":"btn_danger",
+            "styleClass":"btn-danger",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"54191D97-1B60-4BE7-BA5B-555D790DFB07"
         },
         {
             "cssPosition":"726,0,-1,0,300,30",
@@ -954,211 +353,69 @@
             "styleClass":"label-blue-gradient",
             "typeName":"bootstrapcomponents-label",
             "typeid":47,
-            "uuid":"AE19F196-60A0-4946-8062-0F10C3AC4418"
+            "uuid":"57B8F87F-ED13-491A-98E0-B4FC3CBBE7A7"
         },
         {
-            "cssPosition":"860,-1,-1,228,180,38",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"38",
-                    "left":"228",
-                    "right":"-1",
-                    "top":"860",
-                    "width":"180"
-                },
-                "onDoubleClickMethodID":"9EDC3D1B-CA4C-4BD9-A239-71596DE69F4D",
-                "styleClass":"btn-success",
-                "text":"Double Click Me",
-                "toolTipText":"Demonstrates onDoubleClick event"
-            },
-            "name":"btn_event_dblclick",
-            "styleClass":"btn-success",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"B10E1EEC-256E-4C0D-A923-580AB5A5ACA0"
-        },
-        {
-            "cssPosition":"664,-1,-1,188,150,38",
-            "enabled":false,
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"38",
-                    "left":"188",
-                    "right":"-1",
-                    "top":"664",
-                    "width":"150"
-                },
-                "enabled":false,
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
-                "styleClass":"btn-outline-info",
-                "text":"Disabled",
-                "toolTipText":"Disabled button state"
-            },
-            "name":"btn_state_disabled",
-            "styleClass":"btn-outline-info",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"C41D9DF2-895C-4E88-B093-78E2BDF8A162"
-        },
-        {
-            "cssPosition":"410,-1,-1,30,150,46",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"46",
-                    "left":"30",
-                    "right":"-1",
-                    "top":"410",
-                    "width":"150"
-                },
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
-                "styleClass":"btn-success btn-lg",
-                "text":"Large Success",
-                "toolTipText":"btn-lg btn-success"
-            },
-            "name":"btn_large_success",
-            "styleClass":"btn-success btn-lg",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"C469D333-9EB7-4FA6-8047-3843548502E0"
-        },
-        {
-            "cssPosition":"43,-1,-1,138,100,30",
-            "formIndex":1,
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"138",
-                    "right":"-1",
-                    "top":"43",
-                    "width":"100"
-                },
-                "formIndex":1,
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
-                "styleClass":"btn-success",
-                "text":"Success",
-                "toolTipText":"btn-success"
-            },
-            "name":"btn_success",
-            "styleClass":"btn-success",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"C924F92D-E238-4436-8042-A32170788C2E"
-        },
-        {
-            "cssPosition":"563,-1,-1,217,180,38",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"38",
-                    "left":"217",
-                    "right":"-1",
-                    "top":"563",
-                    "width":"180"
-                },
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
-                "styleClass":"btn-info",
-                "text":"Profile",
-                "toolTipText":"Button with Font Awesome icon",
-                "trailingImageStyleClass":"fas fa-user"
-            },
-            "name":"btn_icon_user",
-            "styleClass":"btn-info",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"D1AAA663-706A-45DF-8FB1-5BAD0B75461F"
-        },
-        {
-            "height":1089,
-            "partType":5,
-            "typeid":19,
-            "uuid":"D2807360-EA34-4F81-9939-D07C63FD7A02"
-        },
-        {
-            "cssPosition":"143,-1,-1,381,171,41",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"41",
-                    "left":"381",
-                    "right":"-1",
-                    "top":"143",
-                    "width":"171"
-                },
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
-                "text":"Cloud Button",
-                "variant":"BtnCloud"
-            },
-            "name":"btn_cloud",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"D65AC02E-C437-42F3-89CD-7B63C17DBCD1"
-        },
-        {
-            "cssPosition":"314,0,-1,0,300,30",
+            "cssPosition":"624,0,-1,0,300,30",
             "json":{
                 "cssPosition":{
                     "bottom":"-1",
                     "height":"30",
                     "left":"0",
                     "right":"0",
-                    "top":"314",
+                    "top":"624",
                     "width":"300"
                 },
                 "styleClass":"label-blue-gradient",
-                "text":"Button Sizes"
+                "text":"Button States"
             },
-            "name":"lbl_button_sizes",
+            "name":"lbl_button_states",
             "styleClass":"label-blue-gradient",
             "typeName":"bootstrapcomponents-label",
             "typeid":47,
-            "uuid":"DB0C0594-2B26-43D7-ADF4-F3FC1C8CF40A"
+            "uuid":"59A09BEC-ADAC-4A3E-92AE-FA29482C4697"
         },
         {
-            "cssPosition":"43,-1,-1,468,100,30",
+            "cssPosition":"43,-1,-1,688,100,30",
             "json":{
                 "cssPosition":{
                     "bottom":"-1",
                     "height":"30",
-                    "left":"468",
+                    "left":"688",
                     "right":"-1",
                     "top":"43",
                     "width":"100"
                 },
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
-                "styleClass":"btn-warning",
-                "text":"Warning",
-                "toolTipText":"btn-warning"
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
+                "styleClass":"btn-outline-success",
+                "text":"Outline S",
+                "toolTipText":"btn-outline-success"
             },
-            "name":"btn_warning",
-            "styleClass":"btn-warning",
+            "name":"btn_outline_sec",
+            "styleClass":"btn-outline-success",
             "typeName":"bootstrapcomponents-button",
             "typeid":47,
-            "uuid":"E0FBE6F8-6535-4143-963B-D036E8FBBAA9"
+            "uuid":"621728A9-3DE2-4C9F-80F4-7022590AB134"
         },
         {
-            "cssPosition":"143,-1,-1,734,130,38",
+            "cssPosition":"960,-1,-1,248,300,38",
             "json":{
                 "cssPosition":{
                     "bottom":"-1",
                     "height":"38",
-                    "left":"734",
+                    "left":"248",
                     "right":"-1",
-                    "top":"143",
-                    "width":"130"
+                    "top":"960",
+                    "width":"300"
                 },
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
-                "text":"Glow Button",
-                "toolTipText":"BtnGlow",
-                "variant":"BtnGlow"
+                "styleClass":"label-default",
+                "text":"Status: Default state"
             },
-            "name":"btn_glow",
-            "typeName":"bootstrapcomponents-button",
+            "name":"lbl_api_status",
+            "styleClass":"label-default",
+            "typeName":"bootstrapcomponents-label",
             "typeid":47,
-            "uuid":"E358D832-FEE8-475A-9133-B86C9B959DAB"
+            "uuid":"65A5C571-62B3-4E5E-8934-B6551D8A527B"
         },
         {
             "cssPosition":"481,0,-1,0,300,30",
@@ -1178,7 +435,297 @@
             "styleClass":"label-blue-gradient",
             "typeName":"bootstrapcomponents-label",
             "typeid":47,
-            "uuid":"E98B1B29-2173-4C63-AA93-FF5806D4F537"
+            "uuid":"662F0393-4567-43F4-B99D-43CCC77F200A"
+        },
+        {
+            "cssPosition":"563,-1,-1,408,180,38",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"38",
+                    "left":"408",
+                    "right":"-1",
+                    "top":"563",
+                    "width":"180"
+                },
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
+                "showAs":"text_icon",
+                "styleClass":"btn-warning",
+                "text":"Favorite",
+                "toolTipText":"Right-aligned icon",
+                "trailingImageStyleClass":"fas fa-star"
+            },
+            "name":"btn_icon_right",
+            "styleClass":"btn-warning",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"67043D33-04EF-4D8D-A6B4-D9AC5A81F637"
+        },
+        {
+            "cssPosition":"43,-1,-1,138,100,30",
+            "formIndex":1,
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"138",
+                    "right":"-1",
+                    "top":"43",
+                    "width":"100"
+                },
+                "formIndex":1,
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
+                "styleClass":"btn-success",
+                "text":"Success",
+                "toolTipText":"btn-success"
+            },
+            "name":"btn_success",
+            "styleClass":"btn-success",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"691AA58C-D2FD-41EF-AABD-06EEDE674774"
+        },
+        {
+            "cssPosition":"664,-1,-1,188,150,38",
+            "enabled":false,
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"38",
+                    "left":"188",
+                    "right":"-1",
+                    "top":"664",
+                    "width":"150"
+                },
+                "enabled":false,
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
+                "styleClass":"btn-outline-info",
+                "text":"Disabled",
+                "toolTipText":"Disabled button state"
+            },
+            "name":"btn_state_disabled",
+            "styleClass":"btn-outline-info",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"6CD3F564-5BBB-4634-A9DF-A94C41AD7679"
+        },
+        {
+            "cssPosition":"1050,-1,-1,348,150,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"348",
+                    "right":"-1",
+                    "top":"1050",
+                    "width":"150"
+                },
+                "onActionMethodID":"8D0096F5-DDF1-4236-A569-21539AF0B770",
+                "styleClass":"btn-outline-info",
+                "text":"Request Focus",
+                "toolTipText":"Demonstrates requestFocus() method"
+            },
+            "name":"btn_api_focus",
+            "styleClass":"btn-outline-info",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"757D9DDF-7114-4F24-85DB-E3D9DC3ECB55"
+        },
+        {
+            "cssPosition":"515,-1,-1,408,180,38",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"38",
+                    "left":"408",
+                    "right":"-1",
+                    "top":"515",
+                    "width":"180"
+                },
+                "imageStyleClass":"fas fa-trash",
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
+                "styleClass":"btn-danger",
+                "text":"Delete",
+                "toolTipText":"Button with Font Awesome icon"
+            },
+            "name":"btn_icon_delete",
+            "styleClass":"btn-danger",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"7635B6CE-C862-422C-8473-0443B3EC40C6"
+        },
+        {
+            "cssPosition":"355,-1,-1,509,150,24",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"24",
+                    "left":"509",
+                    "right":"-1",
+                    "top":"355",
+                    "width":"150"
+                },
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
+                "styleClass":"btn-primary btn-xs",
+                "text":"Extra Small Primary",
+                "toolTipText":"btn-primary btn-xs"
+            },
+            "name":"btn_extrasmall_size",
+            "styleClass":"btn-primary btn-xs",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"77E8C1AA-40D6-41FD-B773-FF03461E6118"
+        },
+        {
+            "cssPosition":"410,-1,-1,510,150,24",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"24",
+                    "left":"510",
+                    "right":"-1",
+                    "top":"410",
+                    "width":"150"
+                },
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
+                "styleClass":"btn-info btn-xs",
+                "text":"Extra Small Info",
+                "toolTipText":"btn-info btn-xs"
+            },
+            "name":"btn_xs_info",
+            "styleClass":"btn-info btn-xs",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"78145C34-A067-4FF1-94EB-FF138C597ECA"
+        },
+        {
+            "cssPosition":"216,-1,-1,236,133,41",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"41",
+                    "left":"236",
+                    "right":"-1",
+                    "top":"216",
+                    "width":"133"
+                },
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
+                "text":"Pill Button",
+                "toolTipText":"BtnPill",
+                "variant":"BtnPill"
+            },
+            "name":"btn_pill",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"78DBC1BB-430D-4E1A-BE0D-52851C5D4EAB"
+        },
+        {
+            "cssPosition":"860,-1,-1,28,180,38",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"38",
+                    "left":"28",
+                    "right":"-1",
+                    "top":"860",
+                    "width":"180"
+                },
+                "onActionMethodID":"73EDAF90-0F85-4D86-B15A-D0E1F09EE9F1",
+                "styleClass":"btn-primary",
+                "text":"Click Me",
+                "toolTipText":"Demonstrates onAction event"
+            },
+            "name":"btn_event_click",
+            "styleClass":"btn-primary",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"7B85A5EB-356F-4F03-8AD7-F703F07ADD4F"
+        },
+        {
+            "cssPosition":"1010,-1,-1,188,150,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"188",
+                    "right":"-1",
+                    "top":"1010",
+                    "width":"150"
+                },
+                "onActionMethodID":"8D0096F5-DDF1-4236-A569-21539AF0B770",
+                "styleClass":"btn-outline-info",
+                "text":"Change Style",
+                "toolTipText":"Demonstrates setStyleClass() method"
+            },
+            "name":"btn_api_style",
+            "styleClass":"btn-outline-info",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"7D57D2CF-A129-466A-B422-33AC83C9EC71"
+        },
+        {
+            "cssPosition":"216,-1,-1,734,130,38",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"38",
+                    "left":"734",
+                    "right":"-1",
+                    "top":"216",
+                    "width":"130"
+                },
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
+                "text":"3D Button",
+                "toolTipText":"Btn3D",
+                "variant":"Btn3D"
+            },
+            "name":"btn_3d",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"80B7AFFB-4E42-45C0-A6E2-FDEF670293E8"
+        },
+        {
+            "cssPosition":"515,-1,-1,218,180,38",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"38",
+                    "left":"218",
+                    "right":"-1",
+                    "top":"515",
+                    "width":"180"
+                },
+                "imageStyleClass":"fas fa-download",
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
+                "styleClass":"btn-success",
+                "text":"Download",
+                "toolTipText":"Button with Font Awesome icon"
+            },
+            "name":"btn_icon_download",
+            "styleClass":"btn-success",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"84BCBFB4-0E15-4AF9-89E7-5B4D424538D2"
+        },
+        {
+            "cssPosition":"143,-1,-1,381,171,41",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"41",
+                    "left":"381",
+                    "right":"-1",
+                    "top":"143",
+                    "width":"171"
+                },
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
+                "text":"Cloud Button",
+                "variant":"BtnCloud"
+            },
+            "name":"btn_cloud",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"85C386CE-A02D-413E-AB32-F0EF6911FDD7"
         },
         {
             "cssPosition":"1010,-1,-1,348,150,30",
@@ -1191,7 +738,7 @@
                     "top":"1010",
                     "width":"150"
                 },
-                "onActionMethodID":"FC1A499B-9EA8-43AD-BE13-F23BDEA30B03",
+                "onActionMethodID":"8D0096F5-DDF1-4236-A569-21539AF0B770",
                 "styleClass":"btn-outline-info",
                 "text":"Toggle Enabled",
                 "toolTipText":"Demonstrates setEnabled() method"
@@ -1200,29 +747,242 @@
             "styleClass":"btn-outline-info",
             "typeName":"bootstrapcomponents-button",
             "typeid":47,
-            "uuid":"EAABAD16-3FF8-46AF-BD83-5491A6E2A0CF"
+            "uuid":"90A6DEA3-4C4F-4F21-8340-3D7589765CE7"
         },
         {
-            "cssPosition":"43,-1,-1,578,100,30",
+            "cssPosition":"143,-1,-1,236,123,34",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"34",
+                    "left":"236",
+                    "right":"-1",
+                    "top":"143",
+                    "width":"123"
+                },
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
+                "text":"Blue Gradient",
+                "toolTipText":"BtnBlueGradient",
+                "variant":"BtnBlueGradient"
+            },
+            "name":"btn_blue_grad",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"94ED78A0-48FC-4B6C-B11A-BC76A24E6E11"
+        },
+        {
+            "cssPosition":"515,-1,-1,597,180,38",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"38",
+                    "left":"597",
+                    "right":"-1",
+                    "top":"515",
+                    "width":"180"
+                },
+                "imageStyleClass":"fas fa-check",
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
+                "styleClass":"btn-outline-success",
+                "text":"Confirm",
+                "toolTipText":"Outline button with icon"
+            },
+            "name":"btn_icon_outline",
+            "styleClass":"btn-outline-success",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"B01B4B3F-3377-4F08-B89B-89CCF9E21E10"
+        },
+        {
+            "cssPosition":"43,-1,-1,468,100,30",
             "json":{
                 "cssPosition":{
                     "bottom":"-1",
                     "height":"30",
-                    "left":"578",
+                    "left":"468",
                     "right":"-1",
                     "top":"43",
                     "width":"100"
                 },
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
-                "styleClass":"btn-info",
-                "text":"Info",
-                "toolTipText":"btn-info"
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
+                "styleClass":"btn-warning",
+                "text":"Warning",
+                "toolTipText":"btn-warning"
             },
-            "name":"btn_info",
+            "name":"btn_warning",
+            "styleClass":"btn-warning",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"B295551C-DA9B-4B56-B19B-9BC8B778BF14"
+        },
+        {
+            "cssPosition":"767,-1,-1,241,200,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"241",
+                    "right":"-1",
+                    "top":"767",
+                    "width":"200"
+                },
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
+                "showAs":"trusted_html",
+                "styleClass":"btn-warning",
+                "text":"<div style=\"display: flex; align-items: center;\">\
+  <i class=\"fas fa-shield-alt\" style=\"color: #0275d8; margin-right: 8px;\"><\/i>\
+  <span style=\"font-weight: bold;\">Trusted<\/span>\
+  <span style=\"margin: 0 4px;\">HTML<\/span>\
+  <i class=\"fas fa-code\" style=\"color: #5cb85c; margin-left: 5px;\"><\/i>\
+<\/div>",
+                "toolTipText":"Trusted HTML button"
+            },
+            "name":"btn_trusted_html",
+            "styleClass":"btn-warning",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"B362F608-0F29-43A2-ACF1-4C1309007067"
+        },
+        {
+            "cssPosition":"143,-1,-1,568,140,38",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"38",
+                    "left":"568",
+                    "right":"-1",
+                    "top":"143",
+                    "width":"140"
+                },
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
+                "text":"Fancy Outline",
+                "toolTipText":"BtnOutline",
+                "variant":"BtnOutline"
+            },
+            "name":"btn_fancy",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"BD56C148-C97B-4553-A711-05ADAA444B2A"
+        },
+        {
+            "cssPosition":"1050,-1,-1,188,150,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"188",
+                    "right":"-1",
+                    "top":"1050",
+                    "width":"150"
+                },
+                "onActionMethodID":"8D0096F5-DDF1-4236-A569-21539AF0B770",
+                "styleClass":"btn-outline-info",
+                "text":"Add Icon",
+                "toolTipText":"Demonstrates setImageStyleClass() method"
+            },
+            "name":"btn_api_icon",
+            "styleClass":"btn-outline-info",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"C0DEC91C-0993-4044-9497-E12E2E396FB6"
+        },
+        {
+            "height":1089,
+            "partType":5,
+            "typeid":19,
+            "uuid":"C2D19A37-FD17-467D-8EC7-F7BD1CDD24E4"
+        },
+        {
+            "cssPosition":"314,0,-1,0,300,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"0",
+                    "right":"0",
+                    "top":"314",
+                    "width":"300"
+                },
+                "styleClass":"label-blue-gradient",
+                "text":"Button Sizes"
+            },
+            "name":"lbl_button_sizes",
+            "styleClass":"label-blue-gradient",
+            "typeName":"bootstrapcomponents-label",
+            "typeid":47,
+            "uuid":"C6F61FB2-E1AF-43E4-B68C-19FA942038D9"
+        },
+        {
+            "cssPosition":"216,-1,-1,573,130,38",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"38",
+                    "left":"573",
+                    "right":"-1",
+                    "top":"216",
+                    "width":"130"
+                },
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
+                "text":"Skewed Button",
+                "toolTipText":"BtnSkewed",
+                "variant":"BtnSkewed"
+            },
+            "name":"btn_skewed",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"D2B02FF6-988B-4719-8528-A2430F0EE396"
+        },
+        {
+            "cssPosition":"43,-1,-1,28,100,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"28",
+                    "right":"-1",
+                    "top":"43",
+                    "width":"100"
+                },
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
+                "styleClass":"btn-primary",
+                "text":"Primary",
+                "toolTipText":"btn-primary"
+            },
+            "name":"btn_primary",
+            "styleClass":"btn-primary",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"D5CD144A-5F1F-4944-A13D-4E57973287BB"
+        },
+        {
+            "cssPosition":"767,-1,-1,28,200,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"28",
+                    "right":"-1",
+                    "top":"767",
+                    "width":"200"
+                },
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
+                "showAs":"html",
+                "styleClass":"btn-info",
+                "text":"<div style=\"display: flex; align-items: center; justify-content: center;\">\
+  <span style=\"color: #ff6600; font-weight: bold; margin-right: 5px;\">★<\/span>\
+  <span style=\"background: linear-gradient(to right, #3498db, #9b59b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold; font-size: 1.1em;\">HTML<\/span>\
+  <span style=\"margin: 0 5px; font-size: 0.9em;\">with<\/span>\
+  <span style=\"color: #2ecc71; font-weight: bold; text-decoration: underline;\">Styling<\/span>\
+  <span style=\"color: #ff6600; font-weight: bold; margin-left: 5px;\">★<\/span>\
+<\/div>",
+                "toolTipText":"HTML button"
+            },
+            "name":"btn_html",
             "styleClass":"btn-info",
             "typeName":"bootstrapcomponents-button",
             "typeid":47,
-            "uuid":"F2DE046C-0021-4E05-BEFB-167B496D1DF5"
+            "uuid":"D6BB1E23-FD1D-44FC-BB4C-0C518CF09B00"
         },
         {
             "cssPosition":"161,-1,-1,68,123,120",
@@ -1235,7 +995,7 @@
                     "top":"161",
                     "width":"123"
                 },
-                "onActionMethodID":"37411D25-131C-4FEC-B718-F8D11B650192",
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
                 "text":"Diamond Button",
                 "toolTipText":"BtnDiamond",
                 "variant":"BtnDiamond"
@@ -1243,11 +1003,251 @@
             "name":"btn_diamond",
             "typeName":"bootstrapcomponents-button",
             "typeid":47,
-            "uuid":"F5412C4F-BB19-4454-8589-271CB1C32275"
+            "uuid":"DEB2C383-6EF8-4EA8-8687-973053CDA513"
+        },
+        {
+            "cssPosition":"1050,-1,-1,28,150,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"28",
+                    "right":"-1",
+                    "top":"1050",
+                    "width":"150"
+                },
+                "onActionMethodID":"8D0096F5-DDF1-4236-A569-21539AF0B770",
+                "styleClass":"btn-outline-info",
+                "text":"Toggle Visibility",
+                "toolTipText":"Demonstrates setVisible() method"
+            },
+            "name":"btn_api_visible",
+            "styleClass":"btn-outline-info",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"E439DA0B-3EC2-485A-A785-F23F1E54C059"
+        },
+        {
+            "cssPosition":"100,0,-1,0,300,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"0",
+                    "right":"0",
+                    "top":"100",
+                    "width":"300"
+                },
+                "styleClass":"label-blue-gradient",
+                "text":"Button Variants"
+            },
+            "name":"lbl_button_variants",
+            "styleClass":"label-blue-gradient",
+            "typeName":"bootstrapcomponents-label",
+            "typeid":47,
+            "uuid":"E5C385BD-13BF-4243-9AC7-3F9075CF250F"
+        },
+        {
+            "cssPosition":"216,-1,-1,383,173,45",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"45",
+                    "left":"383",
+                    "right":"-1",
+                    "top":"216",
+                    "width":"173"
+                },
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
+                "text":"Neon Button",
+                "toolTipText":"BtnNeon",
+                "variant":"BtnNeon"
+            },
+            "name":"btn_neon",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"EAC98835-8993-43E3-9B2B-E70BB304253B"
+        },
+        {
+            "cssPosition":"410,-1,-1,30,150,46",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"46",
+                    "left":"30",
+                    "right":"-1",
+                    "top":"410",
+                    "width":"150"
+                },
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
+                "styleClass":"btn-success btn-lg",
+                "text":"Large Success",
+                "toolTipText":"btn-lg btn-success"
+            },
+            "name":"btn_large_success",
+            "styleClass":"btn-success btn-lg",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"EDEE748D-FD1B-4BC9-B83B-B7CF7AE69B60"
+        },
+        {
+            "cssPosition":"960,-1,-1,28,200,38",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"38",
+                    "left":"28",
+                    "right":"-1",
+                    "top":"960",
+                    "width":"200"
+                },
+                "enabledDataProvider":"enabledDataProvider",
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
+                "styleClass":"btn-outline-primary",
+                "text":"Target Button",
+                "toolTipText":"This button will be modified by API methods",
+                "visibleDataProvider":"visibleDataProvider"
+            },
+            "name":"btn_api_target",
+            "styleClass":"btn-outline-primary",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"EE6779D4-BDA8-4096-BA0D-23A20B2A113A"
+        },
+        {
+            "cssPosition":"355,-1,-1,349,150,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"349",
+                    "right":"-1",
+                    "top":"355",
+                    "width":"150"
+                },
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
+                "styleClass":"btn-primary btn-sm",
+                "text":"Small Primary",
+                "toolTipText":"btn-primary btn-sm"
+            },
+            "name":"btn_small_size",
+            "styleClass":"btn-primary btn-sm",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"EEA5093A-193D-4575-AA3E-41E82EBFB048"
+        },
+        {
+            "cssPosition":"860,-1,-1,228,180,38",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"38",
+                    "left":"228",
+                    "right":"-1",
+                    "top":"860",
+                    "width":"180"
+                },
+                "onDoubleClickMethodID":"96738DA0-80B6-4522-A896-045456EECE16",
+                "styleClass":"btn-success",
+                "text":"Double Click Me",
+                "toolTipText":"Demonstrates onDoubleClick event"
+            },
+            "name":"btn_event_dblclick",
+            "styleClass":"btn-success",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"F14FAB98-DA61-4755-A9D9-6028DA03773D"
+        },
+        {
+            "cssPosition":"43,-1,-1,578,100,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"578",
+                    "right":"-1",
+                    "top":"43",
+                    "width":"100"
+                },
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
+                "styleClass":"btn-info",
+                "text":"Info",
+                "toolTipText":"btn-info"
+            },
+            "name":"btn_info",
+            "styleClass":"btn-info",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"F1F5B5CC-D77C-4185-B5B3-55D890A45FBC"
+        },
+        {
+            "cssPosition":"515,-1,-1,28,180,38",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"38",
+                    "left":"28",
+                    "right":"-1",
+                    "top":"515",
+                    "width":"180"
+                },
+                "imageStyleClass":"fas fa-search",
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
+                "styleClass":"btn-primary",
+                "text":"Search",
+                "toolTipText":"Button with Font Awesome icon"
+            },
+            "name":"btn_icon_search",
+            "styleClass":"btn-primary",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"F2552792-FE17-4E86-BB59-D9408EF88BC6"
+        },
+        {
+            "cssPosition":"410,-1,-1,190,150,38",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"38",
+                    "left":"190",
+                    "right":"-1",
+                    "top":"410",
+                    "width":"150"
+                },
+                "onActionMethodID":"0958C486-E060-4626-9001-A10C7C9EFB4B",
+                "styleClass":"btn-warning",
+                "text":"Normal Warning",
+                "toolTipText":"btn-warning"
+            },
+            "name":"btn_normal_warning",
+            "styleClass":"btn-warning",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"F36A4CBA-FFCB-4CCC-97B0-B19AE5998CBF"
+        },
+        {
+            "cssPosition":"921,0,-1,0,300,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"0",
+                    "right":"0",
+                    "top":"921",
+                    "width":"300"
+                },
+                "styleClass":"label-blue-gradient",
+                "text":"Button Dynamics"
+            },
+            "name":"lbl_api_methods",
+            "styleClass":"label-blue-gradient",
+            "typeName":"bootstrapcomponents-label",
+            "typeid":47,
+            "uuid":"FBF57F33-8D0E-415D-839D-1C037DB969FA"
         }
     ],
     "name":"buttonForm",
     "size":"903,1089",
     "typeid":3,
-    "uuid":"71D89C6D-A542-42BB-A0CB-F9C3A201F7B6"
+    "uuid":"EC5D4286-AE6A-4122-9645-A4F1C54DE24C"
 }
