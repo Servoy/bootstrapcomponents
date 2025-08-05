@@ -68,7 +68,7 @@ var handlers = {
 /**
  *  Return the Tab of the given index.
  * 
- * @param {Number} i The 0-based index of the tab to retrieve from the accordion component.
+ * @param {Number} i The 1-based index of the tab to retrieve from the accordion component.
  * @return {CustomType<bootstrapcomponents-accordion.tab>} The tab object at the specified index in the accordion component.
  */
  function getTabAt (index) {}

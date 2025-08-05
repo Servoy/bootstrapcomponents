@@ -117,9 +117,7 @@ $scope.setters.setContainedForm = function(tab, form) {
 			return false;
 		}
 
-		if (!servoyApi.showForm(form, tab.relationName)) {
-			return false;
-		}
+		servoyApi.showFormDelayed(tab, 'containedForm', 'relationName');
 	}
 	tab.containedForm = form;
 }
