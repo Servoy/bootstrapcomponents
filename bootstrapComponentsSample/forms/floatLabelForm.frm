@@ -9,7 +9,7 @@
             "height":480,
             "partType":5,
             "typeid":19,
-            "uuid":"145D6741-0BB8-4CC6-8838-F6F8C18BE14B"
+            "uuid":"8A5CD76D-2514-4E78-8C9A-11E72A361F26"
         },
         {
             "cssPosition":"42,-1,-1,27,80,30",
@@ -27,10 +27,10 @@
             "name":"label_17",
             "typeName":"bootstrapcomponents-label",
             "typeid":47,
-            "uuid":"F3624141-C9F0-488D-8E0F-F03C08D7408E"
+            "uuid":"A871213B-B93D-4917-9D20-B8C2CF337774"
         }
     ],
     "name":"floatLabelForm",
     "typeid":3,
-    "uuid":"A2598A64-CB41-4133-9049-7666427747A5"
+    "uuid":"06FC3397-6C0D-44AC-B5ED-CF3BD67F68C3"
 }

@@ -9,7 +9,7 @@
             "height":480,
             "partType":5,
             "typeid":19,
-            "uuid":"60F09C5E-C41F-4C3C-B81D-85A55D3E09DE"
+            "uuid":"1C9FF370-1BEB-49BF-A889-75A74405DB40"
         },
         {
             "cssPosition":"81,-1,-1,149,80,30",
@@ -27,10 +27,10 @@
             "name":"label_8",
             "typeName":"bootstrapcomponents-label",
             "typeid":47,
-            "uuid":"DDC8823A-A7B5-4CD6-8962-F80F0C01CBD4"
+            "uuid":"67ADB256-E79B-4272-8DEB-A79F5F653F9A"
         }
     ],
     "name":"comboboxesForm",
     "typeid":3,
-    "uuid":"D4361D72-B1FA-4626-ABA2-632A430FDCA0"
+    "uuid":"071F99AC-E177-4BE3-AF62-6F031BBE49E4"
 }

@@ -1,36 +1,992 @@
 {
     "customProperties":{
         "formComponent":false,
+        "methods":{
+            "onLoadMethodID":{
+                "arguments":null,
+                "parameters":null
+            }
+        },
         "useCssPosition":true
     },
     "extendsID":"-1",
     "items":[
         {
-            "height":480,
-            "partType":5,
-            "typeid":19,
-            "uuid":"52AF9DFD-8403-45F2-A46B-2477A036AA5F"
-        },
-        {
-            "cssPosition":"96,-1,-1,80,80,30",
+            "cssPosition":"78,-1,-1,350,100,30",
             "json":{
                 "cssPosition":{
                     "bottom":"-1",
                     "height":"30",
-                    "left":"80",
+                    "left":"350",
                     "right":"-1",
-                    "top":"96",
-                    "width":"80"
+                    "top":"78",
+                    "width":"100"
                 },
-                "text":"textbox"
+                "styleClass":"default-align label-primary",
+                "text":"Password+Eye:"
             },
-            "name":"label_11",
+            "name":"lbl_password_eye",
+            "styleClass":"default-align label-primary",
             "typeName":"bootstrapcomponents-label",
             "typeid":47,
-            "uuid":"7DEE2523-8462-494C-9EED-CFE3097166B0"
+            "uuid":"0499DDAC-F140-4268-96D5-673C4E549778"
+        },
+        {
+            "height":1150,
+            "partType":5,
+            "typeid":19,
+            "uuid":"065961ED-EAE4-4C5A-BA15-ACC379C78F2B"
+        },
+        {
+            "cssPosition":"615,-1,-1,460,200,30",
+            "enabled":false,
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"460",
+                    "right":"-1",
+                    "top":"615",
+                    "width":"200"
+                },
+                "enabled":false,
+                "placeholderText":"Disabled input"
+            },
+            "name":"txt_disabled",
+            "typeName":"bootstrapcomponents-textbox",
+            "typeid":47,
+            "uuid":"0EEB1283-784E-4B93-8909-7ED727E3CEE0"
+        },
+        {
+            "cssPosition":"157,-1,-1,350,100,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"350",
+                    "right":"-1",
+                    "top":"157",
+                    "width":"100"
+                },
+                "styleClass":"default-align label-primary",
+                "text":"Tel:"
+            },
+            "name":"lbl_tel_copy",
+            "styleClass":"default-align label-primary",
+            "typeName":"bootstrapcomponents-label",
+            "typeid":47,
+            "uuid":"10334CF3-1B42-4BAF-A202-D72C7E3764D7"
+        },
+        {
+            "cssPosition":"117,-1,-1,20,100,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"20",
+                    "right":"-1",
+                    "top":"117",
+                    "width":"100"
+                },
+                "styleClass":"default-align label-primary",
+                "text":"Color:"
+            },
+            "name":"lbl_color_copy965_copy922",
+            "styleClass":"default-align label-primary",
+            "typeName":"bootstrapcomponents-label",
+            "typeid":47,
+            "uuid":"17EC66B1-05A8-4705-9262-6F6586749C1C"
+        },
+        {
+            "cssPosition":"407,-1,-1,20,100,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"20",
+                    "right":"-1",
+                    "top":"407",
+                    "width":"100"
+                },
+                "styleClass":"default-align label-primary",
+                "text":"Month:"
+            },
+            "name":"lbl_month",
+            "styleClass":"default-align label-primary",
+            "typeName":"bootstrapcomponents-label",
+            "typeid":47,
+            "uuid":"1A815C41-220B-4309-8DD0-91391E6D4851"
+        },
+        {
+            "cssPosition":"157,-1,-1,20,100,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"20",
+                    "right":"-1",
+                    "top":"157",
+                    "width":"100"
+                },
+                "styleClass":"default-align label-primary",
+                "text":"Search:"
+            },
+            "name":"lbl_search_copy180_copy297",
+            "styleClass":"default-align label-primary",
+            "typeName":"bootstrapcomponents-label",
+            "typeid":47,
+            "uuid":"1D43A58D-1F12-4A5F-8DE7-3D0DF427F74A"
+        },
+        {
+            "cssPosition":"497,0,-1,0,300,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"0",
+                    "right":"0",
+                    "top":"497",
+                    "width":"300"
+                },
+                "styleClass":"label-blue-gradient",
+                "text":"Appearance & Styling"
+            },
+            "name":"lbl_appearance",
+            "styleClass":"label-blue-gradient",
+            "typeName":"bootstrapcomponents-label",
+            "typeid":47,
+            "uuid":"1E499640-C3B4-48DA-87CF-A93936B75328"
+        },
+        {
+            "cssPosition":"535,-1,-1,460,200,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"460",
+                    "right":"-1",
+                    "top":"535",
+                    "width":"200"
+                },
+                "placeholderText":"Small input",
+                "styleClass":"textbox-sm"
+            },
+            "name":"txt_small",
+            "styleClass":"textbox-sm",
+            "typeName":"bootstrapcomponents-textbox",
+            "typeid":47,
+            "uuid":"217C682C-0462-4086-8320-49E5873BC3E5"
+        },
+        {
+            "cssPosition":"78,-1,-1,460,200,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"460",
+                    "right":"-1",
+                    "top":"78",
+                    "width":"200"
+                },
+                "inputType":"password-with-eye",
+                "onFocusGainedMethodID":"C9AAC131-85B9-41AF-B062-8E9161A227CB",
+                "placeholderText":"Enter password",
+                "styleClass":"form-control input-primary"
+            },
+            "name":"txt_password_eye",
+            "styleClass":"form-control input-primary",
+            "typeName":"bootstrapcomponents-textbox",
+            "typeid":47,
+            "uuid":"26369F45-6938-4EE0-9157-60F1AC715A81"
+        },
+        {
+            "cssPosition":"117,-1,-1,460,200,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"460",
+                    "right":"-1",
+                    "top":"117",
+                    "width":"200"
+                },
+                "inputType":"url",
+                "onFocusGainedMethodID":"C9AAC131-85B9-41AF-B062-8E9161A227CB",
+                "placeholderText":"https://example.com",
+                "styleClass":"text-primary border-primary"
+            },
+            "name":"txt_url",
+            "styleClass":"text-primary border-primary",
+            "typeName":"bootstrapcomponents-textbox",
+            "typeid":47,
+            "uuid":"2A78EB7D-0858-4419-9139-6F30D30CC187"
+        },
+        {
+            "cssPosition":"369,0,-1,0,300,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"0",
+                    "right":"0",
+                    "top":"369",
+                    "width":"300"
+                },
+                "styleClass":"label-blue-gradient",
+                "text":"Date & Time Input Types"
+            },
+            "name":"lbl_date_time_types",
+            "styleClass":"label-blue-gradient",
+            "typeName":"bootstrapcomponents-label",
+            "typeid":47,
+            "uuid":"2AEF234A-8A5E-44CA-A4F5-C00D256FDA6F"
+        },
+        {
+            "cssPosition":"615,-1,-1,20,100,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"20",
+                    "right":"-1",
+                    "top":"615",
+                    "width":"100"
+                },
+                "styleClass":"default-align label-primary",
+                "text":"Error:"
+            },
+            "name":"lbl_error",
+            "styleClass":"default-align label-primary",
+            "typeName":"bootstrapcomponents-label",
+            "typeid":47,
+            "uuid":"2E796F17-F82D-4251-A08D-1D894BFA9A7E"
+        },
+        {
+            "cssPosition":"157,-1,-1,130,200,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"130",
+                    "right":"-1",
+                    "top":"157",
+                    "width":"200"
+                },
+                "inputType":"search",
+                "onFocusGainedMethodID":"C9AAC131-85B9-41AF-B062-8E9161A227CB",
+                "placeholderText":"Search...",
+                "styleClass":"text-primary border-primary"
+            },
+            "name":"txt_search",
+            "styleClass":"text-primary border-primary",
+            "typeName":"bootstrapcomponents-textbox",
+            "typeid":47,
+            "uuid":"38A1F94C-775A-4601-B6CD-358655D73669"
+        },
+        {
+            "cssPosition":"78,-1,-1,20,100,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"20",
+                    "right":"-1",
+                    "top":"78",
+                    "width":"100"
+                },
+                "styleClass":"default-align label-primary",
+                "text":"Password:"
+            },
+            "name":"lbl_password",
+            "styleClass":"default-align label-primary",
+            "typeName":"bootstrapcomponents-label",
+            "typeid":47,
+            "uuid":"3A8F922A-A3A9-4612-9999-E01D14DF54BC"
+        },
+        {
+            "cssPosition":"655,-1,-1,130,200,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"130",
+                    "right":"-1",
+                    "top":"655",
+                    "width":"200"
+                },
+                "dataProviderID":"readOnly_dp",
+                "editable":false,
+                "readOnly":true,
+                "styleClass":"form-control"
+            },
+            "name":"txt_readonly",
+            "styleClass":"form-control",
+            "typeName":"bootstrapcomponents-textbox",
+            "typeid":47,
+            "uuid":"4034845D-511B-49AB-8F3A-D4B6F1BF5DAF"
+        },
+        {
+            "cssPosition":"655,-1,-1,460,200,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"460",
+                    "right":"-1",
+                    "top":"655",
+                    "width":"200"
+                },
+                "dataProviderID":"select_dp",
+                "selectOnEnter":true,
+                "styleClass":"form-control"
+            },
+            "name":"txt_selectonenter",
+            "styleClass":"form-control",
+            "typeName":"bootstrapcomponents-textbox",
+            "typeid":47,
+            "uuid":"51D3BE02-5DF8-4E4E-A91E-A69C64529EFD"
+        },
+        {
+            "cssPosition":"535,-1,-1,350,100,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"350",
+                    "right":"-1",
+                    "top":"535",
+                    "width":"100"
+                },
+                "styleClass":"default-align label-primary",
+                "text":"Small Size:"
+            },
+            "name":"lbl_small",
+            "styleClass":"default-align label-primary",
+            "typeName":"bootstrapcomponents-label",
+            "typeid":47,
+            "uuid":"5A04C03D-7853-456F-9BD9-A5E6ECCD6997"
+        },
+        {
+            "cssPosition":"575,-1,-1,20,100,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"20",
+                    "right":"-1",
+                    "top":"575",
+                    "width":"100"
+                },
+                "styleClass":"default-align label-primary",
+                "text":"Success:"
+            },
+            "name":"lbl_success",
+            "styleClass":"default-align label-primary",
+            "typeName":"bootstrapcomponents-label",
+            "typeid":47,
+            "uuid":"6E283E86-6751-405E-A160-FD854EA5ED78"
+        },
+        {
+            "cssPosition":"117,-1,-1,130,200,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"130",
+                    "right":"-1",
+                    "top":"117",
+                    "width":"200"
+                },
+                "inputType":"color",
+                "onFocusGainedMethodID":"C9AAC131-85B9-41AF-B062-8E9161A227CB",
+                "styleClass":"text-primary border-primary"
+            },
+            "name":"txt_color",
+            "styleClass":"text-primary border-primary",
+            "typeName":"bootstrapcomponents-textbox",
+            "typeid":47,
+            "uuid":"7F724079-F1DE-4E00-A80D-9B668F784347"
+        },
+        {
+            "cssPosition":"535,-1,-1,20,100,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"20",
+                    "right":"-1",
+                    "top":"535",
+                    "width":"100"
+                },
+                "styleClass":"default-align label-primary",
+                "text":"Default:"
+            },
+            "name":"lbl_default",
+            "styleClass":"default-align label-primary",
+            "typeName":"bootstrapcomponents-label",
+            "typeid":47,
+            "uuid":"82BB8188-C4D3-4CFA-87F3-A2E114903231"
+        },
+        {
+            "cssPosition":"407,-1,-1,460,200,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"460",
+                    "right":"-1",
+                    "top":"407",
+                    "width":"200"
+                },
+                "dataProviderID":"tb_time_dp",
+                "inputType":"time",
+                "styleClass":"text-primary border-primary"
+            },
+            "name":"txt_time",
+            "styleClass":"text-primary border-primary",
+            "typeName":"bootstrapcomponents-textbox",
+            "typeid":47,
+            "uuid":"872FCDFD-F75D-42E7-B297-86558F115C02"
+        },
+        {
+            "cssPosition":"38,-1,-1,20,100,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"20",
+                    "right":"-1",
+                    "top":"38",
+                    "width":"100"
+                },
+                "styleClass":"default-align label-primary",
+                "text":"Text:"
+            },
+            "name":"lbl_text",
+            "styleClass":"default-align label-primary",
+            "typeName":"bootstrapcomponents-label",
+            "typeid":47,
+            "uuid":"881B301C-B8C3-4A2B-B396-8EABF48075BC"
+        },
+        {
+            "cssPosition":"535,-1,-1,130,200,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"130",
+                    "right":"-1",
+                    "top":"535",
+                    "width":"200"
+                },
+                "placeholderText":"Default styling",
+                "styleClass":"textbox"
+            },
+            "name":"txt_default",
+            "styleClass":"textbox",
+            "typeName":"bootstrapcomponents-textbox",
+            "typeid":47,
+            "uuid":"8F52058D-FDD5-4726-8638-3B2150CE62FB"
+        },
+        {
+            "cssPosition":"615,-1,-1,130,200,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"130",
+                    "right":"-1",
+                    "top":"615",
+                    "width":"200"
+                },
+                "placeholderText":"Error state",
+                "styleClass":"textbox-error"
+            },
+            "name":"txt_error",
+            "styleClass":"textbox-error",
+            "typeName":"bootstrapcomponents-textbox",
+            "typeid":47,
+            "uuid":"90F47162-3C33-45F2-B10A-B0451266E469"
+        },
+        {
+            "cssPosition":"232,-1,-1,130,533,125",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"125",
+                    "left":"130",
+                    "right":"-1",
+                    "top":"232",
+                    "width":"533"
+                },
+                "dataProviderID":"base_txt_msg"
+            },
+            "name":"txt_base_msgs",
+            "typeName":"bootstrapcomponents-textarea",
+            "typeid":47,
+            "uuid":"94EC9566-4592-4DF5-A496-BFF7AD986816"
+        },
+        {
+            "cssPosition":"447,-1,-1,460,200,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"460",
+                    "right":"-1",
+                    "top":"447",
+                    "width":"200"
+                },
+                "dataProviderID":"tb_week_dp",
+                "inputType":"week",
+                "onDataChangeMethodID":null,
+                "onFocusLostMethodID":null,
+                "styleClass":"text-primary border-primary"
+            },
+            "name":"txt_week",
+            "styleClass":"text-primary border-primary",
+            "typeName":"bootstrapcomponents-textbox",
+            "typeid":47,
+            "uuid":"9543AA20-18F7-44AF-8AE8-6B024890D607"
+        },
+        {
+            "cssPosition":"575,-1,-1,350,100,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"350",
+                    "right":"-1",
+                    "top":"575",
+                    "width":"100"
+                },
+                "styleClass":"default-align label-primary",
+                "text":"Warning:"
+            },
+            "name":"lbl_warning",
+            "styleClass":"default-align label-primary",
+            "typeName":"bootstrapcomponents-label",
+            "typeid":47,
+            "uuid":"9B50E902-D5F7-440E-8245-50991F316F8C"
+        },
+        {
+            "cssPosition":"447,-1,-1,130,200,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"130",
+                    "right":"-1",
+                    "top":"447",
+                    "width":"200"
+                },
+                "dataProviderID":"tb_date_dp",
+                "inputType":"datetime-local",
+                "styleClass":"text-primary border-primary"
+            },
+            "name":"txt_datetime",
+            "styleClass":"text-primary border-primary",
+            "typeName":"bootstrapcomponents-textbox",
+            "typeid":47,
+            "uuid":"9C8936CA-981B-40BC-8139-9AB9D91F4B7D"
+        },
+        {
+            "cssPosition":"447,-1,-1,20,100,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"20",
+                    "right":"-1",
+                    "top":"447",
+                    "width":"100"
+                },
+                "styleClass":"default-align label-primary",
+                "text":"DateTime:"
+            },
+            "name":"lbl_datetime",
+            "styleClass":"default-align label-primary",
+            "typeName":"bootstrapcomponents-label",
+            "typeid":47,
+            "uuid":"9D81FCF7-F225-46A1-922D-4E49B1B8C37A"
+        },
+        {
+            "cssPosition":"655,-1,-1,20,100,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"20",
+                    "right":"-1",
+                    "top":"655",
+                    "width":"100"
+                },
+                "styleClass":"default-align label-primary",
+                "text":"Read Only:"
+            },
+            "name":"lbl_readonly",
+            "styleClass":"default-align label-primary",
+            "typeName":"bootstrapcomponents-label",
+            "typeid":47,
+            "uuid":"9E19026B-5EE8-4C6E-B7E9-99A709B431BB"
+        },
+        {
+            "cssPosition":"575,-1,-1,460,200,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"460",
+                    "right":"-1",
+                    "top":"575",
+                    "width":"200"
+                },
+                "placeholderText":"Warning state",
+                "styleClass":"textbox-warning"
+            },
+            "name":"txt_warning",
+            "styleClass":"textbox-warning",
+            "typeName":"bootstrapcomponents-textbox",
+            "typeid":47,
+            "uuid":"9F4303A5-C45A-4EC4-8242-D6F63CC9FC2F"
+        },
+        {
+            "cssPosition":"197,-1,-1,130,200,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"130",
+                    "right":"-1",
+                    "top":"197",
+                    "width":"200"
+                },
+                "inputType":"number",
+                "onFocusGainedMethodID":"C9AAC131-85B9-41AF-B062-8E9161A227CB",
+                "placeholderText":"Enter a number",
+                "styleClass":"text-primary border-primary"
+            },
+            "name":"txt_number",
+            "styleClass":"text-primary border-primary",
+            "typeName":"bootstrapcomponents-textbox",
+            "typeid":47,
+            "uuid":"A61CC0F6-855C-4FA1-8CBD-74D9D6B4D48B"
+        },
+        {
+            "cssPosition":"407,-1,-1,130,200,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"130",
+                    "right":"-1",
+                    "top":"407",
+                    "width":"200"
+                },
+                "dataProviderID":"tb_month_dp",
+                "inputType":"month",
+                "styleClass":"text-primary border-primary"
+            },
+            "name":"txt_month",
+            "styleClass":"text-primary border-primary",
+            "typeName":"bootstrapcomponents-textbox",
+            "typeid":47,
+            "uuid":"A91FE2C9-A0B1-4239-A156-4B4FFA285B66"
+        },
+        {
+            "cssPosition":"615,-1,-1,350,100,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"350",
+                    "right":"-1",
+                    "top":"615",
+                    "width":"100"
+                },
+                "styleClass":"default-align label-primary",
+                "text":"Disabled:"
+            },
+            "name":"lbl_disabled",
+            "styleClass":"default-align label-primary",
+            "typeName":"bootstrapcomponents-label",
+            "typeid":47,
+            "uuid":"A9BAEAFB-E294-4AA4-A02A-E05FCA03C93D"
+        },
+        {
+            "cssPosition":"655,-1,-1,350,100,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"350",
+                    "right":"-1",
+                    "top":"655",
+                    "width":"100"
+                },
+                "styleClass":"default-align label-primary",
+                "text":"Select on Enter:"
+            },
+            "name":"lbl_selectonenter",
+            "styleClass":"default-align label-primary",
+            "typeName":"bootstrapcomponents-label",
+            "typeid":47,
+            "uuid":"AF9A6E7D-8081-4B60-B671-CDE871716A0A"
+        },
+        {
+            "cssPosition":"0,0,-1,0,300,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"0",
+                    "right":"0",
+                    "top":"0",
+                    "width":"300"
+                },
+                "styleClass":"label-blue-gradient",
+                "text":"Basic Input Types"
+            },
+            "name":"lbl_basic_input_types",
+            "styleClass":"label-blue-gradient",
+            "typeName":"bootstrapcomponents-label",
+            "typeid":47,
+            "uuid":"B954F044-E150-4E54-8388-9921334F54B4"
+        },
+        {
+            "cssPosition":"38,-1,-1,460,200,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"460",
+                    "right":"-1",
+                    "top":"38",
+                    "width":"200"
+                },
+                "format":"###-##-####",
+                "onFocusGainedMethodID":"C9AAC131-85B9-41AF-B062-8E9161A227CB",
+                "placeholderText":"Format: ###-##-####",
+                "styleClass":"text-primary border-primary"
+            },
+            "name":"txt_format",
+            "styleClass":"text-primary border-primary",
+            "typeName":"bootstrapcomponents-textbox",
+            "typeid":47,
+            "uuid":"BB4B6C49-034D-4952-912D-1D8B23142C41"
+        },
+        {
+            "cssPosition":"38,-1,-1,130,200,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"130",
+                    "right":"-1",
+                    "top":"38",
+                    "width":"200"
+                },
+                "inputType":"text",
+                "onFocusGainedMethodID":"C9AAC131-85B9-41AF-B062-8E9161A227CB",
+                "placeholderText":"Enter text",
+                "styleClass":"textbox-"
+            },
+            "name":"txt_text",
+            "styleClass":"textbox-",
+            "typeName":"bootstrapcomponents-textbox",
+            "typeid":47,
+            "uuid":"C484124F-66EF-41DC-BAD0-9387BDECC10A"
+        },
+        {
+            "cssPosition":"575,-1,-1,130,200,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"130",
+                    "right":"-1",
+                    "top":"575",
+                    "width":"200"
+                },
+                "placeholderText":"Success state",
+                "styleClass":"textbox-valid"
+            },
+            "name":"txt_success",
+            "styleClass":"textbox-valid",
+            "typeName":"bootstrapcomponents-textbox",
+            "typeid":47,
+            "uuid":"C9334FD2-3833-475A-83FE-C677F9F21309"
+        },
+        {
+            "cssPosition":"78,-1,-1,130,200,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"130",
+                    "right":"-1",
+                    "top":"78",
+                    "width":"200"
+                },
+                "inputType":"password",
+                "onFocusGainedMethodID":"C9AAC131-85B9-41AF-B062-8E9161A227CB",
+                "placeholderText":"Enter password",
+                "styleClass":"text-primary border-primary"
+            },
+            "name":"txt_password",
+            "styleClass":"text-primary border-primary",
+            "typeName":"bootstrapcomponents-textbox",
+            "typeid":47,
+            "uuid":"CF749EEC-84A3-465C-A588-F1C28D407F00"
+        },
+        {
+            "cssPosition":"197,-1,-1,351,100,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"351",
+                    "right":"-1",
+                    "top":"197",
+                    "width":"100"
+                },
+                "styleClass":"default-align label-primary",
+                "text":"Email:"
+            },
+            "name":"lbl_email",
+            "styleClass":"default-align label-primary",
+            "typeName":"bootstrapcomponents-label",
+            "typeid":47,
+            "uuid":"D5E26D38-10B5-4717-AB2B-0296592712D1"
+        },
+        {
+            "cssPosition":"447,-1,-1,350,100,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"350",
+                    "right":"-1",
+                    "top":"447",
+                    "width":"100"
+                },
+                "styleClass":"default-align label-primary",
+                "text":"Week:"
+            },
+            "name":"lbl_week",
+            "styleClass":"default-align label-primary",
+            "typeName":"bootstrapcomponents-label",
+            "typeid":47,
+            "uuid":"E04DA26A-E2D3-468C-BE1D-14AB01143C89"
+        },
+        {
+            "cssPosition":"157,-1,-1,460,200,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"460",
+                    "right":"-1",
+                    "top":"157",
+                    "width":"200"
+                },
+                "inputType":"tel",
+                "onFocusGainedMethodID":"C9AAC131-85B9-41AF-B062-8E9161A227CB",
+                "placeholderText":"(123) 456-7890",
+                "styleClass":"text-primary border-primary"
+            },
+            "name":"txt_tel",
+            "styleClass":"text-primary border-primary",
+            "typeName":"bootstrapcomponents-textbox",
+            "typeid":47,
+            "uuid":"E327AA88-5758-46F1-B8EF-3108EDB921B5"
+        },
+        {
+            "cssPosition":"38,-1,-1,350,100,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"350",
+                    "right":"-1",
+                    "top":"38",
+                    "width":"100"
+                },
+                "styleClass":"default-align label-primary",
+                "text":"Format:"
+            },
+            "name":"lbl_format",
+            "styleClass":"default-align label-primary",
+            "typeName":"bootstrapcomponents-label",
+            "typeid":47,
+            "uuid":"E7868304-8E3F-4416-992D-AB0503CAF5EE"
+        },
+        {
+            "cssPosition":"117,-1,-1,350,100,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"350",
+                    "right":"-1",
+                    "top":"117",
+                    "width":"100"
+                },
+                "styleClass":"default-align label-primary",
+                "text":"URL:"
+            },
+            "name":"lbl_url_copy",
+            "styleClass":"default-align label-primary",
+            "typeName":"bootstrapcomponents-label",
+            "typeid":47,
+            "uuid":"E7C7DB7C-6A73-4C0E-B324-208ED6698CB4"
+        },
+        {
+            "cssPosition":"407,-1,-1,350,100,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"350",
+                    "right":"-1",
+                    "top":"407",
+                    "width":"100"
+                },
+                "styleClass":"default-align label-primary",
+                "text":"Time:"
+            },
+            "name":"lbl_time",
+            "styleClass":"default-align label-primary",
+            "typeName":"bootstrapcomponents-label",
+            "typeid":47,
+            "uuid":"EBB4E706-4ACC-4DAA-B48A-88E723CBDB23"
+        },
+        {
+            "cssPosition":"197,-1,-1,461,200,30",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"30",
+                    "left":"461",
+                    "right":"-1",
+                    "top":"197",
+                    "width":"200"
+                },
+                "inputType":"email",
+                "onFocusGainedMethodID":"C9AAC131-85B9-41AF-B062-8E9161A227CB",
+                "placeholderText":"Enter email address",
+                "styleClass":"text-primary border-primary"
+            },
+            "name":"txt_email",
+            "styleClass":"text-primary border-primary",
+            "typeName":"bootstrapcomponents-textbox",
+            "typeid":47,
+            "uuid":"F33E2750-A4A1-4C8D-97C6-B3C64F5CB6A9"
         }
     ],
     "name":"textboxForm",
+    "onLoadMethodID":"DFEABC88-E196-40B8-90F3-188621679A0B",
+    "size":"1024,800",
     "typeid":3,
-    "uuid":"3A56D4E3-E0E4-49F4-A1EA-C25C6ED6A1A0"
+    "uuid":"F79BD64D-79F1-4AA4-A4CC-38CED9AC7EEE"
 }

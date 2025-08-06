@@ -4,73 +4,79 @@
     "mimeType":"text/css",
     "name":"bootstrapComponentsSample.less",
     "typeid":37,
-    "uuid":"9D11F82A-CCD1-4217-9FEE-4CFBAA333683"
+    "uuid":"89E319E6-9BCF-4AB2-A141-B49BDA9313E6"
 },
 {
     "encapsulation":0,
     "name":"buttons.less",
     "typeid":37,
-    "uuid":"BC931D97-82C1-45E6-B586-96D3B8AF95EC"
+    "uuid":"88CDCBE2-D71A-48CC-8C0E-8A6275446349"
 },
 {
     "encapsulation":0,
     "mimeType":"text/css",
     "name":"custom_servoy_theme_properties.less",
     "typeid":37,
-    "uuid":"72379454-7819-4E17-9E16-42FF671ABA2B"
+    "uuid":"0AB80BFA-9C86-4B08-9267-B99A4307C398"
 },
 {
     "encapsulation":0,
     "mimeType":"text/css",
     "name":"example.less",
     "typeid":37,
-    "uuid":"0D768183-325C-4336-A9F3-7F321E76115F"
+    "uuid":"AAA34CC6-3B54-4D56-AB7A-6FDEECCE9DF1"
 },
 {
     "encapsulation":0,
     "name":"inlinecalendar.less",
     "typeid":37,
-    "uuid":"32241952-DF09-45EF-B1C3-EE74F2767D96"
+    "uuid":"841130A4-8094-4EDE-AD48-5CF6E3108FEB"
 },
 {
     "encapsulation":0,
     "name":"labels.less",
     "typeid":37,
-    "uuid":"59535BE8-6A62-4D49-920B-34CA28488B16"
+    "uuid":"7DA83A49-DA3B-4AB0-9C5F-F9AC0029BB4A"
 },
 {
     "encapsulation":0,
     "mimeType":"image/png",
     "name":"logo.png",
     "typeid":37,
-    "uuid":"DDFDFD0A-A3E6-4D75-92B4-78A8ADF0AAE7"
+    "uuid":"8849C946-3F4F-4983-8454-7B7C2771CC84"
 },
 {
     "encapsulation":0,
     "mimeType":"text/css",
     "name":"manifest.json",
     "typeid":37,
-    "uuid":"47E54FD2-6A12-4D6D-A4F5-2DD28A23C0C8"
+    "uuid":"66416FDC-AB6E-4844-975E-90FE2DFC833D"
 },
 {
     "encapsulation":0,
     "mimeType":"image/png",
     "name":"Servoy.png",
     "typeid":37,
-    "uuid":"420DC461-4233-4A26-BBBE-F546C3EA903A"
+    "uuid":"F5B69C20-B9DF-4F52-B3D1-0BE6C7EB8DEF"
+},
+{
+    "encapsulation":0,
+    "name":"textbox.less",
+    "typeid":37,
+    "uuid":"B2840221-7C47-4E1A-9E21-345483091E3F"
 },
 {
     "encapsulation":0,
     "mimeType":"text/css",
     "name":"variants.json",
     "typeid":37,
-    "uuid":"E7C4105C-09C7-40C7-9D02-03BD321797BD"
+    "uuid":"9EF114D2-FE68-4C74-8293-ECA92A18A5B4"
 },
 {
     "encapsulation":0,
     "mimeType":"text/css",
     "name":"webapp144.png",
     "typeid":37,
-    "uuid":"C76858D8-0097-49DC-B7AF-97E1BB5A3AEC"
+    "uuid":"5F8D8C64-3965-4A84-BB7D-2CC6FB743526"
 }
 ]

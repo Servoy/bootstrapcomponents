@@ -21,16 +21,16 @@
             "name":"label_6",
             "typeName":"bootstrapcomponents-label",
             "typeid":47,
-            "uuid":"162F53BC-DF5F-40B5-BA97-4C6A2BBE5A35"
+            "uuid":"298BA9C6-2F9C-40F9-BF34-AD4E0211E60C"
         },
         {
             "height":480,
             "partType":5,
             "typeid":19,
-            "uuid":"56551087-E6DD-42A8-8ED2-EB4A3CB7303D"
+            "uuid":"AC50A1FD-20AA-4485-840E-B0EA7A7E2392"
         }
     ],
     "name":"checkboxesForm",
     "typeid":3,
-    "uuid":"8C5326DC-75D4-4045-AB53-CD8269B0F47D"
+    "uuid":"6982B789-07F5-4077-A577-BE9859E82BE3"
 }

@@ -2,7 +2,7 @@
  * TODO generated, please specify type and doc for the params
  * @param title
  *
- * @properties={"typeid":24,"uuid":"A4335610-E23A-4DFE-958A-3A3664D17032"}
+ * @properties={"typeid":24,"uuid":"C2112A27-6E13-4E50-B6BE-2CF175E05848"}
  */
 function setTitle(title) {
 	elements.label_form.text = title;
@@ -12,7 +12,7 @@ function setTitle(title) {
 /**
  * Restart the shimmer animation on the label
  *
- * @properties={"typeid":24,"uuid":"881225D4-8101-4FDC-94F3-F9995B7AB61C"}
+ * @properties={"typeid":24,"uuid":"BD4F6B7B-EDC0-424B-A09F-38985399F4C7"}
  */
 function restartLabelAnimation() {
 	var label = elements.label_form;
@@ -30,7 +30,7 @@ function restartLabelAnimation() {
  * TODO generated, please specify type and doc for the params
  * @param containedForm
  *
- * @properties={"typeid":24,"uuid":"FE38D4BA-5372-4068-AD30-0F05C8BE6323"}
+ * @properties={"typeid":24,"uuid":"12E3EA6A-50DD-4E9A-B55F-CE6FE0D011AC"}
  */
 function setContainedForm( containedForm) {
 	forms.formDemoContainer.elements.demo_container.containedForm = containedForm;

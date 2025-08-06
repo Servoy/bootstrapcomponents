@@ -6,15 +6,9 @@
     "encapsulation":108,
     "items":[
         {
-            "height":100,
-            "partType":5,
-            "typeid":19,
-            "uuid":"0B07E608-58B3-47F4-8C88-0B9299E3416B"
-        },
-        {
             "cssPosition":"60,0,0,0,100,10",
             "json":{
-                "containedForm":"F5A3FC99-4C58-4FB4-B201-CECCE2B99EDE",
+                "containedForm":"D974B05E-3DA3-4E52-AFC9-6CE81F179DE5",
                 "cssPosition":{
                     "bottom":"0",
                     "height":"10",
@@ -27,7 +21,13 @@
             "name":"component_container",
             "typeName":"servoycore-formcontainer",
             "typeid":47,
-            "uuid":"B7E70960-F2F7-4F21-8395-0C161D1C16A7"
+            "uuid":"188B04BA-15A1-48B3-B94C-5F6E9FF63733"
+        },
+        {
+            "height":100,
+            "partType":5,
+            "typeid":19,
+            "uuid":"7CA17133-3E8A-4A88-9C77-853DA629A869"
         },
         {
             "cssPosition":"0,0,-1,0,100,47",
@@ -47,7 +47,7 @@
             "styleClass":"gradient-form-label",
             "typeName":"bootstrapcomponents-label",
             "typeid":47,
-            "uuid":"BC30EE85-EA1A-42A6-8C71-93C19C0E685A"
+            "uuid":"B4183AA6-4AC1-4F29-B923-3D34EC988215"
         }
     ],
     "name":"baseComponentForm",
@@ -57,5 +57,5 @@
     "showInMenu":true,
     "size":"100,100",
     "typeid":3,
-    "uuid":"DCBB2664-7A02-4147-9286-D0A13208EE30"
+    "uuid":"0BC5A9D8-446E-416A-9A5C-B00F134F06AB"
 }

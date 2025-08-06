@@ -22,7 +22,13 @@
             "name":"example_label",
             "typeName":"bootstrapcomponents-label",
             "typeid":47,
-            "uuid":"0C22004C-BBF9-4BBC-AE29-1A6196B06E09"
+            "uuid":"78EBEBD6-27D3-4B70-9293-F5FBBB39F1AD"
+        },
+        {
+            "height":80,
+            "partType":5,
+            "typeid":19,
+            "uuid":"94F24CA3-3773-4561-9358-C2771F04016E"
         },
         {
             "cssPosition":"10,-1,-1,0,147,55",
@@ -35,18 +41,12 @@
                     "top":"10",
                     "width":"147"
                 },
-                "media":"420DC461-4233-4A26-BBBE-F546C3EA903A"
+                "media":"F5B69C20-B9DF-4F52-B3D1-0BE6C7EB8DEF"
             },
             "name":"servoy_logo",
             "typeName":"bootstrapcomponents-imagemedia",
             "typeid":47,
-            "uuid":"74AC0845-45E8-4FA8-8ACE-1AD82E541E3C"
-        },
-        {
-            "height":80,
-            "partType":5,
-            "typeid":19,
-            "uuid":"E2449521-66A5-4A28-B49F-904F7A29E293"
+            "uuid":"E5C06199-9698-4FF7-B25C-A9DB2D155304"
         }
     ],
     "name":"headerForm",
@@ -55,5 +55,5 @@
     "size":"590,80",
     "styleClass":"banner-orange",
     "typeid":3,
-    "uuid":"317D0EAE-F267-4F50-90BE-3F93EB560403"
+    "uuid":"CC963960-38A6-4508-B18D-42582916FCE3"
 }

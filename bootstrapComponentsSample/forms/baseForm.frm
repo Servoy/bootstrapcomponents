@@ -6,51 +6,15 @@
     "encapsulation":108,
     "items":[
         {
-            "cssPosition":"0,20,-1,20,600,80",
-            "json":{
-                "containedForm":"317D0EAE-F267-4F50-90BE-3F93EB560403",
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"80",
-                    "left":"20",
-                    "right":"20",
-                    "top":"0",
-                    "width":"600"
-                }
-            },
-            "name":"header_container",
-            "typeName":"servoycore-formcontainer",
-            "typeid":47,
-            "uuid":"11BC06D9-7B8C-4139-8980-A6162E2973E7"
-        },
-        {
-            "cssPosition":"-1,20,0,20,200,60",
-            "json":{
-                "containedForm":"363DD773-28D0-4623-919D-523AA395B26C",
-                "cssPosition":{
-                    "bottom":"0",
-                    "height":"60",
-                    "left":"20",
-                    "right":"20",
-                    "top":"-1",
-                    "width":"200"
-                }
-            },
-            "name":"footer_container",
-            "typeName":"servoycore-formcontainer",
-            "typeid":47,
-            "uuid":"7CC09A7F-385B-4FC3-ABDF-E9E5F58E3945"
-        },
-        {
             "height":497,
             "partType":5,
             "typeid":19,
-            "uuid":"9B4F373C-9D0C-47ED-A4A0-677BFEE7544F"
+            "uuid":"217888B5-388F-4947-9AE7-D7694879D80C"
         },
         {
             "cssPosition":"95,20,80,230,50,330",
             "json":{
-                "containedForm":"DCBB2664-7A02-4147-9286-D0A13208EE30",
+                "containedForm":"0BC5A9D8-446E-416A-9A5C-B00F134F06AB",
                 "cssPosition":{
                     "bottom":"80",
                     "height":"330",
@@ -63,12 +27,12 @@
             "name":"base_container",
             "typeName":"servoycore-formcontainer",
             "typeid":47,
-            "uuid":"AA743D55-6DAA-4A5D-8720-F827BAAFD94E"
+            "uuid":"2ED80F52-FBF5-43AC-84B7-1BD1800A6FBF"
         },
         {
             "cssPosition":"95,-1,80,20,190,330",
             "json":{
-                "containedForm":"15894D2E-8F7B-47B2-AD67-CC7BACA859AB",
+                "containedForm":"D4F5905E-DDF2-4ED9-97B4-4A72209828E6",
                 "cssPosition":{
                     "bottom":"80",
                     "height":"330",
@@ -81,15 +45,51 @@
             "name":"selector_container",
             "typeName":"servoycore-formcontainer",
             "typeid":47,
-            "uuid":"FD5E3D6B-F017-407C-A6B3-D9DF4A4531E2"
+            "uuid":"EBF8DDC4-2DD4-4083-B42F-C9FD06BC5A48"
+        },
+        {
+            "cssPosition":"0,20,-1,20,600,80",
+            "json":{
+                "containedForm":"CC963960-38A6-4508-B18D-42582916FCE3",
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"80",
+                    "left":"20",
+                    "right":"20",
+                    "top":"0",
+                    "width":"600"
+                }
+            },
+            "name":"header_container",
+            "typeName":"servoycore-formcontainer",
+            "typeid":47,
+            "uuid":"F33CB7D0-BD15-4940-98B3-9A991FE2796E"
+        },
+        {
+            "cssPosition":"-1,20,0,20,200,60",
+            "json":{
+                "containedForm":"5A5405FF-5CF2-4C8A-A38A-2DA977863B80",
+                "cssPosition":{
+                    "bottom":"0",
+                    "height":"60",
+                    "left":"20",
+                    "right":"20",
+                    "top":"-1",
+                    "width":"200"
+                }
+            },
+            "name":"footer_container",
+            "typeName":"servoycore-formcontainer",
+            "typeid":47,
+            "uuid":"F66D09F3-C39B-4273-851E-957FC7380DEC"
         }
     ],
     "name":"baseForm",
     "navigatorID":"-1",
-    "onLoadMethodID":"DF2EE7F7-692B-47F5-865F-43B11B0936A4",
+    "onLoadMethodID":"B3816812-5A41-458A-A564-5051BEBF0F7B",
     "scrollbars":36,
     "showInMenu":true,
     "size":"640,480",
     "typeid":3,
-    "uuid":"267B43A2-EDB5-41CA-B8E2-7B2F0FE7AB9E"
+    "uuid":"937C5F78-897E-41E3-85E6-1D10C87D082D"
 }

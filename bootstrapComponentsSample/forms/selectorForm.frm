@@ -9,24 +9,24 @@
     "encapsulation":108,
     "items":[
         {
-            "cssPosition":"278,-1,-1,0,160,34",
+            "cssPosition":"83,-1,-1,0,160,34",
             "json":{
                 "cssPosition":{
                     "bottom":"-1",
                     "height":"34",
                     "left":"0",
                     "right":"-1",
-                    "top":"278",
+                    "top":"83",
                     "width":"160"
                 },
-                "onActionMethodID":"C548711B-4B33-41B0-A998-E0F2BCF74C7A",
-                "text":"Tabpanel",
+                "onActionMethodID":"8ECDB367-2C16-453D-98ED-6C6CD141978D",
+                "text":"Calendar",
                 "variant":"BtnBlueGradient"
             },
-            "name":"btn_Tabpanel",
+            "name":"btn_Calendar",
             "typeName":"bootstrapcomponents-button",
             "typeid":47,
-            "uuid":"0D4D2477-D39C-4F7B-83E2-A4CEA3305BBD"
+            "uuid":"25C83D59-1822-417A-B96C-D590F8605CAB"
         },
         {
             "cssPosition":"473,-1,-1,0,160,34",
@@ -39,194 +39,20 @@
                     "top":"473",
                     "width":"160"
                 },
-                "onActionMethodID":"C548711B-4B33-41B0-A998-E0F2BCF74C7A",
+                "onActionMethodID":"8ECDB367-2C16-453D-98ED-6C6CD141978D",
                 "text":"Float Label",
                 "variant":"BtnBlueGradient"
             },
             "name":"btn_FloatLabel",
             "typeName":"bootstrapcomponents-button",
             "typeid":47,
-            "uuid":"12EA7052-6ED1-4CAB-8311-9C90AA64E868"
+            "uuid":"57D14FC0-2C29-4408-AE43-355915F2F2FA"
         },
         {
-            "cssPosition":"551,-1,-1,0,160,34",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"34",
-                    "left":"0",
-                    "right":"-1",
-                    "top":"551",
-                    "width":"160"
-                },
-                "onActionMethodID":"C548711B-4B33-41B0-A998-E0F2BCF74C7A",
-                "text":"List",
-                "variant":"BtnBlueGradient"
-            },
-            "name":"btn_List",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"1BAE2199-3290-4EC8-9D60-B2FC93325121"
-        },
-        {
-            "cssPosition":"161,-1,-1,0,160,34",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"34",
-                    "left":"0",
-                    "right":"-1",
-                    "top":"161",
-                    "width":"160"
-                },
-                "onActionMethodID":"C548711B-4B33-41B0-A998-E0F2BCF74C7A",
-                "text":"Textbox",
-                "variant":"BtnBlueGradient"
-            },
-            "name":"btn_Textbox",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"1DE1AD0D-28C1-436A-AEDD-0DD0F5CB366B"
-        },
-        {
-            "cssPosition":"512,-1,-1,0,160,34",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"34",
-                    "left":"0",
-                    "right":"-1",
-                    "top":"512",
-                    "width":"160"
-                },
-                "onActionMethodID":"C548711B-4B33-41B0-A998-E0F2BCF74C7A",
-                "text":"Image Media",
-                "variant":"BtnBlueGradient"
-            },
-            "name":"btn_ImageMedia",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"2D279964-863E-4522-BFA1-2649D21F5FE4"
-        },
-        {
-            "cssPosition":"356,-1,-1,0,160,34",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"34",
-                    "left":"0",
-                    "right":"-1",
-                    "top":"356",
-                    "width":"160"
-                },
-                "onActionMethodID":"C548711B-4B33-41B0-A998-E0F2BCF74C7A",
-                "text":"Accordion",
-                "variant":"BtnBlueGradient"
-            },
-            "name":"btn_Accordion",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"4F1355BD-5663-48DC-9A01-314F0FFE387D"
-        },
-        {
-            "cssPosition":"5,-1,-1,0,160,34",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"34",
-                    "left":"0",
-                    "right":"-1",
-                    "top":"5",
-                    "width":"160"
-                },
-                "onActionMethodID":"C548711B-4B33-41B0-A998-E0F2BCF74C7A",
-                "text":"Button",
-                "variant":"BtnBlueGradient"
-            },
-            "name":"btn_Button",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"52567BC4-2A71-4790-883B-B816F3A07BC5"
-        },
-        {
-            "cssPosition":"434,-1,-1,0,160,34",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"34",
-                    "left":"0",
-                    "right":"-1",
-                    "top":"434",
-                    "width":"160"
-                },
-                "onActionMethodID":"C548711B-4B33-41B0-A998-E0F2BCF74C7A",
-                "text":"Data Label",
-                "variant":"BtnBlueGradient"
-            },
-            "name":"btn_DataLabel",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"69B26CF1-6784-4ABC-B1F3-654651FD832B"
-        },
-        {
-            "cssPosition":"629,-1,-1,0,160,34",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"34",
-                    "left":"0",
-                    "right":"-1",
-                    "top":"629",
-                    "width":"160"
-                },
-                "onActionMethodID":"C548711B-4B33-41B0-A998-E0F2BCF74C7A",
-                "text":"Tabless Panel",
-                "variant":"BtnBlueGradient"
-            },
-            "name":"btn_tablessPanel",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"905A4329-4CCE-4931-9CDD-558324CEC69C"
-        },
-        {
-            "cssPosition":"200,-1,-1,0,160,34",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"34",
-                    "left":"0",
-                    "right":"-1",
-                    "top":"200",
-                    "width":"160"
-                },
-                "onActionMethodID":"C548711B-4B33-41B0-A998-E0F2BCF74C7A",
-                "text":"Combobox",
-                "variant":"BtnBlueGradient"
-            },
-            "name":"btn_Comboboxes",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"9596DCC1-698A-4994-8020-63A1A9F8B2D6"
-        },
-        {
-            "cssPosition":"590,-1,-1,0,160,34",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"34",
-                    "left":"0",
-                    "right":"-1",
-                    "top":"590",
-                    "width":"160"
-                },
-                "onActionMethodID":"C548711B-4B33-41B0-A998-E0F2BCF74C7A",
-                "text":"Select",
-                "variant":"BtnBlueGradient"
-            },
-            "name":"btn_Select",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"AA932C82-03F0-4949-A23C-25FEFAE356B8"
+            "height":714,
+            "partType":5,
+            "typeid":19,
+            "uuid":"59208612-5C12-4D3C-A45C-FC5E47B50C2F"
         },
         {
             "cssPosition":"122,-1,-1,0,160,34",
@@ -239,14 +65,134 @@
                     "top":"122",
                     "width":"160"
                 },
-                "onActionMethodID":"C548711B-4B33-41B0-A998-E0F2BCF74C7A",
+                "onActionMethodID":"8ECDB367-2C16-453D-98ED-6C6CD141978D",
                 "text":"Inline Calendar",
                 "variant":"BtnBlueGradient"
             },
             "name":"btn_InlineCalendar",
             "typeName":"bootstrapcomponents-button",
             "typeid":47,
-            "uuid":"AB88A703-0DDA-464C-8A39-819F373FDF6F"
+            "uuid":"64D5C577-AC4F-4BF4-B928-F52144D79C13"
+        },
+        {
+            "cssPosition":"356,-1,-1,0,160,34",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"34",
+                    "left":"0",
+                    "right":"-1",
+                    "top":"356",
+                    "width":"160"
+                },
+                "onActionMethodID":"8ECDB367-2C16-453D-98ED-6C6CD141978D",
+                "text":"Accordion",
+                "variant":"BtnBlueGradient"
+            },
+            "name":"btn_Accordion",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"66E22093-E38D-4D36-81EF-B73B021ACD0C"
+        },
+        {
+            "cssPosition":"512,-1,-1,0,160,34",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"34",
+                    "left":"0",
+                    "right":"-1",
+                    "top":"512",
+                    "width":"160"
+                },
+                "onActionMethodID":"8ECDB367-2C16-453D-98ED-6C6CD141978D",
+                "text":"Image Media",
+                "variant":"BtnBlueGradient"
+            },
+            "name":"btn_ImageMedia",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"75CB846A-20EF-4E6D-A01A-1803B2947E17"
+        },
+        {
+            "cssPosition":"551,-1,-1,0,160,34",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"34",
+                    "left":"0",
+                    "right":"-1",
+                    "top":"551",
+                    "width":"160"
+                },
+                "onActionMethodID":"8ECDB367-2C16-453D-98ED-6C6CD141978D",
+                "text":"List",
+                "variant":"BtnBlueGradient"
+            },
+            "name":"btn_List",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"8920BCFA-A34C-4AF8-985D-676BD74D64B0"
+        },
+        {
+            "cssPosition":"590,-1,-1,0,160,34",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"34",
+                    "left":"0",
+                    "right":"-1",
+                    "top":"590",
+                    "width":"160"
+                },
+                "onActionMethodID":"8ECDB367-2C16-453D-98ED-6C6CD141978D",
+                "text":"Select",
+                "variant":"BtnBlueGradient"
+            },
+            "name":"btn_Select",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"8A6223E3-0E9F-491C-BB69-05285DED7177"
+        },
+        {
+            "cssPosition":"278,-1,-1,0,160,34",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"34",
+                    "left":"0",
+                    "right":"-1",
+                    "top":"278",
+                    "width":"160"
+                },
+                "onActionMethodID":"8ECDB367-2C16-453D-98ED-6C6CD141978D",
+                "text":"Tabpanel",
+                "variant":"BtnBlueGradient"
+            },
+            "name":"btn_Tabpanel",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"A60E5F1D-63D9-489D-AD40-61738BA83968"
+        },
+        {
+            "cssPosition":"5,-1,-1,0,160,34",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"34",
+                    "left":"0",
+                    "right":"-1",
+                    "top":"5",
+                    "width":"160"
+                },
+                "onActionMethodID":"8ECDB367-2C16-453D-98ED-6C6CD141978D",
+                "text":"Button",
+                "variant":"BtnBlueGradient"
+            },
+            "name":"btn_Button",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"ACB590AD-6D70-4C20-956C-6DB77EF5F22B"
         },
         {
             "cssPosition":"44,-1,-1,0,160,34",
@@ -259,40 +205,34 @@
                     "top":"44",
                     "width":"160"
                 },
-                "onActionMethodID":"C548711B-4B33-41B0-A998-E0F2BCF74C7A",
+                "onActionMethodID":"8ECDB367-2C16-453D-98ED-6C6CD141978D",
                 "text":"Label",
                 "variant":"BtnBlueGradient"
             },
             "name":"btn_Label",
             "typeName":"bootstrapcomponents-button",
             "typeid":47,
-            "uuid":"AEF630E8-30E0-4F36-B440-38DD014B54FA"
+            "uuid":"ACFC23E6-98D2-4EFD-8E39-F2CF00840DC6"
         },
         {
-            "height":714,
-            "partType":5,
-            "typeid":19,
-            "uuid":"B794AB2F-BABC-411E-AAB8-EB990151A598"
-        },
-        {
-            "cssPosition":"668,-1,-1,0,160,34",
+            "cssPosition":"629,-1,-1,0,160,34",
             "json":{
                 "cssPosition":{
                     "bottom":"-1",
                     "height":"34",
                     "left":"0",
                     "right":"-1",
-                    "top":"668",
+                    "top":"629",
                     "width":"160"
                 },
-                "onActionMethodID":"C548711B-4B33-41B0-A998-E0F2BCF74C7A",
-                "text":"Text Area",
+                "onActionMethodID":"8ECDB367-2C16-453D-98ED-6C6CD141978D",
+                "text":"Tabless Panel",
                 "variant":"BtnBlueGradient"
             },
-            "name":"btn_Textarea",
+            "name":"btn_tablessPanel",
             "typeName":"bootstrapcomponents-button",
             "typeid":47,
-            "uuid":"B9421654-7C59-4B9E-A130-A5C400880213"
+            "uuid":"AD161E19-E16A-4CB7-AECE-947A64B94A63"
         },
         {
             "cssPosition":"239,-1,-1,0,160,34",
@@ -305,14 +245,14 @@
                     "top":"239",
                     "width":"160"
                 },
-                "onActionMethodID":"C548711B-4B33-41B0-A998-E0F2BCF74C7A",
+                "onActionMethodID":"8ECDB367-2C16-453D-98ED-6C6CD141978D",
                 "text":"Checkbox",
                 "variant":"BtnBlueGradient"
             },
             "name":"btn_Checkboxes",
             "typeName":"bootstrapcomponents-button",
             "typeid":47,
-            "uuid":"CA0B0D94-7A86-4BA6-B5D3-1B92C2059983"
+            "uuid":"ADC18C72-959F-41BB-8D03-055546803999"
         },
         {
             "cssPosition":"317,-1,-1,0,160,34",
@@ -325,34 +265,34 @@
                     "top":"317",
                     "width":"160"
                 },
-                "onActionMethodID":"C548711B-4B33-41B0-A998-E0F2BCF74C7A",
+                "onActionMethodID":"8ECDB367-2C16-453D-98ED-6C6CD141978D",
                 "text":"Typeahead",
                 "variant":"BtnBlueGradient"
             },
             "name":"btn_Typeahead",
             "typeName":"bootstrapcomponents-button",
             "typeid":47,
-            "uuid":"E45AAF59-67A1-4A0B-B79F-6039460EB0F2"
+            "uuid":"B0DA25A9-0952-4762-9FA5-424D5BB2ACA8"
         },
         {
-            "cssPosition":"83,-1,-1,0,160,34",
+            "cssPosition":"668,-1,-1,0,160,34",
             "json":{
                 "cssPosition":{
                     "bottom":"-1",
                     "height":"34",
                     "left":"0",
                     "right":"-1",
-                    "top":"83",
+                    "top":"668",
                     "width":"160"
                 },
-                "onActionMethodID":"C548711B-4B33-41B0-A998-E0F2BCF74C7A",
-                "text":"Calendar",
+                "onActionMethodID":"8ECDB367-2C16-453D-98ED-6C6CD141978D",
+                "text":"Text Area",
                 "variant":"BtnBlueGradient"
             },
-            "name":"btn_Calendar",
+            "name":"btn_Textarea",
             "typeName":"bootstrapcomponents-button",
             "typeid":47,
-            "uuid":"F9C94EEC-170D-4D58-9D49-75A2427D7791"
+            "uuid":"BFB2325F-3E81-4007-8BB1-ADA0C7A9B653"
         },
         {
             "cssPosition":"395,-1,-1,0,160,34",
@@ -365,14 +305,74 @@
                     "top":"395",
                     "width":"160"
                 },
-                "onActionMethodID":"C548711B-4B33-41B0-A998-E0F2BCF74C7A",
+                "onActionMethodID":"8ECDB367-2C16-453D-98ED-6C6CD141978D",
                 "text":"Choice Group",
                 "variant":"BtnBlueGradient"
             },
             "name":"btn_ChoiceGroup",
             "typeName":"bootstrapcomponents-button",
             "typeid":47,
-            "uuid":"FF7C0674-137B-42A4-B149-0287F41776B4"
+            "uuid":"C4D669A8-05A0-44F6-AC52-31496D4FD50F"
+        },
+        {
+            "cssPosition":"161,-1,-1,0,160,34",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"34",
+                    "left":"0",
+                    "right":"-1",
+                    "top":"161",
+                    "width":"160"
+                },
+                "onActionMethodID":"8ECDB367-2C16-453D-98ED-6C6CD141978D",
+                "text":"Textbox",
+                "variant":"BtnBlueGradient"
+            },
+            "name":"btn_Textbox",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"C4E1B610-EE4B-462F-94BF-A9F6959976FF"
+        },
+        {
+            "cssPosition":"200,-1,-1,0,160,34",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"34",
+                    "left":"0",
+                    "right":"-1",
+                    "top":"200",
+                    "width":"160"
+                },
+                "onActionMethodID":"8ECDB367-2C16-453D-98ED-6C6CD141978D",
+                "text":"Combobox",
+                "variant":"BtnBlueGradient"
+            },
+            "name":"btn_Comboboxes",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"C634DC5F-D951-41DA-B6A0-C664BF767B4D"
+        },
+        {
+            "cssPosition":"434,-1,-1,0,160,34",
+            "json":{
+                "cssPosition":{
+                    "bottom":"-1",
+                    "height":"34",
+                    "left":"0",
+                    "right":"-1",
+                    "top":"434",
+                    "width":"160"
+                },
+                "onActionMethodID":"8ECDB367-2C16-453D-98ED-6C6CD141978D",
+                "text":"Data Label",
+                "variant":"BtnBlueGradient"
+            },
+            "name":"btn_DataLabel",
+            "typeName":"bootstrapcomponents-button",
+            "typeid":47,
+            "uuid":"EBA2A109-1315-4793-96E5-0FD64C6E779C"
         }
     ],
     "name":"selectorForm",
@@ -382,5 +382,5 @@
     "size":"180,714",
     "styleClass":"orange-scrollbar",
     "typeid":3,
-    "uuid":"15894D2E-8F7B-47B2-AD67-CC7BACA859AB"
+    "uuid":"D4F5905E-DDF2-4ED9-97B4-4A72209828E6"
 }

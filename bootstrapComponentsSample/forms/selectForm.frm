@@ -6,12 +6,6 @@
     "extendsID":"-1",
     "items":[
         {
-            "height":480,
-            "partType":5,
-            "typeid":19,
-            "uuid":"9A5F5C31-D9F7-4086-9505-A026FCA62741"
-        },
-        {
             "cssPosition":"96,-1,-1,121,235,30",
             "json":{
                 "cssPosition":{
@@ -27,10 +21,16 @@
             "name":"label_2",
             "typeName":"bootstrapcomponents-label",
             "typeid":47,
-            "uuid":"B2119A66-5109-40A1-B05E-C01510AA21F8"
+            "uuid":"A2CE5D55-EBCA-4E4B-B0C3-EF2A72123935"
+        },
+        {
+            "height":480,
+            "partType":5,
+            "typeid":19,
+            "uuid":"E3C2588A-4141-42FB-8837-87110672A86F"
         }
     ],
     "name":"selectForm",
     "typeid":3,
-    "uuid":"D4F7B228-243A-4481-945D-8B1469D93E55"
+    "uuid":"BC42112F-98C8-4BA5-9E66-78B52AB0A50B"
 }

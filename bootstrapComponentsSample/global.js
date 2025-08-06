@@ -1,7 +1,7 @@
 /**
  * @type {String}
  *
- * @properties={"typeid":35,"uuid":"1C99CC23-664D-4D32-BF93-D0A598EF7AF9"}
+ * @properties={"typeid":35,"uuid":"135A0AD7-157F-4AE6-BFCF-245BDE24E926"}
  */
 var footerStatus = '';
 
@@ -9,14 +9,14 @@ var footerStatus = '';
  * TODO generated, please specify type and doc for the params
  * @param {String} message
  *
- * @properties={"typeid":24,"uuid":"992FEE18-D3E1-4413-BC9D-FAC7B178568C"}
+ * @properties={"typeid":24,"uuid":"DCC7306B-6E29-496E-9C72-3CAB83285135"}
  */
 function setStatusMessage(message) {
 	footerStatus = message;
 }
 
 /**
- * @properties={"typeid":24,"uuid":"E3FE891D-1E9C-4158-B055-7F8D3B22D9F2"}
+ * @properties={"typeid":24,"uuid":"65145F7A-FB64-4A6B-8B1B-497907A9DC5C"}
  * 
  * @return {String}
  */

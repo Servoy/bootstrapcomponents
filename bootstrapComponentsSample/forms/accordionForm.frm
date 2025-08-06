@@ -21,16 +21,16 @@
             "name":"label_4",
             "typeName":"bootstrapcomponents-label",
             "typeid":47,
-            "uuid":"95E852CE-D30E-495F-B917-DE8FD86F51E1"
+            "uuid":"5127DA5F-7764-4F2D-AC18-C27338F248D3"
         },
         {
             "height":480,
             "partType":5,
             "typeid":19,
-            "uuid":"E8FC0356-76D1-4AD1-A84C-DBA70A11DF0F"
+            "uuid":"8F355031-8467-4E74-A033-27516221E49E"
         }
     ],
     "name":"accordionForm",
     "typeid":3,
-    "uuid":"6F6228AE-41B3-4F03-841E-D876E0ACABC2"
+    "uuid":"6E8E3A38-BA02-44A4-B078-74AFBF9CA740"
 }
