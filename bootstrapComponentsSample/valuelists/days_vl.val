@@ -1,15 +1,13 @@
-{
-    "addEmptyValue":1,
-    "customValues":"Monday\
+addEmptyValue:1,
+customValues:"Monday\
 Tuesday\
 Wednesday\
 Thursday\
 Friday\
 Saturday\
 Sunday",
-    "displayValueType":12,
-    "name":"days_vl",
-    "realValueType":12,
-    "typeid":34,
-    "uuid":"92D95E09-C6FC-47E1-9BFF-C188441C97F3"
-}
+displayValueType:12,
+name:"days_vl",
+realValueType:12,
+typeid:34,
+uuid:"92D95E09-C6FC-47E1-9BFF-C188441C97F3"

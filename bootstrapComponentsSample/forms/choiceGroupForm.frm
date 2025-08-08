@@ -1,36 +1,31 @@
+customProperties:"formComponent:false,useCssPosition:true",
+extendsID:"-1",
+items:[
 {
-    "customProperties":{
-        "formComponent":false,
-        "useCssPosition":true
-    },
-    "extendsID":"-1",
-    "items":[
-        {
-            "cssPosition":"70,-1,-1,134,80,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"134",
-                    "right":"-1",
-                    "top":"70",
-                    "width":"80"
-                },
-                "text":"choice"
-            },
-            "name":"label_7",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"1D72140B-5E3F-4046-9008-366B26AFEBF9"
-        },
-        {
-            "height":480,
-            "partType":5,
-            "typeid":19,
-            "uuid":"AE2B02FA-D812-4641-960E-F0C1CAFC5AB5"
-        }
-    ],
-    "name":"choiceGroupForm",
-    "typeid":3,
-    "uuid":"AD213913-27A3-4531-B76D-A06D5B5AC8AB"
+cssPosition:"70,-1,-1,134,80,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"134",
+right:"-1",
+top:"70",
+width:"80"
+},
+text:"choice"
+},
+name:"label_7",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"1D72140B-5E3F-4046-9008-366B26AFEBF9"
+},
+{
+height:480,
+partType:5,
+typeid:19,
+uuid:"AE2B02FA-D812-4641-960E-F0C1CAFC5AB5"
 }
+],
+name:"choiceGroupForm",
+typeid:3,
+uuid:"AD213913-27A3-4531-B76D-A06D5B5AC8AB"

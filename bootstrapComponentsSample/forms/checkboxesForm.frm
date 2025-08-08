@@ -1,36 +1,31 @@
+customProperties:"formComponent:false,useCssPosition:true",
+extendsID:"-1",
+items:[
 {
-    "customProperties":{
-        "formComponent":false,
-        "useCssPosition":true
-    },
-    "extendsID":"-1",
-    "items":[
-        {
-            "cssPosition":"51,-1,-1,107,242,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"107",
-                    "right":"-1",
-                    "top":"51",
-                    "width":"242"
-                },
-                "text":"checkboxes"
-            },
-            "name":"label_6",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"298BA9C6-2F9C-40F9-BF34-AD4E0211E60C"
-        },
-        {
-            "height":480,
-            "partType":5,
-            "typeid":19,
-            "uuid":"AC50A1FD-20AA-4485-840E-B0EA7A7E2392"
-        }
-    ],
-    "name":"checkboxesForm",
-    "typeid":3,
-    "uuid":"6982B789-07F5-4077-A577-BE9859E82BE3"
+cssPosition:"51,-1,-1,107,242,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"107",
+right:"-1",
+top:"51",
+width:"242"
+},
+text:"checkboxes"
+},
+name:"label_6",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"298BA9C6-2F9C-40F9-BF34-AD4E0211E60C"
+},
+{
+height:480,
+partType:5,
+typeid:19,
+uuid:"AC50A1FD-20AA-4485-840E-B0EA7A7E2392"
 }
+],
+name:"checkboxesForm",
+typeid:3,
+uuid:"6982B789-07F5-4077-A577-BE9859E82BE3"

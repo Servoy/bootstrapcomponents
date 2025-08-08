@@ -1,962 +1,951 @@
+customProperties:"formComponent:false,useCssPosition:true",
+extendsID:"-1",
+items:[
 {
-    "customProperties":{
-        "formComponent":false,
-        "methods":{
-            "onLoadMethodID":{
-                "arguments":null,
-                "parameters":null
-            }
-        },
-        "useCssPosition":true
-    },
-    "extendsID":"-1",
-    "items":[
-        {
-            "cssPosition":"498,-1,-1,40,145,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"40",
-                    "right":"-1",
-                    "top":"498",
-                    "width":"145"
-                },
-                "text":"Disabled days"
-            },
-            "name":"label_8",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"03CCC76D-6CE6-4EB5-B5F4-AB9D11D9DFAF"
-        },
-        {
-            "cssPosition":"538,-1,-1,421,209,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"421",
-                    "right":"-1",
-                    "top":"538",
-                    "width":"209"
-                },
-                "onActionMethodID":"E1C05243-0ADE-4B0A-BEBE-3781E67CA1A2",
-                "styleClass":"btn-primary",
-                "text":"Reset"
-            },
-            "name":"btn_restrictionreset",
-            "styleClass":"btn-primary",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"0546C219-56E7-4260-816E-A9942C1F9CD1"
-        },
-        {
-            "cssPosition":"931,-1,-1,22,180,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"22",
-                    "right":"-1",
-                    "top":"931",
-                    "width":"180"
-                },
-                "text":"Inline"
-            },
-            "name":"lbl_inline",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"05828D2B-0151-4687-BB01-4E19FB30A2AD"
-        },
-        {
-            "cssPosition":"931,-1,-1,210,236,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"210",
-                    "right":"-1",
-                    "top":"931",
-                    "width":"236"
-                },
-                "dataProviderID":"customDate",
-                "format":"MM/dd/yyyy",
-                "pickerOnly":true,
-                "placeholderText":"Inline"
-            },
-            "name":"inline_calendar",
-            "typeName":"bootstrapcomponents-calendar",
-            "typeid":47,
-            "uuid":"0A952439-5219-4B69-83FA-BE6308530C04"
-        },
-        {
-            "cssPosition":"83,-1,-1,150,534,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"150",
-                    "right":"-1",
-                    "top":"83",
-                    "width":"534"
-                },
-                "dataProviderID":"format_dp",
-                "onDataChangeMethodID":"76692A37-B531-4FA9-B6D4-5F2004518BBF",
-                "valuelistID":"BF769E54-24F9-41BA-8F88-22521B778D62"
-            },
-            "name":"cb_format",
-            "typeName":"bootstrapcomponents-combobox",
-            "typeid":47,
-            "uuid":"0B1CDE12-5854-4F38-9FD5-17F60B42E863"
-        },
-        {
-            "cssPosition":"1011,-1,-1,22,180,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"22",
-                    "right":"-1",
-                    "top":"1011",
-                    "width":"180"
-                },
-                "text":"Today button only"
-            },
-            "name":"lbl_today_only_button",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"116D33AE-41EB-48E8-BB49-015C94639499"
-        },
-        {
-            "cssPosition":"418,-1,-1,40,145,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"40",
-                    "right":"-1",
-                    "top":"418",
-                    "width":"145"
-                },
-                "text":"Min date"
-            },
-            "name":"lbl_mindate",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"1715805E-AACD-48BB-9495-A9F1A56A9EAB"
-        },
-        {
-            "cssPosition":"289,-1,-1,584,100,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"584",
-                    "right":"-1",
-                    "top":"289",
-                    "width":"100"
-                },
-                "onActionMethodID":"047E0D90-46DB-44EE-8A28-503AD142F516",
-                "styleClass":"btn-primary",
-                "text":"Apply"
-            },
-            "name":"btn_apply_tooltip",
-            "styleClass":"btn-primary",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"1DE1D2EA-0CDD-490F-BF2E-3754BE3CD6DB"
-        },
-        {
-            "cssPosition":"771,-1,-1,210,236,30",
-            "json":{
-                "calendarWeeks":false,
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"210",
-                    "right":"-1",
-                    "top":"771",
-                    "width":"236"
-                },
-                "dataProviderID":"customDate",
-                "format":"MM/dd/yyyy hh:mm aa",
-                "pickerOnly":true,
-                "placeholderText":"Calendar side by side"
-            },
-            "name":"side_by_side_calendar",
-            "typeName":"bootstrapcomponents-calendar",
-            "typeid":47,
-            "uuid":"24AF6441-214A-4B5A-B08E-A57EB7B6A1AF"
-        },
-        {
-            "cssPosition":"458,-1,-1,421,209,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"421",
-                    "right":"-1",
-                    "top":"458",
-                    "width":"209"
-                },
-                "onActionMethodID":"7390DF77-9F70-4CD7-B155-6C70EE23C729",
-                "styleClass":"btn-primary",
-                "text":"Set as disabled date"
-            },
-            "name":"btn_disable2",
-            "styleClass":"btn-primary",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"250FE4D4-01E3-4571-8C0A-1C4D23A46F70"
-        },
-        {
-            "cssPosition":"169,-1,-1,150,100,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"150",
-                    "right":"-1",
-                    "top":"169",
-                    "width":"100"
-                },
-                "onActionMethodID":"8635E42D-F589-41A4-8442-76C890F85355",
-                "styleClass":"btn-primary",
-                "text":"Toggle"
-            },
-            "name":"btn_toggle_visible",
-            "styleClass":"btn-primary",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"29C7B529-D9AB-4D3C-91CF-A57B61958859"
-        },
-        {
-            "cssPosition":"378,-1,-1,0,776,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"0",
-                    "right":"-1",
-                    "top":"378",
-                    "width":"776"
-                },
-                "styleClass":"label-blue-gradient",
-                "text":"Date Restriction Properties"
-            },
-            "name":"lbl_date_restriction",
-            "styleClass":"label-blue-gradient",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"32E5F59D-F68F-4C4D-9C78-B5B0FF1BD739"
-        },
-        {
-            "cssPosition":"130,-1,-1,40,100,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"40",
-                    "right":"-1",
-                    "top":"130",
-                    "width":"100"
-                },
-                "text":"Enable"
-            },
-            "name":"lbl_toggle_enable",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"33381F22-BF1D-433F-9D9E-218FADE09936"
-        },
-        {
-            "cssPosition":"129,-1,-1,150,100,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"150",
-                    "right":"-1",
-                    "top":"129",
-                    "width":"100"
-                },
-                "onActionMethodID":"C338C953-043D-48C5-B18F-5EC7C78D789A",
-                "styleClass":"btn-primary",
-                "text":"Toggle"
-            },
-            "name":"btn_toggle_enable",
-            "styleClass":"btn-primary",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"4A5927A7-AED4-4B26-B7CC-645EC17FC9AF"
-        },
-        {
-            "cssPosition":"686,-1,-1,193,220,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"193",
-                    "right":"-1",
-                    "top":"686",
-                    "width":"220"
-                },
-                "dataProviderID":"minMaxDP",
-                "format":"dd-MM-yyyy HH:mm|dd-MM-yyyy",
-                "placeholderText":"Open calendar with restrictions",
-                "toolTipText":"Open calendar with min, max and disabled dates"
-            },
-            "name":"minmax_calendar",
-            "typeName":"bootstrapcomponents-calendar",
-            "typeid":47,
-            "uuid":"54BD6D48-5E48-4D1F-B29A-3DE96A1F6119"
-        },
-        {
-            "cssPosition":"971,-1,-1,22,180,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"22",
-                    "right":"-1",
-                    "top":"971",
-                    "width":"180"
-                },
-                "text":"Custom icons"
-            },
-            "name":"lbl_weekend_disabled",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"5B628C40-896C-4137-BF69-16E043B27991"
-        },
-        {
-            "cssPosition":"891,-1,-1,210,236,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"210",
-                    "right":"-1",
-                    "top":"891",
-                    "width":"236"
-                },
-                "dataProviderID":"customDate",
-                "format":"MM/dd/yyyy",
-                "pickerOnly":true,
-                "placeholderText":"Month view"
-            },
-            "name":"month_view_calendar",
-            "typeName":"bootstrapcomponents-calendar",
-            "typeid":47,
-            "uuid":"5EE833AB-7831-403E-9A81-5DB3C50A29D0"
-        },
-        {
-            "cssPosition":"329,-1,-1,584,100,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"584",
-                    "right":"-1",
-                    "top":"329",
-                    "width":"100"
-                },
-                "onActionMethodID":"2E1B7F23-FB33-4C1A-93EF-6002ABACCC83",
-                "styleClass":"btn-primary",
-                "text":"Apply"
-            },
-            "name":"btn_apply_placeholder",
-            "styleClass":"btn-primary",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"644EAB0A-8793-480E-BEEE-6875D373A7C5"
-        },
-        {
-            "cssPosition":"289,-1,-1,40,100,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"40",
-                    "right":"-1",
-                    "top":"289",
-                    "width":"100"
-                },
-                "text":"ToolTipText"
-            },
-            "name":"lbl_prop_tooltip",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"666E8DD2-2340-474A-8718-3D07FA1304F3"
-        },
-        {
-            "cssPosition":"418,-1,-1,421,209,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"421",
-                    "right":"-1",
-                    "top":"418",
-                    "width":"209"
-                },
-                "onActionMethodID":"BEC8046E-D587-4ED6-A1BC-7B6115880D42",
-                "styleClass":"btn-primary",
-                "text":"Set as disabled date"
-            },
-            "name":"btn_disable1",
-            "styleClass":"btn-primary",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"67FF1FAC-BA75-4C0B-81A0-8B1D9DF6E741"
-        },
-        {
-            "height":1048,
-            "partType":5,
-            "typeid":19,
-            "uuid":"698F76A6-664C-45E2-B310-06BE588E0CF5"
-        },
-        {
-            "cssPosition":"686,-1,-1,40,145,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"40",
-                    "right":"-1",
-                    "top":"686",
-                    "width":"145"
-                },
-                "text":"Min / Max Calendar"
-            },
-            "name":"lbl_mionmax",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"6C02E67F-0FA0-4A9F-905A-51DCA4C28FB8"
-        },
-        {
-            "cssPosition":"971,-1,-1,210,236,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"210",
-                    "right":"-1",
-                    "top":"971",
-                    "width":"236"
-                },
-                "dataProviderID":"customDate",
-                "format":"MM/dd/yyyy",
-                "pickerOnly":true,
-                "placeholderText":"Custom icons"
-            },
-            "name":"custom_icons_calendar",
-            "typeName":"bootstrapcomponents-calendar",
-            "typeid":47,
-            "uuid":"6D951C31-253B-4C83-A094-74C8FCE54E65"
-        },
-        {
-            "cssPosition":"736,0,-1,0,300,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"0",
-                    "right":"0",
-                    "top":"736",
-                    "width":"300"
-                },
-                "styleClass":"label-blue-gradient",
-                "text":"Custom Configurations"
-            },
-            "name":"lbl_advanced_config",
-            "styleClass":"label-blue-gradient",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"6E18054A-9FD4-47B1-A6F5-2CBFE7EBA3BB"
-        },
-        {
-            "cssPosition":"249,-1,-1,40,213,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"40",
-                    "right":"-1",
-                    "top":"249",
-                    "width":"213"
-                },
-                "onActionMethodID":"4D7BD9EA-7532-4B7B-B2B9-F4AE7581B924",
-                "styleClass":"btn-primary",
-                "text":"Reset"
-            },
-            "name":"btn_basic_reset",
-            "styleClass":"btn-primary",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"6E2AD9EB-D52A-40CC-A324-43DF393BEE3E"
-        },
-        {
-            "cssPosition":"208,-1,-1,40,100,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"40",
-                    "right":"-1",
-                    "top":"208",
-                    "width":"100"
-                },
-                "text":"Style class"
-            },
-            "name":"lbl_style_class",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"6F9B62D3-F6DA-405C-B167-B1AB16189982"
-        },
-        {
-            "cssPosition":"418,-1,-1,193,220,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"193",
-                    "right":"-1",
-                    "top":"418",
-                    "width":"220"
-                },
-                "dataProviderID":"mindateDP",
-                "format":"dd-MM-yyyy",
-                "onDataChangeMethodID":"11B588B3-36E6-4FEE-B079-1581DCF1611F",
-                "pickerOnly":true,
-                "placeholderText":"Select minimum date",
-                "toolTipText":"Select minimum date"
-            },
-            "name":"calendar_min_date",
-            "typeName":"bootstrapcomponents-calendar",
-            "typeid":47,
-            "uuid":"7254C648-E5DD-440A-B3B5-B44866758234"
-        },
-        {
-            "cssPosition":"498,-1,-1,421,209,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"421",
-                    "right":"-1",
-                    "top":"498",
-                    "width":"209"
-                },
-                "dataProviderID":"keepInvalidDP",
-                "styleClass":"bg-primary",
-                "text":"Keep existing disables"
-            },
-            "name":"cb_keepDisabled",
-            "styleClass":"bg-primary",
-            "typeName":"bootstrapcomponents-checkbox",
-            "typeid":47,
-            "uuid":"7693E49D-5AF4-48EE-BC22-049D35AB2E80"
-        },
-        {
-            "cssPosition":"129,-1,-1,266,420,150",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"150",
-                    "left":"266",
-                    "right":"-1",
-                    "top":"129",
-                    "width":"420"
-                },
-                "dataProviderID":"base_message_dp"
-            },
-            "name":"txt_message",
-            "typeName":"bootstrapcomponents-textarea",
-            "typeid":47,
-            "uuid":"77603E8E-FFA7-46D2-A66E-F1C7B3549B8D"
-        },
-        {
-            "cssPosition":"458,-1,-1,193,220,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"193",
-                    "right":"-1",
-                    "top":"458",
-                    "width":"220"
-                },
-                "dataProviderID":"maxdateDP",
-                "format":"dd-MM-yyyy",
-                "onDataChangeMethodID":"11B588B3-36E6-4FEE-B079-1581DCF1611F",
-                "pickerOnly":true,
-                "placeholderText":"Select maximum date",
-                "toolTipText":"Select maximum date"
-            },
-            "name":"calendar_max_date",
-            "typeName":"bootstrapcomponents-calendar",
-            "typeid":47,
-            "uuid":"7C874DF2-F53F-4FA1-BF35-586EECD617C6"
-        },
-        {
-            "cssPosition":"498,-1,-1,193,220,178",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"178",
-                    "left":"193",
-                    "right":"-1",
-                    "top":"498",
-                    "width":"220"
-                },
-                "dataProviderID":"disabledDaysDP",
-                "onDataChangeMethodID":"380CA697-CD88-4707-88CC-7A1F7A244582",
-                "styleClass":"border border-primary",
-                "valuelistID":"92D95E09-C6FC-47E1-9BFF-C188441C97F3"
-            },
-            "name":"choicegroup_7",
-            "styleClass":"border border-primary",
-            "typeName":"bootstrapcomponents-choicegroup",
-            "typeid":47,
-            "uuid":"869A1E9C-3354-4CBA-AE13-3C2B59D938BC"
-        },
-        {
-            "cssPosition":"83,-1,-1,40,100,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"40",
-                    "right":"-1",
-                    "top":"83",
-                    "width":"100"
-                },
-                "text":"Format"
-            },
-            "name":"lbl_format",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"8CAB302D-F967-4811-96AA-512FAF07510F"
-        },
-        {
-            "cssPosition":"458,-1,-1,40,145,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"40",
-                    "right":"-1",
-                    "top":"458",
-                    "width":"145"
-                },
-                "text":"Max date"
-            },
-            "name":"lbl_maxdate",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"8EDB27FE-9A6E-4314-A5CC-8A72863CC3D1"
-        },
-        {
-            "cssPosition":"329,-1,-1,150,426,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"150",
-                    "right":"-1",
-                    "top":"329",
-                    "width":"426"
-                },
-                "dataProviderID":"placeholder_dp"
-            },
-            "name":"txt_placeholder",
-            "typeName":"bootstrapcomponents-textbox",
-            "typeid":47,
-            "uuid":"961398BE-C7DF-4F38-8C60-6320081B547D"
-        },
-        {
-            "cssPosition":"771,-1,-1,22,180,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"22",
-                    "right":"-1",
-                    "top":"771",
-                    "width":"180"
-                },
-                "text":"Side by side"
-            },
-            "name":"lbl_options",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"963DE4C2-3F1E-4351-ACC4-21F2C57ADB63"
-        },
-        {
-            "cssPosition":"891,-1,-1,22,180,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"22",
-                    "right":"-1",
-                    "top":"891",
-                    "width":"180"
-                },
-                "text":"Month view"
-            },
-            "name":"lbl_month_view",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"984455D8-3307-444A-82AB-2F3E31FA46EC"
-        },
-        {
-            "cssPosition":"329,-1,-1,40,100,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"40",
-                    "right":"-1",
-                    "top":"329",
-                    "width":"100"
-                },
-                "text":"Placeholder"
-            },
-            "name":"lbl_prop_placeholder",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"99F71CCB-76CC-4701-AB60-AB18083BD9DB"
-        },
-        {
-            "cssPosition":"40,-1,-1,150,534,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"150",
-                    "right":"-1",
-                    "top":"40",
-                    "width":"534"
-                },
-                "dataProviderID":"date_dp",
-                "enabledDataProvider":"enableDP",
-                "format":"MM/dd/yyyy hh:mm aa",
-                "onActionMethodID":"D43C8CBE-A9C7-4A54-BF87-31E21899A694",
-                "onDataChangeMethodID":"BE552F74-7E68-4F17-8E19-32FFE55A9571",
-                "onFocusGainedMethodID":"8432EEA4-625E-4B1D-A644-83ECEEBB6342",
-                "onFocusLostMethodID":"50A92003-C1D7-4A4B-ABE4-66BD1E4773B3",
-                "pickerOnly":true,
-                "placeholderText":"Select a date",
-                "selectOnEnter":true,
-                "toolTipText":"This is a demo calendar for basic configuration",
-                "visible":true,
-                "visibleDataProvider":"visibleDP"
-            },
-            "name":"basic_calendar",
-            "typeName":"bootstrapcomponents-calendar",
-            "typeid":47,
-            "uuid":"AB1574B1-79B6-4E6A-AE28-0697514BACDB"
-        },
-        {
-            "cssPosition":"851,-1,-1,22,180,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"22",
-                    "right":"-1",
-                    "top":"851",
-                    "width":"180"
-                },
-                "text":"Dark theme"
-            },
-            "name":"lbl_dark_theme",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"BB0A65AC-5DDF-41B0-8ABC-8E3CFA0AB128"
-        },
-        {
-            "cssPosition":"0,0,-1,0,300,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"0",
-                    "right":"0",
-                    "top":"0",
-                    "width":"300"
-                },
-                "styleClass":"label-blue-gradient",
-                "text":"Basic Configuration Properties"
-            },
-            "name":"lbl_basic_config",
-            "styleClass":"label-blue-gradient",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"BD934262-3756-4F99-A9C3-09CBADA7E46E"
-        },
-        {
-            "cssPosition":"811,-1,-1,22,180,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"22",
-                    "right":"-1",
-                    "top":"811",
-                    "width":"180"
-                },
-                "text":"Time only"
-            },
-            "name":"lbl_calendar_weeks",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"C2517D12-2467-4115-A43B-17416D2B6267"
-        },
-        {
-            "cssPosition":"851,-1,-1,210,236,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"210",
-                    "right":"-1",
-                    "top":"851",
-                    "width":"236"
-                },
-                "dataProviderID":"customDate",
-                "format":"MM/dd/yyyy",
-                "pickerOnly":true,
-                "placeholderText":"Dark theme"
-            },
-            "name":"dark_theme_calendar",
-            "typeName":"bootstrapcomponents-calendar",
-            "typeid":47,
-            "uuid":"C3C5C7E4-E045-427C-8CBB-436E4C8671E2"
-        },
-        {
-            "cssPosition":"40,-1,-1,40,100,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"40",
-                    "right":"-1",
-                    "top":"40",
-                    "width":"100"
-                },
-                "text":"Base calendar"
-            },
-            "name":"lbl_calendar",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"CEE7206F-E253-404B-83CC-97F0B1C9458E"
-        },
-        {
-            "cssPosition":"289,-1,-1,150,426,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"150",
-                    "right":"-1",
-                    "top":"289",
-                    "width":"426"
-                },
-                "dataProviderID":"tooltip_dp"
-            },
-            "name":"txt_tooltip",
-            "typeName":"bootstrapcomponents-textbox",
-            "typeid":47,
-            "uuid":"E60983F6-E5D3-4261-B7BE-199981415629"
-        },
-        {
-            "cssPosition":"1011,-1,-1,210,236,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"210",
-                    "right":"-1",
-                    "top":"1011",
-                    "width":"236"
-                },
-                "dataProviderID":"customDate",
-                "format":"MM/dd/yyyy",
-                "pickerOnly":true,
-                "placeholderText":"Today button only"
-            },
-            "name":"today_only_button_calendar",
-            "typeName":"bootstrapcomponents-calendar",
-            "typeid":47,
-            "uuid":"E61E9AAF-30C8-4E5A-B1EC-A40FBBF21CBC"
-        },
-        {
-            "cssPosition":"209,-1,-1,152,100,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"152",
-                    "right":"-1",
-                    "top":"209",
-                    "width":"100"
-                },
-                "onActionMethodID":"B28B6B7A-3BC9-4AFD-BF4B-8A8D469D3DAA",
-                "styleClass":"btn-primary",
-                "text":"Change"
-            },
-            "name":"btn_change_styleclass",
-            "styleClass":"btn-primary",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"E6DCB408-34D7-4CD8-AD6B-2A633EAEBD28"
-        },
-        {
-            "cssPosition":"169,-1,-1,40,100,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"40",
-                    "right":"-1",
-                    "top":"169",
-                    "width":"100"
-                },
-                "text":"Visible"
-            },
-            "name":"lbl_prop_visible",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"FE1CB6CE-DA4E-47D2-9021-4ECB54D23F2F"
-        },
-        {
-            "cssPosition":"811,-1,-1,210,236,30",
-            "json":{
-                "calendarWeeks":false,
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"210",
-                    "right":"-1",
-                    "top":"811",
-                    "width":"236"
-                },
-                "dataProviderID":"customDate",
-                "format":"MM/dd/yyyy hh:mm aa",
-                "pickerOnly":true,
-                "placeholderText":"Time only"
-            },
-            "name":"calendar_timeonly",
-            "typeName":"bootstrapcomponents-calendar",
-            "typeid":47,
-            "uuid":"FFBB4CBF-9FC2-456A-9616-C5218DCD90FF"
-        }
-    ],
-    "name":"calendarForm",
-    "onLoadMethodID":"9144DA7D-31FA-4B07-BB20-23FFAFA3E3A5",
-    "size":"773,1200",
-    "typeid":3,
-    "uuid":"F77B610A-EAB8-4A4F-A497-EDD4569DB018"
+cssPosition:"498,-1,-1,40,145,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"40",
+right:"-1",
+top:"498",
+width:"145"
+},
+text:"Disabled days"
+},
+name:"label_8",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"03CCC76D-6CE6-4EB5-B5F4-AB9D11D9DFAF"
+},
+{
+cssPosition:"538,-1,-1,421,209,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"421",
+right:"-1",
+top:"538",
+width:"209"
+},
+onActionMethodID:"E1C05243-0ADE-4B0A-BEBE-3781E67CA1A2",
+styleClass:"btn-primary",
+text:"Reset"
+},
+name:"btn_restrictionreset",
+styleClass:"btn-primary",
+typeName:"bootstrapcomponents-button",
+typeid:47,
+uuid:"0546C219-56E7-4260-816E-A9942C1F9CD1"
+},
+{
+cssPosition:"931,-1,-1,22,180,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"22",
+right:"-1",
+top:"931",
+width:"180"
+},
+text:"Inline"
+},
+name:"lbl_inline",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"05828D2B-0151-4687-BB01-4E19FB30A2AD"
+},
+{
+cssPosition:"931,-1,-1,210,236,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"210",
+right:"-1",
+top:"931",
+width:"236"
+},
+dataProviderID:"customDate",
+format:"MM/dd/yyyy",
+pickerOnly:true,
+placeholderText:"Inline"
+},
+name:"inline_calendar",
+typeName:"bootstrapcomponents-calendar",
+typeid:47,
+uuid:"0A952439-5219-4B69-83FA-BE6308530C04"
+},
+{
+cssPosition:"83,-1,-1,150,534,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"150",
+right:"-1",
+top:"83",
+width:"534"
+},
+dataProviderID:"format_dp",
+onDataChangeMethodID:"76692A37-B531-4FA9-B6D4-5F2004518BBF",
+valuelistID:"BF769E54-24F9-41BA-8F88-22521B778D62"
+},
+name:"cb_format",
+typeName:"bootstrapcomponents-combobox",
+typeid:47,
+uuid:"0B1CDE12-5854-4F38-9FD5-17F60B42E863"
+},
+{
+cssPosition:"1011,-1,-1,22,180,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"22",
+right:"-1",
+top:"1011",
+width:"180"
+},
+text:"Today button only"
+},
+name:"lbl_today_only_button",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"116D33AE-41EB-48E8-BB49-015C94639499"
+},
+{
+cssPosition:"418,-1,-1,40,145,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"40",
+right:"-1",
+top:"418",
+width:"145"
+},
+text:"Min date"
+},
+name:"lbl_mindate",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"1715805E-AACD-48BB-9495-A9F1A56A9EAB"
+},
+{
+cssPosition:"289,-1,-1,584,100,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"584",
+right:"-1",
+top:"289",
+width:"100"
+},
+onActionMethodID:"047E0D90-46DB-44EE-8A28-503AD142F516",
+styleClass:"btn-primary",
+text:"Apply"
+},
+name:"btn_apply_tooltip",
+styleClass:"btn-primary",
+typeName:"bootstrapcomponents-button",
+typeid:47,
+uuid:"1DE1D2EA-0CDD-490F-BF2E-3754BE3CD6DB"
+},
+{
+cssPosition:"771,-1,-1,210,236,30",
+json:{
+calendarWeeks:false,
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"210",
+right:"-1",
+top:"771",
+width:"236"
+},
+dataProviderID:"customDate",
+format:"MM/dd/yyyy hh:mm aa",
+pickerOnly:true,
+placeholderText:"Calendar side by side"
+},
+name:"side_by_side_calendar",
+typeName:"bootstrapcomponents-calendar",
+typeid:47,
+uuid:"24AF6441-214A-4B5A-B08E-A57EB7B6A1AF"
+},
+{
+cssPosition:"458,-1,-1,421,209,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"421",
+right:"-1",
+top:"458",
+width:"209"
+},
+onActionMethodID:"7390DF77-9F70-4CD7-B155-6C70EE23C729",
+styleClass:"btn-primary",
+text:"Set as disabled date"
+},
+name:"btn_disable2",
+styleClass:"btn-primary",
+typeName:"bootstrapcomponents-button",
+typeid:47,
+uuid:"250FE4D4-01E3-4571-8C0A-1C4D23A46F70"
+},
+{
+cssPosition:"169,-1,-1,150,100,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"150",
+right:"-1",
+top:"169",
+width:"100"
+},
+onActionMethodID:"8635E42D-F589-41A4-8442-76C890F85355",
+styleClass:"btn-primary",
+text:"Toggle"
+},
+name:"btn_toggle_visible",
+styleClass:"btn-primary",
+typeName:"bootstrapcomponents-button",
+typeid:47,
+uuid:"29C7B529-D9AB-4D3C-91CF-A57B61958859"
+},
+{
+cssPosition:"378,-1,-1,0,776,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"0",
+right:"-1",
+top:"378",
+width:"776"
+},
+styleClass:"label-blue-gradient",
+text:"Date Restriction Properties"
+},
+name:"lbl_date_restriction",
+styleClass:"label-blue-gradient",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"32E5F59D-F68F-4C4D-9C78-B5B0FF1BD739"
+},
+{
+cssPosition:"130,-1,-1,40,100,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"40",
+right:"-1",
+top:"130",
+width:"100"
+},
+text:"Enable"
+},
+name:"lbl_toggle_enable",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"33381F22-BF1D-433F-9D9E-218FADE09936"
+},
+{
+cssPosition:"129,-1,-1,150,100,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"150",
+right:"-1",
+top:"129",
+width:"100"
+},
+onActionMethodID:"C338C953-043D-48C5-B18F-5EC7C78D789A",
+styleClass:"btn-primary",
+text:"Toggle"
+},
+name:"btn_toggle_enable",
+styleClass:"btn-primary",
+typeName:"bootstrapcomponents-button",
+typeid:47,
+uuid:"4A5927A7-AED4-4B26-B7CC-645EC17FC9AF"
+},
+{
+cssPosition:"686,-1,-1,193,220,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"193",
+right:"-1",
+top:"686",
+width:"220"
+},
+dataProviderID:"minMaxDP",
+format:"dd-MM-yyyy HH:mm|dd-MM-yyyy",
+placeholderText:"Open calendar with restrictions",
+toolTipText:"Open calendar with min, max and disabled dates"
+},
+name:"minmax_calendar",
+typeName:"bootstrapcomponents-calendar",
+typeid:47,
+uuid:"54BD6D48-5E48-4D1F-B29A-3DE96A1F6119"
+},
+{
+cssPosition:"971,-1,-1,22,180,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"22",
+right:"-1",
+top:"971",
+width:"180"
+},
+text:"Custom icons"
+},
+name:"lbl_weekend_disabled",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"5B628C40-896C-4137-BF69-16E043B27991"
+},
+{
+cssPosition:"891,-1,-1,210,236,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"210",
+right:"-1",
+top:"891",
+width:"236"
+},
+dataProviderID:"customDate",
+format:"MM/dd/yyyy",
+pickerOnly:true,
+placeholderText:"Month view"
+},
+name:"month_view_calendar",
+typeName:"bootstrapcomponents-calendar",
+typeid:47,
+uuid:"5EE833AB-7831-403E-9A81-5DB3C50A29D0"
+},
+{
+cssPosition:"329,-1,-1,584,100,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"584",
+right:"-1",
+top:"329",
+width:"100"
+},
+onActionMethodID:"2E1B7F23-FB33-4C1A-93EF-6002ABACCC83",
+styleClass:"btn-primary",
+text:"Apply"
+},
+name:"btn_apply_placeholder",
+styleClass:"btn-primary",
+typeName:"bootstrapcomponents-button",
+typeid:47,
+uuid:"644EAB0A-8793-480E-BEEE-6875D373A7C5"
+},
+{
+cssPosition:"289,-1,-1,40,100,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"40",
+right:"-1",
+top:"289",
+width:"100"
+},
+text:"ToolTipText"
+},
+name:"lbl_prop_tooltip",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"666E8DD2-2340-474A-8718-3D07FA1304F3"
+},
+{
+cssPosition:"418,-1,-1,421,209,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"421",
+right:"-1",
+top:"418",
+width:"209"
+},
+onActionMethodID:"BEC8046E-D587-4ED6-A1BC-7B6115880D42",
+styleClass:"btn-primary",
+text:"Set as disabled date"
+},
+name:"btn_disable1",
+styleClass:"btn-primary",
+typeName:"bootstrapcomponents-button",
+typeid:47,
+uuid:"67FF1FAC-BA75-4C0B-81A0-8B1D9DF6E741"
+},
+{
+height:1048,
+partType:5,
+typeid:19,
+uuid:"698F76A6-664C-45E2-B310-06BE588E0CF5"
+},
+{
+cssPosition:"686,-1,-1,40,145,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"40",
+right:"-1",
+top:"686",
+width:"145"
+},
+text:"Min / Max Calendar"
+},
+name:"lbl_mionmax",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"6C02E67F-0FA0-4A9F-905A-51DCA4C28FB8"
+},
+{
+cssPosition:"971,-1,-1,210,236,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"210",
+right:"-1",
+top:"971",
+width:"236"
+},
+dataProviderID:"customDate",
+format:"MM/dd/yyyy",
+pickerOnly:true,
+placeholderText:"Custom icons"
+},
+name:"custom_icons_calendar",
+typeName:"bootstrapcomponents-calendar",
+typeid:47,
+uuid:"6D951C31-253B-4C83-A094-74C8FCE54E65"
+},
+{
+cssPosition:"736,0,-1,0,300,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"0",
+right:"0",
+top:"736",
+width:"300"
+},
+styleClass:"label-blue-gradient",
+text:"Custom Configurations"
+},
+name:"lbl_advanced_config",
+styleClass:"label-blue-gradient",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"6E18054A-9FD4-47B1-A6F5-2CBFE7EBA3BB"
+},
+{
+cssPosition:"249,-1,-1,40,213,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"40",
+right:"-1",
+top:"249",
+width:"213"
+},
+onActionMethodID:"4D7BD9EA-7532-4B7B-B2B9-F4AE7581B924",
+styleClass:"btn-primary",
+text:"Reset"
+},
+name:"btn_basic_reset",
+styleClass:"btn-primary",
+typeName:"bootstrapcomponents-button",
+typeid:47,
+uuid:"6E2AD9EB-D52A-40CC-A324-43DF393BEE3E"
+},
+{
+cssPosition:"208,-1,-1,40,100,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"40",
+right:"-1",
+top:"208",
+width:"100"
+},
+text:"Style class"
+},
+name:"lbl_style_class",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"6F9B62D3-F6DA-405C-B167-B1AB16189982"
+},
+{
+cssPosition:"418,-1,-1,193,220,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"193",
+right:"-1",
+top:"418",
+width:"220"
+},
+dataProviderID:"mindateDP",
+format:"dd-MM-yyyy",
+onDataChangeMethodID:"11B588B3-36E6-4FEE-B079-1581DCF1611F",
+pickerOnly:true,
+placeholderText:"Select minimum date",
+toolTipText:"Select minimum date"
+},
+name:"calendar_min_date",
+typeName:"bootstrapcomponents-calendar",
+typeid:47,
+uuid:"7254C648-E5DD-440A-B3B5-B44866758234"
+},
+{
+cssPosition:"498,-1,-1,421,209,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"421",
+right:"-1",
+top:"498",
+width:"209"
+},
+dataProviderID:"keepInvalidDP",
+styleClass:"bg-primary",
+text:"Keep existing disables"
+},
+name:"cb_keepDisabled",
+styleClass:"bg-primary",
+typeName:"bootstrapcomponents-checkbox",
+typeid:47,
+uuid:"7693E49D-5AF4-48EE-BC22-049D35AB2E80"
+},
+{
+cssPosition:"129,-1,-1,266,420,150",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"150",
+left:"266",
+right:"-1",
+top:"129",
+width:"420"
+},
+dataProviderID:"base_message_dp"
+},
+name:"txt_message",
+typeName:"bootstrapcomponents-textarea",
+typeid:47,
+uuid:"77603E8E-FFA7-46D2-A66E-F1C7B3549B8D"
+},
+{
+cssPosition:"458,-1,-1,193,220,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"193",
+right:"-1",
+top:"458",
+width:"220"
+},
+dataProviderID:"maxdateDP",
+format:"dd-MM-yyyy",
+onDataChangeMethodID:"11B588B3-36E6-4FEE-B079-1581DCF1611F",
+pickerOnly:true,
+placeholderText:"Select maximum date",
+toolTipText:"Select maximum date"
+},
+name:"calendar_max_date",
+typeName:"bootstrapcomponents-calendar",
+typeid:47,
+uuid:"7C874DF2-F53F-4FA1-BF35-586EECD617C6"
+},
+{
+cssPosition:"498,-1,-1,193,220,178",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"178",
+left:"193",
+right:"-1",
+top:"498",
+width:"220"
+},
+dataProviderID:"disabledDaysDP",
+onDataChangeMethodID:"380CA697-CD88-4707-88CC-7A1F7A244582",
+styleClass:"border border-primary",
+valuelistID:"92D95E09-C6FC-47E1-9BFF-C188441C97F3"
+},
+name:"choicegroup_7",
+styleClass:"border border-primary",
+typeName:"bootstrapcomponents-choicegroup",
+typeid:47,
+uuid:"869A1E9C-3354-4CBA-AE13-3C2B59D938BC"
+},
+{
+cssPosition:"83,-1,-1,40,100,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"40",
+right:"-1",
+top:"83",
+width:"100"
+},
+text:"Format"
+},
+name:"lbl_format",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"8CAB302D-F967-4811-96AA-512FAF07510F"
+},
+{
+cssPosition:"458,-1,-1,40,145,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"40",
+right:"-1",
+top:"458",
+width:"145"
+},
+text:"Max date"
+},
+name:"lbl_maxdate",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"8EDB27FE-9A6E-4314-A5CC-8A72863CC3D1"
+},
+{
+cssPosition:"329,-1,-1,150,426,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"150",
+right:"-1",
+top:"329",
+width:"426"
+},
+dataProviderID:"placeholder_dp"
+},
+name:"txt_placeholder",
+typeName:"bootstrapcomponents-textbox",
+typeid:47,
+uuid:"961398BE-C7DF-4F38-8C60-6320081B547D"
+},
+{
+cssPosition:"771,-1,-1,22,180,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"22",
+right:"-1",
+top:"771",
+width:"180"
+},
+text:"Side by side"
+},
+name:"lbl_options",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"963DE4C2-3F1E-4351-ACC4-21F2C57ADB63"
+},
+{
+cssPosition:"891,-1,-1,22,180,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"22",
+right:"-1",
+top:"891",
+width:"180"
+},
+text:"Month view"
+},
+name:"lbl_month_view",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"984455D8-3307-444A-82AB-2F3E31FA46EC"
+},
+{
+cssPosition:"329,-1,-1,40,100,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"40",
+right:"-1",
+top:"329",
+width:"100"
+},
+text:"Placeholder"
+},
+name:"lbl_prop_placeholder",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"99F71CCB-76CC-4701-AB60-AB18083BD9DB"
+},
+{
+cssPosition:"40,-1,-1,150,534,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"150",
+right:"-1",
+top:"40",
+width:"534"
+},
+dataProviderID:"date_dp",
+enabledDataProvider:"enableDP",
+format:"MM/dd/yyyy hh:mm aa",
+onActionMethodID:"D43C8CBE-A9C7-4A54-BF87-31E21899A694",
+onDataChangeMethodID:"BE552F74-7E68-4F17-8E19-32FFE55A9571",
+onFocusGainedMethodID:"8432EEA4-625E-4B1D-A644-83ECEEBB6342",
+onFocusLostMethodID:"50A92003-C1D7-4A4B-ABE4-66BD1E4773B3",
+pickerOnly:true,
+placeholderText:"Select a date",
+selectOnEnter:true,
+toolTipText:"This is a demo calendar for basic configuration",
+visible:true,
+visibleDataProvider:"visibleDP"
+},
+name:"basic_calendar",
+typeName:"bootstrapcomponents-calendar",
+typeid:47,
+uuid:"AB1574B1-79B6-4E6A-AE28-0697514BACDB"
+},
+{
+cssPosition:"851,-1,-1,22,180,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"22",
+right:"-1",
+top:"851",
+width:"180"
+},
+text:"Dark theme"
+},
+name:"lbl_dark_theme",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"BB0A65AC-5DDF-41B0-8ABC-8E3CFA0AB128"
+},
+{
+cssPosition:"0,0,-1,0,300,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"0",
+right:"0",
+top:"0",
+width:"300"
+},
+styleClass:"label-blue-gradient",
+text:"Basic Configuration Properties"
+},
+name:"lbl_basic_config",
+styleClass:"label-blue-gradient",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"BD934262-3756-4F99-A9C3-09CBADA7E46E"
+},
+{
+cssPosition:"811,-1,-1,22,180,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"22",
+right:"-1",
+top:"811",
+width:"180"
+},
+text:"Time only"
+},
+name:"lbl_calendar_weeks",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"C2517D12-2467-4115-A43B-17416D2B6267"
+},
+{
+cssPosition:"851,-1,-1,210,236,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"210",
+right:"-1",
+top:"851",
+width:"236"
+},
+dataProviderID:"customDate",
+format:"MM/dd/yyyy",
+pickerOnly:true,
+placeholderText:"Dark theme"
+},
+name:"dark_theme_calendar",
+typeName:"bootstrapcomponents-calendar",
+typeid:47,
+uuid:"C3C5C7E4-E045-427C-8CBB-436E4C8671E2"
+},
+{
+cssPosition:"40,-1,-1,40,100,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"40",
+right:"-1",
+top:"40",
+width:"100"
+},
+text:"Base calendar"
+},
+name:"lbl_calendar",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"CEE7206F-E253-404B-83CC-97F0B1C9458E"
+},
+{
+cssPosition:"289,-1,-1,150,426,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"150",
+right:"-1",
+top:"289",
+width:"426"
+},
+dataProviderID:"tooltip_dp"
+},
+name:"txt_tooltip",
+typeName:"bootstrapcomponents-textbox",
+typeid:47,
+uuid:"E60983F6-E5D3-4261-B7BE-199981415629"
+},
+{
+cssPosition:"1011,-1,-1,210,236,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"210",
+right:"-1",
+top:"1011",
+width:"236"
+},
+dataProviderID:"customDate",
+format:"MM/dd/yyyy",
+pickerOnly:true,
+placeholderText:"Today button only"
+},
+name:"today_only_button_calendar",
+typeName:"bootstrapcomponents-calendar",
+typeid:47,
+uuid:"E61E9AAF-30C8-4E5A-B1EC-A40FBBF21CBC"
+},
+{
+cssPosition:"209,-1,-1,152,100,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"152",
+right:"-1",
+top:"209",
+width:"100"
+},
+onActionMethodID:"B28B6B7A-3BC9-4AFD-BF4B-8A8D469D3DAA",
+styleClass:"btn-primary",
+text:"Change"
+},
+name:"btn_change_styleclass",
+styleClass:"btn-primary",
+typeName:"bootstrapcomponents-button",
+typeid:47,
+uuid:"E6DCB408-34D7-4CD8-AD6B-2A633EAEBD28"
+},
+{
+cssPosition:"169,-1,-1,40,100,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"40",
+right:"-1",
+top:"169",
+width:"100"
+},
+text:"Visible"
+},
+name:"lbl_prop_visible",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"FE1CB6CE-DA4E-47D2-9021-4ECB54D23F2F"
+},
+{
+cssPosition:"811,-1,-1,210,236,30",
+json:{
+calendarWeeks:false,
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"210",
+right:"-1",
+top:"811",
+width:"236"
+},
+dataProviderID:"customDate",
+format:"MM/dd/yyyy hh:mm aa",
+pickerOnly:true,
+placeholderText:"Time only"
+},
+name:"calendar_timeonly",
+typeName:"bootstrapcomponents-calendar",
+typeid:47,
+uuid:"FFBB4CBF-9FC2-456A-9616-C5218DCD90FF"
 }
+],
+name:"calendarForm",
+onLoadMethodID:"9144DA7D-31FA-4B07-BB20-23FFAFA3E3A5",
+size:"773,1200",
+typeid:3,
+uuid:"F77B610A-EAB8-4A4F-A497-EDD4569DB018"

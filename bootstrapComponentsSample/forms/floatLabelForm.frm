@@ -1,36 +1,31 @@
+customProperties:"formComponent:false,useCssPosition:true",
+extendsID:"-1",
+items:[
 {
-    "customProperties":{
-        "formComponent":false,
-        "useCssPosition":true
-    },
-    "extendsID":"-1",
-    "items":[
-        {
-            "height":480,
-            "partType":5,
-            "typeid":19,
-            "uuid":"8A5CD76D-2514-4E78-8C9A-11E72A361F26"
-        },
-        {
-            "cssPosition":"42,-1,-1,27,80,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"27",
-                    "right":"-1",
-                    "top":"42",
-                    "width":"80"
-                },
-                "text":"float label"
-            },
-            "name":"label_17",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"A871213B-B93D-4917-9D20-B8C2CF337774"
-        }
-    ],
-    "name":"floatLabelForm",
-    "typeid":3,
-    "uuid":"06FC3397-6C0D-44AC-B5ED-CF3BD67F68C3"
+height:480,
+partType:5,
+typeid:19,
+uuid:"8A5CD76D-2514-4E78-8C9A-11E72A361F26"
+},
+{
+cssPosition:"42,-1,-1,27,80,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"27",
+right:"-1",
+top:"42",
+width:"80"
+},
+text:"float label"
+},
+name:"label_17",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"A871213B-B93D-4917-9D20-B8C2CF337774"
 }
+],
+name:"floatLabelForm",
+typeid:3,
+uuid:"06FC3397-6C0D-44AC-B5ED-CF3BD67F68C3"

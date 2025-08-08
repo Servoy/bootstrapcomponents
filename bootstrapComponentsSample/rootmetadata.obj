@@ -1,8 +1,6 @@
-{
-    "fileVersion":62,
-    "mustAuthenticate":false,
-    "name":"bootstrapComponentsSample",
-    "solutionType":1024,
-    "typeid":43,
-    "uuid":"76C60F17-7896-4F2C-A1A7-F6EF906E73B8"
-}
+fileVersion:60,
+mustAuthenticate:false,
+name:"bootstrapComponentsSample",
+solutionType:1024,
+typeid:43,
+uuid:"76C60F17-7896-4F2C-A1A7-F6EF906E73B8"

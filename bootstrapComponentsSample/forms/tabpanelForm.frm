@@ -1,36 +1,31 @@
+customProperties:"formComponent:false,useCssPosition:true",
+extendsID:"-1",
+items:[
 {
-    "customProperties":{
-        "formComponent":false,
-        "useCssPosition":true
-    },
-    "extendsID":"-1",
-    "items":[
-        {
-            "cssPosition":"64,-1,-1,97,80,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"97",
-                    "right":"-1",
-                    "top":"64",
-                    "width":"80"
-                },
-                "text":"tabpanel"
-            },
-            "name":"label_12",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"765A9062-84FE-4600-AD00-D43DD4D6668B"
-        },
-        {
-            "height":480,
-            "partType":5,
-            "typeid":19,
-            "uuid":"B8359109-CF33-4201-9A85-CF53B29A91A6"
-        }
-    ],
-    "name":"tabpanelForm",
-    "typeid":3,
-    "uuid":"2C70BF93-B914-4E62-8C6D-B07CBEBE6590"
+cssPosition:"64,-1,-1,97,80,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"97",
+right:"-1",
+top:"64",
+width:"80"
+},
+text:"tabpanel"
+},
+name:"label_12",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"765A9062-84FE-4600-AD00-D43DD4D6668B"
+},
+{
+height:480,
+partType:5,
+typeid:19,
+uuid:"B8359109-CF33-4201-9A85-CF53B29A91A6"
 }
+],
+name:"tabpanelForm",
+typeid:3,
+uuid:"2C70BF93-B914-4E62-8C6D-B07CBEBE6590"

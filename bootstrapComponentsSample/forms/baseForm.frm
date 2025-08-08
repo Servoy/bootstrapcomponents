@@ -1,95 +1,90 @@
+customProperties:"formComponent:false,useCssPosition:true",
+encapsulation:108,
+items:[
 {
-    "customProperties":{
-        "formComponent":false,
-        "useCssPosition":true
-    },
-    "encapsulation":108,
-    "items":[
-        {
-            "height":497,
-            "partType":5,
-            "typeid":19,
-            "uuid":"217888B5-388F-4947-9AE7-D7694879D80C"
-        },
-        {
-            "cssPosition":"95,20,80,230,50,330",
-            "json":{
-                "containedForm":"0BC5A9D8-446E-416A-9A5C-B00F134F06AB",
-                "cssPosition":{
-                    "bottom":"80",
-                    "height":"330",
-                    "left":"230",
-                    "right":"20",
-                    "top":"95",
-                    "width":"50"
-                }
-            },
-            "name":"base_container",
-            "typeName":"servoycore-formcontainer",
-            "typeid":47,
-            "uuid":"2ED80F52-FBF5-43AC-84B7-1BD1800A6FBF"
-        },
-        {
-            "cssPosition":"95,-1,80,20,190,330",
-            "json":{
-                "containedForm":"D4F5905E-DDF2-4ED9-97B4-4A72209828E6",
-                "cssPosition":{
-                    "bottom":"80",
-                    "height":"330",
-                    "left":"20",
-                    "right":"-1",
-                    "top":"95",
-                    "width":"190"
-                }
-            },
-            "name":"selector_container",
-            "typeName":"servoycore-formcontainer",
-            "typeid":47,
-            "uuid":"EBF8DDC4-2DD4-4083-B42F-C9FD06BC5A48"
-        },
-        {
-            "cssPosition":"0,20,-1,20,600,80",
-            "json":{
-                "containedForm":"CC963960-38A6-4508-B18D-42582916FCE3",
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"80",
-                    "left":"20",
-                    "right":"20",
-                    "top":"0",
-                    "width":"600"
-                }
-            },
-            "name":"header_container",
-            "typeName":"servoycore-formcontainer",
-            "typeid":47,
-            "uuid":"F33CB7D0-BD15-4940-98B3-9A991FE2796E"
-        },
-        {
-            "cssPosition":"-1,20,0,20,200,60",
-            "json":{
-                "containedForm":"5A5405FF-5CF2-4C8A-A38A-2DA977863B80",
-                "cssPosition":{
-                    "bottom":"0",
-                    "height":"60",
-                    "left":"20",
-                    "right":"20",
-                    "top":"-1",
-                    "width":"200"
-                }
-            },
-            "name":"footer_container",
-            "typeName":"servoycore-formcontainer",
-            "typeid":47,
-            "uuid":"F66D09F3-C39B-4273-851E-957FC7380DEC"
-        }
-    ],
-    "name":"baseForm",
-    "navigatorID":"-1",
-    "onLoadMethodID":"B3816812-5A41-458A-A564-5051BEBF0F7B",
-    "scrollbars":36,
-    "showInMenu":true,
-    "size":"640,480",
-    "typeid":3,
-    "uuid":"937C5F78-897E-41E3-85E6-1D10C87D082D"
+height:497,
+partType:5,
+typeid:19,
+uuid:"217888B5-388F-4947-9AE7-D7694879D80C"
+},
+{
+cssPosition:"95,20,80,230,50,330",
+json:{
+containedForm:"0BC5A9D8-446E-416A-9A5C-B00F134F06AB",
+cssPosition:{
+bottom:"80",
+height:"330",
+left:"230",
+right:"20",
+top:"95",
+width:"50"
 }
+},
+name:"base_container",
+typeName:"servoycore-formcontainer",
+typeid:47,
+uuid:"2ED80F52-FBF5-43AC-84B7-1BD1800A6FBF"
+},
+{
+cssPosition:"95,-1,80,20,190,330",
+json:{
+containedForm:"D4F5905E-DDF2-4ED9-97B4-4A72209828E6",
+cssPosition:{
+bottom:"80",
+height:"330",
+left:"20",
+right:"-1",
+top:"95",
+width:"190"
+}
+},
+name:"selector_container",
+typeName:"servoycore-formcontainer",
+typeid:47,
+uuid:"EBF8DDC4-2DD4-4083-B42F-C9FD06BC5A48"
+},
+{
+cssPosition:"0,20,-1,20,600,80",
+json:{
+containedForm:"CC963960-38A6-4508-B18D-42582916FCE3",
+cssPosition:{
+bottom:"-1",
+height:"80",
+left:"20",
+right:"20",
+top:"0",
+width:"600"
+}
+},
+name:"header_container",
+typeName:"servoycore-formcontainer",
+typeid:47,
+uuid:"F33CB7D0-BD15-4940-98B3-9A991FE2796E"
+},
+{
+cssPosition:"-1,20,0,20,200,60",
+json:{
+containedForm:"5A5405FF-5CF2-4C8A-A38A-2DA977863B80",
+cssPosition:{
+bottom:"0",
+height:"60",
+left:"20",
+right:"20",
+top:"-1",
+width:"200"
+}
+},
+name:"footer_container",
+typeName:"servoycore-formcontainer",
+typeid:47,
+uuid:"F66D09F3-C39B-4273-851E-957FC7380DEC"
+}
+],
+name:"baseForm",
+navigatorID:"-1",
+onLoadMethodID:"B3816812-5A41-458A-A564-5051BEBF0F7B",
+scrollbars:36,
+showInMenu:true,
+size:"640,480",
+typeid:3,
+uuid:"937C5F78-897E-41E3-85E6-1D10C87D082D"

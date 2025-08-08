@@ -1,36 +1,31 @@
+customProperties:"formComponent:false,useCssPosition:true",
+extendsID:"-1",
+items:[
 {
-    "customProperties":{
-        "formComponent":false,
-        "useCssPosition":true
-    },
-    "extendsID":"-1",
-    "items":[
-        {
-            "cssPosition":"54,-1,-1,77,80,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"77",
-                    "right":"-1",
-                    "top":"54",
-                    "width":"80"
-                },
-                "text":"accordion"
-            },
-            "name":"label_4",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"5127DA5F-7764-4F2D-AC18-C27338F248D3"
-        },
-        {
-            "height":480,
-            "partType":5,
-            "typeid":19,
-            "uuid":"8F355031-8467-4E74-A033-27516221E49E"
-        }
-    ],
-    "name":"accordionForm",
-    "typeid":3,
-    "uuid":"6E8E3A38-BA02-44A4-B078-74AFBF9CA740"
+cssPosition:"54,-1,-1,77,80,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"77",
+right:"-1",
+top:"54",
+width:"80"
+},
+text:"accordion"
+},
+name:"label_4",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"5127DA5F-7764-4F2D-AC18-C27338F248D3"
+},
+{
+height:480,
+partType:5,
+typeid:19,
+uuid:"8F355031-8467-4E74-A033-27516221E49E"
 }
+],
+name:"accordionForm",
+typeid:3,
+uuid:"6E8E3A38-BA02-44A4-B078-74AFBF9CA740"

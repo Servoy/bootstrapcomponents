@@ -1,59 +1,54 @@
+customProperties:"formComponent:false,useCssPosition:true",
+encapsulation:108,
+items:[
 {
-    "customProperties":{
-        "formComponent":false,
-        "useCssPosition":true
-    },
-    "encapsulation":108,
-    "items":[
-        {
-            "cssPosition":"10,0,-1,-1,422,55",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"55",
-                    "left":"-1",
-                    "right":"0",
-                    "top":"10",
-                    "width":"422"
-                },
-                "text":"Bootstrap package demo",
-                "variant":"GradientTextSunlight"
-            },
-            "name":"example_label",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"78EBEBD6-27D3-4B70-9293-F5FBBB39F1AD"
-        },
-        {
-            "height":80,
-            "partType":5,
-            "typeid":19,
-            "uuid":"94F24CA3-3773-4561-9358-C2771F04016E"
-        },
-        {
-            "cssPosition":"10,-1,-1,0,147,55",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"55",
-                    "left":"0",
-                    "right":"-1",
-                    "top":"10",
-                    "width":"147"
-                },
-                "media":"F5B69C20-B9DF-4F52-B3D1-0BE6C7EB8DEF"
-            },
-            "name":"servoy_logo",
-            "typeName":"bootstrapcomponents-imagemedia",
-            "typeid":47,
-            "uuid":"E5C06199-9698-4FF7-B25C-A9DB2D155304"
-        }
-    ],
-    "name":"headerForm",
-    "navigatorID":"-1",
-    "showInMenu":true,
-    "size":"590,80",
-    "styleClass":"banner-orange",
-    "typeid":3,
-    "uuid":"CC963960-38A6-4508-B18D-42582916FCE3"
+cssPosition:"10,0,-1,-1,422,55",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"55",
+left:"-1",
+right:"0",
+top:"10",
+width:"422"
+},
+text:"Bootstrap package demo",
+variant:"GradientTextSunlight"
+},
+name:"example_label",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"78EBEBD6-27D3-4B70-9293-F5FBBB39F1AD"
+},
+{
+height:80,
+partType:5,
+typeid:19,
+uuid:"94F24CA3-3773-4561-9358-C2771F04016E"
+},
+{
+cssPosition:"10,-1,-1,0,147,55",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"55",
+left:"0",
+right:"-1",
+top:"10",
+width:"147"
+},
+media:"F5B69C20-B9DF-4F52-B3D1-0BE6C7EB8DEF"
+},
+name:"servoy_logo",
+typeName:"bootstrapcomponents-imagemedia",
+typeid:47,
+uuid:"E5C06199-9698-4FF7-B25C-A9DB2D155304"
 }
+],
+name:"headerForm",
+navigatorID:"-1",
+showInMenu:true,
+size:"590,80",
+styleClass:"banner-orange",
+typeid:3,
+uuid:"CC963960-38A6-4508-B18D-42582916FCE3"

@@ -1,36 +1,31 @@
+customProperties:"formComponent:false,useCssPosition:true",
+extendsID:"-1",
+items:[
 {
-    "customProperties":{
-        "formComponent":false,
-        "useCssPosition":true
-    },
-    "extendsID":"-1",
-    "items":[
-        {
-            "cssPosition":"47,-1,-1,68,80,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"68",
-                    "right":"-1",
-                    "top":"47",
-                    "width":"80"
-                },
-                "text":"textarea"
-            },
-            "name":"label_14",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"640891A9-B27A-4BBC-AD06-32DD7465F56C"
-        },
-        {
-            "height":480,
-            "partType":5,
-            "typeid":19,
-            "uuid":"B69C2D3C-BAD5-4296-976D-E3E4D1035BA7"
-        }
-    ],
-    "name":"textareaForm",
-    "typeid":3,
-    "uuid":"7D37B4E8-F0D9-41D6-B1A0-7E1C5071A332"
+cssPosition:"47,-1,-1,68,80,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"68",
+right:"-1",
+top:"47",
+width:"80"
+},
+text:"textarea"
+},
+name:"label_14",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"640891A9-B27A-4BBC-AD06-32DD7465F56C"
+},
+{
+height:480,
+partType:5,
+typeid:19,
+uuid:"B69C2D3C-BAD5-4296-976D-E3E4D1035BA7"
 }
+],
+name:"textareaForm",
+typeid:3,
+uuid:"7D37B4E8-F0D9-41D6-B1A0-7E1C5071A332"

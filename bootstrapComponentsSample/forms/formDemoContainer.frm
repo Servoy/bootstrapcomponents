@@ -1,38 +1,33 @@
+customProperties:"formComponent:false,useCssPosition:true",
+encapsulation:108,
+items:[
 {
-    "customProperties":{
-        "formComponent":false,
-        "useCssPosition":true
-    },
-    "encapsulation":108,
-    "items":[
-        {
-            "cssPosition":"0,0,0,0,100,100",
-            "json":{
-                "cssPosition":{
-                    "bottom":"0",
-                    "height":"100",
-                    "left":"0",
-                    "right":"0",
-                    "top":"0",
-                    "width":"100"
-                }
-            },
-            "name":"demo_container",
-            "typeName":"servoycore-formcontainer",
-            "typeid":47,
-            "uuid":"4113F6BC-08F6-4D63-8DF7-D7BCA679B771"
-        },
-        {
-            "height":100,
-            "partType":5,
-            "typeid":19,
-            "uuid":"56D11DE4-5E78-4D27-937A-23F08A2B941B"
-        }
-    ],
-    "name":"formDemoContainer",
-    "navigatorID":"-1",
-    "showInMenu":true,
-    "size":"100,100",
-    "typeid":3,
-    "uuid":"D974B05E-3DA3-4E52-AFC9-6CE81F179DE5"
+cssPosition:"0,0,0,0,100,100",
+json:{
+cssPosition:{
+bottom:"0",
+height:"100",
+left:"0",
+right:"0",
+top:"0",
+width:"100"
 }
+},
+name:"demo_container",
+typeName:"servoycore-formcontainer",
+typeid:47,
+uuid:"4113F6BC-08F6-4D63-8DF7-D7BCA679B771"
+},
+{
+height:100,
+partType:5,
+typeid:19,
+uuid:"56D11DE4-5E78-4D27-937A-23F08A2B941B"
+}
+],
+name:"formDemoContainer",
+navigatorID:"-1",
+showInMenu:true,
+size:"100,100",
+typeid:3,
+uuid:"D974B05E-3DA3-4E52-AFC9-6CE81F179DE5"

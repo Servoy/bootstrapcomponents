@@ -1,36 +1,31 @@
+customProperties:"formComponent:false,useCssPosition:true",
+extendsID:"-1",
+items:[
 {
-    "customProperties":{
-        "formComponent":false,
-        "useCssPosition":true
-    },
-    "extendsID":"-1",
-    "items":[
-        {
-            "height":480,
-            "partType":5,
-            "typeid":19,
-            "uuid":"1C9FF370-1BEB-49BF-A889-75A74405DB40"
-        },
-        {
-            "cssPosition":"81,-1,-1,149,80,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"149",
-                    "right":"-1",
-                    "top":"81",
-                    "width":"80"
-                },
-                "text":"combobox"
-            },
-            "name":"label_8",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"67ADB256-E79B-4272-8DEB-A79F5F653F9A"
-        }
-    ],
-    "name":"comboboxesForm",
-    "typeid":3,
-    "uuid":"071F99AC-E177-4BE3-AF62-6F031BBE49E4"
+height:480,
+partType:5,
+typeid:19,
+uuid:"1C9FF370-1BEB-49BF-A889-75A74405DB40"
+},
+{
+cssPosition:"81,-1,-1,149,80,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"149",
+right:"-1",
+top:"81",
+width:"80"
+},
+text:"combobox"
+},
+name:"label_8",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"67ADB256-E79B-4272-8DEB-A79F5F653F9A"
 }
+],
+name:"comboboxesForm",
+typeid:3,
+uuid:"071F99AC-E177-4BE3-AF62-6F031BBE49E4"

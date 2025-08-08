@@ -1,42 +1,37 @@
+customProperties:"formComponent:false,useCssPosition:true",
+encapsulation:108,
+items:[
 {
-    "customProperties":{
-        "formComponent":false,
-        "useCssPosition":true
-    },
-    "encapsulation":108,
-    "items":[
-        {
-            "height":40,
-            "partType":5,
-            "typeid":19,
-            "uuid":"4A4FCE50-0463-459B-934D-D00BF9262925"
-        },
-        {
-            "cssPosition":"0,0,0,0,574,40",
-            "json":{
-                "cssPosition":{
-                    "bottom":"0",
-                    "height":"40",
-                    "left":"0",
-                    "right":"0",
-                    "top":"0",
-                    "width":"574"
-                },
-                "dataProviderID":"scopes.global.footerStatus",
-                "styleClass":"footer-orange"
-            },
-            "name":"statusArea",
-            "styleClass":"footer-orange",
-            "typeName":"bootstrapcomponents-textarea",
-            "typeid":47,
-            "uuid":"7B1DCEDB-3450-4BAF-BC09-D4A6A8DB4593"
-        }
-    ],
-    "name":"footerForm",
-    "navigatorID":"-1",
-    "scrollbars":36,
-    "showInMenu":true,
-    "size":"640,40",
-    "typeid":3,
-    "uuid":"5A5405FF-5CF2-4C8A-A38A-2DA977863B80"
+height:40,
+partType:5,
+typeid:19,
+uuid:"4A4FCE50-0463-459B-934D-D00BF9262925"
+},
+{
+cssPosition:"0,0,0,0,574,40",
+json:{
+cssPosition:{
+bottom:"0",
+height:"40",
+left:"0",
+right:"0",
+top:"0",
+width:"574"
+},
+dataProviderID:"scopes.global.footerStatus",
+styleClass:"footer-orange"
+},
+name:"statusArea",
+styleClass:"footer-orange",
+typeName:"bootstrapcomponents-textarea",
+typeid:47,
+uuid:"7B1DCEDB-3450-4BAF-BC09-D4A6A8DB4593"
 }
+],
+name:"footerForm",
+navigatorID:"-1",
+scrollbars:36,
+showInMenu:true,
+size:"640,40",
+typeid:3,
+uuid:"5A5405FF-5CF2-4C8A-A38A-2DA977863B80"

@@ -1,10 +1,8 @@
-{
-    "addEmptyValue":1,
-    "customValues":"dd-MM-yyyy\
+addEmptyValue:1,
+customValues:"dd-MM-yyyy\
 dd-MM-yyyy HH:mm",
-    "displayValueType":12,
-    "name":"inline_dateformat_vl",
-    "realValueType":12,
-    "typeid":34,
-    "uuid":"914AEDEE-F0C6-4DE6-9A5B-584256491F9A"
-}
+displayValueType:12,
+name:"inline_dateformat_vl",
+realValueType:12,
+typeid:34,
+uuid:"914AEDEE-F0C6-4DE6-9A5B-584256491F9A"

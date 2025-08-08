@@ -1,508 +1,503 @@
+customProperties:"formComponent:false,useCssPosition:true",
+encapsulation:108,
+items:[
 {
-    "customProperties":{
-        "formComponent":false,
-        "useCssPosition":true
-    },
-    "encapsulation":108,
-    "items":[
-        {
-            "cssPosition":"120,-1,-1,485,199,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"485",
-                    "right":"-1",
-                    "top":"120",
-                    "width":"199"
-                },
-                "onActionMethodID":"0D0A9F0D-B589-463F-AB73-B5F39F4501C8",
-                "styleClass":"btn-primary",
-                "text":"Reset"
-            },
-            "name":"btn_basic_reset",
-            "styleClass":"btn-primary",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"1A100AD8-D2B6-4FA9-95AE-3025B0B76354"
-        },
-        {
-            "cssPosition":"411,-1,-1,40,645,150",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"150",
-                    "left":"40",
-                    "right":"-1",
-                    "top":"411",
-                    "width":"645"
-                },
-                "dataProviderID":"base_message_dp"
-            },
-            "name":"txt_message",
-            "typeName":"bootstrapcomponents-textarea",
-            "typeid":47,
-            "uuid":"1B35A7E9-8330-4B11-9515-6AB497F16175"
-        },
-        {
-            "cssPosition":"665,-1,-1,133,322,290",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"290",
-                    "left":"133",
-                    "right":"-1",
-                    "top":"665",
-                    "width":"322"
-                },
-                "dataProviderID":"restricted_dates_dp",
-                "onDataChangeMethodID":"8C6BBD2E-9106-4071-80F9-A5A1B4327568"
-            },
-            "name":"calendarinline_restricted",
-            "typeName":"bootstrapcomponents-calendarinline",
-            "typeid":47,
-            "uuid":"1D50CF9A-3F21-40EA-AE26-6DFC8CFD93D6"
-        },
-        {
-            "cssPosition":"1001,-1,-1,134,540,150",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"150",
-                    "left":"134",
-                    "right":"-1",
-                    "top":"1001",
-                    "width":"540"
-                },
-                "dataProviderID":"restricted_msg_dp"
-            },
-            "name":"restricted_txt_message",
-            "typeName":"bootstrapcomponents-textarea",
-            "typeid":47,
-            "uuid":"25EF67A7-19D8-495F-A860-4E4002695F66"
-        },
-        {
-            "cssPosition":"843,-1,-1,466,209,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"466",
-                    "right":"-1",
-                    "top":"843",
-                    "width":"209"
-                },
-                "onActionMethodID":"2F5DFB2C-F9DB-4FEC-A5A7-C179D42C51D5",
-                "styleClass":"btn-primary",
-                "text":"Set as Min date"
-            },
-            "name":"btn_disable1",
-            "styleClass":"btn-primary",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"3CBDD4E5-238B-41BA-99DC-2F3F04E985F5"
-        },
-        {
-            "cssPosition":"922,-1,-1,466,209,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"466",
-                    "right":"-1",
-                    "top":"922",
-                    "width":"209"
-                },
-                "onActionMethodID":"6F2C289F-A813-480F-A142-B37CCAE07E6C",
-                "styleClass":"btn-primary",
-                "text":"Set as disabled date"
-            },
-            "name":"btn_disable2c",
-            "styleClass":"btn-primary",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"45A38CCA-534D-4791-972C-ACAF557F6F39"
-        },
-        {
-            "cssPosition":"79,-1,-1,483,50,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"483",
-                    "right":"-1",
-                    "top":"79",
-                    "width":"50"
-                },
-                "styleClass":"default-align label-primary border-primary",
-                "text":"Visible"
-            },
-            "name":"lbl_prop_visible",
-            "styleClass":"default-align label-primary border-primary",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"50F6601C-315F-44B9-85DB-0EC0433C9DD6"
-        },
-        {
-            "cssPosition":"330,-1,-1,40,100,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"40",
-                    "right":"-1",
-                    "top":"330",
-                    "width":"100"
-                },
-                "styleClass":"default-align label-primary border-primary",
-                "text":"Format"
-            },
-            "name":"lbl_calendarc",
-            "styleClass":"default-align label-primary border-primary",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"75939C4E-356D-4E63-A857-E6433A20E957"
-        },
-        {
-            "cssPosition":"371,-1,-1,585,100,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"585",
-                    "right":"-1",
-                    "top":"371",
-                    "width":"100"
-                },
-                "onActionMethodID":"F701EBC2-E334-4480-B7B3-BFB0DC293E9C",
-                "styleClass":"btn-primary",
-                "text":"Apply"
-            },
-            "name":"btn_apply_tooltip",
-            "styleClass":"btn-primary",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"79AADB3F-F5DD-4F76-B590-53A72A09104B"
-        },
-        {
-            "cssPosition":"665,-1,-1,40,87,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"40",
-                    "right":"-1",
-                    "top":"665",
-                    "width":"87"
-                },
-                "styleClass":"default-align label-primary border-primary",
-                "text":"Select date"
-            },
-            "name":"lbl_select_date",
-            "styleClass":"default-align label-primary border-primary",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"7E003F49-8414-4AF8-9DA9-3DE1545AFB19"
-        },
-        {
-            "cssPosition":"883,-1,-1,466,209,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"466",
-                    "right":"-1",
-                    "top":"883",
-                    "width":"209"
-                },
-                "onActionMethodID":"33C24E5A-AD38-44B3-899C-0A90134899C5",
-                "styleClass":"btn-primary",
-                "text":"Set as Max date"
-            },
-            "name":"btn_disable2",
-            "styleClass":"btn-primary",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"8DB83D13-73F2-417F-9DD1-3788C9E734E0"
-        },
-        {
-            "cssPosition":"39,-1,-1,483,50,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"483",
-                    "right":"-1",
-                    "top":"39",
-                    "width":"50"
-                },
-                "styleClass":"default-align label-primary border-primary",
-                "text":"Enable"
-            },
-            "name":"lbl_toggle_enable",
-            "styleClass":"default-align label-primary border-primary",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"A66ADB45-EAD6-4133-AA71-A8200E23A59D"
-        },
-        {
-            "cssPosition":"371,-1,-1,40,100,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"40",
-                    "right":"-1",
-                    "top":"371",
-                    "width":"100"
-                },
-                "styleClass":"default-align label-primary border-primary",
-                "text":"ToolTipText"
-            },
-            "name":"lbl_prop_tooltip",
-            "styleClass":"default-align label-primary border-primary",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"A7AD4081-932B-4328-A04F-2B29C6C2B5BE"
-        },
-        {
-            "cssPosition":"39,-1,-1,539,145,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"539",
-                    "right":"-1",
-                    "top":"39",
-                    "width":"145"
-                },
-                "onActionMethodID":"AFB81A56-2373-4708-B305-567BC1B45E51",
-                "styleClass":"btn-primary",
-                "text":"Toggle"
-            },
-            "name":"btn_toggle_enable",
-            "styleClass":"btn-primary",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"AE3D5573-8ABC-4E5E-9CCA-5BEBB581843B"
-        },
-        {
-            "cssPosition":"961,-1,-1,133,544,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"133",
-                    "right":"-1",
-                    "top":"961",
-                    "width":"544"
-                },
-                "onActionMethodID":"B7DB77C1-3C2D-49C7-99D4-B3CC4E805E20",
-                "styleClass":"btn-primary",
-                "text":"Reset"
-            },
-            "name":"btn_restrictionreset",
-            "styleClass":"btn-primary",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"AF8AF73E-9D9E-44AA-9288-52242609A229"
-        },
-        {
-            "cssPosition":"79,-1,-1,539,145,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"539",
-                    "right":"-1",
-                    "top":"79",
-                    "width":"145"
-                },
-                "onActionMethodID":"5DDBB9F6-D600-48A9-AB6E-1271E251C36C",
-                "styleClass":"btn-primary",
-                "text":"Toggle"
-            },
-            "name":"btn_toggle_visible",
-            "styleClass":"btn-primary",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"BDBBCFA3-B406-4925-BCE5-F7CDD191642B"
-        },
-        {
-            "cssPosition":"40,-1,-1,40,100,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"40",
-                    "right":"-1",
-                    "top":"40",
-                    "width":"100"
-                },
-                "styleClass":"default-align label-primary border-primary",
-                "text":"Base calendar"
-            },
-            "name":"lbl_calendar",
-            "styleClass":"default-align label-primary border-primary",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"C6BD842A-C1A3-42DA-889E-808D636C0960"
-        },
-        {
-            "cssPosition":"0,0,-1,0,300,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"0",
-                    "right":"0",
-                    "top":"0",
-                    "width":"300"
-                },
-                "styleClass":"label-blue-gradient",
-                "text":"Basic Configuration Properties"
-            },
-            "name":"lbl_basic_config",
-            "styleClass":"label-blue-gradient",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"C8F8D879-BDB7-49D4-ACF0-1E52A472D054"
-        },
-        {
-            "cssPosition":"330,-1,-1,150,534,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"150",
-                    "right":"-1",
-                    "top":"330",
-                    "width":"534"
-                },
-                "dataProviderID":"format_dp",
-                "onDataChangeMethodID":"10084714-422E-48E4-A045-EEAB688B7F26",
-                "valuelistID":"914AEDEE-F0C6-4DE6-9A5B-584256491F9A"
-            },
-            "name":"cb_format",
-            "typeName":"bootstrapcomponents-combobox",
-            "typeid":47,
-            "uuid":"D2A85D79-BD61-4064-8C86-F4E0E35A8C58"
-        },
-        {
-            "cssPosition":"665,-1,-1,466,145,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"466",
-                    "right":"-1",
-                    "top":"665",
-                    "width":"145"
-                },
-                "styleClass":"default-align label-primary border-primary",
-                "text":"Disabled days"
-            },
-            "name":"label_8",
-            "styleClass":"default-align label-primary border-primary",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"D63D272B-F09B-4A0B-B407-5BA7CA7583E0"
-        },
-        {
-            "cssPosition":"40,-1,-1,151,313,280",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"280",
-                    "left":"151",
-                    "right":"-1",
-                    "top":"40",
-                    "width":"313"
-                },
-                "dataProviderID":"date_dp",
-                "enabledDataProvider":"enabled_dp",
-                "format":"dd-MM-yyyy HH:mm",
-                "onDataChangeMethodID":"0E56B6E0-4F57-4232-BB35-5D28DCB27ABD",
-                "visibleDataProvider":"visible_dp"
-            },
-            "name":"baseInlineCalendar",
-            "typeName":"bootstrapcomponents-calendarinline",
-            "typeid":47,
-            "uuid":"DACC55EF-95DD-418E-8F43-604D911A231D"
-        },
-        {
-            "cssPosition":"702,-1,-1,466,209,131",
-            "json":{
-                "alignment":"horizontal",
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"131",
-                    "left":"466",
-                    "right":"-1",
-                    "top":"702",
-                    "width":"209"
-                },
-                "dataProviderID":"disabled_days",
-                "onDataChangeMethodID":"77A44479-1A05-4419-BD0C-9231F90A709E",
-                "styleClass":"border border-primary disabled-days",
-                "valuelistID":"92D95E09-C6FC-47E1-9BFF-C188441C97F3"
-            },
-            "name":"choicegroup_7",
-            "styleClass":"border border-primary disabled-days",
-            "typeName":"bootstrapcomponents-choicegroup",
-            "typeid":47,
-            "uuid":"DC61CB66-054E-418F-BFCB-8424CF090257"
-        },
-        {
-            "height":1197,
-            "partType":5,
-            "typeid":19,
-            "uuid":"E84F93F8-8806-4C08-88CF-92925FCA5393"
-        },
-        {
-            "cssPosition":"625,-1,-1,0,776,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"0",
-                    "right":"-1",
-                    "top":"625",
-                    "width":"776"
-                },
-                "styleClass":"label-blue-gradient",
-                "text":"Date Restriction Properties"
-            },
-            "name":"lbl_date_restriction",
-            "styleClass":"label-blue-gradient",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"EB7F1E8B-2DE6-485C-9C63-CE93BCEF2470"
-        },
-        {
-            "cssPosition":"371,-1,-1,150,426,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"150",
-                    "right":"-1",
-                    "top":"371",
-                    "width":"426"
-                },
-                "dataProviderID":"tooltip_dp"
-            },
-            "name":"txt_tooltip",
-            "typeName":"bootstrapcomponents-textbox",
-            "typeid":47,
-            "uuid":"EE53F45E-9C22-43FD-BFCF-D24C979FE776"
-        }
-    ],
-    "name":"inlineCalendarForm",
-    "navigatorID":"-1",
-    "onLoadMethodID":"B593ACF4-4EAF-4D48-BEA1-CF0BD5AA263F",
-    "showInMenu":true,
-    "size":"900,1700",
-    "typeid":3,
-    "uuid":"780825F3-B025-4733-B268-5517F5B2204B"
+cssPosition:"120,-1,-1,485,199,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"485",
+right:"-1",
+top:"120",
+width:"199"
+},
+onActionMethodID:"0D0A9F0D-B589-463F-AB73-B5F39F4501C8",
+styleClass:"btn-primary",
+text:"Reset"
+},
+name:"btn_basic_reset",
+styleClass:"btn-primary",
+typeName:"bootstrapcomponents-button",
+typeid:47,
+uuid:"1A100AD8-D2B6-4FA9-95AE-3025B0B76354"
+},
+{
+cssPosition:"411,-1,-1,40,645,150",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"150",
+left:"40",
+right:"-1",
+top:"411",
+width:"645"
+},
+dataProviderID:"base_message_dp"
+},
+name:"txt_message",
+typeName:"bootstrapcomponents-textarea",
+typeid:47,
+uuid:"1B35A7E9-8330-4B11-9515-6AB497F16175"
+},
+{
+cssPosition:"665,-1,-1,133,322,290",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"290",
+left:"133",
+right:"-1",
+top:"665",
+width:"322"
+},
+dataProviderID:"restricted_dates_dp",
+onDataChangeMethodID:"8C6BBD2E-9106-4071-80F9-A5A1B4327568"
+},
+name:"calendarinline_restricted",
+typeName:"bootstrapcomponents-calendarinline",
+typeid:47,
+uuid:"1D50CF9A-3F21-40EA-AE26-6DFC8CFD93D6"
+},
+{
+cssPosition:"1001,-1,-1,134,540,150",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"150",
+left:"134",
+right:"-1",
+top:"1001",
+width:"540"
+},
+dataProviderID:"restricted_msg_dp"
+},
+name:"restricted_txt_message",
+typeName:"bootstrapcomponents-textarea",
+typeid:47,
+uuid:"25EF67A7-19D8-495F-A860-4E4002695F66"
+},
+{
+cssPosition:"843,-1,-1,466,209,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"466",
+right:"-1",
+top:"843",
+width:"209"
+},
+onActionMethodID:"2F5DFB2C-F9DB-4FEC-A5A7-C179D42C51D5",
+styleClass:"btn-primary",
+text:"Set as Min date"
+},
+name:"btn_disable1",
+styleClass:"btn-primary",
+typeName:"bootstrapcomponents-button",
+typeid:47,
+uuid:"3CBDD4E5-238B-41BA-99DC-2F3F04E985F5"
+},
+{
+cssPosition:"922,-1,-1,466,209,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"466",
+right:"-1",
+top:"922",
+width:"209"
+},
+onActionMethodID:"6F2C289F-A813-480F-A142-B37CCAE07E6C",
+styleClass:"btn-primary",
+text:"Set as disabled date"
+},
+name:"btn_disable2c",
+styleClass:"btn-primary",
+typeName:"bootstrapcomponents-button",
+typeid:47,
+uuid:"45A38CCA-534D-4791-972C-ACAF557F6F39"
+},
+{
+cssPosition:"79,-1,-1,483,50,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"483",
+right:"-1",
+top:"79",
+width:"50"
+},
+styleClass:"default-align label-primary border-primary",
+text:"Visible"
+},
+name:"lbl_prop_visible",
+styleClass:"default-align label-primary border-primary",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"50F6601C-315F-44B9-85DB-0EC0433C9DD6"
+},
+{
+cssPosition:"330,-1,-1,40,100,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"40",
+right:"-1",
+top:"330",
+width:"100"
+},
+styleClass:"default-align label-primary border-primary",
+text:"Format"
+},
+name:"lbl_calendarc",
+styleClass:"default-align label-primary border-primary",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"75939C4E-356D-4E63-A857-E6433A20E957"
+},
+{
+cssPosition:"371,-1,-1,585,100,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"585",
+right:"-1",
+top:"371",
+width:"100"
+},
+onActionMethodID:"F701EBC2-E334-4480-B7B3-BFB0DC293E9C",
+styleClass:"btn-primary",
+text:"Apply"
+},
+name:"btn_apply_tooltip",
+styleClass:"btn-primary",
+typeName:"bootstrapcomponents-button",
+typeid:47,
+uuid:"79AADB3F-F5DD-4F76-B590-53A72A09104B"
+},
+{
+cssPosition:"665,-1,-1,40,87,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"40",
+right:"-1",
+top:"665",
+width:"87"
+},
+styleClass:"default-align label-primary border-primary",
+text:"Select date"
+},
+name:"lbl_select_date",
+styleClass:"default-align label-primary border-primary",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"7E003F49-8414-4AF8-9DA9-3DE1545AFB19"
+},
+{
+cssPosition:"883,-1,-1,466,209,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"466",
+right:"-1",
+top:"883",
+width:"209"
+},
+onActionMethodID:"33C24E5A-AD38-44B3-899C-0A90134899C5",
+styleClass:"btn-primary",
+text:"Set as Max date"
+},
+name:"btn_disable2",
+styleClass:"btn-primary",
+typeName:"bootstrapcomponents-button",
+typeid:47,
+uuid:"8DB83D13-73F2-417F-9DD1-3788C9E734E0"
+},
+{
+cssPosition:"39,-1,-1,483,50,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"483",
+right:"-1",
+top:"39",
+width:"50"
+},
+styleClass:"default-align label-primary border-primary",
+text:"Enable"
+},
+name:"lbl_toggle_enable",
+styleClass:"default-align label-primary border-primary",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"A66ADB45-EAD6-4133-AA71-A8200E23A59D"
+},
+{
+cssPosition:"371,-1,-1,40,100,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"40",
+right:"-1",
+top:"371",
+width:"100"
+},
+styleClass:"default-align label-primary border-primary",
+text:"ToolTipText"
+},
+name:"lbl_prop_tooltip",
+styleClass:"default-align label-primary border-primary",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"A7AD4081-932B-4328-A04F-2B29C6C2B5BE"
+},
+{
+cssPosition:"39,-1,-1,539,145,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"539",
+right:"-1",
+top:"39",
+width:"145"
+},
+onActionMethodID:"AFB81A56-2373-4708-B305-567BC1B45E51",
+styleClass:"btn-primary",
+text:"Toggle"
+},
+name:"btn_toggle_enable",
+styleClass:"btn-primary",
+typeName:"bootstrapcomponents-button",
+typeid:47,
+uuid:"AE3D5573-8ABC-4E5E-9CCA-5BEBB581843B"
+},
+{
+cssPosition:"961,-1,-1,133,544,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"133",
+right:"-1",
+top:"961",
+width:"544"
+},
+onActionMethodID:"B7DB77C1-3C2D-49C7-99D4-B3CC4E805E20",
+styleClass:"btn-primary",
+text:"Reset"
+},
+name:"btn_restrictionreset",
+styleClass:"btn-primary",
+typeName:"bootstrapcomponents-button",
+typeid:47,
+uuid:"AF8AF73E-9D9E-44AA-9288-52242609A229"
+},
+{
+cssPosition:"79,-1,-1,539,145,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"539",
+right:"-1",
+top:"79",
+width:"145"
+},
+onActionMethodID:"5DDBB9F6-D600-48A9-AB6E-1271E251C36C",
+styleClass:"btn-primary",
+text:"Toggle"
+},
+name:"btn_toggle_visible",
+styleClass:"btn-primary",
+typeName:"bootstrapcomponents-button",
+typeid:47,
+uuid:"BDBBCFA3-B406-4925-BCE5-F7CDD191642B"
+},
+{
+cssPosition:"40,-1,-1,40,100,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"40",
+right:"-1",
+top:"40",
+width:"100"
+},
+styleClass:"default-align label-primary border-primary",
+text:"Base calendar"
+},
+name:"lbl_calendar",
+styleClass:"default-align label-primary border-primary",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"C6BD842A-C1A3-42DA-889E-808D636C0960"
+},
+{
+cssPosition:"0,0,-1,0,300,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"0",
+right:"0",
+top:"0",
+width:"300"
+},
+styleClass:"label-blue-gradient",
+text:"Basic Configuration Properties"
+},
+name:"lbl_basic_config",
+styleClass:"label-blue-gradient",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"C8F8D879-BDB7-49D4-ACF0-1E52A472D054"
+},
+{
+cssPosition:"330,-1,-1,150,534,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"150",
+right:"-1",
+top:"330",
+width:"534"
+},
+dataProviderID:"format_dp",
+onDataChangeMethodID:"10084714-422E-48E4-A045-EEAB688B7F26",
+valuelistID:"914AEDEE-F0C6-4DE6-9A5B-584256491F9A"
+},
+name:"cb_format",
+typeName:"bootstrapcomponents-combobox",
+typeid:47,
+uuid:"D2A85D79-BD61-4064-8C86-F4E0E35A8C58"
+},
+{
+cssPosition:"665,-1,-1,466,145,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"466",
+right:"-1",
+top:"665",
+width:"145"
+},
+styleClass:"default-align label-primary border-primary",
+text:"Disabled days"
+},
+name:"label_8",
+styleClass:"default-align label-primary border-primary",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"D63D272B-F09B-4A0B-B407-5BA7CA7583E0"
+},
+{
+cssPosition:"40,-1,-1,151,313,280",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"280",
+left:"151",
+right:"-1",
+top:"40",
+width:"313"
+},
+dataProviderID:"date_dp",
+enabledDataProvider:"enabled_dp",
+format:"dd-MM-yyyy HH:mm",
+onDataChangeMethodID:"0E56B6E0-4F57-4232-BB35-5D28DCB27ABD",
+visibleDataProvider:"visible_dp"
+},
+name:"baseInlineCalendar",
+typeName:"bootstrapcomponents-calendarinline",
+typeid:47,
+uuid:"DACC55EF-95DD-418E-8F43-604D911A231D"
+},
+{
+cssPosition:"702,-1,-1,466,209,131",
+json:{
+alignment:"horizontal",
+cssPosition:{
+bottom:"-1",
+height:"131",
+left:"466",
+right:"-1",
+top:"702",
+width:"209"
+},
+dataProviderID:"disabled_days",
+onDataChangeMethodID:"77A44479-1A05-4419-BD0C-9231F90A709E",
+styleClass:"border border-primary disabled-days",
+valuelistID:"92D95E09-C6FC-47E1-9BFF-C188441C97F3"
+},
+name:"choicegroup_7",
+styleClass:"border border-primary disabled-days",
+typeName:"bootstrapcomponents-choicegroup",
+typeid:47,
+uuid:"DC61CB66-054E-418F-BFCB-8424CF090257"
+},
+{
+height:1197,
+partType:5,
+typeid:19,
+uuid:"E84F93F8-8806-4C08-88CF-92925FCA5393"
+},
+{
+cssPosition:"625,-1,-1,0,776,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"0",
+right:"-1",
+top:"625",
+width:"776"
+},
+styleClass:"label-blue-gradient",
+text:"Date Restriction Properties"
+},
+name:"lbl_date_restriction",
+styleClass:"label-blue-gradient",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"EB7F1E8B-2DE6-485C-9C63-CE93BCEF2470"
+},
+{
+cssPosition:"371,-1,-1,150,426,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"150",
+right:"-1",
+top:"371",
+width:"426"
+},
+dataProviderID:"tooltip_dp"
+},
+name:"txt_tooltip",
+typeName:"bootstrapcomponents-textbox",
+typeid:47,
+uuid:"EE53F45E-9C22-43FD-BFCF-D24C979FE776"
 }
+],
+name:"inlineCalendarForm",
+navigatorID:"-1",
+onLoadMethodID:"B593ACF4-4EAF-4D48-BEA1-CF0BD5AA263F",
+showInMenu:true,
+size:"900,1700",
+typeid:3,
+uuid:"780825F3-B025-4733-B268-5517F5B2204B"

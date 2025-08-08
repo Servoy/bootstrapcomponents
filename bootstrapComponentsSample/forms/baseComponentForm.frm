@@ -1,61 +1,56 @@
+customProperties:"formComponent:false,useCssPosition:true",
+encapsulation:108,
+items:[
 {
-    "customProperties":{
-        "formComponent":false,
-        "useCssPosition":true
-    },
-    "encapsulation":108,
-    "items":[
-        {
-            "cssPosition":"60,0,0,0,100,10",
-            "json":{
-                "containedForm":"D974B05E-3DA3-4E52-AFC9-6CE81F179DE5",
-                "cssPosition":{
-                    "bottom":"0",
-                    "height":"10",
-                    "left":"0",
-                    "right":"0",
-                    "top":"60",
-                    "width":"100"
-                }
-            },
-            "name":"component_container",
-            "typeName":"servoycore-formcontainer",
-            "typeid":47,
-            "uuid":"188B04BA-15A1-48B3-B94C-5F6E9FF63733"
-        },
-        {
-            "height":100,
-            "partType":5,
-            "typeid":19,
-            "uuid":"7CA17133-3E8A-4A88-9C77-853DA629A869"
-        },
-        {
-            "cssPosition":"0,0,-1,0,100,47",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"47",
-                    "left":"0",
-                    "right":"0",
-                    "top":"0",
-                    "width":"100"
-                },
-                "styleClass":"gradient-form-label",
-                "text":"Form name"
-            },
-            "name":"label_form",
-            "styleClass":"gradient-form-label",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"B4183AA6-4AC1-4F29-B923-3D34EC988215"
-        }
-    ],
-    "name":"baseComponentForm",
-    "navigatorID":"-1",
-    "onLoadMethodID":"-1",
-    "scrollbars":36,
-    "showInMenu":true,
-    "size":"100,100",
-    "typeid":3,
-    "uuid":"0BC5A9D8-446E-416A-9A5C-B00F134F06AB"
+cssPosition:"60,0,0,0,100,10",
+json:{
+containedForm:"D974B05E-3DA3-4E52-AFC9-6CE81F179DE5",
+cssPosition:{
+bottom:"0",
+height:"10",
+left:"0",
+right:"0",
+top:"60",
+width:"100"
 }
+},
+name:"component_container",
+typeName:"servoycore-formcontainer",
+typeid:47,
+uuid:"188B04BA-15A1-48B3-B94C-5F6E9FF63733"
+},
+{
+height:100,
+partType:5,
+typeid:19,
+uuid:"7CA17133-3E8A-4A88-9C77-853DA629A869"
+},
+{
+cssPosition:"0,0,-1,0,100,47",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"47",
+left:"0",
+right:"0",
+top:"0",
+width:"100"
+},
+styleClass:"gradient-form-label",
+text:"Form name"
+},
+name:"label_form",
+styleClass:"gradient-form-label",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"B4183AA6-4AC1-4F29-B923-3D34EC988215"
+}
+],
+name:"baseComponentForm",
+navigatorID:"-1",
+onLoadMethodID:"-1",
+scrollbars:36,
+showInMenu:true,
+size:"100,100",
+typeid:3,
+uuid:"0BC5A9D8-446E-416A-9A5C-B00F134F06AB"
