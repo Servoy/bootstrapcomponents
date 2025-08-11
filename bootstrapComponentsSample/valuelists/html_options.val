@@ -1,11 +1,9 @@
-{
-    "addEmptyValue":1,
-    "customValues":"<span style=\"color: #ff6600; font-weight: bold; margin-right: 5px;\">★<\/span><span style=\"background: linear-gradient(to right, #3498db, #9b59b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold; font-size: 1.1em;\">HTML<\/span><span style=\"margin: 0 5px; font-size: 0.9em;\">with<\/span><span style=\"color: #2ecc71; font-weight: bold; text-decoration: underline;\">Styling<\/span><span style=\"color: #ff6600; font-weight: bold; margin-left: 5px;\">★<\/span>\
+addEmptyValue:1,
+customValues:"<span style=\"color: #ff6600; font-weight: bold; margin-right: 5px;\">★<\/span><span style=\"background: linear-gradient(to right, #3498db, #9b59b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold; font-size: 1.1em;\">HTML<\/span><span style=\"margin: 0 5px; font-size: 0.9em;\">with<\/span><span style=\"color: #2ecc71; font-weight: bold; text-decoration: underline;\">Styling<\/span><span style=\"color: #ff6600; font-weight: bold; margin-left: 5px;\">★<\/span>\
 <span style=\"color: #e74c3c; font-weight: bold;\">Colorful<\/span> <span style=\"border-bottom: 2px dotted #3498db; padding-bottom: 2px;\">underlined<\/span> <span style=\"font-style: italic; color: #2ecc71;\">styled<\/span> <span style=\"text-shadow: 1px 1px 1px #888;\">text<\/span>\
 <span style=\"font-size: 1.2em;\">🌟<\/span> <span style=\"color: #9b59b6; font-weight: bold;\">Special<\/span> <span style=\"font-style: italic; color: #3498db;\">formatted<\/span> <span style=\"text-decoration: underline; color: #e67e22;\">text<\/span> <span style=\"font-size: 1.2em;\">🌟<\/span>",
-    "displayValueType":12,
-    "name":"html_options",
-    "realValueType":12,
-    "typeid":34,
-    "uuid":"C7F90A3A-D962-4804-9D16-B525B21B70A8"
-}
+displayValueType:12,
+name:"html_options",
+realValueType:12,
+typeid:34,
+uuid:"CF25E04D-1007-414A-B6C9-10EB3CB65A45"

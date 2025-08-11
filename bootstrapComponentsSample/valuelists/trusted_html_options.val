@@ -1,0 +1,9 @@
+addEmptyValue:1,
+customValues:"<i class=\"fas fa-shield-alt\" style=\"color: #0275d8; margin-right: 8px;\"><\/i><span style=\"font-weight: bold;\">Trusted<\/span> <span style=\"margin: 0 4px;\">HTML<\/span> <i class=\"fas fa-code\" style=\"color: #5cb85c; margin-left: 5px;\"><\/i>\
+<input type=\"checkbox\" checked style=\"margin-right: 8px; accent-color: #e74c3c;\"><span style=\"color: #3498db; font-weight: bold;\">Interactive<\/span> <span style=\"font-style: italic; color: #2ecc71;\">checkbox<\/span> <span style=\"text-decoration: underline;\">example<\/span>\
+<span style=\"background-color: #3498db; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.9em;\">New<\/span> <span style=\"font-weight: bold; color: #e74c3c;\">Feature<\/span> <span style=\"font-style: italic;\">with<\/span> <span style=\"text-decoration: underline; color: #2ecc71;\">styling<\/span>",
+displayValueType:12,
+name:"trusted_html_options",
+realValueType:12,
+typeid:34,
+uuid:"D3D1766D-159B-4C95-947D-D4C2553AED6A"

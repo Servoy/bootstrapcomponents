@@ -3,8 +3,6 @@
 	<name>bootstrapComponentsSample</name>
 	<comment></comment>
 	<projects>
-		<project>resources</project>
-		<project>bootstrapcomponents</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

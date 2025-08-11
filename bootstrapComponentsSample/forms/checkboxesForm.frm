@@ -1,254 +1,252 @@
+customProperties:"formComponent:false,\
+useCssPosition:true",
+encapsulation:108,
+items:[
 {
-    "customProperties":{
-        "formComponent":false,
-        "useCssPosition":true
-    },
-    "extendsID":"-1",
-    "items":[
-        {
-            "cssPosition":"40,-1,-1,299,155,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"299",
-                    "right":"-1",
-                    "top":"40",
-                    "width":"155"
-                },
-                "onActionMethodID":"90F48A83-5FD3-4391-ABF9-707D0C64A62A",
-                "styleClass":"btn-primary",
-                "text":"Change Style"
-            },
-            "name":"btn_toggle_style",
-            "styleClass":"btn-primary",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"3DF451B8-5186-4A57-9E3B-B3B0A8EEBCE4"
-        },
-        {
-            "cssPosition":"40,-1,-1,40,250,64",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"64",
-                    "left":"40",
-                    "right":"-1",
-                    "top":"40",
-                    "width":"250"
-                },
-                "dataProviderID":"checkbox_dp",
-                "onDataChangeMethodID":"A1C3BA9D-6685-4403-BA1C-EB5BD84D3890",
-                "text":"Demo checkbox"
-            },
-            "name":"cb_demo",
-            "typeName":"bootstrapcomponents-checkbox",
-            "typeid":47,
-            "uuid":"59C2B554-A4A7-42AE-B3B9-312297B20159"
-        },
-        {
-            "cssPosition":"40,-1,-1,460,155,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"460",
-                    "right":"-1",
-                    "top":"40",
-                    "width":"155"
-                },
-                "onActionMethodID":"BE54CE10-1BFB-4F89-95E5-73FA4C0D2678",
-                "styleClass":"btn-primary",
-                "text":"Toggle Border"
-            },
-            "name":"btn_toggle_border",
-            "styleClass":"btn-primary",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"5DF451B8-5186-4A57-9E3B-B3B0A8EEBCE6"
-        },
-        {
-            "cssPosition":"352,-1,-1,301,313,31",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"31",
-                    "left":"301",
-                    "right":"-1",
-                    "top":"352",
-                    "width":"313"
-                },
-                "showAs":"trusted_html",
-                "text":"Select an option"
-            },
-            "name":"cb_trusted_html_demo",
-            "typeName":"bootstrapcomponents-checkbox",
-            "typeid":47,
-            "uuid":"9A1AD976-D694-4181-8BB8-C973279F18B5"
-        },
-        {
-            "height":480,
-            "partType":5,
-            "typeid":19,
-            "uuid":"AC50A1FD-20AA-4485-840E-B0EA7A7E2392"
-        },
-        {
-            "cssPosition":"115,-1,-1,40,574,140",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"140",
-                    "left":"40",
-                    "right":"-1",
-                    "top":"115",
-                    "width":"574"
-                },
-                "dataProviderID":"demo_log_dp"
-            },
-            "name":"ta_demo_log",
-            "typeName":"bootstrapcomponents-textarea",
-            "typeid":47,
-            "uuid":"B230E190-0351-4F53-9AE7-DB71FE756629"
-        },
-        {
-            "cssPosition":"0,0,-1,0,300,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"0",
-                    "right":"0",
-                    "top":"0",
-                    "width":"300"
-                },
-                "styleClass":"label-blue-gradient",
-                "text":"Configuration Properties"
-            },
-            "name":"lbl_config_header",
-            "styleClass":"label-blue-gradient",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"BE413F93-63BD-45DD-B6E9-AE4C586C9A8A"
-        },
-        {
-            "cssPosition":"78,-1,-1,299,315,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"299",
-                    "right":"-1",
-                    "top":"78",
-                    "width":"315"
-                },
-                "onActionMethodID":"E6B6F4AE-FF47-440F-9BAF-3570E7328217",
-                "styleClass":"btn-primary",
-                "text":"Reset"
-            },
-            "name":"btn_reset",
-            "styleClass":"btn-primary",
-            "typeName":"bootstrapcomponents-button",
-            "typeid":47,
-            "uuid":"BE9888AB-E706-4575-A979-D9A70303AC52"
-        },
-        {
-            "cssPosition":"270,-1,-1,40,250,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"40",
-                    "right":"-1",
-                    "top":"270",
-                    "width":"250"
-                },
-                "text":"HTML Checkbox Example:"
-            },
-            "name":"lbl_html_header",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"C9F90A3A-D962-4804-9D16-B525B21B70AC"
-        },
-        {
-            "cssPosition":"312,-1,-1,301,313,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"301",
-                    "right":"-1",
-                    "top":"312",
-                    "width":"313"
-                },
-                "dataProviderID":"html_combobox_dp",
-                "onDataChangeMethodID":"E7F90A3A-D962-4804-9D16-B525B21B70AA",
-                "valuelistID":"C7F90A3A-D962-4804-9D16-B525B21B70A8"
-            },
-            "name":"cmb_html",
-            "typeName":"bootstrapcomponents-combobox",
-            "typeid":47,
-            "uuid":"D9F90A3A-D962-4804-9D16-B525B21B70AD"
-        },
-        {
-            "cssPosition":"352,-1,-1,40,250,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"40",
-                    "right":"-1",
-                    "top":"352",
-                    "width":"250"
-                },
-                "text":"Trusted HTML Checkbox Example:"
-            },
-            "name":"lbl_trusted_html_header",
-            "typeName":"bootstrapcomponents-label",
-            "typeid":47,
-            "uuid":"E9F90A3A-D962-4804-9D16-B525B21B70AE"
-        },
-        {
-            "cssPosition":"393,-1,-1,301,313,30",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"30",
-                    "left":"301",
-                    "right":"-1",
-                    "top":"393",
-                    "width":"313"
-                },
-                "dataProviderID":"trusted_html_combobox_dp",
-                "onDataChangeMethodID":"F7F90A3A-D962-4804-9D16-B525B21B70AB",
-                "valuelistID":"D7F90A3A-D962-4804-9D16-B525B21B70A9"
-            },
-            "name":"cmb_trusted_html",
-            "typeName":"bootstrapcomponents-combobox",
-            "typeid":47,
-            "uuid":"F9F90A3A-D962-4804-9D16-B525B21B70AF"
-        },
-        {
-            "cssPosition":"270,-1,-1,301,313,31",
-            "json":{
-                "cssPosition":{
-                    "bottom":"-1",
-                    "height":"31",
-                    "left":"301",
-                    "right":"-1",
-                    "top":"270",
-                    "width":"313"
-                },
-                "showAs":"html",
-                "text":"Select an option"
-            },
-            "name":"cb_html_demo",
-            "typeName":"bootstrapcomponents-checkbox",
-            "typeid":47,
-            "uuid":"FCE620E8-51FA-45D8-8957-DB00639235F7"
-        }
-    ],
-    "name":"checkboxesForm",
-    "size":"642,480",
-    "typeid":3,
-    "uuid":"6982B789-07F5-4077-A577-BE9859E82BE3"
+cssPosition:"40,-1,-1,299,155,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"299",
+right:"-1",
+top:"40",
+width:"155"
+},
+onActionMethodID:"90F48A83-5FD3-4391-ABF9-707D0C64A62A",
+styleClass:"btn-primary",
+text:"Change Style"
+},
+name:"btn_toggle_style",
+styleClass:"btn-primary",
+typeName:"bootstrapcomponents-button",
+typeid:47,
+uuid:"3DF451B8-5186-4A57-9E3B-B3B0A8EEBCE4"
+},
+{
+cssPosition:"40,-1,-1,40,250,64",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"64",
+left:"40",
+right:"-1",
+top:"40",
+width:"250"
+},
+dataProviderID:"checkbox_dp",
+onDataChangeMethodID:"A1C3BA9D-6685-4403-BA1C-EB5BD84D3890",
+text:"Demo checkbox"
+},
+name:"cb_demo",
+typeName:"bootstrapcomponents-checkbox",
+typeid:47,
+uuid:"59C2B554-A4A7-42AE-B3B9-312297B20159"
+},
+{
+cssPosition:"40,-1,-1,460,155,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"460",
+right:"-1",
+top:"40",
+width:"155"
+},
+onActionMethodID:"BE54CE10-1BFB-4F89-95E5-73FA4C0D2678",
+styleClass:"btn-primary",
+text:"Toggle Border"
+},
+name:"btn_toggle_border",
+styleClass:"btn-primary",
+typeName:"bootstrapcomponents-button",
+typeid:47,
+uuid:"5DF451B8-5186-4A57-9E3B-B3B0A8EEBCE6"
+},
+{
+cssPosition:"352,-1,-1,301,313,31",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"31",
+left:"301",
+right:"-1",
+top:"352",
+width:"313"
+},
+showAs:"trusted_html",
+text:"Select an option"
+},
+name:"cb_trusted_html_demo",
+typeName:"bootstrapcomponents-checkbox",
+typeid:47,
+uuid:"9A1AD976-D694-4181-8BB8-C973279F18B5"
+},
+{
+height:480,
+partType:5,
+typeid:19,
+uuid:"AC50A1FD-20AA-4485-840E-B0EA7A7E2392"
+},
+{
+cssPosition:"115,-1,-1,40,574,140",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"140",
+left:"40",
+right:"-1",
+top:"115",
+width:"574"
+},
+dataProviderID:"demo_log_dp"
+},
+name:"ta_demo_log",
+typeName:"bootstrapcomponents-textarea",
+typeid:47,
+uuid:"B230E190-0351-4F53-9AE7-DB71FE756629"
+},
+{
+cssPosition:"0,0,-1,0,300,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"0",
+right:"0",
+top:"0",
+width:"300"
+},
+styleClass:"label-blue-gradient",
+text:"Configuration Properties"
+},
+name:"lbl_config_header",
+styleClass:"label-blue-gradient",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"BE413F93-63BD-45DD-B6E9-AE4C586C9A8A"
+},
+{
+cssPosition:"78,-1,-1,299,315,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"299",
+right:"-1",
+top:"78",
+width:"315"
+},
+onActionMethodID:"E6B6F4AE-FF47-440F-9BAF-3570E7328217",
+styleClass:"btn-primary",
+text:"Reset"
+},
+name:"btn_reset",
+styleClass:"btn-primary",
+typeName:"bootstrapcomponents-button",
+typeid:47,
+uuid:"BE9888AB-E706-4575-A979-D9A70303AC52"
+},
+{
+cssPosition:"270,-1,-1,40,250,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"40",
+right:"-1",
+top:"270",
+width:"250"
+},
+text:"HTML Checkbox Example:"
+},
+name:"lbl_html_header",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"C9F90A3A-D962-4804-9D16-B525B21B70AC"
+},
+{
+cssPosition:"312,-1,-1,301,313,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"301",
+right:"-1",
+top:"312",
+width:"313"
+},
+dataProviderID:"html_combobox_dp",
+onDataChangeMethodID:"E7F90A3A-D962-4804-9D16-B525B21B70AA",
+valuelistID:"CF25E04D-1007-414A-B6C9-10EB3CB65A45"
+},
+name:"cmb_html",
+typeName:"bootstrapcomponents-combobox",
+typeid:47,
+uuid:"D9F90A3A-D962-4804-9D16-B525B21B70AD"
+},
+{
+cssPosition:"352,-1,-1,40,250,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"40",
+right:"-1",
+top:"352",
+width:"250"
+},
+text:"Trusted HTML Checkbox Example:"
+},
+name:"lbl_trusted_html_header",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"E9F90A3A-D962-4804-9D16-B525B21B70AE"
+},
+{
+cssPosition:"393,-1,-1,301,313,30",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"30",
+left:"301",
+right:"-1",
+top:"393",
+width:"313"
+},
+dataProviderID:"trusted_html_combobox_dp",
+onDataChangeMethodID:"F7F90A3A-D962-4804-9D16-B525B21B70AB",
+valuelistID:"D3D1766D-159B-4C95-947D-D4C2553AED6A"
+},
+name:"cmb_trusted_html",
+typeName:"bootstrapcomponents-combobox",
+typeid:47,
+uuid:"F9F90A3A-D962-4804-9D16-B525B21B70AF"
+},
+{
+cssPosition:"270,-1,-1,301,313,31",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"31",
+left:"301",
+right:"-1",
+top:"270",
+width:"313"
+},
+showAs:"html",
+text:"Select an option"
+},
+name:"cb_html_demo",
+typeName:"bootstrapcomponents-checkbox",
+typeid:47,
+uuid:"FCE620E8-51FA-45D8-8957-DB00639235F7"
 }
+],
+name:"checkboxesForm",
+navigatorID:"-1",
+showInMenu:true,
+size:"642,480",
+typeid:3,
+uuid:"891F71A8-28FD-4F60-B316-44DC54E0C865"
