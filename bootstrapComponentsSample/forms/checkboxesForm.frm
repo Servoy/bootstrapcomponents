@@ -128,14 +128,14 @@ typeid:47,
 uuid:"BE413F93-63BD-45DD-B6E9-AE4C586C9A8A"
 },
 {
-cssPosition:"78,-1,-1,299,315,30",
+cssPosition:"75,-1,-1,299,315,30",
 json:{
 cssPosition:{
 bottom:"-1",
 height:"30",
 left:"299",
 right:"-1",
-top:"78",
+top:"75",
 width:"315"
 },
 onActionMethodID:"E6B6F4AE-FF47-440F-9BAF-3570E7328217",

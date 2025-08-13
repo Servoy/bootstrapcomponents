@@ -1,0 +1,11 @@
+addEmptyValue:1,
+customValues:"combobox-red\
+combobox-blue\
+combobox-green\
+combobox-dark\
+combobox-rounded",
+displayValueType:12,
+name:"combobox_styles_vl",
+realValueType:12,
+typeid:34,
+uuid:"F04F348A-AB24-4624-9A8F-86424CD051E2"

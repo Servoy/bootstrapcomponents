@@ -1,0 +1,17 @@
+addEmptyValue:1,
+customValues:"All (no format)\
+Date (DD/MM/YYYY)\
+Time (HH:MM)\
+US Phone ((###) ###-####)\
+Invoice ID (UUU-####)\
+License Plate (UU-####-U)\
+IPv4 (###.###.###.###)\
+HEX Color (#HHHHHH)\
+MAC Address (HH:HH:HH:HH:HH:HH)\
+Name (U??? U???)\
+RO Postal (RO ######)",
+displayValueType:12,
+name:"text_format_vl",
+realValueType:12,
+typeid:34,
+uuid:"AB67D12B-E119-49E7-A052-E566B1F7732F"
