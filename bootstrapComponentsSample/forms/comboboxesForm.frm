@@ -150,7 +150,6 @@ uuid:"6F7C70B8-F7E6-9FBE-EFF4-8F2683F4F522"
 {
 cssPosition:"510,-1,-1,205,275,30",
 json:{
-appendToBody:false,
 cssPosition:{
 bottom:"-1",
 height:"30",
@@ -397,6 +396,7 @@ right:"-1",
 top:"42",
 width:"291"
 },
+format:"(###) ###-####",
 styleClass:"text-center",
 toolTipText:"Combo box demo ...",
 valuelistID:"C9D4C312-BD56-4F0F-88CB-46AB5C8CC09A"

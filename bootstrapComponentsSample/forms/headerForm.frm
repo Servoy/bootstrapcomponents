@@ -12,10 +12,11 @@ right:"0",
 top:"10",
 width:"422"
 },
-text:"Bootstrap package demo",
-variant:"GradientTextSunlight"
+styleClass:"header-form-label",
+text:"Bootstrap package demo"
 },
 name:"example_label",
+styleClass:"header-form-label",
 typeName:"bootstrapcomponents-label",
 typeid:47,
 uuid:"78EBEBD6-27D3-4B70-9293-F5FBBB39F1AD"

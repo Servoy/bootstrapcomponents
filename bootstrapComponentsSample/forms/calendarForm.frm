@@ -602,7 +602,7 @@ width:"220"
 dataProviderID:"disabledDaysDP",
 onDataChangeMethodID:"380CA697-CD88-4707-88CC-7A1F7A244582",
 styleClass:"border border-primary",
-valuelistID:"92D95E09-C6FC-47E1-9BFF-C188441C97F3"
+valuelistID:"2B136606-7656-4754-B0CD-93BFE9E898B2"
 },
 name:"choicegroup_7",
 styleClass:"border border-primary",

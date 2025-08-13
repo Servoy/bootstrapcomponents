@@ -33,7 +33,7 @@ CA-2045-A\
 ABC-1234\
 AA:BB:0C:1D:2E:3F",
 displayValueType:12,
-name:"cb_demo_vl",
+name:"combobox_demo_vl",
 realValueType:12,
 typeid:34,
 uuid:"C9D4C312-BD56-4F0F-88CB-46AB5C8CC09A"

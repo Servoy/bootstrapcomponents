@@ -1,7 +1,7 @@
 /**
  * @type {Object}
  * 
- * @properties={"typeid":35,"uuid":"82EFF91E-B98E-4A88-9958-350748350B7B","variableType":-4}
+ * @properties={typeid:35,uuid:"82EFF91E-B98E-4A88-9958-350748350B7B",variableType:-4}
  */
 var side_by_side_option = {
 	  display: {
@@ -12,7 +12,7 @@ var side_by_side_option = {
 /**
  * @type {Object}
  * 
- * @properties={"typeid":35,"uuid":"9E367439-CDFA-4D15-9389-866CD6062E16","variableType":-4}
+ * @properties={typeid:35,uuid:"9E367439-CDFA-4D15-9389-866CD6062E16",variableType:-4}
  */
 var calendar_time_only_option = {
 	display: {
@@ -23,7 +23,7 @@ var calendar_time_only_option = {
 /**
  * @type {Object}
  * 
- * @properties={"typeid":35,"uuid":"1EA9A45E-C8A1-4669-808B-1AFB9BED6337","variableType":-4}
+ * @properties={typeid:35,uuid:"1EA9A45E-C8A1-4669-808B-1AFB9BED6337",variableType:-4}
  */
 var dark_theme_option = {
 	  display: {
@@ -34,7 +34,7 @@ var dark_theme_option = {
 /**
  * @type {Object}
  * 
- * @properties={"typeid":35,"uuid":"2586470E-3BB3-4142-9512-2A25D3072B85","variableType":-4}
+ * @properties={typeid:35,uuid:"2586470E-3BB3-4142-9512-2A25D3072B85",variableType:-4}
  */
 var month_view_option = {
 	  display: {
@@ -45,7 +45,7 @@ var month_view_option = {
 /**
  * @type {Object}
  * 
- * @properties={"typeid":35,"uuid":"B0CB2EA4-9B28-43E5-AB85-2E44614726C8","variableType":-4}
+ * @properties={typeid:35,uuid:"B0CB2EA4-9B28-43E5-AB85-2E44614726C8",variableType:-4}
  */
 var inline_option = {
 	  display: {
@@ -56,7 +56,7 @@ var inline_option = {
 /**
  * @type {Object}
  * 
- * @properties={"typeid":35,"uuid":"196E2647-26AE-4F70-9F89-2ED09578AE86","variableType":-4}
+ * @properties={typeid:35,uuid:"196E2647-26AE-4F70-9F89-2ED09578AE86",variableType:-4}
  */
 var custom_icons_option = {
 	  display: {
@@ -75,7 +75,7 @@ var custom_icons_option = {
 /**
  * @type {Object}
  * 
- * @properties={"typeid":35,"uuid":"22894D28-514E-4E10-94EA-6741B332C129","variableType":-4}
+ * @properties={typeid:35,uuid:"22894D28-514E-4E10-94EA-6741B332C129",variableType:-4}
  */
 var today_only_button_option = {
 	  display: {
@@ -88,7 +88,7 @@ var today_only_button_option = {
 };
 
 /**
- * @properties={"typeid":35,"uuid":"CD391B52-61E2-46D8-80AA-EA0D4AD39409","variableType":-4}
+ * @properties={typeid:35,uuid:"CD391B52-61E2-46D8-80AA-EA0D4AD39409",variableType:-4}
  */
 const dayMap = {
         sunday: 0,
@@ -102,34 +102,34 @@ const dayMap = {
 
 /**
  * @type {String}
- * @properties={"typeid":35,"uuid":"24C900D0-75CF-47E8-9857-BEFDE0CBB2F6"}
+ * @properties={typeid:35,uuid:"24C900D0-75CF-47E8-9857-BEFDE0CBB2F6"}
  */
 var disabledDaysDP = null;
 
 /**
  * @type {Array<Number>}
- * @properties={"typeid":35,"uuid":"FA1D9B23-183A-49CD-A300-F8C4B449BAF7","variableType":-4}
+ * @properties={typeid:35,uuid:"FA1D9B23-183A-49CD-A300-F8C4B449BAF7",variableType:-4}
  */
 var disabledDays = [];
 
 /**
  * @type {Boolean}
  *
- * @properties={"typeid":35,"uuid":"D413761F-7CC8-46E7-AE41-124C7292C06B","variableType":-4}
+ * @properties={typeid:35,uuid:"D413761F-7CC8-46E7-AE41-124C7292C06B",variableType:-4}
  */
 var keepInvalidDP = false;
 
 /**
  * @type {Date}
  *
- * @properties={"typeid":35,"uuid":"3C150C14-F675-4EC7-859D-D8C9E89EEE63","variableType":93}
+ * @properties={typeid:35,uuid:"3C150C14-F675-4EC7-859D-D8C9E89EEE63",variableType:93}
  */
 var minMaxDP = new Date();
 
 /**
  * @type {Date}
  *
- * @properties={"typeid":35,"uuid":"BA33E5BF-88F5-4FA5-92F5-21983098B319","variableType":93}
+ * @properties={typeid:35,uuid:"BA33E5BF-88F5-4FA5-92F5-21983098B319",variableType:93}
  */
 var maxdateDP = (function() {
     var dateNo = new Date().getTime() + (21 * 24 * 60 * 60 * 1000); // 3 weeks in ms
@@ -139,59 +139,49 @@ var maxdateDP = (function() {
 /**
  * @type {Date}
  *
- * @properties={"typeid":35,"uuid":"9EDA5B76-CC42-45F5-9D78-C8BCEF131C8D","variableType":93}
+ * @properties={typeid:35,uuid:"9EDA5B76-CC42-45F5-9D78-C8BCEF131C8D",variableType:93}
  */
 var mindateDP = new Date();
 
 /**
  * @type {Date}
  *
- * @properties={"typeid":35,"uuid":"B17EC80A-2E8D-41B8-A64D-680D38ACAF14","variableType":93}
+ * @properties={typeid:35,uuid:"B17EC80A-2E8D-41B8-A64D-680D38ACAF14",variableType:93}
  */
 var customDate = new Date();
 
 /**
  * @type {String}
  *
- * @properties={"typeid":35,"uuid":"F4D26328-4359-4F4C-9511-E6B51C1F5FD8"}
+ * @properties={typeid:35,uuid:"F4D26328-4359-4F4C-9511-E6B51C1F5FD8"}
  */
 var placeholder_dp = 'Select a date';
 
 /**
  * @type {String}
  *
- * @properties={"typeid":35,"uuid":"661BB6EC-6600-4A70-8A42-D3E104F4A6E7"}
+ * @properties={typeid:35,uuid:"661BB6EC-6600-4A70-8A42-D3E104F4A6E7"}
  */
 var tooltip_dp = 'This is a demo calendar for basic configuration';
 
 /**
- * @properties={"typeid":35,"uuid":"44EFCA94-A791-4DA4-8614-E760707467FB","variableType":-4}
- */
-var enableDP = true;
-
-/**
- * @properties={"typeid":35,"uuid":"09DB813F-AFC1-4116-9ED3-10456552D633","variableType":-4}
- */
-var visibleDP = true;
-
-/**
  * @type {String}
  *
- * @properties={"typeid":35,"uuid":"A0C9D693-E8B3-4968-A2B4-5B161495576C"}
+ * @properties={typeid:35,uuid:"A0C9D693-E8B3-4968-A2B4-5B161495576C"}
  */
 var base_message_dp = 'Day-Month-Year with time in 24-hour format (e.g., 28-07-2025 21:38)\n\nFormat uses: d=day, M=month, y=year, H=hour(0-23), m=minute';
 
 /**
  * @type {String}
  *
- * @properties={"typeid":35,"uuid":"6449A26D-1E20-4511-858E-E18969FD9540"}
+ * @properties={typeid:35,uuid:"6449A26D-1E20-4511-858E-E18969FD9540"}
  */
 var format_dp = 'MM/dd/yyyy hh:mm aa';
 
 /**
  * @type {Date}
  *
- * @properties={"typeid":35,"uuid":"9F28D495-B4D4-41A7-8A1A-36C82FBAD3AD","variableType":93}
+ * @properties={typeid:35,uuid:"9F28D495-B4D4-41A7-8A1A-36C82FBAD3AD",variableType:93}
  */
 var date_dp = new Date();
 
@@ -200,11 +190,11 @@ var date_dp = new Date();
  *
  * @param {JSEvent} event
  *
- * @properties={"typeid":24,"uuid":"C338C953-043D-48C5-B18F-5EC7C78D789A"}
+ * @properties={typeid:24,uuid:"C338C953-043D-48C5-B18F-5EC7C78D789A"}
  */
 function onToggleEnabled(event) {
-	enableDP = !enableDP;
-	updateBaseCalendarStatus("Calendar enabled: " + enableDP);
+	elements.basic_calendar.enabled = !elements.basic_calendar.enabled;
+	updateBaseCalendarStatus("Calendar enabled: " + elements.basic_calendar.enabled);
 	
 	scopes.global.setStatusMessage(event.getElementName() + ' clicked');
 }
@@ -214,15 +204,15 @@ function onToggleEnabled(event) {
  *
  * @param {JSEvent} event
  *
- * @properties={"typeid":24,"uuid":"8635E42D-F589-41A4-8442-76C890F85355"}
+ * @properties={typeid:24,uuid:"8635E42D-F589-41A4-8442-76C890F85355"}
  */
 function onToggleVisible(event) {
-	visibleDP = !visibleDP;
+	elements.basic_calendar.visible = !elements.basic_calendar.visible;
 	// Update status display
-	updateBaseCalendarStatus('Calendar visible = ' + visibleDP);
+	updateBaseCalendarStatus('Calendar visible = ' + elements.basic_calendar.visible);
 	
 	// If button is now invisible, show a message
-	if (!visibleDP) {
+	if (!elements.basic_calendar.visible) {
 		updateBaseCalendarStatus('visible = false: the calendar is now hidden. Click "Toggle" again to show it.');
 	}
 	scopes.global.setStatusMessage(event.getElementName() + ' clicked');
@@ -233,7 +223,7 @@ function onToggleVisible(event) {
  *
  * @param {JSEvent} event
  *
- * @properties={"typeid":24,"uuid":"B28B6B7A-3BC9-4AFD-BF4B-8A8D469D3DAA"}
+ * @properties={typeid:24,uuid:"B28B6B7A-3BC9-4AFD-BF4B-8A8D469D3DAA"}
  */
 function onStyleclassChange(event) {
 	var calendar = elements.basic_calendar;
@@ -271,7 +261,7 @@ function onStyleclassChange(event) {
  *
  * @param {JSEvent} event
  *
- * @properties={"typeid":24,"uuid":"047E0D90-46DB-44EE-8A28-503AD142F516"}
+ * @properties={typeid:24,uuid:"047E0D90-46DB-44EE-8A28-503AD142F516"}
  */
 function onApplyTooltip(event) {
 	elements.basic_calendar.toolTipText = tooltip_dp;
@@ -284,7 +274,7 @@ function onApplyTooltip(event) {
  *
  * @param {JSEvent} event
  *
- * @properties={"typeid":24,"uuid":"2E1B7F23-FB33-4C1A-93EF-6002ABACCC83"}
+ * @properties={typeid:24,uuid:"2E1B7F23-FB33-4C1A-93EF-6002ABACCC83"}
  */
 function onApplyPlaceholder(event) {
 	date_dp = null;
@@ -297,7 +287,7 @@ function onApplyPlaceholder(event) {
  * TODO generated, please specify type and doc for the params
  * @param message
  *
- * @properties={"typeid":24,"uuid":"436E5BD5-BE1D-4105-898F-9AE4E685F7E9"}
+ * @properties={typeid:24,uuid:"436E5BD5-BE1D-4105-898F-9AE4E685F7E9"}
  */
 function updateBaseCalendarStatus(message) {
 	base_message_dp = message;
@@ -313,7 +303,7 @@ function updateBaseCalendarStatus(message) {
  *
  * @return {Boolean}
  *
- * @properties={"typeid":24,"uuid":"76692A37-B531-4FA9-B6D4-5F2004518BBF"}
+ * @properties={typeid:24,uuid:"76692A37-B531-4FA9-B6D4-5F2004518BBF"}
  */
 function onFormatDataChange(oldValue, newValue, event) {
 	elements.basic_calendar.format = newValue; 
@@ -375,7 +365,7 @@ function onFormatDataChange(oldValue, newValue, event) {
  *
  * @param {JSEvent} event
  *
- * @properties={"typeid":24,"uuid":"4D7BD9EA-7532-4B7B-B2B9-F4AE7581B924"}
+ * @properties={typeid:24,uuid:"4D7BD9EA-7532-4B7B-B2B9-F4AE7581B924"}
  */
 function onBasicResetAction(event) {
 	date_dp = new Date();
@@ -397,7 +387,7 @@ function onBasicResetAction(event) {
  *
  * @return {Boolean}
  *
- * @properties={"typeid":24,"uuid":"A3E7AEC8-AAD2-4841-A47A-4E7332C7AA28"}
+ * @properties={typeid:24,uuid:"A3E7AEC8-AAD2-4841-A47A-4E7332C7AA28"}
  */
 function onMinDataChange(oldValue, newValue, event) {
 	if (newValue < maxdateDP) {
@@ -419,7 +409,7 @@ function onMinDataChange(oldValue, newValue, event) {
  *
  * @return {Boolean}
  *
- * @properties={"typeid":24,"uuid":"11B588B3-36E6-4FEE-B079-1581DCF1611F"}
+ * @properties={typeid:24,uuid:"11B588B3-36E6-4FEE-B079-1581DCF1611F"}
  */
 function onMaxDataChange(oldValue, newValue, event) {
 	if (newValue > mindateDP) {
@@ -436,7 +426,7 @@ function onMaxDataChange(oldValue, newValue, event) {
  *
  * @param {JSEvent} event
  *
- * @properties={"typeid":24,"uuid":"B8DD16CF-7AB7-4DE7-A0BC-232A0CBB9AD6"}
+ * @properties={typeid:24,uuid:"B8DD16CF-7AB7-4DE7-A0BC-232A0CBB9AD6"}
  */
 function onTest(event) {
 	application.output('Test btn pressed');
@@ -447,7 +437,7 @@ function onTest(event) {
  *
  * @param {JSEvent} event the event that triggered the action
  *
- * @properties={"typeid":24,"uuid":"9144DA7D-31FA-4B07-BB20-23FFAFA3E3A5"}
+ * @properties={typeid:24,uuid:"9144DA7D-31FA-4B07-BB20-23FFAFA3E3A5"}
  */
 function onCalendarFormLoad(event) {
 	elements.minmax_calendar.setMinMaxDate(mindateDP, maxdateDP);
@@ -459,7 +449,7 @@ function onCalendarFormLoad(event) {
  *
  * @param {JSEvent} event
  *
- * @properties={"typeid":24,"uuid":"BEC8046E-D587-4ED6-A1BC-7B6115880D42"}
+ * @properties={typeid:24,uuid:"BEC8046E-D587-4ED6-A1BC-7B6115880D42"}
  */
 function onAddMinDisabledDate(event) {
 	elements.minmax_calendar.disableDates([mindateDP], keepInvalidDP);
@@ -471,7 +461,7 @@ function onAddMinDisabledDate(event) {
  *
  * @param {JSEvent} event
  *
- * @properties={"typeid":24,"uuid":"7390DF77-9F70-4CD7-B155-6C70EE23C729"}
+ * @properties={typeid:24,uuid:"7390DF77-9F70-4CD7-B155-6C70EE23C729"}
  */
 function onAddMaxDisabledDate(event) {
 	elements.minmax_calendar.disableDates([maxdateDP], keepInvalidDP);
@@ -488,7 +478,7 @@ function onAddMaxDisabledDate(event) {
  *
  * @return {Boolean}
  *
- * @properties={"typeid":24,"uuid":"380CA697-CD88-4707-88CC-7A1F7A244582"}
+ * @properties={typeid:24,uuid:"380CA697-CD88-4707-88CC-7A1F7A244582"}
  */
 function onDisableDaysChange(oldValue, newValue, event) {
     var disabledDaysArray = newValue
@@ -507,7 +497,7 @@ function onDisableDaysChange(oldValue, newValue, event) {
  *
  * @param {JSEvent} event
  *
- * @properties={"typeid":24,"uuid":"E1C05243-0ADE-4B0A-BEBE-3781E67CA1A2"}
+ * @properties={typeid:24,uuid:"E1C05243-0ADE-4B0A-BEBE-3781E67CA1A2"}
  */
 function onRestrictionsReset(event) {
 	elements.minmax_calendar.disableDates([]);
@@ -522,7 +512,7 @@ function onRestrictionsReset(event) {
 /**
  * @param {JSEvent} event
  *
- * @properties={"typeid":24,"uuid":"D43C8CBE-A9C7-4A54-BF87-31E21899A694"}
+ * @properties={typeid:24,uuid:"D43C8CBE-A9C7-4A54-BF87-31E21899A694"}
  */
 function onDateClick(event) {
 	updateBaseCalendarStatus('Calendar date clicked: ' + event.getElementName());
@@ -538,7 +528,7 @@ function onDateClick(event) {
  *
  * @return {Boolean}
  *
- * @properties={"typeid":24,"uuid":"BE552F74-7E68-4F17-8E19-32FFE55A9571"}
+ * @properties={typeid:24,uuid:"BE552F74-7E68-4F17-8E19-32FFE55A9571"}
  */
 function onCalendarDataChange(oldValue, newValue, event) {
 	updateBaseCalendarStatus('Calendar date changed: ' + newValue);
@@ -548,7 +538,7 @@ function onCalendarDataChange(oldValue, newValue, event) {
 /**
  * @param {JSEvent} event
  *
- * @properties={"typeid":24,"uuid":"8432EEA4-625E-4B1D-A644-83ECEEBB6342"}
+ * @properties={typeid:24,uuid:"8432EEA4-625E-4B1D-A644-83ECEEBB6342"}
  */
 function onCalendarFocusGained(event) {
 	scopes.global.setStatusMessage('Calendar focus gained: ' + event.getElementName());
@@ -557,14 +547,14 @@ function onCalendarFocusGained(event) {
 /**
  * @param {JSEvent} event
  *
- * @properties={"typeid":24,"uuid":"50A92003-C1D7-4A4B-ABE4-66BD1E4773B3"}
+ * @properties={typeid:24,uuid:"50A92003-C1D7-4A4B-ABE4-66BD1E4773B3"}
  */
 function onCalendarFocusLost(event) {
 	scopes.global.setStatusMessage('Calendar focus lost: ' + event.getElementName());
 }
 
 /**
- * @properties={"typeid":24,"uuid":"F4B21C80-2326-4633-8E4B-260494BCCD5B"}
+ * @properties={typeid:24,uuid:"F4B21C80-2326-4633-8E4B-260494BCCD5B"}
  */
 function initCustomModes() {
 	// Apply options to each calendar example

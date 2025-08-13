@@ -441,7 +441,7 @@ width:"209"
 dataProviderID:"disabled_days",
 onDataChangeMethodID:"77A44479-1A05-4419-BD0C-9231F90A709E",
 styleClass:"border border-primary disabled-days",
-valuelistID:"92D95E09-C6FC-47E1-9BFF-C188441C97F3"
+valuelistID:"2B136606-7656-4754-B0CD-93BFE9E898B2"
 },
 name:"choicegroup_7",
 styleClass:"border border-primary disabled-days",

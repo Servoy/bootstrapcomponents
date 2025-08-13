@@ -3,7 +3,7 @@ customValues:"<span style=\"color: #ff6600; font-weight: bold; margin-right: 5px
 <span style=\"color: #e74c3c; font-weight: bold;\">Colorful<\/span> <span style=\"border-bottom: 2px dotted #3498db; padding-bottom: 2px;\">underlined<\/span> <span style=\"font-style: italic; color: #2ecc71;\">styled<\/span> <span style=\"text-shadow: 1px 1px 1px #888;\">text<\/span>\
 <span style=\"font-size: 1.2em;\">🌟<\/span> <span style=\"color: #9b59b6; font-weight: bold;\">Special<\/span> <span style=\"font-style: italic; color: #3498db;\">formatted<\/span> <span style=\"text-decoration: underline; color: #e67e22;\">text<\/span> <span style=\"font-size: 1.2em;\">🌟<\/span>",
 displayValueType:12,
-name:"html_options",
+name:"checkbox_html_options",
 realValueType:12,
 typeid:34,
 uuid:"CF25E04D-1007-414A-B6C9-10EB3CB65A45"

@@ -15,7 +15,7 @@ DDD 'day of' yyyy\
 EEE MMM dd HH:mm:ss z yyyy\
 yyyy'年'MM'月'dd'日'",
 displayValueType:12,
-name:"dateformat_vl",
+name:"calendar_dateformat_vl",
 realValueType:12,
 typeid:34,
 uuid:"BF769E54-24F9-41BA-8F88-22521B778D62"

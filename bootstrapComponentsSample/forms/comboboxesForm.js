@@ -191,6 +191,7 @@ function onReset(event) {
 	elements.cb_demo.toolTipText = tooltip_dp;
 	elements.cb_demo.format = null;
 	message_dp = 'Select an action and check the result in \`Demo combobox\`\nSelect Demo combobox and type for \'Search...\'';
+	scopes.global.setStatusMessage(event.getElementName() + ' click');
 }
 
 /**
@@ -237,6 +238,6 @@ function onStyleChange(oldValue, newValue, event) {
 	} else {
 		message_dp = 'Style has been removed from the Demo combobox';
 	}
-	
+	scopes.global.setStatusMessage(event.getElementName() + ' click');
 	return true;
 }

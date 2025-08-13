@@ -1,0 +1,13 @@
+addEmptyValue:1,
+customValues:"Sunday\
+Monday\
+Tuesday\
+Wednesday\
+Thursday\
+Friday\
+Saturday",
+displayValueType:12,
+name:"calendar_days_vl",
+realValueType:12,
+typeid:34,
+uuid:"2B136606-7656-4754-B0CD-93BFE9E898B2"

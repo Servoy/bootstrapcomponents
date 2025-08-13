@@ -11,7 +11,7 @@ MAC Address (HH:HH:HH:HH:HH:HH)\
 Name (U??? U???)\
 RO Postal (RO ######)",
 displayValueType:12,
-name:"text_format_vl",
+name:"combobox_format_vl",
 realValueType:12,
 typeid:34,
 uuid:"AB67D12B-E119-49E7-A052-E566B1F7732F"
