@@ -1,5 +1,4 @@
-@if (showAs !== 'html' && showAs !== 'trusted_html') {
-  <button
+<button
     #element
     class="bts-button"
     [sabloTabseq]="tabSeq"
@@ -8,21 +7,13 @@
     @if (imageStyleClass) {
       <span [ngClass]="imageStyleClass" aria-hidden="true"></span>
     }
-    {{text}}
+    @if (showAs !== 'html' && showAs !== 'trusted_html') {
+      {{text}}
+    }
+    @if ((showAs === 'html' || showAs === 'trusted_html')) {
+      <span [innerHTML]="text | htmlFilter | trustAsHtml:isTrustedHTML()"></span>
+    }
     @if (trailingImageStyleClass) {
       <span [ngClass]="trailingImageStyleClass" aria-hidden="true"></span>
     }
-  </button>
-}
-
-@if ((showAs === 'html' || showAs === 'trusted_html')) {
-  <button
-    #element
-    class="bts-button"
-    [sabloTabseq]="tabSeq"
-    [id]="servoyApi.getMarkupId()"
-    [svyTooltip]="toolTipText">
-    <span [ngClass]="imageStyleClass" aria-hidden="true"></span>
-    <span [innerHTML]="text | htmlFilter | trustAsHtml:isTrustedHTML()"></span>
-  </button>
-}
+</button>
