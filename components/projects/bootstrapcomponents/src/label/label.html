@@ -2,8 +2,7 @@
   class="bts-label"
   [sabloTabseq]="(onActionMethodID || onDoubleClickMethodID || onRightClickMethodID) ? tabSeq : -2"
   [id]="servoyApi.getMarkupId()"
-  [svyTooltip]="toolTipText"
-  [ngStyle]="{pointerEvents: enabled ? 'unset': 'none'}">
+  [svyTooltip]="toolTipText">
   <ng-container [ngTemplateOutlet]="labelFor?labelForTemplate:labelTemplate"></ng-container>
 </span>
 

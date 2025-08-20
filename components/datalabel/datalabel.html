@@ -6,7 +6,8 @@
 	ng-disabled='!model.enabled'
 	ng-if='model.visible'
  	id="{{::model.svyMarkupId}}"
- 	svy-attributes='model.attributes'>
+ 	svy-attributes='model.attributes'
+	ng-style="{pointerEvents: model.enabled ? 'unset': 'none'}">
 
     <span class='bts-label-icon' ng-class='model.imageStyleClass' ng-if='model.imageStyleClass'></span>
  	<span class='bts-label-text' ng-bind-html='model.dataProviderID | formatFilter:model.format.display:model.format.type| designFilter:servoyApi.isInDesigner() | htmlFilter | trustAsHtml:isTrustedHTML()'

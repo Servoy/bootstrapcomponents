@@ -22,24 +22,29 @@ export class ServoyBootstrapBaseLabel<T extends HTMLElement> extends ServoyBoots
         if (this.onActionMethodID) {
             if (this.onDoubleClickMethodID) {
                 this.renderer.listen(this.getFocusElement(), 'click', e => {
-                    if (this.timeoutID) {
-                        window.clearTimeout(this.timeoutID);
-                        this.timeoutID = null;
-                        // double click, do nothing will be done in sub classes
-                    } else {
-                        this.timeoutID = window.setTimeout(() => {
+                    if(this.enabled) {
+                        if (this.timeoutID) {
+                            window.clearTimeout(this.timeoutID);
                             this.timeoutID = null;
-                            this.onActionMethodID(e, this.getDataTarget(e));
-                        }, 250);
+                            // double click, do nothing will be done in sub classes
+                        } else {
+                            this.timeoutID = window.setTimeout(() => {
+                                this.timeoutID = null;
+                                this.onActionMethodID(e, this.getDataTarget(e));
+                            }, 250);
+                        }
                     }
                 });
             } else {
-                    this.renderer.listen(this.getFocusElement(), 'click', e => this.onActionMethodID(e, this.getDataTarget(e)));
+                    this.renderer.listen(this.getFocusElement(), 'click', e => {
+                        if(this.enabled) this.onActionMethodID(e, this.getDataTarget(e));
+                    });
             }
         }
         if (this.onRightClickMethodID) {
             this.renderer.listen(this.getFocusElement(), 'contextmenu', e => {
-                this.onRightClickMethodID(e, this.getDataTarget(e)); return false;
+                if(this.enabled) this.onRightClickMethodID(e, this.getDataTarget(e));
+                return false;
             });
         }
     }
