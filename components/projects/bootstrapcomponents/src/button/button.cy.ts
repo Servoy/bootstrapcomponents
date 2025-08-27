@@ -134,7 +134,8 @@ describe('ButtonComponent', () => {
                 servoyApi: servoyApiSpy,
                 onActionMethodID: cy.spy().as('onActionMethodID'),
                 text: 'MyButton <label data-target="test">Click me</label>',
-                showAs: 'trusted_html'
+                showAs: 'trusted_html',
+                enabled: true
         }
         cy.mount(ServoyBootstrapButton, config);
         cy.get('button label').click()
@@ -149,7 +150,8 @@ describe('ButtonComponent', () => {
                 servoyApi: servoyApiSpy,
                 onActionMethodID: cy.spy().as('onActionMethodID'),
                 text: 'MyButton <label data-target="test">Click me2</label>',
-                showAs: 'html'
+                showAs: 'html',
+                enabled: true
         }
         cy.mount(ServoyBootstrapButton, config);
         cy.get('button label').click()
