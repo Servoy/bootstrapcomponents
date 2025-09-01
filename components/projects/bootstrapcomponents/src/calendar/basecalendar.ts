@@ -107,8 +107,16 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
             this.config.restrictions.maxDate = DateTime.convert(changes.maxDate.currentValue, null, this.config.localization);
         if (changes.disabledDays && changes.disabledDays.currentValue)
             this.config.restrictions.daysOfWeekDisabled = changes.disabledDays.currentValue;
-        if (changes.disabledDates && changes.disabledDates.currentValue)
-            this.config.restrictions.disabledDates = this.convertDateArray(changes.disabledDates.currentValue);
+        if (changes.disabledDates)
+		{
+			if (changes.disabledDates.currentValue){
+				this.config.restrictions.disabledDates = this.convertDateArray(changes.disabledDates.currentValue);
+			}
+			else if (changes.disabledDates.previousValue) {
+				this.config.restrictions.disabledDates = [];
+			}
+		}
+           
         if (changes.keepInvalid && changes.keepInvalid.currentValue !== undefined)
             this.config.keepInvalid = changes.keepInvalid.currentValue;
         if (this.picker && (changes.calendarWeeks || changes.minDate || changes.options
