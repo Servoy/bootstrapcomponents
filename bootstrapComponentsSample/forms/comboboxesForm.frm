@@ -139,11 +139,11 @@ top:"295",
 width:"140"
 },
 onActionMethodID:"6A6C4426-4E46-4377-BA5F-AD3BBBA16A64",
-styleClass:"btn btn-outline-primary border-fancy-primary",
+styleClass:"btn-outline-primary",
 text:"Reset"
 },
 name:"btn_reset",
-styleClass:"btn btn-outline-primary border-fancy-primary",
+styleClass:"btn-outline-primary",
 typeName:"bootstrapcomponents-button",
 typeid:47,
 uuid:"880AAB00-173B-4939-83CE-1D9823164937"
@@ -180,11 +180,11 @@ top:"83",
 width:"80"
 },
 onActionMethodID:"D40AD537-995E-4F00-8006-E16008AAEA68",
-styleClass:"btn btn-primary border-fancy-primary",
+styleClass:"btn-primary",
 text:"Apply"
 },
 name:"btn_apply_tooltip",
-styleClass:"btn btn-primary border-fancy-primary",
+styleClass:"btn-primary",
 typeName:"bootstrapcomponents-button",
 typeid:47,
 uuid:"A1B2C3D4-E5F6-4A5B-B6C7-D8E9F0A1B2C3"
@@ -221,11 +221,12 @@ width:"80"
 },
 onActionMethodID:null,
 onDoubleClickMethodID:"6FC19C2E-6345-436F-AF53-7BB9BEED3AAB",
-styleClass:"btn btn-primary border-fancy-primary",
+showAs:null,
+styleClass:"btn-primary",
 text:"Apply"
 },
 name:"btn_apply_placeholder",
-styleClass:"btn btn-primary border-fancy-primary",
+styleClass:"btn-primary",
 typeName:"bootstrapcomponents-button",
 typeid:47,
 uuid:"B2C3D4E5-F6A5-4B6C-7D8E-09F0A1B2C3D4"
