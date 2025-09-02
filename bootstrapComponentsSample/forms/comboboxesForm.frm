@@ -3,26 +3,6 @@ useCssPosition:true",
 encapsulation:108,
 items:[
 {
-cssPosition:"510,-1,-1,41,158,30",
-json:{
-cssPosition:{
-bottom:"-1",
-height:"30",
-left:"41",
-right:"-1",
-top:"510",
-width:"158"
-},
-styleClass:"default-align label-primary",
-text:"Append to body"
-},
-name:"lbl_toggle_error_msgc",
-styleClass:"default-align label-primary",
-typeName:"bootstrapcomponents-label",
-typeid:47,
-uuid:"18F485FD-A784-46C0-99DA-1206D0324EAF"
-},
-{
 cssPosition:"430,-1,-1,205,275,30",
 json:{
 cssPosition:{
@@ -146,25 +126,6 @@ styleClass:"default-align label-primary",
 typeName:"bootstrapcomponents-label",
 typeid:47,
 uuid:"6F7C70B8-F7E6-9FBE-EFF4-8F2683F4F522"
-},
-{
-cssPosition:"510,-1,-1,205,275,30",
-json:{
-cssPosition:{
-bottom:"-1",
-height:"30",
-left:"205",
-right:"-1",
-top:"510",
-width:"275"
-},
-showAs:"trusted_html",
-valuelistID:"CF25E04D-1007-414A-B6C9-10EB3CB65A45"
-},
-name:"cb_showas_trustedc",
-typeName:"bootstrapcomponents-combobox",
-typeid:47,
-uuid:"72F251C4-BB37-4327-AAB3-FEC26C02E706"
 },
 {
 cssPosition:"295,-1,-1,40,140,30",

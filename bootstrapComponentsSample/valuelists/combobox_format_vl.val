@@ -1,15 +1,7 @@
 addEmptyValue:1,
-customValues:"All (no format)\
-Date (DD/MM/YYYY)\
-Time (HH:MM)\
-US Phone ((###) ###-####)\
-Invoice ID (UUU-####)\
+customValues:"Date (DD/MM/YYYY)\
 License Plate (UU-####-U)\
-IPv4 (###.###.###.###)\
-HEX Color (#HHHHHH)\
-MAC Address (HH:HH:HH:HH:HH:HH)\
-Name (U??? U???)\
-RO Postal (RO ######)",
+IPv4 (###.###.###.###)",
 displayValueType:12,
 name:"combobox_format_vl",
 realValueType:12,
