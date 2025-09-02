@@ -99,7 +99,7 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
                 this.config.viewDate = value;
             else delete this.config.viewDate;
        }
-        if (changes.calendarWeeks && changes.calendarWeeks.currentValue)
+        if (changes.calendarWeeks && changes.calendarWeeks.currentValue != undefined)
             this.config.display.calendarWeeks = changes.calendarWeeks.currentValue;
         if (changes.minDate && changes.minDate.currentValue)
             this.config.restrictions.minDate = DateTime.convert(changes.minDate.currentValue, null, this.config.localization);

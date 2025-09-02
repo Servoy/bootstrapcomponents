@@ -56,6 +56,10 @@
     top: -9000px;
 }
 
+.tempus-dominus-widget div.disabled {
+   opacity:0.6;
+}
+
 .bts-accordion .card-body
 {
 	padding:0px;
@@ -399,7 +403,10 @@ label input {
 	margin-right: 7px;
 }
 
-:root { font-size: 14px;}
+:root { 
+	font-size: 14px;
+	--td-disabled-color: #777777;
+}
 
 .bts-calendar-container .input-group-append, .bts-calendar-container .input-group-text {
     cursor: pointer;
