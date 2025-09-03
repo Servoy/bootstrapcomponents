@@ -19,7 +19,7 @@
         "variant":                  { "type": "variant", "tags": { "scope": "design", "doc": "Sets the variant of this button, this sets a certain set of styleclasses at runtime for which this variant is configured for" }},
         "imageStyleClass":          {"type": "string", "tags": { "doc": "An icon style class property (glyphicon, material design or Font Awesome).<br/>Example 'fas fa-search' <br/>If you want to use Font Awesome classes you need to enable the Font Awesome service from the Servoy Package Manager." }},
         "trailingImageStyleClass":  { "type": "string", "tags": { "doc": "An icon style class property (glyphicon, material design or Font Awesome).<br/>Example 'fas fa-search' <br/>If you want to use Font Awesome classes you need to enable the Font Awesome service from the Servoy Package Manager."}},
-        "text":                     { "type": "tagstring", "initialValue": "Label", "tags": { "directEdit": "true" }},
+        "text":                     { "type": "tagstring", "initialValue": "Label", "tags": { "directEdit": "true", "basic": true }},
         "tabSeq":                   { "type": "tabseq", "tags": { "scope":"design" }},
         "showAs":                   { "type": "string", "values": ["html", "text", "trusted_html"], "default": "html", "tags": { "scope": "design", "doc": "Option whether label text is shown as plain text, sanitized html or trusted html (as is). Inner html elements events can be identified using data-target attribute." }},
         "toolTipText":              { "type": "tagstring" },

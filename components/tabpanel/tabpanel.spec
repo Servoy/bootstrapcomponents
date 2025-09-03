@@ -14,7 +14,7 @@
 		"containerStyleClass": { "type": "styleclass" },
 		"closeIconStyleClass" : {"type":"styleclass", "default":"glyphicon glyphicon-remove close-icon", "tags": { "scope" :"design" }, "values":[]},
 		"showTabCloseIcon" : { "type": "boolean", "default": false },
-		"tabs": { "type": "tab[]", "pushToServer": "deep", "droppable": true, "tags": { "allowaccess": "visible", "wizard": "autoshow"}},
+		"tabs": { "type": "tab[]", "pushToServer": "deep", "droppable": true, "tags": { "allowaccess": "visible", "wizard": "autoshow", "basic": true}},
 		"styleClass": { "type": "styleclass","tags": { "doc": "Set the styleclasses that should be applied at to this component" } },
 		"height": { "type": "string", "default": "500", "tags": { "doc" : "Minimum height of the tabpanel, should be used for responsive forms. Can be 100% (to take parent container height) or a number (in pixels)."} },
 		"tabIndex": { "type": "int", "pushToServer": "shallow", "tags": { "scope": "runtime", "allowaccess": "visible" }, "default": 1},

@@ -12,7 +12,7 @@
 	"keywords": ["container"],
 	"model": {
 		"containerStyleClass": { "type": "styleclass" ,"tags": { "doc" :"The CSS class(es) to be added to container element - parent of the form element."}},
-		"tabs": { "type": "tab[]", "pushToServer": "deep", "droppable": true, "tags": { "allowaccess": "visible", "wizard": "autoshow"}},
+		"tabs": { "type": "tab[]", "pushToServer": "deep", "droppable": true, "tags": { "allowaccess": "visible", "wizard": "autoshow", "basic": true}},
 		"styleClass": { "type": "styleclass" ,"tags": { "doc" :"The CSS class(es) to be added to accordion element."}},
 		"height": { "type": "int", "default": "500", "tags": { "doc" : "Minimum height of the accordion, should be used for responsive forms."} },
 		"tabIndex": { "type": "int", "pushToServer": "shallow", "tags": { "scope": "runtime", "allowaccess": "visible" }, "default": 1},

@@ -15,8 +15,8 @@
 	"model":
 	{
 		"calendarWeeks" : {"type" :"boolean", "pushToServer": "shallow", "default": true, "tags": { "scope" :"design" }},
-	    "dataProviderID" : { "type":"dataprovider", "pushToServer": "allow","tags": { "wizard": true, "scope" :"design" }, "ondatachange": { "onchange":"onDataChangeMethodID"}},
-	    "format" : {"for":["dataProviderID"] , "type" :"format", "tags": {"doc": "This format is just used to be able to configure 'use as LocalDateTime'"} },
+	    "dataProviderID" : { "type":"dataprovider", "pushToServer": "allow","tags": { "wizard": true, "scope" :"design", "basic": true }, "ondatachange": { "onchange":"onDataChangeMethodID"}},
+	    "format" : {"for":["dataProviderID"] , "type" :"format", "tags": {"doc": "This format is just used to be able to configure 'use as LocalDateTime'", "basic": true} },
 	    "disabledDates" : {"type":"date[]", "pushToServer": "shallow","tags": { "scope" :"private" }},
 	    "disabledDays" : {"type":"int[]", "pushToServer": "shallow","tags": { "scope" :"private" }},	    
 	    "enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["dataProviderID","onActionMethodID","onDataChangeMethodID"] },

@@ -9,19 +9,19 @@
 	"libraries": [{"name":"bootstrapcomponents-select-css", "version":"1.0", "url":"bootstrapcomponents/select/select.css", "mimetype":"text/css"}],
 	"model":
 	{
-	        "dataProviderID" : { "type":"dataprovider","pushToServer": "allow", "tags": { "wizard": true, "scope" :"design" }, "ondatachange": { "onchange":"onDataChangeMethodID"}},
+	        "dataProviderID" : { "type":"dataprovider","pushToServer": "allow", "tags": { "wizard": true, "scope" :"design", "basic": true }, "ondatachange": { "onchange":"onDataChangeMethodID"}},
 	        "enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["dataProviderID","onActionMethodID","onDataChangeMethodID"] },
 	       	"readOnly" : { "type": "protected", "blockingOn": true, "default": false,"for": ["dataProviderID","onDataChangeMethodID"], "tags": {"scope":"private"} },
 	       	"findmode" : { "type":"findmode", "tags":{"scope":"private"}, "for" : {"enabled":true}},
 	       	"size" : {"type" :"dimension",  "default" : {"width":140, "height":30}},
 	       	"styleClass" : { "type" :"styleclass", "tags": { "scope" :"design", "doc": "Set the styleclasses that should be applied at to this component" }, "default" : "form-control"},
-	        "valuelistID" : { "type" : "valuelist",  "for": "dataProviderID", "max":500},
+	        "valuelistID" : { "type" : "valuelist",  "for": "dataProviderID", "max":500, "tags": { "basic": true }},
 			"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
 			"toolTipText" : { "type" : "tagstring"},
 	       "visible" : {"type" : "visible", "tags": {"doc": "Whether the button is visible or not"}},
 	        "placeholderText" : { "type" : "tagstring", "displayTagsPropertyName" : "displaysTags" },
-			"selectSize" : {"type" :"int", "default": 1, "tags": { "scope" :"design" }},
-			"multiselect" : { "type" : "boolean", "tags": { "scope" : "design" }, "default": false }
+			"selectSize" : {"type" :"int", "default": 1, "tags": { "scope" :"design", "basic": true }},
+			"multiselect" : { "type" : "boolean", "tags": { "scope" : "design", "basic": true }, "default": false }
 	},
 	"handlers":
 	{

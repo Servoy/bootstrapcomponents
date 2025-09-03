@@ -11,10 +11,10 @@
 	"keywords": ["content"],
 	"model":
 	{
-			"dataProviderID" : { "type":"dataprovider", "pushToServer": "allow","tags": { "wizard": true, "scope" :"design" }, "ondatachange": { "onchange":"onDataChangeMethodID","callback":"onDataChangeCallback"}},
+			"dataProviderID" : { "type":"dataprovider", "pushToServer": "allow","tags": { "wizard": true, "scope" :"design", "basic": true }, "ondatachange": { "onchange":"onDataChangeMethodID","callback":"onDataChangeCallback"}},
 			"enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["dataProviderID","onActionMethodID","onDataChangeMethodID","onFocusGainedMethodID","onFocusLostMethodID","onRightClickMethodID"] },
-			"format" : {"for":["dataProviderID"] , "type" :"format"}, 
-			"inputType" : {"type":"string" , "pushToServer": "allow", "tags": { "scope" :"design", "valuesFieldType":"typeahead" }, "default" : "text",  "values" :["text", "password", "password-with-eye", "email", "tel", "date", "time", "datetime-local", "month", "week", "number", "color","search", "url"]},			
+			"format" : {"for":["dataProviderID"] , "type" :"format", "tags": { "basic": true }}, 
+			"inputType" : {"type":"string" , "pushToServer": "allow", "tags": { "scope" :"design", "valuesFieldType":"typeahead", "basic": true }, "default" : "text",  "values" :["text", "password", "password-with-eye", "email", "tel", "date", "time", "datetime-local", "month", "week", "number", "color","search", "url"]},			
 			"readOnly" : { "type": "protected", "blockingOn": true, "default": false,"for": ["dataProviderID","onDataChangeMethodID"], "tags": {"scope":"private"} },
 			"editable" : { "type": "protected", "blockingOn": false, "default": true,"for": ["dataProviderID","onDataChangeMethodID"] },
 			"findmode" : { "type":"findmode", "tags":{"scope":"private"}},

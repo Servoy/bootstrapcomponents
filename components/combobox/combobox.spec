@@ -14,9 +14,9 @@
 	"keywords": [],
 	"model":
 	{
-	        "dataProviderID" : { "type":"dataprovider", "pushToServer": "allow", "tags": { "wizard": true, "scope": "design" }, "ondatachange": { "onchange":"onDataChangeMethodID", "callback":"onDataChangeCallback"}, "displayTagsPropertyName" : "displaysTags"},
+	        "dataProviderID" : { "type":"dataprovider", "pushToServer": "allow", "tags": { "wizard": true, "scope": "design", "basic": true }, "ondatachange": { "onchange":"onDataChangeMethodID", "callback":"onDataChangeCallback"}, "displayTagsPropertyName" : "displaysTags"},
 	        "enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["dataProviderID","onActionMethodID","onDataChangeMethodID","onFocusGainedMethodID","onFocusLostMethodID","onRightClickMethodID"] }, 
-			"format" : {"for":["valuelistID","dataProviderID"] , "type" :"format"},
+			"format" : {"for":["valuelistID","dataProviderID"] , "type" :"format", "tags": { "basic": true }},
 			"placeholderText" : "tagstring",
 	        "readOnly" : { "type": "protected", "blockingOn": true, "default": false,"for": ["dataProviderID","onDataChangeMethodID"], "tags": {"scope":"private"} }, 
 	        "findmode" : { "type":"findmode", "tags":{"scope":"private"}, "for" : {"enabled":true}},
@@ -25,7 +25,7 @@
 	        "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design", "doc": "Set the styleclasses that should be applied at to this component" }, "values" :["form-control", "input-sm", "svy-padding-xs", "select2-container-svy-xs"]}, 
 	        "tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }}, 
 	        "toolTipText" : { "type" : "tagstring" }, 
-	        "valuelistID" : { "type" : "valuelist", "tags": { "logWhenOverMax":true}, "for": "dataProviderID", "max":500}, 
+	        "valuelistID" : { "type" : "valuelist", "tags": { "logWhenOverMax":true, "basic": true}, "for": "dataProviderID", "max":500}, 
 	       "visible" : {"type" : "visible", "tags": {"doc": "Whether the button is visible or not"}},
 			"appendToBody" : {"type" :"boolean",  "default" : true}
 	},
