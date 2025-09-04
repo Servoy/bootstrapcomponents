@@ -36,7 +36,7 @@
 			}]
 		},
 		"onTabClickedMethodID": {
-			"doc": "Fired when the user clicks on a tab. When false is returned, the tab switch is prevented",
+			"doc": "Fired when the user clicks on a tab. When this function doesn't explicitly return true the tab switch is prevented (so returning nothing will also prevent it)",
 			"returns": "boolean",
 			"parameters": [{
 				"name": "event",
