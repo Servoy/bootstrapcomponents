@@ -5,7 +5,7 @@ import { ServoyBootstrapBaseComponent } from './bts_basecomp';
 @Directive()
 // eslint-disable-next-line @angular-eslint/directive-class-suffix
 export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBootstrapBaseComponent<T> {
-	@Input() onChangeMethodID: (previousIndex: number, event: Event) => void;
+	@Input() onChangeMethodID: (previousIndex: number, event: Event,newIndex: number) => void;
 
 	@Input() height: any;
 	@Input() tabs: Array<Tab>;
@@ -34,7 +34,7 @@ export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBo
 			this.generateIDs();
 		}
 		if (changes['tabIndex'] && changes['tabIndex'].previousValue && changes['tabIndex'].previousValue !== changes['tabIndex'].currentValue && this.onChangeMethodID) {
-			this.onChangeMethodID(changes['tabIndex'].previousValue, this.windowRefService.nativeWindow.event != null ? this.windowRefService.nativeWindow.event : null /* TODO $.Event("change") */);
+			this.onChangeMethodID(changes['tabIndex'].previousValue, this.windowRefService.nativeWindow.event != null ? this.windowRefService.nativeWindow.event : null /* TODO $.Event("change") */,changes['tabIndex'].currentValue);
 		}
 		super.svyOnChanges(changes);
 	}

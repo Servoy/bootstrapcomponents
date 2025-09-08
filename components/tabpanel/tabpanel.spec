@@ -33,6 +33,11 @@
 			}, {
 				"name": "event",
 				"type": "JSEvent"
+			},
+			{
+				"name": "newIndex",
+				"type": "int",
+				"description": "The current tab index"
 			}]
 		},
 		"onTabClickedMethodID": {
