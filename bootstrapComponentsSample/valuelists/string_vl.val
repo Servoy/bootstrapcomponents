@@ -1,0 +1,12 @@
+addEmptyValue:1,
+customProperties:"lazyLoading:false",
+dataProviderID1:"companyname",
+dataSource:"mem:customers",
+displayValueType:12,
+name:"string_vl",
+realValueType:12,
+returnDataProviders:1,
+showDataProviders:1,
+typeid:34,
+uuid:"DBE8A776-BFD6-41B7-ADAC-91AB0C1ED8DC",
+valueListType:1

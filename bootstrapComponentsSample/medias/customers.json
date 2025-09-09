@@ -1,0 +1,122 @@
+[
+  {
+    "customerid": 1,
+    "companyname": "Summit Solutions",
+    "contactname": "Charlotte Wilson",
+    "city": "Berlin",
+    "country": "Germany",
+    "phone": "+67-734-7168"
+  },
+  {
+    "customerid": 2,
+    "companyname": "Golden Gate Enterprises",
+    "contactname": "James Moore",
+    "city": "London",
+    "country": "UK",
+    "phone": "+18-444-9973"
+  },
+  {
+    "customerid": 3,
+    "companyname": "Harmony Traders",
+    "contactname": "Lucas Martin",
+    "city": "Madrid",
+    "country": "Spain",
+    "phone": "+4-634-1633"
+  },
+  {
+    "customerid": 4,
+    "companyname": "Blue Logistics",
+    "contactname": "Benjamin Martin",
+    "city": "Toronto",
+    "country": "Canada",
+    "phone": "+90-926-1393"
+  },
+  {
+    "customerid": 5,
+    "companyname": "Cascade Solutions",
+    "contactname": "Ava Garcia",
+    "city": "London",
+    "country": "UK",
+    "phone": "+27-905-2489"
+  },
+  {
+    "customerid": 6,
+    "companyname": "Aurora Outfitters",
+    "contactname": "Sophia Martin",
+    "city": "Seattle",
+    "country": "USA",
+    "phone": "+3-469-9086"
+  },
+  {
+    "customerid": 7,
+    "companyname": "GreenLeaf Supplies",
+    "contactname": "Benjamin Martinez",
+    "city": "Toronto",
+    "country": "Canada",
+    "phone": "+69-595-6799"
+  },
+  {
+    "customerid": 8,
+    "companyname": "Pioneer Supplies",
+    "contactname": "Ethan Brown",
+    "city": "Rome",
+    "country": "Italy",
+    "phone": "+4-788-6454"
+  },
+  {
+    "customerid": 9,
+    "companyname": "Silverline Solutions",
+    "contactname": "Charlotte Wilson",
+    "city": "Rome",
+    "country": "Italy",
+    "phone": "+20-241-6670"
+  },
+  {
+    "customerid": 10,
+    "companyname": "Mountain Foods",
+    "contactname": "Mason Williams",
+    "city": "Sydney",
+    "country": "Australia",
+    "phone": "+33-882-1370"
+  },
+  {
+    "customerid": 11,
+    "companyname": "Mountain Markets",
+    "contactname": "Emma Martin",
+    "city": "Sydney",
+    "country": "Australia",
+    "phone": "+28-423-8409"
+  },
+  {
+    "customerid": 12,
+    "companyname": "Harmony Markets",
+    "contactname": "Sophia Anderson",
+    "city": "São Paulo",
+    "country": "Brazil",
+    "phone": "+98-369-5149"
+  },
+  {
+    "customerid": 13,
+    "companyname": "GreenLeaf Supplies",
+    "contactname": "Emma Garcia",
+    "city": "Seattle",
+    "country": "USA",
+    "phone": "+32-216-4177"
+  },
+  {
+    "customerid": 14,
+    "companyname": "Silverline Collective",
+    "contactname": "Benjamin Martinez",
+    "city": "Berlin",
+    "country": "Germany",
+    "phone": "+32-906-8232"
+  },
+  {
+    "customerid": 15,
+    "companyname": "Silverline Collective",
+    "contactname": "Noah Thomas",
+    "city": "Stockholm",
+    "country": "Sweden",
+    "phone": "+32-356-6973"
+  }
+]

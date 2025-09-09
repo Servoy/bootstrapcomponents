@@ -1,4 +1,37 @@
 addEmptyValue:1,
+customValues:"Alan Turing\
+14:30\
+INV-2045\
+255.255.255.000\
+RO 502300\
+#FF00AA\
+SFO 1033\
+31/12/1999\
+Mary Jane\
+192.168.001.100\
+TX-8921-B\
+(650) 555-7780\
+#0f0f0f\
+RO 100200\
+09:45\
+DE:AD:BE:EF:00:01\
+QWE-9876\
+05/09/2025\
+LAX 0721\
+#1A3F9C\
+JFK 2045\
+John Doe\
+RO 030167\
+010.000.000.255\
+NY-1234-Z\
+23:59\
+CA-2045-A\
+(212) 555-4821\
+11:22:33:44:55:66\
+14/02/2024\
+(415) 555-0198\
+ABC-1234\
+AA:BB:0C:1D:2E:3F",
 displayValueType:12,
 name:"combobox_demo_vl",
 realValueType:12,

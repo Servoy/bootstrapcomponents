@@ -1,0 +1,11 @@
+addEmptyValue:1,
+customProperties:"lazyLoading:false",
+customValues:"one\
+two\
+three\
+",
+displayValueType:12,
+name:"orders_vl",
+realValueType:12,
+typeid:34,
+uuid:"BBDAB171-B447-415A-9D4A-95F163C61C73"

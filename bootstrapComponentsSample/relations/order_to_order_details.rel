@@ -1,0 +1,10 @@
+allowCreationRelatedRecords:true,
+foreignDataSource:"mem:order_details",
+items:[
+{foreignColumnName:"orderid",primaryDataProviderID:"orderid",typeid:23,uuid:"1C3CDE76-72C9-4B65-A395-CA5E12E23206"}
+],
+joinType:1,
+name:"order_to_order_details",
+primaryDataSource:"mem:orders",
+typeid:22,
+uuid:"2264A597-DD9C-4729-9575-D78AA983EEC4"

@@ -12,91 +12,70 @@ var style_dp = null;
  */
 var my_test_dp = null;
 
-
 /**
- * @type {Array<String>}
- *
  * @properties={typeid:35,uuid:"09334E2D-CE0D-4DF0-BFAD-5C0B0BA71676",variableType:-4}
  */
+var catalog = {
+		'All (no format)': {
+			format: null,
+			explanation: 'No formatting is applied. All items are shown regardless of content.'
+		},
 
-// Format names with their display text
-var formatNames = [
-	'Date (DD/MM/YYYY)',
-	'IPv4 (###.###.###.###)',
-	'License Plate (UU-####-U)'
-];
+		'Date (DD/MM/YYYY)': {
+			format: '##/##/####',
+			explanation: 'Two digits for day, slash, two digits for month, slash, four digits for year (e.g., 05/09/2025).'
+		},
 
-// Format patterns corresponding to the names
-/**
- * @type {Array<String>}
- *
- * @properties={typeid:35,uuid:"C0506199-D8CB-4991-9CE4-0B896FC1C6EA",variableType:-4}
- */
-var formatPatterns = [
-	'##/##/####',
-	'###.###.###.###',
-	'UU-####-U'
-];
+		'Time (HH:MM)': {
+			format: '##:##',
+			explanation: '24‑hour time with two digits for hours, colon, two digits for minutes (e.g., 14:30).'
+		},
 
-// Explanations for each format
-/**
- * @type {Array<String>}
- *
- * @properties={typeid:35,uuid:"5C62C3AF-2471-41CA-BEFB-6A23445C325C",variableType:-4}
- */
-var formatExplanations = [
-	'Two digits for day, slash, two digits for month, slash, four digits for year (e.g., 05/09/2025).',
-	'Four groups of three digits separated by dots (format only; not range‑validated).',
-	'Two uppercase letters, dash, four digits, dash, one uppercase letter (e.g., TX-8921-B).'
-];
+		'US Phone ((###) ###-####)': {
+			format: '(###) ###-####',
+			explanation: 'US phone number: area code in parentheses, space, three digits, dash, four digits (e.g., (415) 555-0198).'
+		},
 
-// Sample data for Date format
-/**
- * @type {Array<String>}
- *
- * @properties={typeid:35,uuid:"2BC48B16-0EDB-4513-B30D-CC6A9D10EC57",variableType:-4}
- */
-var dateFormatSamples = [
-	'01/01/2025',
-	'15/03/2025',
-	'22/07/2025',
-	'30/09/2025',
-	'25/12/2025',
-	'14/02/2026',
-	'31/10/2026'
-];
+		'Invoice ID (UUU-####)': {
+			format: 'UUU-####',
+			explanation: 'Three uppercase letters, dash, four digits (e.g., INV-2045).'
+		},
 
-// Sample data for IPv4 format
-/**
- * @type {Array<String>}
- *
- * @properties={typeid:35,uuid:"62CC9B6A-1AB1-4A94-901E-169FCF6E4ACE",variableType:-4}
- */
-var ipv4FormatSamples = [
-	'192.168.001.001',
-	'010.000.000.001',
-	'172.016.000.001',
-	'127.000.000.001',
-	'255.255.255.000',
-	'008.008.008.008',
-	'104.018.033.120'
-];
+		'License Plate (UU-####-U)': {
+			format: 'UU-####-U',
+			explanation: 'Two uppercase letters, dash, four digits, dash, one uppercase letter (e.g., TX-8921-B).'
+		},
 
-// Sample data for License Plate format
-/**
- * @type {Array<String>}
- *
- * @properties={typeid:35,uuid:"8D9499A0-3E76-4E73-9D9A-02A96CE8F44B",variableType:-4}
- */
-var licensePlateFormatSamples = [
-	'TX-1234-A',
-	'NY-5678-B',
-	'CA-9012-C',
-	'FL-3456-D',
-	'WA-7890-E',
-	'IL-2345-F',
-	'PA-6789-G'
-];
+		'Airport + Flight (UUU ####)': {
+			format: 'UUU ####',
+			explanation: 'Three-letter IATA code in uppercase, space, four digits (e.g., SFO 1033).'
+		},
+
+		'IPv4 (###.###.###.###)': {
+			format: '###.###.###.###',
+			explanation: 'Four groups of three digits separated by dots (format only; not range‑validated).'
+		},
+
+		'HEX Color (#HHHHHH)': {
+			format: "'#HHHHHH",
+			explanation: 'Literal # followed by six hexadecimal characters; lowercase hex will be converted to uppercase (e.g., #1A3F9C).'
+		},
+
+		'MAC Address (HH:HH:HH:HH:HH:HH)': {
+			format: 'HH:HH:HH:HH:HH:HH',
+			explanation: 'Six pairs of hexadecimal characters separated by colons; output normalized to uppercase (e.g., AA:BB:0C:1D:2E:3F).'
+		},
+
+		'Name (U??? U???)': {
+			format: 'U??? U???',
+			explanation: 'First and last name: each begins with an uppercase letter (U) followed by three alphabetic characters (?), space‑separated (e.g., John Doe).'
+		},
+
+		'RO Postal (RO ######)': {
+			format: 'RO ######',
+			explanation: "Literal 'RO' then a space and six digits (e.g., RO 030167)."
+		}
+	};
 
 /**
  * @type {String}
@@ -104,6 +83,7 @@ var licensePlateFormatSamples = [
  * @properties={typeid:35,uuid:"2ABC400D-6B67-4401-A0B0-CA29263AEAF3"}
  */
 var message_dp = 'Select an action and check the result in \`Demo combobox\`\nSelect Demo combobox and type for \'Search...\'';
+
 /**
  * @type {String}
  *
@@ -140,36 +120,8 @@ var tooltip_dp = 'Combobox demo tooltip ...';
  * @properties={typeid:24,uuid:"60639C03-DB92-417A-A488-F95133B8C751"}
  */
 function onLoad(event) {
-	// Set basic properties
 	elements.cb_demo.toolTipText = tooltip_dp;
 	elements.cb_demo.placeholderText = placeholder_dp;
-	
-	// Initialize the format combobox with the first format
-	if (formatNames.length > 0) {
-		// Set the initial format
-		format_dp = formatNames[0];
-		
-		// Get the corresponding format pattern and explanation
-		var formatPattern = formatPatterns[0];
-		
-		// Set the format on the demo combobox
-		elements.cb_demo.format = formatPattern;
-		
-		// Initialize the valuelist with sample data for the first format
-		var dataset = databaseManager.createEmptyDataSet();
-		dataset.addColumn('displayvalue', 1, 255);
-		dataset.addColumn('realvalue', 2, 255);
-		
-		// Add each sample as both display and real value
-		for (var i = 0; i < dateFormatSamples.length; i++) {
-			dataset.addRow([dateFormatSamples[i], dateFormatSamples[i]]);
-		}
-		
-		// Set the dataset as the valuelist for the demo combobox
-		elements.cb_demo.valuelist.dataset = dataset;
-		
-	}
-	
 	scopes.global.setStatusMessage(event.getElementName() + ' form loaded');
 }
 
@@ -211,62 +163,17 @@ function onPlaceholder(event) {
  * @properties={typeid:24,uuid:"625F8EE4-081E-4D0D-BCA0-9B72E63054C4"}
  */
 function onDataChange(oldValue, newValue, event) {
-	// Find the index of the selected format in the names array
-	var index = formatNames.indexOf(newValue);
 	
-	if (index !== -1) {
-		// Get the corresponding format pattern and explanation
-		var formatPattern = formatPatterns[index];
-		var explanation = formatExplanations[index];
-		
-		// Update the message and set the format
-		message_dp = explanation;
-		elements.cb_demo.format = formatPattern;
-		
-		// Create a dataset with the appropriate sample data based on the selected format
-		var sampleData;
-		switch(newValue) {
-			case 'Date (DD/MM/YYYY)':
-				sampleData = dateFormatSamples;
-				break;
-			case 'IPv4 (###.###.###.###)':
-				sampleData = ipv4FormatSamples;
-				break;
-			case 'License Plate (UU-####-U)':
-				sampleData = licensePlateFormatSamples;
-				break;
-			default:
-				sampleData = [];
-		} 
-		
-		// Create a JSDataSet from the sample data array
-		var dataset = databaseManager.createEmptyDataSet();
-		dataset.addColumn('displayvalue', 1, 255);
-		dataset.addColumn('realvalue', 2, 255);
-		
-		// Add each sample as both display and real value
-		for (var i = 0; i < sampleData.length; i++) {
-			dataset.addRow([sampleData[i], sampleData[i]]);
-		}
-		
-		// Set the dataset as the valuelist for the demo combobox
-		elements.cb_demo.valuelist.dataset = dataset;
-		
-		message_dp = explanation + '\n\nLoaded ' + sampleData.length + ' sample items for this format.';
-	} else {
-		// No format selected or invalid selection
-		message_dp = 'No format selected';
-		elements.cb_demo.format = null;
-		
-		// Clear the valuelist
-		var emptyDataset = databaseManager.createEmptyDataSet();
-		emptyDataset.addColumn('displayvalue', 1, 255);
-		emptyDataset.addColumn('realvalue', 2, 255);
-		elements.cb_demo.valuelist.dataset = emptyDataset;
-		
-		message_dp = 'No format selected. Please choose a format.';
+	var byMask = {};
+	for (var label in catalog) {
+		byMask[catalog[label].format] = catalog[label];
 	}
-	
+
+	var entry = catalog[newValue] || byMask[newValue] || catalog['All (no format)'];
+
+	message_dp = entry.explanation;
+	elements.cb_demo.format = entry.format; 
+
 	return true;
 }
 
@@ -301,6 +208,7 @@ function onReset(event) {
  */
 function onStyleChange(oldValue, newValue, event) {
 	
+	application.output(newValue)
 	// Define all possible style classes
 	var styleClasses = [
 		'combobox-red-border',

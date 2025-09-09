@@ -48,13 +48,11 @@ var styleClasses = [
  */
 var currentStyleIndex = -1;
 
-
 /**
  * @type {Boolean}
  * @properties={typeid:35,uuid:"50680EB6-8D81-48BD-8FBF-43FCB05ECEE9",variableType:-4}
  */
 var toggleBorder = false;
-
 
 /**
  * Fired when the button is clicked.

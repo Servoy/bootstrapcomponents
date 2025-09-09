@@ -1,63 +1,63 @@
 /**
  * @type {String}
  *
- * @properties={"typeid":35,"uuid":"85E932C7-E24E-4038-A5BF-2583D04D87FC"}
+ * @properties={typeid:35,uuid:"85E932C7-E24E-4038-A5BF-2583D04D87FC"}
  */
 var select_dp = 'Click for select';
 
 /**
  * @type {String}
  *
- * @properties={"typeid":35,"uuid":"4FCEC85F-1F00-4A0A-8167-A6E2D1E091C5"}
+ * @properties={typeid:35,uuid:"4FCEC85F-1F00-4A0A-8167-A6E2D1E091C5"}
  */
 var readOnly_dp = 'This is a read only text';
 
 /**
  * @type {Date}
  *
- * @properties={"typeid":35,"uuid":"52AC2489-1A5D-41B2-83E0-743267727A56","variableType":93}
+ * @properties={typeid:35,uuid:"52AC2489-1A5D-41B2-83E0-743267727A56",variableType:93}
  */
 var tb_week_dp = new Date();
 
 /**
  * @type {Date}
  *
- * @properties={"typeid":35,"uuid":"CBFBCAEF-5424-4046-AD2C-7CD15C2C4346","variableType":93}
+ * @properties={typeid:35,uuid:"CBFBCAEF-5424-4046-AD2C-7CD15C2C4346",variableType:93}
  */
 var tb_time_dp = new Date();
 
 /**
  * @type {Date}
  *
- * @properties={"typeid":35,"uuid":"29DE7F70-8E83-4587-8EC9-74F85E403641","variableType":93}
+ * @properties={typeid:35,uuid:"29DE7F70-8E83-4587-8EC9-74F85E403641",variableType:93}
  */
 var tb_month_dp = new Date();
 
 /**
  * @type {String}
  *
- * @properties={"typeid":35,"uuid":"F512ECD8-16F2-4DF4-83A2-BEABB3BF5214"}
+ * @properties={typeid:35,uuid:"F512ECD8-16F2-4DF4-83A2-BEABB3BF5214"}
  */
 var tb_date_message = null;
 
 /**
  * @type {Date}
  *
- * @properties={"typeid":35,"uuid":"3EBF15F2-61D2-4A8E-B733-B2DFC462014F","variableType":93}
+ * @properties={typeid:35,uuid:"3EBF15F2-61D2-4A8E-B733-B2DFC462014F",variableType:93}
  */
 var tb_date_dp = new Date();
 
 /**
  * @type {String}
  *
- * @properties={"typeid":35,"uuid":"BF63DF26-98FE-4D45-9B81-B9691E9AB114"}
+ * @properties={typeid:35,uuid:"BF63DF26-98FE-4D45-9B81-B9691E9AB114"}
  */
 var base_txt_msg = null;
 
 /**
  * @param {JSEvent} event
  *
- * @properties={"typeid":24,"uuid":"C9AAC131-85B9-41AF-B062-8E9161A227CB"}
+ * @properties={typeid:24,uuid:"C9AAC131-85B9-41AF-B062-8E9161A227CB"}
  */
 function onBaseFocusGained(event) {
 	var elementName = event.getElementName();
@@ -112,7 +112,7 @@ function onBaseFocusGained(event) {
  *
  * @param {JSEvent} event the event that triggered the action
  *
- * @properties={"typeid":24,"uuid":"DFEABC88-E196-40B8-90F3-188621679A0B"}
+ * @properties={typeid:24,uuid:"DFEABC88-E196-40B8-90F3-188621679A0B"}
  */
 function onLoad(event) {
 	// TODO Auto-generated method stub

@@ -233,6 +233,7 @@ uuid:"B2C3D4E5-F6A5-4B6C-7D8E-09F0A1B2C3D4"
 },
 {
 cssPosition:"205,-1,-1,40,440,80",
+enabled:false,
 json:{
 cssPosition:{
 bottom:"-1",

@@ -1,0 +1,10 @@
+allowCreationRelatedRecords:true,
+foreignDataSource:"mem:customers",
+items:[
+{foreignColumnName:"customerid",primaryDataProviderID:"customerid",typeid:23,uuid:"687804DA-9663-4CF4-AE16-3373942925D9"}
+],
+joinType:1,
+name:"orders_to_customer",
+primaryDataSource:"mem:orders",
+typeid:22,
+uuid:"AF9ABF20-8E71-4D6C-BA6F-2681BA8F7D17"
