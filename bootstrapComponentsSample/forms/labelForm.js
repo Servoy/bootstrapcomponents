@@ -182,7 +182,7 @@ function toggleLabelEnabled(label) {
  * @properties={typeid:24,uuid:"D0F64A08-A794-40F3-A00D-9FC36F35A6C2"}
  */
 function toggleLabelVisibility(label) {
-    label.visible = 1label.visible;
+    label.visible = !label.visible;
     
     // Update status display
     updateApiStatus('visible = ' + label.visible);
