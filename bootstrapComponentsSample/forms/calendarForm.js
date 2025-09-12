@@ -391,7 +391,8 @@ function onBasicResetAction(event) {
  */
 function onMinDataChange(oldValue, newValue, event) {
 	if (newValue < maxdateDP) {
-		mindateDP = newValue
+		mindateDP = newValue;
+		elements.minmax_calendar.setMinMaxDate(mindateDP, maxdateDP);
 		return true;
 	} else {
 		scopes.global.setStatusMessage("CalendarForm - error on setting min date");
@@ -414,9 +415,10 @@ function onMinDataChange(oldValue, newValue, event) {
 function onMaxDataChange(oldValue, newValue, event) {
 	if (newValue > mindateDP) {
 		maxdateDP = newValue
+		elements.minmax_calendar.setMinMaxDate(mindateDP, maxdateDP);
 		return true;
 	} else {
-		scopes.global.setStatusMessage("CalendarForm - error on setting maxß date");
+		scopes.global.setStatusMessage("CalendarForm - error on setting max date");
 	}
 	return false;
 }
@@ -481,16 +483,18 @@ function onAddMaxDisabledDate(event) {
  * @properties={typeid:24,uuid:"380CA697-CD88-4707-88CC-7A1F7A244582"}
  */
 function onDisableDaysChange(oldValue, newValue, event) {
-    var disabledDaysArray = newValue
-        .split(',')
-        .map(day => day.trim().toLowerCase())
-        .filter(day => dayMap.hasOwnProperty(day))
-        .map(day => dayMap[day]);
+	  const tokens = String(newValue)
+	    .split(/[,\r\n]+/)           // split on comma or CR/LF
+	    .map(s => s.trim().toLowerCase())
+	    .filter(Boolean)             // drop empty entries
+	    .filter(day => dayMap.hasOwnProperty(day));
 
-    elements.minmax_calendar.disableDays(disabledDaysArray, keepInvalidDP);	
-	scopes.global.setStatusMessage(event.getElementName() + ' clicked');
-	return true;
-}
+	  const disabledDaysArray = tokens.map(day => dayMap[day]);
+
+	  elements.minmax_calendar.disableDays(disabledDaysArray, keepInvalidDP);
+	  scopes.global.setStatusMessage(event.getElementName() + ' clicked');
+	  return true;
+	}
 
 /**
  * Fired when the button is clicked.

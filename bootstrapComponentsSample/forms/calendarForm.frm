@@ -516,7 +516,7 @@ width:"220"
 },
 dataProviderID:"mindateDP",
 format:"dd-MM-yyyy",
-onDataChangeMethodID:"11B588B3-36E6-4FEE-B079-1581DCF1611F",
+onDataChangeMethodID:"A3E7AEC8-AAD2-4841-A47A-4E7332C7AA28",
 pickerOnly:true,
 placeholderText:"Select minimum date",
 toolTipText:"Select minimum date"
