@@ -1,6 +1,13 @@
 /**
  * @type {String}
  *
+ * @properties={typeid:35,uuid:"967716BF-3753-4C04-822F-0E464A318375"}
+ */
+var message_dataChange_dp = null;
+
+/**
+ * @type {String}
+ *
  * @properties={typeid:35,uuid:"EC77D483-225C-49B2-BA80-1236975A4876"}
  */
 var cb_demo_dp = null;
@@ -183,7 +190,7 @@ function onPlaceholder(event) {
  *
  * @properties={typeid:24,uuid:"625F8EE4-081E-4D0D-BCA0-9B72E63054C4"}
  */
-function onDataChange(oldValue, newValue, event) {
+function onDataChange_format(oldValue, newValue, event) {
 
 	var byMask = { };
 	for (var label in catalog) {
@@ -350,4 +357,21 @@ function onFocusLost(event) {
  */
 function onRightClick(event) {
 	message_actions_dp = "Right click on combobox"
+}
+
+/**
+ * Handle changed data, return false if the value should not be accepted.
+ * JSEvent.data will contain extra information about dataproviderid, its scope and the scope id (record datasource or form/global variable scope)
+ *
+ * @param oldValue
+ * @param newValue
+ * @param {JSEvent} event
+ *
+ * @return {Boolean}
+ *
+ * @properties={typeid:24,uuid:"1F942560-11D4-475A-82BF-EE23D0334ECE"}
+ */
+function onDataChange(oldValue, newValue, event) {
+	message_dataChange_dp = "On data change from: " + oldValue + ' to: ' + newValue
+	return true
 }
