@@ -59,6 +59,13 @@ uuid:"F4C507DB-0D60-42F5-A792-3E1AB86D0014"
 },
 {
 encapsulation:0,
+mimeType:"image/jpeg",
+name:"i98rzu.jpg",
+typeid:37,
+uuid:"8A281111-484D-4D7E-8B35-2FD1D1A08917"
+},
+{
+encapsulation:0,
 name:"inlinecalendar.less",
 typeid:37,
 uuid:"841130A4-8094-4EDE-AD48-5CF6E3108FEB"
@@ -110,6 +117,13 @@ mimeType:"image/png",
 name:"small_logo.png",
 typeid:37,
 uuid:"763A9C65-256C-4A2F-B3FB-1C90472FA233"
+},
+{
+encapsulation:0,
+mimeType:"image/jpeg",
+name:"SP241Z.jpg",
+typeid:37,
+uuid:"316CE5CC-4ECE-444C-B9A2-5798B91095A7"
 },
 {
 encapsulation:0,

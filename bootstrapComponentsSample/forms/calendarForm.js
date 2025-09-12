@@ -371,8 +371,7 @@ function onBasicResetAction(event) {
 	date_dp = new Date();
 	format_dp = 'MM/dd/yyyy hh:mm aa';
 	elements.basic_calendar.format = format_dp;
-	enableDP = true;
-	visibleDP = true;
+
 	scopes.global.setStatusMessage(event.getElementName() + ' clicked');
 
 }

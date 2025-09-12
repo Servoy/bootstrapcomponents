@@ -1,6 +1,27 @@
 /**
  * @type {String}
  *
+ * @properties={typeid:35,uuid:"EC77D483-225C-49B2-BA80-1236975A4876"}
+ */
+var cb_demo_dp = null;
+
+/**
+ * @type {String}
+ *
+ * @properties={typeid:35,uuid:"8780C871-0EE7-4672-AC85-85C6904329DA"}
+ */
+var message_focus_dp = null;
+
+/**
+ * @type {String}
+ *
+ * @properties={typeid:35,uuid:"1CC50C50-8D7A-4678-AD69-E035AA5293C5"}
+ */
+var message_actions_dp = null;
+
+/**
+ * @type {String}
+ *
  * @properties={typeid:35,uuid:"88EA5C91-AA14-4A2C-86E0-A3019E5AC6D7"}
  */
 var style_dp = null;
@@ -16,66 +37,66 @@ var my_test_dp = null;
  * @properties={typeid:35,uuid:"09334E2D-CE0D-4DF0-BFAD-5C0B0BA71676",variableType:-4}
  */
 var catalog = {
-		'All (no format)': {
-			format: null,
-			explanation: 'No formatting is applied. All items are shown regardless of content.'
-		},
+	'All (no format)': {
+		format: null,
+		explanation: 'No formatting is applied. All items are shown regardless of content.'
+	},
 
-		'Date (DD/MM/YYYY)': {
-			format: '##/##/####',
-			explanation: 'Two digits for day, slash, two digits for month, slash, four digits for year (e.g., 05/09/2025).'
-		},
+	'Date (DD/MM/YYYY)': {
+		format: '##/##/####',
+		explanation: 'Two digits for day, slash, two digits for month, slash, four digits for year (e.g., 05/09/2025).'
+	},
 
-		'Time (HH:MM)': {
-			format: '##:##',
-			explanation: '24‑hour time with two digits for hours, colon, two digits for minutes (e.g., 14:30).'
-		},
+	'Time (HH:MM)': {
+		format: '##:##',
+		explanation: '24‑hour time with two digits for hours, colon, two digits for minutes (e.g., 14:30).'
+	},
 
-		'US Phone ((###) ###-####)': {
-			format: '(###) ###-####',
-			explanation: 'US phone number: area code in parentheses, space, three digits, dash, four digits (e.g., (415) 555-0198).'
-		},
+	'US Phone ((###) ###-####)': {
+		format: '(###) ###-####',
+		explanation: 'US phone number: area code in parentheses, space, three digits, dash, four digits (e.g., (415) 555-0198).'
+	},
 
-		'Invoice ID (UUU-####)': {
-			format: 'UUU-####',
-			explanation: 'Three uppercase letters, dash, four digits (e.g., INV-2045).'
-		},
+	'Invoice ID (UUU-####)': {
+		format: 'UUU-####',
+		explanation: 'Three uppercase letters, dash, four digits (e.g., INV-2045).'
+	},
 
-		'License Plate (UU-####-U)': {
-			format: 'UU-####-U',
-			explanation: 'Two uppercase letters, dash, four digits, dash, one uppercase letter (e.g., TX-8921-B).'
-		},
+	'License Plate (UU-####-U)': {
+		format: 'UU-####-U',
+		explanation: 'Two uppercase letters, dash, four digits, dash, one uppercase letter (e.g., TX-8921-B).'
+	},
 
-		'Airport + Flight (UUU ####)': {
-			format: 'UUU ####',
-			explanation: 'Three-letter IATA code in uppercase, space, four digits (e.g., SFO 1033).'
-		},
+	'Airport + Flight (UUU ####)': {
+		format: 'UUU ####',
+		explanation: 'Three-letter IATA code in uppercase, space, four digits (e.g., SFO 1033).'
+	},
 
-		'IPv4 (###.###.###.###)': {
-			format: '###.###.###.###',
-			explanation: 'Four groups of three digits separated by dots (format only; not range‑validated).'
-		},
+	'IPv4 (###.###.###.###)': {
+		format: '###.###.###.###',
+		explanation: 'Four groups of three digits separated by dots (format only; not range‑validated).'
+	},
 
-		'HEX Color (#HHHHHH)': {
-			format: "'#HHHHHH",
-			explanation: 'Literal # followed by six hexadecimal characters; lowercase hex will be converted to uppercase (e.g., #1A3F9C).'
-		},
+	'HEX Color (#HHHHHH)': {
+		format: "'#HHHHHH",
+		explanation: 'Literal # followed by six hexadecimal characters; lowercase hex will be converted to uppercase (e.g., #1A3F9C).'
+	},
 
-		'MAC Address (HH:HH:HH:HH:HH:HH)': {
-			format: 'HH:HH:HH:HH:HH:HH',
-			explanation: 'Six pairs of hexadecimal characters separated by colons; output normalized to uppercase (e.g., AA:BB:0C:1D:2E:3F).'
-		},
+	'MAC Address (HH:HH:HH:HH:HH:HH)': {
+		format: 'HH:HH:HH:HH:HH:HH',
+		explanation: 'Six pairs of hexadecimal characters separated by colons; output normalized to uppercase (e.g., AA:BB:0C:1D:2E:3F).'
+	},
 
-		'Name (U??? U???)': {
-			format: 'U??? U???',
-			explanation: 'First and last name: each begins with an uppercase letter (U) followed by three alphabetic characters (?), space‑separated (e.g., John Doe).'
-		},
+	'Name (U??? U???)': {
+		format: 'U??? U???',
+		explanation: 'First and last name: each begins with an uppercase letter (U) followed by three alphabetic characters (?), space‑separated (e.g., John Doe).'
+	},
 
-		'RO Postal (RO ######)': {
-			format: 'RO ######',
-			explanation: "Literal 'RO' then a space and six digits (e.g., RO 030167)."
-		}
-	};
+	'RO Postal (RO ######)': {
+		format: 'RO ######',
+		explanation: "Literal 'RO' then a space and six digits (e.g., RO 030167)."
+	}
+};
 
 /**
  * @type {String}
@@ -163,8 +184,8 @@ function onPlaceholder(event) {
  * @properties={typeid:24,uuid:"625F8EE4-081E-4D0D-BCA0-9B72E63054C4"}
  */
 function onDataChange(oldValue, newValue, event) {
-	
-	var byMask = {};
+
+	var byMask = { };
 	for (var label in catalog) {
 		byMask[catalog[label].format] = catalog[label];
 	}
@@ -172,7 +193,7 @@ function onDataChange(oldValue, newValue, event) {
 	var entry = catalog[newValue] || byMask[newValue] || catalog['All (no format)'];
 
 	message_dp = entry.explanation;
-	elements.cb_demo.format = entry.format; 
+	elements.cb_demo.format = entry.format;
 
 	return true;
 }
@@ -207,32 +228,30 @@ function onReset(event) {
  * @properties={typeid:24,uuid:"652273B5-1A7F-43FA-A705-898FE9C9C922"}
  */
 function onStyleChange(oldValue, newValue, event) {
-	
+
 	application.output(newValue)
 	// Define all possible style classes
-	var styleClasses = [
-		'combobox-red-border',
+	var styleClasses = ['combobox-red-border',
 		'combobox-blue',
 		'combobox-green',
 		'combobox-dark',
-		'combobox-rounded'
-	];
-	
+		'combobox-rounded'];
+
 	// Remove all existing style classes first from the demo combobox
 	for (var i = 0; i < styleClasses.length; i++) {
 		if (elements.cb_styleclass.hasStyleClass(styleClasses[i])) {
 			elements.cb_styleclass.removeStyleClass(styleClasses[i]);
 		}
 	}
-	
+
 	// Add the new style class if one is selected
 	if (newValue) {
 		elements.cb_styleclass.addStyleClass(newValue);
-		
+
 		if (!elements.cb_styleclass.hasStyleClass(newValue)) {
-			application.output('ERROR: not found ->' + newValue );
+			application.output('ERROR: not found ->' + newValue);
 		}
-		
+
 		// Update message to show which style is applied
 		message_dp = 'Style "' + newValue + '" has been applied to the Demo combobox';
 	} else {
@@ -240,4 +259,95 @@ function onStyleChange(oldValue, newValue, event) {
 	}
 	scopes.global.setStatusMessage(event.getElementName() + ' click');
 	return true;
+}
+
+/**
+ * Fired when the button is clicked.
+ *
+ * @param {JSEvent} event
+ *
+ * @properties={typeid:24,uuid:"C39038CE-3F14-4E4A-BB82-18F524CDD674"}
+ */
+function onAction_toggleAppendToBody(event) {
+	elements.cb_demo.appendToBody = !elements.cb_demo.appendToBody;
+}
+
+/**
+ * Fired when the button is clicked.
+ *
+ * @param {JSEvent} event
+ *
+ * @properties={typeid:24,uuid:"497EA38F-2508-4995-BB14-80DFA8CD14C8"}
+ */
+function onAction_toggleEnabled(event) {
+	elements.cb_demo.enabled = !elements.cb_demo.enabled;
+}
+
+/**
+ * Fired when the button is clicked.
+ *
+ * @param {JSEvent} event
+ *
+ * @properties={typeid:24,uuid:"98E545B3-1E92-4F8E-B91A-95D9386B5C83"}
+ */
+function onAction_toggleVisible(event) {
+	elements.cb_demo.visible = !elements.cb_demo.visible;
+}
+
+/**
+ * Fired when the button is clicked.
+ *
+ * @param {JSEvent} event
+ *
+ * @properties={typeid:24,uuid:"707FADE8-67E5-4A36-B632-48F7D32B6564"}
+ */
+function onAction_requestFocusTrue(event) {
+	elements.cb_demo.requestFocus(true);
+}
+
+/**
+ * Fired when the button is clicked.
+ *
+ * @param {JSEvent} event
+ *
+ * @properties={typeid:24,uuid:"4F5C3E9C-9461-44E4-AA47-BBB5958CBBA8"}
+ */
+function onAction_requestFocusFalse(event) {
+	elements.cb_demo.requestFocus(false);
+}
+
+/**
+ * @param {JSEvent} event
+ *
+ * @properties={typeid:24,uuid:"F84BA404-BA5C-4875-A666-E20A2B700988"}
+ */
+function onAction(event) {
+	message_actions_dp = "Action on combobox"
+}
+
+/**
+ * @param {JSEvent} event
+ *
+ * @properties={typeid:24,uuid:"A95DD728-57DB-4854-AC34-2160BA59ACED"}
+ */
+function onFocusGained(event) {
+	message_focus_dp = "Focus gained on combobox"
+}
+
+/**
+ * @param {JSEvent} event
+ *
+ * @properties={typeid:24,uuid:"5C4175A2-2E25-482C-A060-134CB80DA6C7"}
+ */
+function onFocusLost(event) {
+	message_focus_dp = "Focus lost on combobox"
+}
+
+/**
+ * @param {JSEvent} event
+ *
+ * @properties={typeid:24,uuid:"DBC4CF41-0608-4732-A58F-F7C00CE72758"}
+ */
+function onRightClick(event) {
+	message_actions_dp = "Right click on combobox"
 }

@@ -1,9 +1,10 @@
 addEmptyValue:1,
 customProperties:"lazyLoading:false",
-customValues:"one\
-two\
-three\
-",
+customValues:"one\r\
+two\r\
+three\r\
+four\r\
+five",
 displayValueType:12,
 name:"orders_vl",
 realValueType:12,

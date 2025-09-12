@@ -3,7 +3,7 @@
  *
  * @properties={typeid:35,uuid:"A5ED1828-B2EA-4EFC-ACBD-C753099B54F3"}
  */
-var typeahead_dp = null;
+var typeaheadDP = null;
 
 
 /**
@@ -14,8 +14,8 @@ var typeahead_dp = null;
  * @properties={typeid:24,uuid:"221AB8F1-A9F7-4022-849D-EE095B11027D"}
  */
 function onLoad(event) {
-	typeahead_dp = elements.typeahead_demo.valuelist.dataset.getValue(1,1);
-	application.output(typeahead_dp);
+	typeaheadDP = elements.typeahead_demo.valuelist.dataset.getValue(1,1);
+	application.output(typeaheadDP);
 }
 
 /**
