@@ -140,6 +140,13 @@ uuid:"9EF114D2-FE68-4C74-8293-ECA92A18A5B4"
 },
 {
 encapsulation:0,
+mimeType:"image/jpeg",
+name:"wallpaperPortrait.jpg",
+typeid:37,
+uuid:"C53C8508-F4FA-4BB8-B6A3-9DE10A2F67B0"
+},
+{
+encapsulation:0,
 mimeType:"text/css",
 name:"webapp144.png",
 typeid:37,

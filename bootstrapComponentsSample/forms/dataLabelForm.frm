@@ -8,17 +8,25 @@ typeid:19,
 uuid:"44CE3680-E958-4E7E-9448-F80120951499"
 },
 {
-cssPosition:"57,-1,-1,115,228,38",
+cssPosition:"33,-1,-1,34,237,41",
 json:{
 cssPosition:{
 bottom:"-1",
-height:"38",
-left:"115",
+height:"41",
+left:"34",
 right:"-1",
-top:"57",
-width:"228"
+top:"33",
+width:"237"
 },
-dataProviderID:"dataLabelDP"
+dataProviderID:"dataLabelDP",
+imageStyleClass:"fas fa-search",
+onActionMethodID:"242050F0-9195-4D8A-80EE-9079965F7F4F",
+onDoubleClickMethodID:"CDD7DFFC-ACB2-4281-ABF0-2EDEDF0B1F05",
+onRightClickMethodID:"30AC7141-E53E-4CE1-9624-4C52ABA6B476",
+showAs:"text",
+toolTipText:"This is the tooltip of the dataLabel",
+trailingImageStyleClass:"fas fa-search",
+valuelistID:"BBDAB171-B447-415A-9D4A-95F163C61C73"
 },
 name:"datalabel_13",
 typeName:"bootstrapcomponents-datalabel",

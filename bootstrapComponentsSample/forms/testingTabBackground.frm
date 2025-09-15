@@ -1,0 +1,17 @@
+customProperties:"formComponent:false,\
+useCssPosition:true",
+encapsulation:108,
+items:[
+{
+height:480,
+partType:5,
+typeid:19,
+uuid:"48D72010-5E31-414B-ACE4-77734F6295F2"
+}
+],
+name:"testingTabBackground",
+navigatorID:"-1",
+showInMenu:true,
+styleClass:"bg-primary",
+typeid:3,
+uuid:"AAC8389D-8730-491F-A4DA-A7330EAA0B63"
