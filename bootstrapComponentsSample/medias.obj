@@ -1,6 +1,12 @@
 [
 {
 encapsulation:0,
+name:"accordion.less",
+typeid:37,
+uuid:"3C1FC9C5-0F16-425B-BD5C-0ED49826EF3E"
+},
+{
+encapsulation:0,
 mimeType:"text/css",
 name:"bootstrapComponentsSample.less",
 typeid:37,
