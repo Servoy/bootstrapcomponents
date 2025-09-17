@@ -364,7 +364,7 @@ top:"133",
 width:"137"
 },
 styleClass:"label-blue-gradient",
-text:"Style Properties",
+text:"Text Properties",
 visible:true
 },
 name:"label_4cc",
