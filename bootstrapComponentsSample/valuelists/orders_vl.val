@@ -4,7 +4,10 @@ customValues:"one\r\
 two\r\
 three\r\
 four\r\
-five",
+five\r\
+six\r\
+seven\r\
+eight",
 displayValueType:12,
 name:"orders_vl",
 realValueType:12,
