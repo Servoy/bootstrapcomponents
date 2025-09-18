@@ -93,35 +93,35 @@ export class ServoyBootstrapSelect extends ServoyBootstrapBasefield<HTMLSelectEl
         }
     }
 
-    updateDataprovider() {
-        if (this.valuelistID) {
-            let value = null;
-            if (this.multiselect) {
-                if (this.selectedValues.length > 1) { return; }
-                for (let i = 0; i < this.valuelistID.length; i++) {
-                    const realValue = typeof this.valuelistID[i].realValue === 'string' ? this.valuelistID[i].realValue : String(this.valuelistID[i].realValue);
-                    const realSelectedValue = String(this.selectedValues[0]);
-                    if (realSelectedValue.indexOf(realValue) != -1) {
-                        if (value == null) value = this.dataProviderID ? this.dataProviderID.split('\n') : [];
-                        if (value.indexOf(realValue) == -1) {
-                            value.push(realValue);
-                        } else {
-                            // remove it if it was already there
-                            value.splice(value.indexOf(realValue), 1);
-                        }
-                    }
-                }
-            }
-            else {
+	    updateDataprovider() {
+	        if (this.valuelistID) {
+	            let value = null;
+
+	            if (this.multiselect) {
+	                value = [];
+	                if (this.selectedValues && this.selectedValues.length > 0) {
+	                    // Convert selected values to real values AS STRINGS
+	                    for (const selectedValue of this.selectedValues) {
+	                        // Find the corresponding real value from the valuelist
+	                        for (const vlItem of this.valuelistID) {
+	                            if (String(vlItem.realValue) === String(selectedValue)) {
+	                                value.push(String(vlItem.realValue));  // Push as STRING, not real value
+	                                break;
+	                            }
+	                        }
+	                    }
+	                }
+	            }
+	            else {
                 // already binded by ngmodel, just push it
-                value = this.dataProviderID;
-            }
-            if (this.multiselect && value) {
-                value = value.length > 1 ? value.join('\n') : value[0];
-            }
-            this.updateValue(value);
-        }
-    }
+	                value = this.dataProviderID;
+	            }
+				if (this.multiselect && value) {
+					value = value.length > 1 ? value.join('\n') : value[0];
+				}
+				this.updateValue(value);
+	        }
+	    }
 
     updateValue(val: string) {
         this.dataProviderID = val;
