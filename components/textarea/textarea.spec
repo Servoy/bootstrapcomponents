@@ -19,7 +19,7 @@
 			"placeholderText" : "tagstring",
 			"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
 			"toolTipText" : { "type" : "tagstring"},
-	    "visible" : {"type" : "visible", "tags": {"doc": "Whether the button is visible or not"}},
+	        "visible" : {"type" : "visible", "tags": {"doc": "Whether the button is visible or not"}},
 	    	"maxLength": { "type" : "int"}
 	},
 	"handlers":

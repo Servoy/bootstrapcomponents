@@ -1,6 +1,13 @@
 /**
  * @type {String}
  *
+ * @properties={typeid:35,uuid:"50EF781A-51A8-49B6-937F-C343CA7B4516"}
+ */
+var alternateDP = null;
+
+/**
+ * @type {String}
+ *
  * @properties={typeid:35,uuid:"CC167235-5E39-4AC1-A404-B7F1319B17A8"}
  */
 var outputDataChangeDP = null;
@@ -85,7 +92,7 @@ function onAction_toggleEditable(event) {
  * @properties={typeid:24,uuid:"69F761C5-FA72-40D5-8211-1DE3B4BB32B9"}
  */
 function onAction_toggleEnabled(event) {
-	elements.image_7.enabled = !elements.image_7.enabled	
+	elements.image_7.enabled = !elements.image_7.enabled
 }
 
 /**
@@ -96,7 +103,7 @@ function onAction_toggleEnabled(event) {
  * @properties={typeid:24,uuid:"A0D9C67D-6611-4E80-A72D-ECF16E978DA4"}
  */
 function onAction_toggleVisible(event) {
-	elements.image_7.visible = !elements.image_7.visible	
+	elements.image_7.visible = !elements.image_7.visible
 }
 
 /**
@@ -147,5 +154,22 @@ function onDataChange_styleClass(oldValue, newValue, event) {
  */
 function onDataChange_tooltipText(oldValue, newValue, event) {
 	elements.image_7.toolTipText = tooltipTextDP
+	return true
+}
+
+/**
+ * Handle changed data, return false if the value should not be accepted.
+ * JSEvent.data will contain extra information about dataproviderid, its scope and the scope id (record datasource or form/global variable scope)
+ *
+ * @param oldValue
+ * @param newValue
+ * @param {JSEvent} event
+ *
+ * @return {Boolean}
+ *
+ * @properties={typeid:24,uuid:"628F127F-B018-4FEE-8E0E-39613C3E9D58"}
+ */
+function onDataChange_alternate(oldValue, newValue, event) {
+	elements.image_7.alternate = alternateDP
 	return true
 }
