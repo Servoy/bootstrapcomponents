@@ -1,4 +1,18 @@
 /**
+ * @type {String}
+ *
+ * @properties={typeid:35,uuid:"A971B0D9-4D5D-455A-B9EF-AEEB550D8073"}
+ */
+var inputControlDP = 'Input Control';
+
+/**
+ * @type {String}
+ *
+ * @properties={typeid:35,uuid:"ED715D8D-200E-4238-A004-58238E6473EB"}
+ */
+var buttonsAndTextDP = 'Buttons & Text';
+
+/**
  * Handles button clicks and loads the corresponding form based on button naming convention.
  * Button names should follow the pattern 'btn_FormName' where FormName corresponds to 'formNameForm'.
  * Also manages the visual selection state of buttons.

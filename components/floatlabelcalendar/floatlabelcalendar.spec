@@ -33,7 +33,7 @@
 	    "tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
 	    "theme" : {"type":"string" , "tags": { "scope" :"design"}, "default" : "light",  "values" :["auto" , "dark", "light"]},
 	    "toolTipText" : { "type" : "tagstring"}, 
-	   "visible" : {"type" : "visible", "tags": {"doc": "Whether the button is visible or not"}},
+	    "visible" : {"type" : "visible", "tags": {"doc": "Whether the button is visible or not"}},
         "selectOnEnter" : {"type" :"boolean", "tags": { "scope" :"design", "doc": "Whether to select the text when date field is focused." }},
         "pickerOnly": {"type" :"boolean", "default": false, "tags": { "scope" :"design", "doc": "Whether to only allow date entry from the date picker or not (cannot type the date)." }}
 	    
