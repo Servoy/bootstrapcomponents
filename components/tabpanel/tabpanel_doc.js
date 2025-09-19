@@ -1,19 +1,19 @@
 /**
- * The TabPanel component is a container that organizes multiple forms into a tabbed interface.
+ * The TabPanel component is a container that organizes multiple forms into a tabbed interface, only one form being visible (selected) at any point in time.
  */
 
 /**
- * The CSS style class applied to the container element of the TabPanel.
+ * The CSS style class(es) applied to the container element of the TabPanel.
  */
 var containerStyleClass;
 
 /**
- * The CSS style class applied to the close icon used in the TabPanel's tab headers.
+ * The CSS style class applied to the close icon used in the TabPanel's tab headers. Only applicable if showTabCloseIcon is true.
  */
 var closeIconStyleClass;
 
 /**
- * Flag indicating whether the close icon is displayed on the tabs.
+ * Flag indicating whether the close icon is displayed on the tabs. Default value is false.
  */
 var showTabCloseIcon;
 
@@ -23,7 +23,7 @@ var showTabCloseIcon;
 var tabs;
 
 /**
- * Set the styleclasses that should be applied at to this component
+ * Set the styleclass(es) that should be applied at to this component.
  */
 var styleClass;
 
@@ -33,7 +33,7 @@ var styleClass;
 var height;
 
 /**
- * The tab index used for keyboard navigation of the TabPanel.
+ * The current 1-based index of the active(visible) tab from tabs array. Can also be set to change the active tab.
  */
 var tabIndex;
 
@@ -43,7 +43,7 @@ var tabIndex;
 var tabSeq;
 
 /**
- * Whether the button is visible or not
+ * Whether the tabpanel is visible or not. Default is true (visible).
  */
 var visible;
 
@@ -53,6 +53,7 @@ var handlers = {
      *
      * @param {Number} previousIndex The previous tab index before the change
      * @param {JSEvent} event The event object associated with the tab change
+	 * @param {Number} newIndex The current tab index ( after the change )
      */
     onChangeMethodID: function() {},
 
@@ -88,17 +89,17 @@ function selectTabAt(idx) {}
  * Adds a tab with the given form and tab text on the given index.
  * 
  * @param {Form} form The name of the form to add as a tab
- * @param {Tagstring} tabText The tab text that should be displayed
- * @param {Number} [index] Give an index where the tab should be placed, default at the end.
+ * @param {Tagstring} tabText The tab text that should be displayed. Can contain tags (i18n keys or foundset data).
+ * @param {Number} [index] Give an index where the tab should be placed in the array of tabs, default at the end.
  * 
  * @return {CustomType<bootstrapcomponents-tabpanel.tab>} The newly created tab object that represents the added form in the tab panel.
  */
  function addTab(form, tabText, index) {}
 
 /**
- * Removes the tab from the given index.
+ * Removes the tab from the given index (index is 1-based).
  * 
- * @param {Number} index <<<<<<<< add description for this param <<<<<<<<
+ * @param {Number} index The 1-based index of the tab to remove.
  * @return {Boolean} True if the tab was successfully removed; false otherwise.
  */
 function removeTabAt(index) {}
@@ -115,7 +116,7 @@ function removeAllTabs() {}
  * @param {Number} index The 1-based index of the tab to retrieve.
  * @return {CustomType<bootstrapcomponents-tabpanel.tab>} The tab object at the specified index, or null if the index is out of range.
  */
-function getTabAt() {
+function getTabAt(index) {
 }
 
 /**
@@ -144,7 +145,7 @@ var svy_types = {
         text: null,
 
         /**
-         * The relation name associated with the tab, if applicable.
+         * The relation used for loading data into the form contained within the tab. Can be null if no relation is used.
          */
         relationName: null,
 
@@ -164,7 +165,7 @@ var svy_types = {
         hideCloseIcon: null,
 
         /**
-         * CSS style classes for the tab's icon.
+         * CSS style class(es) that can define icon on the tab (like fontawesome icon).
          */
         iconStyleClass: null,
 
