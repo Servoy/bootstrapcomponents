@@ -58,7 +58,6 @@ var outputDataChangeDP = null;
 var outputActionDP = null;
 
 /**
- * TODO generated, please specify type and doc for the params
  * @param event
  *
  * @properties={typeid:24,uuid:"82530A08-8DB6-4E2D-A636-836946B2DFAD"}
@@ -106,7 +105,6 @@ function onFocusLost(event) {
 }
 
 /**
- * TODO generated, please specify type and doc for the params
  * @param event
  *
  * @properties={typeid:24,uuid:"13673B3D-271C-4EFE-993A-8BD158F5CF7C"}
@@ -116,7 +114,6 @@ function onRightClick(event) {
 }
 
 /**
- * TODO generated, please specify type and doc for the params
  * @param event
  *
  * @properties={typeid:24,uuid:"45B600D3-90F5-401E-8101-0599B7F5AD68"}
