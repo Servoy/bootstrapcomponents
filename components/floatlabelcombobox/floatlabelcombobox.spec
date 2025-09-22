@@ -96,7 +96,7 @@
 			            		}             
 							 ],
 				"delayUntilFormLoads": true,
-			"discardPreviouslyQueuedSimilarCalls": true
+				"discardPreviouslyQueuedSimilarCalls": true
 
 	        },
 	        "toggleErrorMessage": {
