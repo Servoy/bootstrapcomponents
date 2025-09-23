@@ -367,11 +367,11 @@ function onRestrictedDataChange(oldValue, newValue, event) {
  * @properties={typeid:24,uuid:"77A44479-1A05-4419-BD0C-9231F90A709E"}
  */
 function onRestrictedDaysDataChange(oldValue, newValue, event) {	
-	var disabledDays = newValue
+	var disabledDays = newValue ? newValue
 	    .split('\n')
 	    .map(day => day.trim().toLowerCase())
 	    .filter(day => dayMap.hasOwnProperty(day))
-	    .map(day => dayMap[day]);
+	    .map(day => dayMap[day]): [];
 	
 	elements.calendarinline_restricted.disableDays(disabledDays);
 	
