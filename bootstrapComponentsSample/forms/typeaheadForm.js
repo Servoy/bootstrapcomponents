@@ -1,4 +1,11 @@
 /**
+ * @type {Number}
+ *
+ * @properties={typeid:35,uuid:"79D79082-4634-488D-9E0B-31C52EA0C56E",variableType:8}
+ */
+var filteringDebounceDP = 500;
+
+/**
  * @type {String}
  *
  * @properties={typeid:35,uuid:"BEE22EDD-8D63-4A35-B8BE-D291118D42E9"}
@@ -271,4 +278,22 @@ function onAction_btn_requestFocusTrue(event) {
  */
 function onAction_btn_requestFocusFalse(event) {
 	elements.typeahead_demoHtml.requestFocus(false)
+}
+
+/**
+ * Handle changed data, return false if the value should not be accepted.
+ * JSEvent.data will contain extra information about dataproviderid, its scope and the scope id (record datasource or form/global variable scope)
+ *
+ * @param oldValue
+ * @param newValue
+ * @param {JSEvent} event
+ *
+ * @return {Boolean}
+ *
+ * @properties={typeid:24,uuid:"418E71FF-0D6F-4D69-A472-C9D00A97E009"}
+ */
+function onDataChange_filteringDebounce(oldValue, newValue, event) {
+	elements.typeahead_demoHtml.filteringDebounce = filteringDebounceDP;
+	elements.typeahead_demoHtml.filteringDebounce - filteringDebounceDP;
+	return true
 }

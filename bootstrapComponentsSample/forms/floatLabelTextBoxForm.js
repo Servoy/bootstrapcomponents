@@ -1,6 +1,13 @@
 /**
  * @type {String}
  *
+ * @properties={typeid:35,uuid:"99DB7265-27CE-4B7F-9C8D-9FFBA0BCEE2C"}
+ */
+var styleClassForEyeDP = null;
+
+/**
+ * @type {String}
+ *
  * @properties={typeid:35,uuid:"1A8F9D0F-B711-4644-828C-2A2017F3BE4C"}
  */
 var inputTypeDP = 'text';
@@ -196,6 +203,14 @@ function onAction_requestFocusFalse(event) {
  */
 function onAction_setInputType(event) {
 	elements.floatlabeltextbox_12.setInputType(inputTypeDP)
+
+	if (inputTypeDP === 'password-with-eye') {
+		elements.lbl_styleClassForEye.visible = true
+		elements.tb_styleClassForEye.visible = true
+	} else {
+		elements.lbl_styleClassForEye.visible = false
+		elements.tb_styleClassForEye.visible = false
+	}
 }
 
 /**
@@ -265,3 +280,20 @@ function onDataChange_tooltipText(oldValue, newValue, event) {
 	// TODO Auto-generated method stub
 	return true
 }
+/**
+ * Handle changed data, return false if the value should not be accepted.
+ * JSEvent.data will contain extra information about dataproviderid, its scope and the scope id (record datasource or form/global variable scope)
+ *
+ * @param oldValue
+ * @param newValue
+ * @param {JSEvent} event
+ *
+ * @return {Boolean}
+ *
+ * @properties={typeid:24,uuid:"39C600E5-EAB0-4A65-84F8-0E51D3E9BD91"}
+ */
+function onDataChange_styleClassForEye(oldValue, newValue, event) {
+	elements.floatlabeltextbox_12.styleClassForEye = styleClassForEyeDP
+	return true
+}
+

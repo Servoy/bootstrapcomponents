@@ -6,6 +6,13 @@
 var floatLabelTypeAheadDP = null;
 
 /**
+ * @type {Number}
+ *
+ * @properties={typeid:35,uuid:"1FB66BF1-EE79-4F21-87A3-22F762D0F069",variableType:4}
+ */
+var filteringDebounceDP = 500;
+
+/**
  * @type {String}
  *
  *
@@ -258,5 +265,19 @@ function onDataChange_styleClass(oldValue, newValue, event) {
  */
 function onDataChange_tooltipText(oldValue, newValue, event) {
 	// TODO Auto-generated method stub
+	return true
+}
+
+/**
+ * TODO generated, please specify type and doc for the params
+ * @param oldValue
+ * @param newValue
+ * @param event
+ *
+ * @properties={typeid:24,uuid:"07C774BC-0E30-482E-9EAA-D2E0EF05E5AA"}
+ */
+function onDataChange_filteringDebounce(oldValue, newValue, event) {
+	elements.floatlabeltypeahead_html.filteringDebounce = filteringDebounceDP
+	elements.floatlabeltypeahead_text.filteringDebounce = filteringDebounceDP
 	return true
 }
