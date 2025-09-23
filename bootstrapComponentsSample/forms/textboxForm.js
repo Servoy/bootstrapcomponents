@@ -1,6 +1,27 @@
 /**
  * @type {String}
  *
+ * @properties={typeid:35,uuid:"2CE6F323-401D-4711-8668-F3604409442C"}
+ */
+var passwordTextBoxDP = null;
+
+/**
+ * @type {String}
+ *
+ * @properties={typeid:35,uuid:"137AA78A-874D-43B4-9872-A33B63FA2D7C"}
+ */
+var formatTextBoxDP = null;
+
+/**
+ * @type {String}
+ *
+ * @properties={typeid:35,uuid:"63B9508A-90E1-4358-A3F5-8903AF03CDDE"}
+ */
+var textTextboxDP = null;
+
+/**
+ * @type {String}
+ *
  * @properties={typeid:35,uuid:"C1201651-2C6C-4428-AB61-BEE5B4FD0C3B"}
  */
 var tooltipTextDP = null;
