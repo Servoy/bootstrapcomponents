@@ -16,6 +16,7 @@
         [autocomplete]="autocomplete"
 		[resultFormatter]="resultFormatter"
 		[inputFormatter]="inputFormatter"
+        (blur)="focusLost()"
 		(focus)="focusGained()"
 		(click)="onClick()"
         [resultTemplate]="showAs == 'text' ? rtText : rtHTML"

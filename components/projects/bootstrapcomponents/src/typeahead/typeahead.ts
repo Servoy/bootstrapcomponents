@@ -276,4 +276,8 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
         this.popupStateService.deactivatePopup(this.getNativeElement().id);
 		this.instance.dismissPopup();
 	}
+    
+    focusLost() {
+        this.popupStateService.deactivatePopup(this.getNativeElement().id);
+    }
 }
