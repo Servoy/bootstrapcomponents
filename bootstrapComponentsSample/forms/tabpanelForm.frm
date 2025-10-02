@@ -169,7 +169,8 @@ right:"-1",
 top:"419",
 width:"738"
 },
-dataProviderID:"tabpanelStateDP"
+dataProviderID:"tabpanelStateDP",
+editable:false
 },
 name:"textarea_tabPanelState",
 typeName:"bootstrapcomponents-textarea",

@@ -79,9 +79,9 @@ function onDataChange_styleClass(oldValue, newValue, event) {
 /**
  * @type {Number}
  *
- * @properties={typeid:35,uuid:"B9105908-A55E-4F26-8403-BFED361D872A",variableType:4}
+ * @properties={typeid:35,uuid:"DA5DF854-98D4-4902-83D7-790F4B45CA3E",variableType:4}
  */
-var i=0
+var i = 0;
 /**
  * Fired when the button is clicked.
  *
@@ -90,8 +90,9 @@ var i=0
  * @properties={typeid:24,uuid:"F4EED482-2061-41E7-ACCD-88D76A0FF058"}
  */
 function onAction_addTab(event) {
-	i++
-	elements.accordionpanel_2.addTab(forms.testingTabBackground,"Test tab " + i,1)
+	i++;
+	var index = elements.accordionpanel_2.tabs.length;
+	elements.accordionpanel_2.addTab(forms.testingTabBackground, "Test tab " + i, index + 1)
 }
 
 /**
@@ -102,7 +103,7 @@ function onAction_addTab(event) {
  * @properties={typeid:24,uuid:"C217E852-59F0-40A2-BBBB-821244089F0D"}
  */
 function onAction_getTabAt(event) {
-	
+	ouputAccPanelDP = 'Get tab ' + elements.accordionpanel_2.getTabAt(2).name + ' at index ' + 2;
 }
 
 /**

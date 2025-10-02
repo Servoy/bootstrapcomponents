@@ -89,7 +89,7 @@ function onToggleBg(event) {
  */
 function onTabClicked(event, clickedTabIndex, dataTarget) {
 	application.output('onTabClicked: ' + clickedTabIndex);
-	//elements.tabpanel.tabIndex = clickedTabIndex;
+	elements.tabpanel.tabIndex = clickedTabIndex;
 	return true;
 }
 
@@ -137,7 +137,8 @@ var i = 0
 	 */
 function onAction_addTab(event) {
 	i++
-	elements.tabpanel.addTab(forms.ImageTab, "Tab text" + i, 3);
+	var index = elements.tabpanel.tabs.length;
+	elements.tabpanel.addTab(forms.ImageTab, "Tab text" + i, index + 1);
 }
 
 /**

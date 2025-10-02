@@ -558,7 +558,8 @@ right:"-1",
 top:"129",
 width:"420"
 },
-dataProviderID:"base_message_dp"
+dataProviderID:"base_message_dp",
+editable:false
 },
 name:"txt_message",
 typeName:"bootstrapcomponents-textarea",

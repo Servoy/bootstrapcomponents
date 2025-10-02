@@ -273,7 +273,7 @@ showAs:"html",
 styleClass:"label-danger",
 text:"<div style=\"border: 1px solid #ddd; border-radius: 5px; padding: 10px; background-color: #f8f9fa;\">\
   <div style=\"font-weight: bold; color: #0275d8; margin-bottom: 5px;\">Card Title<\/div>\
-  <div style=\"font-size: 0.9em; color: #333;\">This is a card-style content display with custom styling for structured information.<\/div>\
+  <div style=\"font-size: 0.9em; color: #333333;\">This is a card-style content display with custom styling for structured information.<\/div>\
 <\/div>"
 },
 name:"lbl_card_html",

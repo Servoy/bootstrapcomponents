@@ -173,3 +173,16 @@ function onDataChange_alternate(oldValue, newValue, event) {
 	elements.image_7.alternate = alternateDP
 	return true
 }
+
+/**
+ * Fired when the button is clicked.
+ *
+ * @param {JSEvent} event
+ *
+ * @properties={typeid:24,uuid:"EE07417D-F9D9-4B26-B078-B67546A8A1D0"}
+ */
+function onAction_restore(event) {
+	elements.image_7.visible = true;
+	imageMediaDP = "media:///i98rzu.jpg";
+	mediaDP = "media:///i98rzu.jpg";
+}

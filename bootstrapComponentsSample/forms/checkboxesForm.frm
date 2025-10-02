@@ -13,7 +13,8 @@ right:"-1",
 top:"345",
 width:"574"
 },
-dataProviderID:"demo_actions_log_DP"
+dataProviderID:"demo_actions_log_DP",
+editable:false
 },
 name:"ta_demo_actions_log",
 typeName:"bootstrapcomponents-textarea",
@@ -164,7 +165,8 @@ right:"-1",
 top:"157",
 width:"574"
 },
-dataProviderID:"demo_log_dp"
+dataProviderID:"demo_log_dp",
+editable:false
 },
 name:"ta_demo_log",
 typeName:"bootstrapcomponents-textarea",
@@ -261,7 +263,8 @@ right:"-1",
 top:"305",
 width:"574"
 },
-dataProviderID:"demo_request_focus_log_DP"
+dataProviderID:"demo_request_focus_log_DP",
+editable:false
 },
 name:"ta_demo_request_log",
 typeName:"bootstrapcomponents-textarea",

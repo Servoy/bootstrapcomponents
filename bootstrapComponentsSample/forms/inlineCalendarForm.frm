@@ -33,7 +33,8 @@ right:"-1",
 top:"411",
 width:"645"
 },
-dataProviderID:"base_message_dp"
+dataProviderID:"base_message_dp",
+editable:false
 },
 name:"txt_message",
 typeName:"bootstrapcomponents-textarea",
@@ -70,7 +71,8 @@ right:"-1",
 top:"1001",
 width:"540"
 },
-dataProviderID:"restricted_msg_dp"
+dataProviderID:"restricted_msg_dp",
+editable:false
 },
 name:"restricted_txt_message",
 typeName:"bootstrapcomponents-textarea",

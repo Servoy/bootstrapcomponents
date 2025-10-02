@@ -52,14 +52,14 @@ var imageStyleClassDP = null;
  *
  * @properties={typeid:35,uuid:"9B1D640B-38CF-4827-8D2B-884F757909DE"}
  */
-var dataLabelDP = 'Data Label Text';
+var dataLabelDP = 'This is the Data Label Text';
 
 /**
  * @type {String}
  *
  * @properties={typeid:35,uuid:"44F6F7E1-00B3-499D-A859-CE35B71ED58F"}
  */
-var dataLabelDPHtml = 'Data Label Html';
+var dataLabelDPHtml = 'This is the Data Label Html';
 
 /**
  * Click event. dataTarget parameter is used to identify inner html elements (by their data-target attribute).

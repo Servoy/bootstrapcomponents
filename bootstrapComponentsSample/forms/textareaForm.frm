@@ -120,7 +120,8 @@ right:"-1",
 top:"224",
 width:"520"
 },
-dataProviderID:"outputDataChangeDP"
+dataProviderID:"outputDataChangeDP",
+editable:false
 },
 name:"textarea_dataChange",
 typeName:"bootstrapcomponents-textarea",
@@ -159,7 +160,8 @@ right:"-1",
 top:"176",
 width:"520"
 },
-dataProviderID:"ouputActionDP"
+dataProviderID:"ouputActionDP",
+editable:false
 },
 name:"textarea_actions",
 typeName:"bootstrapcomponents-textarea",
@@ -293,7 +295,8 @@ right:"-1",
 top:"314",
 width:"520"
 },
-dataProviderID:"outputFocusDP"
+dataProviderID:"outputFocusDP",
+editable:false
 },
 name:"textarea_focus",
 typeName:"bootstrapcomponents-textarea",

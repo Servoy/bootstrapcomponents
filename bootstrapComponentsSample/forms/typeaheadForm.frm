@@ -125,7 +125,8 @@ right:"-1",
 top:"194",
 width:"585"
 },
-dataProviderID:"outputFocusDP"
+dataProviderID:"outputFocusDP",
+editable:false
 },
 name:"textarea_outputFocus",
 typeName:"bootstrapcomponents-textarea",
@@ -255,7 +256,8 @@ right:"-1",
 top:"109",
 width:"585"
 },
-dataProviderID:"outputActionDP"
+dataProviderID:"outputActionDP",
+editable:false
 },
 name:"textarea_outputAction",
 typeName:"bootstrapcomponents-textarea",
@@ -359,7 +361,8 @@ right:"-1",
 top:"151",
 width:"585"
 },
-dataProviderID:"outputDataChangeDP"
+dataProviderID:"outputDataChangeDP",
+editable:false
 },
 name:"textarea_outputDataChange",
 typeName:"bootstrapcomponents-textarea",

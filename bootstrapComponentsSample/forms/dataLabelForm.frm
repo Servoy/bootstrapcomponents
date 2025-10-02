@@ -52,7 +52,8 @@ right:"-1",
 top:"190",
 width:"613"
 },
-dataProviderID:"textareaDataLabelHtmlDP"
+dataProviderID:"textareaDataLabelHtmlDP",
+editable:false
 },
 name:"textarea_outputDataLabelHtml",
 typeName:"bootstrapcomponents-textarea",
@@ -70,7 +71,8 @@ right:"-1",
 top:"150",
 width:"613"
 },
-dataProviderID:"textareaDataLabelTextDP"
+dataProviderID:"textareaDataLabelTextDP",
+editable:false
 },
 name:"textarea_outputDataLabelText",
 typeName:"bootstrapcomponents-textarea",
