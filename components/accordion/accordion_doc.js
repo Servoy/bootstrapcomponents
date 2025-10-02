@@ -49,6 +49,7 @@ var handlers = {
      *
      * @param {Number} previousIndex The previous tab index
      * @param {JSEvent} event The event object associated with the tab change
+     * @param {Number} newIndex The tab index that is now set
      */
     onChangeMethodID: function() {}
 };
