@@ -114,18 +114,6 @@ function onAction_getTabAt(event) {
  * @properties={typeid:24,uuid:"F7B201C3-D615-4C91-9576-6DB679CD1B99"}
  */
 function onAction_removeTabAt(event) {
-	// TODO Auto-generated method stub
-
-}
-
-/**
- * Fired when the button is clicked.
- *
- * @param {JSEvent} event
- *
- * @properties={typeid:24,uuid:"0E53EFA0-64F7-48C1-9ECB-E402958AB50F"}
- */
-function onAction_removeAllTabs(event) {
-	// TODO Auto-generated method stub
-
+	elements.accordionpanel_2.removeTabAt(3);
+	ouputAccPanelDP = 'Tab 3 removed'
 }

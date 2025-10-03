@@ -3,6 +3,27 @@ useCssPosition:true",
 encapsulation:108,
 items:[
 {
+cssPosition:"394,-1,-1,50,374,43",
+json:{
+cssPosition:{
+bottom:"-1",
+height:"43",
+left:"50",
+right:"-1",
+top:"394",
+width:"374"
+},
+styleClass:"h1",
+text:"Label 2",
+visible:true
+},
+name:"label_2c",
+styleClass:"h1",
+typeName:"bootstrapcomponents-label",
+typeid:47,
+uuid:"5E78F007-6ED7-443B-B80A-1A1A51B34A68"
+},
+{
 height:480,
 partType:5,
 typeid:19,

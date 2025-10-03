@@ -219,27 +219,6 @@ typeid:47,
 uuid:"B7C03AD5-6437-46DE-9BBF-1E0C3BE053DE"
 },
 {
-cssPosition:"656,-1,-1,24,137,30",
-json:{
-cssPosition:{
-bottom:"-1",
-height:"30",
-left:"24",
-right:"-1",
-top:"656",
-width:"137"
-},
-onActionMethodID:"0E53EFA0-64F7-48C1-9ECB-E402958AB50F",
-styleClass:"btn-primary",
-text:"Remove All Tabs"
-},
-name:"btn_removeAllTabs",
-styleClass:"btn-primary",
-typeName:"bootstrapcomponents-button",
-typeid:47,
-uuid:"D5BD1933-B169-4576-A281-02C619098AD9"
-},
-{
 cssPosition:"35,-1,-1,24,576,371",
 json:{
 containerStyleClass:"accordion-container-default",
