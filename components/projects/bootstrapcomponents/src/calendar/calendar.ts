@@ -88,7 +88,6 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
   	}
 
     attachFocusListeners(nativeElement: any) {
-        super.attachFocusListeners(nativeElement);
         if (this.onFocusGainedMethodID) {
             this.renderer.listen(nativeElement, 'focus', () => this.checkOnFocus());
             this.picker.subscribe(Namespace.events.show, () => this.checkOnFocus());
@@ -101,7 +100,8 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
         
         this.picker.subscribe(Namespace.events.show, () => this.popupStateService.activatePopup(this.getNativeElement().id));
         this.picker.subscribe(Namespace.events.hide, () => this.popupStateService.deactivatePopup(this.getNativeElement().id));
-            
+        
+        super.attachFocusListeners(nativeElement);   
     }
 
     svyOnChanges(changes: SimpleChanges) {
@@ -257,7 +257,9 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
         this.isBlur = false;
         if (!this.hasFocus) {
             this.hasFocus = true;
-            this.onFocusGainedMethodID(new CustomEvent('focus'));
+            if (this.mustExecuteOnFocus) {
+                this.onFocusGainedMethodID(new CustomEvent('focus'));
+            }
         }
     }
 
