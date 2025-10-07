@@ -418,10 +418,8 @@ top:"40",
 width:"313"
 },
 dataProviderID:"date_dp",
-enabledDataProvider:"enabled_dp",
 format:"dd-MM-yyyy HH:mm",
-onDataChangeMethodID:"0E56B6E0-4F57-4232-BB35-5D28DCB27ABD",
-visibleDataProvider:"visible_dp"
+onDataChangeMethodID:"0E56B6E0-4F57-4232-BB35-5D28DCB27ABD"
 },
 name:"baseInlineCalendar",
 typeName:"bootstrapcomponents-calendarinline",

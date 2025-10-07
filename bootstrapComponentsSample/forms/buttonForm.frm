@@ -233,12 +233,10 @@ right:"-1",
 top:"960",
 width:"200"
 },
-enabledDataProvider:"enabledDataProvider",
 onActionMethodID:"F7AC07F8-7632-4CF2-842A-664810ED60DF",
 styleClass:"btn-outline-primary",
 text:"Target Button",
-toolTipText:"This button will be modified by API methods",
-visibleDataProvider:"visibleDataProvider"
+toolTipText:"This button will be modified by API methods"
 },
 name:"btn_api_target",
 styleClass:"btn-outline-primary",

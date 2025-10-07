@@ -731,7 +731,6 @@ top:"40",
 width:"534"
 },
 dataProviderID:"date_dp",
-enabledDataProvider:"enableDP",
 format:"MM/dd/yyyy hh:mm aa",
 onActionMethodID:"D43C8CBE-A9C7-4A54-BF87-31E21899A694",
 onDataChangeMethodID:"BE552F74-7E68-4F17-8E19-32FFE55A9571",
@@ -741,8 +740,7 @@ pickerOnly:true,
 placeholderText:"Select a date",
 selectOnEnter:true,
 toolTipText:"This is a demo calendar for basic configuration",
-visible:true,
-visibleDataProvider:"visibleDP"
+visible:true
 },
 name:"basic_calendar",
 typeName:"bootstrapcomponents-calendar",
