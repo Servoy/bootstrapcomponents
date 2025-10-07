@@ -3,7 +3,7 @@
  */
 
 /**
- * Bound data provider identifier for the select component's value.
+ * Bound data provider identifier for the select component's value. Can be a table column or a form/global variable. If multiselect is true, dataProviderID type must either be a text or an sql array column.
  */
 var dataProviderID;
 
@@ -53,7 +53,7 @@ var placeholderText;
 var selectSize;
 
 /**
- * Flag indicating whether multiple selections are allowed.
+ * Flag indicating whether multiple selections are allowed. In case multiselect is true, the data provider should be an sql array column or a string containing a new line separated list of values.
  */
 var multiselect;
 

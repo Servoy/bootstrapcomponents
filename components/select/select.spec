@@ -9,7 +9,7 @@
 	"libraries": [{"name":"bootstrapcomponents-select-css", "version":"1.0", "url":"bootstrapcomponents/select/select.css", "mimetype":"text/css"}],
 	"model":
 	{
-	        "dataProviderID" : { "type":"dataprovider","pushToServer": "allow", "tags": { "wizard": true, "scope" :"design", "basic": true }, "ondatachange": { "onchange":"onDataChangeMethodID"}},
+	        "dataProviderID" : { "type":"dataprovider", "multiselect": "multiselect", "pushToServer": "allow", "tags": { "wizard": true, "scope" :"design", "basic": true }, "ondatachange": { "onchange":"onDataChangeMethodID"}},
 	        "enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["dataProviderID","onActionMethodID","onDataChangeMethodID"] },
 	       	"readOnly" : { "type": "protected", "blockingOn": true, "default": false,"for": ["dataProviderID","onDataChangeMethodID"], "tags": {"scope":"private"} },
 	       	"findmode" : { "type":"findmode", "tags":{"scope":"private"}, "for" : {"enabled":true}},

@@ -42,7 +42,7 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
             switch (property) {
                 case 'dataProviderID':
                     this.setSelectionFromDataprovider();
-                    this.allowMultiselect = typeof this.dataProviderID === 'string';
+                    this.allowMultiselect = Array.isArray(this.dataProviderID);
                     break;
                 case 'valuelistID':
                     if (this.valuelistID && this.valuelistID.length > 0 && this.isValueListNull(this.valuelistID[0]))
@@ -81,20 +81,19 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
     }
 
     getDataproviderFromSelection() {
-        let returnValue = '';
+        let returnValue = [];
         this.selection.forEach((element, index) => {
             if (element === true)
-                returnValue += this.valuelistID[index + this.allowNullinc].realValue + '\n';
+                returnValue.push(this.valuelistID[index + this.allowNullinc].realValue);
         });
-        returnValue = returnValue.replace(/\n$/, ''); // remove the last \n
-        if (returnValue === '') returnValue = null;
+        if (!returnValue.length) returnValue = null;
         return returnValue;
     }
 
     setSelectionFromDataprovider() {
         this.selection = [];
         if (this.dataProviderID === null || this.dataProviderID === undefined) return;
-        const arr = (typeof this.dataProviderID === 'string') ? this.dataProviderID.split('\n') : [this.dataProviderID];
+        const arr = (Array.isArray(this.dataProviderID)) ? this.dataProviderID : [this.dataProviderID];
         if (this.inputType === 'radio' && arr.length > 1) return;
         for (let i = 0; i < this.valuelistID.length; i++) {
             const item = this.valuelistID[i];
