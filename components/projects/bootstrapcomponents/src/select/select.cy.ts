@@ -132,8 +132,9 @@ describe('ServoyBootstrapSelect', () => {
     
     it('should allow multiselect', () => {
         config.componentProperties.multiselect = true;
-		wrapper.component.dataProviderID = ['1'];
-        cy.mount(WrapperComponent, config).then(() => {
+        cy.mount(WrapperComponent, config).then(wrapper => {
+			wrapper.component.dataProviderID = ['1'];
+			wrapper.fixture.detectChanges();
             cy.get('select').should('have.attr', 'multiple');
             cy.get('select').invoke('val').should('deep.equal', ["0: '1'"]).then(() => {
                 cy.get('select').select(["0: '1'", "1: '2'"]).then(() => {
