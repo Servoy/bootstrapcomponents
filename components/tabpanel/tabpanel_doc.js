@@ -100,6 +100,7 @@ function selectTabAt(idx) {}
  * Removes the tab from the given index (index is 1-based).
  * 
  * @param {Number} index The 1-based index of the tab to remove.
+ * 
  * @return {Boolean} True if the tab was successfully removed; false otherwise.
  */
 function removeTabAt(index) {}
@@ -114,6 +115,7 @@ function removeAllTabs() {}
 /**
  * Retrieves the tab at the specified index from the tabs model.
  * @param {Number} index The 1-based index of the tab to retrieve.
+ * 
  * @return {CustomType<bootstrapcomponents-tabpanel.tab>} The tab object at the specified index, or null if the index is out of range.
  */
 function getTabAt(index) {
