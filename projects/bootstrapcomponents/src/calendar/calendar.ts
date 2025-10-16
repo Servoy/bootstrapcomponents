@@ -132,14 +132,14 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
             super.pushUpdate();
         }
 		
-		if ((event !== '' && ((this.minDate && this.minDate > event) || (this.maxDate && this.maxDate < event))) ||
-        /* 2024.12 fix */        
-        event === undefined ||
-        /* lts_latest fix */
-        event.toString() === 'Invalid Date') {
+		if ((event !== '' && ((this.minDate && this.minDate > event) || (this.maxDate && this.maxDate < event))) || !this.isValidDate(event)) {
 			// revert to old value
 			this.svyFormat.writeValue(this.dataProviderID);
 		}
+    }
+    
+    isValidDate(date: any): boolean {
+        return date instanceof Date && !isNaN(date.getTime());
     }
 
     public getNativeChild(): any {
