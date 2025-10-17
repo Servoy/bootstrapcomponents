@@ -1,4 +1,4 @@
-/** 
+/* 
  * TypeAhead is an input component that provides auto-complete suggestions as the user types.
  * It leverages a value list to display options and allows selection of a suggested value.
  */

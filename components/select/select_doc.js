@@ -1,4 +1,4 @@
-/**
+/*
  * Native Select displays a dropdown list of values. Allows single or multiple selection, bound to a data provider. 
  */
 

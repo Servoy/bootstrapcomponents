@@ -1,4 +1,4 @@
-/**
+/*
  *  TextArea is a multi-line text input component that allows users to enter and edit text.
  */
 

@@ -1,5 +1,5 @@
-/**
- * A Bootstrap Extra Component that displays a progress bar.
+/*
+ * A component that displays a progress bar.
  * 
  * DEPRECATED: Use bootstrapextracomponents-progressbar component instead
  */

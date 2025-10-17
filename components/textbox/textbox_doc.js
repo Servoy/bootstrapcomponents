@@ -1,4 +1,4 @@
-/**
+/*
  *  TextBox is a text input component styled with Bootstrap. It allows users to enter single-line text values.
  *  The component supports various input types (e.g. text, password, email, etc.) and includes features such as autocomplete and error messaging.
  */

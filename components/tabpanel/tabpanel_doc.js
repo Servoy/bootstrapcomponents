@@ -1,4 +1,4 @@
-/**
+/*
  * The TabPanel component is a container that organizes multiple forms into a tabbed interface, only one form being visible (selected) at any point in time.
  */
 

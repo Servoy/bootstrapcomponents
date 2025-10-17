@@ -1,5 +1,5 @@
-/**
- * A Bootstrap Extra Component that acts as a container for a form.
+/*
+ * A component that acts as a container component for a Form Component.
  * 
  * DEPRECATED: Use servoycore-formcomponent instead.
  */

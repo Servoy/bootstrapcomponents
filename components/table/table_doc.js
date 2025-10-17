@@ -1,8 +1,7 @@
-/**
+/*
+ * A table that displays a data grid with pagination, sorting, and customizable columns.
  * 
- * * A Bootstrap Extra Component that displays a data grid with pagination, sorting, and customizable columns.
- * 
- * DEPRECATED: Use servoyextra-table component instead
+ * DEPRECATED: Use Servoy Extra Components package - Table component or Servoy NG-Grids package - Data Grid component instead.
  */
 
 /**

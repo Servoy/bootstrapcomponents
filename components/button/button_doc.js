@@ -1,5 +1,5 @@
-/**
- *  A simple button. It can contain text as well as (optionally) an icon before or after the text. 
+/*
+ * A simple button. It can contain text as well as (optionally) an icon before or after the text. 
  */
 
 /**

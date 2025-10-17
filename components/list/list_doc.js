@@ -1,4 +1,4 @@
-/**
+/*
  * Native Data List displays a list of data items and allows selection.
  */
 
