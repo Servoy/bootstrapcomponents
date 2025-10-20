@@ -42,7 +42,9 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
             switch (property) {
                 case 'dataProviderID':
                     this.setSelectionFromDataprovider();
-                    this.allowMultiselect = Array.isArray(this.dataProviderID);
+                    if (change.firstChange){
+						this.allowMultiselect = Array.isArray(this.dataProviderID);
+					}
                     break;
                 case 'valuelistID':
                     if (this.valuelistID && this.valuelistID.length > 0 && this.isValueListNull(this.valuelistID[0]))
@@ -93,7 +95,7 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
 
     setSelectionFromDataprovider() {
         this.selection = [];
-        if (this.dataProviderID === null || this.dataProviderID === undefined) return;
+        if (this.dataProviderID === null || this.dataProviderID === undefined || (Array.isArray(this.dataProviderID) && this.dataProviderID.length == 1 && this.dataProviderID[0] == null)) return;
         const arr = (Array.isArray(this.dataProviderID)) ? this.dataProviderID : [this.dataProviderID];
         if (this.inputType === 'radio' && arr.length > 1) return;
         for (let i = 0; i < this.valuelistID.length; i++) {
