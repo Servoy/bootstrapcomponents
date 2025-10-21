@@ -137,7 +137,7 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
             super.pushUpdate();
         }
 		
-		if ((event !== '' && ((this.minDate && this.minDate > event) || (this.maxDate && this.maxDate < event))) || !this.isValidDate(event)) {
+		if (event !== '' && ((this.minDate && this.minDate > event) || (this.maxDate && this.maxDate < event) || !this.isValidDate(event))) {
 			// revert to old value
 			this.svyFormat.writeValue(this.dataProviderID);
 		}
