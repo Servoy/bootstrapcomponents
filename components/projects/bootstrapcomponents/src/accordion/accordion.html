@@ -1,4 +1,4 @@
-<div ngbAccordion [closeOthers]="true" #element  class="bts-accordion"  [id]="servoyApi.getMarkupId()" [sabloTabseq]="tabSeq" [sabloTabseqConfig]="{container: true, reservedGap: 50}">
+<div ngbAccordion [closeOthers]="true" #element  class="bts-accordion svy-accordion-scrollable"  [id]="servoyApi.getMarkupId()" [sabloTabseq]="tabSeq" [sabloTabseqConfig]="{container: true, reservedGap: 50}">
   @for (tab of tabs; track tab; let i = $index) {
     <div ngbAccordionItem [disabled]="tab.disabled || !tab.containedForm" [id]="tab._id" [collapsed]="getSelectedTabId() !== tab._id">
       <div ngbAccordionHeader>

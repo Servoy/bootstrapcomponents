@@ -1,5 +1,5 @@
 import { Component, Renderer2, ViewChild, SimpleChanges, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
-import { WindowRefService } from '@servoy/public';
+import { WindowRefService, ServoyPublicService } from '@servoy/public';
 
 import { ServoyBootstrapBaseTabPanel,Tab } from '../bts_basetabpanel';
 
@@ -13,14 +13,26 @@ export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDi
 
     @ViewChild('content', { static: false, read: ElementRef}) contentElementRef: ElementRef<HTMLDivElement>;
     panelHeight: number;
+    
+    formHeightMap: { [formName: string]: number } = {};
 
-    constructor(renderer: Renderer2,protected cdRef: ChangeDetectorRef, windowRefService: WindowRefService) {
+    constructor(renderer: Renderer2,protected cdRef: ChangeDetectorRef, windowRefService: WindowRefService, protected servoyPublic: ServoyPublicService) {
         super(renderer,cdRef, windowRefService);
      }
 
     svyOnChanges( changes: SimpleChanges ) {
-        if (changes['height'] || changes['tabs']) {
-            this.updateContentHeight();
+        if (changes['height'] || changes['tabs'] || changes['tabIndex']) {
+            const currentTab = this.tabs?.[this.getRealTabIndex()];
+            const formName = currentTab?.containedForm;
+
+            if (formName) {
+                const cachedHeight = this.formHeightMap[formName];
+                if (cachedHeight) {
+                    this.updateContentHeight();
+                } else {
+                    this.getFormState(formName, currentTab, true);
+                }
+            }
         }
         super.svyOnChanges(changes);
     }
@@ -31,7 +43,15 @@ export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDi
     }
 
     private updateContentHeight() {
-        let totalHeight = this.height;
+        const currentTab = this.tabs?.[this.getRealTabIndex()];
+        const formName = currentTab?.containedForm;
+        if (formName && this.formHeightMap[formName]) {
+            this.panelHeight = this.formHeightMap[formName];
+            this.cdRef.detectChanges();
+            return;
+        }
+        
+        let totalHeight = typeof this.height === 'string' ? parseInt(this.height, 10) : this.height;
         let paneHeight = 49;
         let borderWidth = 2;
         let wrapper = null;
@@ -46,7 +66,14 @@ export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDi
             if (headerElement){
                 paneHeight = headerElement.offsetHeight;
             }
-            totalHeight = totalHeight - paneHeight * this.tabs.length - borderWidth ;
+
+            if (paneHeight * this.tabs.length + borderWidth + 50 <= totalHeight) {
+                // If all headers fit, use remaining space
+                totalHeight = totalHeight - paneHeight * this.tabs.length - borderWidth;
+            } else {
+                // Not enough space: show current tab + one extra
+                totalHeight = totalHeight - (paneHeight * 2) - (borderWidth * 2);
+            }
         }
         this.panelHeight = totalHeight;
         
@@ -71,5 +98,18 @@ export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDi
     
     tabClicked(tab: Tab,tabIndexClicked: number, event){
        this.servoyApi.callServerSideApi('setTabIndexInternal', [tabIndexClicked +1]);
+    }
+    
+    private getFormState(form: string, tab: Tab, formWillShow: boolean) {
+        if (formWillShow) {
+            this.servoyApi.formWillShow(form, ('relationName' in tab) ? tab.relationName : null).then(() => {
+                const formCache = this.servoyPublic.getFormCacheByName(form);
+                if (formCache && formCache.absolute) {
+                    this.formHeightMap[form] = formCache.size.height;
+                    this.panelHeight = this.formHeightMap[form];
+                    this.cdRef.detectChanges();
+                }
+            });
+        }
     }
 }

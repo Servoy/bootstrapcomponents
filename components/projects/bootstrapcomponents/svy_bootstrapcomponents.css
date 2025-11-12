@@ -75,6 +75,15 @@
 	padding:0px;
 }
 
+.bts-accordion .accordion-collapse {
+    transition: none !important;
+}
+
+.svy-accordion-scrollable {
+    height: 100%;
+    overflow-y: auto;
+}
+
 .svy-wrapper > * > .bts-button {
 	width: 100%;
 	height: 100%;
