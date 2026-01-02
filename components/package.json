@@ -1,6 +1,6 @@
 {
   "name": "bootstrapcomponents",
-  "version": "2025.12.1",
+  "version": "2025.12.0",
   "scripts": {
     "ng": "ng",
     "build": "ng build --configuration production  @servoy/bootstrapcomponents",
