@@ -15,7 +15,7 @@
 	        "readOnly" : { "type": "protected", "blockingOn": true, "default": false, "for": ["dataProviderID","onDataChangeMethodID"], "tags": {"scope":"private"} },
 	        "size" : {"type" :"dimension",  "default" : {"width":140, "height":30}},
 	        "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design", "doc": "Set the styleclasses that should be applied at to this component" }, "default":"checkbox"},
-	        "text" : { "type" : "tagstring" ,"default": "Checkbox", "tags": { "basic": true } },
+	        "text" : { "type" : "tagstring" ,"default": "Checkbox", "tags": { "basic": true, "isText": true } },
 			"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
 			"selectedValue" : { "type" : "string", "tags": { "doc" :"The value returned when the checkbox is checked (default is 1)" } },
 			"showAs" : { "type" : "string", "values": [{"text":null}, {"html":"html"}, {"trusted_html":"trusted_html"}],"tags": { "doc" :"Option whether checkbox text is shown as plain text, sanitized html or trusted html (as is)."}},
