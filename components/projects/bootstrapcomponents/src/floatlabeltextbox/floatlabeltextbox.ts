@@ -1,5 +1,5 @@
 
-import { Component, ChangeDetectorRef, Renderer2, Input, ChangeDetectionStrategy, Inject, Output, EventEmitter, SimpleChanges, SimpleChange, DOCUMENT } from '@angular/core';
+import { Component, ChangeDetectorRef, Renderer2, ChangeDetectionStrategy, Inject, SimpleChanges, SimpleChange, DOCUMENT, input, output, signal } from '@angular/core';
 import { WindowRefService } from '@servoy/public';
 import { ServoyBootstrapTextbox } from '../textbox/textbox';
 
@@ -11,10 +11,10 @@ import { ServoyBootstrapTextbox } from '../textbox/textbox';
 })
 export class ServoyFloatLabelBootstrapTextbox extends ServoyBootstrapTextbox {
     
-    @Input() floatLabelText: string;
-    @Input() errorMessage: string;
-    @Input() errorShow: boolean;
-    @Output() errorShowChange = new EventEmitter();
+    readonly floatLabelText = input<string>(undefined);
+    readonly errorMessage = input<string>(undefined);
+    errorShow = signal<boolean>(undefined);
+    readonly errorShowChange = output<boolean>();
      
     constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, @Inject(DOCUMENT) doc: Document, protected windowService: WindowRefService) {
         super(renderer, cdRef, doc, windowService);
@@ -39,10 +39,10 @@ export class ServoyFloatLabelBootstrapTextbox extends ServoyBootstrapTextbox {
     }
     
     toggleErrorMessage(show: boolean) {
-		if (this.errorMessage) {
+		if (this.errorMessage()) {
 			//designer
 			if (this.servoyApi.isInDesigner()) {
-				this.errorShow = true;
+				this.errorShow.set(true);
 			} else {
 				const nativeElement = this.elementRef.nativeElement as HTMLElement;
 				if (show) {

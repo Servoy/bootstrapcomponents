@@ -1,5 +1,5 @@
 
-import { Component, OnInit, Renderer2, SimpleChanges, ElementRef, AfterViewInit, Input, ViewChild, ChangeDetectorRef, ChangeDetectionStrategy, Inject, DOCUMENT } from '@angular/core';
+import { Component, OnInit, Renderer2, SimpleChanges, ElementRef, AfterViewInit, ChangeDetectorRef, ChangeDetectionStrategy, Inject, DOCUMENT, input, viewChild } from '@angular/core';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 
 @Component({
@@ -10,10 +10,10 @@ import { ServoyBootstrapBasefield } from '../bts_basefield';
 })
 export class ServoyBootstrapCheckbox extends ServoyBootstrapBasefield<HTMLDivElement> {
 
-    @Input() showAs: string;
-    @Input() selectedValue: string;
+    readonly showAs = input<string>(undefined);
+    readonly selectedValue = input<string>(undefined);
 
-    @ViewChild('input') input: ElementRef;
+    readonly input = viewChild<ElementRef>('input');
 
     selected = false;
 
@@ -24,9 +24,9 @@ export class ServoyBootstrapCheckbox extends ServoyBootstrapBasefield<HTMLDivEle
     svyOnInit() {
         super.svyOnInit();
         this.renderer.listen(this.getFocusElement(), 'click', (e) => {
-            if (!this.readOnly && this.enabled) {
+            if (!this.readOnly() && this.enabled()) {
                 this.itemClicked(e);
-                if (this.onActionMethodID) setTimeout(() => this.onActionMethodID(e, this.getDataTarget(e)));
+                if (this.onActionMethodID()) setTimeout(() => this.onActionMethodID()(e, this.getDataTarget(e)));
             }
         });
     }
@@ -40,7 +40,7 @@ export class ServoyBootstrapCheckbox extends ServoyBootstrapBasefield<HTMLDivEle
                     this.setSelectionFromDataprovider();
                     break;
                 case 'enabled':
-                    if (change.currentValue && !this.readOnly)
+                    if (change.currentValue && !this.readOnly())
                     	this.renderer.removeAttribute(this.getFocusElement(), 'disabled');
                     else
                     	this.renderer.setAttribute(this.getFocusElement(), 'disabled', 'disabled');
@@ -50,7 +50,7 @@ export class ServoyBootstrapCheckbox extends ServoyBootstrapBasefield<HTMLDivEle
     }
 
     getFocusElement(): HTMLElement {
-        return this.input.nativeElement;
+        return this.input().nativeElement;
     }
 
     requestFocus(mustExecuteOnFocusGainedMethod: boolean) {
@@ -65,14 +65,16 @@ export class ServoyBootstrapCheckbox extends ServoyBootstrapBasefield<HTMLDivEle
             this.selected = !this.selected;
             event.preventDefault();
         }
-        if (this.selectedValue) {
-            this.dataProviderID = this.dataProviderID == this.selectedValue ? null : this.selectedValue;
+        const dataProviderID = this.dataProviderID();
+        const selectedValue = this.selectedValue();
+        if (selectedValue) {
+            this.dataProviderID.set(this.dataProviderID() == selectedValue ? null : selectedValue);
         }
         else
-            if (typeof this.dataProviderID === 'string') {
-                this.dataProviderID = this.dataProviderID === '1' ? '0' : '1';
+            if (typeof dataProviderID === 'string') {
+                this.dataProviderID.set(dataProviderID === '1' ? '0' : '1');
             } else {
-                this.dataProviderID = this.dataProviderID > 0 ? 0 : 1;
+                this.dataProviderID.set(dataProviderID > 0 ? 0 : 1);
             }
         this.pushUpdate();
     }
@@ -82,21 +84,23 @@ export class ServoyBootstrapCheckbox extends ServoyBootstrapBasefield<HTMLDivEle
     }
 
     getSelectionFromDataprovider() {
-        if (!this.dataProviderID) {
+        const dataProviderID = this.dataProviderID();
+        if (!dataProviderID) {
             return false;
         }
-        if (this.selectedValue) {
-            return this.dataProviderID == this.selectedValue;
+        const selectedValue = this.selectedValue();
+        if (selectedValue) {
+            return dataProviderID == selectedValue;
         }
-        if (typeof this.dataProviderID === 'string') {
-            return this.dataProviderID === '1';
+        if (typeof dataProviderID === 'string') {
+            return dataProviderID === '1';
         } else {
-            return this.dataProviderID > 0;
+            return dataProviderID > 0;
         }
     }
 
     isTrustedHTML(): boolean {
-        if (this.servoyApi.trustAsHtml() || this.showAs === 'trusted_html') {
+        if (this.servoyApi.trustAsHtml() || this.showAs() === 'trusted_html') {
             return true;
         }
         return false;

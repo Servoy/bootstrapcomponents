@@ -1,23 +1,22 @@
-import { Renderer2, Input, Output, EventEmitter, SimpleChanges, ContentChild, TemplateRef, Directive, ChangeDetectorRef } from '@angular/core';
+import { Renderer2, SimpleChanges, TemplateRef, Directive, ChangeDetectorRef, input, output, contentChild } from '@angular/core';
 import { WindowRefService, BaseCustomObject } from '@servoy/public';
 import { ServoyBootstrapBaseComponent } from './bts_basecomp';
 
 @Directive()
 // eslint-disable-next-line @angular-eslint/directive-class-suffix
 export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBootstrapBaseComponent<T> {
-	@Input() onChangeMethodID: (previousIndex: number, event: Event,newIndex: number) => void;
+	readonly onChangeMethodID = input<(previousIndex: number, event: Event, newIndex: number) => void>(undefined);
 
-	@Input() height: any;
-	@Input() tabs: Array<Tab>;
+	readonly height = input<any>(undefined);
+	readonly tabs = input<Array<Tab>>(undefined);
 
-	@Input() tabIndex: number;
-	@Output() tabIndexChange = new EventEmitter();
+	readonly tabIndex = input<number>(undefined);
+	readonly tabIndexChange = output();
 
-	@Input() activeTabIndex: number;
-	@Output() activeTabIndexChange = new EventEmitter();
+	readonly activeTabIndex = input<number>(undefined);
+	readonly activeTabIndexChange = output();
 
-	@ContentChild(TemplateRef, { static: true })
-	templateRef: TemplateRef<any>;
+	readonly templateRef = contentChild(TemplateRef);
 
 	constructor(renderer: Renderer2, protected cdRef: ChangeDetectorRef, protected windowRefService: WindowRefService) {
 		super(renderer, cdRef);
@@ -33,14 +32,15 @@ export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBo
 			// quickly generate the id's for a the tab html id (and selecting it)
 			this.generateIDs();
 		}
-		if (changes['tabIndex'] && changes['tabIndex'].previousValue && changes['tabIndex'].previousValue !== changes['tabIndex'].currentValue && this.onChangeMethodID) {
-			this.onChangeMethodID(changes['tabIndex'].previousValue, this.windowRefService.nativeWindow.event != null ? this.windowRefService.nativeWindow.event : null /* TODO $.Event("change") */,changes['tabIndex'].currentValue);
-		}
+		const onChangeMethodID = this.onChangeMethodID();
+        if (changes['tabIndex'] && changes['tabIndex'].previousValue && changes['tabIndex'].previousValue !== changes['tabIndex'].currentValue && onChangeMethodID) {
+            onChangeMethodID(changes['tabIndex'].previousValue, this.windowRefService.nativeWindow.event != null ? this.windowRefService.nativeWindow.event : null /* TODO $.Event("change") */, changes['tabIndex'].currentValue);
+        }
 		super.svyOnChanges(changes);
 	}
 
 	getForm(tab: Tab) {
-		var selectedTab = this.tabs[this.getRealTabIndex()];
+		var selectedTab = this.tabs()[this.getRealTabIndex()];
 		if (selectedTab && (tab.containedForm === selectedTab.containedForm) && (tab.relationName === selectedTab.relationName)) {
 			return tab.containedForm;
 		}
@@ -48,41 +48,45 @@ export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBo
 	}
 
 	getSelectedTabId() {
-		if (this.tabs && this.tabs.length > 0 && !this.tabs[0]._id) {
-			this.generateIDs();
-		}
+		const tabs = this.tabs();
+        if (tabs && tabs.length > 0 && !tabs[0]._id) {
+            this.generateIDs();
+        }
 		const tabIndex = this.getRealTabIndex();
 		if (tabIndex > 0) {
-			if (this.tabs[tabIndex]) {
-				return this.tabs[tabIndex]._id;
+			if (tabs[tabIndex]) {
+				return tabs[tabIndex]._id;
 			}
-		} else if (this.tabs && this.tabs.length > 0) return this.tabs[0]._id;
+		} else if (tabs && tabs.length > 0) return tabs[0]._id;
 		return null;
 	}
 
 	getRealTabIndex(): number {
-		if (this.tabIndex) {
-			return this.tabIndex - 1;
-		}
-		if (this.tabs && this.tabs.length > 0) return 0;
-		return -1;
-	}
+		const tabIndex = this.tabIndex();
+        if (tabIndex) {
+            return tabIndex - 1;
+        }
+		const tabs = this.tabs();
+        if (tabs && tabs.length > 0) return 0;
+        return -1;
+    }
 
-	isValidTab(tab: Tab) {
-		if (this.tabs) {
-			for (const t of this.tabs) {
-				if (t === tab) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
+    isValidTab(tab: Tab) {
+        const tabs = this.tabs();
+        if (tabs) {
+            for (const t of tabs) {
+                if (t === tab) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
 	getTabIndex(tab: Tab) {
 		if (tab) {
-			for (let i = 0; i < this.tabs.length; i++) {
-				if (this.tabs[i] === tab) {
+			for (let i = 0; i < this.tabs().length; i++) {
+				if (this.tabs()[i] === tab) {
 					return i + 1;
 				}
 			}
@@ -90,13 +94,14 @@ export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBo
 		return -1;
 	}
 
-	private generateIDs() {
-		if (this.tabs) {
-			for (let i = 0; i < this.tabs.length; i++) {
-				this.tabs[i]._id = this.servoyApi.getMarkupId() + '_tab_' + i;
-			}
-		}
-	}
+    private generateIDs() {
+        const tabs = this.tabs();
+        if (tabs) {
+            for (let i = 0;i < tabs.length;i++) {
+                tabs[i]._id = this.servoyApi.getMarkupId() + '_tab_' + i;
+            }
+        }
+    }
 }
 
 export class Tab extends BaseCustomObject {

@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, Renderer2, ContentChild, TemplateRef, Input, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectorRef, Renderer2, TemplateRef, SimpleChanges, ChangeDetectionStrategy, input, contentChild } from '@angular/core';
 import { ServoyPublicService } from '@servoy/public';
 import { ServoyBootstrapBaseComponent } from '../bts_basecomp';
 
@@ -10,13 +10,12 @@ import { ServoyBootstrapBaseComponent } from '../bts_basecomp';
 })
 export class ServoyBootstrapTablesspanel extends ServoyBootstrapBaseComponent<HTMLDivElement> {
 
-    @Input() containedForm: string;
-    @Input() relationName: string;
-    @Input() waitForData: any;
-    @Input() height: number;
+    readonly containedForm = input<string>(undefined);
+    readonly relationName = input<string>(undefined);
+    readonly waitForData = input<any>(undefined);
+    readonly height = input<number>(undefined);
 
-    @ContentChild(TemplateRef, { static: true })
-    templateRef: TemplateRef<any>;
+    readonly templateRef = contentChild(TemplateRef);
 
     private realContainedForm: any;
     private formWillShowCalled: any;
@@ -34,23 +33,24 @@ export class ServoyBootstrapTablesspanel extends ServoyBootstrapBaseComponent<HT
                         if (change.currentValue !== change.previousValue)
                             if (change.previousValue) {
                                 this.formWillShowCalled = change.currentValue;
-                                this.servoyApi.hideForm(change.previousValue, null, null, change.currentValue, this.relationName, null)
+                                this.servoyApi.hideForm(change.previousValue, null, null, change.currentValue, this.relationName(), null)
                                     .then(() => {
-                                        this.realContainedForm = this.containedForm;
+                                        this.realContainedForm = this.containedForm();
                                         this.cdRef.detectChanges();
                                     });
                             } else if (change.currentValue) {
-                                this.setRealContainedForm(change.currentValue, this.relationName);
+                                this.setRealContainedForm(change.currentValue, this.relationName());
                             }
                         break;
                     }
                     case 'visible': {
-                        if (this.containedForm && change.currentValue !== change.previousValue) {
+                        const containedForm = this.containedForm();
+                        if (containedForm && change.currentValue !== change.previousValue) {
                             this.formWillShowCalled = this.realContainedForm = undefined;
                             if (change.currentValue) {
-                                this.setRealContainedForm(this.containedForm, this.relationName);
+                                this.setRealContainedForm(containedForm, this.relationName());
                             } else {
-                                this.servoyApi.hideForm(this.containedForm);
+                                this.servoyApi.hideForm(containedForm);
                             }
                         }
                         break;
@@ -63,7 +63,7 @@ export class ServoyBootstrapTablesspanel extends ServoyBootstrapBaseComponent<HT
 
     svyOnInit(): void {
         super.svyOnInit();
-        if (this.servoyApi.isInDesigner() && !this.containedForm) {
+        if (this.servoyApi.isInDesigner() && !this.containedForm()) {
             this.getNativeElement().innerText = 'Select contained form';
         }
     }
@@ -71,7 +71,7 @@ export class ServoyBootstrapTablesspanel extends ServoyBootstrapBaseComponent<HT
     setRealContainedForm(formName: any, relationName: any) {
         if (this.formWillShowCalled !== formName && formName) {
             this.formWillShowCalled = formName;
-            if (this.waitForData) {
+            if (this.waitForData()) {
                 this.servoyApi.formWillShow(formName, relationName).then(() => {
                     this.realContainedForm = formName;
                     this.cdRef.detectChanges();
@@ -90,12 +90,14 @@ export class ServoyBootstrapTablesspanel extends ServoyBootstrapBaseComponent<HT
     getContainerStyle() {
         let style = { position: "relative" }
         let minHeight = 0;
-        if (this.height) {
-            minHeight = this.height
+        const containedForm = this.containedForm();
+        const height = this.height();
+        if (height) {
+            minHeight = height
         }
-        else if (this.containedForm) {
+        else if (containedForm) {
             // for absolute form default height is design height, for responsive form default height is 0
-            const formCache = this.servoyPublic.getFormCacheByName(this.containedForm);
+            const formCache = this.servoyPublic.getFormCacheByName(containedForm);
             if (formCache && formCache.absolute) {
                 minHeight = formCache.size.height;
             }

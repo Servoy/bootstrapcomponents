@@ -1,4 +1,4 @@
-import { Component, Renderer2, ViewChild, SimpleChanges, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Renderer2, SimpleChanges, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy, viewChild } from '@angular/core';
 import { WindowRefService, ServoyPublicService } from '@servoy/public';
 
 import { ServoyBootstrapBaseTabPanel,Tab } from '../bts_basetabpanel';
@@ -11,7 +11,7 @@ import { ServoyBootstrapBaseTabPanel,Tab } from '../bts_basetabpanel';
 })
 export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDivElement> {
 
-    @ViewChild('content', { static: false, read: ElementRef}) contentElementRef: ElementRef<HTMLDivElement>;
+    readonly contentElementRef = viewChild('content', { read: ElementRef });
     panelHeight: number;
     
     formHeightMap: { [formName: string]: number } = {};
@@ -22,7 +22,7 @@ export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDi
 
     svyOnChanges( changes: SimpleChanges ) {
         if (changes['height'] || changes['tabs'] || changes['tabIndex']) {
-            const currentTab = this.tabs?.[this.getRealTabIndex()];
+            const currentTab = this.tabs()?.[this.getRealTabIndex()];
             const formName = currentTab?.containedForm;
 
             if (formName) {
@@ -43,7 +43,8 @@ export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDi
     }
 
     private updateContentHeight() {
-        const currentTab = this.tabs?.[this.getRealTabIndex()];
+        const tabs = this.tabs();
+        const currentTab = tabs?.[this.getRealTabIndex()];
         const formName = currentTab?.containedForm;
         if (formName && this.formHeightMap[formName]) {
             this.panelHeight = this.formHeightMap[formName];
@@ -51,25 +52,27 @@ export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDi
             return;
         }
         
-        let totalHeight = typeof this.height === 'string' ? parseInt(this.height, 10) : this.height;
+        const height = this.height();
+        let totalHeight = typeof height === 'string' ? parseInt(height, 10) : height;
         let paneHeight = 49;
         let borderWidth = 2;
         let wrapper = null;
-        if (this.contentElementRef) {
-            wrapper = this.contentElementRef.nativeElement.closest('.svy-wrapper');
+        const contentElementRef = this.contentElementRef();
+        if (contentElementRef) {
+            wrapper = contentElementRef.nativeElement.closest('.svy-wrapper');
         }
         if (wrapper) {
             totalHeight = wrapper.offsetHeight;
         }
-        if (this.tabs && this.tabs.length > 0) {
+        if (tabs && tabs.length > 0) {
             const headerElement = this.getNativeElement().querySelector('.accordion-header') as HTMLDivElement;
             if (headerElement){
                 paneHeight = headerElement.offsetHeight;
             }
 
-            if (paneHeight * this.tabs.length + borderWidth + 50 <= totalHeight) {
+            if (paneHeight * tabs.length + borderWidth + 50 <= totalHeight) {
                 // If all headers fit, use remaining space
-                totalHeight = totalHeight - paneHeight * this.tabs.length - borderWidth;
+                totalHeight = totalHeight - paneHeight * tabs.length - borderWidth;
             } else {
                 // Not enough space: show current tab + one extra
                 totalHeight = totalHeight - (paneHeight * 2) - (borderWidth * 2);
@@ -78,10 +81,10 @@ export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDi
         this.panelHeight = totalHeight;
         
         if (this.servoyApi.isInDesigner()){
-			if (this.tabs === undefined || this.tabs.length === 0 || (this.tabs.length > 0 && !this.contentElementRef)){
+			if (tabs === undefined || tabs.length === 0 || (tabs.length > 0 && !contentElementRef)){
 				this.elementRef.nativeElement.style.display = "block";
 				if (!this.servoyApi.isInAbsoluteLayout()) {  // responsive form
-					this.elementRef.nativeElement.style.minHeight = `${this.height}px`;
+					this.elementRef.nativeElement.style.minHeight = `${this.height()}px`;
 				} else { // css pos
 					this.elementRef.nativeElement.style.height = '100%';
 					this.elementRef.nativeElement.style.width = '100%';

@@ -1,5 +1,5 @@
 import { ServoyBootstrapBaseComponent } from './bts_basecomp';
-import { Directive, Input, Output, EventEmitter, SimpleChanges, SimpleChange, Renderer2, ChangeDetectorRef, Inject, DOCUMENT } from '@angular/core';
+import { Directive, SimpleChanges, SimpleChange, Renderer2, ChangeDetectorRef, Inject, DOCUMENT, input, output, model } from '@angular/core';
 import { PropertyUtils } from '@servoy/public';
 
 
@@ -7,20 +7,20 @@ import { PropertyUtils } from '@servoy/public';
 // eslint-disable-next-line
 export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBootstrapBaseComponent<T> {
 
-    @Input() onActionMethodID: (e: Event, data?: any) => void;
-    @Input() onRightClickMethodID: (e: Event, data?: any) => void;
+    readonly onActionMethodID = input<(e: Event, data?: any) => void>(undefined);
+    readonly onRightClickMethodID = input<(e: Event, data?: any) => void>(undefined);
 
-    @Input() onDataChangeMethodID: (e: Event) => void;
-    @Input() onFocusGainedMethodID: (e: Event) => void;
-    @Input() onFocusLostMethodID: (e: Event) => void;
+    readonly onDataChangeMethodID = input<(e: Event) => void>(undefined);
+    readonly onFocusGainedMethodID = input<(e: Event) => void>(undefined);
+    readonly onFocusLostMethodID = input<(e: Event) => void>(undefined);
 
-    @Output() dataProviderIDChange = new EventEmitter();
-    @Input() dataProviderID: any;
-    @Input() readOnly: boolean;
-    @Input() findmode: boolean;
-    @Input() editable: boolean;
-    @Input() placeholderText: string;
-    @Input() selectOnEnter: boolean;
+    readonly dataProviderIDChange = output();
+    dataProviderID = model<any>(undefined);
+    readonly readOnly = input<boolean>(undefined);
+    readonly findmode = input<boolean>(undefined);
+    editable = model<boolean>(undefined);
+    readonly placeholderText = input<string>(undefined);
+    readonly selectOnEnter = input<boolean>(undefined);
 
     mustExecuteOnFocus = true;
 
@@ -33,19 +33,19 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
     svyOnInit() {
         super.svyOnInit();
         this.attachFocusListeners(this.getFocusElement());
-        if (this.dataProviderID === undefined) {
-            this.dataProviderID = null;
+        if (this.dataProviderID() === undefined) {
+            this.dataProviderID.set(null);
         }
-        if (this.onActionMethodID) {
+        if (this.onActionMethodID()) {
             this.renderer.listen(this.getFocusElement(), 'keydown', e => {
                 if (e.keyCode === 13) {
-                    setTimeout(() => this.onActionMethodID(e, this.getDataTarget(e)), 100);
+                    setTimeout(() => this.onActionMethodID()(e, this.getDataTarget(e)), 100);
                 }
             });
         }
-        if (this.onRightClickMethodID) {
+        if (this.onRightClickMethodID()) {
             this.renderer.listen(this.getFocusElement(), 'contextmenu', e => {
-                this.onRightClickMethodID(e); return false;
+                this.onRightClickMethodID()(e); return false;
             });
         }
     }
@@ -64,9 +64,12 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
                 }
             }
             if (changes.editable || changes.readOnly || changes.findmode) {
-                const realFindmode = this.findmode === undefined? false: this.findmode; // default for find is false
-                const realReadonly = this.readOnly === undefined? false: this.readOnly; // default for readonly is false
-                const realEditable = this.editable === undefined? true: this.editable; // default for editable is true
+                const findmode = this.findmode();
+                const realFindmode = findmode === undefined? false: findmode; // default for find is false
+                const readOnly = this.readOnly();
+                const realReadonly = readOnly === undefined? false: readOnly; // default for readonly is false
+                const editable = this.editable();
+                const realEditable = editable === undefined? true: editable; // default for editable is true
 				if (realFindmode || (!realReadonly && realEditable)) {
 					this.renderer.removeAttribute(this.getFocusElement(), 'readonly');
 				} else {
@@ -83,16 +86,16 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
     }
 
     attachFocusListeners(nativeElement: HTMLElement) {
-        if (this.onFocusGainedMethodID)
+        if (this.onFocusGainedMethodID())
             this.renderer.listen(nativeElement, 'focus', (e) => {
                 if (this.mustExecuteOnFocus !== false) {
-                    this.onFocusGainedMethodID(e);
+                    this.onFocusGainedMethodID()(e);
                 }
                 this.mustExecuteOnFocus = true;
             });
-        if (this.onFocusLostMethodID)
+        if (this.onFocusLostMethodID())
             this.renderer.listen(nativeElement, 'blur', (e) => {
-                this.onFocusLostMethodID(e);
+                this.onFocusLostMethodID()(e);
             });
     }
 
@@ -103,20 +106,20 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
             this.renderer.addClass(this.getFocusElement(), 'ng-invalid');
             if (stringValue) {
                 if (this.storedTooltip === false) {
-                    this.storedTooltip = this.toolTipText;
+                    this.storedTooltip = this.toolTipText();
                 }
-                this.toolTipText = returnval.toString();
+                this.toolTipText.set(returnval.toString());
             }
         } else {
             this.renderer.removeClass(this.getFocusElement(), 'ng-invalid');
             this.renderer.addClass(this.getFocusElement(), 'ng-valid');
-            if (this.storedTooltip !== false) this.toolTipText = this.storedTooltip;
+            if (this.storedTooltip !== false) this.toolTipText.set(this.storedTooltip);
             this.storedTooltip = false;
         }
     }
 
     pushUpdate() {
-        this.dataProviderIDChange.emit(this.dataProviderID);
+        this.dataProviderIDChange.emit(this.dataProviderID());
     }
     
     protected setPlaceHolderText(change : SimpleChange ){
@@ -149,10 +152,11 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
     }
 
     public getAsPlainText(): string {
-        if (this.dataProviderID) {
-            return this.dataProviderID.replace(/<[^>]*>/g, '');
+        const dataProviderID = this.dataProviderID();
+        if (dataProviderID) {
+            return dataProviderID.replace(/<[^>]*>/g, '');
         }
-        return this.dataProviderID;
+        return dataProviderID;
     }
 
     public getDataTarget(event): any {

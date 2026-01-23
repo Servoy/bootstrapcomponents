@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2, Input, ViewChild, ElementRef, HostListener, SimpleChanges, ChangeDetectorRef, ChangeDetectionStrategy, Inject, DOCUMENT } from '@angular/core';
+import { Component, OnInit, Renderer2, ViewChild, ElementRef, HostListener, SimpleChanges, ChangeDetectorRef, ChangeDetectionStrategy, Inject, DOCUMENT, input } from '@angular/core';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 import { ShowDisplayValuePipe } from '../lib/showDisplayValue.pipe';
 
@@ -14,7 +14,7 @@ import { IValuelist } from '@servoy/public';
 })
 export class ServoyBootstrapList extends ServoyBootstrapBasefield<HTMLInputElement> {
 
-  @Input() valuelistID: IValuelist;
+  readonly valuelistID = input<IValuelist>(undefined);
 
   constructor(renderer: Renderer2, cdRef: ChangeDetectorRef,
      private showDisplayValuePipe: ShowDisplayValuePipe, @Inject(DOCUMENT) doc: Document) {
@@ -36,8 +36,9 @@ export class ServoyBootstrapList extends ServoyBootstrapBasefield<HTMLInputEleme
   }
 
   updateInput(listValue) {
-    if (this.valuelistID) {
-      listValue = this.showDisplayValuePipe.transform(listValue, this.valuelistID);
+    const valuelistID = this.valuelistID();
+    if (valuelistID) {
+      listValue = this.showDisplayValuePipe.transform(listValue, valuelistID);
     }
     if(listValue){
         listValue.subscribe( val => {
@@ -50,25 +51,26 @@ export class ServoyBootstrapList extends ServoyBootstrapBasefield<HTMLInputEleme
 
   updateDataprovider() {
       let listValue = (this.elementRef.nativeElement as HTMLInputElement).value;
-      if (this.valuelistID) {
-          for (const i of Object.keys(this.valuelistID)) {
-              let displayValue = this.valuelistID[i].displayValue;
+      const valuelistID = this.valuelistID();
+      if (valuelistID) {
+          for (const i of Object.keys(valuelistID)) {
+              let displayValue = valuelistID[i].displayValue;
               if (!displayValue || displayValue === '') {
                   displayValue = ' ';
               }
               if (listValue === displayValue) {
-                  listValue = this.valuelistID[i].realValue;
+                  listValue = valuelistID[i].realValue;
                   break;
               }
           }
       }
-      if (this.dataProviderID !== listValue) {
+      if (this.dataProviderID() !== listValue) {
           this.updateValue(listValue);
       }
   }
 
   updateValue(val: string) {
-    this.dataProviderID = val;
+    this.dataProviderID.set(val);
     super.pushUpdate();
   }
 }

@@ -1,7 +1,7 @@
-<div class="bts-tabpanel" [sabloTabseq]="tabSeq" [sabloTabseqConfig]="{container: true, reservedGap: 50}" #element >
+<div class="bts-tabpanel" [sabloTabseq]="tabSeq()" [sabloTabseqConfig]="{container: true, reservedGap: 50}" #element >
   <ul ngbNav #nav="ngbNav" class="nav text-nowrap flex-nowrap nav-tabs" [ngStyle]="getNavStyle(element)" [activeId]="getSelectedTabId()" (navChange)="onTabChange($event)"
     [id]="servoyApi.getMarkupId()">
-    @for (tab of tabs; track tab; let i = $index) {
+    @for (tab of tabs(); track tab; let i = $index) {
       <li  (click)="tabClicked(tab, i , $event)" [ngbNavItem]="tab._id" [disabled]="tab.disabled || !tab.containedForm"
         [id]="tab._id" [svyTooltip]="tab.toolTipText">
         <a ngbNavLink >
@@ -13,15 +13,15 @@
               <span [class]="tab.iconStyleClass + ' svy-tabpanel-tab-icon'"></span>
             }
             <span [innerHTML]='tab?.text| htmlFilter | trustAsHtml: servoyApi.trustAsHtml()'></span>
-            @if (tab.hideCloseIcon !== true && showTabCloseIcon) {
+            @if (tab.hideCloseIcon !== true && showTabCloseIcon()) {
               <i class="bts-tabpanel-close-icon"
-              [class]="closeIconStyleClass"></i>
+              [class]="closeIconStyleClass()"></i>
             }
           </div>
         </a>
         <ng-template ngbNavContent style="min-height: 600px">
           <bootstrapcomponents-tabpanel-active-tab-visibility-listener [tab]="tab" (visibleTab)="onVisibleTab(tab)"></bootstrapcomponents-tabpanel-active-tab-visibility-listener>
-          <ng-template [ngTemplateOutlet]="templateRef" [ngTemplateOutletContext]="{name:getForm(tab)}">
+          <ng-template [ngTemplateOutlet]="templateRef()" [ngTemplateOutletContext]="{name:getForm(tab)}">
           </ng-template>
         </ng-template>
       </li>
@@ -33,5 +33,5 @@
   @if (showArrows) {
     <div id="arrowRight" [ngStyle]="getArrowStyle('right')" (click)="clickArrow(element, true)"><i style="font-size: 20px;" class="fa-solid fa-angle-right"></i></div>
   }
-  <div [ngbNavOutlet]="nav" [ngClass]="containerStyleClass" [ngStyle]="getContainerStyle(element)"></div>
+  <div [ngbNavOutlet]="nav" [ngClass]="containerStyleClass()" [ngStyle]="getContainerStyle(element)"></div>
 </div>

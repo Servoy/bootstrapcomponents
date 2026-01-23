@@ -1,5 +1,5 @@
 
-import { Component, Renderer2, ElementRef, ViewChild, Input, ChangeDetectorRef, SimpleChanges, ChangeDetectionStrategy, Inject, HostListener, DOCUMENT } from '@angular/core';
+import { Component, Renderer2, ElementRef, ChangeDetectorRef, SimpleChanges, ChangeDetectionStrategy, Inject, HostListener, DOCUMENT, input, viewChild } from '@angular/core';
 import { DateTime, Namespace, TempusDominus } from '@eonasdan/tempus-dominus';
 import { FormatDirective, Format, FormattingService, PopupStateService } from '@servoy/public';
 import { LoggerFactory, ServoyPublicService } from '@servoy/public';
@@ -13,12 +13,12 @@ import { ServoyBootstrapBaseCalendar } from './basecalendar';
 })
 export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
 
-    @ViewChild('inputElement') inputElementRef: ElementRef;
+    readonly inputElementRef = viewChild<ElementRef>('inputElement');
 	
-	@ViewChild(FormatDirective) svyFormat: FormatDirective;
+	readonly svyFormat = viewChild(FormatDirective);
 
-    @Input() format: Format;
-    @Input() pickerOnly: boolean;
+    readonly format = input<Format>(undefined);
+    readonly pickerOnly = input<boolean>(undefined);
 
     private hasFocus = false;
     private isBlur = false;
@@ -36,7 +36,7 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
 	@HostListener('keydown', ['$event'])
 	onKeyDown(event: KeyboardEvent) {
 		const shortcuts = ['KeyT', 'KeyY', 'KeyB', 'KeyE', 'NumpadAdd', 'NumpadSubtract'];
-        if (!this.picker || (this.readOnly || !this.enabled || this.findmode)) return;
+        if (!this.picker || (this.readOnly() || !this.enabled() || this.findmode())) return;
 		if (event.key === 'ArrowDown' || event.key === 'ArrowUp' || event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
 			if (!this.picker.display.isVisible && event.key === 'ArrowDown') {
 				this.picker.show();
@@ -66,7 +66,7 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
 					date.setDate(date.getDate() + 1);
 					this.updateDate(event, date);
 				}
-			} else if (!this.formatDateIsString() || this.inputElementRef.nativeElement.value === '') {
+			} else if (!this.formatDateIsString() || this.inputElementRef().nativeElement.value === '') {
 				if (event.code === 'KeyY') {
 					date.setDate(date.getDate() - 1);
 				} else if (event.code === 'KeyB') {
@@ -88,12 +88,12 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
   	}
 
     attachFocusListeners(nativeElement: any) {
-        if (this.onFocusGainedMethodID) {
+        if (this.onFocusGainedMethodID()) {
             this.renderer.listen(nativeElement, 'focus', () => this.checkOnFocus());
             this.picker.subscribe(Namespace.events.show, () => this.checkOnFocus());
         }
 
-        if (this.onFocusLostMethodID) {
+        if (this.onFocusLostMethodID()) {
             this.renderer.listen(nativeElement, 'blur', () => this.checkOnBlur());
             this.picker.subscribe(Namespace.events.hide, () => this.checkOnBlur());
         }
@@ -126,21 +126,23 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
         }
         if (changes.pickerOnly) {
             // pickerOnly maps on the readonly flag so just set that boolean of the parent class
-            this.editable = !this.pickerOnly;
+            this.editable.set(!this.pickerOnly());
         }
         super.svyOnChanges(changes);
     }
 
     public modelChange(event: any) {
-        if (this.findmode) {
-            this.dataProviderID = event;
+        if (this.findmode()) {
+            this.dataProviderID.set(event);
             super.pushUpdate();
         }
 		
-		if (event !== '' && ((this.minDate && this.minDate > event) || (this.maxDate && this.maxDate < event) || !this.isValidDate(event))) {
-			// revert to old value
-			this.svyFormat.writeValue(this.dataProviderID);
-		}
+        const minDate = this.minDate();
+        const maxDate = this.maxDate();
+        if (event !== '' && ((minDate && minDate > event) || (maxDate && maxDate < event) || !this.isValidDate(event))) {
+            // revert to old value
+            this.svyFormat().writeValue(this.dataProviderID());
+        }
     }
     
     isValidDate(date: any): boolean {
@@ -148,34 +150,34 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
     }
 
     public getNativeChild(): any {
-        return this.inputElementRef.nativeElement;
+        return this.inputElementRef().nativeElement;
     }
 
     getFocusElement(): any {
-        return this.inputElementRef.nativeElement;
+        return this.inputElementRef().nativeElement;
     }
 
     getStyleClassElement(): any {
-        return this.inputElementRef.nativeElement;
+        return this.inputElementRef().nativeElement;
     }
 
     initializePicker() {
         if (!this.picker) {
-            const currentValue = (this.inputElementRef.nativeElement as HTMLInputElement).value;
-            (this.inputElementRef.nativeElement as HTMLInputElement).value='';
+            const currentValue = (this.inputElementRef().nativeElement as HTMLInputElement).value;
+            (this.inputElementRef().nativeElement as HTMLInputElement).value='';
             this.picker = new TempusDominus(this.getNativeElement(), this.config);
-            (this.inputElementRef.nativeElement as HTMLInputElement).value = currentValue;
-            this.picker.dates.formatInput =  (date: DateTime) => date?this.formattingService.format(date, this.format, false):'';
+            (this.inputElementRef().nativeElement as HTMLInputElement).value = currentValue;
+            this.picker.dates.formatInput =  (date: DateTime) => date?this.formattingService.format(date, this.format(), false):'';
             this.picker.dates.parseInput =  (value: string) => {
-                const parsed = this.formattingService.parse(value?value.trim():null, this.format, true, this.dataProviderID, true);
+                const parsed = this.formattingService.parse(value?value.trim():null, this.format(), true, this.dataProviderID(), true);
                 if (parsed instanceof Date && !isNaN(parsed.getTime())) return  DateTime.convert(parsed, null, this.config.localization);
                 return null;
             };
             this.picker.subscribe(Namespace.events.change, (event) => this.dateChanged(event));
-            if (this.onFocusGainedMethodID) {
+            if (this.onFocusGainedMethodID()) {
                 this.picker.subscribe(Namespace.events.show, () => this.checkOnFocus());
             }
-            if (this.onFocusLostMethodID) {
+            if (this.onFocusLostMethodID()) {
                 this.picker.subscribe(Namespace.events.hide, () => this.checkOnBlur());
             }
         }
@@ -187,14 +189,15 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
 	}
     
     private formatDateIsString() {
-		if (this.format) {
-			if (this.format.edit) {
-				const format = this.format.edit.toLowerCase();
-				if (format.includes('mmm') || format.includes('mmmm') || format.includes('ddd') || format.includes('dddd')) {
-					return true;
-				}
-			}
-		}
+		const formatValue = this.format();
+        if (formatValue) {
+            if (formatValue.edit) {
+                const format = formatValue.edit.toLowerCase();
+                if (format.includes('mmm') || format.includes('mmmm') || format.includes('ddd') || format.includes('dddd')) {
+                    return true;
+                }
+            }
+        }
 		return false;
 	}
 
@@ -248,7 +251,7 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
             if (this.hasFocus && this.isBlur && (this.doc.activeElement.parentElement !== this.getNativeElement())) {
                 this.hasFocus = false;
                 this.isBlur = false;
-                this.onFocusLostMethodID(new CustomEvent('blur'));
+                this.onFocusLostMethodID()(new CustomEvent('blur'));
             }
         });
     }
@@ -258,7 +261,7 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
         if (!this.hasFocus) {
             this.hasFocus = true;
             if (this.mustExecuteOnFocus) {
-                this.onFocusGainedMethodID(new CustomEvent('focus'));
+                this.onFocusGainedMethodID()(new CustomEvent('focus'));
             }
         }
     }

@@ -16,9 +16,9 @@ export class ServoyBootstrapButton extends ServoyBootstrapBaseLabel<HTMLButtonEl
 
     svyOnInit() {
         super.svyOnInit();
-        if ( this.onDoubleClickMethodID ) {
+        if ( this.onDoubleClickMethodID() ) {
             this.renderer.listen( this.elementRef.nativeElement, 'dblclick', ( e ) => {
-                this.onDoubleClickMethodID( e );
+                this.onDoubleClickMethodID()( e );
             } );
         }
     }

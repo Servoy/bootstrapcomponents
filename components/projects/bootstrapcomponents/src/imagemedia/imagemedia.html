@@ -1,17 +1,17 @@
 <div #element
-  [sabloTabseq]="tabSeq"
+  [sabloTabseq]="tabSeq()"
   class='svy-mediafield'
   style="height: 100%;"
   [id]='servoyApi.getMarkupId()'
-  [svyTooltip]="toolTipText">
-  @if (enabled && editable && !servoyApi.isInDesigner()) {
+  [svyTooltip]="toolTipText()">
+  @if (enabled() && editable() && !servoyApi.isInDesigner()) {
     <div class="fas fa-download" style="cursor: pointer;z-index: 1;width: 16px; height: 16px;" title="Save media" (click)="download()"></div>
   }
-  @if (enabled && editable && !servoyApi.isInDesigner()) {
+  @if (enabled() && editable() && !servoyApi.isInDesigner()) {
     <div class="fas fa-upload" style="cursor: pointer;z-index: 1;width: 16px; height: 16px;" title="Load media" svyUpload formname={{servoyApi.getFormName()}} [componentName]='name'></div>
   }
-  @if (enabled && editable && !servoyApi.isInDesigner()) {
+  @if (enabled() && editable() && !servoyApi.isInDesigner()) {
     <div class="fas fa-trash-can" style="cursor: pointer;z-index: 1;width: 16px; height: 16px;" title="Remove media" (click)="clear()"></div>
   }
-  <img class='bts-media' [src]="imageURL" style="max-width:100%; max-height:100%" alt="{{alternate}}"/>
+  <img class='bts-media' [src]="imageURL" style="max-width:100%; max-height:100%" alt="{{alternate()}}"/>
 </div>

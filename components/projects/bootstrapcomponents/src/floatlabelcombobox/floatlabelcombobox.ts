@@ -1,4 +1,4 @@
-import { Component, Renderer2, Input, SimpleChanges, ChangeDetectorRef, ViewChild, ViewChildren, QueryList, Output, EventEmitter, ElementRef, HostListener, ChangeDetectionStrategy, Inject, DOCUMENT } from '@angular/core';
+import { Component, Renderer2, SimpleChanges, ChangeDetectorRef, ViewChild, ViewChildren, QueryList, ElementRef, HostListener, ChangeDetectionStrategy, Inject, DOCUMENT, input, output, signal } from '@angular/core';
 import { ServoyBootstrapCombobox } from '../combobox/combobox';
 import { FormattingService, ServoyPublicService, PopupStateService} from '@servoy/public';
 
@@ -11,10 +11,10 @@ import { FormattingService, ServoyPublicService, PopupStateService} from '@servo
 })
 export class ServoyFloatLabelBootstrapCombobox extends ServoyBootstrapCombobox{
 
-    @Input() floatLabelText: string;
-    @Input() errorMessage: string;
-    @Input() errorShow: boolean;
-    @Output() errorShowChange = new EventEmitter();
+    readonly floatLabelText = input<string>(undefined);
+    readonly errorMessage = input<string>(undefined);
+    errorShow = signal<boolean>(undefined);
+    readonly errorShowChange = output<boolean>();
 
     constructor(renderer: Renderer2, protected cdRef: ChangeDetectorRef, protected formatService: FormattingService, 
         @Inject(DOCUMENT) doc: Document, protected servoyService: ServoyPublicService, protected popupStateService: PopupStateService) {
@@ -32,10 +32,10 @@ export class ServoyFloatLabelBootstrapCombobox extends ServoyBootstrapCombobox{
     }
     
     toggleErrorMessage(show: boolean) {
-		if (this.errorMessage) {
+		if (this.errorMessage()) {
 			//designer
 			if (this.servoyApi.isInDesigner()) {
-				this.errorShow = true;
+				this.errorShow.set(true);
 			} else {
 				const nativeElement = this.elementRef.nativeElement as HTMLElement;
 				if (show) {

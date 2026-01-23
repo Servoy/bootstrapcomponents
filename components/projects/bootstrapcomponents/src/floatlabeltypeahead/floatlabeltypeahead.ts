@@ -1,5 +1,5 @@
 
-import { Component, ChangeDetectorRef, Renderer2, Input, ChangeDetectionStrategy, Inject, Output, EventEmitter, SimpleChanges, SimpleChange, DOCUMENT } from '@angular/core';
+import { Component, ChangeDetectorRef, Renderer2, ChangeDetectionStrategy, Inject, SimpleChanges, SimpleChange, DOCUMENT, input, output, signal } from '@angular/core';
 import { WindowRefService, FormattingService, ServoyPublicService, PopupStateService} from '@servoy/public';
 import { ServoyBootstrapTypeahead } from '../typeahead/typeahead';
 
@@ -11,10 +11,10 @@ import { ServoyBootstrapTypeahead } from '../typeahead/typeahead';
 })
 export class ServoyFloatLabelBootstrapTypeahead extends ServoyBootstrapTypeahead {
     
-    @Input() floatLabelText: string;
-    @Input() errorMessage: string;
-    @Input() errorShow: boolean;
-    @Output() errorShowChange = new EventEmitter();
+    readonly floatLabelText = input<string>(undefined);
+    readonly errorMessage = input<string>(undefined);
+    errorShow = signal<boolean>(undefined);
+    readonly errorShowChange = output<boolean>();
      
     constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, @Inject(DOCUMENT) doc: Document, 
 		protected formatService: FormattingService, 
@@ -43,10 +43,10 @@ export class ServoyFloatLabelBootstrapTypeahead extends ServoyBootstrapTypeahead
     }
     
     toggleErrorMessage(show: boolean) {
-		if (this.errorMessage) {
+		if (this.errorMessage()) {
 			//designer
 			if (this.servoyApi.isInDesigner()) {
-				this.errorShow = true;
+				this.errorShow.set(true);
 			} else {
 				const nativeElement = this.elementRef.nativeElement as HTMLElement;
 				if (show) {

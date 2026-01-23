@@ -64,18 +64,18 @@ describe('ServoyBootstrapList', () => {
         component.dataProviderID = 'Timisoara';
         component.svyOnInit();
         textField.triggerEventHandler('focus', null);
-        expect(component.onFocusGainedMethodID).toHaveBeenCalled();
-        expect(component.onFocusLostMethodID).toHaveBeenCalledTimes(0);
+        expect(component.onFocusGainedMethodID()).toHaveBeenCalled();
+        expect(component.onFocusLostMethodID()).toHaveBeenCalledTimes(0);
         textField.triggerEventHandler('blur', null);
-        expect(component.onFocusLostMethodID).toHaveBeenCalledTimes(1);
+        expect(component.onFocusLostMethodID()).toHaveBeenCalledTimes(1);
         textField.triggerEventHandler('keydown', { keyCode: 13 });
-        expect(component.onActionMethodID).toHaveBeenCalled();
+        expect(component.onActionMethodID()).toHaveBeenCalled();
     });
 
     it('should apply dataprovider to UI', async () => {
         component.dataProviderID = 2;
         component.svyOnChanges({
-            dataProviderID: new SimpleChange(null, component.dataProviderID, true)
+            dataProviderID: new SimpleChange(null, component.dataProviderID(), true)
         });
         await runOnPushChangeDetection(fixture);
         expect(component.getNativeElement().value).toBe('Timisoara');
@@ -85,7 +85,7 @@ describe('ServoyBootstrapList', () => {
         component.getNativeElement().value = 'Bucharest';
         textField.nativeElement.dispatchEvent(new Event('change'));
         await runOnPushChangeDetection(fixture);
-        expect(component.dataProviderID).toBe(1);
+        expect(component.dataProviderID()).toBe(1);
     });
 
 });

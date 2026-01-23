@@ -1,44 +1,44 @@
 <span #element
   class="bts-label"
-  [sabloTabseq]="(onActionMethodID || onDoubleClickMethodID || onRightClickMethodID) ? tabSeq : -2"
+  [sabloTabseq]="(onActionMethodID() || onDoubleClickMethodID() || onRightClickMethodID()) ? tabSeq() : -2"
   [id]="servoyApi.getMarkupId()"
-  [svyTooltip]="toolTipText">
-  <ng-container [ngTemplateOutlet]="labelFor?labelForTemplate:labelTemplate"></ng-container>
+  [svyTooltip]="toolTipText()">
+  <ng-container [ngTemplateOutlet]="labelFor()?labelForTemplate:labelTemplate"></ng-container>
 </span>
 
 <ng-template #labelTemplate>
-  @if (imageStyleClass) {
-    <span class='bts-label-icon' [ngClass]='imageStyleClass'></span>
+  @if (imageStyleClass()) {
+    <span class='bts-label-icon' [ngClass]='imageStyleClass()'></span>
   }
-  @if (showAs === 'html' || showAs === 'trusted_html') {
+  @if (showAs() === 'html' || showAs() === 'trusted_html') {
     <span
       class="bts-label-text"
-      [innerHTML]="text | htmlFilter | trustAsHtml:isTrustedHTML()"
+      [innerHTML]="text() | htmlFilter | trustAsHtml:isTrustedHTML()"
       >
     </span>
   }
-  @if (showAs == "text") {
-    <span class='bts-label-text'>{{text}}</span>
+  @if (showAs() == "text") {
+    <span class='bts-label-text'>{{text()}}</span>
   }
-  @if (trailingImageStyleClass) {
-    <span class='bts-label-icon' [ngClass]='trailingImageStyleClass'></span>
+  @if (trailingImageStyleClass()) {
+    <span class='bts-label-icon' [ngClass]='trailingImageStyleClass()'></span>
   }
 </ng-template>
 
 <ng-template #labelForTemplate>
-  @if (imageStyleClass) {
-    <span class='bts-label-icon' [ngClass]='imageStyleClass'></span>
+  @if (imageStyleClass()) {
+    <span class='bts-label-icon' [ngClass]='imageStyleClass()'></span>
   }
-  @if (showAs === 'html' || showAs === 'trusted_html') {
-    <label class='bts-label-text' for="{{labelFor}}"
-      [innerHTML]="text | htmlFilter | trustAsHtml:isTrustedHTML()"
+  @if (showAs() === 'html' || showAs() === 'trusted_html') {
+    <label class='bts-label-text' for="{{labelFor()}}"
+      [innerHTML]="text() | htmlFilter | trustAsHtml:isTrustedHTML()"
       >
     </label>
   }
-  @if (showAs == "text") {
-    <label class='bts-label-text' for="{{labelFor}}">{{text}}</label>
+  @if (showAs() == "text") {
+    <label class='bts-label-text' for="{{labelFor()}}">{{text()}}</label>
   }
-  @if (trailingImageStyleClass) {
-    <span class='bts-label-icon' [ngClass]='trailingImageStyleClass'></span>
+  @if (trailingImageStyleClass()) {
+    <span class='bts-label-icon' [ngClass]='trailingImageStyleClass()'></span>
   }
 </ng-template>

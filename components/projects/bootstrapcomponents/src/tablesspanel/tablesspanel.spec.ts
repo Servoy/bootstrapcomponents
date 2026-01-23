@@ -35,17 +35,18 @@ describe('TablesspanelComponent', () => {
     
     it('should apply form', async () => {
         component.containedForm = 'mytest';
+        const containedForm = component.containedForm();
         component.svyOnChanges({
-            containedForm: new SimpleChange(null, component.containedForm, true)
+            containedForm: new SimpleChange(null, containedForm, true)
         });
         await runOnPushChangeDetection(fixture);
-        expect(component.getForm()).toBe( component.containedForm);
+        expect(component.getForm()).toBe( containedForm);
         
         component.containedForm = 'mytest2';
         component.svyOnChanges({
-            containedForm: new SimpleChange('mytest', component.containedForm, false)
+            containedForm: new SimpleChange('mytest', containedForm, false)
         });
         await runOnPushChangeDetection(fixture);
-        expect(component.getForm()).toBe( component.containedForm);
+        expect(component.getForm()).toBe( containedForm);
     });
 });

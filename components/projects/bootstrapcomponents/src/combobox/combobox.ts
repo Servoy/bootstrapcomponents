@@ -1,4 +1,4 @@
-import { Component, Renderer2, Input, SimpleChanges, ChangeDetectorRef, ViewChild, ViewChildren, QueryList, ElementRef, HostListener, ChangeDetectionStrategy, Inject, DOCUMENT } from '@angular/core';
+import { Component, Renderer2, SimpleChanges, ChangeDetectorRef, ElementRef, HostListener, ChangeDetectionStrategy, Inject, DOCUMENT, input, viewChildren, viewChild } from '@angular/core';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 import { Format, FormattingService, IValuelist, ServoyPublicService, PopupStateService } from '@servoy/public';
 import { NgbDropdownItem, NgbTooltip, NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
@@ -13,16 +13,16 @@ import { Subscription } from 'rxjs';
 })
 export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivElement> {
 
-    @Input() format: Format;
-    @Input() showAs: string;
-    @Input() valuelistID: IValuelist;
-    @Input() appendToBody: boolean;
+    readonly format = input<Format>(undefined);
+    readonly showAs = input<string>(undefined);
+    readonly valuelistID = input<IValuelist>(undefined);
+    readonly appendToBody = input<boolean>(undefined);
 
-    @ViewChildren(NgbDropdownItem) menuItems: QueryList<NgbDropdownItem>;
-    @ViewChild('input') input: ElementRef<HTMLButtonElement>;
-    @ViewChild('dropdown') dropdownElement: ElementRef<HTMLElement>;
-    @ViewChild(NgbDropdown) comboboxDropdown: NgbDropdown;
-    @ViewChild('tooltip') tooltip: NgbTooltip;
+    readonly menuItems = viewChildren(NgbDropdownItem);
+    readonly input = viewChild<ElementRef<HTMLButtonElement>>('input');
+    readonly dropdownElement = viewChild<ElementRef<HTMLElement>>('dropdown');
+    readonly comboboxDropdown = viewChild(NgbDropdown);
+    tooltip = viewChild<NgbTooltip>('tooltip');
 
     formattedValue: any;
     valueComparator: (value: { displayValue: any; realValue: any }) => boolean;
@@ -46,8 +46,9 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
         this.lastSelectValue = null;
         this.firstItemFound = false;
         if (this.isPrintableChar(event.key)) {
-            if (this.doc.activeElement === this.getFocusElement() && !this.comboboxDropdown.isOpen()) {
-                this.comboboxDropdown.open();
+            const comboboxDropdown = this.comboboxDropdown();
+            if (this.doc.activeElement === this.getFocusElement() && !comboboxDropdown.isOpen()) {
+                comboboxDropdown.open();
                 this.popupStateService.activatePopup(this.getNativeElement().id);
             }
             if (event.key !== 'Backspace') this.keyboardSelectValue = (this.keyboardSelectValue ? this.keyboardSelectValue : '') + event.key;
@@ -81,33 +82,36 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
             this.showPopupOnFocusGain = showPopup;
         }
         super.svyOnInit();
-        this.tooltip.autoClose = false;
+        this.tooltip().autoClose = false;
     }
 
     showAsHtml() {
-        return (this.showAs === 'html' || this.showAs === 'trusted_html');
+        const showAs = this.showAs();
+        return (showAs === 'html' || showAs === 'trusted_html');
     }
 
     isTrustedHTML() {
-        if (this.showAs === 'trusted_html') {
+        if (this.showAs() === 'trusted_html') {
             return true;
         }
         return false;
     }
 
     refreshTooltip() {
-        if (!this.tooltip.isOpen()) {
-            this.tooltip.open();
+        const tooltip = this.tooltip();
+        if (!tooltip.isOpen()) {
+            tooltip.open();
         }
     }
 
     handleTooltip(event: KeyboardEvent) {
-        this.tooltip.autoClose = false;
-        this.tooltip.ngbTooltip = 'This is the CHANGED text';
-        if (this.tooltip.isOpen()) {
-            this.tooltip.close();
+        const tooltip = this.tooltip();
+        tooltip.autoClose = false;
+        tooltip.ngbTooltip = 'This is the CHANGED text';
+        if (tooltip.isOpen()) {
+            tooltip.close();
         } else {
-            this.tooltip.open();
+            tooltip.open();
         }
     }
 
@@ -131,28 +135,30 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
     }
 
     getDropDownWidth() {
-        return this.input?.nativeElement?.clientWidth;
+        return this.input()?.nativeElement?.clientWidth;
     }
 
     getFocusElement() {
-        return this.input.nativeElement;
+        return this.input().nativeElement;
     }
 
     requestFocus(mustExecuteOnFocusGainedMethod: boolean): void {
         super.requestFocus(mustExecuteOnFocusGainedMethod);
         if (this.showPopupOnFocusGain) {
-            this.comboboxDropdown.open();
+            this.comboboxDropdown().open();
             this.popupStateService.activatePopup(this.getNativeElement().id);
         }
     }
 
     attachFocusListeners(nativeElement: HTMLElement) {
         let skipPopupOpen = false;
-        if (this.onFocusGainedMethodID || this.showPopupOnFocusGain)
+        if (this.onFocusGainedMethodID() || this.showPopupOnFocusGain)
             this.renderer.listen(nativeElement, 'focus', (e) => {
-                if (this.onFocusGainedMethodID && !this.skipFocus && this.mustExecuteOnFocus) this.onFocusGainedMethodID(e);
-                if (!skipPopupOpen && this.showPopupOnFocusGain && !this.comboboxDropdown.isOpen()) {
-                    this.comboboxDropdown.open();
+                const onFocusGainedMethodID = this.onFocusGainedMethodID();
+                if (onFocusGainedMethodID && !this.skipFocus && this.mustExecuteOnFocus) onFocusGainedMethodID(e);
+                const comboboxDropdown = this.comboboxDropdown();
+                if (!skipPopupOpen && this.showPopupOnFocusGain && !comboboxDropdown.isOpen()) {
+                    comboboxDropdown.open();
                     this.popupStateService.activatePopup(this.getNativeElement().id);
                 }
                 this.skipFocus = false;
@@ -161,15 +167,15 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
             });
         if (this.showPopupOnFocusGain) {
             this.renderer.listen(nativeElement, 'mousedown', (e) => {
-                if (this.doc.activeElement !== nativeElement && !this.comboboxDropdown.isOpen()) {
+                if (this.doc.activeElement !== nativeElement && !this.comboboxDropdown().isOpen()) {
                     // ngbDropdownToggle on mouse click will open the dropdown, so ignore the next focus
                     skipPopupOpen = true;
                 }
             });
         }
-        if (this.onFocusLostMethodID)
+        if (this.onFocusLostMethodID())
             this.renderer.listen(nativeElement, 'blur', (e) => {
-                if (!this.openState) this.onFocusLostMethodID(e);
+                if (!this.openState) this.onFocusLostMethodID()(e);
             });
     }
 
@@ -179,7 +185,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
         if (state) {
             this.popupStateService.activatePopup(this.getNativeElement().id);
             setTimeout(() => {
-                const item = this.menuItems.find((element) => element.nativeElement.classList.contains('active'));
+                const item = this.menuItems().find((element) => element.nativeElement.classList.contains('active'));
                 if (item) {
                     item.nativeElement.focus();
                 }
@@ -192,31 +198,34 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
                 const event = new Event('blur');
                 nativeElementBtn.dispatchEvent(event);
             }
-            if (this.comboboxDropdown.isOpen()) {
-                this.comboboxDropdown.close();
+            const comboboxDropdown = this.comboboxDropdown();
+            if (comboboxDropdown.isOpen()) {
+                comboboxDropdown.close();
             }
             this.skipFocus = false;
         }
     }
 
     svyOnChanges(changes: SimpleChanges) {
-        this.valueComparator = this.valuelistID && this.valuelistID.isRealValueDate() ? this.dateValueCompare : this.valueCompare;
-        if (changes['dataProviderID'] && this.findmode) {
-            this.formattedValue = this.dataProviderID;
-        } else if ((changes['dataProviderID'] || changes['valuelistID']) && this.valuelistID) {
+        const valuelistID = this.valuelistID();
+        this.valueComparator = valuelistID && valuelistID.isRealValueDate() ? this.dateValueCompare : this.valueCompare;
+        const valuelistIDValue = this.valuelistID();
+        if (changes['dataProviderID'] && this.findmode()) {
+            this.formattedValue = this.dataProviderID();
+        } else if ((changes['dataProviderID'] || changes['valuelistID']) && valuelistIDValue) {
             if (this.valuelistDisplayValueSubscription !== null) {
                 this.valuelistDisplayValueSubscription.unsubscribe();
                 this.valuelistDisplayValueSubscription = null;
             }
             // eslint-disable-next-line eqeqeq
-            const valueListElem = this.valuelistID.find(this.valueComparator);
-            if (valueListElem) this.formattedValue = this.formatService.format(valueListElem.displayValue, this.format, false);
+            const valueListElem = valuelistIDValue.find(this.valueComparator);
+            if (valueListElem) this.formattedValue = this.formatService.format(valueListElem.displayValue, this.format(), false);
             else {
-                if (!this.valuelistID.hasRealValues())
-                    this.formattedValue = this.formatService.format(this.dataProviderID, this.format, false);
+                if (!valuelistIDValue.hasRealValues())
+                    this.formattedValue = this.formatService.format(this.dataProviderID(), this.format(), false);
                 else {
                     this.formattedValue = null;
-                    this.valuelistDisplayValueSubscription = this.valuelistID.getDisplayValue(this.dataProviderID).subscribe(val => {
+                    this.valuelistDisplayValueSubscription = valuelistIDValue.getDisplayValue(this.dataProviderID()).subscribe(val => {
                         this.valuelistDisplayValueSubscription = null;
                         this.formattedValue = val;
                         this.cdRef.detectChanges();
@@ -225,8 +234,9 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
             }
         }
         if (this.formattedValue === '' || this.formattedValue === null || this.formattedValue === undefined) {
-            if (this.placeholderText) {
-                this.formattedValue = this.placeholderText;
+            const placeholderText = this.placeholderText();
+            if (placeholderText) {
+                this.formattedValue = placeholderText;
                 this.placeholderClass = 'bts-combobox-placeholder';
             }
         }
@@ -235,15 +245,15 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
             if (change.previousValue) {
                 const array = change.previousValue.trim().split(' ');
                 array.filter((element: string) => element !== '').forEach((element: string) => {
-                    this.renderer.removeClass(this.dropdownElement.nativeElement, element);
-                    this.renderer.removeClass(this.input.nativeElement, element);
+                    this.renderer.removeClass(this.dropdownElement().nativeElement, element);
+                    this.renderer.removeClass(this.input().nativeElement, element);
                 });
             }
             if (change.currentValue) {
                 const array = change.currentValue.trim().split(' ');
                 array.filter((element: string) => element !== '').forEach((element: string) => {
-                    this.renderer.addClass(this.dropdownElement.nativeElement, element);
-                    this.renderer.addClass(this.input.nativeElement, element);
+                    this.renderer.addClass(this.dropdownElement().nativeElement, element);
+                    this.renderer.addClass(this.input().nativeElement, element);
                 });
             }
         }
@@ -251,7 +261,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
         super.svyOnChanges(changes);
 
         if (changes.readOnly || changes.enabled) {
-            if (this.readOnly || !this.enabled) {
+            if (this.readOnly() || !this.enabled()) {
                 this.renderer.setAttribute(this.getFocusElement(), 'disabled', 'disabled');
             } else {
                 this.renderer.removeAttribute(this.getFocusElement(), 'disabled');
@@ -260,11 +270,12 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
     }
 
     updateValue(realValue: any, event: Event) {
-        this.dataProviderID = realValue;
-        this.dataProviderIDChange.emit(this.dataProviderID);
+        this.dataProviderID.set(realValue);
+        this.dataProviderIDChange.emit(this.dataProviderID());
         this.placeholderClass = null;
-        if (this.onActionMethodID) {
-            this.onActionMethodID(event, this.getDataTarget(event));
+        const onActionMethodID = this.onActionMethodID();
+        if (onActionMethodID) {
+            onActionMethodID(event, this.getDataTarget(event));
         }
     }
 
@@ -296,7 +307,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
     }
     scrollToFirstMatchingItem() {
         if (this.openState && this.lastSelectValue) {
-            for (const item of this.menuItems) {
+            for (const item of this.menuItems()) {
                 if (item.nativeElement.innerText.toLowerCase().indexOf(this.lastSelectValue.toLowerCase()) >= 0 && !this.firstItemFound) {
                     this.firstItemFound = true;
                     item.nativeElement.focus();
@@ -308,15 +319,16 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
     private closeTooltip() {
         this.keyboardSelectValue = null;
         this.lastSelectValue = null;
-        this.tooltip.close();
+        this.tooltip().close();
     }
 
     // eslint-disable-next-line eqeqeq
-    private valueCompare = (valueListValue: { displayValue: any; realValue: any }): boolean => valueListValue.realValue == this.dataProviderID;
+    private valueCompare = (valueListValue: { displayValue: any; realValue: any }): boolean => valueListValue.realValue == this.dataProviderID();
 
     private dateValueCompare = (valueListValue: { displayValue: any; realValue: Date }): boolean => {
-        if (this.dataProviderID && valueListValue.realValue) {
-            return valueListValue.realValue.getTime() === this.dataProviderID.getTime();
+        const dataProviderID = this.dataProviderID();
+        if (dataProviderID && valueListValue.realValue) {
+            return valueListValue.realValue.getTime() === dataProviderID.getTime();
         }
         return false;
     };

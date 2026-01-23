@@ -1,5 +1,5 @@
 
-import { Component, OnInit, Renderer2, Input, SimpleChanges, ChangeDetectorRef, ChangeDetectionStrategy, Inject, DOCUMENT } from '@angular/core';
+import { Component, OnInit, Renderer2, SimpleChanges, ChangeDetectorRef, ChangeDetectionStrategy, Inject, DOCUMENT, input } from '@angular/core';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 import { WindowRefService } from '@servoy/public';
 
@@ -11,8 +11,8 @@ import { WindowRefService } from '@servoy/public';
 })
 export class ServoyBootstrapImageMedia extends ServoyBootstrapBasefield<HTMLImageElement> {
 
-    @Input() media;
-    @Input() alternate;
+    readonly media = input(undefined);
+    readonly alternate = input(undefined);
 
     imageURL = 'bootstrapcomponents/imagemedia/images/empty.gif';
 
@@ -22,9 +22,9 @@ export class ServoyBootstrapImageMedia extends ServoyBootstrapBasefield<HTMLImag
 
     svyOnInit(): void {
 		super.svyOnInit();
-     	if (this.onActionMethodID) {
+     	if (this.onActionMethodID()) {
      		this.renderer.listen(this.getFocusElement(), 'click', e => {
-				this.onActionMethodID(e, this.getDataTarget(e));
+				this.onActionMethodID()(e, this.getDataTarget(e));
 			});
      	}
 	}
@@ -47,7 +47,8 @@ export class ServoyBootstrapImageMedia extends ServoyBootstrapBasefield<HTMLImag
     }
 
     download() {
-        if (this.dataProviderID) {
+        const dataProviderID = this.dataProviderID();
+        if (dataProviderID) {
             let x = 0; let y = 0;
             if (this.doc.all) {
                 x = this.windowService.nativeWindow.screenTop + 100;
@@ -59,29 +60,31 @@ export class ServoyBootstrapImageMedia extends ServoyBootstrapBasefield<HTMLImag
                 y = this.windowService.nativeWindow.screenX + 100;
                 x = this.windowService.nativeWindow.screenY + 100;
             }
-            this.windowService.nativeWindow.open(this.dataProviderID.url ? this.dataProviderID.url : this.dataProviderID, 'download', 'top=' + x + ',left=' + y + ',screenX=' + x
+            this.windowService.nativeWindow.open(dataProviderID.url ? dataProviderID.url : dataProviderID, 'download', 'top=' + x + ',left=' + y + ',screenX=' + x
                     + ',screenY=' + y + ',location=no,toolbar=no,menubar=no,width=310,height=140,resizable=yes');
         }
     }
 
     clear() {
-        this.dataProviderID = null;
+        this.dataProviderID.set(null);
         this.pushUpdate();
     }
 
 
     private updateImageURL() {
-        if (this.media) {
-            this.imageURL = this.media;
+        const dataProviderID = this.dataProviderID();
+        const media = this.media();
+        if (media) {
+            this.imageURL = media;
             // do nothing if data provider changed but media is defined
-        } else if(this.dataProviderID && this.dataProviderID.url) {
-            this.imageURL = this.dataProviderID.url;
-        } else if (!this.dataProviderID && this.servoyApi.isInDesigner()) {
+        } else if(dataProviderID && dataProviderID.url) {
+            this.imageURL = dataProviderID.url;
+        } else if (!dataProviderID && this.servoyApi.isInDesigner()) {
             this.imageURL = 'bootstrapcomponents/imagemedia/media.png';
-        } else if (!this.dataProviderID){
+        } else if (!dataProviderID){
             this.imageURL = 'bootstrapcomponents/imagemedia/images/empty.gif';
         } else {
-            this.imageURL = this.dataProviderID;
+            this.imageURL = dataProviderID;
         }
     }
 }

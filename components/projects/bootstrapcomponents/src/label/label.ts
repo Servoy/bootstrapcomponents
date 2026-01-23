@@ -1,5 +1,5 @@
 import { ServoyBootstrapBaseLabel } from '../bts_baselabel';
-import { Component, Input, Renderer2, ChangeDetectorRef, ChangeDetectionStrategy, SimpleChanges } from '@angular/core';
+import { Component, Renderer2, ChangeDetectorRef, ChangeDetectionStrategy, SimpleChanges, input } from '@angular/core';
 
 @Component({
     selector: 'bootstrapcomponents-label',
@@ -9,8 +9,8 @@ import { Component, Input, Renderer2, ChangeDetectorRef, ChangeDetectionStrategy
 })
 export class ServoyBootstrapLabel extends ServoyBootstrapBaseLabel<HTMLSpanElement> {
 
-    @Input() labelFor: string;
-    @Input() styleClassExpression: string;
+    readonly labelFor = input<string>(undefined);
+    readonly styleClassExpression = input<string>(undefined);
 
     constructor(renderer: Renderer2, cdRef: ChangeDetectorRef) {
         super(renderer, cdRef);
@@ -18,9 +18,9 @@ export class ServoyBootstrapLabel extends ServoyBootstrapBaseLabel<HTMLSpanEleme
 
     svyOnInit() {
         super.svyOnInit();
-        if (this.onDoubleClickMethodID) {
+        if (this.onDoubleClickMethodID()) {
             this.renderer.listen(this.elementRef.nativeElement, 'dblclick', (e) => {
-                if(this.enabled) this.onDoubleClickMethodID(e, this.getDataTarget(e));
+                if(this.enabled()) this.onDoubleClickMethodID()(e, this.getDataTarget(e));
             });
         }
     }

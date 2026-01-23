@@ -1,17 +1,17 @@
 <ng-template #tooltipContent>{{lastSelectValue}}</ng-template>
 <div [id]="servoyApi.getMarkupId()" class="bts-combobox-container" ngbDropdown #comboboxDropdown="ngbDropdown" (openChange)="openChange($event)"
-  [container]="appendToBody?'body':null" #element>
+  [container]="appendToBody()?'body':null" #element>
   <button class="bts-combobox form-control dropdown-toggle bts-dropdown" ngbDropdownToggle
     [ngbTooltip]="tooltipContent"
     triggers="manual"
     #tooltip="ngbTooltip"
-    [container]="appendToBody?'body':null"
-    [sabloTabseq]="tabSeq"
-    [svyTooltip]="toolTipText"
+    [container]="appendToBody()?'body':null"
+    [sabloTabseq]="tabSeq()"
+    [svyTooltip]="toolTipText()"
     [svyStartEdit]="'dataProviderID'"
     [hostComponent]="this"
-    [svyFormat]="format"
-    [findmode]="findmode"
+    [svyFormat]="format()"
+    [findmode]="findmode()"
     [id]="servoyApi.getMarkupId() + '_btn'"
     #input>
     @if (showAsHtml()) {
@@ -28,7 +28,7 @@
     (keydown)="handleKeyDown($event)"
     #dropdown>
     @if (openState) {
-      @for (value of valuelistID; track value; let idx = $index) {
+      @for (value of valuelistID(); track value; let idx = $index) {
         <button
           ngbDropdownItem
           class="svy-ngbdropdownitem"
@@ -36,10 +36,10 @@
           (click)="updateValue(value.realValue, $event)">
           <!-- do not break the next line -->
           @if (showAsHtml()) {
-            <span [innerHtml]="value.displayValue | formatFilter:format | htmlFilter | trustAsHtml:isTrustedHTML() | emptyValue"></span>
+            <span [innerHtml]="value.displayValue | formatFilter:format() | htmlFilter | trustAsHtml:isTrustedHTML() | emptyValue"></span>
           }
           @if (!showAsHtml()) {
-            <span>{{getRemainingValueBefore(value.displayValue | formatFilter:format | emptyValue)}}<strong>{{getStrongValue(value.displayValue | formatFilter:format | emptyValue)}}</strong>{{getRemainingValueAfter(value.displayValue | formatFilter:format | emptyValue)}}</span>
+            <span>{{getRemainingValueBefore(value.displayValue | formatFilter:format() | emptyValue)}}<strong>{{getStrongValue(value.displayValue | formatFilter:format() | emptyValue)}}</strong>{{getRemainingValueAfter(value.displayValue | formatFilter:format() | emptyValue)}}</span>
           }
         </button>
       }

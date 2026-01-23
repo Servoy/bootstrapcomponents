@@ -1,16 +1,16 @@
 import { ServoyBaseComponent } from '@servoy/public';
-import { Directive, Input, Renderer2, SimpleChanges, ChangeDetectorRef } from '@angular/core';
+import { Directive, Renderer2, SimpleChanges, ChangeDetectorRef, input, model } from '@angular/core';
 
 @Directive()
 // eslint-disable-next-line
 export class ServoyBootstrapBaseComponent<T extends HTMLElement> extends ServoyBaseComponent<T> {
 
-    @Input() enabled: boolean;
-    @Input() styleClass: string;
-    @Input() variant: string[];
-    @Input() tabSeq: number;
-    @Input() text: string;
-    @Input() toolTipText: string;
+    readonly enabled = input<boolean>(undefined);
+    readonly styleClass = input<string>(undefined);
+    readonly variant = input<string[]>(undefined);
+    readonly tabSeq = input<number>(undefined);
+    readonly text = input<string>(undefined);
+    toolTipText = model<string>(undefined);
 
     timeoutID: number;
 
@@ -22,6 +22,7 @@ export class ServoyBootstrapBaseComponent<T extends HTMLElement> extends ServoyB
         if (changes) {
             for (const property of Object.keys(changes)) {
                 const change = changes[property];
+                const styleClass = this.styleClass();
                 switch (property) {
                     case 'enabled':
                         if (change.currentValue)
@@ -30,7 +31,7 @@ export class ServoyBootstrapBaseComponent<T extends HTMLElement> extends ServoyB
                             this.renderer.setAttribute(this.getFocusElement(), 'disabled', 'disabled');
                         break;
                     case 'variant':
-                        const styleClasses = this.styleClass?this.styleClass.trim().split(' '):[];
+                        const styleClasses = styleClass?styleClass.trim().split(' '):[];
                         if (change.previousValue){
                            change.previousValue.filter((element: string) => element !== '' && !styleClasses.includes(element))
                                 .forEach((element: string) => this.renderer.removeClass(this.getStyleClassElement(), element));

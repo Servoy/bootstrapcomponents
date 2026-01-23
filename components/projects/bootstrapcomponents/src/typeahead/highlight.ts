@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, ChangeDetectionStrategy, SimpleChanges, ViewEncapsulation} from '@angular/core';
+import {Component, OnChanges, ChangeDetectionStrategy, SimpleChanges, ViewEncapsulation, input, signal} from '@angular/core';
 
 /**
  * A component that helps with text highlighting.
@@ -15,7 +15,7 @@ import {Component, Input, OnChanges, ChangeDetectionStrategy, SimpleChanges, Vie
     template: `@for (part of parts; track part; let isOdd = $odd) {
   ` +
   `@if (isOdd) {
-  <span [class]="highlightClass" [innerHTML]="part"></span>
+  <span [class]="highlightClass()" [innerHTML]="part"></span>
 } @else {
   <span [innerHTML]="part"></span>
   }` +
@@ -30,7 +30,7 @@ export class SvyNgbHighlight implements OnChanges {
   /**
    * The CSS class for `<span>` elements wrapping the `term` inside the `result`.
    */
-  @Input() highlightClass = 'ngb-highlight';
+  readonly highlightClass = input('ngb-highlight');
 
   /**
    * The text highlighting is added to.
@@ -38,13 +38,13 @@ export class SvyNgbHighlight implements OnChanges {
    * If the `term` is found inside this text, it will be highlighted.
    * If the `term` contains array then all the items from it will be highlighted inside the text.
    */
-  @Input() result?: string | null;
+  readonly result = input<string | null>(undefined);
 
   /**
    * The term or array of terms to be highlighted.
    * Since version `v4.2.0` term could be a `string[]`
    */
-  @Input() term: string | readonly string[];
+  readonly term = input<string | readonly string[]>(undefined);
 
   /**
    * Boolean option to determine if the highlighting should be sensitive to accents or not.
@@ -56,26 +56,28 @@ export class SvyNgbHighlight implements OnChanges {
    *
    * @since 9.1.0
    */
-  @Input() accentSensitive = true;
+  accentSensitive = signal(true);
 
   ngOnChanges(changes: SimpleChanges) {
-    if (!this.accentSensitive && !String.prototype.normalize) {
+    const accentSensitive = this.accentSensitive();
+    if (!accentSensitive && !String.prototype.normalize) {
       console.warn(
           'The `accentSensitive` input in `ngb-highlight` cannot be set to `false` in a browser ' +
           'that does not implement the `String.normalize` function. ' +
           'You will have to include a polyfill in your application to use this feature in the current browser.');
-      this.accentSensitive = true;
+      this.accentSensitive.set(true);
     }
-    const result = this.toString(this.result);
+    const result = this.toString(this.result());
 
-    const terms = Array.isArray(this.term) ? this.term : [this.term];
-    const prepareTerm = term => this.accentSensitive ? term : this.removeAccents(term);
+    const termValue = this.term();
+    const terms = Array.isArray(termValue) ? termValue : [termValue];
+    const prepareTerm = term => this.accentSensitive() ? term : this.removeAccents(term);
     const escapedTerms = terms.map(term => this.regExpEscape(prepareTerm(this.toString(term)))).filter(term => term);
-    const toSplit = this.accentSensitive ? result : this.removeAccents(result);
+    const toSplit = accentSensitive ? result : this.removeAccents(result);
 
     const parts = escapedTerms.length ? toSplit.split(new RegExp(`(${escapedTerms.join('|')})`, 'gmi')) : [result];
 
-    if (this.accentSensitive) {
+    if (accentSensitive) {
       this.parts = parts;
     } else {
       let offset = 0;

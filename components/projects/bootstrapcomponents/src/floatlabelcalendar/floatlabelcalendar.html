@@ -1,31 +1,31 @@
 <div class='input-group date bts-calendar-container svy-form-floating'
   data-td-target-input='nearest'
   data-td-target-toggle='nearest'
-  [svyTooltip]="toolTipText"
+  [svyTooltip]="toolTipText()"
   [id]="servoyApi.getMarkupId()"
   #element>
   <input class='bts-floatlabelcalendar form-control form-control svy-line-height-normal'
     data-td-target='#datetimepicker1'
-    [sabloTabseq]="tabSeq"
-    [ngModel]="dataProviderID"
+    [sabloTabseq]="tabSeq()"
+    [ngModel]="dataProviderID()"
     (ngModelChange)="modelChange($event)"
-    [svyFormat]="format"
+    [svyFormat]="format()"
     [svyStartEdit]="'dataProviderID'"
     [hostComponent]="this"
-    [disabled]="!enabled"
-    [findmode]="findmode"
-    [svyFormat]="format"
-    [placeholder]="floatLabelText"
+    [disabled]="!enabled()"
+    [findmode]="findmode()"
+    [svyFormat]="format()"
+    [placeholder]="floatLabelText()"
     #inputElement/>
-  <label [for]="servoyApi.getMarkupId()">{{floatLabelText}}</label>
+  <label [for]="servoyApi.getMarkupId()">{{floatLabelText()}}</label>
   <span
     tabindex='-1'
     class='input-group-text'
     data-td-target='#datetimepicker1'
     data-td-toggle='datetimepicker'
-    [hidden]="readOnly || !enabled || findmode">
+    [hidden]="readOnly() || !enabled() || findmode()">
     <span class='fas fa-calendar' ></span></span>
   </div>
-  @if (errorShow) {
-    <div class="bts-floatlabelcalendar-error-text">{{errorMessage}}</div>
+  @if (errorShow()) {
+    <div class="bts-floatlabelcalendar-error-text">{{errorMessage()}}</div>
   }

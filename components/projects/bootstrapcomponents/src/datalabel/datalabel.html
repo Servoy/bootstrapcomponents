@@ -1,29 +1,29 @@
 <span #element
   class="bts-label"
-  [ngClass]="[styleClass ? styleClass : '', styleClassExpression ? styleClassExpression + '': '']"
-  [sabloTabseq]="(onActionMethodID || onDoubleClickMethodID || onRightClickMethodID) ? tabSeq : -2"
+  [ngClass]="[styleClass() ? styleClass() : '', styleClassExpression() ? styleClassExpression() + '': '']"
+  [sabloTabseq]="(onActionMethodID() || onDoubleClickMethodID() || onRightClickMethodID()) ? tabSeq() : -2"
   [id]="servoyApi.getMarkupId()"
-  [svyTooltip]="toolTipText">
+  [svyTooltip]="toolTipText()">
 
-  @if (imageStyleClass) {
-    <span class="bts-label-icon" [ngClass]="imageStyleClass"></span>
+  @if (imageStyleClass()) {
+    <span class="bts-label-icon" [ngClass]="imageStyleClass()"></span>
   }
-  @if ((showAs === 'html' || showAs === 'trusted_html')) {
+  @if ((showAs() === 'html' || showAs() === 'trusted_html')) {
     <span
       class="bts-label-text"
-      [innerHTML]="dataProviderID | formatFilter:format | htmlFilter | trustAsHtml:isTrustedHTML() | designFilter:servoyApi.isInDesigner()"
+      [innerHTML]="dataProviderID() | formatFilter:format() | htmlFilter | trustAsHtml:isTrustedHTML() | designFilter:servoyApi.isInDesigner()"
       >
     </span>
   }
-  @if (showAs == 'text') {
+  @if (showAs() == 'text') {
     <span
       class="bts-label-text"
-      [textContent]="dataProviderID | formatFilter:format | htmlFilter | trustAsHtml:isTrustedHTML() | designFilter:servoyApi.isInDesigner()"
+      [textContent]="dataProviderID() | formatFilter:format() | htmlFilter | trustAsHtml:isTrustedHTML() | designFilter:servoyApi.isInDesigner()"
       >
     </span>
   }
-  @if (trailingImageStyleClass) {
-    <span class="bts-label-icon" [ngClass]="trailingImageStyleClass"></span>
+  @if (trailingImageStyleClass()) {
+    <span class="bts-label-icon" [ngClass]="trailingImageStyleClass()"></span>
   }
 
 </span>

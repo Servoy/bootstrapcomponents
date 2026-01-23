@@ -1,4 +1,4 @@
-import { Component, Input, Renderer2, Pipe, PipeTransform, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Renderer2, Pipe, PipeTransform, ChangeDetectorRef, ChangeDetectionStrategy, input } from '@angular/core';
 import { ServoyBootstrapBaseLabel } from '../bts_baselabel';
 
 @Component({
@@ -9,10 +9,10 @@ import { ServoyBootstrapBaseLabel } from '../bts_baselabel';
 })
 export class ServoyBootstrapDatalabel extends ServoyBootstrapBaseLabel<HTMLSpanElement> {
 
-    @Input() dataProviderID;
-    @Input() styleClassExpression;
-    @Input() valuelistID;
-    @Input() format;
+    readonly dataProviderID = input(undefined);
+    readonly styleClassExpression = input(undefined);
+    readonly valuelistID = input(undefined);
+    readonly format = input(undefined);
 
     constructor(renderer: Renderer2, cdRef: ChangeDetectorRef) {
         super(renderer, cdRef);
@@ -20,9 +20,9 @@ export class ServoyBootstrapDatalabel extends ServoyBootstrapBaseLabel<HTMLSpanE
 
     svyOnInit() {
         super.svyOnInit();
-        if (this.onDoubleClickMethodID) {
+        if (this.onDoubleClickMethodID()) {
             this.renderer.listen(this.elementRef.nativeElement, 'dblclick', (e) => {
-                if(this.enabled) this.onDoubleClickMethodID(e, this.getDataTarget(e));
+                if(this.enabled()) this.onDoubleClickMethodID()(e, this.getDataTarget(e));
             });
         }
     }

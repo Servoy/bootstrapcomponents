@@ -1,5 +1,5 @@
 
-import { Component, Input, ChangeDetectorRef, Renderer2, ChangeDetectionStrategy, Inject, DOCUMENT } from '@angular/core';
+import { Component, ChangeDetectorRef, Renderer2, ChangeDetectionStrategy, Inject, DOCUMENT, model } from '@angular/core';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 
 @Component({
@@ -10,7 +10,7 @@ import { ServoyBootstrapBasefield } from '../bts_basefield';
 })
 export class ServoyBootstrapTextarea extends ServoyBootstrapBasefield<HTMLTextAreaElement> {
 
-    @Input() maxLength: number;
+    maxLength = model<number>(undefined);
 
     constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, @Inject(DOCUMENT) doc: Document) {
         super(renderer, cdRef, doc);
@@ -18,8 +18,9 @@ export class ServoyBootstrapTextarea extends ServoyBootstrapBasefield<HTMLTextAr
 
     svyOnInit() {
         super.svyOnInit();
-        if (!this.maxLength || this.maxLength === 0) {
-            this.maxLength = 524288;
+        const maxLength = this.maxLength();
+        if (!maxLength || maxLength === 0) {
+            this.maxLength.set(524288);
         }
     }
 

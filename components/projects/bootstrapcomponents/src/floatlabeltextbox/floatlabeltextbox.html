@@ -2,32 +2,32 @@
   <input #element
     [id]="servoyApi.getMarkupId()"
     class="bts-floatlabeltextbox"
-    [class.svy-textbox-password-with-eye-field]="inputType == 'password-with-eye'"
+    [class.svy-textbox-password-with-eye-field]="inputType() == 'password-with-eye'"
     (change)="pushUpdate()"
-    [ngClass]="styleClass"
-    [ngModel]="dataProviderID"
+    [ngClass]="styleClass()"
+    [ngModel]="dataProviderID()"
     (ngModelChange)="onModelChange($event)"
-    [svyFormat]="format"
-    [svyDecimalKeyConverter]="format"
+    [svyFormat]="format()"
+    [svyDecimalKeyConverter]="format()"
     [svyStartEdit]="'dataProviderID'"
     [hostComponent]="this"
-    [svyTooltip]="toolTipText"
-    [sabloTabseq]="tabSeq"
-    [disabled]="!enabled"
-    [findmode]="findmode"
-    [autocomplete]="autocomplete"
-    [placeholder]="floatLabelText"
-    [type]="inputType == 'password-with-eye' && showPass ? 'text' : inputType == 'password-with-eye' ? 'password' : inputType"
+    [svyTooltip]="toolTipText()"
+    [sabloTabseq]="tabSeq()"
+    [disabled]="!enabled()"
+    [findmode]="findmode()"
+    [autocomplete]="autocomplete()"
+    [placeholder]="floatLabelText()"
+    [type]="inputType() == 'password-with-eye' && showPass ? 'text' : inputType() == 'password-with-eye' ? 'password' : inputType()"
     />
-  @if (inputType == 'password-with-eye') {
+  @if (inputType() == 'password-with-eye') {
     <div id="svy-textbox-eyeDiv"
       (click)="showHidePass()"
       class="clickable svy-textbox-eye {{classForEye}}"
-      [ngClass]="styleClass">
+      [ngClass]="styleClass()">
     </div>
   }
-  <label [for]="servoyApi.getMarkupId()">{{floatLabelText}}</label>
+  <label [for]="servoyApi.getMarkupId()">{{floatLabelText()}}</label>
 </div>
-@if (errorShow) {
-  <div class="bts-floatlabeltextbox-error-text">{{errorMessage}}</div>
+@if (errorShow()) {
+  <div class="bts-floatlabeltextbox-error-text">{{errorMessage()}}</div>
 }

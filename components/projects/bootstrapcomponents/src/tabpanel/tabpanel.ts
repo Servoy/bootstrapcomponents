@@ -1,4 +1,4 @@
-import { Component, Renderer2, SimpleChanges, Input, ChangeDetectorRef, ChangeDetectionStrategy, ViewChild, ElementRef, AfterViewInit, OnDestroy, EventEmitter, Output, HostListener } from '@angular/core';
+import { Component, Renderer2, SimpleChanges, ChangeDetectorRef, ChangeDetectionStrategy, ElementRef, AfterViewInit, OnDestroy, HostListener, input, output, viewChild, signal } from '@angular/core';
 import { LoggerFactory, LoggerService, WindowRefService } from '@servoy/public';
 
 import { ServoyBootstrapBaseTabPanel, Tab } from '../bts_basetabpanel';
@@ -12,13 +12,16 @@ import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLUListElement> {
 
-    @Input() onTabClickedMethodID: (event: Event, tabIndex: number, datatarget: string) => Promise<boolean>;
-    @Input() onTabCloseMethodID: (event: Event, tabIndex: number) => Promise<boolean>;
+    readonly onTabClickedMethodID = input<(event: Event, tabIndex: number, datatarget: string) => Promise<boolean>>(undefined);
+    readonly onTabCloseMethodID = input<(event: Event, tabIndex: number) => Promise<boolean>>(undefined);
 
-    @Input() showTabCloseIcon: boolean;
-    @Input() closeIconStyleClass: string;
-    @Input() cssPosition: { width: string; height: string };
-    @Input() containerStyleClass: string;
+    readonly showTabCloseIcon = input<boolean>(undefined);
+    closeIconStyleClass = signal<string>(undefined);
+    readonly cssPosition = input<{
+    width: string;
+    height: string;
+}>(undefined);
+    readonly containerStyleClass = input<string>(undefined);
 
     containerStyle = { position: 'relative', minHeight: '0px', overflow: 'auto' };
 
@@ -37,12 +40,12 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
 
     svyOnInit() {
         super.svyOnInit();
-        if (this.closeIconStyleClass === 'glyphicon glyphicon-remove close-icon') this.closeIconStyleClass = 'fas fa-times';
+        if (this.closeIconStyleClass() === 'glyphicon glyphicon-remove close-icon') this.closeIconStyleClass.set('fas fa-times');
     }
 
     svyOnChanges(changes: SimpleChanges) {
         super.svyOnChanges(changes);
-        if (this.closeIconStyleClass === 'glyphicon glyphicon-remove close-icon') this.closeIconStyleClass = 'fas fa-times';
+        if (this.closeIconStyleClass() === 'glyphicon glyphicon-remove close-icon') this.closeIconStyleClass.set('fas fa-times');
     }
 
     onTabChange(event: NgbNavChangeEvent) {
@@ -52,8 +55,9 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
 
     tabClicked(tab: Tab, tabIndexClicked: number, event: Event) {
         if ((event.target as HTMLElement).classList.contains('bts-tabpanel-close-icon')) {
-            if (this.onTabCloseMethodID) {
-                const promise = this.onTabCloseMethodID(event, tabIndexClicked + 1);
+            const onTabCloseMethodID = this.onTabCloseMethodID();
+            if (onTabCloseMethodID) {
+                const promise = onTabCloseMethodID(event, tabIndexClicked + 1);
                 promise.then((ok) => {
                     if (ok) {
                         this.servoyApi.callServerSideApi('removeTabAt', [tabIndexClicked + 1]);
@@ -67,10 +71,11 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
                 return;
             }
 
-            if (this.onTabClickedMethodID) {
+            const onTabClickedMethodID = this.onTabClickedMethodID();
+            if (onTabClickedMethodID) {
                 const dataTargetAttr = (event.target as Element).closest('[data-target]');
                 const dataTarget = dataTargetAttr ? dataTargetAttr.getAttribute('data-target') : null;
-                const promise = this.onTabClickedMethodID(event, tabIndexClicked + 1, dataTarget);
+                const promise = onTabClickedMethodID(event, tabIndexClicked + 1, dataTarget);
                 promise.then((ok) => {
                     if (ok) {
                         this.servoyApi.callServerSideApi('setTabIndexInternal', [tabIndexClicked +1]);
@@ -83,17 +88,19 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
     }
 
     isTabDisabled(index: number) {
-        return this.tabs && this.tabs[index] && this.tabs[index].disabled;
+        const tabs = this.tabs();
+        return tabs && tabs[index] && tabs[index].disabled;
     }
 
 	updateNavpaneTimeout: any;
 	updateNavpaneTimeoutCounter: number = 0;
     getContainerStyle(element: HTMLElement) {
         const navpane = element.querySelector('[ngbnavpane]');
-        const fullsize = (this.height === '100%');
-		if (navpane && navpane.classList.contains('show')) {
+        const fullsize = (this.height() === '100%');
+		const height = this.height();
+        if (navpane && navpane.classList.contains('show')) {
             this.updateNavpaneTimeoutCounter = 0;
-            if (this.height > 0) this.renderer.setStyle(navpane, 'min-height', this.height + 'px');
+            if (this.height() > 0) this.renderer.setStyle(navpane, 'min-height', height + 'px');
             else this.renderer.setStyle(navpane, 'height', '100%');
             this.renderer.setStyle(navpane, 'position', 'relative');
             if (fullsize) {
@@ -114,7 +121,7 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
             } 
         }
         
-        if (this.cssPosition && this.servoyApi.isInAbsoluteLayout()) {
+        if (this.cssPosition() && this.servoyApi.isInAbsoluteLayout()) {
             const tabs = element.querySelector('ul');
             let calcHeight = tabs.clientHeight;
             const clientRects = tabs.getClientRects();
@@ -126,10 +133,10 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
             delete this.containerStyle.position;
         } else {
             if (fullsize) {
-                this.containerStyle['height'] = this.height;
+                this.containerStyle['height'] = height;
                 if (this.getNativeElement()) this.renderer.setStyle(this.getNativeElement(), 'height', '100%');
             } else {
-                this.containerStyle['minHeight'] = this.height + 'px';
+                this.containerStyle['minHeight'] = height + 'px';
             }
         }
         this.containerStyle['marginTop'] = (element.offsetWidth < element.scrollWidth ? 8 : 0) + 'px';
@@ -232,10 +239,10 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
 })
 export class BsTabpanelActiveTabVisibilityListener implements AfterViewInit, OnDestroy {
 
-    @Input() tab: Tab;
-    @Output() visibleTab: EventEmitter<Tab> = new EventEmitter();
+    readonly tab = input<Tab>(undefined);
+    readonly visibleTab = output<Tab>();
 
-    @ViewChild('element') elementRef: ElementRef;
+    readonly elementRef = viewChild<ElementRef>('element');
 
     observer: MutationObserver;
     log: LoggerService;
@@ -246,14 +253,14 @@ export class BsTabpanelActiveTabVisibilityListener implements AfterViewInit, OnD
 
     ngAfterViewInit(): void {
         if (typeof MutationObserver !== 'undefined') {
-            const tabNode = this.elementRef.nativeElement.parentNode.parentNode;
+            const tabNode = this.elementRef().nativeElement.parentNode.parentNode;
 
             this.observer = new MutationObserver((mutations) => {
                 mutations.forEach((mutation) => {
                     if (mutation.attributeName === 'class') {
                         const oldValueA = mutation.oldValue ? mutation.oldValue.split(' ') : [];
                         if (oldValueA.indexOf('active') === -1 && mutation.target['classList'].contains('active')) {
-                            this.visibleTab.emit(this.tab);
+                            this.visibleTab.emit(this.tab());
                         }
                     }
                 });
@@ -265,7 +272,7 @@ export class BsTabpanelActiveTabVisibilityListener implements AfterViewInit, OnD
             });
         } else {
             this.log.warn('MutationObserver not available, bootstrapcomponents-tabpanel may not work correctly.');
-            this.visibleTab.emit(this.tab);
+            this.visibleTab.emit(this.tab());
         }
     }
 

@@ -1,17 +1,17 @@
 import { ServoyBootstrapBaseComponent } from './bts_basecomp';
-import { Input, Renderer2, Directive, ChangeDetectorRef } from '@angular/core';
+import { Renderer2, Directive, ChangeDetectorRef, input } from '@angular/core';
 
 @Directive()
 // eslint-disable-next-line
 export class ServoyBootstrapBaseLabel<T extends HTMLElement> extends ServoyBootstrapBaseComponent<T> {
 
-    @Input() onActionMethodID: (e: Event, data?: any) => void;
-    @Input() onRightClickMethodID: (e: Event, data?: any) => void;
-    @Input() onDoubleClickMethodID: (e: Event, data?: any) => void;
+    readonly onActionMethodID = input<(e: Event, data?: any) => void>(undefined);
+    readonly onRightClickMethodID = input<(e: Event, data?: any) => void>(undefined);
+    readonly onDoubleClickMethodID = input<(e: Event, data?: any) => void>(undefined);
 
-    @Input() imageStyleClass: string;
-    @Input() trailingImageStyleClass: string;
-    @Input() showAs: string;
+    readonly imageStyleClass = input<string>(undefined);
+    readonly trailingImageStyleClass = input<string>(undefined);
+    readonly showAs = input<string>(undefined);
 
     constructor(renderer: Renderer2, protected cdRef: ChangeDetectorRef) {
         super(renderer, cdRef);
@@ -19,10 +19,10 @@ export class ServoyBootstrapBaseLabel<T extends HTMLElement> extends ServoyBoots
 
     svyOnInit() {
         super.svyOnInit();
-        if (this.onActionMethodID) {
-            if (this.onDoubleClickMethodID) {
+        if (this.onActionMethodID()) {
+            if (this.onDoubleClickMethodID()) {
                 this.renderer.listen(this.getFocusElement(), 'click', e => {
-                    if(this.enabled) {
+                    if(this.enabled()) {
                         if (this.timeoutID) {
                             window.clearTimeout(this.timeoutID);
                             this.timeoutID = null;
@@ -30,27 +30,27 @@ export class ServoyBootstrapBaseLabel<T extends HTMLElement> extends ServoyBoots
                         } else {
                             this.timeoutID = window.setTimeout(() => {
                                 this.timeoutID = null;
-                                this.onActionMethodID(e, this.getDataTarget(e));
+                                this.onActionMethodID()(e, this.getDataTarget(e));
                             }, 250);
                         }
                     }
                 });
             } else {
                     this.renderer.listen(this.getFocusElement(), 'click', e => {
-                        if(this.enabled) this.onActionMethodID(e, this.getDataTarget(e));
+                        if(this.enabled()) this.onActionMethodID()(e, this.getDataTarget(e));
                     });
             }
         }
-        if (this.onRightClickMethodID) {
+        if (this.onRightClickMethodID()) {
             this.renderer.listen(this.getFocusElement(), 'contextmenu', e => {
-                if(this.enabled) this.onRightClickMethodID(e, this.getDataTarget(e));
+                if(this.enabled()) this.onRightClickMethodID()(e, this.getDataTarget(e));
                 return false;
             });
         }
     }
 
     isTrustedHTML(): boolean {
-        if (this.servoyApi.trustAsHtml() || this.showAs === 'trusted_html') {
+        if (this.servoyApi.trustAsHtml() || this.showAs() === 'trusted_html') {
             return true;
         }
         return false;

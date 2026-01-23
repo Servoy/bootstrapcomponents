@@ -1,23 +1,23 @@
-@if (multiselect) {
+@if (multiselect()) {
   <select #element
     (change)="onChange($event, null)"
     class="bts-select"
-    [ngClass]="styleClass"
+    [ngClass]="styleClass()"
     [id]="servoyApi.getMarkupId()"
-    [svyTooltip]="toolTipText"
-    [sabloTabseq]="tabSeq"
+    [svyTooltip]="toolTipText()"
+    [sabloTabseq]="tabSeq()"
     [(ngModel)]="selectedValues"
     [svyStartEdit]="'dataProviderID'"
     [hostComponent]="this"
-    [size]="selectSize"
+    [size]="selectSize()"
     multiple
     >
     <ng-template [ngTemplateOutlet]="commonOptions"></ng-template>
-    @for (value of valuelistID; track value) {
+    @for (value of valuelistID(); track value) {
       <option
         [value]="toString(value.realValue)"
-        [selected]="dataProviderID?.indexOf(toString(value.realValue)) >= 0"
-        [innerHTML]="value.realValue | showDisplayValue:valuelistID:true | async">
+        [selected]="dataProviderID()?.indexOf(toString(value.realValue)) >= 0"
+        [innerHTML]="value.realValue | showDisplayValue:valuelistID():true | async">
       </option>
     }
   </select>
@@ -25,19 +25,19 @@
   <select #element
     (change)="onChange($event, element.value)"
     class="bts-select"
-    [ngClass]="styleClass"
+    [ngClass]="styleClass()"
     [id]="servoyApi.getMarkupId()"
-    [svyTooltip]="toolTipText"
-    [sabloTabseq]="tabSeq"
+    [svyTooltip]="toolTipText()"
+    [sabloTabseq]="tabSeq()"
     [svyStartEdit]="'dataProviderID'"
     [hostComponent]="this"
     >
     <ng-template [ngTemplateOutlet]="commonOptions"></ng-template>
-    @for (value of valuelistID; track value) {
+    @for (value of valuelistID(); track value) {
       <option
         [value]="toString(value.realValue)"
-        [selected]="toString(dataProviderID) === toString(value.realValue)"
-        [innerHTML]="value.realValue | showDisplayValue:valuelistID:true | async">
+        [selected]="toString(dataProviderID()) === toString(value.realValue)"
+        [innerHTML]="value.realValue | showDisplayValue:valuelistID():true | async">
       </option>
     }
   </select>
@@ -48,26 +48,26 @@
   @if (showPlaceholder()) {
     <option
       class="placeholderOption"
-      [innerHTML]="placeholderText"
+      [innerHTML]="placeholderText()"
       hidden
       disabled
       selected>
     </option>
   }
-  @if (!showPlaceholder() && valuelistID && valuelistID.length && !isDPinValuelist() && !multiselect) {
+  @if (!showPlaceholder() && valuelistID() && valuelistID().length && !isDPinValuelist() && !multiselect()) {
     <option
       disabled
       [selected]="!isDPinValuelist()"
-      [innerHTML]="dataProviderID | showDisplayValue:valuelistID:true | async"
-      [value]="dataProviderID">
+      [innerHTML]="dataProviderID() | showDisplayValue:valuelistID():true | async"
+      [value]="dataProviderID()">
     </option>
   }
-  @if (!showPlaceholder() && valuelistID && valuelistID.length && !isDPinValuelist() && multiselect) {
+  @if (!showPlaceholder() && valuelistID() && valuelistID().length && !isDPinValuelist() && multiselect()) {
     @for (value of disabledDP(); track value) {
       <option
         disabled
         [selected]="!isDPinValuelist()"
-        [innerHTML]="value | showDisplayValue:valuelistID:true | async"
+        [innerHTML]="value | showDisplayValue:valuelistID():true | async"
         [value]="value">
       </option>
     }

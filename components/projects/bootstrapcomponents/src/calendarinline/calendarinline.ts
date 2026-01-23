@@ -1,5 +1,5 @@
 
-import { Component, Renderer2, Input, ChangeDetectorRef, SimpleChanges, ChangeDetectionStrategy, Inject, DOCUMENT } from '@angular/core';
+import { Component, Renderer2, ChangeDetectorRef, SimpleChanges, ChangeDetectionStrategy, Inject, DOCUMENT, input } from '@angular/core';
 import { Format, LoggerFactory, ServoyPublicService } from '@servoy/public';
 import { ServoyBootstrapBaseCalendar } from '../calendar/basecalendar';
 import { DateTime } from '@eonasdan/tempus-dominus';
@@ -12,7 +12,7 @@ import { DateTime } from '@eonasdan/tempus-dominus';
 })
 export class ServoyBootstrapCalendarinline extends ServoyBootstrapBaseCalendar {
 
-    @Input() format: Format;
+    readonly format = input<Format>(undefined);
 
     constructor(renderer: Renderer2, cdRef: ChangeDetectorRef,
         servoyService: ServoyPublicService, logFactory: LoggerFactory, @Inject(DOCUMENT) doc: Document) {
@@ -23,8 +23,9 @@ export class ServoyBootstrapCalendarinline extends ServoyBootstrapBaseCalendar {
 
     public svyOnInit() {
         super.svyOnInit();
-        if (this.dataProviderID)
-            this.picker.dates.setFromInput(this.dataProviderID);
+        const dataProviderID = this.dataProviderID();
+        if (dataProviderID)
+            this.picker.dates.setFromInput(dataProviderID);
     }
 
     svyOnChanges(changes: SimpleChanges) {
@@ -38,7 +39,8 @@ export class ServoyBootstrapCalendarinline extends ServoyBootstrapBaseCalendar {
                         this.picker.dispose();
                         this.picker = null;
                         this.initializePicker();
-                        const value = (this.dataProviderID instanceof Date) ? DateTime.convert(this.dataProviderID, null, this.config.localization) : null;
+                        const dataProviderID = this.dataProviderID();
+                        const value = (dataProviderID instanceof Date) ? DateTime.convert(dataProviderID, null, this.config.localization) : null;
                         this.picker.dates.setValue(value);
                     }
                 }

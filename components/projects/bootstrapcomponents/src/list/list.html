@@ -3,15 +3,15 @@
     type="text"
     [attr.list]="servoyApi.getMarkupId() + '_datalist'"
     (change)="updateDataprovider()"
-    [svyTooltip]="toolTipText"
-    [sabloTabseq]="tabSeq"
+    [svyTooltip]="toolTipText()"
+    [sabloTabseq]="tabSeq()"
     [id]="servoyApi.getMarkupId()"
     />
   <datalist [id]="servoyApi.getMarkupId() + '_datalist'" >
-    @for (value of valuelistID; track value) {
+    @for (value of valuelistID(); track value) {
       <option
-        [value]="value.realValue | showDisplayValue:valuelistID:true | async"
-        [selected]="dataProviderID == value.realValue">
+        [value]="value.realValue | showDisplayValue:valuelistID():true | async"
+        [selected]="dataProviderID() == value.realValue">
       </option>
     }
   </datalist>

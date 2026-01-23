@@ -9,23 +9,23 @@
     [(ngModel)]="dataProviderID"
     (change)="pushUpdate()"
     (selectItem)="valueChanged($event)"
-    [sabloTabseq]="tabSeq"
+    [sabloTabseq]="tabSeq()"
     [editable]="isEditable()"
-    [svyTooltip]="toolTipText"
-    [placeholder]="floatLabelText"
+    [svyTooltip]="toolTipText()"
+    [placeholder]="floatLabelText()"
     [ngbTypeahead]="filterValues"
-    [container]="appendToBody?'body':null"
+    [container]="appendToBody()?'body':null"
     [autocomplete]="autocomplete"
     [resultFormatter]="resultFormatter"
     [inputFormatter]="inputFormatter"
     (focus)="focusGained()"
     (click)="onClick()"
-    [resultTemplate]="showAs == 'text' ? rtText : rtHTML"
+    [resultTemplate]="showAs() == 'text' ? rtText : rtHTML"
     (keyup.arrowDown)="scroll()" (keyup.arrowUp)="scroll()"
     #instance="ngbTypeahead"
     #element
     />
-  <label [for]="servoyApi.getMarkupId()">{{floatLabelText}}</label>
+  <label [for]="servoyApi.getMarkupId()">{{floatLabelText()}}</label>
 </div>
 
 <ng-template #rtHTML let-r="result" let-t="term" let-formatter="formatter">
@@ -36,6 +36,6 @@
   <ngb-highlight [result]="formatter(r)" [term]="t"></ngb-highlight>
 </ng-template>
 
-@if (errorShow) {
-  <div class="bts-floatlabeltypeahead-error-text">{{errorMessage}}</div>
+@if (errorShow()) {
+  <div class="bts-floatlabeltypeahead-error-text">{{errorMessage()}}</div>
 }

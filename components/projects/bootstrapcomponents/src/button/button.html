@@ -1,19 +1,19 @@
 <button
     #element
     class="bts-button"
-    [sabloTabseq]="tabSeq"
+    [sabloTabseq]="tabSeq()"
     [id]="servoyApi.getMarkupId()"
-    [svyTooltip]="toolTipText">
-    @if (imageStyleClass) {
-      <span [ngClass]="imageStyleClass" aria-hidden="true"></span>
+    [svyTooltip]="toolTipText()">
+    @if (imageStyleClass()) {
+      <span [ngClass]="imageStyleClass()" aria-hidden="true"></span>
     }
-    @if (showAs !== 'html' && showAs !== 'trusted_html') {
-      {{text}}
+    @if (showAs() !== 'html' && showAs() !== 'trusted_html') {
+      {{text()}}
     }
-    @if ((showAs === 'html' || showAs === 'trusted_html')) {
-      <span [innerHTML]="text | htmlFilter | trustAsHtml:isTrustedHTML()"></span>
+    @if ((showAs() === 'html' || showAs() === 'trusted_html')) {
+      <span [innerHTML]="text() | htmlFilter | trustAsHtml:isTrustedHTML()"></span>
     }
-    @if (trailingImageStyleClass) {
-      <span [ngClass]="trailingImageStyleClass" aria-hidden="true"></span>
+    @if (trailingImageStyleClass()) {
+      <span [ngClass]="trailingImageStyleClass()" aria-hidden="true"></span>
     }
 </button>

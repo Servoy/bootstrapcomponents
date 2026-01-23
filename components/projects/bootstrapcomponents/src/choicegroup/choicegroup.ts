@@ -1,5 +1,5 @@
 
-import { Component, OnInit, Input, Renderer2, ElementRef, Directive, ViewChild, SimpleChanges, ChangeDetectorRef, ChangeDetectionStrategy, Inject, DOCUMENT } from '@angular/core';
+import { Component, OnInit, Renderer2, ElementRef, Directive, SimpleChanges, ChangeDetectorRef, ChangeDetectionStrategy, Inject, DOCUMENT, input, viewChild, model } from '@angular/core';
 import { IValuelist } from '@servoy/public';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 
@@ -11,13 +11,13 @@ import { ServoyBootstrapBasefield } from '../bts_basefield';
 })
 export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDivElement> {
 
-    @Input() inputType: string;
-    @Input() findmode: boolean;
-    @Input() valuelistID: IValuelist;
-    @Input() showAs: string;
-    @Input() alignment: string;
+    readonly inputType = input<string>(undefined);
+    readonly findmode = input<boolean>(undefined);
+    valuelistID = model<IValuelist>(undefined);
+    readonly showAs = input<string>(undefined);
+    readonly alignment = input<string>(undefined);
 
-    @ViewChild('input') input: ElementRef<HTMLInputElement>;
+    readonly input = viewChild<ElementRef<HTMLInputElement>>('input');
 
     selection: any[] = [];
     allowNullinc = 0;
@@ -33,9 +33,10 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
 
     svyOnChanges(changes: SimpleChanges) {
 		super.svyOnChanges(changes);
-        if (this.servoyApi.isInDesigner() && !this.valuelistID) {
+        const valuelistID = this.valuelistID();
+        if (this.servoyApi.isInDesigner() && !valuelistID) {
             // this should only happen in preview
-            this.valuelistID = [{ realValue: 1, displayValue: 'Item1' }, { realValue: 2, displayValue: 'Item2' }, { realValue: 3, displayValue: 'Item3' }] as IValuelist;
+            this.valuelistID.set([{ realValue: 1, displayValue: 'Item1' }, { realValue: 2, displayValue: 'Item2' }, { realValue: 3, displayValue: 'Item3' }] as IValuelist);
         }
         for (const property of Object.keys(changes)) {
 			const change = changes[property];
@@ -43,23 +44,23 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
                 case 'dataProviderID':
                     this.setSelectionFromDataprovider();
                     if (change.firstChange){
-						this.allowMultiselect = Array.isArray(this.dataProviderID);
+						this.allowMultiselect = Array.isArray(this.dataProviderID());
 					}
                     break;
                 case 'valuelistID':
-                    if (this.valuelistID && this.valuelistID.length > 0 && this.isValueListNull(this.valuelistID[0]))
+                    if (valuelistID && valuelistID.length > 0 && this.isValueListNull(valuelistID[0]))
                         this.allowNullinc = 1;
                     else this.allowNullinc = 0;
                     this.setSelectionFromDataprovider();
                     break;
                 case 'alignment':
                     this.elementRef.nativeElement.classList.remove('horizontaldirection');
-                    if (this.alignment === "horizontal") {
+                    if (this.alignment() === "horizontal") {
                         this.elementRef.nativeElement.classList.add('horizontaldirection');
                     }
                     break;
                 case 'enabled':
-                    if (change.currentValue && !this.readOnly)
+                    if (change.currentValue && !this.readOnly())
                     	this.renderer.removeAttribute(this.getFocusElement(), 'disabled');
                     else
                     	this.renderer.setAttribute(this.getFocusElement(), 'disabled', 'disabled');
@@ -75,18 +76,19 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
     }
 
     getFocusElement(): HTMLElement {
-        if (!this.input) {
+        const inputValue = this.input();
+        if (!inputValue) {
             // just a fallback for not getting NPEs
             return this.elementRef.nativeElement;
         }
-        return this.input.nativeElement;
+        return inputValue.nativeElement;
     }
 
     getDataproviderFromSelection() {
         let returnValue = [];
         this.selection.forEach((element, index) => {
             if (element === true)
-                returnValue.push(this.valuelistID[index + this.allowNullinc].realValue +'');
+                returnValue.push(this.valuelistID()[index + this.allowNullinc].realValue +'');
         });
         if (!returnValue.length) returnValue = null;
 		else if (!this.allowMultiselect) returnValue = returnValue[0];
@@ -95,11 +97,12 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
 
     setSelectionFromDataprovider() {
         this.selection = [];
-        if (this.dataProviderID === null || this.dataProviderID === undefined || (Array.isArray(this.dataProviderID) && this.dataProviderID.length == 1 && this.dataProviderID[0] == null)) return;
-        const arr = (Array.isArray(this.dataProviderID)) ? this.dataProviderID : [this.dataProviderID];
-        if (this.inputType === 'radio' && arr.length > 1) return;
-        for (let i = 0; i < this.valuelistID.length; i++) {
-            const item = this.valuelistID[i];
+        const dataProviderID = this.dataProviderID();
+        if (dataProviderID === null || dataProviderID === undefined || (Array.isArray(dataProviderID) && dataProviderID.length == 1 && dataProviderID[0] == null)) return;
+        const arr = (Array.isArray(dataProviderID)) ? dataProviderID : [dataProviderID];
+        if (this.inputType() === 'radio' && arr.length > 1) return;
+        for (let i = 0; i < this.valuelistID().length; i++) {
+            const item = this.valuelistID()[i];
             if (!this.isValueListNull(item)) {
                 this.selection[i - this.allowNullinc] = arr.find(value => item.realValue + '' === value + '') !== undefined;
             }
@@ -110,13 +113,14 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
 
     itemClicked(event, index) {
         let changed = true;
-        if (this.inputType === 'radio') {
-            this.dataProviderID = this.valuelistID[index + this.allowNullinc].realValue;
+        if (this.inputType() === 'radio') {
+            this.dataProviderID.set(this.valuelistID()[index + this.allowNullinc].realValue);
         } else {
             const prevValue = this.selection[index];
-            if (this.allowMultiselect || this.findmode) {
+            const findmode = this.findmode();
+            if (this.allowMultiselect || findmode) {
                 this.selection[index] = event.target.checked;
-                if (!this.findmode && this.allowNullinc === 0 && this.selection.filter(a => a === true).length === 0) {
+                if (!findmode && this.allowNullinc === 0 && this.selection.filter(a => a === true).length === 0) {
                     this.selection[index] = true;
                     event.target.checked = true;
                 }
@@ -129,7 +133,7 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
                 }
             }
             changed = prevValue !== this.selection[index];
-            this.dataProviderID = this.getDataproviderFromSelection();
+            this.dataProviderID.set(this.getDataproviderFromSelection());
         }
         if (changed) this.pushUpdate();
         event.target.blur();
@@ -142,9 +146,9 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
     attachEventHandlers(element: HTMLElement, index: number) {
         if (element) {
             this.renderer.listen(element, 'click', (event) => {
-                if (!this.readOnly && this.enabled) {
+                if (!this.readOnly() && this.enabled()) {
                     this.itemClicked(event, index);
-                    if (this.onActionMethodID) setTimeout(() => this.onActionMethodID(event));
+                    if (this.onActionMethodID()) setTimeout(() => this.onActionMethodID()(event));
                 }
             });
             this.attachFocusListeners(element);
@@ -158,13 +162,13 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
 })
 export class ChoiceElementDirective implements OnInit {
 
-    @Input() bootstrapBaseChoiceElement: ServoyBootstrapChoicegroup;
-    @Input() index: number;
+    readonly bootstrapBaseChoiceElement = input<ServoyBootstrapChoicegroup>(undefined);
+    readonly index = input<number>(undefined);
 
     constructor(private el: ElementRef) {
     }
 
     ngOnInit(): void {
-        this.bootstrapBaseChoiceElement.attachEventHandlers(this.el.nativeElement, this.index);
+        this.bootstrapBaseChoiceElement().attachEventHandlers(this.el.nativeElement, this.index());
     }
 }

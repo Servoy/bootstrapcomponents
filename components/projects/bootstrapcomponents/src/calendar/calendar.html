@@ -1,26 +1,26 @@
 <div class='input-group date bts-calendar-container'
      data-td-target-input='nearest'
      data-td-target-toggle='nearest'
-	[svyTooltip]="toolTipText"
+	[svyTooltip]="toolTipText()"
     [id]="servoyApi.getMarkupId()"
     #element>
     <input class='bts-calendar form-control form-control svy-line-height-normal'
         data-td-target='#datetimepicker1'
-    	[sabloTabseq]="tabSeq"
-		[ngModel]="dataProviderID"
+    	[sabloTabseq]="tabSeq()"
+		[ngModel]="dataProviderID()"
 		(ngModelChange)="modelChange($event)"
-		[svyFormat]="format"
+		[svyFormat]="format()"
      	[svyStartEdit]="'dataProviderID'"
       	[hostComponent]="this"
-        [disabled]="!enabled"
-        [findmode]="findmode"
-        [svyFormat]="format"
+        [disabled]="!enabled()"
+        [findmode]="findmode()"
+        [svyFormat]="format()"
      	#inputElement/>
    <span
      tabindex='-1'
      class='input-group-text'
      data-td-target='#datetimepicker1'
      data-td-toggle='datetimepicker'
-      [hidden]="readOnly || !enabled || findmode">
+      [hidden]="readOnly() || !enabled() || findmode()">
      <span class='fas fa-calendar' ></span></span>
 </div>

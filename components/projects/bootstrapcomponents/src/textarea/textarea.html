@@ -1,15 +1,15 @@
 <textarea #element
-    [ngClass]="styleClass" 
+    [ngClass]="styleClass()" 
     class="bts-textarea"
-    placeholder="{{placeholderText}}"
-    [disabled]="!enabled"
-    [sabloTabseq]="tabSeq"
+    placeholder="{{placeholderText()}}"
+    [disabled]="!enabled()"
+    [sabloTabseq]="tabSeq()"
 	[(ngModel)]="dataProviderID"
 	(change)="pushUpdate()"
-	[svyTooltip]="toolTipText"
+	[svyTooltip]="toolTipText()"
 	[id]="servoyApi.getMarkupId()"
 	[svyStartEdit]="'dataProviderID'"
     [hostComponent]="this"
-    maxLength="{{maxLength}}"
+    maxLength="{{maxLength()}}"
     >
 </textarea>
