@@ -1,4 +1,4 @@
-import { Component, Renderer2, SimpleChanges, ChangeDetectorRef, ChangeDetectionStrategy, ElementRef, AfterViewInit, OnDestroy, HostListener, input, output, viewChild, signal } from '@angular/core';
+import { Component, Renderer2, SimpleChanges, ChangeDetectorRef, ChangeDetectionStrategy, ElementRef, AfterViewInit, OnDestroy, HostListener, input, output, viewChild, model } from '@angular/core';
 import { LoggerFactory, LoggerService, WindowRefService } from '@servoy/public';
 
 import { ServoyBootstrapBaseTabPanel, Tab } from '../bts_basetabpanel';
@@ -16,11 +16,11 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
     readonly onTabCloseMethodID = input<(event: Event, tabIndex: number) => Promise<boolean>>(undefined);
 
     readonly showTabCloseIcon = input<boolean>(undefined);
-    closeIconStyleClass = signal<string>(undefined);
+    closeIconStyleClass = model<string>(undefined);
     readonly cssPosition = input<{
-    width: string;
-    height: string;
-}>(undefined);
+        width: string;
+        height: string;
+    }>(undefined);
     readonly containerStyleClass = input<string>(undefined);
 
     containerStyle = { position: 'relative', minHeight: '0px', overflow: 'auto' };

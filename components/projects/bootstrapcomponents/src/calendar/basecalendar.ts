@@ -1,4 +1,4 @@
-import { Renderer2, ChangeDetectorRef, Inject, Directive, SimpleChanges, DOCUMENT, input, output, signal } from '@angular/core';
+import { Renderer2, ChangeDetectorRef, Inject, Directive, SimpleChanges, DOCUMENT, input, output, model } from '@angular/core';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 
 import { getFirstDayOfWeek, LoggerService, ServoyPublicService } from '@servoy/public';
@@ -17,7 +17,7 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
     readonly maxDateChange = output();
     readonly minDate = input<Date>(undefined);
     readonly minDateChange = output();
-    keepInvalid = signal<boolean>(undefined);
+    keepInvalid = model<boolean>(undefined);
     readonly keepInvalidChange = output<boolean>();
 
     readonly calendarWeeks = input<boolean>(undefined);
