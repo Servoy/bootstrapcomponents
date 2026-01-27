@@ -26,11 +26,6 @@ export class ServoyBootstrapDatalabel extends ServoyBootstrapBaseLabel<HTMLSpanE
             });
         }
     }
-    
-    getDisplayValue(): string {
-        const value = this.dataProviderID();
-        return value === 'SVY_TS_NULL_VALUE_' ? null : value;
-    }
 
 }
 

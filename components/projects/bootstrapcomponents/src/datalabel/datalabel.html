@@ -11,14 +11,14 @@
   @if ((showAs() === 'html' || showAs() === 'trusted_html')) {
     <span
       class="bts-label-text"
-      [innerHTML]="getDisplayValue() | formatFilter:format() | htmlFilter | trustAsHtml:isTrustedHTML() | designFilter:servoyApi.isInDesigner()"
+      [innerHTML]="dataProviderID() | formatFilter:format() | htmlFilter | trustAsHtml:isTrustedHTML() | designFilter:servoyApi.isInDesigner()"
       >
     </span>
   }
   @if (showAs() == 'text') {
     <span
       class="bts-label-text"
-      [textContent]="getDisplayValue() | formatFilter:format() | htmlFilter | trustAsHtml:isTrustedHTML() | designFilter:servoyApi.isInDesigner()"
+      [textContent]="dataProviderID() | formatFilter:format() | htmlFilter | trustAsHtml:isTrustedHTML() | designFilter:servoyApi.isInDesigner()"
       >
     </span>
   }
