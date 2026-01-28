@@ -64,13 +64,13 @@ export class ServoyBootstrapList extends ServoyBootstrapBasefield<HTMLInputEleme
               }
           }
       }
-      if (this.dataProviderID() !== listValue) {
+      if (this._dataProviderID() !== listValue) {
           this.updateValue(listValue);
       }
   }
 
   updateValue(val: string) {
-    this.dataProviderID.set(val);
+    this._dataProviderID.set(val);
     super.pushUpdate();
   }
 }

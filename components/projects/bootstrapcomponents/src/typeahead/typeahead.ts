@@ -75,12 +75,12 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
 	};
 	
 	focusGained() {
-		if (((this.showPopupOnFocusGain || this.showPopupOnFocusGain === null || this.showPopupOnFocusGain === undefined) && this.editable() && !this.readOnly()) || this.findmode()) {
+		if (((this.showPopupOnFocusGain || this.showPopupOnFocusGain === null || this.showPopupOnFocusGain === undefined) && this._editable() && !this.readOnly()) || this.findmode()) {
 			this.focus$.next('');
 		}
 	}
 	onClick() {
-		if (((this.showPopupOnFocusGain || this.showPopupOnFocusGain === null || this.showPopupOnFocusGain === undefined) && this.editable() && !this.readOnly()) || this.findmode()) {
+		if (((this.showPopupOnFocusGain || this.showPopupOnFocusGain === null || this.showPopupOnFocusGain === undefined) && this._editable() && !this.readOnly()) || this.findmode()) {
 			this.click$.next('');
 		}
 	}
@@ -105,18 +105,14 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
 
 	get dataProvider() {
 //		if (this.dataProviderID === null) return this.NULL_VALUE;
-		return this.dataProviderID();
+		return this._dataProviderID();
 	}
 
 	set dataProvider(value) {
 //		if (value === this.NULL_VALUE) this.dataProviderID = null;
 //		else 
-        if (value && typeof value === 'object' && value.realValue !== undefined) {
-            this.dataProviderID.set(value.realValue);
-        } else {
-            this.dataProviderID.set(value);
-        }
-
+        if (value && value.realValue !== undefined) this._dataProviderID.set(value.realValue);
+        else this._dataProviderID.set(value);
 	}
 
     svyOnChanges(changes: SimpleChanges) {
@@ -124,7 +120,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
         if (changes.enabled || changes.findmode) {
             this.instance().setDisabledState(!this.enabled() && !this.findmode());
         }
-        const dataProviderID = this.dataProviderID();
+        const dataProviderID = this._dataProviderID();
         const valuelistID = this.valuelistID();
         if (changes.format && valuelistID) {
             this.instance().writeValue(dataProviderID);
@@ -141,7 +137,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
         if (changes.dataProviderID) {
             this.currentValue = changes.dataProviderID.currentValue;
             if (dataProviderID === null) {
-                this.dataProviderID.set(this.NULL_VALUE);
+                this._dataProviderID.set(this.NULL_VALUE);
             }
         }
     }
@@ -153,7 +149,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
 
         return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(switchMap(term => {
             const valuelistID = this.valuelistID();
-            if ((this.findmode() || (!this.readOnly() && this.editable())) && valuelistID) {
+            if ((this.findmode() || (!this.readOnly() && this._editable())) && valuelistID) {
                 const promise = valuelistID.filterList(term)
                 this.lastFilteringPromise = promise;
                 promise.toPromise().finally(() => {
@@ -169,8 +165,8 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
                                     value = items[0];
                                 }
                                 if (value) {
-                                    this.dataProviderID.set(value.realValue);
-                                    this.dataProviderIDChange.emit(this.dataProviderID());
+                                    this._dataProviderID.set(value.realValue);
+                                    this.dataProviderIDChange.emit(this._dataProviderID());
                                 }
                             });
                         }
@@ -178,7 +174,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
                     const popup = this.doc.getElementById(this.instance().popupId);
                     if (popup) {
                         popup.style.width = this.getFocusElement().clientWidth + 'px';
-                        if (term == "" && this.dataProviderID()) {
+                        if (term == "" && this._dataProviderID()) {
                             const highlightElements = popup.getElementsByClassName('ngb-highlight');
                             if (highlightElements.length === 1) {
                                 // initial display , highlight the value element
@@ -194,20 +190,20 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
     };
 
     pushUpdate() {
-        const dataProviderID = this.dataProviderID();
+        const dataProviderID = this._dataProviderID();
         const findmode = this.findmode();
         if (!dataProviderID && (!this.isEditable() || findmode)) {
             // need to restore value from UI
             const valuelistID = this.valuelistID();
             if (findmode || !valuelistID) {
-                this.dataProviderID.set(this.elementRef.nativeElement.value);
+                this._dataProviderID.set(this.elementRef.nativeElement.value);
             } else {
                 if (this.elementRef.nativeElement.value === valuelistID[0]?.displayValue) {
-                    this.dataProviderID.set(valuelistID[0]?.realValue);
-                    this.currentValue = this.dataProviderID();
+                    this._dataProviderID.set(valuelistID[0]?.realValue);
+                    this.currentValue = this._dataProviderID();
                     super.pushUpdate();
                 } else {
-                    this.dataProviderID.set(this.currentValue);
+                    this._dataProviderID.set(this.currentValue);
                 }
                 return;
             }
@@ -257,7 +253,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
                         if (val) {
                             this.realToDisplay.set(result, val);
                             // if dpid is changed do not write the old value
-                            if (result == this.dataProviderID()) this.instance().writeValue(result);
+                            if (result == this._dataProviderID()) this.instance().writeValue(result);
                         }
                     });
                     display = this.realToDisplay.get(result); // in case the getDisplayValue above runs sync, before this return happen (uses of() not from())
@@ -278,10 +274,10 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
             this.valueToApply = value;
             return;
         }
-        if (value && value.realValue !== undefined) this.dataProviderID.set(value.realValue);
-        else if (value) this.dataProviderID.set(value);
-        else this.dataProviderID.set(null);
-        const dataProviderID = this.dataProviderID();
+        if (value && value.realValue !== undefined) this._dataProviderID.set(value.realValue);
+        else if (value) this._dataProviderID.set(value);
+        else this._dataProviderID.set(null);
+        const dataProviderID = this._dataProviderID();
         this.dataProviderIDChange.emit(dataProviderID);
         this.currentValue = dataProviderID;
     }

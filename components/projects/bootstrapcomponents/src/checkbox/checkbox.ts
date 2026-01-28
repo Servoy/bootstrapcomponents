@@ -65,16 +65,16 @@ export class ServoyBootstrapCheckbox extends ServoyBootstrapBasefield<HTMLDivEle
             this.selected = !this.selected;
             event.preventDefault();
         }
-        const dataProviderID = this.dataProviderID();
+        const dataProviderID = this._dataProviderID();
         const selectedValue = this.selectedValue();
         if (selectedValue) {
-            this.dataProviderID.set(this.dataProviderID() == selectedValue ? null : selectedValue);
+            this._dataProviderID.set(this._dataProviderID() == selectedValue ? null : selectedValue);
         }
         else
             if (typeof dataProviderID === 'string') {
-                this.dataProviderID.set(dataProviderID === '1' ? '0' : '1');
+                this._dataProviderID.set(dataProviderID === '1' ? '0' : '1');
             } else {
-                this.dataProviderID.set(dataProviderID > 0 ? 0 : 1);
+                this._dataProviderID.set(dataProviderID > 0 ? 0 : 1);
             }
         this.pushUpdate();
     }
@@ -84,7 +84,7 @@ export class ServoyBootstrapCheckbox extends ServoyBootstrapBasefield<HTMLDivEle
     }
 
     getSelectionFromDataprovider() {
-        const dataProviderID = this.dataProviderID();
+        const dataProviderID = this._dataProviderID();
         if (!dataProviderID) {
             return false;
         }

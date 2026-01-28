@@ -1,5 +1,5 @@
 
-import { Component, OnInit, Renderer2, ElementRef, Directive, SimpleChanges, ChangeDetectorRef, ChangeDetectionStrategy, Inject, DOCUMENT, input, viewChild, model } from '@angular/core';
+import { Component, OnInit, Renderer2, ElementRef, Directive, SimpleChanges, ChangeDetectorRef, ChangeDetectionStrategy, Inject, DOCUMENT, input, viewChild, signal } from '@angular/core';
 import { IValuelist } from '@servoy/public';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 
@@ -13,11 +13,13 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
 
     readonly inputType = input<string>(undefined);
     readonly findmode = input<boolean>(undefined);
-    valuelistID = model<IValuelist>(undefined);
+    readonly valuelistID = input<IValuelist>(undefined);
     readonly showAs = input<string>(undefined);
     readonly alignment = input<string>(undefined);
 
     readonly input = viewChild<ElementRef<HTMLInputElement>>('input');
+    
+    protected _valueProviderID = signal<IValuelist>(undefined);
 
     selection: any[] = [];
     allowNullinc = 0;
@@ -28,15 +30,16 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
     }
 
     svyOnInit() {
+        this._valueProviderID.set(this.valuelistID());
         super.svyOnInit();
     }
 
     svyOnChanges(changes: SimpleChanges) {
 		super.svyOnChanges(changes);
-        const valuelistID = this.valuelistID();
+        const valuelistID = this._valueProviderID();
         if (this.servoyApi.isInDesigner() && !valuelistID) {
             // this should only happen in preview
-            this.valuelistID.set([{ realValue: 1, displayValue: 'Item1' }, { realValue: 2, displayValue: 'Item2' }, { realValue: 3, displayValue: 'Item3' }] as IValuelist);
+            this._valueProviderID.set([{ realValue: 1, displayValue: 'Item1' }, { realValue: 2, displayValue: 'Item2' }, { realValue: 3, displayValue: 'Item3' }] as IValuelist);
         }
         for (const property of Object.keys(changes)) {
 			const change = changes[property];
@@ -44,7 +47,7 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
                 case 'dataProviderID':
                     this.setSelectionFromDataprovider();
                     if (change.firstChange){
-						this.allowMultiselect = Array.isArray(this.dataProviderID());
+						this.allowMultiselect = Array.isArray(this._dataProviderID());
 					}
                     break;
                 case 'valuelistID':
@@ -97,7 +100,7 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
 
     setSelectionFromDataprovider() {
         this.selection = [];
-        const dataProviderID = this.dataProviderID();
+        const dataProviderID = this._dataProviderID();
         if (dataProviderID === null || dataProviderID === undefined || (Array.isArray(dataProviderID) && dataProviderID.length == 1 && dataProviderID[0] == null)) return;
         const arr = (Array.isArray(dataProviderID)) ? dataProviderID : [dataProviderID];
         if (this.inputType() === 'radio' && arr.length > 1) return;
@@ -114,7 +117,7 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
     itemClicked(event, index) {
         let changed = true;
         if (this.inputType() === 'radio') {
-            this.dataProviderID.set(this.valuelistID()[index + this.allowNullinc].realValue);
+            this._dataProviderID.set(this.valuelistID()[index + this.allowNullinc].realValue);
         } else {
             const prevValue = this.selection[index];
             const findmode = this.findmode();
@@ -133,7 +136,7 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
                 }
             }
             changed = prevValue !== this.selection[index];
-            this.dataProviderID.set(this.getDataproviderFromSelection());
+            this._dataProviderID.set(this.getDataproviderFromSelection());
         }
         if (changed) this.pushUpdate();
         event.target.blur();

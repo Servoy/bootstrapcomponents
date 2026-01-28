@@ -47,7 +47,7 @@ export class ServoyBootstrapImageMedia extends ServoyBootstrapBasefield<HTMLImag
     }
 
     download() {
-        const dataProviderID = this.dataProviderID();
+        const dataProviderID = this._dataProviderID();
         if (dataProviderID) {
             let x = 0; let y = 0;
             if (this.doc.all) {
@@ -66,13 +66,13 @@ export class ServoyBootstrapImageMedia extends ServoyBootstrapBasefield<HTMLImag
     }
 
     clear() {
-        this.dataProviderID.set(null);
+        this._dataProviderID.set(null);
         this.pushUpdate();
     }
 
 
     private updateImageURL() {
-        const dataProviderID = this.dataProviderID();
+        const dataProviderID = this._dataProviderID();
         const media = this.media();
         if (media) {
             this.imageURL = media;

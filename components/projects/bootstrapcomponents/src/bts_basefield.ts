@@ -1,5 +1,5 @@
 import { ServoyBootstrapBaseComponent } from './bts_basecomp';
-import { Directive, SimpleChanges, SimpleChange, Renderer2, ChangeDetectorRef, Inject, DOCUMENT, input, output, model } from '@angular/core';
+import { Directive, SimpleChanges, SimpleChange, Renderer2, ChangeDetectorRef, Inject, DOCUMENT, input, output, signal } from '@angular/core';
 import { PropertyUtils } from '@servoy/public';
 
 
@@ -15,12 +15,15 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
     readonly onFocusLostMethodID = input<(e: Event) => void>(undefined);
 
     readonly dataProviderIDChange = output();
-    dataProviderID = model<any>(undefined);
+    readonly dataProviderID = input<any>(undefined);
     readonly readOnly = input<boolean>(undefined);
     readonly findmode = input<boolean>(undefined);
-    editable = model<boolean>(undefined);
+    readonly editable = input<boolean>(undefined);
     readonly placeholderText = input<string>(undefined);
     readonly selectOnEnter = input<boolean>(undefined);
+    
+    protected _dataProviderID = signal<any>(undefined);
+    protected _editable = signal<boolean>(undefined);
 
     mustExecuteOnFocus = true;
 
@@ -32,9 +35,11 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
 
     svyOnInit() {
         super.svyOnInit();
+        this._dataProviderID.set(this.dataProviderID());
+        this._editable.set(this.editable());
         this.attachFocusListeners(this.getFocusElement());
-        if (this.dataProviderID() === undefined) {
-            this.dataProviderID.set(null);
+        if (this._dataProviderID() === undefined) {
+            this._dataProviderID.set(null);
         }
         if (this.onActionMethodID()) {
             this.renderer.listen(this.getFocusElement(), 'keydown', e => {
@@ -52,6 +57,14 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
 
     svyOnChanges(changes: SimpleChanges) {
         if (changes) {
+            /*if (changes.dataProviderID) {
+                this._dataProviderID.set(this.dataProviderID());
+            }
+            
+            if (changes.editable) {
+                this._editable.set(this.editable());
+            }*/
+            
             for (const property of Object.keys(changes)) {
                 const change = changes[property];
                 switch (property) {
@@ -68,7 +81,7 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
                 const realFindmode = findmode === undefined? false: findmode; // default for find is false
                 const readOnly = this.readOnly();
                 const realReadonly = readOnly === undefined? false: readOnly; // default for readonly is false
-                const editable = this.editable();
+                const editable = this._editable();
                 const realEditable = editable === undefined? true: editable; // default for editable is true
 				if (realFindmode || (!realReadonly && realEditable)) {
 					this.renderer.removeAttribute(this.getFocusElement(), 'readonly');
@@ -106,20 +119,20 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
             this.renderer.addClass(this.getFocusElement(), 'ng-invalid');
             if (stringValue) {
                 if (this.storedTooltip === false) {
-                    this.storedTooltip = this.toolTipText();
+                    this.storedTooltip = this._toolTipText();
                 }
-                this.toolTipText.set(returnval.toString());
+                this._toolTipText.set(returnval.toString());
             }
         } else {
             this.renderer.removeClass(this.getFocusElement(), 'ng-invalid');
             this.renderer.addClass(this.getFocusElement(), 'ng-valid');
-            if (this.storedTooltip !== false) this.toolTipText.set(this.storedTooltip);
+            if (this.storedTooltip !== false) this._toolTipText.set(this.storedTooltip);
             this.storedTooltip = false;
         }
     }
 
     pushUpdate() {
-        this.dataProviderIDChange.emit(this.dataProviderID());
+        this.dataProviderIDChange.emit(this._dataProviderID());
     }
     
     protected setPlaceHolderText(change : SimpleChange ){
@@ -152,7 +165,7 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
     }
 
     public getAsPlainText(): string {
-        const dataProviderID = this.dataProviderID();
+        const dataProviderID = this._dataProviderID();
         if (dataProviderID) {
             return dataProviderID.replace(/<[^>]*>/g, '');
         }

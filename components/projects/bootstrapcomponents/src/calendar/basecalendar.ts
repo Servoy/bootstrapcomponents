@@ -1,4 +1,4 @@
-import { Renderer2, ChangeDetectorRef, Inject, Directive, SimpleChanges, DOCUMENT, input, output, model } from '@angular/core';
+import { Renderer2, ChangeDetectorRef, Inject, Directive, SimpleChanges, DOCUMENT, input, output, signal } from '@angular/core';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 
 import { getFirstDayOfWeek, LoggerService, ServoyPublicService } from '@servoy/public';
@@ -17,7 +17,7 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
     readonly maxDateChange = output();
     readonly minDate = input<Date>(undefined);
     readonly minDateChange = output();
-    keepInvalid = model<boolean>(undefined);
+    readonly keepInvalid = signal<boolean>(undefined);
     readonly keepInvalidChange = output<boolean>();
 
     readonly calendarWeeks = input<boolean>(undefined);
@@ -91,11 +91,11 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
             Object.assign(this.config, this.options());
         }
         if (changes.dataProviderID && this.picker && !this.findmode()) {
-            const dataProviderID = this.dataProviderID();
+            const dataProviderID = this._dataProviderID();
             const value = (dataProviderID instanceof Date) ? DateTime.convert(dataProviderID, null, this.config.localization) : null;
             this.picker.dates.setValue(value);
         }
-        const dataProviderIDValue = this.dataProviderID();
+        const dataProviderIDValue = this._dataProviderID();
         if (dataProviderIDValue) {
             const value = (dataProviderIDValue instanceof Date) ? DateTime.convert(dataProviderIDValue, null, this.config.localization) : null;
             if (value)
@@ -165,7 +165,7 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
 
     public dateChanged(event: any) {
         if (event.type === 'change.td') {
-            const dataProviderID = this.dataProviderID();
+            const dataProviderID = this._dataProviderID();
             if ((event.date && dataProviderID && event.date.getTime() === dataProviderID.getTime()) ||
                 (!event.date && !dataProviderID)) return;
 
@@ -175,8 +175,8 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
                 this.picker.dates.setValue(value);
                 return;
             }
-            this.dataProviderID.set(!event.date ? null : event.date);
-        } else this.dataProviderID.set(null);
+            this._dataProviderID.set(!event.date ? null : event.date);
+        } else this._dataProviderID.set(null);
         super.pushUpdate();
     }
 

@@ -1,5 +1,5 @@
 
-import { Component, ChangeDetectorRef, Renderer2, ChangeDetectionStrategy, Inject, SimpleChanges, HostListener, DOCUMENT, input, output, viewChild, model } from '@angular/core';
+import { Component, ChangeDetectorRef, Renderer2, ChangeDetectionStrategy, Inject, SimpleChanges, HostListener, DOCUMENT, input, output, viewChild, signal } from '@angular/core';
 import { Format, FormatDirective, WindowRefService } from '@servoy/public';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 
@@ -12,8 +12,8 @@ import { ServoyBootstrapBasefield } from '../bts_basefield';
 export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputElement> {
 
     readonly format = input<Format>(undefined);
-    inputType = model<string>(undefined);
-    autocomplete = model<string>(undefined);
+    readonly inputType = signal<string>(undefined);
+    readonly autocomplete = signal<string>(undefined);
     readonly styleClassForEye = input<string>(undefined);
 
     readonly inputTypeChange = output<string>();
@@ -28,13 +28,15 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
     }
 
     svyOnInit() {
+        console.log('INPUT RAW:', this.dataProviderID);
+        console.log('INPUT VALUE:', this.dataProviderID());
         super.svyOnInit();
         if(this.autocomplete() === 'off') {
             this.autocomplete.set(this.windowService.nativeWindow.navigator.userAgent.match(/chrome/i) ? 'chrome-off' : 'off');
         }
         if (this.onActionMethodID()) {
             this.renderer.listen(this.getFocusElement(), 'click', e => {
-                if (this.editable() === false) {
+                if (this._editable() === false) {
                     this.onActionMethodID()(e);
                 }
             });
@@ -56,7 +58,7 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
         if(this.format() || (newValue && typeof newValue.getTime === 'function' && isNaN(newValue.getTime()))) {
             this.svyFormat().writeValue(newValue);
         } 
-        this.dataProviderID.set(newValue);
+        this._dataProviderID.set(newValue);
         
         if (this.isDateType()) {
 			this.pushUpdate();
@@ -72,7 +74,7 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
                 this.inputType.set(inputType);
                 this.inputTypeChange.emit(inputTypeValue);
             }
-            const dp = this.dataProviderID();
+            const dp = this._dataProviderID();
             if (dp) {
                 this.svyFormat().writeValue(dp);
             }

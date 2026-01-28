@@ -126,14 +126,14 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
         }
         if (changes.pickerOnly) {
             // pickerOnly maps on the readonly flag so just set that boolean of the parent class
-            this.editable.set(!this.pickerOnly());
+            this._editable.set(!this.pickerOnly());
         }
         super.svyOnChanges(changes);
     }
 
     public modelChange(event: any) {
         if (this.findmode()) {
-            this.dataProviderID.set(event);
+            this._dataProviderID.set(event);
             super.pushUpdate();
         }
 		
@@ -141,7 +141,7 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
         const maxDate = this.maxDate();
         if (event !== '' && ((minDate && minDate > event) || (maxDate && maxDate < event) || !this.isValidDate(event))) {
             // revert to old value
-            this.svyFormat().writeValue(this.dataProviderID());
+            this.svyFormat().writeValue(this._dataProviderID());
         }
     }
     
@@ -169,7 +169,7 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
             (this.inputElementRef().nativeElement as HTMLInputElement).value = currentValue;
             this.picker.dates.formatInput =  (date: DateTime) => date?this.formattingService.format(date, this.format(), false):'';
             this.picker.dates.parseInput =  (value: string) => {
-                const parsed = this.formattingService.parse(value?value.trim():null, this.format(), true, this.dataProviderID(), true);
+                const parsed = this.formattingService.parse(value?value.trim():null, this.format(), true, this._dataProviderID(), true);
                 if (parsed instanceof Date && !isNaN(parsed.getTime())) return  DateTime.convert(parsed, null, this.config.localization);
                 return null;
             };

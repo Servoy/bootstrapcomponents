@@ -1,4 +1,4 @@
-import { Component, Renderer2, SimpleChanges, ChangeDetectorRef, ChangeDetectionStrategy, ElementRef, AfterViewInit, OnDestroy, HostListener, input, output, viewChild, model } from '@angular/core';
+import { Component, Renderer2, SimpleChanges, ChangeDetectorRef, ChangeDetectionStrategy, ElementRef, AfterViewInit, OnDestroy, HostListener, input, output, viewChild, signal } from '@angular/core';
 import { LoggerFactory, LoggerService, WindowRefService } from '@servoy/public';
 
 import { ServoyBootstrapBaseTabPanel, Tab } from '../bts_basetabpanel';
@@ -16,12 +16,14 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
     readonly onTabCloseMethodID = input<(event: Event, tabIndex: number) => Promise<boolean>>(undefined);
 
     readonly showTabCloseIcon = input<boolean>(undefined);
-    closeIconStyleClass = model<string>(undefined);
+    readonly closeIconStyleClass = input<string>(undefined);
     readonly cssPosition = input<{
         width: string;
         height: string;
     }>(undefined);
     readonly containerStyleClass = input<string>(undefined);
+    
+    protected _closeIconStyleClass = signal<string>(undefined);
 
     containerStyle = { position: 'relative', minHeight: '0px', overflow: 'auto' };
 
@@ -40,12 +42,13 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
 
     svyOnInit() {
         super.svyOnInit();
-        if (this.closeIconStyleClass() === 'glyphicon glyphicon-remove close-icon') this.closeIconStyleClass.set('fas fa-times');
+        this._closeIconStyleClass.set(this.closeIconStyleClass());
+        if (this._closeIconStyleClass() === 'glyphicon glyphicon-remove close-icon') this._closeIconStyleClass.set('fas fa-times');
     }
 
     svyOnChanges(changes: SimpleChanges) {
         super.svyOnChanges(changes);
-        if (this.closeIconStyleClass() === 'glyphicon glyphicon-remove close-icon') this.closeIconStyleClass.set('fas fa-times');
+        if (this._closeIconStyleClass() === 'glyphicon glyphicon-remove close-icon') this._closeIconStyleClass.set('fas fa-times');
     }
 
     onTabChange(event: NgbNavChangeEvent) {

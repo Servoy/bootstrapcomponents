@@ -15,7 +15,7 @@
             <span [innerHTML]='tab?.text| htmlFilter | trustAsHtml: servoyApi.trustAsHtml()'></span>
             @if (tab.hideCloseIcon !== true && showTabCloseIcon()) {
               <i class="bts-tabpanel-close-icon"
-              [class]="closeIconStyleClass()"></i>
+              [class]="_closeIconStyleClass()"></i>
             }
           </div>
         </a>

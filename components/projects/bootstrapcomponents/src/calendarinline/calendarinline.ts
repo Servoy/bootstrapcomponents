@@ -23,7 +23,7 @@ export class ServoyBootstrapCalendarinline extends ServoyBootstrapBaseCalendar {
 
     public svyOnInit() {
         super.svyOnInit();
-        const dataProviderID = this.dataProviderID();
+        const dataProviderID = this._dataProviderID();
         if (dataProviderID)
             this.picker.dates.setFromInput(dataProviderID);
     }
@@ -39,7 +39,7 @@ export class ServoyBootstrapCalendarinline extends ServoyBootstrapBaseCalendar {
                         this.picker.dispose();
                         this.picker = null;
                         this.initializePicker();
-                        const dataProviderID = this.dataProviderID();
+                        const dataProviderID = this._dataProviderID();
                         const value = (dataProviderID instanceof Date) ? DateTime.convert(dataProviderID, null, this.config.localization) : null;
                         this.picker.dates.setValue(value);
                     }

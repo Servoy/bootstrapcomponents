@@ -1,5 +1,5 @@
 import { ServoyBaseComponent } from '@servoy/public';
-import { Directive, Renderer2, SimpleChanges, ChangeDetectorRef, input, model } from '@angular/core';
+import { Directive, Renderer2, SimpleChanges, ChangeDetectorRef, input, signal } from '@angular/core';
 
 @Directive()
 // eslint-disable-next-line
@@ -10,7 +10,9 @@ export class ServoyBootstrapBaseComponent<T extends HTMLElement> extends ServoyB
     readonly variant = input<string[]>(undefined);
     readonly tabSeq = input<number>(undefined);
     readonly text = input<string>(undefined);
-    toolTipText = model<string>(undefined);
+    readonly toolTipText = input<string>(undefined);
+    
+    protected _toolTipText = signal<string>(undefined);
 
     timeoutID: number;
 
@@ -20,6 +22,9 @@ export class ServoyBootstrapBaseComponent<T extends HTMLElement> extends ServoyB
 
     svyOnChanges(changes: SimpleChanges) {
         if (changes) {
+            if (changes.toolTipText) {
+                this._toolTipText.set(this.toolTipText());
+            }
             for (const property of Object.keys(changes)) {
                 const change = changes[property];
                 const styleClass = this.styleClass();

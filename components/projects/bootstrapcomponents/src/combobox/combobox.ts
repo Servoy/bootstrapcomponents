@@ -211,7 +211,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
         this.valueComparator = valuelistID && valuelistID.isRealValueDate() ? this.dateValueCompare : this.valueCompare;
         const valuelistIDValue = this.valuelistID();
         if (changes['dataProviderID'] && this.findmode()) {
-            this.formattedValue = this.dataProviderID();
+            this.formattedValue = this._dataProviderID();
         } else if ((changes['dataProviderID'] || changes['valuelistID']) && valuelistIDValue) {
             if (this.valuelistDisplayValueSubscription !== null) {
                 this.valuelistDisplayValueSubscription.unsubscribe();
@@ -222,10 +222,10 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
             if (valueListElem) this.formattedValue = this.formatService.format(valueListElem.displayValue, this.format(), false);
             else {
                 if (!valuelistIDValue.hasRealValues())
-                    this.formattedValue = this.formatService.format(this.dataProviderID(), this.format(), false);
+                    this.formattedValue = this.formatService.format(this._dataProviderID(), this.format(), false);
                 else {
                     this.formattedValue = null;
-                    this.valuelistDisplayValueSubscription = valuelistIDValue.getDisplayValue(this.dataProviderID()).subscribe(val => {
+                    this.valuelistDisplayValueSubscription = valuelistIDValue.getDisplayValue(this._dataProviderID()).subscribe(val => {
                         this.valuelistDisplayValueSubscription = null;
                         this.formattedValue = val;
                         this.cdRef.detectChanges();
@@ -270,8 +270,8 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
     }
 
     updateValue(realValue: any, event: Event) {
-        this.dataProviderID.set(realValue);
-        this.dataProviderIDChange.emit(this.dataProviderID());
+        this._dataProviderID.set(realValue);
+        this.dataProviderIDChange.emit(this._dataProviderID());
         this.placeholderClass = null;
         const onActionMethodID = this.onActionMethodID();
         if (onActionMethodID) {
@@ -323,10 +323,10 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
     }
 
     // eslint-disable-next-line eqeqeq
-    private valueCompare = (valueListValue: { displayValue: any; realValue: any }): boolean => valueListValue.realValue == this.dataProviderID();
+    private valueCompare = (valueListValue: { displayValue: any; realValue: any }): boolean => valueListValue.realValue == this._dataProviderID();
 
     private dateValueCompare = (valueListValue: { displayValue: any; realValue: Date }): boolean => {
-        const dataProviderID = this.dataProviderID();
+        const dataProviderID = this._dataProviderID();
         if (dataProviderID && valueListValue.realValue) {
             return valueListValue.realValue.getTime() === dataProviderID.getTime();
         }

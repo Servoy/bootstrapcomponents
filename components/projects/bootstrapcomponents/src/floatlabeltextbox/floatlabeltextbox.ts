@@ -1,5 +1,5 @@
 
-import { Component, ChangeDetectorRef, Renderer2, ChangeDetectionStrategy, Inject, SimpleChanges, SimpleChange, DOCUMENT, input, output, model } from '@angular/core';
+import { Component, ChangeDetectorRef, Renderer2, ChangeDetectionStrategy, Inject, SimpleChanges, SimpleChange, DOCUMENT, input, output, signal } from '@angular/core';
 import { WindowRefService } from '@servoy/public';
 import { ServoyBootstrapTextbox } from '../textbox/textbox';
 
@@ -13,7 +13,7 @@ export class ServoyFloatLabelBootstrapTextbox extends ServoyBootstrapTextbox {
     
     readonly floatLabelText = input<string>(undefined);
     readonly errorMessage = input<string>(undefined);
-    errorShow = model<boolean>(undefined);
+    readonly errorShow = signal<boolean>(undefined);
     readonly errorShowChange = output<boolean>();
      
     constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, @Inject(DOCUMENT) doc: Document, protected windowService: WindowRefService) {

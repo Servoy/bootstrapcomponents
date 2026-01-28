@@ -30,7 +30,7 @@ export class ServoyBootstrapSelect extends ServoyBootstrapBasefield<HTMLSelectEl
 				switch (property) {
 					case 'dataProviderID':
 						if (this.multiselect()) {
-							this.selectedValues = this.dataProviderID();
+							this.selectedValues = this._dataProviderID();
 						}
 						break;
 					case 'placeholder':
@@ -55,12 +55,12 @@ export class ServoyBootstrapSelect extends ServoyBootstrapBasefield<HTMLSelectEl
         if (!placeholderText || placeholderText.length === 0) {
             return false;
         }
-		return this.dataProviderID() === null;
+		return this._dataProviderID() === null;
 	}
 
     isDPinValuelist() {
         let isDPinValuelist = false;
-        const dataProviderID = this.dataProviderID();
+        const dataProviderID = this._dataProviderID();
         const valuelistID = this.valuelistID();
         if (valuelistID && dataProviderID) {
             if (this.multiselect()) {
@@ -80,7 +80,7 @@ export class ServoyBootstrapSelect extends ServoyBootstrapBasefield<HTMLSelectEl
 
     disabledDP(): string[] {
         const vlValues = this.valuelistID().map(item => typeof item.realValue === 'string' ? item.realValue : String(item.realValue));
-        const dataProviderID = this.dataProviderID();
+        const dataProviderID = this._dataProviderID();
         const dpValues = dataProviderID ? dataProviderID.split('\n') : [];
         return dpValues.filter(dpValue => !vlValues.includes(dpValue));
     }
@@ -89,7 +89,7 @@ export class ServoyBootstrapSelect extends ServoyBootstrapBasefield<HTMLSelectEl
         this.renderer.removeAttribute(this.getNativeElement(), 'placeholder');
         if (!this.multiselect()) {
             //in this case the event is the value
-            this.dataProviderID.set((value && value != "null") ? value : null);
+            this._dataProviderID.set((value && value != "null") ? value : null);
         }
         this.updateDataprovider();
         const onActionMethodID = this.onActionMethodID();
@@ -121,14 +121,14 @@ export class ServoyBootstrapSelect extends ServoyBootstrapBasefield<HTMLSelectEl
             }
 			else {
 				// already binded by ngmodel, just push it
-				value = this.dataProviderID();
+				value = this._dataProviderID();
 			}
 			this.updateValue(value);
 		}
 	}
 
 	updateValue(val: string) {
-		this.dataProviderID.set(val);
+		this._dataProviderID.set(val);
 		super.pushUpdate();
 	}
 
