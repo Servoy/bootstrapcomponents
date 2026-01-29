@@ -223,7 +223,6 @@ describe('ServoyBootstrapTypeahead', () => {
             wrapper.component.dataProviderIDChange.subscribe(dataProviderIDChange);
             cy.get('input').should('have.value', 'one').then(() => {
                 wrapper.component.dataProviderID.set(2);
-                wrapper.component.element._dataProviderID.set(2);
                 expect(dataProviderIDChange).not.to.have.been.called;
                 cy.get('input').should('have.value', 'two')
             });

@@ -168,7 +168,6 @@ describe('ServoyBootstrapCalendarinline', () => {
             cy.get('.day.active').should('have.attr', 'data-value', '2025-10-11').then(() => {
                 const newDate = new Date(2025, 10, 14);
                 wrapper.component.dataProviderID.set(newDate);
-                wrapper.component.element._dataProviderID.set(newDate);
                 expect(dataProviderIDChange).not.to.have.been.called;
                 cy.get('.day.active').should('have.attr', 'data-value', '2025-10-14');
             });

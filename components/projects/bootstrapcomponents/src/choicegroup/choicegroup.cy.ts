@@ -215,7 +215,6 @@ describe('ServoyBootstrapChoicegroup', () => {
             wrapper.component.dataProviderIDChange.subscribe(dataProviderIDChange);
             cy.get('input').should('have.not.checked').then(() => {
                 wrapper.component.dataProviderID.set(1);
-                wrapper.component.element._dataProviderID.set(1);
                 cy.get('input').should('have.checked').then(() => {
                     expect(dataProviderIDChange).not.to.have.been.called;
                 });

@@ -231,7 +231,6 @@ describe('ServoyFloatLabelBootstrapCombobox', () => {
             wrapper.component.dataProviderIDChange.subscribe(dataProviderIDChange);
             cy.get('button span').should('have.text', 'one').then(() => {
                 wrapper.component.dataProviderID.set(2);
-                wrapper.component.element._dataProviderID.set(2);
                 cy.get('button span').should('have.text', 'two').then(() => {
                     expect(dataProviderIDChange).not.to.have.been.called;
                 });

@@ -207,6 +207,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
     }
 
     svyOnChanges(changes: SimpleChanges) {
+        super.svyOnChanges(changes);
         const valuelistID = this.valuelistID();
         this.valueComparator = valuelistID && valuelistID.isRealValueDate() ? this.dateValueCompare : this.valueCompare;
         const valuelistIDValue = this.valuelistID();
@@ -257,8 +258,6 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
                 });
             }
         }
-
-        super.svyOnChanges(changes);
 
         if (changes.readOnly || changes.enabled) {
             if (this.readOnly() || !this.enabled()) {
