@@ -17,13 +17,15 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
     readonly maxDateChange = output();
     readonly minDate = input<Date>(undefined);
     readonly minDateChange = output();
-    readonly keepInvalid = signal<boolean>(undefined);
+    readonly keepInvalid = input<boolean>(undefined);
     readonly keepInvalidChange = output<boolean>();
 
     readonly calendarWeeks = input<boolean>(undefined);
     readonly theme = input<string>(undefined);
 
     readonly options = input<Options>(undefined);
+    
+    _keepInvalid = signal<boolean>(undefined);
 
     picker: TempusDominus;
 
@@ -125,8 +127,11 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
             }
         }
 
-        if (changes.keepInvalid && changes.keepInvalid.currentValue !== undefined)
+        if (changes.keepInvalid && changes.keepInvalid.currentValue !== undefined) {
             this.config.keepInvalid = changes.keepInvalid.currentValue;
+            this._keepInvalid.set(changes.keepInvalid.currentValue);
+        }
+            
         if (this.picker && (changes.calendarWeeks || changes.minDate || changes.options
             || changes.maxDate || changes.disabledDays || changes.disabledDates)) this.picker.updateOptions(this.config);
     }
@@ -189,7 +194,7 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
     private checkInvalidAndPicker(keepInvalid: boolean) {
         if (keepInvalid !== undefined) {
             this.config.keepInvalid = keepInvalid;
-            this.keepInvalid.set(keepInvalid);
+            this._keepInvalid.set(keepInvalid);
             this.keepInvalidChange.emit(keepInvalid);
         }
         if (this.picker) this.picker.updateOptions(this.config);

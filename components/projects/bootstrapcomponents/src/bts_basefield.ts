@@ -57,6 +57,9 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
 
     svyOnChanges(changes: SimpleChanges) {
         if (changes) {
+            if (changes.dataProviderID) {
+                this._dataProviderID.set(this.dataProviderID());
+            }
             for (const property of Object.keys(changes)) {
                 const change = changes[property];
                 switch (property) {
@@ -69,6 +72,9 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
                 }
             }
             if (changes.editable || changes.readOnly || changes.findmode) {
+                if (changes.editable) {
+                    this._editable.set(this.editable());
+                }
                 const findmode = this.findmode();
                 const realFindmode = findmode === undefined? false: findmode; // default for find is false
                 const readOnly = this.readOnly();
