@@ -13,8 +13,8 @@
   [svyTooltip]="toolTipText()"
   [sabloTabseq]="tabSeq()"
   [disabled]="!enabled()"
-  [autocomplete]="autocomplete()"
-  [type]="inputType() == 'password-with-eye' && showPass ? 'text' : inputType() == 'password-with-eye' ? 'password' : inputType()"
+  [autocomplete]="_autocomplete()"
+  [type]="_inputType() == 'password-with-eye' && showPass ? 'text' : _inputType() == 'password-with-eye' ? 'password' : _inputType()"
   [findmode]="findmode()"
   />
 @if (inputType() == 'password-with-eye') {

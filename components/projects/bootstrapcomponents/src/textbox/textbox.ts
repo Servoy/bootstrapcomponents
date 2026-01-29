@@ -12,13 +12,16 @@ import { ServoyBootstrapBasefield } from '../bts_basefield';
 export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputElement> {
 
     readonly format = input<Format>(undefined);
-    readonly inputType = signal<string>(undefined);
-    readonly autocomplete = signal<string>(undefined);
+    readonly inputType = input<string>(undefined);
+    readonly autocomplete = input<string>(undefined);
     readonly styleClassForEye = input<string>(undefined);
 
     readonly inputTypeChange = output<string>();
 
     readonly svyFormat = viewChild(FormatDirective);
+    
+    protected _inputType = signal<string>(undefined);
+    protected _autocomplete = signal<string>(undefined);
 
     showPass = false;
     classForEye = '';
@@ -28,11 +31,11 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
     }
 
     svyOnInit() {
-        console.log('INPUT RAW:', this.dataProviderID);
-        console.log('INPUT VALUE:', this.dataProviderID());
         super.svyOnInit();
+        this._autocomplete.set(this.autocomplete());
+        this._inputType.set(this.inputType());
         if(this.autocomplete() === 'off') {
-            this.autocomplete.set(this.windowService.nativeWindow.navigator.userAgent.match(/chrome/i) ? 'chrome-off' : 'off');
+            this._autocomplete.set(this.windowService.nativeWindow.navigator.userAgent.match(/chrome/i) ? 'chrome-off' : 'off');
         }
         if (this.onActionMethodID()) {
             this.renderer.listen(this.getFocusElement(), 'click', e => {
@@ -69,10 +72,10 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
         const types = ['text', 'password', 'password-with-eye', 'email', 'tel', 'date', 'time', 'datetime-local', 'month', 'week', 'number', 'color', 'search', 'url'];
 
         if (types.indexOf(inputType) > -1) {
-            const inputTypeValue = this.inputType();
+            const inputTypeValue = this._inputType();
             if (inputTypeValue !== inputType) {
-                this.inputType.set(inputType);
-                this.inputTypeChange.emit(inputTypeValue);
+                this._inputType.set(inputType);
+                this.inputTypeChange.emit(inputType);
             }
             const dp = this._dataProviderID();
             if (dp) {

@@ -15,9 +15,9 @@
     [sabloTabseq]="tabSeq()"
     [disabled]="!enabled()"
     [findmode]="findmode()"
-    [autocomplete]="autocomplete()"
+    [autocomplete]="_autocomplete()"
     [placeholder]="floatLabelText()"
-    [type]="inputType() == 'password-with-eye' && showPass ? 'text' : inputType() == 'password-with-eye' ? 'password' : inputType()"
+    [type]="_inputType() == 'password-with-eye' && showPass ? 'text' : _inputType() == 'password-with-eye' ? 'password' : _inputType()"
     />
   @if (inputType() == 'password-with-eye') {
     <div id="svy-textbox-eyeDiv"

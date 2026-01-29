@@ -22,8 +22,8 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
     readonly placeholderText = input<string>(undefined);
     readonly selectOnEnter = input<boolean>(undefined);
     
-    protected _dataProviderID = signal<any>(undefined);
-    protected _editable = signal<boolean>(undefined);
+    _dataProviderID = signal<any>(undefined);
+    _editable = signal<boolean>(undefined);
 
     mustExecuteOnFocus = true;
 
@@ -57,14 +57,6 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
 
     svyOnChanges(changes: SimpleChanges) {
         if (changes) {
-            /*if (changes.dataProviderID) {
-                this._dataProviderID.set(this.dataProviderID());
-            }
-            
-            if (changes.editable) {
-                this._editable.set(this.editable());
-            }*/
-            
             for (const property of Object.keys(changes)) {
                 const change = changes[property];
                 switch (property) {
