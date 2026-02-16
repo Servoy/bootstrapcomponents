@@ -109,4 +109,16 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
 		const types = ['date', 'time', 'datetime-local', 'month', 'week'];
 		return types.includes(this.inputType);
 	}
+	
+	requestFocus(mustExecuteOnFocusGainedMethod: boolean) {
+		if (this.format && this.format.isMask && this.dataProviderID != (this.getFocusElement() as HTMLInputElement).value) {
+			// wait for ui value to be updated before focus, otherwise mask library will be initialized with the old value and not work properly
+			setTimeout(() => {
+				super.requestFocus(mustExecuteOnFocusGainedMethod);
+			});
+		}
+		else {
+			super.requestFocus(mustExecuteOnFocusGainedMethod);
+		}
+	}
 }
