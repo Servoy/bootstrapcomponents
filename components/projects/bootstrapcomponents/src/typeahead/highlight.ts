@@ -12,9 +12,9 @@ import {Component, OnChanges, ChangeDetectionStrategy, SimpleChanges, ViewEncaps
     selector: 'svy-ngb-highlight',
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
-    template: `@for (part of parts; track part; let isOdd = $odd) {
+    template: `@for (part of parts; track $index) {
   ` +
-  `@if (isOdd) {
+  `@if ($odd) {
   <span [class]="highlightClass()" [innerHTML]="part"></span>
 } @else {
   <span [innerHTML]="part"></span>
