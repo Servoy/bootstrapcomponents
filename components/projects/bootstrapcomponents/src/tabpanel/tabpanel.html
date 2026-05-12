@@ -5,7 +5,7 @@
       <li  (click)="tabClicked(tab, i , $event)" [ngbNavItem]="tab._id" [disabled]="tab.disabled || !tab.containedForm"
         [id]="tab._id" [svyTooltip]="tab.toolTipText">
         <a ngbNavLink >
-          <div [ngClass]='tab.styleClass'>
+          <div [class]='tab.styleClass'>
             @if (tab.imageMediaID) {
               <img [src]='tab.imageMediaID' />
             }
@@ -33,5 +33,5 @@
   @if (showArrows) {
     <div id="arrowRight" [ngStyle]="getArrowStyle('right')" (click)="clickArrow(element, true)"><i style="font-size: 20px;" class="fa-solid fa-angle-right"></i></div>
   }
-  <div [ngbNavOutlet]="nav" [ngClass]="containerStyleClass()" [ngStyle]="getContainerStyle(element)"></div>
+  <div [ngbNavOutlet]="nav" [class]="containerStyleClass()" [ngStyle]="getContainerStyle(element)"></div>
 </div>

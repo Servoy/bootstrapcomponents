@@ -200,4 +200,65 @@ describe('ServoyBootstrapCheckbox', () => {
             });
         });
     });
+
+    it('should reflect selectedValue when dataProviderID matches', () => {
+        cy.mount(WrapperComponent, configWrapper).then(wrapper => {
+            applyDefaultProps(wrapper);
+            wrapper.component.selectedValue.set('yes');
+            wrapper.component.dataProviderID.set('yes');
+            cy.get('input').should('be.checked').then(() => {
+                wrapper.component.dataProviderID.set('no');
+                cy.get('input').should('not.be.checked');
+            });
+        });
+    });
+
+    it('should update the tooltip dynamically', () => {
+        cy.mount(WrapperComponent, configWrapper).then((wrapper) => {
+            applyDefaultProps(wrapper);
+            wrapper.component.toolTipText.set('Checkbox tip');
+            cy.get('input').trigger('pointerenter').then(() => {
+                cy.get('div[id="mktipmsg"]').should('have.text', 'Checkbox tip');
+            });
+        });
+    });
+
+    it('should not fire onAction when readOnly is true', () => {
+        const onActionMethodID = cy.stub();
+        defaultValues.onActionMethodID = onActionMethodID;
+        defaultValues.readOnly = true;
+        defaultValues.enabled = true;
+        cy.mount(WrapperComponent, configWrapper).then((wrapper) => {
+            applyDefaultProps(wrapper);
+            cy.get('input').click({ force: true }).then(() => {
+                cy.wrap(onActionMethodID).should('not.have.been.called');
+            });
+        });
+    });
+
+    it('should toggle string dataProvider between "0" and "1"', () => {
+        defaultValues.readOnly = false;
+        defaultValues.enabled = true;
+            (defaultValues as any).dataProviderID = '0';
+        defaultValues.selectedValue = undefined;
+        cy.mount(WrapperComponent, configWrapper).then((wrapper) => {
+            applyDefaultProps(wrapper);
+            cy.get('input').should('not.be.checked').then(() => {
+                const dataProviderIDChange = cy.spy();
+                wrapper.component.dataProviderIDChange.subscribe(dataProviderIDChange);
+                cy.get('input').click().then(() => {
+                    cy.wrap(dataProviderIDChange).should('have.been.calledWith', '1');
+                });
+            });
+        });
+    });
+
+    it('should render text as trusted HTML when showAs is trusted_html', () => {
+        defaultValues.showAs = 'trusted_html';
+        defaultValues.text = '<b id="trust-test">Bold Label</b>';
+        cy.mount(WrapperComponent, configWrapper).then((wrapper) => {
+            applyDefaultProps(wrapper);
+            cy.get('.bts-check label').find('b#trust-test').should('exist').should('have.text', 'Bold Label');
+        });
+    });
 });

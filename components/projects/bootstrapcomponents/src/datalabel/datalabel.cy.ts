@@ -22,6 +22,8 @@ import { of } from 'rxjs';
                 [format]="format()"
                 [showAs]="showAs()"
                 [imageStyleClass]="imageStyleClass()"
+                [trailingImageStyleClass]="trailingImageStyleClass()"
+                [styleClassExpression]="styleClassExpression()"
                 #element>
                 </bootstrapcomponents-datalabel>`,
     standalone: false
@@ -43,6 +45,8 @@ class WrapperComponent {
     showAs = signal<string>(undefined);
     valuelistID = signal<IValuelist>(undefined);
     imageStyleClass = signal<string>(undefined);
+    trailingImageStyleClass = signal<string>(undefined);
+    styleClassExpression = signal<string>(undefined);
 
     dataProviderID = signal<unknown>(undefined);
     dataProviderIDChange = output<unknown>();
@@ -86,6 +90,8 @@ const defaultValues = {
     placeholderText: undefined,
     format: undefined,
     imageStyleClass: undefined,
+    trailingImageStyleClass: undefined,
+    styleClassExpression: undefined,
     onActionMethodID: undefined,
     onDoubleClickMethodID: undefined,
     onRightClickMethodID: undefined
@@ -170,6 +176,34 @@ describe('ServoyBootstrapDatalabel', () => {
             expect(defaultValues.onActionMethodID).to.not.be.called;
             cy.get('.bts-label').should('exist').click().then(() => {
                 expect(defaultValues.onActionMethodID).to.be.called;
+            });
+        });
+    });
+
+    it('should update displayed text when dataProviderID changes', () => {
+        cy.mount(WrapperComponent, configWrapper).then((wrapper) => {
+            applyDefaultProps(wrapper);
+            cy.get('.bts-label .bts-label-text').should('have.text', 'one').then(() => {
+                wrapper.component.dataProviderID.set('two');
+                cy.get('.bts-label .bts-label-text').should('have.text', 'two');
+            });
+        });
+    });
+
+    it('should render trailingImageStyleClass as trailing icon span', () => {
+        cy.mount(WrapperComponent, configWrapper).then((wrapper) => {
+            applyDefaultProps(wrapper);
+            wrapper.component.trailingImageStyleClass.set('fa fa-star');
+            cy.get('.bts-label span.bts-label-icon').last().should('have.class', 'fa').and('have.class', 'fa-star');
+        });
+    });
+
+    it('should show toolTipText on hover', () => {
+        cy.mount(WrapperComponent, configWrapper).then((wrapper) => {
+            applyDefaultProps(wrapper);
+            wrapper.component.toolTipText.set('datalabel tooltip');
+            cy.get('.bts-label').trigger('pointerenter').then(() => {
+                cy.get('div#mktipmsg').should('contain.text', 'datalabel tooltip');
             });
         });
     });

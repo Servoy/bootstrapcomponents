@@ -1,4 +1,4 @@
-import { Component, Renderer2, SimpleChanges, ChangeDetectorRef, ViewChild, ViewChildren, QueryList, ElementRef, HostListener, ChangeDetectionStrategy, Inject, DOCUMENT, input, output, signal } from '@angular/core';
+import { Component, Renderer2, SimpleChanges, ChangeDetectorRef, ChangeDetectionStrategy, Inject, DOCUMENT, input, output, signal } from '@angular/core';
 import { ServoyBootstrapCombobox } from '../combobox/combobox';
 import { FormattingService, ServoyPublicService, PopupStateService} from '@servoy/public';
 
@@ -25,9 +25,6 @@ export class ServoyFloatLabelBootstrapCombobox extends ServoyBootstrapCombobox{
         super.svyOnChanges(changes);
         if (this.servoyApi.isInDesigner()) {
 			this.toggleErrorMessage(true);
-		}
-		if (changes.errorShow) {
-			this.toggleErrorMessage(changes.errorShow.currentValue)
 		}
     }
     

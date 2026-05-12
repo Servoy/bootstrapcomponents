@@ -253,4 +253,41 @@ describe('ServoyFloatLabelBootstrapCombobox', () => {
             });
         });
     });
+
+    it('should show floatLabelText in the label element', () => {
+        cy.mount(WrapperComponent, configWrapper).then(wrapper => {
+            applyDefaultProps(wrapper);
+            wrapper.component.floatLabelText.set('Pick one');
+            cy.get('label').should('have.text', 'Pick one');
+        });
+    });
+
+    it('should show errorMessage div when errorShow is true', () => {
+        cy.mount(WrapperComponent, configWrapper).then(wrapper => {
+            applyDefaultProps(wrapper);
+            cy.get('div.bts-floatlabelcombobox-error-text').should('not.exist');
+            cy.then(() => {
+                const child = wrapper.fixture.debugElement.children[0].componentInstance;
+                child.errorShow.set(true);
+                wrapper.fixture.detectChanges();
+            });
+            cy.get('div.bts-floatlabelcombobox-error-text').should('exist');
+            cy.then(() => {
+                const child = wrapper.fixture.debugElement.children[0].componentInstance;
+                child.errorShow.set(false);
+                wrapper.fixture.detectChanges();
+            });
+            cy.get('div.bts-floatlabelcombobox-error-text').should('not.exist');
+        });
+    });
+
+    it('should update the tooltip dynamically', () => {
+        cy.mount(WrapperComponent, configWrapper).then((wrapper) => {
+            applyDefaultProps(wrapper);
+            wrapper.component.toolTipText.set('Combobox tip');
+            cy.get('button').trigger('pointerenter').then(() => {
+                cy.get('div[id="mktipmsg"]').should('have.text', 'Combobox tip');
+            });
+        });
+    });
 });

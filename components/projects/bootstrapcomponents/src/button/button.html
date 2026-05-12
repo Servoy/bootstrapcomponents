@@ -5,7 +5,7 @@
     [id]="servoyApi.getMarkupId()"
     [svyTooltip]="toolTipText()">
     @if (imageStyleClass()) {
-      <span [ngClass]="imageStyleClass()" aria-hidden="true"></span>
+      <span [class]="imageStyleClass()" aria-hidden="true"></span>
     }
     @if (showAs() !== 'html' && showAs() !== 'trusted_html') {
       {{text()}}
@@ -14,6 +14,6 @@
       <span [innerHTML]="text() | htmlFilter | trustAsHtml:isTrustedHTML()"></span>
     }
     @if (trailingImageStyleClass()) {
-      <span [ngClass]="trailingImageStyleClass()" aria-hidden="true"></span>
+      <span [class]="trailingImageStyleClass()" aria-hidden="true"></span>
     }
 </button>

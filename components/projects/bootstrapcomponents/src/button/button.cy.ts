@@ -244,4 +244,15 @@ describe('ServoyBootstrapButton', () => {
             });
         });
     });
+
+    it('should escape HTML when showAs is text', () => {
+        defaultValues.text = '<b>Bold</b>';
+        defaultValues.showAs = 'text';
+        cy.mount(WrapperComponent, configWrapper).then(wrapper => {
+            applyDefaultProps(wrapper);
+            // the literal string should appear as text, no <b> element rendered
+            cy.get('button').should('contain.text', '<b>Bold</b>');
+            cy.get('button b').should('not.exist');
+        });
+    });
 });

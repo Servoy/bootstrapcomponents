@@ -216,4 +216,60 @@ describe('ServoyBootstrapTabpanel', () => {
             });
         });
     });
+
+    it('should show and hide tab close icons via showTabCloseIcon', () => {
+        cy.mount(WrapperComponent, configWrapper).then(wrapper => {
+            applyDefaultProps(wrapper);
+            cy.get('i.bts-tabpanel-close-icon').should('not.exist').then(() => {
+                wrapper.component.showTabCloseIcon.set(true);
+                cy.get('i.bts-tabpanel-close-icon').should('exist');
+            });
+        });
+    });
+
+    it('should apply closeIconStyleClass linkedSignal with glyphicon migration', () => {
+        cy.mount(WrapperComponent, configWrapper).then(wrapper => {
+            applyDefaultProps(wrapper);
+            wrapper.component.showTabCloseIcon.set(true);
+            wrapper.component.closeIconStyleClass.set('glyphicon glyphicon-remove close-icon');
+            cy.get('i.bts-tabpanel-close-icon').first().should('have.class', 'fas').should('have.class', 'fa-times').then(() => {
+                wrapper.component.closeIconStyleClass.set('fa-solid fa-xmark');
+                cy.get('i.bts-tabpanel-close-icon').first().should('have.class', 'fa-solid').should('have.class', 'fa-xmark');
+            });
+        });
+    });
+
+    it('should apply containerStyleClass to the nav outlet container', () => {
+        cy.mount(WrapperComponent, configWrapper).then(wrapper => {
+            applyDefaultProps(wrapper);
+            cy.get('.bts-tabpanel > div').last().should('not.have.class', 'my-container').then(() => {
+                wrapper.component.containerStyleClass.set('my-container');
+                cy.get('.bts-tabpanel > div').last().should('have.class', 'my-container');
+            });
+        });
+    });
+
+    it('should call onTabCloseMethodID when close icon is clicked', () => {
+        const onTabCloseMethodID = cy.stub().returns(Promise.resolve(true));
+        defaultValues.onTabCloseMethodID = onTabCloseMethodID;
+        cy.mount(WrapperComponent, configWrapper).then((wrapper) => {
+            applyDefaultProps(wrapper);
+            wrapper.component.showTabCloseIcon.set(true);
+            cy.get('i.bts-tabpanel-close-icon').first().click({ force: true }).then(() => {
+                cy.wrap(onTabCloseMethodID).should('be.called');
+            });
+        });
+    });
+
+    it('should show tooltip for tab via toolTipText', () => {
+        cy.mount(WrapperComponent, configWrapper).then(wrapper => {
+            applyDefaultProps(wrapper);
+            const tabs = wrapper.component.tabs().slice();
+            tabs[0] = { ...tabs[0], toolTipText: 'Tab one tip' } as unknown as Tab;
+            wrapper.component.tabs.set(tabs);
+            cy.get('li').first().trigger('pointerenter', { force: true }).then(() => {
+                cy.get('div[id="mktipmsg"]').should('have.text', 'Tab one tip');
+            });
+        });
+    });
 });

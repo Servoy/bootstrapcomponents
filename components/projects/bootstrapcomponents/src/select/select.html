@@ -2,7 +2,7 @@
   <select #element
     (change)="onChange($event, null)"
     class="bts-select"
-    [ngClass]="styleClass()"
+    [class]="styleClass()"
     [id]="servoyApi.getMarkupId()"
     [svyTooltip]="toolTipText()"
     [sabloTabseq]="tabSeq()"
@@ -25,7 +25,7 @@
   <select #element
     (change)="onChange($event, element.value)"
     class="bts-select"
-    [ngClass]="styleClass()"
+    [class]="styleClass()"
     [id]="servoyApi.getMarkupId()"
     [svyTooltip]="toolTipText()"
     [sabloTabseq]="tabSeq()"

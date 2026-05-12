@@ -1,5 +1,5 @@
 
-import { Component, ChangeDetectorRef, Renderer2, ChangeDetectionStrategy, Inject, SimpleChanges, HostListener, DOCUMENT, input, output, viewChild, signal } from '@angular/core';
+import { Component, ChangeDetectorRef, Renderer2, ChangeDetectionStrategy, Inject, SimpleChanges, DOCUMENT, input, output, viewChild, signal } from '@angular/core';
 import { Format, FormatDirective, WindowRefService } from '@servoy/public';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 

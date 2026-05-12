@@ -1,5 +1,5 @@
 
-import { Component, Renderer2, ElementRef, ChangeDetectorRef, SimpleChanges, ChangeDetectionStrategy, Inject, HostListener, DOCUMENT, input, viewChild } from '@angular/core';
+import { Component, Renderer2, ElementRef, ChangeDetectorRef, SimpleChanges, ChangeDetectionStrategy, Inject, DOCUMENT, input, viewChild } from '@angular/core';
 import { DateTime, Namespace, TempusDominus } from '@eonasdan/tempus-dominus';
 import { FormatDirective, Format, FormattingService, PopupStateService } from '@servoy/public';
 import { LoggerFactory, ServoyPublicService } from '@servoy/public';
@@ -9,7 +9,11 @@ import { ServoyBootstrapBaseCalendar } from './basecalendar';
     selector: 'bootstrapcomponents-calendar',
     templateUrl: './calendar.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    standalone: false,
+    host: {
+        '(keydown)': 'onKeyDown($event)',
+        '(click)': 'onClick($event)'
+    }
 })
 export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
 
@@ -33,7 +37,6 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
         super(renderer, cdRef,servoyService, logFactory.getLogger('bts-calendar'), doc);
     }
 
-	@HostListener('keydown', ['$event'])
 	onKeyDown(event: KeyboardEvent) {
 		const shortcuts = ['KeyT', 'KeyY', 'KeyB', 'KeyE', 'NumpadAdd', 'NumpadSubtract'];
         if (!this.picker || (this.readOnly() || !this.enabled() || this.findmode())) return;
@@ -80,7 +83,6 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
 		}
 	}
 
-  	@HostListener('click', ['$event'])
   	onClick(event) {
 		if (this.picker && this.picker.display.isVisible) {
 			this.picker.display.widget.addEventListener('click', () => this.getFocusElement().focus());

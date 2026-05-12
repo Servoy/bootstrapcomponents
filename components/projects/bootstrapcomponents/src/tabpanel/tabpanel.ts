@@ -1,4 +1,4 @@
-import { Component, Renderer2, SimpleChanges, ChangeDetectorRef, ChangeDetectionStrategy, ElementRef, AfterViewInit, OnDestroy, HostListener, input, output, viewChild, signal } from '@angular/core';
+import { Component, Renderer2, ChangeDetectorRef, ChangeDetectionStrategy, ElementRef, AfterViewInit, OnDestroy, input, output, viewChild, linkedSignal } from '@angular/core';
 import { LoggerFactory, LoggerService, WindowRefService } from '@servoy/public';
 
 import { ServoyBootstrapBaseTabPanel, Tab } from '../bts_basetabpanel';
@@ -8,7 +8,10 @@ import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
     selector: 'bootstrapcomponents-tabpanel',
     templateUrl: './tabpanel.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    standalone: false,
+    host: {
+        '(window:resize)': 'onResize()'
+    }
 })
 export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLUListElement> {
 
@@ -23,7 +26,11 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
     }>(undefined);
     readonly containerStyleClass = input<string>(undefined);
     
-    protected _closeIconStyleClass = signal<string>(undefined);
+    protected _closeIconStyleClass = linkedSignal(() =>
+        this.closeIconStyleClass() === 'glyphicon glyphicon-remove close-icon'
+            ? 'fas fa-times'
+            : this.closeIconStyleClass()
+    );
 
     containerStyle = { position: 'relative', minHeight: '0px', overflow: 'auto' };
 
@@ -33,22 +40,14 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
         super(renderer, cdRef, windowRefService);
     }
     
-    @HostListener('window:resize')
-      onResize(): void {
+    onResize(): void {
         if (!this.servoyApi.isInAbsoluteLayout()) {
             this.cdRef.detectChanges();
         }
-      }
+    }
 
     svyOnInit() {
         super.svyOnInit();
-        this._closeIconStyleClass.set(this.closeIconStyleClass());
-        if (this._closeIconStyleClass() === 'glyphicon glyphicon-remove close-icon') this._closeIconStyleClass.set('fas fa-times');
-    }
-
-    svyOnChanges(changes: SimpleChanges) {
-        super.svyOnChanges(changes);
-        if (this._closeIconStyleClass() === 'glyphicon glyphicon-remove close-icon') this._closeIconStyleClass.set('fas fa-times');
     }
 
     onTabChange(event: NgbNavChangeEvent) {

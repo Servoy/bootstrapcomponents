@@ -15,16 +15,16 @@
     [id]="servoyApi.getMarkupId() + '_btn'"
     #input>
     @if (showAsHtml()) {
-      <span class="bts-dropdown-text" [ngClass]="placeholderClass" [innerHtml]="formattedValue ? (formattedValue | htmlFilter | trustAsHtml:isTrustedHTML()) : formattedValue"></span>
+      <span class="bts-dropdown-text" [class]="placeholderClass" [innerHtml]="formattedValue ? (formattedValue | htmlFilter | trustAsHtml:isTrustedHTML()) : formattedValue"></span>
     }
     @if (!showAsHtml()) {
-      <span class="bts-dropdown-text" [ngClass]="placeholderClass">{{formattedValue}}</span>
+      <span class="bts-dropdown-text" [class]="placeholderClass">{{formattedValue}}</span>
     }
   </button>
   <div
     ngbDropdownMenu
     [attr.aria-labelledby]="servoyApi.getMarkupId() + '_btn'"
-    [ngStyle]="{ 'width.px': getDropDownWidth() }"
+    [style.width.px]="getDropDownWidth()"
     (keydown)="handleKeyDown($event)"
     #dropdown>
     @if (openState) {
@@ -32,7 +32,7 @@
         <button
           ngbDropdownItem
           class="svy-ngbdropdownitem"
-          [ngClass]="{active:valueComparator(value)}"
+          [class.active]="valueComparator()(value)"
           (click)="updateValue(value.realValue, $event)">
           <!-- do not break the next line -->
           @if (showAsHtml()) {

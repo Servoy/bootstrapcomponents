@@ -1,5 +1,5 @@
 
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, Inject, Renderer2, SimpleChanges, Directive, DOCUMENT, input, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, Renderer2, SimpleChanges, Directive, DOCUMENT, input, viewChild } from '@angular/core';
 import { NgbTypeahead, NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
 import { merge, Observable, of, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, switchMap, take } from 'rxjs/operators';
@@ -10,7 +10,10 @@ import { ServoyBootstrapBasefield } from '../bts_basefield';
 	selector: 'bootstrapcomponents-typeahead',
 	templateUrl: './typeahead.html',
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: false
+	standalone: false,
+	host: {
+		'(keydown)': 'onKeyDown($event)'
+	}
 })
 export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInputElement> implements IPopupSupportComponent {
 
@@ -46,7 +49,6 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
 		this.autocomplete = windowService.nativeWindow.navigator.userAgent.match(/chrome/i) ? 'chrome-off' : 'off';
 	}
     
-    @HostListener('keydown', ['$event'])
     onKeyDown(event: KeyboardEvent) {
         if (event.key === 'Escape') {
             this.popupStateService.deactivatePopup(this.getNativeElement().id);

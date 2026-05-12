@@ -4,7 +4,7 @@
     class="bts-floatlabeltextbox"
     [class.svy-textbox-password-with-eye-field]="inputType() == 'password-with-eye'"
     (change)="pushUpdate()"
-    [ngClass]="styleClass()"
+    [class]="styleClass()"
     [ngModel]="dataProviderID()"
     (ngModelChange)="onModelChange($event)"
     [svyFormat]="format()"
@@ -22,8 +22,7 @@
   @if (inputType() == 'password-with-eye') {
     <div id="svy-textbox-eyeDiv"
       (click)="showHidePass()"
-      class="clickable svy-textbox-eye {{classForEye}}"
-      [ngClass]="styleClass()">
+      class="clickable svy-textbox-eye {{classForEye}} {{styleClass() || ''}}">
     </div>
   }
   <label [for]="servoyApi.getMarkupId()">{{floatLabelText()}}</label>

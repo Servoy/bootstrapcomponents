@@ -1,5 +1,5 @@
 import { ServoyBootstrapBaseComponent } from './bts_basecomp';
-import { Directive, SimpleChanges, SimpleChange, Renderer2, ChangeDetectorRef, Inject, DOCUMENT, input, output, signal } from '@angular/core';
+import { Directive, SimpleChanges, SimpleChange, Renderer2, ChangeDetectorRef, Inject, DOCUMENT, input, output, linkedSignal, computed } from '@angular/core';
 import { PropertyUtils } from '@servoy/public';
 
 
@@ -22,8 +22,15 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
     readonly placeholderText = input<string>(undefined);
     readonly selectOnEnter = input<boolean>(undefined);
     
-    _dataProviderID = signal<any>(undefined);
-    _editable = signal<boolean>(undefined);
+    _dataProviderID = linkedSignal<any>(() => this.dataProviderID() ?? null);
+    _editable = linkedSignal(() => this.editable());
+
+    readonly _isReadonly = computed(() => {
+        const realFindmode = this.findmode() ?? false;
+        const realReadonly = this.readOnly() ?? false;
+        const realEditable = this._editable() ?? true;
+        return !realFindmode && (realReadonly || !realEditable);
+    });
 
     mustExecuteOnFocus = true;
 
@@ -35,12 +42,7 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
 
     svyOnInit() {
         super.svyOnInit();
-        this._dataProviderID.set(this.dataProviderID());
-        this._editable.set(this.editable());
         this.attachFocusListeners(this.getFocusElement());
-        if (this._dataProviderID() === undefined) {
-            this._dataProviderID.set(null);
-        }
         if (this.onActionMethodID()) {
             this.renderer.listen(this.getFocusElement(), 'keydown', e => {
                 if (e.keyCode === 13) {
@@ -57,9 +59,6 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
 
     svyOnChanges(changes: SimpleChanges) {
         if (changes) {
-            if (changes.dataProviderID) {
-                this._dataProviderID.set(this.dataProviderID());
-            }
             for (const property of Object.keys(changes)) {
                 const change = changes[property];
                 switch (property) {
@@ -72,21 +71,12 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
                 }
             }
             if (changes.editable || changes.readOnly || changes.findmode) {
-                if (changes.editable) {
-                    this._editable.set(this.editable());
+                if (this._isReadonly()) {
+                    this.renderer.setAttribute(this.getFocusElement(), 'readonly', 'readonly');
+                } else {
+                    this.renderer.removeAttribute(this.getFocusElement(), 'readonly');
                 }
-                const findmode = this.findmode();
-                const realFindmode = findmode === undefined? false: findmode; // default for find is false
-                const readOnly = this.readOnly();
-                const realReadonly = readOnly === undefined? false: readOnly; // default for readonly is false
-                const editable = this._editable();
-                const realEditable = editable === undefined? true: editable; // default for editable is true
-				if (realFindmode || (!realReadonly && realEditable)) {
-					this.renderer.removeAttribute(this.getFocusElement(), 'readonly');
-				} else {
-					this.renderer.setAttribute(this.getFocusElement(), 'readonly', 'readonly');
-				}
-			}
+            }
             super.svyOnChanges(changes);
         }
     }

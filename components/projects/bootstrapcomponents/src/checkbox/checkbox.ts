@@ -1,5 +1,5 @@
 
-import { Component, OnInit, Renderer2, SimpleChanges, ElementRef, AfterViewInit, ChangeDetectorRef, ChangeDetectionStrategy, Inject, DOCUMENT, input, viewChild } from '@angular/core';
+import { Component, OnInit, Renderer2, SimpleChanges, ElementRef, AfterViewInit, ChangeDetectorRef, ChangeDetectionStrategy, Inject, DOCUMENT, input, viewChild, computed } from '@angular/core';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 
 @Component({
@@ -15,7 +15,7 @@ export class ServoyBootstrapCheckbox extends ServoyBootstrapBasefield<HTMLDivEle
 
     readonly input = viewChild<ElementRef>('input');
 
-    selected = false;
+    readonly selected = computed(() => this.getSelectionFromDataprovider());
 
     constructor(renderer: Renderer2, protected cdRef: ChangeDetectorRef, @Inject(DOCUMENT) doc: Document) {
         super(renderer, cdRef, doc);
@@ -33,20 +33,6 @@ export class ServoyBootstrapCheckbox extends ServoyBootstrapBasefield<HTMLDivEle
 
     svyOnChanges(changes: SimpleChanges) {
 		super.svyOnChanges(changes);
-        for (const property in changes) {
-			const change = changes[property];
-            switch (property) {
-                case 'dataProviderID':
-                    this.setSelectionFromDataprovider();
-                    break;
-                case 'enabled':
-                    if (change.currentValue && !this.readOnly())
-                    	this.renderer.removeAttribute(this.getFocusElement(), 'disabled');
-                    else
-                    	this.renderer.setAttribute(this.getFocusElement(), 'disabled', 'disabled');
-                    break;
-            }
-        }
     }
 
     getFocusElement(): HTMLElement {
@@ -62,7 +48,6 @@ export class ServoyBootstrapCheckbox extends ServoyBootstrapBasefield<HTMLDivEle
         // reverse the selected value (data provider too)
         if (event.target.localName === 'span' || event.target.localName === 'label'
             || event.target.localName === 'div') {
-            this.selected = !this.selected;
             event.preventDefault();
         }
         const dataProviderID = this._dataProviderID();
@@ -77,10 +62,6 @@ export class ServoyBootstrapCheckbox extends ServoyBootstrapBasefield<HTMLDivEle
                 this._dataProviderID.set(dataProviderID > 0 ? 0 : 1);
             }
         this.pushUpdate();
-    }
-
-    setSelectionFromDataprovider() {
-        this.selected = this.getSelectionFromDataprovider();
     }
 
     getSelectionFromDataprovider() {

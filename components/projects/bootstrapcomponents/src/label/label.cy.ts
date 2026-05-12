@@ -21,6 +21,7 @@ import { FormsModule } from '@angular/forms';
                 [trailingImageStyleClass]="trailingImageStyleClass()"
                 [labelFor]="labelFor()"
                 [imageStyleClass]="imageStyleClass()"
+                [styleClassExpression]="styleClassExpression()"
                 #element>
                 </bootstrapcomponents-label>`,
     standalone: false
@@ -44,6 +45,7 @@ class WrapperComponent {
     trailingImageStyleClass = signal<string>(undefined);
     labelFor = signal<string>(undefined);
     imageStyleClass = signal<string>(undefined);
+    styleClassExpression = signal<string>(undefined);
 
     @ViewChild('element') element: ServoyBootstrapLabel;
 }
@@ -151,6 +153,72 @@ describe('ServoyBootstrapLabel', () => {
             cy.get('.bts-label').should('exist').click().then(() => {
                 cy.wrap(onActionMethodID).should('be.called');
             });
+        });
+    });
+
+    it('should apply styleClassExpression classes via Renderer2', () => {
+        cy.mount(WrapperComponent, configWrapper).then(wrapper => {
+            applyDefaultProps(wrapper);
+            wrapper.component.styleClassExpression.set('highlight bold');
+            cy.get('.bts-label').should('have.class', 'highlight').should('have.class', 'bold').then(() => {
+                wrapper.component.styleClassExpression.set('dimmed');
+                cy.get('.bts-label').should('have.class', 'dimmed')
+                    .should('not.have.class', 'highlight')
+                    .should('not.have.class', 'bold');
+            });
+        });
+    });
+
+    it('should render imageStyleClass and trailingImageStyleClass icons', () => {
+        cy.mount(WrapperComponent, configWrapper).then(wrapper => {
+            applyDefaultProps(wrapper);
+            wrapper.component.imageStyleClass.set('fa fa-star');
+            wrapper.component.trailingImageStyleClass.set('fa fa-arrow-right');
+            cy.get('span.bts-label-icon').should('have.length', 2).then(() => {
+                cy.get('span.bts-label-icon').first().should('have.class', 'fa-star');
+                cy.get('span.bts-label-icon').last().should('have.class', 'fa-arrow-right');
+            });
+        });
+    });
+
+    it('should update the tooltip dynamically', () => {
+        cy.mount(WrapperComponent, configWrapper).then((wrapper) => {
+            applyDefaultProps(wrapper);
+            wrapper.component.toolTipText.set('Label tip');
+            cy.get('.bts-label').trigger('pointerenter').then(() => {
+                cy.get('div[id="mktipmsg"]').should('have.text', 'Label tip');
+            });
+        });
+    });
+
+    it('should not fire onAction when disabled', () => {
+        const onActionMethodID = cy.stub();
+        defaultValues.onActionMethodID = onActionMethodID;
+        defaultValues.enabled = false;
+        cy.mount(WrapperComponent, configWrapper).then((wrapper) => {
+            applyDefaultProps(wrapper);
+            cy.get('.bts-label').click({ force: true }).then(() => {
+                cy.wrap(onActionMethodID).should('not.have.been.called');
+            });
+        });
+    });
+
+    it('should render a <label> element with for attribute when labelFor is set', () => {
+        defaultValues.enabled = true;
+        defaultValues.labelFor = 'myInput';
+        cy.mount(WrapperComponent, configWrapper).then((wrapper) => {
+            applyDefaultProps(wrapper);
+            cy.get('.bts-label label.bts-label-text').should('have.attr', 'for', 'myInput');
+        });
+    });
+
+    it('should render text as trusted HTML when showAs is trusted_html', () => {
+        defaultValues.labelFor = undefined;
+        defaultValues.showAs = 'trusted_html';
+        defaultValues.text = '<em id="lbl-trust">Italic</em>';
+        cy.mount(WrapperComponent, configWrapper).then((wrapper) => {
+            applyDefaultProps(wrapper);
+            cy.get('.bts-label').find('em#lbl-trust').should('exist').should('have.text', 'Italic');
         });
     });
 });

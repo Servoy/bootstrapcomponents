@@ -29,6 +29,7 @@ import { of } from 'rxjs';
                 [filteringDebounce]="filteringDebounce()"
                 [selectOnEnter]="selectOnEnter()"
                 [showAs]="showAs()"
+                [placeholderText]="placeholderText()"
                 #element>
                 </bootstrapcomponents-typeahead>`,
     standalone: false
@@ -225,6 +226,28 @@ describe('ServoyBootstrapTypeahead', () => {
                 wrapper.component.dataProviderID.set(2);
                 expect(dataProviderIDChange).not.to.have.been.called;
                 cy.get('input').should('have.value', 'two')
+            });
+        });
+    });
+
+    it('should show placeholderText when no value selected', () => {
+        cy.mount(WrapperComponent, configWrapper).then((wrapper) => {
+            applyDefaultProps(wrapper);
+            wrapper.component.dataProviderID.set(null);
+            wrapper.component.placeholderText.set('Type to search');
+            cy.get('input').should('have.attr', 'placeholder', 'Type to search');
+        });
+    });
+
+    it('should emit dataProviderIDChange on user selection', () => {
+        cy.mount(WrapperComponent, configWrapper).then((wrapper) => {
+            applyDefaultProps(wrapper);
+            const dataProviderIDChange = cy.spy();
+            wrapper.component.dataProviderIDChange.subscribe(dataProviderIDChange);
+            cy.get('input').clear().type('tw').then(() => {
+                cy.get('ngb-typeahead-window button').first().click().then(() => {
+                    cy.wrap(dataProviderIDChange).should('have.been.called');
+                });
             });
         });
     });

@@ -1,4 +1,4 @@
-import { Component, Renderer2, SimpleChanges, ChangeDetectorRef, ElementRef, HostListener, ChangeDetectionStrategy, Inject, DOCUMENT, input, viewChildren, viewChild } from '@angular/core';
+import { Component, Renderer2, SimpleChanges, ChangeDetectorRef, ElementRef, ChangeDetectionStrategy, Inject, DOCUMENT, input, viewChildren, viewChild, computed } from '@angular/core';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 import { Format, FormattingService, IValuelist, ServoyPublicService, PopupStateService } from '@servoy/public';
 import { NgbDropdownItem, NgbTooltip, NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
     selector: 'bootstrapcomponents-combobox',
     templateUrl: './combobox.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
+    host: { '(keydown)': 'handleKeyDown($event)' },
     standalone: false
 })
 export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivElement> {
@@ -25,7 +26,9 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
     tooltip = viewChild<NgbTooltip>('tooltip');
 
     formattedValue: any;
-    valueComparator: (value: { displayValue: any; realValue: any }) => boolean;
+    readonly valueComparator = computed(() =>
+        this.valuelistID()?.isRealValueDate() ? this.dateValueCompare : this.valueCompare
+    );
     openState = false;
     keyboardSelectValue: string = null;
     lastSelectValue: string = null;
@@ -40,7 +43,6 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
         super(renderer, cdRef, doc);
     }
 
-    @HostListener('keydown', ['$event'])
     handleKeyDown(event: KeyboardEvent) {
         event.stopPropagation();
         this.lastSelectValue = null;
@@ -208,8 +210,6 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
 
     svyOnChanges(changes: SimpleChanges) {
         super.svyOnChanges(changes);
-        const valuelistID = this.valuelistID();
-        this.valueComparator = valuelistID && valuelistID.isRealValueDate() ? this.dateValueCompare : this.valueCompare;
         const valuelistIDValue = this.valuelistID();
         if (changes['dataProviderID'] && this.findmode()) {
             this.formattedValue = this._dataProviderID();
@@ -219,7 +219,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
                 this.valuelistDisplayValueSubscription = null;
             }
             // eslint-disable-next-line eqeqeq
-            const valueListElem = valuelistIDValue.find(this.valueComparator);
+            const valueListElem = valuelistIDValue.find(this.valueComparator());
             if (valueListElem) this.formattedValue = this.formatService.format(valueListElem.displayValue, this.format(), false);
             else {
                 if (!valuelistIDValue.hasRealValues())

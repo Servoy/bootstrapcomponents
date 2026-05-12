@@ -1,4 +1,4 @@
-import { Renderer2, ChangeDetectorRef, Inject, Directive, SimpleChanges, DOCUMENT, input, output, signal } from '@angular/core';
+import { Renderer2, ChangeDetectorRef, Inject, Directive, SimpleChanges, DOCUMENT, input, output, linkedSignal } from '@angular/core';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 
 import { getFirstDayOfWeek, LoggerService, ServoyPublicService } from '@servoy/public';
@@ -25,7 +25,7 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
 
     readonly options = input<Options>(undefined);
     
-    _keepInvalid = signal<boolean>(undefined);
+    _keepInvalid = linkedSignal<boolean>(() => this.keepInvalid());
 
     picker: TempusDominus;
 
@@ -129,7 +129,6 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
 
         if (changes.keepInvalid && changes.keepInvalid.currentValue !== undefined) {
             this.config.keepInvalid = changes.keepInvalid.currentValue;
-            this._keepInvalid.set(changes.keepInvalid.currentValue);
         }
             
         if (this.picker && (changes.calendarWeeks || changes.minDate || changes.options

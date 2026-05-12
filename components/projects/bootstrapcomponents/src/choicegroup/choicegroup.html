@@ -1,7 +1,7 @@
 <div #element
   class="bts-radiogroup"
   [svyTooltip]="toolTipText()"
-  [ngClass]="styleClass()">
+  [class]="styleClass()">
   @for (item of valuelistID() | notNullOrEmpty; track item; let i = $index) {
     <label>
       <input [type]="inputType()"

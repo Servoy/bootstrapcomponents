@@ -299,4 +299,31 @@ describe('ServoyFloatLabelBootstrapTextbox', () => {
             });
         });
     });
+
+    it('should show floatLabelText in the label element', () => {
+        cy.mount(WrapperComponent, configWrapper).then(wrapper => {
+            applyDefaultProps(wrapper);
+            wrapper.component.floatLabelText.set('Your name');
+            cy.get('label').should('have.text', 'Your name');
+        });
+    });
+
+    it('should show errorMessage when errorShow is true', () => {
+        cy.mount(WrapperComponent, configWrapper).then(wrapper => {
+            applyDefaultProps(wrapper);
+            cy.get('div.bts-floatlabeltextbox-error-text').should('not.exist');
+            cy.then(() => {
+                const child = wrapper.fixture.debugElement.children[0].componentInstance;
+                child.errorShow.set(true);
+                wrapper.fixture.detectChanges();
+            });
+            cy.get('div.bts-floatlabeltextbox-error-text').should('exist');
+            cy.then(() => {
+                const child = wrapper.fixture.debugElement.children[0].componentInstance;
+                child.errorShow.set(false);
+                wrapper.fixture.detectChanges();
+            });
+            cy.get('div.bts-floatlabeltextbox-error-text').should('not.exist');
+        });
+    });
 });

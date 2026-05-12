@@ -32,9 +32,6 @@ export class ServoyFloatLabelBootstrapCalendar extends ServoyBootstrapCalendar {
         if (this.servoyApi.isInDesigner()) {
 			this.toggleErrorMessage(true);
 		}
-		if (changes.errorShow) {
-			this.toggleErrorMessage(changes.errorShow.currentValue)
-		}
     }
     
     setPlaceHolderText(change : SimpleChange){

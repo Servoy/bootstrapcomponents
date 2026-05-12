@@ -29,9 +29,6 @@ export class ServoyFloatLabelBootstrapTextbox extends ServoyBootstrapTextbox {
         if (this.servoyApi.isInDesigner()) {
 			this.toggleErrorMessage(true);
 		}
-		if (changes.errorShow) {
-			this.toggleErrorMessage(changes.errorShow.currentValue)
-		}
     }
     
     setPlaceHolderText(change : SimpleChange){

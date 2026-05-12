@@ -1,4 +1,4 @@
-import { Component, Renderer2, Pipe, PipeTransform, ChangeDetectorRef, ChangeDetectionStrategy, input } from '@angular/core';
+import { Component, Renderer2, Pipe, PipeTransform, ChangeDetectorRef, ChangeDetectionStrategy, input, computed } from '@angular/core';
 import { ServoyBootstrapBaseLabel } from '../bts_baselabel';
 
 @Component({
@@ -13,6 +13,12 @@ export class ServoyBootstrapDatalabel extends ServoyBootstrapBaseLabel<HTMLSpanE
     readonly styleClassExpression = input(undefined);
     readonly valuelistID = input(undefined);
     readonly format = input(undefined);
+
+    readonly combinedStyleClass = computed(() => {
+        const sc = this.styleClass() || '';
+        const sce = this.styleClassExpression() ? this.styleClassExpression() + '' : '';
+        return (sc + ' ' + sce).trim();
+    });
 
     constructor(renderer: Renderer2, cdRef: ChangeDetectorRef) {
         super(renderer, cdRef);

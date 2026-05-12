@@ -1,11 +1,11 @@
 <div #element
-  [ngClass]="styleClass()"
+  [class]="styleClass()"
   [svyTooltip]="toolTipText()"
   class="bts-check">
   <label>
     <input
       type="checkbox"
-      [checked]="selected"
+      [checked]="selected()"
       [id]="servoyApi.getMarkupId()"
       [disabled]="!enabled() || readOnly()"
       [sabloTabseq]="tabSeq()"
@@ -26,7 +26,6 @@
   </label>
 
 </div>
-
 
 
 

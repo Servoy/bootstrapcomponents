@@ -299,4 +299,53 @@ describe('ServoyBootstrapTextbox', () => {
             });
         });
     });
+
+    it('should not be readonly when findmode overrides editable=false', () => {
+        defaultValues.editable = false;
+        defaultValues.readOnly = false;
+        defaultValues.findmode = false;
+        cy.mount(WrapperComponent, configWrapper).then(wrapper => {
+            applyDefaultProps(wrapper);
+            cy.get('input').should('have.attr', 'readonly').then(() => {
+                wrapper.component.findmode.set(true);
+                cy.get('input').should('not.have.attr', 'readonly');
+            });
+        });
+    });
+
+    it('should fire onAction on click when editable is false', () => {
+        const onActionMethodID = cy.stub();
+        defaultValues.onActionMethodID = onActionMethodID;
+        defaultValues.editable = false;
+        defaultValues.readOnly = false;
+        defaultValues.findmode = false;
+        defaultValues.dataProviderID = 'clickme';
+        cy.mount(WrapperComponent, configWrapper).then((wrapper) => {
+            applyDefaultProps(wrapper);
+            cy.get('input').should('have.value', 'clickme').click().then(() => {
+                cy.wrap(onActionMethodID).should('have.been.called');
+            });
+        });
+    });
+
+    it('should toggle password visibility when eye button is clicked', () => {
+        defaultValues.editable = true;
+        defaultValues.readOnly = false;
+        defaultValues.findmode = false;
+        defaultValues.inputType = 'password-with-eye';
+        defaultValues.styleClassForEye = undefined;
+        cy.mount(WrapperComponent, configWrapper).then((wrapper) => {
+            applyDefaultProps(wrapper);
+            // eye div should exist for password-with-eye type
+            cy.get('div[id="svy-textbox-eyeDiv"]').should('exist').then(() => {
+                // initially showing closed-eye class (fa-eye-slash)
+                cy.get('div[id="svy-textbox-eyeDiv"]').should('have.class', 'fa-eye-slash');
+                cy.get('div[id="svy-textbox-eyeDiv"]').click({ force: true }).then(() => {
+                    // after click, switches to open-eye class (fa-eye)
+                    cy.get('div[id="svy-textbox-eyeDiv"]').should('have.class', 'fa-eye');
+                    cy.get('div[id="svy-textbox-eyeDiv"]').should('not.have.class', 'fa-eye-slash');
+                });
+            });
+        });
+    });
 });

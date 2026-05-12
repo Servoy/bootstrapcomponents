@@ -1,5 +1,5 @@
 
-import { Component, OnInit, Renderer2, ElementRef, Directive, SimpleChanges, ChangeDetectorRef, ChangeDetectionStrategy, Inject, DOCUMENT, input, viewChild, signal } from '@angular/core';
+import { Component, OnInit, Renderer2, ElementRef, Directive, SimpleChanges, ChangeDetectorRef, ChangeDetectionStrategy, Inject, DOCUMENT, input, viewChild, linkedSignal } from '@angular/core';
 import { IValuelist } from '@servoy/public';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 
@@ -19,7 +19,7 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
 
     readonly input = viewChild<ElementRef<HTMLInputElement>>('input');
     
-    protected _valueProviderID = signal<IValuelist>(undefined);
+    protected _valueProviderID = linkedSignal<IValuelist>(() => this.valuelistID());
 
     selection: any[] = [];
     allowNullinc = 0;
@@ -30,7 +30,6 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
     }
 
     svyOnInit() {
-        this._valueProviderID.set(this.valuelistID());
         super.svyOnInit();
     }
 
@@ -61,12 +60,6 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
                     if (this.alignment() === "horizontal") {
                         this.elementRef.nativeElement.classList.add('horizontaldirection');
                     }
-                    break;
-                case 'enabled':
-                    if (change.currentValue && !this.readOnly())
-                    	this.renderer.removeAttribute(this.getFocusElement(), 'disabled');
-                    else
-                    	this.renderer.setAttribute(this.getFocusElement(), 'disabled', 'disabled');
                     break;
             }
         }

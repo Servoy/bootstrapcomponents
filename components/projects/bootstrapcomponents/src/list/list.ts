@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2, ViewChild, ElementRef, HostListener, SimpleChanges, ChangeDetectorRef, ChangeDetectionStrategy, Inject, DOCUMENT, input } from '@angular/core';
+import { Component, OnInit, Renderer2, ElementRef, SimpleChanges, ChangeDetectorRef, ChangeDetectionStrategy, Inject, DOCUMENT, input } from '@angular/core';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 import { ShowDisplayValuePipe } from '../lib/showDisplayValue.pipe';
 
