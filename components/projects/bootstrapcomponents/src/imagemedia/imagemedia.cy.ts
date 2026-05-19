@@ -143,4 +143,26 @@ describe('ServoyBootstrapImageMedia', () => {
             });
         });
     });
+
+    it('should update image when dataProviderID changes', () => {
+        cy.mount(WrapperComponent, configWrapper).then((wrapper) => {
+            applyDefaultProps(wrapper);
+            wrapper.component.dataProviderID.set('image1.png');
+            cy.get('.svy-mediafield .bts-media').should('have.attr', 'src', 'image1.png').then(() => {
+                wrapper.component.dataProviderID.set('image2.png');
+                cy.get('.svy-mediafield .bts-media').should('have.attr', 'src', 'image2.png');
+            });
+        });
+    });
+
+    it('should update image when dataProviderID object changes', () => {
+        cy.mount(WrapperComponent, configWrapper).then((wrapper) => {
+            applyDefaultProps(wrapper);
+            wrapper.component.dataProviderID.set({ url: 'media/calc_image_1.png' });
+            cy.get('.svy-mediafield .bts-media').should('have.attr', 'src', 'media/calc_image_1.png').then(() => {
+                wrapper.component.dataProviderID.set({ url: 'media/calc_image_2.png' });
+                cy.get('.svy-mediafield .bts-media').should('have.attr', 'src', 'media/calc_image_2.png');
+            });
+        });
+    });
 });
