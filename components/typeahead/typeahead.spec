@@ -17,7 +17,7 @@
 		"editable" : { "type": "protected", "blockingOn": false, "default": true,"for": ["dataProviderID","onDataChangeMethodID"] },
 		"findmode" : { "type":"findmode", "tags":{"scope":"private"}},
 		"size" : {"type" :"dimension",  "default" : {"width":140, "height":30}},
-	    "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design", "doc": "Set the styleclasses that should be applied at to this component" }, "default" : "form-control"},
+	    "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design", "doc": "Set the styleclasses that should be applied at to this component" }, "default" : "form-control", "values": ["form-control", "showAsCombo"]},
 	    "placeholderText" : "tagstring",
         "valuelistID" : { "type" : "valuelist", "tags": {"logWhenOverMax": false, "basic": true}, "for": "dataProviderID","config": "valuelistConfig", "default":"autoVL", "pushToServer": "allow", "max":100},
         "valuelistConfig" : { "type" : "valuelistConfig"},
