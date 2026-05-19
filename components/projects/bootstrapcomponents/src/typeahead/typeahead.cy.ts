@@ -6,6 +6,7 @@ import { MountConfig } from 'cypress/angular';
 import { FormsModule } from '@angular/forms';
 import { NgbTypeahead, NgbHighlight } from '@ng-bootstrap/ng-bootstrap';
 import { of } from 'rxjs';
+import '../../svy_bootstrapcomponents.css';
 
 @Component({
     template: `<bootstrapcomponents-typeahead
@@ -249,6 +250,51 @@ describe('ServoyBootstrapTypeahead', () => {
                     cy.wrap(dataProviderIDChange).should('have.been.called');
                 });
             });
+        });
+    });
+
+    it('should show caret when showAsCombo styleClass is set', () => {
+        cy.mount(WrapperComponent, configWrapper).then(wrapper => {
+            applyDefaultProps(wrapper);
+            wrapper.component.styleClass.set('showAsCombo');
+            cy.get('input').should('have.class', 'showAsCombo');
+            cy.get('bootstrapcomponents-typeahead').then($el => {
+                const after = window.getComputedStyle($el[0], '::after');
+                expect(after.content).not.to.equal('none');
+            });
+        });
+    });
+
+    it('should not show caret when disabled with showAsCombo', () => {
+        cy.mount(WrapperComponent, configWrapper).then(wrapper => {
+            applyDefaultProps(wrapper);
+            wrapper.component.styleClass.set('showAsCombo');
+            wrapper.component.enabled.set(false);
+            cy.get('input').should('have.attr', 'disabled');
+            cy.get('bootstrapcomponents-typeahead').then($el => {
+                const after = window.getComputedStyle($el[0], '::after');
+                expect(after.content).to.equal('none');
+            });
+        });
+    });
+
+    it('should not show caret when readOnly with showAsCombo', () => {
+        cy.mount(WrapperComponent, configWrapper).then(wrapper => {
+            applyDefaultProps(wrapper);
+            wrapper.component.styleClass.set('showAsCombo');
+            wrapper.component.readOnly.set(true);
+            cy.get('bootstrapcomponents-typeahead').then($el => {
+                const after = window.getComputedStyle($el[0], '::after');
+                expect(after.content).to.equal('none');
+            });
+        });
+    });
+
+    it('should have pointer cursor with showAsCombo', () => {
+        cy.mount(WrapperComponent, configWrapper).then(wrapper => {
+            applyDefaultProps(wrapper);
+            wrapper.component.styleClass.set('showAsCombo');
+            cy.get('input').should('have.css', 'cursor', 'pointer');
         });
     });
 });

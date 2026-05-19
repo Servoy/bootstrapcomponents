@@ -13,6 +13,7 @@ export default defineConfig({
                 include: [
                     path.resolve(__dirname, './node_modules/@eonasdan/tempus-dominus/dist/css/tempus-dominus.css'),
                     path.resolve(__dirname, './node_modules/bootstrap/dist/css/bootstrap.min.css'),
+                    path.resolve(__dirname, './projects/bootstrapcomponents/svy_bootstrapcomponents.css'),
                 ],
                 use: ['style-loader', 'css-loader'],
             }],
