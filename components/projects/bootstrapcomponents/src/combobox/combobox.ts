@@ -195,16 +195,23 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
         } else {
             this.popupStateService.deactivatePopup(this.getNativeElement().id);
             this.closeTooltip();
-            const nativeElementBtn = this.elementRef.nativeElement.firstElementChild;
-            if (this.doc.activeElement !== nativeElementBtn) {
-                const event = new Event('blur');
-                nativeElementBtn.dispatchEvent(event);
-            }
+			if (this.doc.activeElement == this.doc.body){
+				// probably just a select from popup, keep the focus to the component
+				super.requestFocus(false);
+			}
+			else{
+				const nativeElementBtn = this.elementRef.nativeElement.firstElementChild;
+				if (this.doc.activeElement !== nativeElementBtn) {
+				    const event = new Event('blur');
+				    nativeElementBtn.dispatchEvent(event);
+				}
+				this.skipFocus = false;
+			}
+          
             const comboboxDropdown = this.comboboxDropdown();
             if (comboboxDropdown.isOpen()) {
                 comboboxDropdown.close();
             }
-            this.skipFocus = false;
         }
     }
 
