@@ -485,6 +485,13 @@ body > .dropdown{
 }
 bootstrapcomponents-typeahead {
     position: relative;
+    display: flex;
+}
+.svy-wrapper bootstrapcomponents-typeahead {
+    height: 100%;
+}
+.svy-layoutcontainer > bootstrapcomponents-typeahead {
+    height: unset;
 }
 bootstrapcomponents-typeahead input.bts-typeahead.showAsCombo {
     cursor: pointer;
