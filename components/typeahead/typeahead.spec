@@ -21,7 +21,7 @@
 	    "placeholderText" : "tagstring",
         "valuelistID" : { "type" : "valuelist", "tags": {"logWhenOverMax": false, "basic": true}, "for": "dataProviderID","config": "valuelistConfig", "default":"autoVL", "pushToServer": "allow", "max":100},
         "valuelistConfig" : { "type" : "valuelistConfig"},
-        "showAs": { "type": "string", "values": ["html", "text"], "default" : "html", "tags": { "scope" :"design","doc" :"Option typeahead options are shown as plain text or sanitized html." }},
+        "showAs": { "type": "string", "values": ["html", "text", "trusted_html"], "default" : "html", "tags": { "scope" :"design","doc" :"Option typeahead options are shown as plain text, sanitized html or trusted html (unsanitized, allowing inline styles)." }},
 	    "tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
 	    "toolTipText" : { "type" : "tagstring"},
 	   "visible" : {"type" : "visible", "tags": {"doc": "Whether the button is visible or not"}},

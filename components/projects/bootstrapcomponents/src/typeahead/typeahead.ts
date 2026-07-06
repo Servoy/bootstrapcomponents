@@ -284,6 +284,10 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
         this.currentValue = dataProviderID;
     }
 
+	isTrustedHTML(): boolean {
+		return this.servoyApi.trustAsHtml() || this.showAs() === 'trusted_html';
+	}
+
 	closePopup() {
         this.popupStateService.deactivatePopup(this.getNativeElement().id);
 		this.instance().dismissPopup();

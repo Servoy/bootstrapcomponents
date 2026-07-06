@@ -1,4 +1,5 @@
-import {Component, OnChanges, ChangeDetectionStrategy, SimpleChanges, ViewEncapsulation, input, signal} from '@angular/core';
+import {Component, OnChanges, ChangeDetectionStrategy, SimpleChanges, ViewEncapsulation, inject, input, signal} from '@angular/core';
+import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 
 /**
  * A component that helps with text highlighting.
@@ -25,7 +26,11 @@ import {Component, OnChanges, ChangeDetectionStrategy, SimpleChanges, ViewEncaps
     standalone: false
 })
 export class SvyNgbHighlight implements OnChanges {
-  parts: string[];
+  parts: (string | SafeHtml)[];
+
+  private sanitizer = inject(DomSanitizer);
+
+  readonly trusted = input(false);
 
   /**
    * The CSS class for `<span>` elements wrapping the `term` inside the `result`.
@@ -77,11 +82,18 @@ export class SvyNgbHighlight implements OnChanges {
 
     const parts = escapedTerms.length ? toSplit.split(new RegExp(`(${escapedTerms.join('|')})`, 'gmi')) : [result];
 
+    let stringParts: string[];
     if (accentSensitive) {
-      this.parts = parts;
+      stringParts = parts;
     } else {
       let offset = 0;
-      this.parts = parts.map(part => result.substring(offset, offset += part.length));
+      stringParts = parts.map(part => result.substring(offset, offset += part.length));
+    }
+
+    if (this.trusted()) {
+      this.parts = stringParts.map(part => this.sanitizer.bypassSecurityTrustHtml(part));
+    } else {
+      this.parts = stringParts;
     }
   }
   

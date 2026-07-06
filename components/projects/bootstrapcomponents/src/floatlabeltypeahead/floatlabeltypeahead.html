@@ -29,7 +29,7 @@
 </div>
 
 <ng-template #rtHTML let-r="result" let-t="term" let-formatter="formatter">
-  <svy-ngb-highlight [result]="formatter(r)" [term]="t"></svy-ngb-highlight>
+  <svy-ngb-highlight [result]="formatter(r)" [term]="t" [trusted]="isTrustedHTML()"></svy-ngb-highlight>
 </ng-template>
 
 <ng-template #rtText let-r="result" let-t="term" let-formatter="formatter">
