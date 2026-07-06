@@ -118,8 +118,23 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
     initializePicker() {
         if (!this.picker) {
             this.picker = new TempusDominus(this.getNativeElement(), this.config);
+            this.patchHandleFocus();
             this.picker.subscribe(Namespace.events.change, (event) => this.dateChanged(event));
         }
+    }
+    
+    protected patchHandleFocus() {
+        const display = (this.picker as any).display;
+        if (!display || typeof display._handleFocus !== 'function') return;
+        const original = display._handleFocus.bind(display);
+        display._handleFocus = () => {
+            if (!display.widget) return;
+            try {
+                original();
+            } catch (e) {
+                this.log.warn('Tempus Dominus focus error suppressed:', e);
+            }
+        };
     }
     
     public updateConfig(format: string) {
