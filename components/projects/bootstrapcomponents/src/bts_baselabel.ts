@@ -20,6 +20,13 @@ export class ServoyBootstrapBaseLabel<T extends HTMLElement> extends ServoyBoots
     svyOnInit() {
         super.svyOnInit();
         if (this.onActionMethodID()) {
+            if (this.getFocusElement().tagName !== 'BUTTON') {
+                this.renderer.listen(this.getFocusElement(), 'keydown', e => {
+                    if (e.key === 'Enter' && this.enabled()) {
+                        this.onActionMethodID()(e, this.getDataTarget(e));
+                    }
+                });
+            }
             if (this.onDoubleClickMethodID()) {
                 this.renderer.listen(this.getFocusElement(), 'click', e => {
                     if(this.enabled()) {
