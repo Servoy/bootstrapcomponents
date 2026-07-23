@@ -85,6 +85,14 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
         }
         super.svyOnInit();
         this.tooltip().autoClose = false;
+        this.input().nativeElement.addEventListener('keydown', (event: KeyboardEvent) => {
+            const comboboxDropdownV = this.comboboxDropdown();
+            const valuelistIDV = this.valuelistID();
+            if (event.key === 'Tab' && comboboxDropdownV.isOpen() && (!valuelistIDV || valuelistIDV.length === 0)) {
+                comboboxDropdownV.close();
+                event.stopImmediatePropagation();
+            }
+        }, true);
     }
 
     showAsHtml() {
