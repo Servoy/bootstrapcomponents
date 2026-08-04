@@ -2,6 +2,7 @@ name: Lint and test
 
 permissions:
   contents: read
+  checks: write
 
 on:
   push:
@@ -63,12 +64,3 @@ jobs:
       - name: Run browser-mode tests
         working-directory: ${{ env.COMPONENT_DIR }}
         run: npm run test:browser
-
-      - name: Upload artifacts on failure
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-artifacts
-          path: ${{ env.COMPONENT_DIR }}/test-results/**
-          if-no-files-found: ignore
-          retention-days: 30
