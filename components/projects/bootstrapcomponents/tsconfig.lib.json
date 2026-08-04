@@ -20,6 +20,6 @@
   },
   "exclude": [
     "src/test.ts",
-    "**/*.cy.ts"
+    "**/*.spec.ts"
   ]
 }

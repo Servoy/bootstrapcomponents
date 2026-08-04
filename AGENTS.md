@@ -17,7 +17,7 @@ Angular library and deployed as a Servoy web package (`.zip`).
 | Angular | 22.1.0 |
 | TypeScript | 6.0.3 |
 | Build system | Angular CLI 22.1.2 + ng-packagr 22.1.1 |
-| Test framework | Cypress 15.x (component testing) |
+| Test framework | Vitest (via @angular/build:unit-test) |
 | Linting | ESLint 10.x (@angular-eslint 22.x + @typescript-eslint 8.x) |
 | Node package manager | npm |
 | Servoy framework | @servoy/public 2026.9.0 |
@@ -55,29 +55,25 @@ A successful build confirms type correctness.
 
 | Command | Purpose |
 |---------|---------|
-| `npm run cy:open` | Open Cypress interactive test runner |
-| `npm run cy:run` | Run all Cypress component tests headless (Chrome) |
-| `npm run cy:run_spec` | Run a specific Cypress spec (append path) |
+| `npm run test` | Run all Vitest component tests (single run) |
+| `npm run test:watch` | Run tests in watch mode |
+| `npm run test:ui` | Open Vitest UI for interactive test execution |
 
 Run a specific component's tests:
 ```bash
-npx cypress run --config video=false --component --browser chrome --spec "projects/bootstrapcomponents/src/<component>/<component>.cy.ts"
+npx ng test @servoy/bootstrapcomponents --no-watch --include "projects/bootstrapcomponents/src/<component>/<component>.spec.ts"
 ```
 
 ### Test conventions
-- Framework: Cypress 15.x (component testing with Angular adapter)
-- Config: `cypress.config.ts` (webpack bundler with CSS loaders for Bootstrap/tempus-dominus)
-- Pattern: `**/*.cy.ts`
+- Framework: Vitest (via `@angular/build:unit-test`)
+- Config: `angular.json` test target + `vitest-base.config.ts`
+- Pattern: `**/*.spec.ts`
 - Each component has a test file alongside its implementation
-- Tests use a **WrapperComponent** pattern with signals to drive inputs
-- Import `ServoyPublicTestingModule` and `ServoyApiTesting` from `@servoy/public`
-- Use `ServoyBootstrapComponentsModule` in the WrapperComponent imports
-- There are also 2 legacy `.spec.ts` files (list, tablesspanel) using TestBed + Jasmine
-  patterns — these have no runner currently configured
-
-### Pending migration: Cypress → Vitest
-This project's tests need to be migrated from Cypress to Vitest (Angular's official
-test framework from v19+). Use the `test-migration` skill when ready to perform this.
+- Tests use direct `TestBed.createComponent(TheComponent)` pattern
+- Use `fixture.componentRef.setInput('name', value)` for signal inputs
+- Use `NO_ERRORS_SCHEMA` to suppress unknown directive warnings
+- Import `ServoyPublicTestingModule` from `@servoy/public`
+- DO NOT import `ServoyBootstrapComponentsModule` in tests (causes dependency issues)
 
 ## Architecture
 
@@ -95,7 +91,7 @@ Each component exists in **two layers** that must stay in sync:
 **Layer 2 — Angular Implementation** (`components/projects/bootstrapcomponents/src/<name>/`):
 - `<name>.ts` — Angular component class
 - `<name>.html` — Angular template
-- `<name>.cy.ts` — Cypress component test
+- `<name>.spec.ts` — Vitest component test
 
 ### Components
 
@@ -208,7 +204,7 @@ bootstrapcomponents/
 After making code changes, always verify:
 1. `npm run build` — must compile without errors
 2. `npx ng lint` — check for lint warnings
-3. Run relevant tests: `npm run cy:run` or target a specific component
+3. Run relevant tests: `npm run test` or target a specific component
 
 ### Commit message format
 
@@ -233,7 +229,7 @@ Example: `SVY-21080 add calendar inline date selection support [ai]`
    - `<name>.html` (template)
 3. Register in `servoybootstrap.module.ts` (declarations + exports)
 4. Export in `public-api.ts`
-5. Create Cypress test: `<name>.cy.ts`
+5. Create Vitest test: `<name>.spec.ts`
 6. Build and verify: `npm run build`
 
 ### Modifying a component
@@ -253,8 +249,8 @@ When changing component properties, handlers, or API:
   older Servoy runtimes. Don't delete them.
 - **No standalone components.** All are `standalone: false`, declared in the shared module.
 - **Angular 22.** This project is on Angular 22.1.x with TypeScript 6.0.
-- **Cypress tests (not Vitest yet).** Tests use Cypress component testing. Migration to
-  Vitest is planned but not yet done.
+- **Vitest for testing.** Tests use Vitest via `@angular/build:unit-test`. Use direct
+  `TestBed.createComponent()` pattern, not WrapperComponent.
 - **Base class hierarchy matters.** Components extend specific base classes
   (`ServoyBootstrapBaseLabel`, `ServoyBootstrapBasefield`, `ServoyBootstrapBaseTabPanel`)
   which provide shared behavior. Check the hierarchy before adding properties.

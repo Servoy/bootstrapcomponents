@@ -32,6 +32,14 @@
               "projects/bootstrapcomponents/src/**/*.html"
             ]
           }
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "projects/bootstrapcomponents/tsconfig.spec.json",
+            "buildTarget": "dummy:build",
+            "runnerConfig": "vitest-base.config.ts"
+          }
         }
       }
     },

@@ -8,9 +8,9 @@
     "build_debug_nowatch": "ng build @servoy/bootstrapcomponents --watch=false",
     "make_release": "ng build --configuration production @servoy/bootstrapcomponents && node scripts/build.js",
     "lint": "ng lint",
-    "cy:open": "cypress open",
-    "cy:run": "cypress run --config video=false --component --browser chrome",
-    "cy:run_spec": "cypress run --config video=false --component --browser chrome --headed --no-exit --spec "
+    "test": "ng test @servoy/bootstrapcomponents --no-watch",
+    "test:watch": "ng test @servoy/bootstrapcomponents",
+    "test:ui": "ng test @servoy/bootstrapcomponents --ui"
   },
   "private": true,
   "dependencies": {
@@ -45,15 +45,14 @@
     "@types/luxon": "3.7.3",
     "adm-zip": "0.6.0",
     "angular-eslint": "^22.1.0",
-    "css-loader": "^7.1.4",
-    "cypress": "15.19.0",
     "eslint": "^10.8.0",
     "eslint-plugin-only-warn": "1.2.1",
+    "jsdom": "^30.0.1",
     "less": "^4.8.1",
     "ng-packagr": "22.1.1",
-    "style-loader": "^4.0.0",
     "typescript": "6.0.3",
-    "typescript-eslint": "^8.66.0"
+    "typescript-eslint": "^8.66.0",
+    "vitest": "^4.1.10"
   },
   "allowScripts": {
     "esbuild@0.28.1": true,

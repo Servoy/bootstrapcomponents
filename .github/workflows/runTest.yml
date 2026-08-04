@@ -56,15 +56,15 @@ jobs:
           report-json: ${{ env.COMPONENT_DIR }}/eslint-results.json
         continue-on-error: true
 
-      - name: Run Cypress component tests
+      - name: Run Vitest component tests
         working-directory: ${{ env.COMPONENT_DIR }}
-        run: npm run cy:run
+        run: npm run test
 
       - name: Upload artifacts on failure
         if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: test-artifacts
-          path: ${{ env.COMPONENT_DIR }}/cypress/screenshots/**
+          path: ${{ env.COMPONENT_DIR }}/test-results/**
           if-no-files-found: ignore
           retention-days: 30
