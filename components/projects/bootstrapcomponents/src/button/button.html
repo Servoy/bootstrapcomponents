@@ -11,7 +11,7 @@
       {{text()}}
     }
     @if ((showAs() === 'html' || showAs() === 'trusted_html')) {
-      <span [innerHTML]="text() | htmlFilter | trustAsHtml:isTrustedHTML()"></span>
+      <span [innerHTML]="$any(text()) | htmlFilter | trustAsHtml:isTrustedHTML()"></span>
     }
     @if (trailingImageStyleClass()) {
       <span [class]="trailingImageStyleClass()" aria-hidden="true"></span>

@@ -10,7 +10,7 @@
     (change)="pushUpdate()"
     (selectItem)="valueChanged($event)"
     [sabloTabseq]="tabSeq()"
-    [editable]="isEditable()"
+    [editable]="$any(isEditable())"
     [svyTooltip]="toolTipText()"
     [placeholder]="floatLabelText()"
     [ngbTypeahead]="filterValues"

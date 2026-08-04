@@ -54,7 +54,7 @@
       selected>
     </option>
   }
-  @if (!showPlaceholder() && valuelistID() && valuelistID().length && !isDPinValuelist() && !multiselect()) {
+  @if (!showPlaceholder() && valuelistID() && valuelistID()!.length && !isDPinValuelist() && !multiselect()) {
     <option
       disabled
       [selected]="!isDPinValuelist()"
@@ -62,7 +62,7 @@
       [value]="dataProviderID()">
     </option>
   }
-  @if (!showPlaceholder() && valuelistID() && valuelistID().length && !isDPinValuelist() && multiselect()) {
+  @if (!showPlaceholder() && valuelistID() && valuelistID()!.length && !isDPinValuelist() && multiselect()) {
     @for (value of disabledDP(); track value) {
       <option
         disabled

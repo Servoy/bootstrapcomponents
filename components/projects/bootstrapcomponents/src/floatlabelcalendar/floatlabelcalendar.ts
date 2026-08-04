@@ -12,9 +12,9 @@ import { ServoyBootstrapCalendar } from '../calendar/calendar';
 })
 export class ServoyFloatLabelBootstrapCalendar extends ServoyBootstrapCalendar {
 
- 	readonly floatLabelText = input<string>(undefined);
- 	readonly errorMessage = input<string>(undefined);
-    readonly errorShow = signal<boolean>(undefined);
+ 	readonly floatLabelText = input<string | undefined>(undefined);
+ 	readonly errorMessage = input<string | undefined>(undefined);
+    readonly errorShow = signal<boolean | undefined>(undefined);
     readonly errorShowChange = output<boolean>();
  
     constructor(renderer: Renderer2,
@@ -46,10 +46,10 @@ export class ServoyFloatLabelBootstrapCalendar extends ServoyBootstrapCalendar {
 			} else {
 				const nativeElement = this.elementRef.nativeElement as HTMLElement;
 				if (show) {
-					nativeElement.querySelector('input').classList.add('bts-floatlabelcalendar-input-invalid');
+					nativeElement.querySelector('input')!.classList.add('bts-floatlabelcalendar-input-invalid');
 					this.errorShowChange.emit(true);
 				} else {
-					nativeElement.querySelector('input').classList.remove('bts-floatlabelcalendar-input-invalid');
+					nativeElement.querySelector('input')!.classList.remove('bts-floatlabelcalendar-input-invalid');
 					this.errorShowChange.emit(false);
 				}	
 			}			

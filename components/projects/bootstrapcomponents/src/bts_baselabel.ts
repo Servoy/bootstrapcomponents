@@ -5,13 +5,13 @@ import { Renderer2, Directive, ChangeDetectorRef, input } from '@angular/core';
 // eslint-disable-next-line
 export class ServoyBootstrapBaseLabel<T extends HTMLElement> extends ServoyBootstrapBaseComponent<T> {
 
-    readonly onActionMethodID = input<(e: Event, data?: any) => void>(undefined);
-    readonly onRightClickMethodID = input<(e: Event, data?: any) => void>(undefined);
-    readonly onDoubleClickMethodID = input<(e: Event, data?: any) => void>(undefined);
+    readonly onActionMethodID = input<((e: Event, data?: any) => void) | undefined>(undefined);
+    readonly onRightClickMethodID = input<((e: Event, data?: any) => void) | undefined>(undefined);
+    readonly onDoubleClickMethodID = input<((e: Event, data?: any) => void) | undefined>(undefined);
 
-    readonly imageStyleClass = input<string>(undefined);
-    readonly trailingImageStyleClass = input<string>(undefined);
-    readonly showAs = input<string>(undefined);
+    readonly imageStyleClass = input<string | undefined>(undefined);
+    readonly trailingImageStyleClass = input<string | undefined>(undefined);
+    readonly showAs = input<string | undefined>(undefined);
 
     constructor(renderer: Renderer2, protected cdRef: ChangeDetectorRef) {
         super(renderer, cdRef);
@@ -23,7 +23,7 @@ export class ServoyBootstrapBaseLabel<T extends HTMLElement> extends ServoyBoots
             if (this.getFocusElement().tagName !== 'BUTTON') {
                 this.renderer.listen(this.getFocusElement(), 'keydown', e => {
                     if (e.key === 'Enter' && this.enabled()) {
-                        this.onActionMethodID()(e, this.getDataTarget(e));
+                        this.onActionMethodID()!(e, this.getDataTarget(e));
                     }
                 });
             }
@@ -32,25 +32,25 @@ export class ServoyBootstrapBaseLabel<T extends HTMLElement> extends ServoyBoots
                     if(this.enabled()) {
                         if (this.timeoutID) {
                             window.clearTimeout(this.timeoutID);
-                            this.timeoutID = null;
+                            this.timeoutID = null as any;
                             // double click, do nothing will be done in sub classes
                         } else {
                             this.timeoutID = window.setTimeout(() => {
-                                this.timeoutID = null;
-                                this.onActionMethodID()(e, this.getDataTarget(e));
+                            this.timeoutID = null as any;
+                                this.onActionMethodID()!(e, this.getDataTarget(e));
                             }, 250);
                         }
                     }
                 });
             } else {
                     this.renderer.listen(this.getFocusElement(), 'click', e => {
-                        if(this.enabled()) this.onActionMethodID()(e, this.getDataTarget(e));
+                        if(this.enabled()) this.onActionMethodID()!(e, this.getDataTarget(e));
                     });
             }
         }
         if (this.onRightClickMethodID()) {
             this.renderer.listen(this.getFocusElement(), 'contextmenu', e => {
-                if(this.enabled()) this.onRightClickMethodID()(e, this.getDataTarget(e));
+                if(this.enabled()) this.onRightClickMethodID()!(e, this.getDataTarget(e));
                 return false;
             });
         }
@@ -63,7 +63,7 @@ export class ServoyBootstrapBaseLabel<T extends HTMLElement> extends ServoyBoots
         return false;
     }
 
-    protected getDataTarget(event): any {
+    protected getDataTarget(event: any): any {
         const dataTarget = event.target.closest('[data-target]');
         if (dataTarget) {
             return dataTarget.getAttribute('data-target');

@@ -14,10 +14,10 @@ import { IValuelist } from '@servoy/public';
 })
 export class ServoyBootstrapSelect extends ServoyBootstrapBasefield<HTMLSelectElement> {
 
-	readonly valuelistID = input<IValuelist>(undefined);
-	readonly multiselect = input<boolean>(undefined);
-	readonly selectSize = input<number>(undefined);
-	selectedValues: any[];
+	readonly valuelistID = input<IValuelist | undefined>(undefined);
+	readonly multiselect = input<boolean | undefined>(undefined);
+	readonly selectSize = input<number | undefined>(undefined);
+	selectedValues!: any[];
 
 	constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, private showDisplayValuePipe: ShowDisplayValuePipe, @Inject(DOCUMENT) doc: Document) {
 		super(renderer, cdRef, doc);
@@ -65,7 +65,7 @@ export class ServoyBootstrapSelect extends ServoyBootstrapBasefield<HTMLSelectEl
         if (valuelistID && dataProviderID) {
             if (this.multiselect()) {
                 const vlValues = valuelistID.map(item => typeof item.realValue === 'string' ? item.realValue : String(item.realValue));
-                isDPinValuelist = dataProviderID.every(dpValue => vlValues.includes(dpValue));
+                isDPinValuelist = dataProviderID.every((dpValue: any) => vlValues.includes(dpValue));
             } else {
                 for (let i = 0;i < valuelistID.length;i++) {
                     if (dataProviderID == valuelistID[i].realValue) {
@@ -79,13 +79,13 @@ export class ServoyBootstrapSelect extends ServoyBootstrapBasefield<HTMLSelectEl
     }
 
     disabledDP(): string[] {
-        const vlValues = this.valuelistID().map(item => typeof item.realValue === 'string' ? item.realValue : String(item.realValue));
+        const vlValues = this.valuelistID()!.map((item: any) => typeof item.realValue === 'string' ? item.realValue : String(item.realValue));
         const dataProviderID = this._dataProviderID();
         const dpValues = dataProviderID ? dataProviderID.split('\n') : [];
-        return dpValues.filter(dpValue => !vlValues.includes(dpValue));
+        return dpValues.filter((dpValue: any) => !vlValues.includes(dpValue));
     }
 
-    onChange(event, value) {
+    onChange(event: any, value: any) {
         this.renderer.removeAttribute(this.getNativeElement(), 'placeholder');
         if (!this.multiselect()) {
             //in this case the event is the value

@@ -26,7 +26,7 @@ import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
     standalone: false
 })
 export class SvyNgbHighlight implements OnChanges {
-  parts: (string | SafeHtml)[];
+  parts!: (string | SafeHtml)[];
 
   private sanitizer = inject(DomSanitizer);
 
@@ -43,13 +43,13 @@ export class SvyNgbHighlight implements OnChanges {
    * If the `term` is found inside this text, it will be highlighted.
    * If the `term` contains array then all the items from it will be highlighted inside the text.
    */
-  readonly result = input<string | null>(undefined);
+  readonly result = input<string | null | undefined>(undefined);
 
   /**
    * The term or array of terms to be highlighted.
    * Since version `v4.2.0` term could be a `string[]`
    */
-  readonly term = input<string | readonly string[]>(undefined);
+  readonly term = input<string | readonly string[] | undefined>(undefined);
 
   /**
    * Boolean option to determine if the highlighting should be sensitive to accents or not.
@@ -76,7 +76,7 @@ export class SvyNgbHighlight implements OnChanges {
 
     const termValue = this.term();
     const terms = Array.isArray(termValue) ? termValue : [termValue];
-    const prepareTerm = term => this.accentSensitive() ? term : this.removeAccents(term);
+    const prepareTerm = (term: any) => this.accentSensitive() ? term : this.removeAccents(term);
     const escapedTerms = terms.map(term => this.regExpEscape(prepareTerm(this.toString(term)))).filter(term => term);
     const toSplit = accentSensitive ? result : this.removeAccents(result);
 

@@ -7,20 +7,20 @@ import { PropertyUtils } from '@servoy/public';
 // eslint-disable-next-line
 export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBootstrapBaseComponent<T> {
 
-    readonly onActionMethodID = input<(e: Event, data?: any) => void>(undefined);
-    readonly onRightClickMethodID = input<(e: Event, data?: any) => void>(undefined);
+    readonly onActionMethodID = input<((e: Event, data?: any) => void) | undefined>(undefined);
+    readonly onRightClickMethodID = input<((e: Event, data?: any) => void) | undefined>(undefined);
 
-    readonly onDataChangeMethodID = input<(e: Event) => void>(undefined);
-    readonly onFocusGainedMethodID = input<(e: Event) => void>(undefined);
-    readonly onFocusLostMethodID = input<(e: Event) => void>(undefined);
+    readonly onDataChangeMethodID = input<((e: Event) => void) | undefined>(undefined);
+    readonly onFocusGainedMethodID = input<((e: Event) => void) | undefined>(undefined);
+    readonly onFocusLostMethodID = input<((e: Event) => void) | undefined>(undefined);
 
     readonly dataProviderIDChange = output();
     readonly dataProviderID = input<any>(undefined);
-    readonly readOnly = input<boolean>(undefined);
-    readonly findmode = input<boolean>(undefined);
-    readonly editable = input<boolean>(undefined);
-    readonly placeholderText = input<string>(undefined);
-    readonly selectOnEnter = input<boolean>(undefined);
+    readonly readOnly = input<boolean | undefined>(undefined);
+    readonly findmode = input<boolean | undefined>(undefined);
+    readonly editable = input<boolean | undefined>(undefined);
+    readonly placeholderText = input<string | undefined>(undefined);
+    readonly selectOnEnter = input<boolean | undefined>(undefined);
     
     _dataProviderID = linkedSignal<any>(() => this.dataProviderID() ?? null);
     _editable = linkedSignal(() => this.editable());
@@ -46,13 +46,13 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
         if (this.onActionMethodID()) {
             this.renderer.listen(this.getFocusElement(), 'keydown', e => {
                 if (e.keyCode === 13) {
-                    setTimeout(() => this.onActionMethodID()(e, this.getDataTarget(e)), 100);
+                    setTimeout(() => this.onActionMethodID()!(e, this.getDataTarget(e)), 100);
                 }
             });
         }
         if (this.onRightClickMethodID()) {
             this.renderer.listen(this.getFocusElement(), 'contextmenu', e => {
-                this.onRightClickMethodID()(e); return false;
+                this.onRightClickMethodID()!(e); return false;
             });
         }
     }
@@ -90,17 +90,17 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
         if (this.onFocusGainedMethodID())
             this.renderer.listen(nativeElement, 'focus', (e) => {
                 if (this.mustExecuteOnFocus !== false) {
-                    this.onFocusGainedMethodID()(e);
+                    this.onFocusGainedMethodID()!(e);
                 }
                 this.mustExecuteOnFocus = true;
             });
         if (this.onFocusLostMethodID())
             this.renderer.listen(nativeElement, 'blur', (e) => {
-                this.onFocusLostMethodID()(e);
+                this.onFocusLostMethodID()!(e);
             });
     }
 
-    onDataChangeCallback(event, returnval) {
+    onDataChangeCallback(event: any, returnval: any) {
         const stringValue = (typeof returnval === 'string' || returnval instanceof String);
         if (returnval === false || stringValue) {
             this.renderer.removeClass(this.getFocusElement(), 'ng-valid');
@@ -133,7 +133,7 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
     }
 
     public getSelectedText(): string {
-        return window.getSelection().toString();
+        return window.getSelection()!.toString();
     }
 
     public replaceSelectedText(text: string) {
@@ -141,11 +141,11 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
         const startPos = elem.selectionStart;
         const endPos = elem.selectionEnd;
 
-        const beginning = elem.value.substring(0, startPos);
-        const end = elem.value.substring(endPos);
+        const beginning = elem.value.substring(0, startPos!);
+        const end = elem.value.substring(endPos!);
         elem.value = beginning + text + end;
         elem.selectionStart = startPos;
-        elem.selectionEnd = startPos + text.length;
+        elem.selectionEnd = startPos! + text.length;
 
         const evt = this.doc.createEvent('HTMLEvents');
         evt.initEvent('change', false, true);
@@ -160,7 +160,7 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
         return dataProviderID;
     }
 
-    public getDataTarget(event): any {
+    public getDataTarget(event: any): any {
         return null;
     }
 }

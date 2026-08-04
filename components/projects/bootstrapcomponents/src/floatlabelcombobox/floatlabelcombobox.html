@@ -1,15 +1,15 @@
 <ng-template #tooltipContent>{{lastSelectValue}}</ng-template>
-<div [id]="servoyApi.getMarkupId()" class="svy-form-floating bts-combobox-container" ngbDropdown #comboboxDropdown="ngbDropdown" (openChange)="openChange($event)"  [container]="appendToBody()?'body':null" #element>
+<div [id]="servoyApi.getMarkupId()" class="svy-form-floating bts-combobox-container" ngbDropdown #comboboxDropdown="ngbDropdown" (openChange)="openChange($event)"  [container]="$any(appendToBody()?'body':null)" #element>
   <button class="bts-floatlabelcombobox form-control dropdown-toggle bts-dropdown" ngbDropdownToggle
     [ngbTooltip]="tooltipContent"
     triggers="manual"
     #tooltip="ngbTooltip"
-    [container]="appendToBody()?'body':null"
+    [container]="$any(appendToBody()?'body':null)"
     [sabloTabseq]="tabSeq()"
     [svyTooltip]="toolTipText()"
     [svyStartEdit]="'dataProviderID'"
     [hostComponent]="this"
-    [svyFormat]="format()"
+    [svyFormat]="$any(format())"
     [disabled]="readOnly() || !enabled()"
     [id]="servoyApi.getMarkupId() + '_btn'"
     #input><span class="bts-dropdown-text">{{formattedValue}}</span></button>
@@ -28,7 +28,7 @@
             [class.active]="valueComparator()(value)"
             (click)="updateValue(value.realValue, $event)">
             <!-- do not break the next line -->
-            {{getRemainingValueBefore(value.displayValue | formatFilter:format() | emptyValue)}}<strong>{{getStrongValue(value.displayValue | formatFilter:format() | emptyValue)}}</strong>{{getRemainingValueAfter(value.displayValue | formatFilter:format() | emptyValue)}}
+            {{getRemainingValueBefore(value.displayValue | formatFilter:$any(format()) | emptyValue)}}<strong>{{getStrongValue(value.displayValue | formatFilter:$any(format()) | emptyValue)}}</strong>{{getRemainingValueAfter(value.displayValue | formatFilter:$any(format()) | emptyValue)}}
           </button>
         }
       }

@@ -28,7 +28,7 @@ export class ServoyBootstrapDatalabel extends ServoyBootstrapBaseLabel<HTMLSpanE
         super.svyOnInit();
         if (this.onDoubleClickMethodID()) {
             this.renderer.listen(this.elementRef.nativeElement, 'dblclick', (e) => {
-                if(this.enabled()) this.onDoubleClickMethodID()(e, this.getDataTarget(e));
+                if(this.enabled()) this.onDoubleClickMethodID()!(e, this.getDataTarget(e));
             });
         }
     }

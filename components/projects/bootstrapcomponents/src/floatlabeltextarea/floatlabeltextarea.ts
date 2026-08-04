@@ -10,9 +10,9 @@ import { ServoyBootstrapTextarea } from '../textarea/textarea';
 })
 export class ServoyFloatLabelBootstrapTextarea extends ServoyBootstrapTextarea {
     
-    readonly floatLabelText = input<string>(undefined);
-    readonly errorMessage = input<string>(undefined);
-    readonly errorShow = signal<boolean>(undefined);
+    readonly floatLabelText = input<string | undefined>(undefined);
+    readonly errorMessage = input<string | undefined>(undefined);
+    readonly errorShow = signal<boolean | undefined>(undefined);
     readonly errorShowChange = output<boolean>();
      
     constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, @Inject(DOCUMENT) doc: Document) {

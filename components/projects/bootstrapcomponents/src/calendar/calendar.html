@@ -9,12 +9,12 @@
     	[sabloTabseq]="tabSeq()"
 		[ngModel]="dataProviderID()"
 		(ngModelChange)="modelChange($event)"
-		[svyFormat]="format()"
+		[svyFormat]="$any(format())"
      	[svyStartEdit]="'dataProviderID'"
       	[hostComponent]="this"
         [disabled]="!enabled()"
-        [findmode]="findmode()"
-        [svyFormat]="format()"
+        [findmode]="$any(findmode())"
+        [svyFormat]="$any(format())"
      	#inputElement/>
    <span
      tabindex='-1'

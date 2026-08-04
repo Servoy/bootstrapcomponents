@@ -6,8 +6,8 @@
   [class]="styleClass()"
   [ngModel]="dataProviderID()"
   (ngModelChange)="onModelChange($event)"
-  [svyFormat]="format()"
-  [svyDecimalKeyConverter]="format()"
+  [svyFormat]="$any(format())"
+  [svyDecimalKeyConverter]="$any(format())"
   [svyStartEdit]="'dataProviderID'"
   [hostComponent]="this"
   [svyTooltip]="toolTipText()"
@@ -15,7 +15,7 @@
   [disabled]="!enabled()"
   [autocomplete]="_autocomplete()"
   [type]="_inputType() == 'password-with-eye' && showPass ? 'text' : _inputType() == 'password-with-eye' ? 'password' : _inputType()"
-  [findmode]="findmode()"
+  [findmode]="$any(findmode())"
   />
 @if (inputType() == 'password-with-eye') {
   <div id="svy-textbox-eyeDiv"

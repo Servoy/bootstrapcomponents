@@ -24,7 +24,7 @@ export class ServoyBootstrapImageMedia extends ServoyBootstrapBasefield<HTMLImag
 		super.svyOnInit();
      	if (this.onActionMethodID()) {
      		this.renderer.listen(this.getFocusElement(), 'click', e => {
-				this.onActionMethodID()(e, this.getDataTarget(e));
+				this.onActionMethodID()!(e, this.getDataTarget(e));
 			});
      	}
 	}
@@ -53,7 +53,7 @@ export class ServoyBootstrapImageMedia extends ServoyBootstrapBasefield<HTMLImag
             if (this.doc.all) {
                 x = this.windowService.nativeWindow.screenTop + 100;
                 y = this.windowService.nativeWindow.screenLeft + 100;
-            } else if (this.doc['layers']) {
+            } else if ((this.doc as any)['layers']) {
                 x = this.windowService.nativeWindow.screenX + 100;
                 y = this.windowService.nativeWindow.screenY + 100;
             } else { // firefox, need to switch the x and y?

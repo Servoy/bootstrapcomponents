@@ -11,17 +11,17 @@ import { ServoyBootstrapBasefield } from '../bts_basefield';
 })
 export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputElement> {
 
-	readonly format = input<Format>(undefined);
-	readonly inputType = input<string>(undefined);
-	readonly autocomplete = input<string>(undefined);
-	readonly styleClassForEye = input<string>(undefined);
+	readonly format = input<Format | undefined>(undefined);
+	readonly inputType = input<string | undefined>(undefined);
+	readonly autocomplete = input<string | undefined>(undefined);
+	readonly styleClassForEye = input<string | undefined>(undefined);
 
 	readonly inputTypeChange = output<string>();
 
 	readonly svyFormat = viewChild(FormatDirective);
 
-	protected _inputType = signal<string>(undefined);
-	protected _autocomplete = signal<string>(undefined);
+	protected _inputType = signal<string | undefined>(undefined);
+	protected _autocomplete = signal<string | undefined>(undefined);
 
 	showPass = false;
 	classForEye = '';
@@ -40,7 +40,7 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
 		if (this.onActionMethodID()) {
 			this.renderer.listen(this.getFocusElement(), 'click', e => {
 				if (this._editable() === false) {
-					this.onActionMethodID()(e);
+					this.onActionMethodID()!(e);
 				}
 			});
 		}
@@ -56,10 +56,10 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
 		}
 	}
 
-	onModelChange(newValue) {
+	onModelChange(newValue: any) {
 		// if format or invalid date, force dataprovider display with formated value / invalid date text
 		if (this.format() || (newValue && typeof newValue.getTime === 'function' && isNaN(newValue.getTime()))) {
-			this.svyFormat().writeValue(newValue);
+			this.svyFormat()!.writeValue(newValue);
 		}
 		this._dataProviderID.set(newValue);
 
@@ -68,7 +68,7 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
 		}
 	}
 
-	setInputType(inputType: string) {
+	setInputType(inputType: any) {
 		const types = ['text', 'password', 'password-with-eye', 'email', 'tel', 'date', 'time', 'datetime-local', 'month', 'week', 'number', 'color', 'search', 'url'];
 
 		if (types.indexOf(inputType) > -1) {
@@ -79,7 +79,7 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
 			}
 			const dp = this._dataProviderID();
 			if (dp) {
-				this.svyFormat().writeValue(dp);
+				this.svyFormat()!.writeValue(dp);
 			}
 			return true;
 		} else {
@@ -114,11 +114,11 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
 
 	isDateType() {
 		const types = ['date', 'time', 'datetime-local', 'month', 'week'];
-		return types.includes(this.inputType());
+		return types.includes(this.inputType()!);
 	}
 
 	requestFocus(mustExecuteOnFocusGainedMethod: boolean) {
-		if (this.format() && this.format().isMask && this.dataProviderID() != (this.getFocusElement() as HTMLInputElement).value) {
+		if (this.format() && this.format()!.isMask && this.dataProviderID() != (this.getFocusElement() as HTMLInputElement).value) {
 			// wait for ui value to be updated before focus, otherwise mask library will be initialized with the old value and not work properly
 			setTimeout(() => {
 				super.requestFocus(mustExecuteOnFocusGainedMethod);

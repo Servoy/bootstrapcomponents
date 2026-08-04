@@ -2,7 +2,7 @@
   class="bts-radiogroup"
   [svyTooltip]="toolTipText()"
   [class]="styleClass()">
-  @for (item of valuelistID() | notNullOrEmpty; track item; let i = $index) {
+  @for (item of $any(valuelistID()) | notNullOrEmpty; track item; let i = $index) {
     <label>
       <input [type]="inputType()"
         [checked]="selection[i]"

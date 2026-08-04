@@ -10,8 +10,8 @@ import { ServoyBootstrapBasefield } from '../bts_basefield';
 })
 export class ServoyBootstrapCheckbox extends ServoyBootstrapBasefield<HTMLDivElement> {
 
-    readonly showAs = input<string>(undefined);
-    readonly selectedValue = input<string>(undefined);
+    readonly showAs = input<string | undefined>(undefined);
+    readonly selectedValue = input<string | undefined>(undefined);
 
     readonly input = viewChild<ElementRef>('input');
 
@@ -26,7 +26,7 @@ export class ServoyBootstrapCheckbox extends ServoyBootstrapBasefield<HTMLDivEle
         this.renderer.listen(this.getFocusElement(), 'click', (e) => {
             if (!this.readOnly() && this.enabled()) {
                 this.itemClicked(e);
-                if (this.onActionMethodID()) setTimeout(() => this.onActionMethodID()(e, this.getDataTarget(e)));
+                if (this.onActionMethodID()) setTimeout(() => this.onActionMethodID()!(e, this.getDataTarget(e)));
             }
         });
     }
@@ -36,7 +36,7 @@ export class ServoyBootstrapCheckbox extends ServoyBootstrapBasefield<HTMLDivEle
     }
 
     getFocusElement(): HTMLElement {
-        return this.input().nativeElement;
+        return this.input()!.nativeElement;
     }
 
     requestFocus(mustExecuteOnFocusGainedMethod: boolean) {
@@ -44,7 +44,7 @@ export class ServoyBootstrapCheckbox extends ServoyBootstrapBasefield<HTMLDivEle
         (this.getFocusElement() as HTMLElement).focus();
     }
 
-    itemClicked(event) {
+    itemClicked(event: any) {
         // reverse the selected value (data provider too)
         if (event.target.localName === 'span' || event.target.localName === 'label'
             || event.target.localName === 'div') {
@@ -88,7 +88,7 @@ export class ServoyBootstrapCheckbox extends ServoyBootstrapBasefield<HTMLDivEle
     }
     
     
-    public override getDataTarget(event): any {
+    public override getDataTarget(event: any): any {
 		const dataTarget = event.target.closest('label').querySelector('[data-target]');
         if (dataTarget) {
             return dataTarget.getAttribute('data-target');

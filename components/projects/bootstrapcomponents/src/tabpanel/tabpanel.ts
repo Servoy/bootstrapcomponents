@@ -15,16 +15,16 @@ import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLUListElement> {
 
-    readonly onTabClickedMethodID = input<(event: Event, tabIndex: number, datatarget: string) => Promise<boolean>>(undefined);
-    readonly onTabCloseMethodID = input<(event: Event, tabIndex: number) => Promise<boolean>>(undefined);
+    readonly onTabClickedMethodID = input<((event: Event, tabIndex: number, datatarget: string) => Promise<boolean>) | undefined>(undefined);
+    readonly onTabCloseMethodID = input<((event: Event, tabIndex: number) => Promise<boolean>) | undefined>(undefined);
 
-    readonly showTabCloseIcon = input<boolean>(undefined);
-    readonly closeIconStyleClass = input<string>(undefined);
+    readonly showTabCloseIcon = input<boolean | undefined>(undefined);
+    readonly closeIconStyleClass = input<string | undefined>(undefined);
     readonly cssPosition = input<{
         width: string;
         height: string;
-    }>(undefined);
-    readonly containerStyleClass = input<string>(undefined);
+    } | undefined>(undefined);
+    readonly containerStyleClass = input<string | undefined>(undefined);
     
     protected _closeIconStyleClass = linkedSignal(() =>
         this.closeIconStyleClass() === 'glyphicon glyphicon-remove close-icon'
@@ -34,7 +34,7 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
 
     containerStyle = { position: 'relative', minHeight: '0px', overflow: 'auto' };
 
-    private visibleTabIndex: number;
+    private visibleTabIndex!: number;
 
     constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, windowRefService: WindowRefService) {
         super(renderer, cdRef, windowRefService);
@@ -77,7 +77,7 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
             if (onTabClickedMethodID) {
                 const dataTargetAttr = (event.target as Element).closest('[data-target]');
                 const dataTarget = dataTargetAttr ? dataTargetAttr.getAttribute('data-target') : null;
-                const promise = onTabClickedMethodID(event, tabIndexClicked + 1, dataTarget);
+                const promise = onTabClickedMethodID(event, tabIndexClicked + 1, dataTarget as string);
                 promise.then((ok) => {
                     if (ok) {
                         this.servoyApi.callServerSideApi('setTabIndexInternal', [tabIndexClicked +1]);
@@ -106,7 +106,7 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
             else this.renderer.setStyle(navpane, 'height', '100%');
             this.renderer.setStyle(navpane, 'position', 'relative');
             if (fullsize) {
-                const tabs = element.querySelector('ul');
+                const tabs = element.querySelector('ul')!;
                 let calcHeight = tabs.clientHeight;
                 const clientRects = tabs.getClientRects();
                 if (clientRects && clientRects.length > 0) {
@@ -124,24 +124,24 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
         }
         
         if (this.cssPosition() && this.servoyApi.isInAbsoluteLayout()) {
-            const tabs = element.querySelector('ul');
+            const tabs = element.querySelector('ul')!;
             let calcHeight = tabs.clientHeight;
             const clientRects = tabs.getClientRects();
             if (clientRects && clientRects.length > 0) {
                 calcHeight = tabs.getClientRects()[0].height;
             }
-            this.containerStyle['height'] = 'calc(100% - ' + calcHeight + 'px)';
+            (this.containerStyle as any)['height'] = 'calc(100% - ' + calcHeight + 'px)';
             // should we set this to absolute ? it cannot be relative
-            delete this.containerStyle.position;
+            delete (this.containerStyle as any).position;
         } else {
             if (fullsize) {
-                this.containerStyle['height'] = height;
+                (this.containerStyle as any)['height'] = height;
                 if (this.getNativeElement()) this.renderer.setStyle(this.getNativeElement(), 'height', '100%');
             } else {
-                this.containerStyle['minHeight'] = height + 'px';
+                (this.containerStyle as any)['minHeight'] = height + 'px';
             }
         }
-        this.containerStyle['marginTop'] = (element.offsetWidth < element.scrollWidth ? 8 : 0) + 'px';
+        (this.containerStyle as any)['marginTop'] = (element.offsetWidth < element.scrollWidth ? 8 : 0) + 'px';
         return this.containerStyle;
     }
     
@@ -158,9 +158,9 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
     showArrows: boolean = false;
     tabHeight: number = 0;
     getNavStyle(element: HTMLElement): { [key: string]: string } {
-        const tabs = element.querySelector('ul');
+        const tabs = element.querySelector('ul')!;
         const tabAnchor = tabs?.firstElementChild?.querySelector('a');
-        this.tabHeight = tabAnchor?.getBoundingClientRect()?.height;
+        this.tabHeight = tabAnchor?.getBoundingClientRect()?.height ?? 0;
         if (tabAnchor) {
             const anchorStyle = getComputedStyle(tabAnchor);
             this.tabHeight = this.tabHeight + parseFloat(anchorStyle.marginTop) + parseFloat(anchorStyle.marginBottom);
@@ -176,8 +176,8 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
             this.showArrows = true;
         } else {
             this.showArrows = false;
-            delete style.left;
-            delete style.width;
+            delete (style as any).left;
+            delete (style as any).width;
         }
         if (!this.servoyApi.isInAbsoluteLayout() && this.showArrows) {
             this.setCompStyleResponsiveFrm(element, true);
@@ -205,13 +205,13 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
     }
     
     clickArrow(element: HTMLElement, moveRight: boolean) {
-        const arrowLeft: HTMLElement = element.querySelector('#arrowLeft');
-        const arrowRight: HTMLElement = element.querySelector('#arrowRight');
+        const arrowLeft = element.querySelector('#arrowLeft') as HTMLElement;
+        const arrowRight = element.querySelector('#arrowRight') as HTMLElement;
         if ((moveRight && arrowRight.style.cursor === 'not-allowed') || (!moveRight && arrowLeft.style.cursor === 'not-allowed')) return;
-        const tabs: HTMLElement = element.querySelector('ul');
-        const tabSize = tabs.firstElementChild.getBoundingClientRect().width;
+        const tabs = element.querySelector('ul') as HTMLElement;
+        const tabSize = tabs.firstElementChild!.getBoundingClientRect().width;
         const oldValue = parseFloat(tabs.style.left) || 0;
-        const compWidth = tabs.closest('bootstrapcomponents-tabpanel').getBoundingClientRect().width;
+        const compWidth = tabs.closest('bootstrapcomponents-tabpanel')!.getBoundingClientRect().width;
         const maxRight = tabs.clientWidth - compWidth;
         let newValue = oldValue + (moveRight ? -tabSize : tabSize);
         if (moveRight && newValue * -1 > maxRight) {
@@ -241,12 +241,12 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
 })
 export class BsTabpanelActiveTabVisibilityListener implements AfterViewInit, OnDestroy {
 
-    readonly tab = input<Tab>(undefined);
+    readonly tab = input<Tab | undefined>(undefined);
     readonly visibleTab = output<Tab>();
 
     readonly elementRef = viewChild<ElementRef>('element');
 
-    observer: MutationObserver;
+    observer!: MutationObserver;
     log: LoggerService;
 
     constructor(logFactory: LoggerFactory) {
@@ -255,14 +255,14 @@ export class BsTabpanelActiveTabVisibilityListener implements AfterViewInit, OnD
 
     ngAfterViewInit(): void {
         if (typeof MutationObserver !== 'undefined') {
-            const tabNode = this.elementRef().nativeElement.parentNode.parentNode;
+            const tabNode = this.elementRef()!.nativeElement.parentNode.parentNode;
 
             this.observer = new MutationObserver((mutations) => {
                 mutations.forEach((mutation) => {
                     if (mutation.attributeName === 'class') {
                         const oldValueA = mutation.oldValue ? mutation.oldValue.split(' ') : [];
-                        if (oldValueA.indexOf('active') === -1 && mutation.target['classList'].contains('active')) {
-                            this.visibleTab.emit(this.tab());
+                        if (oldValueA.indexOf('active') === -1 && (mutation.target as HTMLElement).classList.contains('active')) {
+                            this.visibleTab.emit(this.tab()!);
                         }
                     }
                 });
@@ -274,7 +274,7 @@ export class BsTabpanelActiveTabVisibilityListener implements AfterViewInit, OnD
             });
         } else {
             this.log.warn('MutationObserver not available, bootstrapcomponents-tabpanel may not work correctly.');
-            this.visibleTab.emit(this.tab());
+            this.visibleTab.emit(this.tab()!);
         }
     }
 

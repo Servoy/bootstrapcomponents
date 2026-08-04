@@ -14,7 +14,7 @@ import { IValuelist } from '@servoy/public';
 })
 export class ServoyBootstrapList extends ServoyBootstrapBasefield<HTMLInputElement> {
 
-  readonly valuelistID = input<IValuelist>(undefined);
+  readonly valuelistID = input<IValuelist | undefined>(undefined);
 
   constructor(renderer: Renderer2, cdRef: ChangeDetectorRef,
      private showDisplayValuePipe: ShowDisplayValuePipe, @Inject(DOCUMENT) doc: Document) {
@@ -35,13 +35,13 @@ export class ServoyBootstrapList extends ServoyBootstrapBasefield<HTMLInputEleme
     }
   }
 
-  updateInput(listValue) {
+  updateInput(listValue: any) {
     const valuelistID = this.valuelistID();
     if (valuelistID) {
       listValue = this.showDisplayValuePipe.transform(listValue, valuelistID);
     }
     if(listValue){
-        listValue.subscribe( val => {
+        listValue.subscribe( (val: any) => {
             if ( val ) {
                 this.renderer.setProperty(this.elementRef.nativeElement, 'value', val);
             }
@@ -54,12 +54,12 @@ export class ServoyBootstrapList extends ServoyBootstrapBasefield<HTMLInputEleme
       const valuelistID = this.valuelistID();
       if (valuelistID) {
           for (const i of Object.keys(valuelistID)) {
-              let displayValue = valuelistID[i].displayValue;
+              let displayValue = (valuelistID as any)[i].displayValue;
               if (!displayValue || displayValue === '') {
                   displayValue = ' ';
               }
               if (listValue === displayValue) {
-                  listValue = valuelistID[i].realValue;
+                  listValue = (valuelistID as any)[i].realValue;
                   break;
               }
           }

@@ -13,7 +13,7 @@
   @if (showAs() === 'html' || showAs() === 'trusted_html') {
     <span
       class="bts-label-text"
-      [innerHTML]="text() | htmlFilter | trustAsHtml:isTrustedHTML()"
+      [innerHTML]="$any(text()) | htmlFilter | trustAsHtml:isTrustedHTML()"
       >
     </span>
   }
@@ -31,7 +31,7 @@
   }
   @if (showAs() === 'html' || showAs() === 'trusted_html') {
     <label class='bts-label-text' for="{{labelFor()}}"
-      [innerHTML]="text() | htmlFilter | trustAsHtml:isTrustedHTML()"
+      [innerHTML]="$any(text()) | htmlFilter | trustAsHtml:isTrustedHTML()"
       >
     </label>
   }

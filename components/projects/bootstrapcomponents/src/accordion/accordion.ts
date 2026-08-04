@@ -12,7 +12,7 @@ import { ServoyBootstrapBaseTabPanel,Tab } from '../bts_basetabpanel';
 export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDivElement> {
 
     readonly contentElementRef = viewChild('content', { read: ElementRef });
-    panelHeight: number;
+    panelHeight!: number;
     
     formHeightMap: { [formName: string]: number } = {};
 
@@ -99,13 +99,13 @@ export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDi
         return id;
     }
     
-    tabClicked(tab: Tab,tabIndexClicked: number, event){
+    tabClicked(tab: Tab,tabIndexClicked: number, event: any){
        this.servoyApi.callServerSideApi('setTabIndexInternal', [tabIndexClicked +1]);
     }
     
     private getFormState(form: string, tab: Tab, formWillShow: boolean) {
         if (formWillShow) {
-            this.servoyApi.formWillShow(form, ('relationName' in tab) ? tab.relationName : null).then(() => {
+            this.servoyApi.formWillShow(form, ('relationName' in tab) ? tab.relationName : undefined).then(() => {
                 const formCache = this.servoyPublic.getFormCacheByName(form);
                 if (formCache && formCache.absolute) {
                     this.formHeightMap[form] = formCache.size.height;

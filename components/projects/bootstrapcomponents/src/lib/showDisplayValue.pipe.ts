@@ -37,11 +37,11 @@ export class ShowDisplayValuePipe implements PipeTransform {
                 else 
                     return valuelist.getDisplayValue(realValue).pipe(map(displayValue =>  this.getParsedDisplayValue(displayValue, noEscape)));
             }
-            if (valuelist.length === 0) return null;
+            if (valuelist.length === 0) return null as any;
 
             return of (input);
         }
-        return null;
+        return null as any;
     }
 
     getParsedDisplayValue(value: string, noEscape: any) {

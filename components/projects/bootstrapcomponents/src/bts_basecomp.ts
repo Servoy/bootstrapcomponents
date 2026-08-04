@@ -5,16 +5,16 @@ import { Directive, Renderer2, SimpleChanges, ChangeDetectorRef, input, linkedSi
 // eslint-disable-next-line
 export class ServoyBootstrapBaseComponent<T extends HTMLElement> extends ServoyBaseComponent<T> {
 
-    readonly enabled = input<boolean>(undefined);
-    readonly styleClass = input<string>(undefined);
-    readonly variant = input<string[]>(undefined);
-    readonly tabSeq = input<number>(undefined);
-    readonly text = input<string>(undefined);
-    readonly toolTipText = input<string>(undefined);
+    readonly enabled = input<boolean | undefined>(undefined);
+    readonly styleClass = input<string | undefined>(undefined);
+    readonly variant = input<string[] | undefined>(undefined);
+    readonly tabSeq = input<number | undefined>(undefined);
+    readonly text = input<string | undefined>(undefined);
+    readonly toolTipText = input<string | undefined>(undefined);
     
     protected _toolTipText = linkedSignal(() => this.toolTipText());
 
-    timeoutID: number;
+    timeoutID!: number;
 
     constructor(protected readonly renderer: Renderer2, protected cdRef: ChangeDetectorRef) {
         super(renderer, cdRef);

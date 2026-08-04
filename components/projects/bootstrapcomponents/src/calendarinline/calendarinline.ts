@@ -12,13 +12,13 @@ import { DateTime } from '@eonasdan/tempus-dominus';
 })
 export class ServoyBootstrapCalendarinline extends ServoyBootstrapBaseCalendar {
 
-    readonly format = input<Format>(undefined);
+    readonly format = input<Format | undefined>(undefined);
 
     constructor(renderer: Renderer2, cdRef: ChangeDetectorRef,
         servoyService: ServoyPublicService, logFactory: LoggerFactory, @Inject(DOCUMENT) doc: Document) {
         super(renderer, cdRef, servoyService, logFactory.getLogger('bts-inlinecalendar'), doc);
-        this.config.display.inline = true;
-        this.config.display.buttons.close = false;
+        this.config.display!.inline = true;
+        this.config.display!.buttons!.close = false;
     }
 
     public svyOnInit() {
@@ -37,11 +37,11 @@ export class ServoyBootstrapCalendarinline extends ServoyBootstrapBaseCalendar {
                     this.updateConfig(change.currentValue.display);
                     if (this.picker !== null) {
                         this.picker.dispose();
-                        this.picker = null;
+                        this.picker = null as any;
                         this.initializePicker();
                         const dataProviderID = this._dataProviderID();
-                        const value = (dataProviderID instanceof Date) ? DateTime.convert(dataProviderID, null, this.config.localization) : null;
-                        this.picker.dates.setValue(value);
+                        const value = (dataProviderID instanceof Date) ? DateTime.convert(dataProviderID, undefined, this.config.localization) : null;
+                        this.picker.dates.setValue(value as any);
                     }
                 }
             } else {

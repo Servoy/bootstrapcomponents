@@ -9,8 +9,8 @@ import { Component, Renderer2, ChangeDetectorRef, ChangeDetectionStrategy, Simpl
 })
 export class ServoyBootstrapLabel extends ServoyBootstrapBaseLabel<HTMLSpanElement> {
 
-    readonly labelFor = input<string>(undefined);
-    readonly styleClassExpression = input<string>(undefined);
+    readonly labelFor = input<string | undefined>(undefined);
+    readonly styleClassExpression = input<string | undefined>(undefined);
 
     constructor(renderer: Renderer2, cdRef: ChangeDetectorRef) {
         super(renderer, cdRef);
@@ -20,7 +20,7 @@ export class ServoyBootstrapLabel extends ServoyBootstrapBaseLabel<HTMLSpanEleme
         super.svyOnInit();
         if (this.onDoubleClickMethodID()) {
             this.renderer.listen(this.elementRef.nativeElement, 'dblclick', (e) => {
-                if(this.enabled()) this.onDoubleClickMethodID()(e, this.getDataTarget(e));
+                if(this.enabled()) this.onDoubleClickMethodID()!(e, this.getDataTarget(e));
             });
         }
     }

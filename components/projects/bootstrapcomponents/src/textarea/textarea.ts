@@ -10,8 +10,8 @@ import { ServoyBootstrapBasefield } from '../bts_basefield';
 })
 export class ServoyBootstrapTextarea extends ServoyBootstrapBasefield<HTMLTextAreaElement> {
 
-    readonly maxLength = input<number>(undefined);
-    _maxLength = signal<number>(undefined);
+    readonly maxLength = input<number | undefined>(undefined);
+    _maxLength = signal<number | undefined>(undefined);
 
     constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, @Inject(DOCUMENT) doc: Document) {
         super(renderer, cdRef, doc);
@@ -26,7 +26,7 @@ export class ServoyBootstrapTextarea extends ServoyBootstrapBasefield<HTMLTextAr
         }
     }
     
-    onModelChange(newValue) {
+    onModelChange(newValue: any) {
         this._dataProviderID.set(newValue);
         this.pushUpdate();
     }

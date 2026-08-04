@@ -10,10 +10,10 @@ import { ServoyBootstrapBaseComponent } from '../bts_basecomp';
 })
 export class ServoyBootstrapTablesspanel extends ServoyBootstrapBaseComponent<HTMLDivElement> {
 
-    readonly containedForm = input<string>(undefined);
-    readonly relationName = input<string>(undefined);
+    readonly containedForm = input<string | undefined>(undefined);
+    readonly relationName = input<string | undefined>(undefined);
     readonly waitForData = input<any>(undefined);
-    readonly height = input<number>(undefined);
+    readonly height = input<number | undefined>(undefined);
 
     readonly templateRef = contentChild(TemplateRef);
 
@@ -33,7 +33,7 @@ export class ServoyBootstrapTablesspanel extends ServoyBootstrapBaseComponent<HT
                         if (change.currentValue !== change.previousValue)
                             if (change.previousValue) {
                                 this.formWillShowCalled = change.currentValue;
-                                this.servoyApi.hideForm(change.previousValue, null, null, change.currentValue, this.relationName(), null)
+                                this.servoyApi.hideForm(change.previousValue, undefined, undefined, change.currentValue, this.relationName(), undefined)
                                     .then(() => {
                                         this.realContainedForm = this.containedForm();
                                         this.cdRef.detectChanges();
@@ -88,7 +88,7 @@ export class ServoyBootstrapTablesspanel extends ServoyBootstrapBaseComponent<HT
     }
 
     getContainerStyle() {
-        let style = { position: "relative" }
+        let style: any = { position: "relative" }
         let minHeight = 0;
         const containedForm = this.containedForm();
         const height = this.height();

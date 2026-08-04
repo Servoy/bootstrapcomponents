@@ -21,8 +21,8 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
 	
 	readonly svyFormat = viewChild(FormatDirective);
 
-    readonly format = input<Format>(undefined);
-    readonly pickerOnly = input<boolean>(undefined);
+    readonly format = input<Format | undefined>(undefined);
+    readonly pickerOnly = input<boolean | undefined>(undefined);
 
     private hasFocus = false;
     private isBlur = false;
@@ -69,7 +69,7 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
 					date.setDate(date.getDate() + 1);
 					this.updateDate(event, date);
 				}
-			} else if (!this.formatDateIsString() || this.inputElementRef().nativeElement.value === '') {
+			} else if (!this.formatDateIsString() || this.inputElementRef()!.nativeElement.value === '') {
 				if (event.code === 'KeyY') {
 					date.setDate(date.getDate() - 1);
 				} else if (event.code === 'KeyB') {
@@ -83,9 +83,9 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
 		}
 	}
 
-  	onClick(event) {
+  	onClick(event: any) {
 		if (this.picker && this.picker.display.isVisible) {
-			this.picker.display.widget.addEventListener('click', () => this.getFocusElement().focus());
+			this.picker.display.widget!.addEventListener('click', () => this.getFocusElement().focus());
 		}
   	}
 
@@ -121,7 +121,7 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
         if (changes.findmode) {
             if (changes.findmode.currentValue) {
                 this.picker.dispose();
-                this.picker = null;
+                this.picker = null as any;
             } else {
                 this.initializePicker();
             }
@@ -143,7 +143,7 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
         const maxDate = this.maxDate();
         if (event !== '' && ((minDate && minDate > event) || (maxDate && maxDate < event) || !this.isValidDate(event))) {
             // revert to old value
-            this.svyFormat().writeValue(this._dataProviderID());
+            this.svyFormat()!.writeValue(this._dataProviderID());
         }
     }
     
@@ -152,29 +152,29 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
     }
 
     public getNativeChild(): any {
-        return this.inputElementRef().nativeElement;
+        return this.inputElementRef()!.nativeElement;
     }
 
     getFocusElement(): any {
-        return this.inputElementRef().nativeElement;
+        return this.inputElementRef()!.nativeElement;
     }
 
     getStyleClassElement(): any {
-        return this.inputElementRef().nativeElement;
+        return this.inputElementRef()!.nativeElement;
     }
 
     initializePicker() {
         if (!this.picker) {
-            const currentValue = (this.inputElementRef().nativeElement as HTMLInputElement).value;
-            (this.inputElementRef().nativeElement as HTMLInputElement).value='';
+            const currentValue = (this.inputElementRef()!.nativeElement as HTMLInputElement).value;
+            (this.inputElementRef()!.nativeElement as HTMLInputElement).value='';
             this.picker = new TempusDominus(this.getNativeElement(), this.config);
-            (this.inputElementRef().nativeElement as HTMLInputElement).value = currentValue;
-            this.picker.dates.formatInput =  (date: DateTime) => date?this.formattingService.format(date, this.format(), false):'';
-            this.picker.dates.parseInput =  (value: string) => {
-                const parsed = this.formattingService.parse(value?value.trim():null, this.format(), true, this._dataProviderID(), true);
-                if (parsed instanceof Date && !isNaN(parsed.getTime())) return  DateTime.convert(parsed, null, this.config.localization);
-                return null;
-            };
+            (this.inputElementRef()!.nativeElement as HTMLInputElement).value = currentValue;
+            this.picker.dates.formatInput =  (date: DateTime) => date?this.formattingService.format(date, this.format()!, false):'';
+            this.picker.dates.parseInput =  ((value: string) => {
+                const parsed = this.formattingService.parse(value?value.trim():undefined, this.format()!, true, this._dataProviderID(), true);
+                if (parsed instanceof Date && !isNaN(parsed.getTime())) return  DateTime.convert(parsed, undefined, this.config.localization);
+                return undefined;
+            }) as any;
             this.picker.subscribe(Namespace.events.change, (event) => this.dateChanged(event));
             if (this.onFocusGainedMethodID()) {
                 this.picker.subscribe(Namespace.events.show, () => this.checkOnFocus());
@@ -206,11 +206,11 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
 	private dateChange(key: string) {
 		const picker = document.querySelector('.tempus-dominus-widget.show:not(.inline)');
 		if (picker) {
-			const containerDays: HTMLElement = picker.querySelector('.date-container-days');
-			const previousMonth: HTMLElement = picker.querySelector('.previous');
-			const nextMonth: HTMLElement = picker.querySelector('.next');
-        	const days = [];
-        	picker.querySelectorAll('div[data-action="selectDay"]').forEach((itm: HTMLElement) => days.push(itm));
+			const containerDays = picker.querySelector('.date-container-days') as HTMLElement;
+			const previousMonth = picker.querySelector('.previous') as HTMLElement;
+			const nextMonth = picker.querySelector('.next') as HTMLElement;
+        	const days: HTMLElement[] = [];
+        	picker.querySelectorAll('div[data-action="selectDay"]').forEach((itm) => days.push(itm as HTMLElement));
         	const activeDay = days.filter((itm: HTMLElement) => itm.classList.contains('active'))[0];
         	const today = days.filter((itm: HTMLElement) => itm.classList.contains('today'))[0];
         	const day = activeDay || today;
@@ -250,10 +250,10 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
     private checkOnBlur() {
         this.isBlur = true;
         setTimeout(() => {
-            if (this.hasFocus && this.isBlur && (this.doc.activeElement.parentElement !== this.getNativeElement())) {
+            if (this.hasFocus && this.isBlur && (this.doc.activeElement!.parentElement !== this.getNativeElement())) {
                 this.hasFocus = false;
                 this.isBlur = false;
-                this.onFocusLostMethodID()(new CustomEvent('blur'));
+                this.onFocusLostMethodID()!(new CustomEvent('blur'));
             }
         });
     }
@@ -263,7 +263,7 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
         if (!this.hasFocus) {
             this.hasFocus = true;
             if (this.mustExecuteOnFocus) {
-                this.onFocusGainedMethodID()(new CustomEvent('focus'));
+                this.onFocusGainedMethodID()!(new CustomEvent('focus'));
             }
         }
     }

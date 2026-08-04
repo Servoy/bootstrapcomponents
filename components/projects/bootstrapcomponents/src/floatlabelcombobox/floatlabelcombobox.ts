@@ -11,9 +11,9 @@ import { FormattingService, ServoyPublicService, PopupStateService} from '@servo
 })
 export class ServoyFloatLabelBootstrapCombobox extends ServoyBootstrapCombobox{
 
-    readonly floatLabelText = input<string>(undefined);
-    readonly errorMessage = input<string>(undefined);
-    readonly errorShow = signal<boolean>(undefined);
+    readonly floatLabelText = input<string | undefined>(undefined);
+    readonly errorMessage = input<string | undefined>(undefined);
+    readonly errorShow = signal<boolean | undefined>(undefined);
     readonly errorShowChange = output<boolean>();
 
     constructor(renderer: Renderer2, protected cdRef: ChangeDetectorRef, protected formatService: FormattingService, 
@@ -36,10 +36,10 @@ export class ServoyFloatLabelBootstrapCombobox extends ServoyBootstrapCombobox{
 			} else {
 				const nativeElement = this.elementRef.nativeElement as HTMLElement;
 				if (show) {
-					nativeElement.querySelector('button').classList.add('bts-floatlabelcombobox-input-invalid');
+					nativeElement.querySelector('button')!.classList.add('bts-floatlabelcombobox-input-invalid');
 					this.errorShowChange.emit(true);
 				} else {
-					nativeElement.querySelector('button').classList.remove('bts-floatlabelcombobox-input-invalid');
+					nativeElement.querySelector('button')!.classList.remove('bts-floatlabelcombobox-input-invalid');
 					this.errorShowChange.emit(false);
 				}	
 			}			

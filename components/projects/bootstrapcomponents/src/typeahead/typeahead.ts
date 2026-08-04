@@ -21,22 +21,22 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
 
 	readonly instance = viewChild<NgbTypeahead>('instance');
 
-	readonly showAs = input<string>(undefined);
-	readonly format = input<Format>(undefined);
-	readonly valuelistID = input<IValuelist>(undefined);
-	readonly appendToBody = input<boolean>(undefined);
-	readonly filteringDebounce = input<number>(undefined);
+	readonly showAs = input<string | undefined>(undefined);
+	readonly format = input<Format | undefined>(undefined);
+	readonly valuelistID = input<IValuelist | undefined>(undefined);
+	readonly appendToBody = input<boolean | undefined>(undefined);
+	readonly filteringDebounce = input<number | undefined>(undefined);
 	autocomplete: string;
-	container: string;
+	container!: string;
 
 	currentValue: any;
-	showPopupOnFocusGain: boolean;
+	showPopupOnFocusGain!: boolean;
 
 	focus$ = new Subject<string>();
 	click$ = new Subject<string>();
 
-	lastFilteringPromise: Observable<any> = null;
-	valueToApply: { displayValue: string; realValue: any } = null;
+	lastFilteringPromise: Observable<any> | null = null;
+	valueToApply: { displayValue: string; realValue: any } | null = null;
 
 	private realToDisplay: Map<any, string> = new Map();
 
@@ -62,7 +62,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
             this.popupStateService.activatePopup(this.getNativeElement().id);
 		});
 		// add custom class to the popup, needed by ng-grids (ag-grid) so it can be used in form editors (popups)
-		this.instance().popupClass = 'ag-custom-component-popup svy-typeahead-zindex';
+		this.instance()!.popupClass = 'ag-custom-component-popup svy-typeahead-zindex';
 		this.showPopupOnFocusGain = this.servoyApi.getClientProperty('TypeAhead.showPopupOnFocusGain');
 		if (this.showPopupOnFocusGain === null || this.showPopupOnFocusGain === undefined) {
 			this.showPopupOnFocusGain = this.servoyService.getUIProperty('TypeAhead.showPopupOnFocusGain');
@@ -70,7 +70,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
 	}
 
 	onFocus = () => {
-		const popup = this.doc.getElementById(this.instance().popupId);
+		const popup = this.doc.getElementById(this.instance()!.popupId);
 		if (popup) {
 			popup.style.width = this.getFocusElement().clientWidth + 'px';
 		}
@@ -88,13 +88,13 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
 	}
 
 	scroll() {
-		if (!this.instance().isPopupOpen()) {
+		if (!this.instance()!.isPopupOpen()) {
 			return;
 		}
 
 		setTimeout(() => {
-			const popup = this.doc.getElementById(this.instance().popupId);
-			const activeElements = popup.getElementsByClassName('active');
+			const popup = this.doc.getElementById(this.instance()!.popupId);
+			const activeElements = popup!.getElementsByClassName('active');
 			if (activeElements.length === 1) {
 				const elem = activeElements[0] as HTMLElement;
 				elem.scrollIntoView({
@@ -120,12 +120,12 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
     svyOnChanges(changes: SimpleChanges) {
         super.svyOnChanges(changes);
         if (changes.enabled || changes.findmode) {
-            this.instance().setDisabledState(!this.enabled() && !this.findmode());
+            this.instance()!.setDisabledState(!this.enabled() && !this.findmode());
         }
         const dataProviderID = this._dataProviderID();
         const valuelistID = this.valuelistID();
         if (changes.format && valuelistID) {
-            this.instance().writeValue(dataProviderID);
+            this.instance()!.writeValue(dataProviderID);
         }
         if (changes.format) {
             const format = this.format();
@@ -134,7 +134,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
             } else {
                 this.renderer.removeAttribute(this.elementRef.nativeElement, 'maxlength');
             }
-            if (valuelistID) this.instance().writeValue(dataProviderID);
+            if (valuelistID) this.instance()!.writeValue(dataProviderID);
         }
         if (changes.dataProviderID) {
             this.currentValue = changes.dataProviderID.currentValue;
@@ -145,8 +145,8 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
     }
 
     filterValues = (text$: Observable<string>) => {
-        const debouncedText$ = text$.pipe(debounceTime(this.filteringDebounce()), distinctUntilChanged());
-        const clicksWithClosedPopup$ = this.click$.pipe(filter(() => !this.instance().isPopupOpen()));
+        const debouncedText$ = text$.pipe(debounceTime(this.filteringDebounce()!), distinctUntilChanged());
+        const clicksWithClosedPopup$ = this.click$.pipe(filter(() => !this.instance()!.isPopupOpen()));
         const inputFocus$ = this.focus$;
 
         return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(switchMap(term => {
@@ -160,8 +160,8 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
                         if (this.valueToApply) {
                             const tempValue = this.valueToApply;
                             this.valueToApply = null;
-                            promise.pipe(take(1)).subscribe(items => {
-                                let value = items.find((item) => item.realValue == tempValue.realValue);
+                            promise.pipe(take(1)).subscribe((items: any) => {
+                                let value = items.find((item: any) => item.realValue == tempValue.realValue);
                                 // is the item still in valuelist after filter? apply that one, if not select the first one
                                 if (!value) {
                                     value = items[0];
@@ -173,14 +173,14 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
                             });
                         }
                     }
-                    const popup = this.doc.getElementById(this.instance().popupId);
+                    const popup = this.doc.getElementById(this.instance()!.popupId);
                     if (popup) {
                         popup.style.width = this.getFocusElement().clientWidth + 'px';
                         if (term == "" && this._dataProviderID()) {
                             const highlightElements = popup.getElementsByClassName('ngb-highlight');
                             if (highlightElements.length === 1) {
                                 // initial display , highlight the value element
-                                highlightElements[0].parentNode.parentNode.dispatchEvent(new Event('mouseenter'));
+                                highlightElements[0].parentNode!.parentNode!.dispatchEvent(new Event('mouseenter'));
                             }
                         }
                     }
@@ -225,7 +225,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
 	resultFormatter = (result: { displayValue: string; realValue: any }) => {
 		// eslint-disable-next-line eqeqeq
 		if (result.displayValue === null || result.displayValue == '') return '\u00A0';
-		return this.formatService.format(result.displayValue, this.format(), false);
+		return this.formatService.format(result.displayValue, this.format()!, false);
 	};
 
     inputFormatter = (result: any) => {
@@ -255,7 +255,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
                         if (val) {
                             this.realToDisplay.set(result, val);
                             // if dpid is changed do not write the old value
-                            if (result == this._dataProviderID()) this.instance().writeValue(result);
+                            if (result == this._dataProviderID()) this.instance()!.writeValue(result);
                         }
                     });
                     display = this.realToDisplay.get(result); // in case the getDisplayValue above runs sync, before this return happen (uses of() not from())
@@ -266,7 +266,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
                 }
             }
         }
-        return this.formatService.format(result, this.format(), false);
+        return this.formatService.format(result, this.format()!, false);
     };
 
     valueChanged(event: NgbTypeaheadSelectItemEvent) {
@@ -290,7 +290,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
 
 	closePopup() {
         this.popupStateService.deactivatePopup(this.getNativeElement().id);
-		this.instance().dismissPopup();
+		this.instance()!.dismissPopup();
 	}
     
     focusLost() {

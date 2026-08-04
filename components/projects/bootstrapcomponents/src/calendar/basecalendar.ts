@@ -9,25 +9,25 @@ import { Localization } from '@eonasdan/tempus-dominus/types/utilities/options';
 @Directive()
 export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDivElement> {
 
-    readonly disabledDays = input<number[]>(undefined);
+    readonly disabledDays = input<number[] | undefined>(undefined);
     readonly disabledDaysChange = output();
-    readonly disabledDates = input<Date[]>(undefined);
+    readonly disabledDates = input<Date[] | undefined>(undefined);
     readonly disabledDatesChange = output();
-    readonly maxDate = input<Date>(undefined);
+    readonly maxDate = input<Date | undefined>(undefined);
     readonly maxDateChange = output();
-    readonly minDate = input<Date>(undefined);
+    readonly minDate = input<Date | undefined>(undefined);
     readonly minDateChange = output();
-    readonly keepInvalid = input<boolean>(undefined);
+    readonly keepInvalid = input<boolean | undefined>(undefined);
     readonly keepInvalidChange = output<boolean>();
 
-    readonly calendarWeeks = input<boolean>(undefined);
-    readonly theme = input<string>(undefined);
+    readonly calendarWeeks = input<boolean | undefined>(undefined);
+    readonly theme = input<string | undefined>(undefined);
 
-    readonly options = input<Options>(undefined);
+    readonly options = input<Options | undefined>(undefined);
     
-    _keepInvalid = linkedSignal<boolean>(() => this.keepInvalid());
+    _keepInvalid = linkedSignal<boolean>(() => this.keepInvalid() ?? false);
 
-    picker: TempusDominus;
+    picker!: TempusDominus;
 
     readonly config: Options = {
         allowInputToggle: false,
@@ -69,19 +69,19 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
         public log: LoggerService,
         @Inject(DOCUMENT) doc: Document) {
         super(renderer, cdRef, doc);
-        this.config.localization.locale = servoyService.getLocale();
-        this.loadCalendarLocale(this.config.localization.locale);
-        this.config.localization.startOfTheWeek = getFirstDayOfWeek(servoyService.getLocaleObject() ? servoyService.getLocaleObject().full : servoyService.getLocale());
+        this.config.localization!.locale = servoyService.getLocale();
+        this.loadCalendarLocale(this.config.localization!.locale);
+        this.config.localization!.startOfTheWeek = getFirstDayOfWeek(servoyService.getLocaleObject() ? servoyService.getLocaleObject().full : servoyService.getLocale());
         const lts = LuxonDateTime.now().setLocale(servoyService.getLocale()).toLocaleString(LuxonDateTime.DATETIME_FULL).toUpperCase();
         if (lts.indexOf('AM') >= 0 || lts.indexOf('PM') >= 0) {
-            this.config.localization.hourCycle = 'h12';
+            this.config.localization!.hourCycle = 'h12';
         }
     }
 
     public svyOnInit() {
         const theme = this.theme();
         if (theme) {
-            this.config.display.theme = theme as 'auto' | 'light' | 'dark';
+            this.config.display!.theme = theme as 'auto' | 'light' | 'dark';
         }
         this.initializePicker();
         super.svyOnInit();
@@ -94,36 +94,36 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
         }
         if (changes.dataProviderID && this.picker && !this.findmode()) {
             const dataProviderID = this._dataProviderID();
-            const value = (dataProviderID instanceof Date) ? DateTime.convert(dataProviderID, null, this.config.localization) : null;
-            this.picker.dates.setValue(value);
+            const value = (dataProviderID instanceof Date) ? DateTime.convert(dataProviderID, undefined, this.config.localization) : null;
+            this.picker.dates.setValue(value as any);
         }
         const dataProviderIDValue = this._dataProviderID();
         if (dataProviderIDValue) {
-            const value = (dataProviderIDValue instanceof Date) ? DateTime.convert(dataProviderIDValue, null, this.config.localization) : null;
+            const value = (dataProviderIDValue instanceof Date) ? DateTime.convert(dataProviderIDValue, undefined, this.config.localization) : null;
             if (value)
                 this.config.viewDate = value;
             else delete this.config.viewDate;
         }
         if (changes.calendarWeeks && changes.calendarWeeks.currentValue != undefined)
-            this.config.display.calendarWeeks = changes.calendarWeeks.currentValue;
+            this.config.display!.calendarWeeks = changes.calendarWeeks.currentValue;
         if (changes.minDate && changes.minDate.currentValue)
-            this.config.restrictions.minDate = DateTime.convert(changes.minDate.currentValue, null, this.config.localization);
+            this.config.restrictions!.minDate = DateTime.convert(changes.minDate.currentValue, undefined, this.config.localization);
         if (changes.maxDate && changes.maxDate.currentValue)
-            this.config.restrictions.maxDate = DateTime.convert(changes.maxDate.currentValue, null, this.config.localization);
+            this.config.restrictions!.maxDate = DateTime.convert(changes.maxDate.currentValue, undefined, this.config.localization);
         if (changes.disabledDays) {
             if (changes.disabledDays.currentValue) {
-                this.config.restrictions.daysOfWeekDisabled = changes.disabledDays.currentValue;
+                this.config.restrictions!.daysOfWeekDisabled = changes.disabledDays.currentValue;
             }
             else if (changes.disabledDays.previousValue) {
-                this.config.restrictions.daysOfWeekDisabled = [];
+                this.config.restrictions!.daysOfWeekDisabled = [];
             }
         }
         if (changes.disabledDates) {
             if (changes.disabledDates.currentValue) {
-                this.config.restrictions.disabledDates = this.convertDateArray(changes.disabledDates.currentValue);
+                this.config.restrictions!.disabledDates = this.convertDateArray(changes.disabledDates.currentValue);
             }
             else if (changes.disabledDates.previousValue) {
-                this.config.restrictions.disabledDates = [];
+                this.config.restrictions!.disabledDates = [];
             }
         }
 
@@ -149,21 +149,21 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
         const showHour = format.indexOf('h') >= 0 || format.indexOf('H') >= 0;
         const showMinute = format.indexOf('m') >= 0;
         const showSecond = format.indexOf('s') >= 0;
-        this.config.display.components.calendar = showYear || showMonth || showDate;
-        this.config.display.components.decades = showYear;
-        this.config.display.components.year = showYear;
-        this.config.display.components.month = showMonth;
-        this.config.display.components.date = showDate;
-        this.config.display.components.clock = showHour || showMinute || showSecond;
-        this.config.display.components.hours = showHour;
-        this.config.display.components.minutes = showMinute;
-        this.config.display.components.seconds = showSecond;
+        this.config.display!.components!.calendar = showYear || showMonth || showDate;
+        this.config.display!.components!.decades = showYear;
+        this.config.display!.components!.year = showYear;
+        this.config.display!.components!.month = showMonth;
+        this.config.display!.components!.date = showDate;
+        this.config.display!.components!.clock = showHour || showMinute || showSecond;
+        this.config.display!.components!.hours = showHour;
+        this.config.display!.components!.minutes = showMinute;
+        this.config.display!.components!.seconds = showSecond;
         if (format.indexOf('a') >= 0 || format.indexOf('A') >= 0 || format.indexOf('am') >= 0 || format.indexOf('AM') >= 0) {
-            this.config.localization.hourCycle = 'h12';
+            this.config.localization!.hourCycle = 'h12';
         } else if (format.indexOf('H') >= 0) {
-            this.config.localization.hourCycle = 'h23';
+            this.config.localization!.hourCycle = 'h23';
         } else if (format.indexOf('h') >= 0) {
-            this.config.localization.hourCycle = 'h12';
+            this.config.localization!.hourCycle = 'h12';
         }
     }
 
@@ -175,8 +175,8 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
 
             // do not push invalid date, revert to old value
             if (event.date && isNaN(event.date.getTime())) {
-                const value = (dataProviderID instanceof Date) ? DateTime.convert(dataProviderID, null, this.config.localization) : null;
-                this.picker.dates.setValue(value);
+                const value = (dataProviderID instanceof Date) ? DateTime.convert(dataProviderID, undefined, this.config.localization) : null;
+                this.picker.dates.setValue(value as any);
                 return;
             }
             this._dataProviderID.set(!event.date ? null : event.date);
@@ -200,10 +200,10 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
     }
 
     private convertDateArray(dates: Date[]): DateTime[] {
-        const datetimeArray: DateTime[] = dates ? [] : null;
+        const datetimeArray: DateTime[] = dates ? [] : null as any;
         if (dates) {
             dates.forEach((date, index) => {
-                datetimeArray[index] = DateTime.convert(date, null, this.config.localization);
+                datetimeArray[index] = DateTime.convert(date, undefined, this.config.localization);
             });
         }
         return datetimeArray;
@@ -218,8 +218,8 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
 
         const moduleLoader = (module: { default: { localization: { [key: string]: string | number } } }) => {
             const copy = Object.assign({}, module.default.localization);
-            copy.startOfTheWeek = this.config.localization.startOfTheWeek;
-            copy.hourCycle = this.config.localization.hourCycle;
+            copy.startOfTheWeek = this.config.localization!.startOfTheWeek as any;
+            copy.hourCycle = this.config.localization!.hourCycle as any;
             this.config.localization = copy;
             if (this.picker) this.picker.updateOptions(this.config);
         }

@@ -19,7 +19,7 @@
     }
     @if (showAs() == 'html' || showAs() == 'trusted_html') {
       <span
-        [innerHtml]="text() | htmlFilter | trustAsHtml: isTrustedHTML()"
+        [innerHtml]="$any(text()) | htmlFilter | trustAsHtml: isTrustedHTML()"
         >
       </span>
     }
