@@ -23,6 +23,15 @@
               "tsConfig": "projects/bootstrapcomponents/tsconfig.lib.prod.json"
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/bootstrapcomponents/src/**/*.ts",
+              "projects/bootstrapcomponents/src/**/*.html"
+            ]
+          }
         }
       }
     },
