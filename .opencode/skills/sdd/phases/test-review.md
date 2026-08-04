@@ -24,7 +24,7 @@ Read `AGENTS.md` for testing approach and conventions.
 
 ### 3. Find the tests
 
-Use `grep` and `glob` to locate Cypress test files (`.cy.ts`) related to the
+Use `grep` and `glob` to locate Vitest test files (`.spec.ts`) related to the
 feature. Read each test file in full.
 
 ### 4. Spec coverage matrix
@@ -42,18 +42,20 @@ exercises it:
 For each test file:
 
 **Assertions**
-- [ ] Every `it` block has at least one meaningful assertion (`.should()`)
-- [ ] Assertions are specific (exact values, not just `.should('exist')`)
+- [ ] Every `it` block has at least one meaningful assertion (`expect()`)
+- [ ] Assertions are specific (exact values, not just `toBeTruthy()`)
 
 **Independence**
 - [ ] Tests do not share mutable state between `it` blocks
 - [ ] Each test can run in isolation and in any order
 - [ ] `beforeEach` / `afterEach` used correctly for setup/teardown
 
-**WrapperComponent pattern**
-- [ ] Uses the established WrapperComponent pattern from this project
-- [ ] Signal-based properties used correctly
-- [ ] `fixture.detectChanges()` called after signal updates
+**Direct component pattern**
+- [ ] Uses direct `TestBed.createComponent(TheComponent)` — NOT WrapperComponent
+- [ ] `fixture.componentRef.setInput()` used for signal inputs
+- [ ] `fixture.detectChanges()` called after input changes
+- [ ] `NO_ERRORS_SCHEMA` used to suppress unknown directive warnings
+- [ ] `ServoyPublicTestingModule` imported for mock Servoy services
 
 **Naming & readability**
 - [ ] `describe` and `it` descriptions are clear and specific
@@ -66,8 +68,12 @@ For each test file:
 - [ ] Signal reactivity tested (value changes after mount)
 
 **DOM assertions**
-- [ ] Tests verify rendered DOM, not implementation internals
+- [ ] Tests verify rendered DOM via `fixture.nativeElement.querySelector()`
 - [ ] Selectors are stable (not relying on generated class names)
+
+**Browser-mode (if applicable)**
+- [ ] Components needing real DOM use `describe.runIf(isBrowser)` pattern
+- [ ] Browser tests are separated from jsdom tests
 
 ### 6. Output
 

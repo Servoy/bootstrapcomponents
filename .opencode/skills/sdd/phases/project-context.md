@@ -11,8 +11,8 @@ ng-packagr and deployed as a Servoy web package.
 | Angular version | 22.1.0 |
 | TypeScript version | 6.0.3 |
 | Build system | Angular CLI 22.1.2 + ng-packagr 22.1.1 |
-| Test framework | Cypress 15.x (component testing) |
-| Linting | ESLint 10.x with @angular-eslint 22.x + @typescript-eslint 8.x |
+| Test framework | Vitest (via @angular/build:unit-test) |
+| Linting | ESLint 10.x with angular-eslint 22.x + typescript-eslint 8.x (flat config) |
 | Module system | ES modules (moduleResolution: "bundler") |
 | Package name | @servoy/bootstrapcomponents |
 | Version | 2026.9.0 |
@@ -40,7 +40,7 @@ The modern Angular implementations:
 |------|---------|
 | `<name>.ts` | Angular component class |
 | `<name>.html` | Angular template |
-| `<name>.cy.ts` | Cypress component test |
+| `<name>.spec.ts` | Vitest component test |
 
 ## Angular Component Pattern
 
@@ -66,8 +66,8 @@ bootstrapcomponents/
 │   ├── angular.json                     # Angular workspace config
 │   ├── package.json                     # Dependencies & scripts
 │   ├── tsconfig.json                    # Root TypeScript config
-│   ├── .eslintrc.json                   # ESLint config (legacy format)
-│   ├── cypress.config.ts                # Cypress component testing config
+│   ├── eslint.config.js                 # ESLint flat config
+│   ├── vitest-base.config.ts            # Vitest runner configuration
 │   ├── projects/
 │   │   ├── bootstrapcomponents/         # Angular library project
 │   │   │   ├── ng-package.json
@@ -119,16 +119,18 @@ tablesspanel, tabpanel, textarea, textbox, typeahead
 
 ## Testing
 
-- **Framework:** Cypress 15.x component testing
-- **Commands:** `npm run cy:open` (interactive) / `npm run cy:run` (headless Chrome)
-- **Pattern:** Each component has a `<name>.cy.ts` file alongside its implementation
+- **Framework:** Vitest (via `@angular/build:unit-test`)
+- **Commands:** `npm run test` (jsdom) / `npm run test:browser` (headless Chromium)
+- **Pattern:** Each component has a `<name>.spec.ts` file alongside its implementation
 - **Test utilities:** `testingutils.ts` provides `ServoyPublicTestingModule` and helpers
-- Tests use a `WrapperComponent` pattern with signal-based properties
-- Import `ServoyBootstrapComponentsModule` in the wrapper
+- Tests use direct `TestBed.createComponent(TheComponent)` pattern with `fixture.componentRef.setInput()`
+- DO NOT use WrapperComponent, DO NOT import `ServoyBootstrapComponentsModule`
+- Use `NO_ERRORS_SCHEMA` to suppress unknown directive warnings
+- Browser-mode tests for DOM-heavy components use `describe.runIf(isBrowser)` pattern
 
 ## Linting
 
-- ESLint with `eslint:recommended`, `@typescript-eslint/recommended`, `@angular-eslint/recommended`
+- ESLint flat config (`eslint.config.js`) with `angular-eslint`, `typescript-eslint`, `@stylistic/eslint-plugin`
 - All rules emit warnings (uses `eslint-plugin-only-warn`)
 - Single quotes, max 200 char lines, 1TBS brace style
 - Run: `npx ng lint` from the `components/` directory

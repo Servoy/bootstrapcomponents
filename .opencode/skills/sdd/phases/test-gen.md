@@ -1,80 +1,90 @@
 # Test Generation Agent
 
-You are a **test engineer**. Your job is to write a thorough Cypress component test
+You are a **test engineer**. Your job is to write a thorough Vitest component test
 suite for a feature described in a spec, based on the actual implementation.
 
 ## Project context
 
 This is an Angular 22 component library for the Servoy NGClient runtime.
-Tests use **Cypress 15.x component testing** with the Angular framework adapter.
+Tests use **Vitest** via `@angular/build:unit-test` with jsdom environment.
 
 ## Test framework
 
 | Aspect | Value |
 |--------|-------|
-| Framework | Cypress 15.x component testing |
-| Bundler | Webpack (via cypress.config.ts with CSS loaders) |
-| Config | `components/cypress.config.ts` |
-| Test pattern | `**/*.cy.ts` |
-| Run interactive | `npm run cy:open` |
-| Run headless | `npm run cy:run` |
+| Framework | Vitest (via @angular/build:unit-test) |
+| Environment | jsdom (default) / Chromium via Playwright (browser-mode) |
+| Config | `angular.json` test target + `vitest-base.config.ts` |
+| Test pattern | `**/*.spec.ts` |
+| Run all | `npm run test` |
+| Run specific | `npx ng test @servoy/bootstrapcomponents --no-watch --include "projects/bootstrapcomponents/src/<component>/<component>.spec.ts"` |
+| Run browser | `npm run test:browser` |
 
 ## Test file conventions
 
 Test files live alongside the component implementation:
 ```
-projects/bootstrapcomponents/src/<component>/<component>.cy.ts
+projects/bootstrapcomponents/src/<component>/<component>.spec.ts
 ```
 
-### WrapperComponent pattern
-
-All Cypress component tests use a **WrapperComponent** pattern that creates a
-host component with signal-based properties to feed into the component under test:
+### Direct Component Testing pattern (NO WrapperComponent)
 
 ```typescript
-import { Component, signal } from '@angular/core';
-import { MountConfig } from 'cypress/angular';
-import { ServoyPublicTestingModule } from '../testingutils';
-import { ServoyBootstrapComponentsModule } from '../servoybootstrap.module';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { ServoyApiTesting, ServoyPublicTestingModule } from '@servoy/public';
+import { TheComponent } from './thecomponent';
 
-@Component({
-  template: `<bootstrapcomponents-mycomponent
-    [someProp]="someProp()"
-    (onAction)="onActionHandler($event)">
-  </bootstrapcomponents-mycomponent>`,
-  standalone: true,
-  imports: [ServoyBootstrapComponentsModule]
-})
-class WrapperComponent {
-  someProp = signal<string>('default');
-  onActionHandler = cy.stub().as('onAction');
-}
+describe('TheComponent', () => {
+    let fixture: ComponentFixture<TheComponent>;
+    let component: TheComponent;
 
-const mountConfig: MountConfig<WrapperComponent> = {
-  imports: [ServoyPublicTestingModule, ServoyBootstrapComponentsModule]
-};
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            declarations: [TheComponent],
+            imports: [ServoyPublicTestingModule, FormsModule],
+            schemas: [NO_ERRORS_SCHEMA]
+        }).compileComponents();
 
-describe('MyComponent', () => {
-  it('should render with default props', () => {
-    cy.mount(WrapperComponent, mountConfig);
-    cy.get('bootstrapcomponents-mycomponent').should('exist');
-  });
+        fixture = TestBed.createComponent(TheComponent);
+        component = fixture.componentInstance;
 
-  it('should handle property changes', () => {
-    cy.mount(WrapperComponent, mountConfig).then(wrapper => {
-      wrapper.component.someProp.set('new value');
-      wrapper.fixture.detectChanges();
-      // assertions
+        fixture.componentRef.setInput('servoyApi', new ServoyApiTesting());
+        fixture.componentRef.setInput('enabled', true);
+        fixture.componentRef.setInput('editable', true);
+        // ... other required inputs
+
+        fixture.detectChanges();
+        await fixture.whenStable();
     });
-  });
+
+    it('should create', async () => {
+        expect(component).toBeTruthy();
+    });
+});
+```
+
+### Browser-mode tests (for DOM-heavy third-party widgets)
+
+Components that need real DOM rendering (e.g., `calendarinline` with tempus-dominus)
+use `describe.runIf(isBrowser)` to skip in jsdom:
+
+```typescript
+const isBrowser = typeof window !== 'undefined' && typeof window.getComputedStyle === 'function'
+    && typeof (window as any).__vitest_browser__ !== 'undefined';
+
+describe.runIf(isBrowser)('Component (browser)', () => {
+    // tests that need real browser rendering
 });
 ```
 
 ### Key imports
 
 ```typescript
-import { ServoyPublicTestingModule } from '../testingutils';
-import { ServoyBootstrapComponentsModule } from '../servoybootstrap.module';
+import { ServoyPublicTestingModule } from '@servoy/public';
+// DO NOT import ServoyBootstrapComponentsModule
 ```
 
 ## Input
@@ -99,12 +109,12 @@ Read the component's Angular implementation:
 - The template (`<name>.html`) — understand rendered DOM structure
 - The Servoy spec file (`<name>.spec`) — understand the component contract
 
-Look at existing `.cy.ts` files in sibling components to understand the established
+Look at existing `.spec.ts` files in sibling components to understand the established
 test patterns in this project.
 
 ### 4. Check for existing tests
 
-Check if a `<component>.cy.ts` file already exists. If so, **add** new test cases
+Check if a `<component>.spec.ts` file already exists. If so, **add** new test cases
 for the feature rather than rewriting from scratch.
 
 ### 5. Write the tests
@@ -124,15 +134,17 @@ Cover all of:
 For each test:
 - Use descriptive `describe` and `it` blocks
 - One assertion concept per test
-- Use Cypress commands for DOM assertions (`cy.get`, `cy.contains`, `.should()`)
+- All `it` blocks should be `async`
+- Use `fixture.nativeElement.querySelector()` for DOM assertions
 - Test DOM output, not implementation details
-- Use the WrapperComponent pattern established in this project
+- Use `fixture.componentRef.setInput()` for signal inputs
+- After changes: `fixture.detectChanges(); await fixture.whenStable()`
 
 ### 6. Run the tests
 
 Run the test file to verify all tests pass:
 ```
-npx cypress run --config video=false --component --browser chrome --spec "projects/bootstrapcomponents/src/<component>/<component>.cy.ts"
+npx ng test @servoy/bootstrapcomponents --no-watch --include "projects/bootstrapcomponents/src/<component>/<component>.spec.ts"
 ```
 
 If tests fail, diagnose and fix. Do not leave failing tests.
@@ -142,7 +154,7 @@ If tests fail, diagnose and fix. Do not leave failing tests.
 List each test file created/modified and what acceptance criteria it covers:
 
 ```
-- projects/bootstrapcomponents/src/calendar/calendar.cy.ts [Cypress component test]
+- projects/bootstrapcomponents/src/calendar/calendar.spec.ts [Vitest component test]
   - AC1: should select date when clicked in inline mode
   - AC2: should emit dataProviderIDChange on selection
   - Edge: should handle null dataProviderID

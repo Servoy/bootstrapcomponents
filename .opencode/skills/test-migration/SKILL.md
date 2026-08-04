@@ -5,23 +5,18 @@ description: "Use when the user wants to migrate component tests from Cypress to
 
 # Test Migration — Cypress to Angular Vitest
 
-You are a **test framework migration agent** for the Servoy Bootstrap Components project. Your job
-is to convert Cypress component tests (`.cy.ts`) to Angular Vitest tests (`.spec.ts`) and clean up
+You are a **test framework migration agent** for a Servoy Angular component library. Your job is
+to convert Cypress component tests (`.cy.ts`) to Angular Vitest tests (`.spec.ts`) and clean up
 all legacy test infrastructure.
 
 ## Context
 
-This project has 21 Cypress component test files that need to be migrated. The project currently
-uses Cypress 15.x with the Angular component testing adapter and webpack bundler. The target is
-Angular's official Vitest-based testing via `@angular/build:unit-test`.
+Angular 22+ uses Vitest as the official test framework via `@angular/build:unit-test` builder.
+Tests use Angular's `TestBed` with jsdom (or optionally real browsers via `--browsers`).
 
-**Important:** This project is on Angular 22.1.x with TypeScript 6.0, which has native
-support for `@angular/build:unit-test` (Vitest). The infrastructure setup should work
-without issues.
-
-Additionally, there are 2 legacy `.spec.ts` files (list.spec.ts, tablesspanel.spec.ts) using
-TestBed + Jasmine patterns that have no configured runner — these should be converted to the
-new Vitest pattern as well.
+Cypress component testing relies on `@cypress/webpack-dev-server` which requires the legacy
+webpack-based `@angular-devkit/build-angular`. Projects using `@angular/build` (esbuild-based)
+cannot run Cypress tests. This skill migrates those projects to Vitest.
 
 ## Infrastructure Setup
 
@@ -37,10 +32,10 @@ If any of these are missing, run the full setup below. If all are present, skip 
 #### 1.1 Install Vitest dependencies
 
 ```bash
-npm install --save-dev vitest jsdom @types/luxon
+npm install --save-dev vitest jsdom
 ```
 
-`@types/luxon` is required by `@servoy/public` and `@eonasdan/tempus-dominus` type definitions.
+If the project uses `luxon` or `@eonasdan/tempus-dominus`, also ensure `@types/luxon` is present.
 
 #### 1.2 Add test target to angular.json
 
@@ -50,15 +45,16 @@ Add a `test` architect target to the library project:
 "test": {
   "builder": "@angular/build:unit-test",
   "options": {
-    "tsConfig": "projects/bootstrapcomponents/tsconfig.spec.json",
-    "buildTarget": "dummy:build",
+    "tsConfig": "projects/<library>/tsconfig.spec.json",
+    "buildTarget": "<app-project>:build",
     "runnerConfig": "vitest-base.config.ts"
   }
 }
 ```
 
 **Important:** Libraries need a `buildTarget` pointing to an application project since
-`@angular/build:unit-test` needs an application build context. Use the `dummy` project.
+`@angular/build:unit-test` needs an application build context. Use the `dummy` project
+or whichever application project exists in the workspace.
 
 #### 1.3 Create or update tsconfig.spec.json
 
@@ -87,8 +83,8 @@ The `exclude` for `*.cy.ts` is only needed while old Cypress files still exist.
 
 #### 1.4 Create vitest-base.config.ts
 
-This handles CommonJS module compatibility issues. Bootstrap and tempus-dominus may have
-ESM/CJS interop issues:
+This handles CommonJS module compatibility issues. Add packages that cause ESM/CJS
+interop problems to `deps.inline`:
 
 ```typescript
 import { defineConfig } from 'vitest/config';
@@ -96,21 +92,27 @@ import { defineConfig } from 'vitest/config';
 export default defineConfig({
   test: {
     deps: {
-      inline: ['@eonasdan/tempus-dominus', '@popperjs/core']
+      inline: [/* add problematic CommonJS packages here */]
     }
   }
 });
 ```
 
-Add any other problematic CommonJS packages to `deps.inline` as you encounter them.
+Common packages that need inlining:
+- `file-saver`, `ngx-filesaver`, `@servoy/ngx-lightbox` (for servoy-extra-components)
+- `@eonasdan/tempus-dominus`, `@popperjs/core` (for bootstrapcomponents)
 
 #### 1.5 Add test scripts to package.json
 
 ```json
-"test": "ng test @servoy/bootstrapcomponents --no-watch",
-"test:watch": "ng test @servoy/bootstrapcomponents",
-"test:ui": "ng test @servoy/bootstrapcomponents --ui"
+"test": "ng test <project-name> --no-watch",
+"test:watch": "ng test <project-name>",
+"test:ui": "ng test <project-name> --ui",
+"test:browser": "ng test <project-name> --no-watch --browsers chromium --headless --include \"projects/<library>/src/<browser-test-component>/<browser-test-component>.spec.ts\""
 ```
+
+Replace `<project-name>` with the Angular project name from `angular.json`.
+The `test:browser` script is only needed if browser-mode tests exist.
 
 #### 1.6 Verify infrastructure
 
@@ -118,7 +120,7 @@ Run the test command. It should either pass with 0 tests or fail only because no
 `.spec.ts` files exist yet (not because of config errors):
 
 ```bash
-npx ng test @servoy/bootstrapcomponents --no-watch
+npx ng test <project-name> --no-watch
 ```
 
 ## Input
@@ -137,7 +139,7 @@ For each `.cy.ts` file, create a corresponding `.spec.ts` file with equivalent t
 #### CRITICAL: Proven working pattern (Direct Component Testing)
 
 **DO NOT use a WrapperComponent pattern.** It causes module resolution issues with
-`standalone: false` components in the `ServoyBootstrapComponentsModule`.
+`standalone: false` components declared in shared NgModules.
 
 **DO use direct component instantiation with `fixture.componentRef.setInput()`:**
 
@@ -147,20 +149,20 @@ import { FormsModule } from '@angular/forms';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { ServoyApiTesting, ServoyPublicTestingModule } from '@servoy/public';
-import { ServoyBootstrapTextbox } from './textbox';
+import { TheComponent } from './thecomponent';
 
-describe('ServoyBootstrapTextbox', () => {
-    let fixture: ComponentFixture<ServoyBootstrapTextbox>;
-    let component: ServoyBootstrapTextbox;
+describe('TheComponent', () => {
+    let fixture: ComponentFixture<TheComponent>;
+    let component: TheComponent;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [ServoyBootstrapTextbox],
+            declarations: [TheComponent],
             imports: [ServoyPublicTestingModule, FormsModule],
             schemas: [NO_ERRORS_SCHEMA]
         }).compileComponents();
 
-        fixture = TestBed.createComponent(ServoyBootstrapTextbox);
+        fixture = TestBed.createComponent(TheComponent);
         component = fixture.componentInstance;
 
         fixture.componentRef.setInput('servoyApi', new ServoyApiTesting());
@@ -172,7 +174,7 @@ describe('ServoyBootstrapTextbox', () => {
         await fixture.whenStable();
     });
 
-    it('should create', () => {
+    it('should create', async () => {
         expect(component).toBeTruthy();
     });
 });
@@ -185,18 +187,16 @@ describe('ServoyBootstrapTextbox', () => {
    signal inputs are readonly.
 
 2. **`declarations: [TheComponent]`** — declare only the component under test. Since
-   `ServoyBootstrapComponentsModule` already declares it, you CANNOT import the full module
-   AND declare the component (double declaration error).
+   the shared module already declares it, you CANNOT import the full module AND declare
+   the component (double declaration error).
 
 3. **`schemas: [NO_ERRORS_SCHEMA]`** — suppresses unknown element/attribute errors for
-   child components in templates (like `[sabloTabseq]`, custom directives from ServoyPublicModule).
+   child components in templates (like `[sabloTabseq]`, custom directives).
 
-4. **`ServoyPublicTestingModule`** — provides mock implementations of Servoy services
-   (`ServoyApi`, `FormattingService`, etc.).
+4. **`ServoyPublicTestingModule`** — provides mock implementations of Servoy services.
 
-5. **No `ServoyBootstrapComponentsModule` import** — avoids pulling in all 22 components and
-   their heavy dependencies (tempus-dominus, ng-bootstrap, etc.), AND avoids potential
-   CommonJS interop issues at the module import level.
+5. **No shared component module import** — avoids pulling in all components and their
+   heavy dependencies, AND avoids potential CommonJS interop issues at the module level.
 
 #### Conversion mapping
 
@@ -260,11 +260,43 @@ dispatch the focus event directly:
 el.dispatchEvent(new FocusEvent('focus', { bubbles: true }));
 ```
 
+#### Browser-mode tests (for DOM-heavy third-party widgets)
+
+Components that depend on third-party libraries needing real DOM rendering (e.g.,
+inline calendars with tempus-dominus, canvas-based gauges) cannot be fully tested in
+jsdom. Use the browser-mode pattern:
+
+```typescript
+const isBrowser = typeof window !== 'undefined' && typeof window.getComputedStyle === 'function'
+    && typeof (window as any).__vitest_browser__ !== 'undefined';
+
+describe.runIf(isBrowser)('Component (browser)', () => {
+    // These tests only run with --browsers chromium
+});
+```
+
+**Setup for browser-mode:**
+```bash
+npm install --save-dev @vitest/browser-playwright playwright
+npx playwright install chromium
+```
+
+**Wait for third-party widget initialization** — after `fixture.detectChanges()`, some
+widgets render asynchronously:
+```typescript
+await new Promise(resolve => setTimeout(resolve, 500));
+fixture.detectChanges();
+await fixture.whenStable();
+```
+
+**Target browser tests only** in the `test:browser` script with `--include` to avoid
+re-running all jsdom tests in the browser.
+
 #### Per-component verification
 
 After converting each test file:
 ```bash
-npx ng test @servoy/bootstrapcomponents --no-watch --include "projects/bootstrapcomponents/src/<name>/<name>.spec.ts"
+npx ng test <project-name> --no-watch --include "projects/<library>/src/<name>/<name>.spec.ts"
 ```
 
 Fix any failures before moving to the next component.
@@ -280,30 +312,31 @@ After all tests are converted and passing:
 ```
 DELETE: cypress.config.ts
 DELETE: cypress/ (entire directory)
-DELETE: all *.cy.ts files (21 files)
+DELETE: all *.cy.ts files
 ```
 
 #### 3.2 Remove Cypress dependencies from package.json
 
 Remove from `devDependencies`:
 - `cypress`
-- `css-loader` (only needed for Cypress webpack config)
-- `style-loader` (only needed for Cypress webpack config)
+- `css-loader` (if only used for Cypress webpack config)
+- `style-loader` (if only used for Cypress webpack config)
 
 Remove scripts:
 - `cy:open`
 - `cy:run`
 - `cy:run_spec`
 
-#### 3.3 Remove legacy test residuals
+#### 3.3 Remove legacy test residuals from package.json
 
-Remove the 2 legacy `.spec.ts` files if they've been superseded:
-- `list/list.spec.ts` (old Jasmine-style)
-- `tablesspanel/tablesspanel.spec.ts` (old Jasmine-style)
+Remove from `devDependencies` (if present):
+- `@types/jasmine`
+- `karma`, `karma-*`
 
-#### 3.4 Update tsconfig.spec.json
+#### 3.4 Update tsconfig files
 
-Remove the `"exclude": ["src/**/*.cy.ts"]` entry (no longer needed after .cy.ts files are deleted).
+- Remove `"exclude": ["src/**/*.cy.ts"]` from tsconfig.spec.json
+- Update tsconfig.lib.json exclude from `**/*.cy.ts` to `**/*.spec.ts`
 
 #### 3.5 Run npm install
 
@@ -318,7 +351,7 @@ This removes the unused packages from `node_modules` and updates `package-lock.j
 ```bash
 npm run build
 npx ng lint
-npx ng test @servoy/bootstrapcomponents --no-watch
+npm run test
 ```
 
 All three must pass.
@@ -329,14 +362,14 @@ All three must pass.
 
 After migration, update the `AGENTS.md` documentation to reflect the new test setup:
 
-- Change test framework from "Cypress 15.x" to "Vitest (via @angular/build:unit-test)"
-- Update test commands table
+- Change test framework to "Vitest (via @angular/build:unit-test)"
+- Update test commands table (add test:browser if applicable)
 - Update test conventions section
 - Update test file pattern from `**/*.cy.ts` to `**/*.spec.ts`
 - Remove Cypress-specific instructions
 - Update the "Post-edit checklist" section
 - Document the direct component testing pattern (no WrapperComponent)
-- Remove the "Pending migration" note
+- Document browser-mode tests if applicable
 
 ---
 
@@ -346,7 +379,7 @@ Check for a `.github/workflows/` directory with a workflow that runs Cypress tes
 Replace it with a Vitest-based workflow:
 
 ```yaml
-name: Run the vitest component tests
+name: Lint and test
 
 on:
   push:
@@ -364,19 +397,19 @@ jobs:
 
       steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Find component directory
         id: find_component_dir
         run: echo "COMPONENT_DIR=$(find . -type d -name 'META-INF' -exec dirname {} \;)" >> $GITHUB_ENV
 
       - name: Use Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: '22.x'
 
       - name: Cache + Restore node_modules
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: |
               ${{ env.COMPONENT_DIR }}/.angular
@@ -385,58 +418,63 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node_modules-
 
-      - name: Install and run the vitest component tests
+      - name: Install dependencies
         working-directory: ${{ env.COMPONENT_DIR }}
-        run: |
-          npm install
-          npm run test
+        run: npm install
+
+      - name: Lint
+        working-directory: ${{ env.COMPONENT_DIR }}
+        continue-on-error: true
+        run: npx ng lint --force --format json --output-file eslint-results.json
+
+      - name: Annotate PR with ESLint results
+        if: always()
+        uses: ataylorme/eslint-annotate-action@v4
+        with:
+          report-json: ${{ env.COMPONENT_DIR }}/eslint-results.json
+        continue-on-error: true
+
+      - name: Run Vitest component tests
+        working-directory: ${{ env.COMPONENT_DIR }}
+        run: npm run test
+
+      - name: Run browser-mode tests
+        working-directory: ${{ env.COMPONENT_DIR }}
+        run: npm run test:browser
 ```
 
-Key differences from the old Cypress workflow:
+Key differences from a Cypress workflow:
 - No `~/.cache` in cache paths (Cypress binary cache no longer needed)
 - `npm run test` instead of `npm run cy:run`
 - No screenshot upload artifact step (Vitest doesn't produce screenshots)
-- No Chrome/browser dependency needed (tests run in jsdom on Node.js)
+- No Chrome/browser system dependency needed for jsdom tests
+- Browser-mode tests use Playwright's bundled Chromium (installs via npm)
+- Lint step with ESLint annotations for PR feedback
 
 ---
 
 ## Execution strategy
 
-When converting `all` components, process them in this order (simplest first):
+When converting `all` components, process in order of complexity (simplest first):
 
-1. `textbox` — simple form field, good to validate the setup
-2. `textarea` — similar to textbox
-3. `label` — simple display component
-4. `datalabel` — simple display component
-5. `button` — basic interaction
-6. `imagemedia` — simple display
-7. `checkbox` — form field with toggle
-8. `select` — dropdown field
-9. `choicegroup` — radio/checkbox group
-10. `combobox` — more complex dropdown
-11. `list` — list component (also has legacy .spec.ts to supersede)
-12. `typeahead` — autocomplete field
-13. `calendar` — tempus-dominus integration (may need special mocking)
-14. `calendarinline` — inline calendar variant
-15. `floatlabeltextbox` — float label variant
-16. `floatlabeltextarea` — float label variant
-17. `floatlabelcombobox` — float label variant
-18. `floatlabelcalendar` — float label variant
-19. `floatlabeltypeahead` — float label variant
-20. `tabpanel` — tab container
-21. `tablesspanel` — tabless panel (also has legacy .spec.ts to supersede)
-22. `accordion` — most complex panel component
+1. Simple form fields (textbox, textarea) — validate the pattern
+2. Simple display components (label, datalabel, imagemedia)
+3. Basic interaction (button, checkbox)
+4. Selection components (select, choicegroup, combobox)
+5. Complex form fields (typeahead, calendar)
+6. Panel/container components (tabpanel, accordion)
+7. Third-party-widget-heavy components last (may need browser-mode)
 
 This order ensures quick wins early to validate the setup, with complex components last.
 
-## Important notes & lessons learned
+## Important notes & best practices
 
 - **This is a library project.** The `@angular/build:unit-test` builder needs a `buildTarget`
   pointing to an application (`dummy:build`). This is how Angular CLI handles library testing.
 - **jsdom is usually sufficient.** Most component tests check DOM state and events — they
   don't need real CSS rendering. Only use `--browsers` for layout-dependent tests.
-- **DO NOT import `ServoyBootstrapComponentsModule` in tests.** It pulls in all dependencies
-  including ng-bootstrap, tempus-dominus, etc. Instead, declare only the component under test.
+- **DO NOT import the shared component module in tests.** It pulls in all dependencies.
+  Instead, declare only the component under test.
 - **DO NOT use a WrapperComponent.** It causes "not a known element" errors because
   `standalone: false` components need to be in the same NgModule as the wrapper, and
   you can't double-declare them. Use direct `TestBed.createComponent(TheComponent)` instead.
@@ -445,8 +483,6 @@ This order ensures quick wins early to validate the setup, with complex componen
 - **Use `NO_ERRORS_SCHEMA`** to suppress unknown element/attribute warnings from child
   directives (like `[sabloTabseq]`, `[svyTooltip]`) that come from `ServoyPublicModule`.
 - **`ServoyPublicTestingModule`** provides mock Servoy services. Always import it.
-- **tempus-dominus / @popperjs/core CommonJS issues:** These calendar dependencies may have
-  ESM/CJS interop issues. The `vitest-base.config.ts` `deps.inline` setting handles this.
 - **The `.spec` JSON files are NOT test files.** Don't confuse Servoy `.spec` files with
   test `.spec.ts` files. The Vitest include pattern `**/*.spec.ts` only matches TypeScript files.
 - **Tooltip testing:** The `[svyTooltip]` directive uses delayed DOM manipulation that doesn't
@@ -456,5 +492,12 @@ This order ensures quick wins early to validate the setup, with complex componen
   directly to test focus handlers.
 - **Outputs use `.subscribe()`:** Since `output()` returns an `OutputEmitterRef`, use
   `component.outputName.subscribe(spy)` to listen for emissions.
-- **Angular 22 is ready.** The `@angular/build:unit-test` builder works natively on
-  Angular 22+. No version upgrade prerequisite needed.
+- **Browser-mode for DOM-heavy libs:** Components depending on libraries that need real DOM
+  (tempus-dominus inline, canvas-gauges, etc.) should use `describe.runIf(isBrowser)` and
+  be tested via `--browsers chromium --headless`.
+- **Wait for async widget init:** After `fixture.detectChanges()`, third-party widgets may
+  render asynchronously. Use `await new Promise(resolve => setTimeout(resolve, 500))`.
+- **Target browser tests with `--include`:** Don't run all tests in browser mode — it's
+  slow. Use `--include` to target only the files that need it.
+- **All `it` blocks should be `async`:** This ensures `await fixture.whenStable()` works
+  correctly after interactions.

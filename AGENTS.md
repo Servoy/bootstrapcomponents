@@ -55,9 +55,10 @@ A successful build confirms type correctness.
 
 | Command | Purpose |
 |---------|---------|
-| `npm run test` | Run all Vitest component tests (single run) |
+| `npm run test` | Run all Vitest component tests (single run, jsdom) |
 | `npm run test:watch` | Run tests in watch mode |
 | `npm run test:ui` | Open Vitest UI for interactive test execution |
+| `npm run test:browser` | Run browser-mode tests (headless Chromium via Playwright) |
 
 Run a specific component's tests:
 ```bash
@@ -74,6 +75,11 @@ npx ng test @servoy/bootstrapcomponents --no-watch --include "projects/bootstrap
 - Use `NO_ERRORS_SCHEMA` to suppress unknown directive warnings
 - Import `ServoyPublicTestingModule` from `@servoy/public`
 - DO NOT import `ServoyBootstrapComponentsModule` in tests (causes dependency issues)
+
+### Browser-mode tests
+Components that depend on third-party libraries needing real DOM rendering (e.g.,
+`calendarinline` with tempus-dominus) use `describe.runIf(isBrowser)` to skip in jsdom
+and only run with `--browsers chromium`. These are tested via `npm run test:browser`.
 
 ## Architecture
 
@@ -167,9 +173,8 @@ bootstrapcomponents/
 │   ├── angular.json                     # Angular workspace config
 │   ├── package.json                     # npm dependencies & scripts
 │   ├── tsconfig.json                    # Root TypeScript config (strict)
-│   ├── .eslintrc.json                   # ESLint config (legacy format)
-│   ├── cypress.config.ts                # Cypress component testing config
-│   ├── cypress/                         # Cypress support files
+│   ├── eslint.config.js                 # ESLint flat config
+│   ├── vitest-base.config.ts            # Vitest runner configuration
 │   ├── scripts/build.js                 # Release packaging (creates .zip)
 │   ├── projects/
 │   │   ├── bootstrapcomponents/         # Angular library
