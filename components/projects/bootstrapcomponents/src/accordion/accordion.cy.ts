@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-expressions */
+ 
 import { ServoyBootstrapAccordion } from './accordion'
 import { MountConfig } from 'cypress/angular'
 import { ServoyApi, ServoyApiTesting, ServoyPublicTestingModule } from '@servoy/public'
@@ -75,8 +75,7 @@ function applyDefaultProps(wrapper) {
             } else {
                 wrapper.component[key].set(defaultValues[key]);
             }
-        }
-        else {
+        } else {
             // Otherwise assign it as a normal property
             wrapper.component[key] = defaultValues[key];
         }

@@ -15,7 +15,7 @@
       >
     </span>
   }
-  @if (showAs() == 'text') {
+  @if (showAs() === 'text') {
     <span
       class="bts-label-text"
       [textContent]="dataProviderID() | formatFilter:$any(format()) | htmlFilter | trustAsHtml:isTrustedHTML() | designFilter:servoyApi.isInDesigner()"

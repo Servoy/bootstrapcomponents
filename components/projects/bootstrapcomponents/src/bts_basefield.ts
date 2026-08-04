@@ -4,7 +4,7 @@ import { PropertyUtils } from '@servoy/public';
 
 
 @Directive()
-// eslint-disable-next-line
+ 
 export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBootstrapBaseComponent<T> {
 
     readonly onActionMethodID = input<((e: Event, data?: any) => void) | undefined>(undefined);

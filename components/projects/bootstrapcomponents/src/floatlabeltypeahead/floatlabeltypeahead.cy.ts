@@ -68,25 +68,33 @@ class WrapperComponent {
 
 function createMockValuelist(): IValuelist {
     const mockData = [{
-        "displayValue": "one",
-        "realValue": 1
+        'displayValue': 'one',
+        'realValue': 1
     },
     {
-        "displayValue": "two",
-        "realValue": 2
+        'displayValue': 'two',
+        'realValue': 2
     },
     {
-        "displayValue": "three",
-        "realValue": 3
+        'displayValue': 'three',
+        'realValue': 3
     },
     {
-        "displayValue": "four",
-        "realValue": 4
+        'displayValue': 'four',
+        'realValue': 4
     }] as IValuelist;
-    mockData.hasRealValues = () => { return true; };
-    mockData.isRealValueDate = () => { return false; };
-    mockData.filterList = (value) => { return of(mockData.filter(item => item.displayValue.includes(value))) };
-    mockData.getDisplayValue = (value) => { return of(mockData.filter(item => item.realValue === value)) };
+    mockData.hasRealValues = () => {
+ return true; 
+};
+    mockData.isRealValueDate = () => {
+ return false; 
+};
+    mockData.filterList = (value) => {
+ return of(mockData.filter(item => item.displayValue.includes(value))) 
+};
+    mockData.getDisplayValue = (value) => {
+ return of(mockData.filter(item => item.realValue === value)) 
+};
     return mockData;
 }
 
@@ -98,7 +106,7 @@ const defaultValues = {
     editable: true,
     dataProviderID: 1,
     valuelistID: createMockValuelist(),
-    format: { "type": "TEXT" } as Format,
+    format: { 'type': 'TEXT' } as Format,
     styleClass: undefined,
     tabSeq: undefined,
     toolTipText: undefined,
@@ -119,8 +127,7 @@ function applyDefaultProps(wrapper) {
         if (wrapper.component.hasOwnProperty(key) && typeof wrapper.component[key] === 'function') {
             // If the property is a signal, update it using .set()
             wrapper.component[key].set(defaultValues[key]);
-        }
-        else {
+        } else {
             // Otherwise assign it as a normal property
             wrapper.component[key] = defaultValues[key];
         }

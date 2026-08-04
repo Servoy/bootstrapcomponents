@@ -89,7 +89,7 @@ export class ServoyBootstrapSelect extends ServoyBootstrapBasefield<HTMLSelectEl
         this.renderer.removeAttribute(this.getNativeElement(), 'placeholder');
         if (!this.multiselect()) {
             //in this case the event is the value
-            this._dataProviderID.set((value && value != "null") ? value : null);
+            this._dataProviderID.set((value && value != 'null') ? value : null);
         }
         this.updateDataprovider();
         const onActionMethodID = this.onActionMethodID();
@@ -118,8 +118,7 @@ export class ServoyBootstrapSelect extends ServoyBootstrapBasefield<HTMLSelectEl
                     }
                 }
                 if (value.length === 0) value = null;
-            }
-			else {
+            } else {
 				// already binded by ngmodel, just push it
 				value = this._dataProviderID();
 			}

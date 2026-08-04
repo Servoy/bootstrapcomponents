@@ -88,14 +88,13 @@ export class ServoyBootstrapTablesspanel extends ServoyBootstrapBaseComponent<HT
     }
 
     getContainerStyle() {
-        let style: any = { position: "relative" }
+        const style: any = { position: 'relative' }
         let minHeight = 0;
         const containedForm = this.containedForm();
         const height = this.height();
         if (height) {
             minHeight = height
-        }
-        else if (containedForm) {
+        } else if (containedForm) {
             // for absolute form default height is design height, for responsive form default height is 0
             const formCache = this.servoyPublic.getFormCacheByName(containedForm);
             if (formCache && formCache.absolute) {
@@ -103,7 +102,7 @@ export class ServoyBootstrapTablesspanel extends ServoyBootstrapBaseComponent<HT
             }
         }
         if (minHeight > 0) {
-            style['minHeight'] = minHeight + "px";
+            style['minHeight'] = minHeight + 'px';
         }
         return style;
     }

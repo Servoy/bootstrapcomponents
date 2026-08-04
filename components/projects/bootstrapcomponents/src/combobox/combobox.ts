@@ -206,8 +206,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
 			if (this.doc.activeElement == this.doc.body){
 				// probably just a select from popup, keep the focus to the component
 				super.requestFocus(false);
-			}
-			else{
+			} else{
 				const nativeElementBtn = this.elementRef.nativeElement.firstElementChild;
 				if (this.doc.activeElement !== nativeElementBtn) {
 				    const event = new Event('blur');
@@ -233,7 +232,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
                 this.valuelistDisplayValueSubscription.unsubscribe();
                 this.valuelistDisplayValueSubscription = null;
             }
-            // eslint-disable-next-line eqeqeq
+             
             const valueListElem = valuelistIDValue.find(this.valueComparator());
             if (valueListElem) this.formattedValue = this.formatService.format(valueListElem.displayValue, this.format()!, false);
             else {
@@ -336,7 +335,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
         this.tooltip()!.close();
     }
 
-    // eslint-disable-next-line eqeqeq
+     
     private valueCompare = (valueListValue: { displayValue: any; realValue: any }): boolean => valueListValue.realValue == this._dataProviderID();
 
     private dateValueCompare = (valueListValue: { displayValue: any; realValue: Date }): boolean => {

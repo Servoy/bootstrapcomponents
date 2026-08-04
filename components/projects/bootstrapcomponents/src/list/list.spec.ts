@@ -42,7 +42,9 @@ describe('ServoyBootstrapList', () => {
         component = fixture.componentInstance;
         component.servoyApi = jasmine.createSpyObj('ServoyApi', ['getMarkupId', 'trustAsHtml', 'registerComponent', 'unRegisterComponent']);
         component.valuelistID = mockData;
-        mockData.getDisplayValue = (value) => { return of(value) };
+        mockData.getDisplayValue = (value) => {
+ return of(value) 
+};
         fixture.detectChanges();
         textField = fixture.debugElement.query(By.css('input'));
     });

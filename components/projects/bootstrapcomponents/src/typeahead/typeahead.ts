@@ -38,7 +38,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
 	lastFilteringPromise: Observable<any> | null = null;
 	valueToApply: { displayValue: string; realValue: any } | null = null;
 
-	private realToDisplay: Map<any, string> = new Map();
+	private realToDisplay = new Map<any, string>();
 
 	constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, @Inject(DOCUMENT) doc: Document, 
 		protected formatService: FormattingService,
@@ -176,7 +176,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
                     const popup = this.doc.getElementById(this.instance()!.popupId);
                     if (popup) {
                         popup.style.width = this.getFocusElement().clientWidth + 'px';
-                        if (term == "" && this._dataProviderID()) {
+                        if (term == '' && this._dataProviderID()) {
                             const highlightElements = popup.getElementsByClassName('ngb-highlight');
                             if (highlightElements.length === 1) {
                                 // initial display , highlight the value element
@@ -223,7 +223,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
     }
 
 	resultFormatter = (result: { displayValue: string; realValue: any }) => {
-		// eslint-disable-next-line eqeqeq
+		 
 		if (result.displayValue === null || result.displayValue == '') return '\u00A0';
 		return this.formatService.format(result.displayValue, this.format()!, false);
 	};
@@ -237,7 +237,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
         else if (!this.findmode() && valuelistID?.hasRealValues()) {
             // on purpose test with == so that "2" equals to 2
             const value = valuelistID.find((item) => {
-                // eslint-disable-next-line eqeqeq
+                 
                 if (item.realValue == result) {
                     return true;
                 }

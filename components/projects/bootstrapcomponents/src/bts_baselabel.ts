@@ -2,7 +2,7 @@ import { ServoyBootstrapBaseComponent } from './bts_basecomp';
 import { Renderer2, Directive, ChangeDetectorRef, input } from '@angular/core';
 
 @Directive()
-// eslint-disable-next-line
+ 
 export class ServoyBootstrapBaseLabel<T extends HTMLElement> extends ServoyBootstrapBaseComponent<T> {
 
     readonly onActionMethodID = input<((e: Event, data?: any) => void) | undefined>(undefined);

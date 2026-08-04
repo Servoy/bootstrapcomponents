@@ -95,7 +95,7 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
     }
 
 	updateNavpaneTimeout: any;
-	updateNavpaneTimeoutCounter: number = 0;
+	updateNavpaneTimeoutCounter = 0;
     getContainerStyle(element: HTMLElement) {
         const navpane = element.querySelector('[ngbnavpane]');
         const fullsize = (this.height() === '100%');
@@ -155,9 +155,9 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
         }
     }
     
-    showArrows: boolean = false;
-    tabHeight: number = 0;
-    getNavStyle(element: HTMLElement): { [key: string]: string } {
+    showArrows = false;
+    tabHeight = 0;
+    getNavStyle(element: HTMLElement): Record<string, string> {
         const tabs = element.querySelector('ul')!;
         const tabAnchor = tabs?.firstElementChild?.querySelector('a');
         this.tabHeight = tabAnchor?.getBoundingClientRect()?.height ?? 0;
@@ -188,7 +188,7 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
         return style;
     }
     
-    getArrowStyle(leftRight: 'left' | 'right'): { [key: string]: string } {
+    getArrowStyle(leftRight: 'left' | 'right'): Record<string, string> {
         const cursorStyle = leftRight === 'left' ? 'not-allowed' : 'pointer';
         return {
             width: '15px',

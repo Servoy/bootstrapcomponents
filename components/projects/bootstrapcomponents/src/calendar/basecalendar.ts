@@ -114,16 +114,14 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
         if (changes.disabledDays) {
             if (changes.disabledDays.currentValue) {
                 this.config.restrictions!.daysOfWeekDisabled = changes.disabledDays.currentValue;
-            }
-            else if (changes.disabledDays.previousValue) {
+            } else if (changes.disabledDays.previousValue) {
                 this.config.restrictions!.daysOfWeekDisabled = [];
             }
         }
         if (changes.disabledDates) {
             if (changes.disabledDates.currentValue) {
                 this.config.restrictions!.disabledDates = this.convertDateArray(changes.disabledDates.currentValue);
-            }
-            else if (changes.disabledDates.previousValue) {
+            } else if (changes.disabledDates.previousValue) {
                 this.config.restrictions!.disabledDates = [];
             }
         }
@@ -217,7 +215,7 @@ export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDi
             language = locale.substring(0, index);
         }
 
-        const moduleLoader = (module: { default: { localization: { [key: string]: string | number } } }) => {
+        const moduleLoader = (module: { default: { localization: Record<string, string | number> } }) => {
             const copy = Object.assign({}, module.default.localization);
             copy.startOfTheWeek = this.config.localization!.startOfTheWeek as any;
             copy.hourCycle = this.config.localization!.hourCycle as any;

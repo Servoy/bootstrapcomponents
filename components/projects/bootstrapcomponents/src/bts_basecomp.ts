@@ -2,7 +2,7 @@ import { ServoyBaseComponent } from '@servoy/public';
 import { Directive, Renderer2, SimpleChanges, ChangeDetectorRef, input, linkedSignal } from '@angular/core';
 
 @Directive()
-// eslint-disable-next-line
+ 
 export class ServoyBootstrapBaseComponent<T extends HTMLElement> extends ServoyBaseComponent<T> {
 
     readonly enabled = input<boolean | undefined>(undefined);

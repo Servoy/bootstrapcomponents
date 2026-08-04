@@ -67,20 +67,20 @@ const defaultValues = {
     dataProviderID: 0,
     inputType: 'checkbox',
     valuelistID: [{
-        "displayValue": "one",
-        "realValue": 1
+        'displayValue': 'one',
+        'realValue': 1
     },
     {
-        "displayValue": "two",
-        "realValue": 2
+        'displayValue': 'two',
+        'realValue': 2
     },
     {
-        "displayValue": "three",
-        "realValue": 3
+        'displayValue': 'three',
+        'realValue': 3
     },
     {
-        "displayValue": "four",
-        "realValue": 4
+        'displayValue': 'four',
+        'realValue': 4
     }] as IValuelist,
     alignment: 'vertical',
     styleClass: undefined,
@@ -98,8 +98,7 @@ function applyDefaultProps(wrapper) {
         if (wrapper.component.hasOwnProperty(key) && typeof wrapper.component[key] === 'function') {
             // If the property is a signal, update it using .set()
             wrapper.component[key].set(defaultValues[key]);
-        }
-        else {
+        } else {
             // Otherwise assign it as a normal property
             wrapper.component[key] = defaultValues[key];
         }

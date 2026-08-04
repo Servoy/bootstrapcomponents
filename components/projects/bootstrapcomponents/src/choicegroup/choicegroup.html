@@ -14,13 +14,13 @@
         [bootstrapBaseChoiceElement]="this"
         [index]="i"
         #input/>
-      @if (showAs() != 'html' && showAs() != 'trusted_html') {
+      @if (showAs() !== 'html' && showAs() !== 'trusted_html') {
         <span
           [textContent]="item.displayValue"
           >
         </span>
       }
-      @if (showAs() == 'html' || showAs() == 'trusted_html') {
+      @if (showAs() === 'html' || showAs() === 'trusted_html') {
         <span
           [innerHtml]="item.displayValue | htmlFilter | trustAsHtml: servoyApi.trustAsHtml()"
           >

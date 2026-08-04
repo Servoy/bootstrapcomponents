@@ -20,7 +20,7 @@
     [inputFormatter]="inputFormatter"
     (focus)="focusGained()"
     (click)="onClick()"
-    [resultTemplate]="showAs() == 'text' ? rtText : rtHTML"
+    [resultTemplate]="showAs() === 'text' ? rtText : rtHTML"
     (keyup.arrowDown)="scroll()" (keyup.arrowUp)="scroll()"
     #instance="ngbTypeahead"
     #element

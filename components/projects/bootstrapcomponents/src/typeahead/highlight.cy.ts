@@ -4,7 +4,7 @@ import { ServoyPublicTestingModule } from '@servoy/public';
 import { SvyNgbHighlight } from './highlight';
 
 @Component({
-    template: `<svy-ngb-highlight [result]="result()" [term]="term()" [trusted]="trusted()"></svy-ngb-highlight>`,
+    template: '<svy-ngb-highlight [result]="result()" [term]="term()" [trusted]="trusted()"></svy-ngb-highlight>',
     standalone: false
 })
 class HighlightWrapperComponent {

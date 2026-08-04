@@ -11,13 +11,13 @@
       [sabloTabseq]="tabSeq()"
       #input
       />
-    @if (showAs() != 'html' && showAs() != 'trusted_html') {
+    @if (showAs() !== 'html' && showAs() !== 'trusted_html') {
       <span
         [textContent]="text()"
         >
       </span>
     }
-    @if (showAs() == 'html' || showAs() == 'trusted_html') {
+    @if (showAs() === 'html' || showAs() === 'trusted_html') {
       <span
         [innerHtml]="$any(text()) | htmlFilter | trustAsHtml: isTrustedHTML()"
         >

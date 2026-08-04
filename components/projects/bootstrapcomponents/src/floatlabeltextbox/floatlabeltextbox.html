@@ -2,7 +2,7 @@
   <input #element
     [id]="servoyApi.getMarkupId()"
     class="bts-floatlabeltextbox"
-    [class.svy-textbox-password-with-eye-field]="inputType() == 'password-with-eye'"
+    [class.svy-textbox-password-with-eye-field]="inputType() === 'password-with-eye'"
     (change)="pushUpdate()"
     [class]="styleClass()"
     [ngModel]="dataProviderID()"
@@ -17,9 +17,9 @@
     [findmode]="$any(findmode())"
     [autocomplete]="_autocomplete()"
     [placeholder]="floatLabelText()"
-    [type]="_inputType() == 'password-with-eye' && showPass ? 'text' : _inputType() == 'password-with-eye' ? 'password' : _inputType()"
+    [type]="_inputType() === 'password-with-eye' && showPass ? 'text' : _inputType() === 'password-with-eye' ? 'password' : _inputType()"
     />
-  @if (inputType() == 'password-with-eye') {
+  @if (inputType() === 'password-with-eye') {
     <div id="svy-textbox-eyeDiv"
       (click)="showHidePass()"
       class="clickable svy-textbox-eye {{classForEye}} {{styleClass() || ''}}">

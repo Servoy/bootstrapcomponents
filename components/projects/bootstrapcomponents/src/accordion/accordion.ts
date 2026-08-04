@@ -14,7 +14,7 @@ export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDi
     readonly contentElementRef = viewChild('content', { read: ElementRef });
     panelHeight!: number;
     
-    formHeightMap: { [formName: string]: number } = {};
+    formHeightMap: Record<string, number> = {};
 
     constructor(renderer: Renderer2,protected cdRef: ChangeDetectorRef, windowRefService: WindowRefService, protected servoyPublic: ServoyPublicService) {
         super(renderer,cdRef, windowRefService);
@@ -55,7 +55,7 @@ export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDi
         const height = this.height();
         let totalHeight = typeof height === 'string' ? parseInt(height, 10) : height;
         let paneHeight = 49;
-        let borderWidth = 2;
+        const borderWidth = 2;
         let wrapper = null;
         const contentElementRef = this.contentElementRef();
         if (contentElementRef) {
@@ -82,7 +82,7 @@ export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDi
         
         if (this.servoyApi.isInDesigner()){
 			if (tabs === undefined || tabs.length === 0 || (tabs.length > 0 && !contentElementRef)){
-				this.elementRef.nativeElement.style.display = "block";
+				this.elementRef.nativeElement.style.display = 'block';
 				if (!this.servoyApi.isInAbsoluteLayout()) {  // responsive form
 					this.elementRef.nativeElement.style.minHeight = `${this.height()}px`;
 				} else { // css pos
@@ -94,7 +94,7 @@ export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDi
     }
 
     getSelectedTabId() : any{
-        let id = super.getSelectedTabId();
+        const id = super.getSelectedTabId();
         if (id == null) return [];
         return id;
     }

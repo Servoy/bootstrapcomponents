@@ -123,8 +123,7 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
 			setTimeout(() => {
 				super.requestFocus(mustExecuteOnFocusGainedMethod);
 			});
-		}
-		else {
+		} else {
 			super.requestFocus(mustExecuteOnFocusGainedMethod);
 		}
 	}

@@ -22,7 +22,7 @@ describe('TablesspanelComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(ServoyBootstrapTablesspanel);
         component = fixture.componentInstance;
-        let servoyApi = jasmine.createSpyObj('ServoyApi', ['getMarkupId', 'formWillShow', 'hideForm','trustAsHtml', 'registerComponent', 'unRegisterComponent']);
+        const servoyApi = jasmine.createSpyObj('ServoyApi', ['getMarkupId', 'formWillShow', 'hideForm','trustAsHtml', 'registerComponent', 'unRegisterComponent']);
         servoyApi.formWillShow.and.returnValue(Promise.resolve(true));
         servoyApi.hideForm.and.returnValue(Promise.resolve(true));
         component.servoyApi = servoyApi;

@@ -17,7 +17,7 @@
       >
     </span>
   }
-  @if (showAs() == "text") {
+  @if (showAs() === "text") {
     <span class='bts-label-text'>{{text()}}</span>
   }
   @if (trailingImageStyleClass()) {
@@ -35,7 +35,7 @@
       >
     </label>
   }
-  @if (showAs() == "text") {
+  @if (showAs() === "text") {
     <label class='bts-label-text' for="{{labelFor()}}">{{text()}}</label>
   }
   @if (trailingImageStyleClass()) {

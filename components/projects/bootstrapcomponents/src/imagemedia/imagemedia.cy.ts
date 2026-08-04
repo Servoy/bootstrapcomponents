@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-expressions */
+ 
 import { Component, ViewChild, signal, output } from '@angular/core';
 import { ServoyApi, ServoyApiTesting, ServoyPublicTestingModule } from '@servoy/public';
 import { ServoyBootstrapImageMedia } from './imagemedia';
@@ -62,8 +62,7 @@ function applyDefaultProps(wrapper) {
         if (wrapper.component.hasOwnProperty(key) && typeof wrapper.component[key] === 'function') {
             // If the property is a signal, update it using .set()
             wrapper.component[key].set(defaultValues[key]);
-        }
-        else {
+        } else {
             // Otherwise assign it as a normal property
             wrapper.component[key] = defaultValues[key];
         }

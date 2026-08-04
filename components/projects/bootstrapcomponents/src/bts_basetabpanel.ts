@@ -3,12 +3,12 @@ import { WindowRefService, BaseCustomObject } from '@servoy/public';
 import { ServoyBootstrapBaseComponent } from './bts_basecomp';
 
 @Directive()
-// eslint-disable-next-line @angular-eslint/directive-class-suffix
+ 
 export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBootstrapBaseComponent<T> {
 	readonly onChangeMethodID = input<((previousIndex: number, event: Event, newIndex: number) => void) | undefined>(undefined);
 
 	readonly height = input<any>(undefined);
-	readonly tabs = input<Array<Tab> | undefined>(undefined);
+	readonly tabs = input<Tab[] | undefined>(undefined);
 
 	readonly tabIndex = input<number | undefined>(undefined);
 	readonly tabIndexChange = output();
@@ -40,7 +40,7 @@ export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBo
 	}
 
 	getForm(tab: Tab) {
-		var selectedTab = this.tabs()![this.getRealTabIndex()];
+		const selectedTab = this.tabs()![this.getRealTabIndex()];
 		if (selectedTab && (tab.containedForm === selectedTab.containedForm) && (tab.relationName === selectedTab.relationName)) {
 			return tab.containedForm;
 		}

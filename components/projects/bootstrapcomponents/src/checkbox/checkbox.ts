@@ -54,8 +54,7 @@ export class ServoyBootstrapCheckbox extends ServoyBootstrapBasefield<HTMLDivEle
         const selectedValue = this.selectedValue();
         if (selectedValue) {
             this._dataProviderID.set(this._dataProviderID() == selectedValue ? null : selectedValue);
-        }
-        else
+        } else
             if (typeof dataProviderID === 'string') {
                 this._dataProviderID.set(dataProviderID === '1' ? '0' : '1');
             } else {

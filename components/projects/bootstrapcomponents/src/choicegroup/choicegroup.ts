@@ -57,7 +57,7 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
                     break;
                 case 'alignment':
                     this.elementRef.nativeElement.classList.remove('horizontaldirection');
-                    if (this.alignment() === "horizontal") {
+                    if (this.alignment() === 'horizontal') {
                         this.elementRef.nativeElement.classList.add('horizontaldirection');
                     }
                     break;
