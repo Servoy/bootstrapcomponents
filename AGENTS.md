@@ -8,19 +8,19 @@ Angular library and deployed as a Servoy web package (`.zip`).
 
 **Repository:** https://github.com/Servoy/bootstrapcomponents
 **Package name:** `@servoy/bootstrapcomponents`
-**Current version:** 2026.6.0
+**Current version:** 2026.9.0
 
 ## Technology stack
 
 | Aspect | Value |
 |--------|-------|
-| Angular | 21.2.7 |
-| TypeScript | 5.9.3 |
-| Build system | Angular CLI 21.2.6 + ng-packagr 21.2.2 |
+| Angular | 22.1.0 |
+| TypeScript | 6.0.3 |
+| Build system | Angular CLI 22.1.2 + ng-packagr 22.1.1 |
 | Test framework | Cypress 15.x (component testing) |
-| Linting | ESLint 9.x (@angular-eslint + @typescript-eslint 8.x) |
+| Linting | ESLint 10.x (@angular-eslint 22.x + @typescript-eslint 8.x) |
 | Node package manager | npm |
-| Servoy framework | @servoy/public 2025.9.1 |
+| Servoy framework | @servoy/public 2026.9.0 |
 | CSS framework | Bootstrap 5.3.8 |
 
 ## Working directory
@@ -78,8 +78,6 @@ npx cypress run --config video=false --component --browser chrome --spec "projec
 ### Pending migration: Cypress → Vitest
 This project's tests need to be migrated from Cypress to Vitest (Angular's official
 test framework from v19+). Use the `test-migration` skill when ready to perform this.
-The project also needs an Angular 21 → 22 upgrade. These are separate tasks from
-day-to-day feature work.
 
 ## Architecture
 
@@ -254,7 +252,7 @@ When changing component properties, handlers, or API:
 - **Legacy files still active.** The AngularJS files in top-level dirs are still used by
   older Servoy runtimes. Don't delete them.
 - **No standalone components.** All are `standalone: false`, declared in the shared module.
-- **Angular 21 (not 22 yet).** This project is on Angular 21.2.x. An upgrade to 22 is pending.
+- **Angular 22.** This project is on Angular 22.1.x with TypeScript 6.0.
 - **Cypress tests (not Vitest yet).** Tests use Cypress component testing. Migration to
   Vitest is planned but not yet done.
 - **Base class hierarchy matters.** Components extend specific base classes

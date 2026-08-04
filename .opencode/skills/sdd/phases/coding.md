@@ -5,9 +5,9 @@ Components library.
 
 ## Project context
 
-This is an Angular 21 component library for the Servoy NGClient runtime:
-- **Angular 21** with signal-based inputs/outputs and OnPush change detection
-- **TypeScript 5.9** with strict mode
+This is an Angular 22 component library for the Servoy NGClient runtime:
+- **Angular 22** with signal-based inputs/outputs and OnPush change detection
+- **TypeScript 6** with strict mode
 - **ng-packagr** for library building
 - **@servoy/public** provides base classes (`ServoyBaseComponent`) and utilities
 - **Dual-layer architecture** — Servoy .spec files define the contract, Angular

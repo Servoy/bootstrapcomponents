@@ -15,9 +15,9 @@ This project has 21 Cypress component test files that need to be migrated. The p
 uses Cypress 15.x with the Angular component testing adapter and webpack bundler. The target is
 Angular's official Vitest-based testing via `@angular/build:unit-test`.
 
-**Important:** This project is currently on Angular 21.2.x. The Angular 22 upgrade (which brings
-native `@angular/build:unit-test` support) must be done first OR Vitest must be configured
-manually for Angular 21. Check the Angular version before proceeding with infrastructure setup.
+**Important:** This project is on Angular 22.1.x with TypeScript 6.0, which has native
+support for `@angular/build:unit-test` (Vitest). The infrastructure setup should work
+without issues.
 
 Additionally, there are 2 legacy `.spec.ts` files (list.spec.ts, tablesspanel.spec.ts) using
 TestBed + Jasmine patterns that have no configured runner — these should be converted to the
@@ -456,6 +456,5 @@ This order ensures quick wins early to validate the setup, with complex componen
   directly to test focus handlers.
 - **Outputs use `.subscribe()`:** Since `output()` returns an `OutputEmitterRef`, use
   `component.outputName.subscribe(spy)` to listen for emissions.
-- **Angular 21 → 22 prerequisite:** The `@angular/build:unit-test` builder is most stable
-  on Angular 22+. If infrastructure setup fails on Angular 21, the Angular upgrade should
-  be performed first.
+- **Angular 22 is ready.** The `@angular/build:unit-test` builder works natively on
+  Angular 22+. No version upgrade prerequisite needed.

@@ -8,14 +8,14 @@ ng-packagr and deployed as a Servoy web package.
 
 | Aspect | Value |
 |--------|-------|
-| Angular version | 21.2.7 |
-| TypeScript version | 5.9.3 |
-| Build system | Angular CLI 21.2.6 + ng-packagr 21.2.2 |
+| Angular version | 22.1.0 |
+| TypeScript version | 6.0.3 |
+| Build system | Angular CLI 22.1.2 + ng-packagr 22.1.1 |
 | Test framework | Cypress 15.x (component testing) |
-| Linting | ESLint 9.x with @angular-eslint + @typescript-eslint 8.x |
+| Linting | ESLint 10.x with @angular-eslint 22.x + @typescript-eslint 8.x |
 | Module system | ES modules (moduleResolution: "bundler") |
 | Package name | @servoy/bootstrapcomponents |
-| Version | 2026.6.0 |
+| Version | 2026.9.0 |
 | CSS framework | Bootstrap 5.3.8 |
 
 ## Architecture: Dual-Layer Component Structure
@@ -184,5 +184,4 @@ tablesspanel, tabpanel, textarea, textbox, typeahead
   behavior. Check `bts_basecomp.ts`, `bts_baselabel.ts`, `bts_basefield.ts`, and
   `bts_basetabpanel.ts` before adding properties that may already be inherited.
 
-- **Angular 21 (not 22 yet).** This project is on Angular 21.2.x. An upgrade to 22 is
-  pending but has not been performed yet.
+- **Angular 22 with TypeScript 6.** The project uses strict mode and strictTemplates.

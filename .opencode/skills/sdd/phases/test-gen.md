@@ -5,7 +5,7 @@ suite for a feature described in a spec, based on the actual implementation.
 
 ## Project context
 
-This is an Angular 21 component library for the Servoy NGClient runtime.
+This is an Angular 22 component library for the Servoy NGClient runtime.
 Tests use **Cypress 15.x component testing** with the Angular framework adapter.
 
 ## Test framework
