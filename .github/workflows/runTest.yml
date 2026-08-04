@@ -1,4 +1,4 @@
-name: Run the cypress component tests
+name: Lint and test
 
 permissions:
   contents: read
@@ -19,36 +19,47 @@ jobs:
 
       steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Find component directory
         id: find_component_dir
         run: echo "COMPONENT_DIR=$(find . -type d -name 'META-INF' -exec dirname {} \;)" >> $GITHUB_ENV
 
       - name: Use Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: '22.x'
 
       - name: Cache + Restore node_modules
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
-            # Cache node_modules and Puppeteer chrome
             path: |
-              ~/.cache
-              .angular
-              node_modules
+              ${{ env.COMPONENT_DIR }}/.angular
+              ${{ env.COMPONENT_DIR }}/node_modules
             key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
             restore-keys: |
-              ${{ runner.os }}-node_modules-          
-          
-          
-      - name: Install and run the cypress component tests
+              ${{ runner.os }}-node_modules-
+
+      - name: Install dependencies
         working-directory: ${{ env.COMPONENT_DIR }}
-        run: |
-          npm install
-          npm run cy:run
-          
+        run: npm install
+
+      - name: Lint
+        working-directory: ${{ env.COMPONENT_DIR }}
+        continue-on-error: true
+        run: npx ng lint --force --format json --output-file eslint-results.json
+
+      - name: Annotate PR with ESLint results
+        if: always()
+        uses: ataylorme/eslint-annotate-action@v4
+        with:
+          report-json: ${{ env.COMPONENT_DIR }}/eslint-results.json
+        continue-on-error: true
+
+      - name: Run Cypress component tests
+        working-directory: ${{ env.COMPONENT_DIR }}
+        run: npm run cy:run
+
       - name: Upload artifacts on failure
         if: failure()
         uses: actions/upload-artifact@v4
@@ -57,5 +68,3 @@ jobs:
           path: ${{ env.COMPONENT_DIR }}/cypress/screenshots/**
           if-no-files-found: ignore
           retention-days: 30
-          
-  

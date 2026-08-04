@@ -18,28 +18,26 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7
 
     - name: Find component directory
       id: find_component_dir
       run: echo "COMPONENT_DIR=$(find . -type d -name 'META-INF' -exec dirname {} \;)" >> $GITHUB_ENV
 
     - name: Use Node.js
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v7
       with:
           node-version: '22.x'
 
     - name: Cache + Restore node_modules
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       with:
-          # Cache node_modules and Puppeteer chrome
           path: |
-              ~/.cache
-              .angular
-              node_modules
+              ${{ env.COMPONENT_DIR }}/.angular
+              ${{ env.COMPONENT_DIR }}/node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-              ${{ runner.os }}-node_modules-          
+              ${{ runner.os }}-node_modules-
 
     - name: Install and build component
       working-directory: ${{ env.COMPONENT_DIR }}
@@ -75,18 +73,18 @@ jobs:
               printf "still waiting...\n"
           done
       env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-      
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     - name: Create release
       run: |
         gh release create "_${{ github.ref_name }}" --target "${{ env.BRANCH_NAME }}" --prerelease --title "Nighlty Build ${{ env.BRANCH_NAME }}" --notes "Nightly build. Branch: ${{ env.BRANCH_NAME }} Commit: ${{ github.sha }} Package Version: ${{ env.PACKAGE_VERSION }}"
         echo "release_exists=true" >> $GITHUB_ENV
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        
+
     - name: Upload assets
       if: env.release_exists == 'true'
       run: |
         gh release upload "_${{ env.BRANCH_NAME }}" ${{ env.COMPONENT_DIR }}/*.zip
       env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
