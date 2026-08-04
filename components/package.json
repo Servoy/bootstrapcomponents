@@ -10,7 +10,8 @@
     "lint": "ng lint",
     "test": "ng test @servoy/bootstrapcomponents --no-watch",
     "test:watch": "ng test @servoy/bootstrapcomponents",
-    "test:ui": "ng test @servoy/bootstrapcomponents --ui"
+    "test:ui": "ng test @servoy/bootstrapcomponents --ui",
+    "test:browser": "ng test @servoy/bootstrapcomponents --no-watch --browsers chromium --headless --include \"projects/bootstrapcomponents/src/calendarinline/calendarinline.spec.ts\""
   },
   "private": true,
   "dependencies": {
@@ -43,6 +44,7 @@
     "@eslint/js": "^10.0.1",
     "@stylistic/eslint-plugin": "^5.10.0",
     "@types/luxon": "3.7.3",
+    "@vitest/browser-playwright": "^4.1.10",
     "adm-zip": "0.6.0",
     "angular-eslint": "^22.1.0",
     "eslint": "^10.8.0",
@@ -50,6 +52,7 @@
     "jsdom": "^30.0.1",
     "less": "^4.8.1",
     "ng-packagr": "22.1.1",
+    "playwright": "^1.62.1",
     "typescript": "6.0.3",
     "typescript-eslint": "^8.66.0",
     "vitest": "^4.1.10"

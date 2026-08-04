@@ -60,6 +60,10 @@ jobs:
         working-directory: ${{ env.COMPONENT_DIR }}
         run: npm run test
 
+      - name: Run browser-mode tests
+        working-directory: ${{ env.COMPONENT_DIR }}
+        run: npm run test:browser
+
       - name: Upload artifacts on failure
         if: failure()
         uses: actions/upload-artifact@v4
