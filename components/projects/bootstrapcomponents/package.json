@@ -2,10 +2,10 @@
   "name": "@servoy/bootstrapcomponents",
   "version": "2026.9.0",
   "peerDependencies": {
-    "@angular/animations": "^21",
-    "@angular/common": "^21",
-    "@angular/core": "^21",
-    "@angular/forms": "^21",
+    "@angular/animations": "^22",
+    "@angular/common": "^22",
+    "@angular/core": "^22",
+    "@angular/forms": "^22",
     "luxon": "*"
   },
   "dependencies": {
