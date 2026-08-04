@@ -1,4 +1,4 @@
-import { Component, Renderer2, SimpleChanges, ChangeDetectorRef, ElementRef, ChangeDetectionStrategy, Inject, DOCUMENT, input, viewChildren, viewChild, computed } from '@angular/core';
+import { Component, ChangeDetectorRef, SimpleChanges, ElementRef, ChangeDetectionStrategy, inject, input, viewChildren, viewChild, computed } from '@angular/core';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 import { Format, FormattingService, IValuelist, ServoyPublicService, PopupStateService } from '@servoy/public';
 import { NgbDropdownItem, NgbTooltip, NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
@@ -38,10 +38,10 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
     private valuelistDisplayValueSubscription: Subscription | null = null;
     private showPopupOnFocusGain = false;
 
-    constructor(renderer: Renderer2, protected cdRef: ChangeDetectorRef, protected formatService: FormattingService, 
-        @Inject(DOCUMENT) doc: Document, protected servoyService: ServoyPublicService, protected popupStateService: PopupStateService) {
-        super(renderer, cdRef, doc);
-    }
+    protected readonly cdRef = inject(ChangeDetectorRef);
+    protected readonly formatService = inject(FormattingService);
+    protected readonly servoyService = inject(ServoyPublicService);
+    protected readonly popupStateService = inject(PopupStateService);
 
     handleKeyDown(event: KeyboardEvent) {
         event.stopPropagation();

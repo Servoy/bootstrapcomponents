@@ -1,5 +1,5 @@
 
-import { Component, Renderer2, SimpleChanges, ChangeDetectorRef, ChangeDetectionStrategy, Inject, DOCUMENT, input } from '@angular/core';
+import { Component, SimpleChanges, ChangeDetectionStrategy, inject, input } from '@angular/core';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 import { WindowRefService } from '@servoy/public';
 
@@ -16,9 +16,7 @@ export class ServoyBootstrapImageMedia extends ServoyBootstrapBasefield<HTMLImag
 
     imageURL = 'bootstrapcomponents/imagemedia/images/empty.gif';
 
-    constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, @Inject(DOCUMENT) doc: Document, protected windowService: WindowRefService) {
-        super(renderer, cdRef, doc);
-    }
+    protected readonly windowService = inject(WindowRefService);
 
     svyOnInit(): void {
 		super.svyOnInit();

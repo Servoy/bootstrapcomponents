@@ -1,5 +1,6 @@
 import { ServoyBootstrapBaseComponent } from './bts_basecomp';
-import { Directive, SimpleChanges, SimpleChange, Renderer2, ChangeDetectorRef, Inject, DOCUMENT, input, output, linkedSignal, computed } from '@angular/core';
+import { Directive, SimpleChanges, SimpleChange, input, output, linkedSignal, computed, inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { PropertyUtils } from '@servoy/public';
 
 
@@ -36,9 +37,7 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
 
     storedTooltip: any;
 
-    constructor(renderer: Renderer2, protected cdRef: ChangeDetectorRef, @Inject(DOCUMENT) protected doc: Document) {
-        super(renderer, cdRef);
-    }
+    protected readonly doc = inject(DOCUMENT);
 
     svyOnInit() {
         super.svyOnInit();

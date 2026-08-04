@@ -1,8 +1,8 @@
 
-import { Component, Renderer2, ElementRef, ChangeDetectorRef, SimpleChanges, ChangeDetectionStrategy, Inject, DOCUMENT, input, viewChild } from '@angular/core';
+import { Component, ElementRef, SimpleChanges, ChangeDetectionStrategy, input, viewChild, inject } from '@angular/core';
 import { DateTime, Namespace, TempusDominus } from '@eonasdan/tempus-dominus';
 import { FormatDirective, Format, FormattingService, PopupStateService } from '@servoy/public';
-import { LoggerFactory, ServoyPublicService } from '@servoy/public';
+import { LoggerFactory } from '@servoy/public';
 import { ServoyBootstrapBaseCalendar } from './basecalendar';
 
 @Component({
@@ -27,15 +27,10 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
     private hasFocus = false;
     private isBlur = false;
 
-    constructor(renderer: Renderer2,
-        cdRef: ChangeDetectorRef,
-        logFactory: LoggerFactory,
-        protected formattingService: FormattingService,
-        servoyService: ServoyPublicService,
-        @Inject(DOCUMENT) doc: Document,
-        protected popupStateService: PopupStateService) {
-        super(renderer, cdRef,servoyService, logFactory.getLogger('bts-calendar'), doc);
-    }
+    protected readonly formattingService = inject(FormattingService);
+    protected readonly popupStateService = inject(PopupStateService);
+
+    override readonly log = inject(LoggerFactory).getLogger('bts-calendar');
 
 	onKeyDown(event: KeyboardEvent) {
 		const shortcuts = ['KeyT', 'KeyY', 'KeyB', 'KeyE', 'NumpadAdd', 'NumpadSubtract'];

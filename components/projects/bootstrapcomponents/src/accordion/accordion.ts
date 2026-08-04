@@ -1,5 +1,5 @@
-import { Component, Renderer2, SimpleChanges, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy, viewChild } from '@angular/core';
-import { WindowRefService, ServoyPublicService } from '@servoy/public';
+import { Component, SimpleChanges, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy, viewChild, inject } from '@angular/core';
+import { ServoyPublicService } from '@servoy/public';
 
 import { ServoyBootstrapBaseTabPanel,Tab } from '../bts_basetabpanel';
 
@@ -16,9 +16,8 @@ export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDi
     
     formHeightMap: Record<string, number> = {};
 
-    constructor(renderer: Renderer2,protected cdRef: ChangeDetectorRef, windowRefService: WindowRefService, protected servoyPublic: ServoyPublicService) {
-        super(renderer,cdRef, windowRefService);
-     }
+    protected readonly cdRef = inject(ChangeDetectorRef);
+    protected readonly servoyPublic = inject(ServoyPublicService);
 
     svyOnChanges( changes: SimpleChanges ) {
         if (changes['height'] || changes['tabs'] || changes['tabIndex']) {

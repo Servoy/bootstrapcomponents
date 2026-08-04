@@ -1,4 +1,4 @@
-import { Renderer2, SimpleChanges, TemplateRef, Directive, ChangeDetectorRef, input, output, contentChild } from '@angular/core';
+import { SimpleChanges, TemplateRef, Directive, input, output, contentChild, inject } from '@angular/core';
 import { WindowRefService, BaseCustomObject } from '@servoy/public';
 import { ServoyBootstrapBaseComponent } from './bts_basecomp';
 
@@ -18,9 +18,7 @@ export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBo
 
 	readonly templateRef = contentChild(TemplateRef);
 
-	constructor(renderer: Renderer2, protected cdRef: ChangeDetectorRef, protected windowRefService: WindowRefService) {
-		super(renderer, cdRef);
-	}
+	protected readonly windowRefService = inject(WindowRefService);
 
 	ngOnInit() {
 		super.ngOnInit();

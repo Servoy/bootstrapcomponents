@@ -1,5 +1,5 @@
 
-import { Component, Renderer2, SimpleChanges, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy, Inject, DOCUMENT, input, viewChild, computed } from '@angular/core';
+import { Component, SimpleChanges, ElementRef, ChangeDetectionStrategy, input, viewChild, computed } from '@angular/core';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 
 @Component({
@@ -16,10 +16,6 @@ export class ServoyBootstrapCheckbox extends ServoyBootstrapBasefield<HTMLDivEle
     readonly input = viewChild<ElementRef>('input');
 
     readonly selected = computed(() => this.getSelectionFromDataprovider());
-
-    constructor(renderer: Renderer2, protected cdRef: ChangeDetectorRef, @Inject(DOCUMENT) doc: Document) {
-        super(renderer, cdRef, doc);
-    }
 
     svyOnInit() {
         super.svyOnInit();

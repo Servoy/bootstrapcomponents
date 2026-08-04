@@ -1,6 +1,6 @@
 
-import { Component, Renderer2, ChangeDetectorRef, SimpleChanges, ChangeDetectionStrategy, Inject, DOCUMENT, input } from '@angular/core';
-import { Format, LoggerFactory, ServoyPublicService } from '@servoy/public';
+import { Component, SimpleChanges, ChangeDetectionStrategy, input, inject } from '@angular/core';
+import { Format, LoggerFactory } from '@servoy/public';
 import { ServoyBootstrapBaseCalendar } from '../calendar/basecalendar';
 import { DateTime } from '@eonasdan/tempus-dominus';
 
@@ -14,9 +14,10 @@ export class ServoyBootstrapCalendarinline extends ServoyBootstrapBaseCalendar {
 
     readonly format = input<Format | undefined>(undefined);
 
-    constructor(renderer: Renderer2, cdRef: ChangeDetectorRef,
-        servoyService: ServoyPublicService, logFactory: LoggerFactory, @Inject(DOCUMENT) doc: Document) {
-        super(renderer, cdRef, servoyService, logFactory.getLogger('bts-inlinecalendar'), doc);
+    override readonly log = inject(LoggerFactory).getLogger('bts-inlinecalendar');
+
+    constructor() {
+        super();
         this.config.display!.inline = true;
         this.config.display!.buttons!.close = false;
     }

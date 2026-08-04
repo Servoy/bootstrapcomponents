@@ -1,5 +1,5 @@
 
-import { Component, OnInit, Renderer2, ElementRef, Directive, SimpleChanges, ChangeDetectorRef, ChangeDetectionStrategy, Inject, DOCUMENT, input, viewChild, linkedSignal } from '@angular/core';
+import { Component, OnInit, ElementRef, Directive, SimpleChanges, ChangeDetectionStrategy, input, viewChild, linkedSignal, inject } from '@angular/core';
 import { IValuelist } from '@servoy/public';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 
@@ -24,10 +24,6 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
     selection: any[] = [];
     allowNullinc = 0;
     allowMultiselect = true;
-
-    constructor(renderer: Renderer2, protected cdRef: ChangeDetectorRef, @Inject(DOCUMENT) doc: Document) {
-        super(renderer, cdRef, doc);
-    }
 
     svyOnInit() {
         super.svyOnInit();
@@ -162,8 +158,7 @@ export class ChoiceElementDirective implements OnInit {
     readonly bootstrapBaseChoiceElement = input<ServoyBootstrapChoicegroup | undefined>(undefined);
     readonly index = input<number | undefined>(undefined);
 
-    constructor(private el: ElementRef) {
-    }
+    private readonly el = inject(ElementRef);
 
     ngOnInit(): void {
         this.bootstrapBaseChoiceElement()!.attachEventHandlers(this.el.nativeElement, this.index()!);

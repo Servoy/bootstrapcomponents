@@ -1,6 +1,5 @@
 
-import { Component, ChangeDetectorRef, Renderer2, ChangeDetectionStrategy, Inject, SimpleChanges, SimpleChange, DOCUMENT, input, output, signal } from '@angular/core';
-import { WindowRefService, FormattingService, ServoyPublicService, PopupStateService} from '@servoy/public';
+import { Component, ChangeDetectionStrategy, SimpleChanges, SimpleChange, input, output, signal } from '@angular/core';
 import { ServoyBootstrapTypeahead } from '../typeahead/typeahead';
 
 @Component({
@@ -15,14 +14,6 @@ export class ServoyFloatLabelBootstrapTypeahead extends ServoyBootstrapTypeahead
     readonly errorMessage = input<string | undefined>(undefined);
     readonly errorShow = signal<boolean | undefined>(undefined);
     readonly errorShowChange = output<boolean>();
-     
-    constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, @Inject(DOCUMENT) doc: Document, 
-		protected formatService: FormattingService, 
-		protected servoyService: ServoyPublicService,
-		protected windowService: WindowRefService,
-        protected popupStateService: PopupStateService) {
-        super(renderer, cdRef, doc, formatService, servoyService, windowService, popupStateService);
-    }
 
     svyOnInit() {
         super.svyOnInit();

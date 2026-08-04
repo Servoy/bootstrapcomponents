@@ -1,5 +1,5 @@
 import { ServoyBootstrapBaseComponent } from './bts_basecomp';
-import { Renderer2, Directive, ChangeDetectorRef, input } from '@angular/core';
+import { Directive, input } from '@angular/core';
 
 @Directive()
  
@@ -12,10 +12,6 @@ export class ServoyBootstrapBaseLabel<T extends HTMLElement> extends ServoyBoots
     readonly imageStyleClass = input<string | undefined>(undefined);
     readonly trailingImageStyleClass = input<string | undefined>(undefined);
     readonly showAs = input<string | undefined>(undefined);
-
-    constructor(renderer: Renderer2, protected cdRef: ChangeDetectorRef) {
-        super(renderer, cdRef);
-    }
 
     svyOnInit() {
         super.svyOnInit();

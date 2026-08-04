@@ -1,5 +1,5 @@
 import { ServoyBootstrapBaseLabel } from '../bts_baselabel';
-import { Component, Renderer2, ChangeDetectorRef, ChangeDetectionStrategy, SimpleChanges, input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, SimpleChanges, input } from '@angular/core';
 
 @Component({
     selector: 'bootstrapcomponents-label',
@@ -11,10 +11,6 @@ export class ServoyBootstrapLabel extends ServoyBootstrapBaseLabel<HTMLSpanEleme
 
     readonly labelFor = input<string | undefined>(undefined);
     readonly styleClassExpression = input<string | undefined>(undefined);
-
-    constructor(renderer: Renderer2, cdRef: ChangeDetectorRef) {
-        super(renderer, cdRef);
-    }
 
     svyOnInit() {
         super.svyOnInit();

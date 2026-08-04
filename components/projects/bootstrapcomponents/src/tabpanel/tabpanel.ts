@@ -1,5 +1,5 @@
-import { Component, Renderer2, ChangeDetectorRef, ChangeDetectionStrategy, ElementRef, AfterViewInit, OnDestroy, input, output, viewChild, linkedSignal } from '@angular/core';
-import { LoggerFactory, LoggerService, WindowRefService } from '@servoy/public';
+import { Component, ChangeDetectorRef, ChangeDetectionStrategy, ElementRef, AfterViewInit, OnDestroy, input, output, viewChild, linkedSignal, inject } from '@angular/core';
+import { LoggerFactory } from '@servoy/public';
 
 import { ServoyBootstrapBaseTabPanel, Tab } from '../bts_basetabpanel';
 import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
@@ -35,10 +35,7 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
     containerStyle = { position: 'relative', minHeight: '0px', overflow: 'auto' };
 
     private visibleTabIndex!: number;
-
-    constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, windowRefService: WindowRefService) {
-        super(renderer, cdRef, windowRefService);
-    }
+    protected readonly cdRef = inject(ChangeDetectorRef);
     
     onResize(): void {
         if (!this.servoyApi.isInAbsoluteLayout()) {
@@ -252,11 +249,7 @@ export class BsTabpanelActiveTabVisibilityListener implements AfterViewInit, OnD
     readonly elementRef = viewChild<ElementRef>('element');
 
     observer!: MutationObserver;
-    log: LoggerService;
-
-    constructor(logFactory: LoggerFactory) {
-        this.log = logFactory.getLogger('bts-tabpanel');
-    }
+    log = inject(LoggerFactory).getLogger('bts-tabpanel');
 
     ngAfterViewInit(): void {
         if (typeof MutationObserver !== 'undefined') {

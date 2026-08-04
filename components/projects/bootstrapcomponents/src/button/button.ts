@@ -1,4 +1,4 @@
-import { Component, Renderer2, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 import { ServoyBootstrapBaseLabel } from '../bts_baselabel';
 
@@ -9,10 +9,6 @@ import { ServoyBootstrapBaseLabel } from '../bts_baselabel';
     standalone: false
 } )
 export class ServoyBootstrapButton extends ServoyBootstrapBaseLabel<HTMLButtonElement> {
-
-    constructor(renderer: Renderer2, protected cdRef: ChangeDetectorRef) {
-        super(renderer, cdRef);
-    }
 
     svyOnInit() {
         super.svyOnInit();

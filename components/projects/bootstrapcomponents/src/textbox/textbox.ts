@@ -1,5 +1,5 @@
 
-import { Component, ChangeDetectorRef, Renderer2, ChangeDetectionStrategy, Inject, SimpleChanges, DOCUMENT, input, output, viewChild, signal } from '@angular/core';
+import { Component, ChangeDetectionStrategy, SimpleChanges, input, output, viewChild, signal, inject } from '@angular/core';
 import { Format, FormatDirective, WindowRefService } from '@servoy/public';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 
@@ -26,9 +26,7 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
 	showPass = false;
 	classForEye = '';
 
-	constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, @Inject(DOCUMENT) doc: Document, protected windowService: WindowRefService) {
-		super(renderer, cdRef, doc);
-	}
+	protected readonly windowService = inject(WindowRefService);
 
 	svyOnInit() {
 		super.svyOnInit();

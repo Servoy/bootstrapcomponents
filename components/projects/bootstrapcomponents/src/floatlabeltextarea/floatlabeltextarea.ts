@@ -1,5 +1,5 @@
 
-import { Component, ChangeDetectorRef, Renderer2, ChangeDetectionStrategy, Inject, SimpleChanges, SimpleChange, DOCUMENT, input, output, signal } from '@angular/core';
+import { Component, ChangeDetectionStrategy, SimpleChanges, SimpleChange, input, output, signal } from '@angular/core';
 import { ServoyBootstrapTextarea } from '../textarea/textarea';
 
 @Component({
@@ -14,10 +14,6 @@ export class ServoyFloatLabelBootstrapTextarea extends ServoyBootstrapTextarea {
     readonly errorMessage = input<string | undefined>(undefined);
     readonly errorShow = signal<boolean | undefined>(undefined);
     readonly errorShowChange = output<boolean>();
-     
-    constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, @Inject(DOCUMENT) doc: Document) {
-        super(renderer, cdRef, doc);
-    }
 
     svyOnInit() {
         super.svyOnInit();

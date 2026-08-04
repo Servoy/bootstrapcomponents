@@ -1,5 +1,5 @@
 
-import { NgModule } from '@angular/core';
+import { NgModule, inject } from '@angular/core';
 import { ServoyPublicModule, SpecTypesService } from '@servoy/public';
 import { ServoyBootstrapButton } from './button/button';
 import { ServoyBootstrapLabel } from './label/label';
@@ -93,9 +93,11 @@ import { Tab } from './bts_basetabpanel';
       ServoyBootstrapCalendarinline]
 })
 export class ServoyBootstrapComponentsModule {
-     constructor( specTypesService: SpecTypesService ) {
-        specTypesService.registerType('bootstrapcomponents-tabpanel.tab', Tab);
-        specTypesService.registerType('bootstrapcomponents-tablesspanel.tab', Tab);
-        specTypesService.registerType('bootstrapcomponents-accordion.tab', Tab);
+    private readonly specTypesService = inject(SpecTypesService);
+
+    constructor() {
+        this.specTypesService.registerType('bootstrapcomponents-tabpanel.tab', Tab);
+        this.specTypesService.registerType('bootstrapcomponents-tablesspanel.tab', Tab);
+        this.specTypesService.registerType('bootstrapcomponents-accordion.tab', Tab);
     }
 }

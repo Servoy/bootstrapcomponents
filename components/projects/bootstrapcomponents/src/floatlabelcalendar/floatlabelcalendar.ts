@@ -1,7 +1,5 @@
 
-import { Component, Renderer2, ChangeDetectorRef, ChangeDetectionStrategy, SimpleChanges, Inject, SimpleChange, DOCUMENT, input, output, signal } from '@angular/core';
-import { FormattingService } from '@servoy/public';
-import { LoggerFactory, ServoyPublicService, PopupStateService } from '@servoy/public';
+import { Component, ChangeDetectionStrategy, SimpleChanges, SimpleChange, input, output, signal } from '@angular/core';
 import { ServoyBootstrapCalendar } from '../calendar/calendar';
 
 @Component({
@@ -16,16 +14,6 @@ export class ServoyFloatLabelBootstrapCalendar extends ServoyBootstrapCalendar {
  	readonly errorMessage = input<string | undefined>(undefined);
     readonly errorShow = signal<boolean | undefined>(undefined);
     readonly errorShowChange = output<boolean>();
- 
-    constructor(renderer: Renderer2,
-        cdRef: ChangeDetectorRef,
-        logFactory: LoggerFactory,
-        protected formattingService: FormattingService,
-        servoyService: ServoyPublicService,
-        @Inject(DOCUMENT) doc: Document,
-        protected popupStateService: PopupStateService) {
-        super(renderer, cdRef, logFactory, formattingService, servoyService, doc, popupStateService);
-    }
     
     svyOnChanges(changes: SimpleChanges) {
         super.svyOnChanges(changes);

@@ -1,4 +1,4 @@
-import { Component, Renderer2, SimpleChanges, ChangeDetectorRef, ChangeDetectionStrategy, Inject, DOCUMENT, input } from '@angular/core';
+import { Component, SimpleChanges, ChangeDetectionStrategy, inject, input } from '@angular/core';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 import { ShowDisplayValuePipe } from '../lib/showDisplayValue.pipe';
 
@@ -16,10 +16,7 @@ export class ServoyBootstrapList extends ServoyBootstrapBasefield<HTMLInputEleme
 
   readonly valuelistID = input<IValuelist | undefined>(undefined);
 
-  constructor(renderer: Renderer2, cdRef: ChangeDetectorRef,
-     private showDisplayValuePipe: ShowDisplayValuePipe, @Inject(DOCUMENT) doc: Document) {
-    super(renderer, cdRef, doc);
-  }
+  private readonly showDisplayValuePipe = inject(ShowDisplayValuePipe);
 
   svyOnChanges( changes: SimpleChanges ) {
     if (changes) {

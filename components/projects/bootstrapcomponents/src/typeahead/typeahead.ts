@@ -1,5 +1,5 @@
 
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, Renderer2, SimpleChanges, DOCUMENT, input, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, SimpleChanges, input, viewChild, inject } from '@angular/core';
 import { NgbTypeahead, NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
 import { merge, Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, switchMap, take } from 'rxjs/operators';
@@ -40,13 +40,14 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
 
 	private realToDisplay = new Map<any, string>();
 
-	constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, @Inject(DOCUMENT) doc: Document, 
-		protected formatService: FormattingService,
-		protected servoyService: ServoyPublicService,
-		windowService: WindowRefService,
-        protected popupStateService: PopupStateService) {
-		super(renderer, cdRef, doc);
-		this.autocomplete = windowService.nativeWindow.navigator.userAgent.match(/chrome/i) ? 'chrome-off' : 'off';
+	protected readonly formatService = inject(FormattingService);
+	protected readonly servoyService = inject(ServoyPublicService);
+	private readonly windowService = inject(WindowRefService);
+	protected readonly popupStateService = inject(PopupStateService);
+
+	constructor() {
+		super();
+		this.autocomplete = this.windowService.nativeWindow.navigator.userAgent.match(/chrome/i) ? 'chrome-off' : 'off';
 	}
     
     onKeyDown(event: KeyboardEvent) {

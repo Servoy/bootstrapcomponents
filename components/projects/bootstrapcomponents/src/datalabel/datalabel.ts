@@ -1,4 +1,4 @@
-import { Component, Renderer2, Pipe, PipeTransform, ChangeDetectorRef, ChangeDetectionStrategy, input, computed } from '@angular/core';
+import { Component, Pipe, PipeTransform, ChangeDetectionStrategy, input, computed } from '@angular/core';
 import { ServoyBootstrapBaseLabel } from '../bts_baselabel';
 
 @Component({
@@ -19,10 +19,6 @@ export class ServoyBootstrapDatalabel extends ServoyBootstrapBaseLabel<HTMLSpanE
         const sce = this.styleClassExpression() ? this.styleClassExpression() + '' : '';
         return (sc + ' ' + sce).trim();
     });
-
-    constructor(renderer: Renderer2, cdRef: ChangeDetectorRef) {
-        super(renderer, cdRef);
-    }
 
     svyOnInit() {
         super.svyOnInit();

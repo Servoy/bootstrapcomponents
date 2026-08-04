@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, Renderer2, TemplateRef, SimpleChanges, ChangeDetectionStrategy, input, contentChild } from '@angular/core';
+import { Component, ChangeDetectorRef, TemplateRef, SimpleChanges, ChangeDetectionStrategy, input, contentChild, inject } from '@angular/core';
 import { ServoyPublicService } from '@servoy/public';
 import { ServoyBootstrapBaseComponent } from '../bts_basecomp';
 
@@ -20,9 +20,8 @@ export class ServoyBootstrapTablesspanel extends ServoyBootstrapBaseComponent<HT
     private realContainedForm: any;
     private formWillShowCalled: any;
 
-    constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, private servoyPublic: ServoyPublicService) {
-        super(renderer, cdRef);
-    }
+    private readonly servoyPublic = inject(ServoyPublicService);
+    protected readonly cdRef = inject(ChangeDetectorRef);
 
     svyOnChanges(changes: SimpleChanges) {
         if (changes) {

@@ -1,5 +1,5 @@
 import { ServoyBaseComponent } from '@servoy/public';
-import { Directive, Renderer2, SimpleChanges, ChangeDetectorRef, input, linkedSignal } from '@angular/core';
+import { Directive, SimpleChanges, input, linkedSignal } from '@angular/core';
 
 @Directive()
  
@@ -15,10 +15,6 @@ export class ServoyBootstrapBaseComponent<T extends HTMLElement> extends ServoyB
     protected _toolTipText = linkedSignal(() => this.toolTipText());
 
     timeoutID!: number;
-
-    constructor(protected readonly renderer: Renderer2, protected cdRef: ChangeDetectorRef) {
-        super(renderer, cdRef);
-    }
 
     svyOnChanges(changes: SimpleChanges) {
         if (changes) {
