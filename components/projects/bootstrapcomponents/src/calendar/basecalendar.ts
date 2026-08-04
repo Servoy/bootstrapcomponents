@@ -1,3 +1,4 @@
+/// <reference path="../tempus-dominus-locales.d.ts" />
 import { Renderer2, ChangeDetectorRef, Inject, Directive, SimpleChanges, DOCUMENT, input, output, linkedSignal } from '@angular/core';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 

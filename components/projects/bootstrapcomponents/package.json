@@ -1,6 +1,6 @@
 {
   "name": "@servoy/bootstrapcomponents",
-  "version": "2026.6.0",
+  "version": "2026.9.0",
   "peerDependencies": {
     "@angular/animations": "^21",
     "@angular/common": "^21",
@@ -9,8 +9,8 @@
     "luxon": "*"
   },
   "dependencies": {
-    "@angular/cdk": "^21",
-    "@ng-bootstrap/ng-bootstrap": "^20",
+    "@angular/cdk": "^22",
+    "@ng-bootstrap/ng-bootstrap": "^21",
     "@popperjs/core": "<3",
     "@eonasdan/tempus-dominus": "<6.11",
     "bootstrap": "<6",

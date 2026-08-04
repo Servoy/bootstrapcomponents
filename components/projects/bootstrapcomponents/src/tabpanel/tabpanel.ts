@@ -237,6 +237,7 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
 @Component({
     selector: 'bootstrapcomponents-tabpanel-active-tab-visibility-listener',
     template: '<div #element></div>',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class BsTabpanelActiveTabVisibilityListener implements AfterViewInit, OnDestroy {
