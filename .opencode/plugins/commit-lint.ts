@@ -1,4 +1,6 @@
 import type { Plugin } from "@opencode-ai/plugin"
+import { readFileSync, existsSync } from "fs"
+import { resolve } from "path"
 
 const JIRA_KEY_PATTERN = /^(SVY|SVYX|SERVOY)-\d+/
 const AI_SUFFIX = "[ai]"
@@ -28,6 +30,43 @@ function validateCommitMessage(message: string, options: CommitLintOptions = {})
   return errors
 }
 
+function getMajor(version: string): string | null {
+  const clean = version.replace(/[~^>=<\s]/g, "")
+  const parts = clean.split(".")
+  return parts[0] || null
+}
+
+function validatePackageSync(workdir: string): string[] {
+  const errors: string[] = []
+
+  const rootPkgPath = resolve(workdir, "components/package.json")
+  const distPkgPath = resolve(workdir, "components/projects/bootstrapcomponents/package.json")
+
+  if (!existsSync(rootPkgPath) || !existsSync(distPkgPath)) return []
+
+  const rootPkg = JSON.parse(readFileSync(rootPkgPath, "utf-8"))
+  const distPkg = JSON.parse(readFileSync(distPkgPath, "utf-8"))
+
+  const rootDeps = rootPkg.dependencies || {}
+  const distDeps = distPkg.dependencies || {}
+  const distPeerDeps = distPkg.peerDependencies || {}
+  const allDistDeps = { ...distPeerDeps, ...distDeps }
+
+  for (const [pkg, distVersion] of Object.entries(allDistDeps)) {
+    if (!rootDeps[pkg]) continue
+    const rootMajor = getMajor(rootDeps[pkg] as string)
+    const distMajor = getMajor(distVersion as string)
+    if (!rootMajor || !distMajor) continue
+    if (parseInt(rootMajor) > parseInt(distMajor)) {
+      errors.push(
+        `${pkg}: root has major ${rootMajor} but distribution has major ${distMajor} — update distribution package.json`
+      )
+    }
+  }
+
+  return errors
+}
+
 let requireJiraKey = false
 
 export default (async () => {
@@ -48,11 +87,16 @@ export default (async () => {
       if (!messageMatch) return
 
       const message = messageMatch[1]
-      const errors = validateCommitMessage(message, { requireJiraKey })
+      const commitErrors = validateCommitMessage(message, { requireJiraKey })
 
-      if (errors.length > 0) {
+      const workdir = args.workdir || process.cwd()
+      const syncErrors = validatePackageSync(workdir)
+
+      const allErrors = [...commitErrors, ...syncErrors]
+
+      if (allErrors.length > 0) {
         throw new Error(
-          `Commit message validation failed:\n${errors.map((e) => `  - ${e}`).join("\n")}\n\n` +
+          `Commit validation failed:\n${allErrors.map((e) => `  - ${e}`).join("\n")}\n\n` +
             (requireJiraKey
               ? `Expected format: <JIRA_KEY> <short description> [ai]\n` +
                 `Example: SVY-21080 add calendar inline date selection support [ai]`
