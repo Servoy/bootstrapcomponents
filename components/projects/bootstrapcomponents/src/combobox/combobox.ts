@@ -114,7 +114,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
         }
     }
 
-    handleTooltip(event: KeyboardEvent) {
+    handleTooltip(_event: KeyboardEvent) {
         const tooltip = this.tooltip();
         tooltip!.autoClose = false;
         tooltip!.ngbTooltip = 'This is the CHANGED text';
@@ -176,7 +176,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
                 this.mustExecuteOnFocus = true;
             });
         if (this.showPopupOnFocusGain) {
-            this.renderer.listen(nativeElement, 'mousedown', (e) => {
+            this.renderer.listen(nativeElement, 'mousedown', (_e) => {
                 if (this.doc.activeElement !== nativeElement && !this.comboboxDropdown()!.isOpen()) {
                     // ngbDropdownToggle on mouse click will open the dropdown, so ignore the next focus
                     skipPopupOpen = true;

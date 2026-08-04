@@ -153,6 +153,7 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
 }
 
 @Directive({
+    // eslint-disable-next-line @angular-eslint/directive-selector
     selector: '[bootstrapBaseChoiceElement]',
     standalone: false
 })

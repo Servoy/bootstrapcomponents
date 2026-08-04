@@ -41,6 +41,7 @@ export class ServoyBootstrapDatalabel extends ServoyBootstrapBaseLabel<HTMLSpanE
 } )
 export class DesignTextPipe implements PipeTransform {
     constructor( ) {
+        // intentionally empty
     }
 
     transform( input: string, inDesigner: boolean ): any {

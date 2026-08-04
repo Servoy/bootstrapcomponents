@@ -9,6 +9,7 @@ import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
  *
  * Ex. `result="Alaska"` and `term="as"` will produce `Al<span class="ngb-highlight">as</span>ka`.
  */
+/* eslint-disable @angular-eslint/component-selector */
 @Component({
     selector: 'svy-ngb-highlight',
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -25,6 +26,7 @@ import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
     styleUrls: ['./highlight.scss'],
     standalone: false
 })
+/* eslint-enable @angular-eslint/component-selector */
 export class SvyNgbHighlight implements OnChanges {
   parts!: (string | SafeHtml)[];
 
@@ -63,7 +65,7 @@ export class SvyNgbHighlight implements OnChanges {
    */
   accentSensitive = signal(true);
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges(_changes: SimpleChanges) {
     const accentSensitive = this.accentSensitive();
     if (!accentSensitive && !String.prototype.normalize) {
       console.warn(

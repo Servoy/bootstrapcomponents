@@ -33,8 +33,11 @@ export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBo
 			this.generateIDs();
 		}
 		const onChangeMethodID = this.onChangeMethodID();
-        if (changes['tabIndex'] && changes['tabIndex'].previousValue && changes['tabIndex'].previousValue !== changes['tabIndex'].currentValue && onChangeMethodID) {
-            onChangeMethodID(changes['tabIndex'].previousValue, (this.windowRefService.nativeWindow.event != null ? this.windowRefService.nativeWindow.event : null) as any /* TODO $.Event("change") */, changes['tabIndex'].currentValue);
+        if (changes['tabIndex'] && changes['tabIndex'].previousValue
+            && changes['tabIndex'].previousValue !== changes['tabIndex'].currentValue && onChangeMethodID) {
+            const evt = this.windowRefService.nativeWindow.event != null
+                ? this.windowRefService.nativeWindow.event : null;
+            onChangeMethodID(changes['tabIndex'].previousValue, evt as any, changes['tabIndex'].currentValue);
         }
 		super.svyOnChanges(changes);
 	}

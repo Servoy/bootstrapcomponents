@@ -32,7 +32,7 @@ export class ServoyBootstrapBaseComponent<T extends HTMLElement> extends ServoyB
                         else 
                             this.renderer.setAttribute(this.getFocusElement(), 'disabled', 'disabled');
                         break;
-                    case 'variant':
+                    case 'variant': {
                         const styleClasses = styleClass?styleClass.trim().split(' '):[];
                         if (change.previousValue){
                            change.previousValue.filter((element: string) => element !== '' && !styleClasses.includes(element))
@@ -42,6 +42,7 @@ export class ServoyBootstrapBaseComponent<T extends HTMLElement> extends ServoyB
                             change.currentValue.filter((element: string) => element !== '').forEach((element: string) => this.renderer.addClass(this.getStyleClassElement(), element));
                         }
                         break;
+                    }
                     case 'styleClass':
                         if (change.previousValue) {
                             const array = change.previousValue.trim().split(' ');
@@ -66,7 +67,7 @@ export class ServoyBootstrapBaseComponent<T extends HTMLElement> extends ServoyB
         return this.getNativeElement();
     }
 
-    public requestFocus(mustExecuteOnFocusGainedMethod: boolean) {
+    public requestFocus(_mustExecuteOnFocusGainedMethod: boolean) {
         this.getFocusElement().focus();
     }
 

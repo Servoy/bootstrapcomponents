@@ -34,7 +34,7 @@ export class ServoyFloatLabelBootstrapCalendar extends ServoyBootstrapCalendar {
 		}
     }
     
-    setPlaceHolderText(change : SimpleChange){
+    setPlaceHolderText(_change : SimpleChange){
         // ignore, float label text is the placeholder text
     }
     

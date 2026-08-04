@@ -15,17 +15,16 @@ export class ShowDisplayValuePipe implements PipeTransform {
         const noParsedDisplayValue = args[2];
 
         if (valuelist) {
-            if (input && input.hasOwnProperty('realValue')) {
+            if (input && Object.prototype.hasOwnProperty.call(input, 'realValue')) {
                 realValue = input.realValue;
             }
-            for (let i = 0; i < valuelist.length; i++) {
-                if ((realValue + '') === (valuelist[i].realValue + '')) {
-                    return of(noParsedDisplayValue ? valuelist[i].displayValue : this.getParsedDisplayValue(valuelist[i].displayValue, noEscape));
+            for (const item of valuelist) {
+                if ((realValue + '') === (item.realValue + '')) {
+                    return of(noParsedDisplayValue ? item.displayValue : this.getParsedDisplayValue(item.displayValue, noEscape));
                 }
             }
             let hasRealValues = false;
-            for (let i = 0; i < valuelist.length; i++) {
-                const item = valuelist[i];
+            for (const item of valuelist) {
                 if (item.realValue != item.displayValue) {
                     hasRealValues = true;
                     break;

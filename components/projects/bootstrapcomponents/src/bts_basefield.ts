@@ -100,7 +100,7 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
             });
     }
 
-    onDataChangeCallback(event: any, returnval: any) {
+    onDataChangeCallback(_event: any, returnval: any) {
         const stringValue = (typeof returnval === 'string' || returnval instanceof String);
         if (returnval === false || stringValue) {
             this.renderer.removeClass(this.getFocusElement(), 'ng-valid');
@@ -160,7 +160,7 @@ export class ServoyBootstrapBasefield<T extends HTMLElement> extends ServoyBoots
         return dataProviderID;
     }
 
-    public getDataTarget(event: any): any {
+    public getDataTarget(_event: any): any {
         return null;
     }
 }

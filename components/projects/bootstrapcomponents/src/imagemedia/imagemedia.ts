@@ -1,5 +1,5 @@
 
-import { Component, OnInit, Renderer2, SimpleChanges, ChangeDetectorRef, ChangeDetectionStrategy, Inject, DOCUMENT, input } from '@angular/core';
+import { Component, Renderer2, SimpleChanges, ChangeDetectorRef, ChangeDetectionStrategy, Inject, DOCUMENT, input } from '@angular/core';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 import { WindowRefService } from '@servoy/public';
 
@@ -32,7 +32,6 @@ export class ServoyBootstrapImageMedia extends ServoyBootstrapBasefield<HTMLImag
     svyOnChanges(changes: SimpleChanges): void {
         if (changes) {
             for ( const property of Object.keys(changes) ) {
-                const change = changes[property];
                 switch ( property ) {
                 case 'media':
                     this.updateImageURL();
@@ -49,7 +48,7 @@ export class ServoyBootstrapImageMedia extends ServoyBootstrapBasefield<HTMLImag
     download() {
         const dataProviderID = this._dataProviderID();
         if (dataProviderID) {
-            let x = 0; let y = 0;
+            let x: number; let y: number;
             if (this.doc.all) {
                 x = this.windowService.nativeWindow.screenTop + 100;
                 y = this.windowService.nativeWindow.screenLeft + 100;

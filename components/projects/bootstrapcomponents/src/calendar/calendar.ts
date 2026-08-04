@@ -83,7 +83,7 @@ export class ServoyBootstrapCalendar extends ServoyBootstrapBaseCalendar {
 		}
 	}
 
-  	onClick(event: any) {
+  	onClick(_event: any) {
 		if (this.picker && this.picker.display.isVisible) {
 			this.picker.display.widget!.addEventListener('click', () => this.getFocusElement().focus());
 		}

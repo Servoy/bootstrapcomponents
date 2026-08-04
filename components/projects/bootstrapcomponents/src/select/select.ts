@@ -67,8 +67,8 @@ export class ServoyBootstrapSelect extends ServoyBootstrapBasefield<HTMLSelectEl
                 const vlValues = valuelistID.map(item => typeof item.realValue === 'string' ? item.realValue : String(item.realValue));
                 isDPinValuelist = dataProviderID.every((dpValue: any) => vlValues.includes(dpValue));
             } else {
-                for (let i = 0;i < valuelistID.length;i++) {
-                    if (dataProviderID == valuelistID[i].realValue) {
+                for (const item of valuelistID) {
+                    if (dataProviderID == item.realValue) {
                         isDPinValuelist = true;
                         break;
                     }
@@ -101,7 +101,7 @@ export class ServoyBootstrapSelect extends ServoyBootstrapBasefield<HTMLSelectEl
 	updateDataprovider() {
 		const valuelistID = this.valuelistID();
         if (valuelistID) {
-            let value = null;
+            let value;
 
             if (this.multiselect()) {
                 value = [];

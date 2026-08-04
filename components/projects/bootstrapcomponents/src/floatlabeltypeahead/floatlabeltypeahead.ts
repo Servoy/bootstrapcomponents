@@ -35,7 +35,7 @@ export class ServoyFloatLabelBootstrapTypeahead extends ServoyBootstrapTypeahead
 		}
     }
     
-    setPlaceHolderText(change : SimpleChange){
+    setPlaceHolderText(_change : SimpleChange){
         // ignore, float label text is the placeholder text
     }
     

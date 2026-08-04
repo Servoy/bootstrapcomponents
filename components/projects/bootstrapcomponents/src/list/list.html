@@ -11,7 +11,7 @@
     @for (value of valuelistID(); track value) {
       <option
         [value]="value.realValue | showDisplayValue:valuelistID():true | async"
-        [selected]="dataProviderID() == value.realValue">
+        [selected]="dataProviderID() === value.realValue">
       </option>
     }
   </datalist>

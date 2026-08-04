@@ -6,11 +6,9 @@ import { SvyNgbHighlight } from './highlight';
 
 describe('SvyNgbHighlight', () => {
     let fixture: ComponentFixture<SvyNgbHighlight>;
-    let component: SvyNgbHighlight;
 
     async function createComponent(overrides: Record<string, any> = {}) {
         fixture = TestBed.createComponent(SvyNgbHighlight);
-        component = fixture.componentInstance;
 
         const defaults: Record<string, any> = {
             result: '',

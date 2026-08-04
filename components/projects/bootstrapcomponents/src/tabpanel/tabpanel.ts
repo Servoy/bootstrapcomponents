@@ -221,7 +221,11 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
             newValue = 15;
             arrowLeft.style.cursor = 'not-allowed';
         }
-        moveRight ? (arrowLeft.style.cursor = 'pointer') : (arrowRight.style.cursor = 'pointer');
+        if (moveRight) {
+            arrowLeft.style.cursor = 'pointer';
+        } else {
+            arrowRight.style.cursor = 'pointer';
+        }
         tabs.style.left = `${newValue}px`;
     }
 
@@ -237,7 +241,7 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
 @Component({
     selector: 'bootstrapcomponents-tabpanel-active-tab-visibility-listener',
     template: '<div #element></div>',
-    changeDetection: ChangeDetectionStrategy.Eager,
+    changeDetection: ChangeDetectionStrategy.Eager, // eslint-disable-line @angular-eslint/prefer-on-push-component-change-detection
     standalone: false
 })
 export class BsTabpanelActiveTabVisibilityListener implements AfterViewInit, OnDestroy {

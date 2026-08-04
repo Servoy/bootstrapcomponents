@@ -99,7 +99,7 @@ export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDi
         return id;
     }
     
-    tabClicked(tab: Tab,tabIndexClicked: number, event: any){
+    tabClicked(_tab: Tab,tabIndexClicked: number, _event: any){
        this.servoyApi.callServerSideApi('setTabIndexInternal', [tabIndexClicked +1]);
     }
     

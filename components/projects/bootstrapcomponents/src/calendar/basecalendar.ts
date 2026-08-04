@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/triple-slash-reference
 /// <reference path="../tempus-dominus-locales.d.ts" />
 import { Renderer2, ChangeDetectorRef, Inject, Directive, SimpleChanges, DOCUMENT, input, output, linkedSignal } from '@angular/core';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
@@ -5,7 +6,6 @@ import { ServoyBootstrapBasefield } from '../bts_basefield';
 import { getFirstDayOfWeek, LoggerService, ServoyPublicService } from '@servoy/public';
 import { DateTime as LuxonDateTime } from 'luxon';
 import { Namespace, TempusDominus, DateTime, Options } from '@eonasdan/tempus-dominus';
-import { Localization } from '@eonasdan/tempus-dominus/types/utilities/options';
 
 @Directive()
 export class ServoyBootstrapBaseCalendar extends ServoyBootstrapBasefield<HTMLDivElement> {

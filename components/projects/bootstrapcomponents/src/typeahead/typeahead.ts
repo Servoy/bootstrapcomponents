@@ -1,7 +1,7 @@
 
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, Renderer2, SimpleChanges, Directive, DOCUMENT, input, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, Renderer2, SimpleChanges, DOCUMENT, input, viewChild } from '@angular/core';
 import { NgbTypeahead, NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
-import { merge, Observable, of, Subject } from 'rxjs';
+import { merge, Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, switchMap, take } from 'rxjs/operators';
 import { Format, FormattingService, IValuelist, ServoyPublicService, WindowRefService, IPopupSupportComponent, PopupStateService } from '@servoy/public';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
