@@ -14,7 +14,6 @@
 	        "enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["dataProviderID","onActionMethodID","onDataChangeMethodID"] },
 	        "readOnly" : { "type": "protected", "blockingOn": true, "default": false, "for": ["dataProviderID","onDataChangeMethodID"], "tags": {"scope":"private"} },
 	        "inputType" : {"type" : "string" , "default" : "checkbox" ,"tags": { "scope" :"design", "basic": true }, "values" : ["checkbox","radio"]},
-	        "size" : {"type" :"dimension",  "default" : {"width":140, "height":80}},
 	        "showAs": { "type": "string", "values": [{"text":null}, {"html":"html"}, {"trusted_html":"trusted_html"}],"tags": { "doc" :"Option whether choice text is shown as plain text, sanitized html or trusted html (as is)."}},
 	        "styleClass" : { "type" :"styleclass", "default" : "checkbox" , "tags": { "scope" :"design", "doc": "Set the styleclasses that should be applied at to this component" }, "values" :["checkbox", "radio"]},
 	        "valuelistID" : { "type" : "valuelist", "for": "dataProviderID", "max":300, "tags": { "basic": true }},

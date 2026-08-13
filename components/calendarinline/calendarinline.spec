@@ -23,7 +23,6 @@
 	    "maxDate" : {"type":"date", "pushToServer": "shallow","tags": { "scope" :"private" }},
 	    "minDate" : {"type":"date", "pushToServer": "shallow","tags": { "scope" :"private" }},
 	    "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design", "doc": "Set the styleclasses that should be applied at to this component" }},
-	    "size" : {"type" :"dimension",  "default" : {"width":250, "height":280}},
 	    "theme" : {"type":"string" , "tags": { "scope" :"design"}, "default" : "light",  "values" :["auto" , "dark", "light"]},
 	    "toolTipText" : { "type" : "tagstring"}, 
 	   "visible" : {"type" : "visible", "tags": {"doc": "Whether the button is visible or not"}}

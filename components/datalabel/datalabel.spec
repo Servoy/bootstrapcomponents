@@ -14,7 +14,6 @@
 			"valuelistID" : { "type" : "valuelist",  "for": "dataProviderID", "max":1, "tags": { "doc":"The value list which is used to get a display value for the actual columns real value like id -> name", "basic": true}},
 			"enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["onActionMethodID","onDoubleClickMethodID","onRightClickMethodID"],"tags": {"doc": "Whether the component is enabled or not; blocks onAction, onDoubleClick, onRightClick events."} },
 			"format" : {"for":["valuelistID","dataProviderID"] , "type" :"format", "tags": { "doc":"A format to format the data shown"}},
-			"size" : {"type" :"dimension",  "default" : {"width":80, "height":30}, "tags": { "doc":"Deprecated"}}, 
 			"styleClass" : { "type" :"styleclass", "tags": { "scope" :"design","doc":"CSS style class for this component"}, "default": "default-align", "values" :["label","label-default","label-primary","label-success","label-info","label-warning","label-danger"]},
             "styleClassExpression" : { "type" :"dataprovider", "tags": { "scope" :"design","doc":"A column or calculation that provides the CSS style class for this component" }}, 
             "imageStyleClass": {"type":"string", "tags": { "doc": "An icon style class property (glyphicon, material design or Font Awesome).<br/>Example 'fas fa-search' <br/>If you want to use Font Awesome classes you need to enable the Font Awesome service from the Servoy Package Manager. "}},

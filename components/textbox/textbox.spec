@@ -19,7 +19,6 @@
 			"editable" : { "type": "protected", "blockingOn": false, "default": true,"for": ["dataProviderID","onDataChangeMethodID"] },
 			"findmode" : { "type":"findmode", "tags":{"scope":"private"}},
 			"placeholderText" : "tagstring",
-			"size" : {"type" :"dimension",  "default" : {"width":140, "height":30}},
 			"styleClass" : { "type" :"styleclass", "tags": { "scope" :"design", "doc": "Set the styleclasses that should be applied at to this component" }, "default": "form-control", "values" :["form-control", "input-sm"]},
 			"styleClassForEye" : { "type" :"styleclass", "tags": { "scope" :"design", "doc": "Set the styleclasses for the eye when inputType on this component is password-with-eye, you need to add main(not manadatory), eye and eye-slash classes in this order, default value for NG is 'glyphicon glyphicon-eye-open glyphicon-eye-close' and for TiNG 'fa fa-eye fa-eye-slash'" }},
 			"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},

@@ -29,7 +29,6 @@
 	    "floatLabelText" : {"type" : "tagstring", "tags": { "basic": true } },
 	    "errorMessage" : "tagstring",
 		"errorShow" : {"type" : "boolean", "pushToServer": "allow", "tags":{"scope":"private"}},
-	    "size" : {"type" :"dimension",  "default" : {"width":140, "height":50}},
 	    "tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
 	    "theme" : {"type":"string" , "tags": { "scope" :"design"}, "default" : "light",  "values" :["auto" , "dark", "light"]},
 	    "toolTipText" : { "type" : "tagstring"}, 

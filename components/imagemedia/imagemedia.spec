@@ -16,7 +16,6 @@
         "dataProviderID":   { "type": "dataprovider", "pushToServer": "allow", "tags": { "wizard": true, "scope": "design", "typeName": "mediaDataprovider", "basic": true }, "ondatachange": { "onchange": "onDataChangeMethodID"}},
         "media":            { "type": "media", "tags": { "basic": true }},
         "readOnly":         { "type": "protected", "blockingOn": true, "default": false, "for": ["dataProviderID", "onDataChangeMethodID"], "tags": {"scope": "private"} },
-        "size":             { "type": "dimension",  "default": { "width": 140, "height": 80 }},
         "styleClass":       { "type": "styleclass", "tags": { "scope": "design", "doc": "Set the styleclasses that should be applied at to this component" }, "values": ["img-responsive", "img-rounded", "img-circle", "img-thumbnail", "media-object"] },
         "tabSeq":           { "type": "tabseq", "tags": { "scope": "design" }},
         "toolTipText":      { "type": "tagstring"}, 
