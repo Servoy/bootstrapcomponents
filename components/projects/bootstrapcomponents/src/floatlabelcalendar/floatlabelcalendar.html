@@ -2,7 +2,7 @@
   data-td-target-input='nearest'
   data-td-target-toggle='nearest'
   [svyTooltip]="toolTipText()"
-  [id]="servoyApi.getMarkupId()"
+  [id]="servoyApi().getMarkupId()"
   #element>
   <input class='bts-floatlabelcalendar form-control form-control svy-line-height-normal'
     data-td-target='#datetimepicker1'
@@ -17,7 +17,7 @@
     [svyFormat]="$any(format())"
     [placeholder]="floatLabelText()"
     #inputElement/>
-  <label [for]="servoyApi.getMarkupId()">{{floatLabelText()}}</label>
+  <label [for]="servoyApi().getMarkupId()">{{floatLabelText()}}</label>
   <span
     tabindex='-1'
     class='input-group-text'

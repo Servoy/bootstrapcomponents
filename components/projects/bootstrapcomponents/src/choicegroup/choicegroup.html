@@ -9,7 +9,7 @@
         [value]="item.realValue"
         (change)="itemClicked($event, i)"
         [disabled]="readOnly() || !enabled()"
-        [id]="servoyApi.getMarkupId()"
+        [id]="servoyApi().getMarkupId()"
         [sabloTabseq]="tabSeq()"
         [bootstrapBaseChoiceElement]="this"
         [index]="i"
@@ -22,7 +22,7 @@
       }
       @if (showAs() === 'html' || showAs() === 'trusted_html') {
         <span
-          [innerHtml]="item.displayValue | htmlFilter | trustAsHtml: servoyApi.trustAsHtml()"
+          [innerHtml]="item.displayValue | htmlFilter | trustAsHtml: servoyApi().trustAsHtml()"
           >
         </span>
       }

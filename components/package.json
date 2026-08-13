@@ -23,7 +23,7 @@
     "@eonasdan/tempus-dominus": "6.10.4",
     "@ng-bootstrap/ng-bootstrap": "21.0.0",
     "@popperjs/core": "2.11.8",
-    "@servoy/public": "2026.9.1",
+    "@servoy/public": "file:servoy-public-2026.9.1.tgz",
     "bootstrap": "5.3.8",
     "luxon": "3.7.2",
     "rxjs": "7.8.2",

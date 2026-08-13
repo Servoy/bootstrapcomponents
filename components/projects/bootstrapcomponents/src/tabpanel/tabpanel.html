@@ -1,6 +1,6 @@
 <div class="bts-tabpanel" [sabloTabseq]="tabSeq()" [sabloTabseqConfig]="{container: true, reservedGap: 50}" #element >
   <ul ngbNav #nav="ngbNav" class="nav text-nowrap flex-nowrap nav-tabs" [ngStyle]="getNavStyle(element)" [activeId]="getSelectedTabId()" (navChange)="onTabChange($event)"
-    [id]="servoyApi.getMarkupId()">
+    [id]="servoyApi().getMarkupId()">
     @for (tab of tabs(); track tab; let i = $index) {
       <li  (click)="tabClicked(tab, i , $event)" [ngbNavItem]="tab._id" [disabled]="tab.disabled || !tab.containedForm"
         [id]="tab._id" [svyTooltip]="tab.toolTipText">
@@ -12,7 +12,7 @@
             @if (tab.iconStyleClass !== null && tab.iconStyleClass !== undefined) {
               <span [class]="tab.iconStyleClass + ' svy-tabpanel-tab-icon'"></span>
             }
-            <span [innerHTML]='$safeNavigationMigration(tab?.text)| htmlFilter | trustAsHtml: servoyApi.trustAsHtml()'></span>
+            <span [innerHTML]='$safeNavigationMigration(tab?.text)| htmlFilter | trustAsHtml: servoyApi().trustAsHtml()'></span>
             @if (tab.hideCloseIcon !== true && showTabCloseIcon()) {
               <i class="bts-tabpanel-close-icon"
               [class]="_closeIconStyleClass()"></i>

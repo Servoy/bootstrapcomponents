@@ -1,5 +1,5 @@
 <ng-template #tooltipContent>{{lastSelectValue}}</ng-template>
-<div [id]="servoyApi.getMarkupId()" class="svy-form-floating bts-combobox-container" ngbDropdown #comboboxDropdown="ngbDropdown" (openChange)="openChange($event)"  [container]="$any(appendToBody()?'body':null)" #element>
+<div [id]="servoyApi().getMarkupId()" class="svy-form-floating bts-combobox-container" ngbDropdown #comboboxDropdown="ngbDropdown" (openChange)="openChange($event)"  [container]="$any(appendToBody()?'body':null)" #element>
   <button class="bts-floatlabelcombobox form-control dropdown-toggle bts-dropdown" ngbDropdownToggle
     [ngbTooltip]="tooltipContent"
     triggers="manual"
@@ -11,12 +11,12 @@
     [hostComponent]="this"
     [svyFormat]="$any(format())"
     [disabled]="readOnly() || !enabled()"
-    [id]="servoyApi.getMarkupId() + '_btn'"
+    [id]="servoyApi().getMarkupId() + '_btn'"
     #input><span class="bts-dropdown-text">{{formattedValue}}</span></button>
-    <label [for]="servoyApi.getMarkupId()">{{floatLabelText()}}</label>
+    <label [for]="servoyApi().getMarkupId()">{{floatLabelText()}}</label>
     <div
       ngbDropdownMenu
-      [attr.aria-labelledby]="servoyApi.getMarkupId() + '_btn'"
+      [attr.aria-labelledby]="servoyApi().getMarkupId() + '_btn'"
       [style.width.px]="getDropDownWidth()"
       (keydown)="handleKeyDown($event)"
       #dropdown>

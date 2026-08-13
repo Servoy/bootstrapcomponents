@@ -1,6 +1,6 @@
 <div class="svy-form-floating">
   <input
-    [id]="servoyApi.getMarkupId()"
+    [id]="servoyApi().getMarkupId()"
     type="text"
     class='bts-floatlabeltypeahead'
     [svyStartEdit]="'dataProviderID'"
@@ -25,7 +25,7 @@
     #instance="ngbTypeahead"
     #element
     />
-  <label [for]="servoyApi.getMarkupId()">{{floatLabelText()}}</label>
+  <label [for]="servoyApi().getMarkupId()">{{floatLabelText()}}</label>
 </div>
 
 <ng-template #rtHTML let-r="result" let-t="term" let-formatter="formatter">

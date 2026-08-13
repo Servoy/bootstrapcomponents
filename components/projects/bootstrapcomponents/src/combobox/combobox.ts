@@ -77,7 +77,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
     }
 
     svyOnInit() {
-        let showPopup = this.servoyApi.getClientProperty('Combobox.showPopupOnFocusGain');
+        let showPopup = this.servoyApi().getClientProperty('Combobox.showPopupOnFocusGain');
         if (showPopup === null || showPopup === undefined) {
             showPopup = this.servoyService.getUIProperty('Combobox.showPopupOnFocusGain');
         }
@@ -208,7 +208,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
 				// probably just a select from popup, keep the focus to the component
 				super.requestFocus(false);
 			} else{
-				const nativeElementBtn = this.elementRef.nativeElement.firstElementChild;
+				const nativeElementBtn = this.elementRef()!.nativeElement.firstElementChild;
 				if (this.doc.activeElement !== nativeElementBtn) {
 				    const event = new Event('blur');
 				    nativeElementBtn!.dispatchEvent(event);

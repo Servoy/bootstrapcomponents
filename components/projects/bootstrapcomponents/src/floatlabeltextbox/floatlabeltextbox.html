@@ -1,6 +1,6 @@
 <div class="svy-form-floating">
   <input #element
-    [id]="servoyApi.getMarkupId()"
+    [id]="servoyApi().getMarkupId()"
     class="bts-floatlabeltextbox"
     [class.svy-textbox-password-with-eye-field]="inputType() === 'password-with-eye'"
     (change)="pushUpdate()"
@@ -25,7 +25,7 @@
       class="clickable svy-textbox-eye {{classForEye}} {{styleClass() || ''}}">
     </div>
   }
-  <label [for]="servoyApi.getMarkupId()">{{floatLabelText()}}</label>
+  <label [for]="servoyApi().getMarkupId()">{{floatLabelText()}}</label>
 </div>
 @if (errorShow()) {
   <div class="bts-floatlabeltextbox-error-text">{{errorMessage()}}</div>

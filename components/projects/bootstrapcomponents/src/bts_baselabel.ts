@@ -53,7 +53,7 @@ export class ServoyBootstrapBaseLabel<T extends HTMLElement> extends ServoyBoots
     }
 
     isTrustedHTML(): boolean {
-        if (this.servoyApi.trustAsHtml() || this.showAs() === 'trusted_html') {
+        if (this.servoyApi().trustAsHtml() || this.showAs() === 'trusted_html') {
             return true;
         }
         return false;

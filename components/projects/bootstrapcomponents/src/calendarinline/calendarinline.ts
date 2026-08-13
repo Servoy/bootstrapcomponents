@@ -51,7 +51,7 @@ export class ServoyBootstrapCalendarinline extends ServoyBootstrapBaseCalendar {
             }
         }
         if (changes.enabled) {
-            const nativeElem = this.elementRef.nativeElement;
+            const nativeElem = this.elementRef()!.nativeElement;
             if (changes.enabled.currentValue === true) {
                 nativeElem.classList.remove('bts-calendar-inline-disabled');
             } else {

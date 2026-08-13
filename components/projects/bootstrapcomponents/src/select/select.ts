@@ -24,7 +24,7 @@ export class ServoyBootstrapSelect extends ServoyBootstrapBasefield<HTMLSelectEl
 	private readonly showDisplayValuePipe = inject(ShowDisplayValuePipe);
 
 	svyOnChanges(changes: SimpleChanges) {
-		if (changes && this.elementRef) {
+		if (changes && this.elementRef()) {
 			for (const property of Object.keys(changes)) {
 				const change = changes[property];
 				switch (property) {

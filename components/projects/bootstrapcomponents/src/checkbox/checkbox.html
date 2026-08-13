@@ -6,7 +6,7 @@
     <input
       type="checkbox"
       [checked]="selected()"
-      [id]="servoyApi.getMarkupId()"
+      [id]="servoyApi().getMarkupId()"
       [disabled]="!enabled() || readOnly()"
       [sabloTabseq]="tabSeq()"
       #input

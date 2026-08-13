@@ -77,7 +77,7 @@ export class ServoyBootstrapImageMedia extends ServoyBootstrapBasefield<HTMLImag
             // do nothing if data provider changed but media is defined
         } else if(dataProviderID && dataProviderID.url) {
             this.imageURL = dataProviderID.url;
-        } else if (!dataProviderID && this.servoyApi.isInDesigner()) {
+        } else if (!dataProviderID && this.servoyApi().isInDesigner()) {
             this.imageURL = 'bootstrapcomponents/imagemedia/media.png';
         } else if (!dataProviderID){
             this.imageURL = 'bootstrapcomponents/imagemedia/images/empty.gif';

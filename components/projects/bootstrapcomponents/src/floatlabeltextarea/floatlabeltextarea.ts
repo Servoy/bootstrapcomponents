@@ -24,7 +24,7 @@ export class ServoyFloatLabelBootstrapTextarea extends ServoyBootstrapTextarea {
 
     svyOnChanges(changes: SimpleChanges) {
         super.svyOnChanges(changes);
-        if (this.servoyApi.isInDesigner()) {
+        if (this.servoyApi().isInDesigner()) {
 			this.toggleErrorMessage(true);
 		}
     }
@@ -36,10 +36,10 @@ export class ServoyFloatLabelBootstrapTextarea extends ServoyBootstrapTextarea {
     toggleErrorMessage(show: boolean) {
 		if (this.errorMessage()) {
 			//designer
-			if (this.servoyApi.isInDesigner()) {
+			if (this.servoyApi().isInDesigner()) {
 				this.errorShow.set(true);
 			} else {
-				const nativeElement = this.elementRef.nativeElement as HTMLElement;
+				const nativeElement = this.elementRef()!.nativeElement as HTMLElement;
 				if (show) {
 					nativeElement.classList.add('bts-floatlabeltextarea-input-invalid');
 					this.errorShowChange.emit(true);

@@ -19,7 +19,7 @@ export class ServoyFloatLabelBootstrapCombobox extends ServoyBootstrapCombobox{
     
     svyOnChanges(changes: SimpleChanges) {
         super.svyOnChanges(changes);
-        if (this.servoyApi.isInDesigner()) {
+        if (this.servoyApi().isInDesigner()) {
 			this.toggleErrorMessage(true);
 		}
     }
@@ -27,10 +27,10 @@ export class ServoyFloatLabelBootstrapCombobox extends ServoyBootstrapCombobox{
     toggleErrorMessage(show: boolean) {
 		if (this.errorMessage()) {
 			//designer
-			if (this.servoyApi.isInDesigner()) {
+			if (this.servoyApi().isInDesigner()) {
 				this.errorShow.set(true);
 			} else {
-				const nativeElement = this.elementRef.nativeElement as HTMLElement;
+				const nativeElement = this.elementRef()!.nativeElement as HTMLElement;
 				if (show) {
 					nativeElement.querySelector('button')!.classList.add('bts-floatlabelcombobox-input-invalid');
 					this.errorShowChange.emit(true);

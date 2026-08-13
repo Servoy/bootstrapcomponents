@@ -34,7 +34,7 @@ export class ServoyBootstrapTablesspanel extends ServoyBootstrapBaseComponent<HT
                         if (change.currentValue !== change.previousValue)
                             if (change.previousValue) {
                                 this.formWillShowCalled = change.currentValue;
-                                this.servoyApi.hideForm(change.previousValue, undefined, undefined, change.currentValue, this.relationName(), undefined)
+                                this.servoyApi().hideForm(change.previousValue, undefined, undefined, change.currentValue, this.relationName(), undefined)
                                     .then(() => {
                                         this.realContainedForm = this.containedForm();
                                         this.cdRef.detectChanges();
@@ -51,7 +51,7 @@ export class ServoyBootstrapTablesspanel extends ServoyBootstrapBaseComponent<HT
                             if (change.currentValue) {
                                 this.setRealContainedForm(containedForm, this.relationName());
                             } else {
-                                this.servoyApi.hideForm(containedForm);
+                                this.servoyApi().hideForm(containedForm);
                             }
                         }
                         break;
@@ -64,7 +64,7 @@ export class ServoyBootstrapTablesspanel extends ServoyBootstrapBaseComponent<HT
 
     svyOnInit(): void {
         super.svyOnInit();
-        if (this.servoyApi.isInDesigner() && !this.containedForm()) {
+        if (this.servoyApi().isInDesigner() && !this.containedForm()) {
             this.getNativeElement().innerText = 'Select contained form';
         }
     }
@@ -73,12 +73,12 @@ export class ServoyBootstrapTablesspanel extends ServoyBootstrapBaseComponent<HT
         if (this.formWillShowCalled !== formName && formName) {
             this.formWillShowCalled = formName;
             if (this.waitForData()) {
-                this.servoyApi.formWillShow(formName, relationName).then(() => {
+                this.servoyApi().formWillShow(formName, relationName).then(() => {
                     this.realContainedForm = formName;
                     this.cdRef.detectChanges();
                 });
             } else {
-                this.servoyApi.formWillShow(formName, relationName).then(() => this.cdRef.detectChanges());
+                this.servoyApi().formWillShow(formName, relationName).then(() => this.cdRef.detectChanges());
                 this.realContainedForm = formName;
             }
         }

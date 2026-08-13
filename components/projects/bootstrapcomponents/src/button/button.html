@@ -2,7 +2,7 @@
     #element
     class="bts-button"
     [sabloTabseq]="tabSeq()"
-    [id]="servoyApi.getMarkupId()"
+    [id]="servoyApi().getMarkupId()"
     [svyTooltip]="toolTipText()">
     @if (imageStyleClass()) {
       <span [class]="imageStyleClass()" aria-hidden="true"></span>

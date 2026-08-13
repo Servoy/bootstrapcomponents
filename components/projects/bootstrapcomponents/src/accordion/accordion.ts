@@ -82,14 +82,14 @@ export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDi
         }
         this.panelHeight = totalHeight;
         
-        if (this.servoyApi.isInDesigner()){
+        if (this.servoyApi().isInDesigner()){
 			if (tabs === undefined || tabs.length === 0 || (tabs.length > 0 && !contentElementRef)){
-				this.elementRef.nativeElement.style.display = 'block';
-				if (!this.servoyApi.isInAbsoluteLayout()) {  // responsive form
-					this.elementRef.nativeElement.style.minHeight = `${this.height()}px`;
+				this.elementRef()!.nativeElement.style.display = 'block';
+				if (!this.servoyApi().isInAbsoluteLayout()) {  // responsive form
+					this.elementRef()!.nativeElement.style.minHeight = `${this.height()}px`;
 				} else { // css pos
-					this.elementRef.nativeElement.style.height = '100%';
-					this.elementRef.nativeElement.style.width = '100%';
+					this.elementRef()!.nativeElement.style.height = '100%';
+					this.elementRef()!.nativeElement.style.width = '100%';
 				}
 			}  	
 	   	}
@@ -102,12 +102,12 @@ export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDi
     }
     
     tabClicked(_tab: Tab,tabIndexClicked: number, _event: any){
-       this.servoyApi.callServerSideApi('setTabIndexInternal', [tabIndexClicked +1]);
+       this.servoyApi().callServerSideApi('setTabIndexInternal', [tabIndexClicked +1]);
     }
     
     private getFormState(form: string, tab: Tab, formWillShow: boolean) {
         if (formWillShow) {
-            this.servoyApi.formWillShow(form, ('relationName' in tab) ? tab.relationName : undefined).then(() => {
+            this.servoyApi().formWillShow(form, ('relationName' in tab) ? tab.relationName : undefined).then(() => {
                 const formCache = this.servoyPublic.getFormCacheByName(form);
                 if (formCache && formCache.absolute) {
                     this.formHeightMap[form] = formCache.size.height;

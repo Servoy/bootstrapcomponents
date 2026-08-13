@@ -99,7 +99,7 @@ export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBo
         const tabs = this.tabs();
         if (tabs) {
             for (let i = 0;i < tabs.length;i++) {
-                tabs[i]._id = this.servoyApi.getMarkupId() + '_tab_' + i;
+                tabs[i]._id = this.servoyApi().getMarkupId() + '_tab_' + i;
             }
         }
     }

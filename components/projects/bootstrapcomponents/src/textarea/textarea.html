@@ -8,7 +8,7 @@
     (ngModelChange)="onModelChange($event)"
 	(change)="pushUpdate()"
 	[svyTooltip]="toolTipText()"
-	[id]="servoyApi.getMarkupId()"
+	[id]="servoyApi().getMarkupId()"
 	[svyStartEdit]="'dataProviderID'"
     [hostComponent]="this"
     maxLength="{{_maxLength()}}"

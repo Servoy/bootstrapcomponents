@@ -67,7 +67,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
 		});
 		// add custom class to the popup, needed by ng-grids (ag-grid) so it can be used in form editors (popups)
 		this.instance()!.popupClass = 'ag-custom-component-popup svy-typeahead-zindex';
-		this.showPopupOnFocusGain = this.servoyApi.getClientProperty('TypeAhead.showPopupOnFocusGain');
+		this.showPopupOnFocusGain = this.servoyApi().getClientProperty('TypeAhead.showPopupOnFocusGain');
 		if (this.showPopupOnFocusGain === null || this.showPopupOnFocusGain === undefined) {
 			this.showPopupOnFocusGain = this.servoyService.getUIProperty('TypeAhead.showPopupOnFocusGain');
 		}
@@ -134,9 +134,9 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
         if (changes.format) {
             const format = this.format();
             if (format && format.maxLength) {
-                this.renderer.setAttribute(this.elementRef.nativeElement, 'maxlength', format.maxLength + '');
+                this.renderer.setAttribute(this.elementRef()!.nativeElement, 'maxlength', format.maxLength + '');
             } else {
-                this.renderer.removeAttribute(this.elementRef.nativeElement, 'maxlength');
+                this.renderer.removeAttribute(this.elementRef()!.nativeElement, 'maxlength');
             }
             if (valuelistID) this.instance()!.writeValue(dataProviderID);
         }
@@ -202,9 +202,9 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
             // need to restore value from UI
             const valuelistID = this.valuelistID();
             if (findmode || !valuelistID) {
-                this._dataProviderID.set(this.elementRef.nativeElement.value);
+                this._dataProviderID.set(this.elementRef()!.nativeElement.value);
             } else {
-                if (this.elementRef.nativeElement.value === valuelistID[0]?.displayValue) {
+                if (this.elementRef()!.nativeElement.value === valuelistID[0]?.displayValue) {
                     this._dataProviderID.set(valuelistID[0]?.realValue);
                     this.currentValue = this._dataProviderID();
                     super.pushUpdate();
@@ -219,7 +219,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
     }
 
     isEditable() {
-        if (this.servoyApi.isInDesigner()) {
+        if (this.servoyApi().isInDesigner()) {
             return true;
         }
         const valuelistID = this.valuelistID();
@@ -289,7 +289,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
     }
 
 	isTrustedHTML(): boolean {
-		return this.servoyApi.trustAsHtml() || this.showAs() === 'trusted_html';
+		return this.servoyApi().trustAsHtml() || this.showAs() === 'trusted_html';
 	}
 
 	closePopup() {

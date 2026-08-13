@@ -40,7 +40,7 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
     protected readonly cdRef = inject(ChangeDetectorRef);
     
     onResize(): void {
-        if (!this.servoyApi.isInAbsoluteLayout()) {
+        if (!this.servoyApi().isInAbsoluteLayout()) {
             this.cdRef.detectChanges();
         }
     }
@@ -61,11 +61,11 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
                 const promise = onTabCloseMethodID(event, tabIndexClicked + 1);
                 promise.then((ok) => {
                     if (ok) {
-                        this.servoyApi.callServerSideApi('removeTabAt', [tabIndexClicked + 1]);
+                        this.servoyApi().callServerSideApi('removeTabAt', [tabIndexClicked + 1]);
                     }
                 });
             } else {
-                this.servoyApi.callServerSideApi('removeTabAt', [tabIndexClicked + 1]);
+                this.servoyApi().callServerSideApi('removeTabAt', [tabIndexClicked + 1]);
             }
         } else {
             if (tab.disabled === true) {
@@ -79,11 +79,11 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
                 const promise = onTabClickedMethodID(event, tabIndexClicked + 1, dataTarget as string);
                 promise.then((ok) => {
                     if (ok) {
-                        this.servoyApi.callServerSideApi('setTabIndexInternal', [tabIndexClicked +1]);
+                        this.servoyApi().callServerSideApi('setTabIndexInternal', [tabIndexClicked +1]);
                     }
                 });
             } else {
-               this.servoyApi.callServerSideApi('setTabIndexInternal', [tabIndexClicked +1]);
+               this.servoyApi().callServerSideApi('setTabIndexInternal', [tabIndexClicked +1]);
             }
         }
     }
@@ -122,7 +122,7 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
             } 
         }
         
-        if (this.cssPosition() && this.servoyApi.isInAbsoluteLayout()) {
+        if (this.cssPosition() && this.servoyApi().isInAbsoluteLayout()) {
             const tabs = element.querySelector('ul')!;
             let calcHeight = tabs.clientHeight;
             const clientRects = tabs.getClientRects();
@@ -178,7 +178,7 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
             delete (style as any).left;
             delete (style as any).width;
         }
-        if (!this.servoyApi.isInAbsoluteLayout() && this.showArrows) {
+        if (!this.servoyApi().isInAbsoluteLayout() && this.showArrows) {
             this.setCompStyleResponsiveFrm(element, true);
         } else {
             this.setCompStyleResponsiveFrm(element, false);

@@ -38,7 +38,7 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
         delete filteredChanges['findmode'];
         super.svyOnChanges(filteredChanges);
         const valuelistID = this._valueProviderID();
-        if (this.servoyApi.isInDesigner() && !valuelistID) {
+        if (this.servoyApi().isInDesigner() && !valuelistID) {
             // this should only happen in preview
             this._valueProviderID.set([{ realValue: 1, displayValue: 'Item1' }, { realValue: 2, displayValue: 'Item2' }, { realValue: 3, displayValue: 'Item3' }] as IValuelist);
         }
@@ -58,9 +58,9 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
                     this.setSelectionFromDataprovider();
                     break;
                 case 'alignment':
-                    this.elementRef.nativeElement.classList.remove('horizontaldirection');
+                    this.elementRef()!.nativeElement.classList.remove('horizontaldirection');
                     if (this.alignment() === 'horizontal') {
-                        this.elementRef.nativeElement.classList.add('horizontaldirection');
+                        this.elementRef()!.nativeElement.classList.add('horizontaldirection');
                     }
                     break;
             }
@@ -77,7 +77,7 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
         const inputValue = this.input();
         if (!inputValue) {
             // just a fallback for not getting NPEs
-            return this.elementRef.nativeElement;
+            return this.elementRef()!.nativeElement;
         }
         return inputValue.nativeElement;
     }

@@ -2,7 +2,7 @@
   class="bts-label"
   [class]="combinedStyleClass()"
   [sabloTabseq]="(onActionMethodID() || onDoubleClickMethodID() || onRightClickMethodID()) ? tabSeq() : -2"
-  [id]="servoyApi.getMarkupId()"
+  [id]="servoyApi().getMarkupId()"
   [svyTooltip]="toolTipText()">
 
   @if (imageStyleClass()) {
@@ -11,14 +11,14 @@
   @if ((showAs() === 'html' || showAs() === 'trusted_html')) {
     <span
       class="bts-label-text"
-      [innerHTML]="dataProviderID() | formatFilter:$any(format()) | htmlFilter | trustAsHtml:isTrustedHTML() | designFilter:servoyApi.isInDesigner()"
+      [innerHTML]="dataProviderID() | formatFilter:$any(format()) | htmlFilter | trustAsHtml:isTrustedHTML() | designFilter:servoyApi().isInDesigner()"
       >
     </span>
   }
   @if (showAs() === 'text') {
     <span
       class="bts-label-text"
-      [textContent]="dataProviderID() | formatFilter:$any(format()) | htmlFilter | trustAsHtml:isTrustedHTML() | designFilter:servoyApi.isInDesigner()"
+      [textContent]="dataProviderID() | formatFilter:$any(format()) | htmlFilter | trustAsHtml:isTrustedHTML() | designFilter:servoyApi().isInDesigner()"
       >
     </span>
   }
