@@ -4,7 +4,7 @@ import { map, Observable, of } from 'rxjs';
 
 @Pipe({
     name: 'showDisplayValue',
-    standalone: false
+    standalone: true
 })
 export class ShowDisplayValuePipe implements PipeTransform {
 

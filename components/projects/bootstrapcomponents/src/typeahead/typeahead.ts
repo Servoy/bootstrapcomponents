@@ -1,16 +1,19 @@
 
 import { ChangeDetectionStrategy, Component, SimpleChanges, input, viewChild, inject } from '@angular/core';
-import { NgbTypeahead, NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTypeahead, NgbTypeaheadSelectItemEvent, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 import { merge, Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, switchMap, take } from 'rxjs/operators';
-import { Format, FormattingService, IValuelist, ServoyPublicService, WindowRefService, IPopupSupportComponent, PopupStateService } from '@servoy/public';
+import { Format, FormattingService, IValuelist, ServoyPublicService, WindowRefService, IPopupSupportComponent, PopupStateService, ServoyPublicModule } from '@servoy/public';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
+import { FormsModule } from '@angular/forms';
+import { SvyNgbHighlight } from './highlight';
 
 @Component({
 	selector: 'bootstrapcomponents-typeahead',
 	templateUrl: './typeahead.html',
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: false,
+	standalone: true,
+	imports: [ServoyPublicModule, FormsModule, NgbTypeaheadModule, SvyNgbHighlight],
 	host: {
 		'(keydown)': 'onKeyDown($event)'
 	}

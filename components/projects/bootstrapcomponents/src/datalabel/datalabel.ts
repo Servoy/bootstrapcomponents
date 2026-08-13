@@ -1,11 +1,13 @@
-import { Component, Pipe, PipeTransform, ChangeDetectionStrategy, input, computed } from '@angular/core';
+import { Component, Pipe, PipeTransform, ChangeDetectionStrategy, input, computed, forwardRef } from '@angular/core';
 import { ServoyBootstrapBaseLabel } from '../bts_baselabel';
+import { ServoyPublicModule } from '@servoy/public';
 
 @Component({
     selector: 'bootstrapcomponents-datalabel',
     templateUrl: './datalabel.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    standalone: true,
+    imports: [ServoyPublicModule, forwardRef(() => DesignTextPipe)]
 })
 export class ServoyBootstrapDatalabel extends ServoyBootstrapBaseLabel<HTMLSpanElement> {
 
@@ -33,7 +35,7 @@ export class ServoyBootstrapDatalabel extends ServoyBootstrapBaseLabel<HTMLSpanE
 
 @Pipe( {
     name: 'designFilter',
-    standalone: false
+    standalone: true
 } )
 export class DesignTextPipe implements PipeTransform {
     constructor( ) {

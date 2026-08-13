@@ -1,13 +1,15 @@
 
 import { Component, ChangeDetectionStrategy, SimpleChanges, input, output, viewChild, signal, inject } from '@angular/core';
-import { Format, FormatDirective, WindowRefService } from '@servoy/public';
+import { Format, FormatDirective, WindowRefService, ServoyPublicModule } from '@servoy/public';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
+import { FormsModule } from '@angular/forms';
 
 @Component({
 	selector: 'bootstrapcomponents-textbox',
 	templateUrl: './textbox.html',
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	standalone: false
+	standalone: true,
+	imports: [ServoyPublicModule, FormsModule]
 })
 export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputElement> {
 

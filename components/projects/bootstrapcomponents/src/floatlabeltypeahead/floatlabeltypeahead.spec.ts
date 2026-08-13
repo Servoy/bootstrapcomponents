@@ -55,8 +55,7 @@ describe('ServoyFloatLabelBootstrapTypeahead', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [ServoyFloatLabelBootstrapTypeahead],
-            imports: [ServoyPublicTestingModule, FormsModule, NgbTypeahead],
+            imports: [ServoyPublicTestingModule, FormsModule, NgbTypeahead, ServoyFloatLabelBootstrapTypeahead],
             schemas: [NO_ERRORS_SCHEMA]
         }).compileComponents();
 

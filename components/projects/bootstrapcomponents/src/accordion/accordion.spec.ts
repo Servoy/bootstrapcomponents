@@ -57,8 +57,7 @@ describe('ServoyBootstrapAccordion', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [ServoyBootstrapAccordion],
-            imports: [ServoyPublicTestingModule, NgbModule],
+            imports: [ServoyPublicTestingModule, NgbModule, ServoyBootstrapAccordion],
             schemas: [NO_ERRORS_SCHEMA]
         }).compileComponents();
 

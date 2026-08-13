@@ -6,6 +6,15 @@ NG2-CSS-ClientLibs: ~@servoy/bootstrapcomponents/svy_bootstrapcomponents.css;pri
  ~bootstrap/dist/css/bootstrap.min.css;priority=10
 NPM-PackageName: @servoy/bootstrapcomponents
 NG2-Module: ServoyBootstrapComponentsModule
+NG2-Components: ServoyBootstrapLabel,ServoyBootstrapDatalabel,ServoyBoo
+ tstrapCalendar,ServoyBootstrapCalendarinline,ServoyBootstrapImageMedia
+ ,ServoyBootstrapCombobox,ServoyBootstrapTextbox,ServoyFloatLabelBootst
+ rapTextbox,ServoyFloatLabelBootstrapTextarea,ServoyFloatLabelBootstrap
+ Typeahead,ServoyFloatLabelBootstrapCombobox,ServoyFloatLabelBootstrapC
+ alendar,ServoyBootstrapTablesspanel,ServoyBootstrapTextarea,ServoyBoot
+ strapTabpanel,ServoyBootstrapChoicegroup,ServoyBootstrapList,ServoyBoo
+ tstrapSelect,ServoyBootstrapButton,ServoyBootstrapTypeahead,ServoyBoot
+ strapCheckbox,ServoyBootstrapAccordion
 Entry-Point: dist/servoy/bootstrapcomponents
 Bundle-SymbolicName: bootstrapcomponents
 Bundle-Name: Bootstrap Components

@@ -38,8 +38,7 @@ describe('ServoyFloatLabelBootstrapCalendar', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [ServoyFloatLabelBootstrapCalendar],
-            imports: [ServoyPublicTestingModule, FormsModule],
+            imports: [ServoyPublicTestingModule, FormsModule, ServoyFloatLabelBootstrapCalendar],
             schemas: [NO_ERRORS_SCHEMA]
         }).compileComponents();
 

@@ -1,12 +1,15 @@
 
 import { Component, ChangeDetectionStrategy, SimpleChanges, SimpleChange, input, output, signal } from '@angular/core';
 import { ServoyBootstrapCalendar } from '../calendar/calendar';
+import { ServoyPublicModule } from '@servoy/public';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'bootstrapcomponents-floatlabelcalendar',
     templateUrl: './floatlabelcalendar.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    standalone: true,
+    imports: [ServoyPublicModule, FormsModule]
 })
 export class ServoyFloatLabelBootstrapCalendar extends ServoyBootstrapCalendar {
 

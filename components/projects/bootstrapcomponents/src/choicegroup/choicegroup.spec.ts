@@ -48,8 +48,7 @@ describe('ServoyBootstrapChoicegroup', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [ServoyBootstrapChoicegroup, ChoiceElementDirective],
-            imports: [ServoyPublicTestingModule, FormsModule],
+            imports: [ServoyPublicTestingModule, FormsModule, ServoyBootstrapChoicegroup, ChoiceElementDirective],
             schemas: [NO_ERRORS_SCHEMA]
         }).compileComponents();
 

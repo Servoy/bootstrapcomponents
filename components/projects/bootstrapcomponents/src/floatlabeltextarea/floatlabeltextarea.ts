@@ -1,12 +1,15 @@
 
 import { Component, ChangeDetectionStrategy, SimpleChanges, SimpleChange, input, output, signal } from '@angular/core';
 import { ServoyBootstrapTextarea } from '../textarea/textarea';
+import { ServoyPublicModule } from '@servoy/public';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'bootstrapcomponents-floatlabeltextarea',
     templateUrl: './floatlabeltextarea.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    standalone: true,
+    imports: [ServoyPublicModule, FormsModule]
 })
 export class ServoyFloatLabelBootstrapTextarea extends ServoyBootstrapTextarea {
     

@@ -57,8 +57,7 @@ describe('ServoyBootstrapTabpanel', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [ServoyBootstrapTabpanel, BsTabpanelActiveTabVisibilityListener],
-            imports: [ServoyPublicTestingModule, NgbModule],
+            imports: [ServoyPublicTestingModule, NgbModule, ServoyBootstrapTabpanel, BsTabpanelActiveTabVisibilityListener],
             schemas: [NO_ERRORS_SCHEMA]
         }).compileComponents();
 

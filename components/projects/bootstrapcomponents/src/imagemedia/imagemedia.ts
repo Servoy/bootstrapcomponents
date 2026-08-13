@@ -1,13 +1,14 @@
 
 import { Component, SimpleChanges, ChangeDetectionStrategy, inject, input } from '@angular/core';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
-import { WindowRefService } from '@servoy/public';
+import { WindowRefService, ServoyPublicModule } from '@servoy/public';
 
 @Component({
     selector: 'bootstrapcomponents-imagemedia',
     templateUrl: './imagemedia.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    standalone: true,
+    imports: [ServoyPublicModule]
 })
 export class ServoyBootstrapImageMedia extends ServoyBootstrapBasefield<HTMLImageElement> {
 

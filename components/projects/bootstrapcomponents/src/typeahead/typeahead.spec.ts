@@ -56,8 +56,7 @@ describe('ServoyBootstrapTypeahead', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [ServoyBootstrapTypeahead],
-            imports: [ServoyPublicTestingModule, FormsModule, NgbTypeahead, NgbHighlight],
+            imports: [ServoyPublicTestingModule, FormsModule, NgbTypeahead, NgbHighlight, ServoyBootstrapTypeahead],
             schemas: [NO_ERRORS_SCHEMA]
         }).compileComponents();
 

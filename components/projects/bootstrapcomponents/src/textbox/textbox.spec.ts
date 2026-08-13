@@ -39,8 +39,7 @@ describe('ServoyBootstrapTextbox', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [ServoyBootstrapTextbox],
-            imports: [ServoyPublicTestingModule, FormsModule],
+            imports: [ServoyPublicTestingModule, FormsModule, ServoyBootstrapTextbox],
             schemas: [NO_ERRORS_SCHEMA]
         }).compileComponents();
 

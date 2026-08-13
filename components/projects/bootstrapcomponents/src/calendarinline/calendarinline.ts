@@ -1,6 +1,6 @@
 
 import { Component, SimpleChanges, ChangeDetectionStrategy, input, inject } from '@angular/core';
-import { Format, LoggerFactory } from '@servoy/public';
+import { Format, LoggerFactory, ServoyPublicModule } from '@servoy/public';
 import { ServoyBootstrapBaseCalendar } from '../calendar/basecalendar';
 import { DateTime } from '@eonasdan/tempus-dominus';
 
@@ -8,7 +8,8 @@ import { DateTime } from '@eonasdan/tempus-dominus';
     selector: 'bootstrapcomponents-calendarinline',
     templateUrl: './calendarinline.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    standalone: true,
+    imports: [ServoyPublicModule]
 })
 export class ServoyBootstrapCalendarinline extends ServoyBootstrapBaseCalendar {
 

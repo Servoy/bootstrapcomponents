@@ -1,12 +1,14 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 import { ServoyBootstrapBaseLabel } from '../bts_baselabel';
+import { ServoyPublicModule } from '@servoy/public';
 
 @Component( {
     selector: 'bootstrapcomponents-button',
     templateUrl: './button.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    standalone: true,
+    imports: [ServoyPublicModule]
 } )
 export class ServoyBootstrapButton extends ServoyBootstrapBaseLabel<HTMLButtonElement> {
 

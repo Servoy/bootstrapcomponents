@@ -39,8 +39,7 @@ describe('ServoyFloatLabelBootstrapTextbox', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [ServoyFloatLabelBootstrapTextbox],
-            imports: [ServoyPublicTestingModule, FormsModule],
+            imports: [ServoyPublicTestingModule, FormsModule, ServoyFloatLabelBootstrapTextbox],
             schemas: [NO_ERRORS_SCHEMA]
         }).compileComponents();
 

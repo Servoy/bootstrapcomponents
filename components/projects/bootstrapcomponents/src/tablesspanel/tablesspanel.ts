@@ -1,12 +1,14 @@
 import { Component, ChangeDetectorRef, TemplateRef, SimpleChanges, ChangeDetectionStrategy, input, contentChild, inject } from '@angular/core';
-import { ServoyPublicService } from '@servoy/public';
+import { ServoyPublicService, ServoyPublicModule } from '@servoy/public';
 import { ServoyBootstrapBaseComponent } from '../bts_basecomp';
+import { NgStyle, NgTemplateOutlet } from '@angular/common';
 
 @Component({
     selector: 'bootstrapcomponents-tablesspanel',
     templateUrl: './tablesspanel.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    standalone: true,
+    imports: [ServoyPublicModule, NgStyle, NgTemplateOutlet]
 })
 export class ServoyBootstrapTablesspanel extends ServoyBootstrapBaseComponent<HTMLDivElement> {
 

@@ -1,5 +1,7 @@
 import { Component, SimpleChanges, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy, viewChild, inject } from '@angular/core';
-import { ServoyPublicService } from '@servoy/public';
+import { ServoyPublicService, ServoyPublicModule } from '@servoy/public';
+import { NgTemplateOutlet } from '@angular/common';
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ServoyBootstrapBaseTabPanel,Tab } from '../bts_basetabpanel';
 
@@ -7,7 +9,8 @@ import { ServoyBootstrapBaseTabPanel,Tab } from '../bts_basetabpanel';
     selector: 'bootstrapcomponents-accordion',
     templateUrl: './accordion.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    standalone: true,
+    imports: [ServoyPublicModule, NgTemplateOutlet, NgbAccordionModule]
 })
 export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDivElement> {
 

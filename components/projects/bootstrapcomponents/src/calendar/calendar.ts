@@ -1,15 +1,17 @@
 
 import { Component, ElementRef, SimpleChanges, ChangeDetectionStrategy, input, viewChild, inject } from '@angular/core';
 import { DateTime, Namespace, TempusDominus } from '@eonasdan/tempus-dominus';
-import { FormatDirective, Format, FormattingService, PopupStateService } from '@servoy/public';
+import { FormatDirective, Format, FormattingService, PopupStateService, ServoyPublicModule } from '@servoy/public';
 import { LoggerFactory } from '@servoy/public';
 import { ServoyBootstrapBaseCalendar } from './basecalendar';
+import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'bootstrapcomponents-calendar',
     templateUrl: './calendar.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    standalone: true,
+    imports: [ServoyPublicModule, FormsModule],
     host: {
         '(keydown)': 'onKeyDown($event)',
         '(click)': 'onClick($event)'

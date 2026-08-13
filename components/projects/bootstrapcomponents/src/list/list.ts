@@ -1,8 +1,8 @@
 import { Component, SimpleChanges, ChangeDetectionStrategy, inject, input } from '@angular/core';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 import { ShowDisplayValuePipe } from '../lib/showDisplayValue.pipe';
-
-import { IValuelist } from '@servoy/public';
+import { AsyncPipe } from '@angular/common';
+import { IValuelist, ServoyPublicModule } from '@servoy/public';
 
 @Component({
     selector: 'bootstrapcomponents-list',
@@ -10,7 +10,8 @@ import { IValuelist } from '@servoy/public';
     styleUrls: ['./list.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [ShowDisplayValuePipe],
-    standalone: false
+    standalone: true,
+    imports: [ServoyPublicModule, AsyncPipe, ShowDisplayValuePipe]
 })
 export class ServoyBootstrapList extends ServoyBootstrapBasefield<HTMLInputElement> {
 

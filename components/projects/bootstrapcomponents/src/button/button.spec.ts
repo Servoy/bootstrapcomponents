@@ -29,8 +29,7 @@ describe('ServoyBootstrapButton', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [ServoyBootstrapButton],
-            imports: [ServoyPublicTestingModule],
+            imports: [ServoyPublicTestingModule, ServoyBootstrapButton],
             schemas: [NO_ERRORS_SCHEMA]
         }).compileComponents();
 

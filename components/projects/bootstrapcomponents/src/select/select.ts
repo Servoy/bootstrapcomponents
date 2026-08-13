@@ -1,8 +1,9 @@
 import { Component, SimpleChanges, ChangeDetectionStrategy, inject, input } from '@angular/core';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 import { ShowDisplayValuePipe } from '../lib/showDisplayValue.pipe';
-
-import { IValuelist } from '@servoy/public';
+import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { IValuelist, ServoyPublicModule } from '@servoy/public';
 
 @Component({
 	selector: 'bootstrapcomponents-select',
@@ -10,7 +11,8 @@ import { IValuelist } from '@servoy/public';
 	styleUrls: ['./select.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	providers: [ShowDisplayValuePipe],
-	standalone: false
+	standalone: true,
+	imports: [ServoyPublicModule, FormsModule, AsyncPipe, NgTemplateOutlet, ShowDisplayValuePipe]
 })
 export class ServoyBootstrapSelect extends ServoyBootstrapBasefield<HTMLSelectElement> {
 

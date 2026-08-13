@@ -1,12 +1,14 @@
 import { Component, SimpleChanges, ChangeDetectionStrategy, input, output, signal } from '@angular/core';
 import { ServoyBootstrapCombobox } from '../combobox/combobox';
-
+import { ServoyPublicModule } from '@servoy/public';
+import { NgbDropdownModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'bootstrapcomponents-floatlabelcombobox',
     templateUrl: './floatlabelcombobox.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    standalone: true,
+    imports: [ServoyPublicModule, NgbDropdownModule, NgbTooltipModule]
 })
 export class ServoyFloatLabelBootstrapCombobox extends ServoyBootstrapCombobox{
 

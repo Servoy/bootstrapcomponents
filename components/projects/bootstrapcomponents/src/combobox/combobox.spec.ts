@@ -52,8 +52,7 @@ describe('ServoyBootstrapCombobox', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [ServoyBootstrapCombobox],
-            imports: [ServoyPublicTestingModule, FormsModule, NgbDropdown, NgbDropdownItem, NgbTooltip],
+            imports: [ServoyPublicTestingModule, FormsModule, NgbDropdown, NgbDropdownItem, NgbTooltip, ServoyBootstrapCombobox],
             schemas: [NO_ERRORS_SCHEMA]
         }).compileComponents();
 

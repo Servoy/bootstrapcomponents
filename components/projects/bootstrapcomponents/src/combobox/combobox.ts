@@ -1,7 +1,7 @@
 import { Component, ChangeDetectorRef, SimpleChanges, ElementRef, ChangeDetectionStrategy, inject, input, viewChildren, viewChild, computed } from '@angular/core';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
-import { Format, FormattingService, IValuelist, ServoyPublicService, PopupStateService } from '@servoy/public';
-import { NgbDropdownItem, NgbTooltip, NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
+import { Format, FormattingService, IValuelist, ServoyPublicService, PopupStateService, ServoyPublicModule } from '@servoy/public';
+import { NgbDropdownItem, NgbTooltip, NgbDropdown, NgbDropdownModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { Subscription } from 'rxjs';
 
@@ -10,7 +10,8 @@ import { Subscription } from 'rxjs';
     templateUrl: './combobox.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     host: { '(keydown)': 'handleKeyDown($event)' },
-    standalone: false
+    standalone: true,
+    imports: [ServoyPublicModule, NgbDropdownModule, NgbTooltipModule]
 })
 export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivElement> {
 

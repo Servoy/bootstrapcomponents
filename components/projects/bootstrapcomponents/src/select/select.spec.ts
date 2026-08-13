@@ -45,8 +45,7 @@ describe('ServoyBootstrapSelect', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [ServoyBootstrapSelect, ShowDisplayValuePipe],
-            imports: [ServoyPublicTestingModule, FormsModule],
+            imports: [ServoyPublicTestingModule, FormsModule, ServoyBootstrapSelect, ShowDisplayValuePipe],
             schemas: [NO_ERRORS_SCHEMA]
         }).compileComponents();
 

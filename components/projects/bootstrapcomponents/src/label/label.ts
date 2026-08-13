@@ -1,11 +1,14 @@
 import { ServoyBootstrapBaseLabel } from '../bts_baselabel';
 import { Component, ChangeDetectionStrategy, SimpleChanges, input } from '@angular/core';
+import { NgTemplateOutlet } from '@angular/common';
+import { ServoyPublicModule } from '@servoy/public';
 
 @Component({
     selector: 'bootstrapcomponents-label',
     templateUrl: './label.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    standalone: true,
+    imports: [ServoyPublicModule, NgTemplateOutlet]
 })
 export class ServoyBootstrapLabel extends ServoyBootstrapBaseLabel<HTMLSpanElement> {
 

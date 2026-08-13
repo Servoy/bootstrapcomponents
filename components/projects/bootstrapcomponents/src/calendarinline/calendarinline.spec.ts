@@ -41,8 +41,7 @@ describe.runIf(isBrowser)('ServoyBootstrapCalendarinline (browser)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [ServoyBootstrapCalendarinline],
-            imports: [ServoyPublicTestingModule, FormsModule],
+            imports: [ServoyPublicTestingModule, FormsModule, ServoyBootstrapCalendarinline],
             schemas: [NO_ERRORS_SCHEMA]
         }).compileComponents();
 

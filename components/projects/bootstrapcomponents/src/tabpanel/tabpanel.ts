@@ -1,14 +1,16 @@
-import { Component, ChangeDetectorRef, ChangeDetectionStrategy, ElementRef, AfterViewInit, OnDestroy, input, output, viewChild, linkedSignal, inject } from '@angular/core';
-import { LoggerFactory } from '@servoy/public';
+import { Component, ChangeDetectorRef, ChangeDetectionStrategy, ElementRef, AfterViewInit, OnDestroy, input, output, viewChild, linkedSignal, inject, forwardRef } from '@angular/core';
+import { LoggerFactory, ServoyPublicModule } from '@servoy/public';
+import { NgStyle, NgTemplateOutlet } from '@angular/common';
 
 import { ServoyBootstrapBaseTabPanel, Tab } from '../bts_basetabpanel';
-import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
+import { NgbNavChangeEvent, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'bootstrapcomponents-tabpanel',
     templateUrl: './tabpanel.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false,
+    standalone: true,
+    imports: [ServoyPublicModule, NgStyle, NgTemplateOutlet, NgbNavModule, forwardRef(() => BsTabpanelActiveTabVisibilityListener)],
     host: {
         '(window:resize)': 'onResize()'
     }
@@ -239,7 +241,7 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
     selector: 'bootstrapcomponents-tabpanel-active-tab-visibility-listener',
     template: '<div #element></div>',
     changeDetection: ChangeDetectionStrategy.Eager, // eslint-disable-line @angular-eslint/prefer-on-push-component-change-detection
-    standalone: false
+    standalone: true
 })
 export class BsTabpanelActiveTabVisibilityListener implements AfterViewInit, OnDestroy {
 

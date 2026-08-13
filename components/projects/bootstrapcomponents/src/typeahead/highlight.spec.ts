@@ -27,8 +27,7 @@ describe('SvyNgbHighlight', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [SvyNgbHighlight],
-            imports: [ServoyPublicTestingModule],
+            imports: [ServoyPublicTestingModule, SvyNgbHighlight],
             schemas: [NO_ERRORS_SCHEMA]
         }).compileComponents();
     });

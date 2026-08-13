@@ -32,8 +32,7 @@ describe('ServoyBootstrapImageMedia', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [ServoyBootstrapImageMedia],
-            imports: [ServoyPublicTestingModule, FormsModule],
+            imports: [ServoyPublicTestingModule, FormsModule, ServoyBootstrapImageMedia],
             schemas: [NO_ERRORS_SCHEMA]
         }).compileComponents();
 

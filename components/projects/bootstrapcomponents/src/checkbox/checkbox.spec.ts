@@ -36,8 +36,7 @@ describe('ServoyBootstrapCheckbox', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [ServoyBootstrapCheckbox],
-            imports: [ServoyPublicTestingModule, FormsModule],
+            imports: [ServoyPublicTestingModule, FormsModule, ServoyBootstrapCheckbox],
             schemas: [NO_ERRORS_SCHEMA]
         }).compileComponents();
 

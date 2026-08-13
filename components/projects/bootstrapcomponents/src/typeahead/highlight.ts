@@ -24,7 +24,7 @@ import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
   `
 }`, // template needs to be formatted in a certain way so we don't add empty text nodes
     styleUrls: ['./highlight.scss'],
-    standalone: false
+    standalone: true
 })
 /* eslint-enable @angular-eslint/component-selector */
 export class SvyNgbHighlight implements OnChanges {

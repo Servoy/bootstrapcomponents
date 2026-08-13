@@ -1,13 +1,14 @@
 
-import { Component, OnInit, ElementRef, Directive, SimpleChanges, ChangeDetectionStrategy, input, viewChild, linkedSignal, inject } from '@angular/core';
-import { IValuelist } from '@servoy/public';
+import { Component, OnInit, ElementRef, Directive, SimpleChanges, ChangeDetectionStrategy, input, viewChild, linkedSignal, inject, forwardRef } from '@angular/core';
+import { IValuelist, ServoyPublicModule } from '@servoy/public';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 
 @Component({
     selector: 'bootstrapcomponents-choicegroup',
     templateUrl: './choicegroup.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    standalone: true,
+    imports: [ServoyPublicModule, forwardRef(() => ChoiceElementDirective)]
 })
 export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDivElement> {
 
@@ -156,7 +157,7 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
 @Directive({
     // eslint-disable-next-line @angular-eslint/directive-selector
     selector: '[bootstrapBaseChoiceElement]',
-    standalone: false
+    standalone: true
 })
 export class ChoiceElementDirective implements OnInit {
 

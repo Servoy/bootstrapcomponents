@@ -1,11 +1,9 @@
 
 import { NgModule, inject } from '@angular/core';
-import { ServoyPublicModule, SpecTypesService } from '@servoy/public';
+import { SpecTypesService } from '@servoy/public';
 import { ServoyBootstrapButton } from './button/button';
 import { ServoyBootstrapLabel } from './label/label';
-import { CommonModule } from '@angular/common';
 import { ServoyBootstrapTextarea } from './textarea/textarea';
-import { FormsModule } from '@angular/forms';
 import { ChoiceElementDirective } from './choicegroup/choicegroup';
 import { ServoyBootstrapChoicegroup } from './choicegroup/choicegroup';
 import { ServoyBootstrapCheckbox } from './checkbox/checkbox';
@@ -28,11 +26,10 @@ import { ServoyBootstrapCalendar } from './calendar/calendar';
 import { ServoyBootstrapCalendarinline } from './calendarinline/calendarinline';
 import { ShowDisplayValuePipe } from './lib/showDisplayValue.pipe';
 import { ServoyBootstrapImageMedia } from './imagemedia/imagemedia';
-import { NgbModule }  from '@ng-bootstrap/ng-bootstrap';
 import { Tab } from './bts_basetabpanel';
 
 @NgModule({
-    declarations: [
+    imports: [
       ServoyBootstrapImageMedia,
       ServoyBootstrapButton,
       ServoyBootstrapLabel,
@@ -47,6 +44,7 @@ import { Tab } from './bts_basetabpanel';
       ServoyFloatLabelBootstrapCombobox,
       ServoyFloatLabelBootstrapCalendar,
       ServoyBootstrapDatalabel,
+      DesignTextPipe,
       ServoyBootstrapList,
       ServoyBootstrapSelect,
       ServoyBootstrapAccordion,
@@ -58,15 +56,7 @@ import { Tab } from './bts_basetabpanel';
       ServoyBootstrapCalendar,
       ServoyBootstrapCalendarinline,
       ShowDisplayValuePipe,
-      DesignTextPipe,
       BsTabpanelActiveTabVisibilityListener
-    ],
-    providers: [],
-    imports: [
-      ServoyPublicModule,
-      CommonModule,
-      FormsModule,
-      NgbModule
     ],
     exports: [
       ServoyBootstrapImageMedia,
@@ -90,7 +80,8 @@ import { Tab } from './bts_basetabpanel';
       ServoyBootstrapTablesspanel,
       ServoyBootstrapCombobox,
       ServoyBootstrapCalendar,
-      ServoyBootstrapCalendarinline]
+      ServoyBootstrapCalendarinline
+    ]
 })
 export class ServoyBootstrapComponentsModule {
     private readonly specTypesService = inject(SpecTypesService);

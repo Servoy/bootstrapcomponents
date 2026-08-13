@@ -37,8 +37,7 @@ describe('ServoyBootstrapTextarea', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [ServoyBootstrapTextarea],
-            imports: [ServoyPublicTestingModule, FormsModule],
+            imports: [ServoyPublicTestingModule, FormsModule, ServoyBootstrapTextarea],
             schemas: [NO_ERRORS_SCHEMA]
         }).compileComponents();
 

@@ -33,8 +33,7 @@ describe('ServoyBootstrapDatalabel', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [ServoyBootstrapDatalabel, DesignTextPipe],
-            imports: [ServoyPublicTestingModule, FormsModule],
+            imports: [ServoyPublicTestingModule, FormsModule, ServoyBootstrapDatalabel, DesignTextPipe],
             schemas: [NO_ERRORS_SCHEMA]
         }).compileComponents();
 

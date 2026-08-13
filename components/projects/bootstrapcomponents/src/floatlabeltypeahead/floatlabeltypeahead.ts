@@ -1,12 +1,17 @@
 
 import { Component, ChangeDetectionStrategy, SimpleChanges, SimpleChange, input, output, signal } from '@angular/core';
 import { ServoyBootstrapTypeahead } from '../typeahead/typeahead';
+import { ServoyPublicModule } from '@servoy/public';
+import { FormsModule } from '@angular/forms';
+import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
+import { SvyNgbHighlight } from '../typeahead/highlight';
 
 @Component({
     selector: 'bootstrapcomponents-floatlabeltypeahead',
     templateUrl: './floatlabeltypeahead.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    standalone: true,
+    imports: [ServoyPublicModule, FormsModule, NgbTypeaheadModule, SvyNgbHighlight]
 })
 export class ServoyFloatLabelBootstrapTypeahead extends ServoyBootstrapTypeahead {
     
