@@ -15,7 +15,7 @@
 			"format" : {"for":["valuelistID","dataProviderID"] , "type" :"format", "tags": { "basic": true }},
 			"floatLabelText" :  {"type" : "tagstring", "tags": { "basic": true } },
 			"errorMessage" : "tagstring",
-			"errorShow" : {"type" : "boolean", "pushToServer": "allow", "tags":{"scope":"private"}},
+			"errorShow" : {"type" : "boolean", "pushToServer": "allow", "tags":{ "serveronly": true,"scope":"private"}},
 	        "readOnly" : { "type": "protected", "blockingOn": true, "default": false,"for": ["dataProviderID","onDataChangeMethodID"], "tags": {"scope":"private"} }, 
 	        "findmode" : { "type":"findmode", "tags":{"scope":"private"}, "for" : {"enabled":true}},
 	        "showAs": { "type": "string", "values": [{"text":null}, {"html":"html"}, {"trusted_html":"trusted_html"}]},

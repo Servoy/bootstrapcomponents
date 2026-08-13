@@ -15,7 +15,7 @@
 			"styleClass" : { "type" :"styleclass", "tags": { "scope" :"design", "doc": "Set the styleclasses that should be applied at to this component" }, "default": "form-control", "values" :["form-control", "input-sm"]},
 			"floatLabelText" : {"type" : "tagstring", "tags": { "basic": true } },
 			"errorMessage" : "tagstring",
-			"errorShow" : {"type" : "boolean", "pushToServer": "allow", "tags":{"scope":"private"}},
+			"errorShow" : {"type" : "boolean", "pushToServer": "allow", "tags":{ "serveronly": true,"scope":"private"}},
 			"tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
 			"toolTipText" : { "type" : "tagstring"},
             "visible" : {"type" : "visible", "tags": {"doc": "Whether the button is visible or not"}},
