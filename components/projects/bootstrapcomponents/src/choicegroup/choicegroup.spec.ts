@@ -126,4 +126,53 @@ describe('ServoyBootstrapChoicegroup', () => {
         await fixture.whenStable();
         expect(spy).toHaveBeenCalled();
     });
+    
+    describe('SVY-21320: readonly/disabled consistency for all items', () => {
+        it('should disable ALL items when readOnly is true', async () => {
+            fixture.componentRef.setInput('readOnly', true);
+            component.svyOnChanges({ readOnly: { currentValue: true, previousValue: false, firstChange: false, isFirstChange: () => false } });
+            fixture.detectChanges();
+            await fixture.whenStable();
+            const inputs = fixture.nativeElement.querySelectorAll('input') as NodeListOf<HTMLInputElement>;
+            expect(inputs.length).toBeGreaterThan(1);
+            inputs.forEach((input: HTMLInputElement) => {
+                expect(input.disabled).toBe(true);
+                expect(input.hasAttribute('readonly')).toBe(false);
+            });
+        });
+
+        it('should disable ALL items when enabled is false', async () => {
+            fixture.componentRef.setInput('enabled', false);
+            component.svyOnChanges({ enabled: { currentValue: false, previousValue: true, firstChange: false, isFirstChange: () => false } });
+            fixture.detectChanges();
+            await fixture.whenStable();
+            const inputs = fixture.nativeElement.querySelectorAll('input') as NodeListOf<HTMLInputElement>;
+            expect(inputs.length).toBeGreaterThan(1);
+            inputs.forEach((input: HTMLInputElement) => {
+                expect(input.disabled).toBe(true);
+            });
+        });
+
+        it('should NOT disable any items when readOnly is false and enabled is true', async () => {
+            fixture.componentRef.setInput('readOnly', false);
+            fixture.componentRef.setInput('enabled', true);
+            component.svyOnChanges({ readOnly: { currentValue: false, previousValue: true, firstChange: false, isFirstChange: () => false } });
+            fixture.detectChanges();
+            await fixture.whenStable();
+            const inputs = fixture.nativeElement.querySelectorAll('input') as NodeListOf<HTMLInputElement>;
+            expect(inputs.length).toBeGreaterThan(1);
+            inputs.forEach((input: HTMLInputElement) => {
+                expect(input.disabled).toBe(false);
+            });
+        });
+
+        it('should still apply styleClass changes via base class', async () => {
+            fixture.componentRef.setInput('styleClass', 'my-custom-class');
+            component.svyOnChanges({ styleClass: { currentValue: 'my-custom-class', previousValue: undefined, firstChange: false, isFirstChange: () => false } });
+            fixture.detectChanges();
+            await fixture.whenStable();
+            const el = fixture.nativeElement.querySelector('.bts-radiogroup') as HTMLElement;
+            expect(el.classList.contains('my-custom-class')).toBe(true);
+        });
+    });
 });
