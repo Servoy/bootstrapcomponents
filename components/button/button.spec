@@ -11,6 +11,7 @@
 	"styleVariantCategory": "button",
 	"model":
 	{
+		"designsize" : {"type" :"dimension", "tags": {"serveronly": true}, "default" : {"width":80, "height":30}},
 		"enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["onActionMethodID","onDoubleClickMethodID","onRightClickMethodID"], "tags": {"doc": "Whether the component is enabled or not; blocks onAction, onDoubleClick, onRightClick events."} },
 	    "imageStyleClass" : { "type" :"styleclass" ,"tags": { "doc" :"For buttons showing as plain text, you can also specify an image styleclass to be displayed to the left. Can be font awesome icons."}},
         "trailingImageStyleClass": {"type":"string", "tags": { "doc": "An icon style class property (glyphicon, material design or Font Awesome).<br/>Example 'fas fa-search' <br/>If you want to use Font Awesome classes you need to enable the Font Awesome service from the Servoy Package Manager."}},

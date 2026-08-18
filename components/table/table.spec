@@ -10,6 +10,7 @@
     "libraries": [{"name":"bootstrapcomponents-table-css", "version":"1.0", "url":"bootstrapcomponents/table/table.css", "mimetype":"text/css"}],
     "model":
     {
+        "designsize" : {"type" :"dimension", "tags": {"serveronly": true}, "default" : {"width":200, "height":200}},
         "columns":  { "type":"column[]", "droppable": true },
         "currentPage":  { "type":"int", "default" : 1, "tags": { "scope": "runtime" } },
         "foundset": { "type": "foundset", "pushToServer": "allow" },

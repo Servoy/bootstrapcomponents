@@ -10,6 +10,7 @@
 	"keywords": ["tag"], 
 	"model":
 	{
+			"designsize" : {"type" :"dimension", "tags": {"serveronly": true}, "default" : {"width":80, "height":30}},
 			"dataProviderID" : { "type":"dataprovider", "tags": { "wizard": true, "scope": "design", "doc":"The column or variable to provide the data for this label.", "basic": true}, "resolveValuelist" : true },
 			"valuelistID" : { "type" : "valuelist",  "for": "dataProviderID", "max":1, "tags": { "doc":"The value list which is used to get a display value for the actual columns real value like id -> name", "basic": true}},
 			"enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["onActionMethodID","onDoubleClickMethodID","onRightClickMethodID"],"tags": {"doc": "Whether the component is enabled or not; blocks onAction, onDoubleClick, onRightClick events."} },

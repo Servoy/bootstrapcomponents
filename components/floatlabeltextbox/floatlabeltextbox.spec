@@ -8,6 +8,7 @@
 	"keywords": ["content"],
 	"model":
 	{
+			"designsize" : {"type" :"dimension", "tags": {"serveronly": true}, "default" : {"width":140, "height":50}},
 			"dataProviderID" : { "type":"dataprovider", "pushToServer": "allow","tags": { "wizard": true, "scope" :"design", "basic": true }, "ondatachange": { "onchange":"onDataChangeMethodID","callback":"onDataChangeCallback"}},
 			"enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["dataProviderID","onActionMethodID","onDataChangeMethodID","onFocusGainedMethodID","onFocusLostMethodID","onRightClickMethodID"] },
 			"format" : {"for":["dataProviderID"] , "type" :"format", "tags": { "basic": true }}, 
