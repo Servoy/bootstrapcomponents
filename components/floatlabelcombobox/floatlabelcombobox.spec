@@ -10,7 +10,7 @@
 	"keywords": [],
 	"model":
 	{
-	        "designsize" : {"type" :"dimension", "tags": {"serveronly": true}, "default" : {"width":140, "height":50}},
+	        "designsize" : {"type" :"dimension", "tags": {"serveronly": true, "scope": "private"}, "default" : {"width":140, "height":50}},
 	        "dataProviderID" : { "type":"dataprovider", "pushToServer": "allow", "tags": { "wizard": true, "scope": "design", "basic": true }, "ondatachange": { "onchange":"onDataChangeMethodID", "callback":"onDataChangeCallback"}, "displayTagsPropertyName" : "displaysTags"},
 	        "enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["dataProviderID","onActionMethodID","onDataChangeMethodID","onFocusGainedMethodID","onFocusLostMethodID","onRightClickMethodID"] }, 
 			"format" : {"for":["valuelistID","dataProviderID"] , "type" :"format", "tags": { "basic": true }},

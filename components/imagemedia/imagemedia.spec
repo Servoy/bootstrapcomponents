@@ -10,7 +10,7 @@
     "keywords": ["picture", "video"],
     "model":
     {
-        "designsize" : {"type" :"dimension", "tags": {"serveronly": true}, "default" : {"width":140, "height":80}},
+        "designsize" : {"type" :"dimension", "tags": {"serveronly": true, "scope": "private"}, "default" : {"width":140, "height":80}},
         "alternate":        { "type": "tagstring", "tags": { "doc": "Value to be filled in alt html attribute of the img tag."}},
         "enabled":          { "type": "enabled", "blockingOn": false, "default": true, "for": ["dataProviderID", "onActionMethodID", "onDataChangeMethodID"] }, 
         "editable":         { "type": "protected", "blockingOn": false, "default": false, "for": ["dataProviderID","onDataChangeMethodID"] },

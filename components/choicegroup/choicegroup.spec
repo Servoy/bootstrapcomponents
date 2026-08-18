@@ -10,7 +10,7 @@
 	"keywords": ["select", "multiple", "options", "choices"],
 	"model":
 	{
-	        "designsize" : {"type" :"dimension", "tags": {"serveronly": true}, "default" : {"width":140, "height":80}},
+	        "designsize" : {"type" :"dimension", "tags": {"serveronly": true, "scope": "private"}, "default" : {"width":140, "height":80}},
 	        "dataProviderID" : { "type":"dataprovider", "multiselect": "true", "pushToServer": "allow","tags": { "wizard": true, "scope" :"design", "basic": true }, "ondatachange": { "onchange":"onDataChangeMethodID"}},
 	        "enabled" : { "type": "enabled", "blockingOn": false, "default": true, "for": ["dataProviderID","onActionMethodID","onDataChangeMethodID"] },
 	        "readOnly" : { "type": "protected", "blockingOn": true, "default": false, "for": ["dataProviderID","onDataChangeMethodID"], "tags": {"scope":"private"} },

@@ -14,7 +14,7 @@
 	"keywords": ["agenda", "diary", "day", "month", "year"],
 	"model":
 	{
-		"designsize" : {"type" :"dimension", "tags": {"serveronly": true}, "default" : {"width":250, "height":280}},
+		"designsize" : {"type" :"dimension", "tags": {"serveronly": true, "scope": "private"}, "default" : {"width":250, "height":280}},
 		"calendarWeeks" : {"type" :"boolean", "pushToServer": "shallow", "default": true, "tags": { "scope" :"design" }},
 	    "dataProviderID" : { "type":"dataprovider", "pushToServer": "allow","tags": { "wizard": true, "scope" :"design", "basic": true }, "ondatachange": { "onchange":"onDataChangeMethodID"}},
 	    "format" : {"for":["dataProviderID"] , "type" :"format", "tags": {"doc": "This format is just used to be able to configure 'use as LocalDateTime'", "basic": true} },
