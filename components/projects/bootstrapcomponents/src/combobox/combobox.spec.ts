@@ -106,4 +106,29 @@ describe('ServoyBootstrapCombobox', () => {
         expect(span.textContent).toBe('two');
         expect(spy).not.toHaveBeenCalled();
     });
+
+    it('should update formattedValue when dataProviderID changes', async () => {
+        fixture.componentRef.setInput('dataProviderID', 3);
+        fixture.detectChanges();
+        await fixture.whenStable();
+        const span = fixture.nativeElement.querySelector('button span');
+        expect(span.textContent).toBe('three');
+    });
+
+    it('should show placeholder when dataProviderID is null', async () => {
+        await createComponent({ dataProviderID: null, placeholderText: 'Select...' });
+        const span = fixture.nativeElement.querySelector('button span');
+        expect(span.textContent).toBe('Select...');
+        expect(span.classList.contains('bts-combobox-placeholder')).toBe(true);
+    });
+
+    it('should clear placeholderClass after selecting a value', async () => {
+        await createComponent({ dataProviderID: null, placeholderText: 'Select...' });
+        const span = fixture.nativeElement.querySelector('button span') as HTMLElement;
+        expect(span.classList.contains('bts-combobox-placeholder')).toBe(true);
+        component.updateValue(2, new Event('click'));
+        fixture.detectChanges();
+        await fixture.whenStable();
+        expect(component.placeholderClass()).toBeNull();
+    });
 });

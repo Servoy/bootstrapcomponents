@@ -100,4 +100,22 @@ describe('ServoyBootstrapImageMedia', () => {
         await fixture.whenStable();
         expect(img.getAttribute('src')).toBe('image2.png');
     });
+
+    it('should show empty gif when dataProviderID is null', async () => {
+        await createComponent({ dataProviderID: null });
+        const img = fixture.nativeElement.querySelector('.svy-mediafield .bts-media') as HTMLImageElement;
+        expect(img.getAttribute('src')).toBe('bootstrapcomponents/imagemedia/images/empty.gif');
+    });
+
+    it('should prefer media over dataProviderID', async () => {
+        await createComponent({ dataProviderID: 'dp-image.png', media: 'media-image.png' });
+        const img = fixture.nativeElement.querySelector('.svy-mediafield .bts-media') as HTMLImageElement;
+        expect(img.getAttribute('src')).toBe('media-image.png');
+    });
+
+    it('should show dataProviderID url property when available', async () => {
+        await createComponent({ dataProviderID: { url: 'http://example.com/img.png' } });
+        const img = fixture.nativeElement.querySelector('.svy-mediafield .bts-media') as HTMLImageElement;
+        expect(img.getAttribute('src')).toBe('http://example.com/img.png');
+    });
 });

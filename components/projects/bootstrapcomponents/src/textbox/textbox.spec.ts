@@ -177,4 +177,30 @@ describe('ServoyBootstrapTextbox', () => {
         const updatedEyeDiv = fixture.nativeElement.querySelector('div[id="svy-textbox-eyeDiv"]') as HTMLElement;
         expect(updatedEyeDiv.classList.contains('fa-eye')).toBe(true);
     });
+
+    it('should show password input as text when showPass is toggled', async () => {
+        await createComponent({ inputType: 'password-with-eye' });
+        const input = fixture.nativeElement.querySelector('input') as HTMLInputElement;
+        expect(input.type).toBe('password');
+        const eyeDiv = fixture.nativeElement.querySelector('div[id="svy-textbox-eyeDiv"]') as HTMLElement;
+        eyeDiv.click();
+        fixture.detectChanges();
+        await fixture.whenStable();
+        expect(input.type).toBe('text');
+    });
+
+    it('should toggle classForEye between eye and eye-slash on click', async () => {
+        await createComponent({ inputType: 'password-with-eye' });
+        const eyeDiv = fixture.nativeElement.querySelector('div[id="svy-textbox-eyeDiv"]') as HTMLElement;
+        eyeDiv.click();
+        fixture.detectChanges();
+        await fixture.whenStable();
+        expect(eyeDiv.classList.contains('fa-eye')).toBe(true);
+        expect(eyeDiv.classList.contains('fa-eye-slash')).toBe(false);
+        eyeDiv.click();
+        fixture.detectChanges();
+        await fixture.whenStable();
+        expect(eyeDiv.classList.contains('fa-eye-slash')).toBe(true);
+        expect(eyeDiv.classList.contains('fa-eye')).toBe(false);
+    });
 });

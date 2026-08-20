@@ -174,4 +174,22 @@ describe('ServoyBootstrapChoicegroup', () => {
             expect(el.classList.contains('my-custom-class')).toBe(true);
         });
     });
+
+    describe('selection signal', () => {
+        it('should update selection when checkbox is clicked', async () => {
+            await createComponent({ dataProviderID: ['1'] });
+            expect(component.selection()[0]).toBe(true);
+        });
+
+        it('should update selection for radio input type', async () => {
+            await createComponent({ inputType: 'radio', dataProviderID: 2 });
+            expect(component.selection()[1]).toBe(true);
+            expect(component.selection()[0]).toBeFalsy();
+        });
+
+        it('should clear selection when dataProviderID is null', async () => {
+            await createComponent({ dataProviderID: null });
+            expect(component.selection().length).toBe(0);
+        });
+    });
 });
