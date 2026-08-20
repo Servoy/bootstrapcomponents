@@ -1,5 +1,5 @@
 
-import { Component, SimpleChanges, ChangeDetectionStrategy, inject, input } from '@angular/core';
+import { Component, SimpleChanges, ChangeDetectionStrategy, inject, input, signal } from '@angular/core';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 import { WindowRefService, ServoyPublicModule } from '@servoy/public';
 
@@ -15,7 +15,7 @@ export class ServoyBootstrapImageMedia extends ServoyBootstrapBasefield<HTMLImag
     readonly media = input(undefined);
     readonly alternate = input(undefined);
 
-    imageURL = 'bootstrapcomponents/imagemedia/images/empty.gif';
+    imageURL = signal('bootstrapcomponents/imagemedia/images/empty.gif');
 
     protected readonly windowService = inject(WindowRefService);
 
@@ -73,16 +73,15 @@ export class ServoyBootstrapImageMedia extends ServoyBootstrapBasefield<HTMLImag
         const dataProviderID = this._dataProviderID();
         const media = this.media();
         if (media) {
-            this.imageURL = media;
-            // do nothing if data provider changed but media is defined
+            this.imageURL.set(media);
         } else if(dataProviderID && dataProviderID.url) {
-            this.imageURL = dataProviderID.url;
+            this.imageURL.set(dataProviderID.url);
         } else if (!dataProviderID && this.servoyApi().isInDesigner()) {
-            this.imageURL = 'bootstrapcomponents/imagemedia/media.png';
+            this.imageURL.set('bootstrapcomponents/imagemedia/media.png');
         } else if (!dataProviderID){
-            this.imageURL = 'bootstrapcomponents/imagemedia/images/empty.gif';
+            this.imageURL.set('bootstrapcomponents/imagemedia/images/empty.gif');
         } else {
-            this.imageURL = dataProviderID;
+            this.imageURL.set(dataProviderID);
         }
     }
 }

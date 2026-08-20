@@ -17,12 +17,12 @@
     [findmode]="$any(findmode())"
     [autocomplete]="_autocomplete()"
     [placeholder]="floatLabelText()"
-    [type]="_inputType() === 'password-with-eye' && showPass ? 'text' : _inputType() === 'password-with-eye' ? 'password' : _inputType()"
+    [type]="_inputType() === 'password-with-eye' && showPass() ? 'text' : _inputType() === 'password-with-eye' ? 'password' : _inputType()"
     />
   @if (inputType() === 'password-with-eye') {
     <div id="svy-textbox-eyeDiv"
       (click)="showHidePass()"
-      class="clickable svy-textbox-eye {{classForEye}} {{styleClass() || ''}}">
+      class="clickable svy-textbox-eye {{classForEye()}} {{styleClass() || ''}}">
     </div>
   }
   <label [for]="servoyApi().getMarkupId()">{{floatLabelText()}}</label>

@@ -1,4 +1,4 @@
-<ng-template #tooltipContent>{{lastSelectValue}}</ng-template>
+<ng-template #tooltipContent>{{lastSelectValue()}}</ng-template>
 <div [id]="servoyApi().getMarkupId()" class="bts-combobox-container" ngbDropdown #comboboxDropdown="ngbDropdown" (openChange)="openChange($event)"
   [container]="$any(appendToBody()?'body':null)" #element>
   <button class="bts-combobox form-control dropdown-toggle bts-dropdown" ngbDropdownToggle
@@ -15,10 +15,10 @@
     [id]="servoyApi().getMarkupId() + '_btn'"
     #input>
     @if (showAsHtml()) {
-      <span class="bts-dropdown-text" [class]="placeholderClass" [innerHtml]="formattedValue ? (formattedValue | htmlFilter | trustAsHtml:isTrustedHTML()) : formattedValue"></span>
+      <span class="bts-dropdown-text" [class]="placeholderClass()" [innerHtml]="formattedValue() ? (formattedValue() | htmlFilter | trustAsHtml:isTrustedHTML()) : formattedValue()"></span>
     }
     @if (!showAsHtml()) {
-      <span class="bts-dropdown-text" [class]="placeholderClass">{{formattedValue}}</span>
+      <span class="bts-dropdown-text" [class]="placeholderClass()">{{formattedValue()}}</span>
     }
   </button>
   <div
@@ -27,7 +27,7 @@
     [style.width.px]="getDropDownWidth()"
     (keydown)="handleKeyDown($event)"
     #dropdown>
-    @if (openState) {
+    @if (openState()) {
       @for (value of valuelistID(); track value; let idx = $index) {
         <button
           ngbDropdownItem

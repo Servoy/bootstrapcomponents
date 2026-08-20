@@ -5,7 +5,7 @@
   @for (item of $any(valuelistID()) | notNullOrEmpty; track item; let i = $index) {
     <label>
       <input [type]="inputType()"
-        [checked]="selection[i]"
+        [checked]="selection()[i]"
         [value]="item.realValue"
         (change)="itemClicked($event, i)"
         [disabled]="readOnly() || !enabled()"

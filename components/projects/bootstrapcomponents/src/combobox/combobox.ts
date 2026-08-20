@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, SimpleChanges, ElementRef, ChangeDetectionStrategy, inject, input, viewChildren, viewChild, computed } from '@angular/core';
+import { Component, ChangeDetectorRef, SimpleChanges, ElementRef, ChangeDetectionStrategy, inject, input, viewChildren, viewChild, computed, signal } from '@angular/core';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 import { Format, FormattingService, IValuelist, ServoyPublicService, PopupStateService, ServoyPublicModule } from '@servoy/public';
 import { NgbDropdownItem, NgbTooltip, NgbDropdown, NgbDropdownModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
@@ -26,15 +26,15 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
     readonly comboboxDropdown = viewChild(NgbDropdown);
     tooltip = viewChild<NgbTooltip>('tooltip');
 
-    formattedValue: any;
+    formattedValue = signal<any>(undefined);
     readonly valueComparator = computed(() =>
         this.valuelistID()?.isRealValueDate() ? this.dateValueCompare : this.valueCompare
     );
-    openState = false;
+    openState = signal(false);
     keyboardSelectValue: string | null = null;
-    lastSelectValue: string | null = null;
+    lastSelectValue = signal<string | null>(null);
     firstItemFound = false;
-    placeholderClass: string | null = null;
+    placeholderClass = signal<string | null>(null);
     private skipFocus = false;
     private valuelistDisplayValueSubscription: Subscription | null = null;
     private showPopupOnFocusGain = false;
@@ -46,7 +46,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
 
     handleKeyDown(event: KeyboardEvent) {
         event.stopPropagation();
-        this.lastSelectValue = null;
+        this.lastSelectValue.set(null);
         this.firstItemFound = false;
         if (this.isPrintableChar(event.key)) {
             const comboboxDropdown = this.comboboxDropdown();
@@ -56,15 +56,15 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
             }
             if (event.key !== 'Backspace') this.keyboardSelectValue = (this.keyboardSelectValue ? this.keyboardSelectValue : '') + event.key;
             else this.keyboardSelectValue = this.keyboardSelectValue ? this.keyboardSelectValue.slice(0, -1) : '';
-            this.lastSelectValue = this.keyboardSelectValue.slice();
-            if (!this.lastSelectValue) this.closeTooltip();
+            this.lastSelectValue.set(this.keyboardSelectValue.slice());
+            if (!this.lastSelectValue()) this.closeTooltip();
             else this.refreshTooltip();
 
             this.cdRef.detectChanges();
             this.scrollToFirstMatchingItem();
         } else {
-            if (this.keyboardSelectValue) this.lastSelectValue = this.keyboardSelectValue.slice();
-            if (!this.lastSelectValue) this.closeTooltip();
+            if (this.keyboardSelectValue) this.lastSelectValue.set(this.keyboardSelectValue.slice());
+            if (!this.lastSelectValue()) this.closeTooltip();
             else this.refreshTooltip();
 
             this.cdRef.detectChanges();
@@ -186,12 +186,12 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
         }
         if (this.onFocusLostMethodID())
             this.renderer.listen(nativeElement, 'blur', (e) => {
-                if (!this.openState) this.onFocusLostMethodID()!(e);
+                if (!this.openState()) this.onFocusLostMethodID()!(e);
             });
     }
 
     openChange(state: boolean) {
-        this.openState = state;
+        this.openState.set(state);
         this.skipFocus = true;
         if (state) {
             this.popupStateService.activatePopup(this.getNativeElement().id);
@@ -227,7 +227,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
         super.svyOnChanges(changes);
         const valuelistIDValue = this.valuelistID();
         if (changes['dataProviderID'] && this.findmode()) {
-            this.formattedValue = this._dataProviderID();
+            this.formattedValue.set(this._dataProviderID());
         } else if ((changes['dataProviderID'] || changes['valuelistID']) && valuelistIDValue) {
             if (this.valuelistDisplayValueSubscription !== null) {
                 this.valuelistDisplayValueSubscription.unsubscribe();
@@ -235,25 +235,25 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
             }
              
             const valueListElem = valuelistIDValue.find(this.valueComparator());
-            if (valueListElem) this.formattedValue = this.formatService.format(valueListElem.displayValue, this.format()!, false);
+            if (valueListElem) this.formattedValue.set(this.formatService.format(valueListElem.displayValue, this.format()!, false));
             else {
                 if (!valuelistIDValue.hasRealValues())
-                    this.formattedValue = this.formatService.format(this._dataProviderID(), this.format()!, false);
+                    this.formattedValue.set(this.formatService.format(this._dataProviderID(), this.format()!, false));
                 else {
-                    this.formattedValue = null;
+                    this.formattedValue.set(null);
                     this.valuelistDisplayValueSubscription = valuelistIDValue.getDisplayValue(this._dataProviderID()).subscribe(val => {
                         this.valuelistDisplayValueSubscription = null;
-                        this.formattedValue = val;
+                        this.formattedValue.set(val);
                         this.cdRef.detectChanges();
                     });
                 }
             }
         }
-        if (this.formattedValue === '' || this.formattedValue === null || this.formattedValue === undefined) {
+        if (this.formattedValue() === '' || this.formattedValue() === null || this.formattedValue() === undefined) {
             const placeholderText = this.placeholderText();
             if (placeholderText) {
-                this.formattedValue = placeholderText;
-                this.placeholderClass = 'bts-combobox-placeholder';
+                this.formattedValue.set(placeholderText);
+                this.placeholderClass.set('bts-combobox-placeholder');
             }
         }
         if (changes['styleClass']) {
@@ -286,7 +286,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
     updateValue(realValue: any, event: Event) {
         this._dataProviderID.set(realValue);
         this.dataProviderIDChange.emit(this._dataProviderID());
-        this.placeholderClass = null;
+        this.placeholderClass.set(null);
         const onActionMethodID = this.onActionMethodID();
         if (onActionMethodID) {
             onActionMethodID(event, this.getDataTarget(event));
@@ -295,8 +295,9 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
 
     getRemainingValueBefore(value: any): any {
         let retValue = '';
-        const valIndex = this.lastSelectValue ? value.toLowerCase().indexOf(this.lastSelectValue.toLowerCase()) : -1;
-        if (this.openState && value && valIndex >= 0) {
+        const lastSelectValue = this.lastSelectValue();
+        const valIndex = lastSelectValue ? value.toLowerCase().indexOf(lastSelectValue.toLowerCase()) : -1;
+        if (this.openState() && value && valIndex >= 0) {
             retValue = value.substring(0, valIndex);
         }
         return retValue;
@@ -304,25 +305,28 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
 
     getStrongValue(value: any): any {
         let retValue = '';
-        const valIndex = this.lastSelectValue ? value.toLowerCase().indexOf(this.lastSelectValue.toLowerCase()) : -1;
-        if (this.openState && value && valIndex >= 0) {
-            retValue = value.substring(valIndex, (valIndex + this.lastSelectValue!.length));
+        const lastSelectValue = this.lastSelectValue();
+        const valIndex = lastSelectValue ? value.toLowerCase().indexOf(lastSelectValue.toLowerCase()) : -1;
+        if (this.openState() && value && valIndex >= 0) {
+            retValue = value.substring(valIndex, (valIndex + lastSelectValue!.length));
         }
         return retValue;
     }
 
     getRemainingValueAfter(value: any): any {
         let retValue = value;
-        const valIndex = this.lastSelectValue ? value.toLowerCase().indexOf(this.lastSelectValue.toLowerCase()) : -1;
-        if (this.openState && value && valIndex >= 0) {
-            retValue = value.substring(valIndex + this.lastSelectValue!.length);
+        const lastSelectValue = this.lastSelectValue();
+        const valIndex = lastSelectValue ? value.toLowerCase().indexOf(lastSelectValue.toLowerCase()) : -1;
+        if (this.openState() && value && valIndex >= 0) {
+            retValue = value.substring(valIndex + lastSelectValue!.length);
         }
         return retValue;
     }
     scrollToFirstMatchingItem() {
-        if (this.openState && this.lastSelectValue) {
+        const lastSelectValue = this.lastSelectValue();
+        if (this.openState() && lastSelectValue) {
             for (const item of this.menuItems()) {
-                if (item.nativeElement.innerText.toLowerCase().indexOf(this.lastSelectValue.toLowerCase()) >= 0 && !this.firstItemFound) {
+                if (item.nativeElement.innerText.toLowerCase().indexOf(lastSelectValue.toLowerCase()) >= 0 && !this.firstItemFound) {
                     this.firstItemFound = true;
                     item.nativeElement.focus();
                 }
@@ -332,7 +336,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
 
     private closeTooltip() {
         this.keyboardSelectValue = null;
-        this.lastSelectValue = null;
+        this.lastSelectValue.set(null);
         this.tooltip()!.close();
     }
 

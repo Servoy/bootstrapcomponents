@@ -25,8 +25,8 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
 	protected _inputType = signal<string | undefined>(undefined);
 	protected _autocomplete = signal<string | undefined>(undefined);
 
-	showPass = false;
-	classForEye = '';
+	showPass = signal(false);
+	classForEye = signal('');
 
 	protected readonly windowService = inject(WindowRefService);
 
@@ -88,7 +88,7 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
 	}
 
 	showHidePass() {
-		this.showPass = !this.showPass;
+		this.showPass.set(!this.showPass());
 		this.addClassForEye();
 	}
 
@@ -105,10 +105,10 @@ export class ServoyBootstrapTextbox extends ServoyBootstrapBasefield<HTMLInputEl
 			}
 		}
 
-		this.classForEye = mainClass + ' ' + closeClass;
+		this.classForEye.set(mainClass + ' ' + closeClass);
 
-		if (this.showPass) {
-			this.classForEye = mainClass + ' ' + openClass;
+		if (this.showPass()) {
+			this.classForEye.set(mainClass + ' ' + openClass);
 		}
 	}
 

@@ -1,5 +1,5 @@
 
-import { Component, OnInit, ElementRef, Directive, SimpleChanges, ChangeDetectionStrategy, input, viewChild, linkedSignal, inject, forwardRef } from '@angular/core';
+import { Component, OnInit, ElementRef, Directive, SimpleChanges, ChangeDetectionStrategy, input, viewChild, linkedSignal, inject, forwardRef, signal } from '@angular/core';
 import { IValuelist, ServoyPublicModule } from '@servoy/public';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 
@@ -22,7 +22,7 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
     
     protected _valueProviderID = linkedSignal<IValuelist>(() => this.valuelistID() as any);
 
-    selection: any[] = [];
+    selection = signal<any[]>([]);
     allowNullinc = 0;
     allowMultiselect = true;
 
@@ -84,7 +84,8 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
 
     getDataproviderFromSelection() {
         let returnValue: any[] = [];
-        this.selection.forEach((element, index) => {
+        const selection = this.selection();
+        selection.forEach((element, index) => {
             if (element === true)
                 returnValue.push(this.valuelistID()![index + this.allowNullinc].realValue +'');
         });
@@ -94,17 +95,24 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
     }
 
     setSelectionFromDataprovider() {
-        this.selection = [];
+        const newSelection: any[] = [];
         const dataProviderID = this._dataProviderID();
-        if (dataProviderID === null || dataProviderID === undefined || (Array.isArray(dataProviderID) && dataProviderID.length == 1 && dataProviderID[0] == null)) return;
+        if (dataProviderID === null || dataProviderID === undefined || (Array.isArray(dataProviderID) && dataProviderID.length == 1 && dataProviderID[0] == null)) {
+            this.selection.set(newSelection);
+            return;
+        }
         const arr = (Array.isArray(dataProviderID)) ? dataProviderID : [dataProviderID];
-        if (this.inputType() === 'radio' && arr.length > 1) return;
+        if (this.inputType() === 'radio' && arr.length > 1) {
+            this.selection.set(newSelection);
+            return;
+        }
         for (let i = 0; i < this.valuelistID()!.length; i++) {
             const item = this.valuelistID()![i];
             if (!this.isValueListNull(item)) {
-                this.selection[i - this.allowNullinc] = arr.find(value => item.realValue + '' === value + '') !== undefined;
+                newSelection[i - this.allowNullinc] = arr.find(value => item.realValue + '' === value + '') !== undefined;
             }
         }
+        this.selection.set(newSelection);
     }
 
     isValueListNull = (item: any) => (item.realValue === null || item.realValue === '') && item.displayValue === '';
@@ -114,23 +122,25 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
         if (this.inputType() === 'radio') {
             this._dataProviderID.set(this.valuelistID()![index + this.allowNullinc].realValue);
         } else {
-            const prevValue = this.selection[index];
+            const sel = [...this.selection()];
+            const prevValue = sel[index];
             const findmode = this.findmode();
             if (this.allowMultiselect || findmode) {
-                this.selection[index] = event.target.checked;
-                if (!findmode && this.allowNullinc === 0 && this.selection.filter(a => a === true).length === 0) {
-                    this.selection[index] = true;
+                sel[index] = event.target.checked;
+                if (!findmode && this.allowNullinc === 0 && sel.filter(a => a === true).length === 0) {
+                    sel[index] = true;
                     event.target.checked = true;
                 }
             } else {
-                this.selection.fill(false);
-                this.selection[index] = event.target.checked;
-                if (!this.selection[index] && this.allowNullinc === 0) {
-                    this.selection[index] = true;
+                sel.fill(false);
+                sel[index] = event.target.checked;
+                if (!sel[index] && this.allowNullinc === 0) {
+                    sel[index] = true;
                     event.target.checked = true;
                 }
             }
-            changed = prevValue !== this.selection[index];
+            changed = prevValue !== sel[index];
+            this.selection.set(sel);
             this._dataProviderID.set(this.getDataproviderFromSelection());
         }
         if (changed) this.pushUpdate();
