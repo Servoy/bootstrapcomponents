@@ -5,7 +5,6 @@ CSS-ClientLibs: css/bootstrap/css/bootstrap.css;name=bootstrap;version
 NG2-CSS-ClientLibs: ~@servoy/bootstrapcomponents/svy_bootstrapcomponents.css;priority=1,
  ~bootstrap/dist/css/bootstrap.min.css;priority=10
 NPM-PackageName: @servoy/bootstrapcomponents
-NG2-Module: ServoyBootstrapComponentsModule
 NG2-Components: ServoyBootstrapLabel,ServoyBootstrapDatalabel,ServoyBoo
  tstrapCalendar,ServoyBootstrapCalendarinline,ServoyBootstrapImageMedia
  ,ServoyBootstrapCombobox,ServoyBootstrapTextbox,ServoyFloatLabelBootst
