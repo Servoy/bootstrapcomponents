@@ -1,4 +1,4 @@
-import { Component, SimpleChanges, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy, viewChild, inject, signal } from '@angular/core';
+import { Component, SimpleChanges, ElementRef, ChangeDetectionStrategy, viewChild, inject, signal } from '@angular/core';
 import { ServoyPublicService, ServoyPublicModule } from '@servoy/public';
 import { NgTemplateOutlet } from '@angular/common';
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
@@ -19,7 +19,6 @@ export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDi
     
     formHeightMap: Record<string, number> = {};
 
-    protected readonly cdRef = inject(ChangeDetectorRef);
     protected readonly servoyPublic = inject(ServoyPublicService);
 
     svyOnChanges( changes: SimpleChanges ) {
@@ -50,7 +49,6 @@ export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDi
         const formName = currentTab?.containedForm;
         if (formName && this.formHeightMap[formName]) {
             this.panelHeight.set(this.formHeightMap[formName]);
-            this.cdRef.detectChanges();
             return;
         }
         
@@ -110,7 +108,6 @@ export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDi
                 if (formCache && formCache.absolute) {
                     this.formHeightMap[form] = formCache.size.height;
                     this.panelHeight.set(this.formHeightMap[form]);
-                    this.cdRef.detectChanges();
                 }
             });
         }

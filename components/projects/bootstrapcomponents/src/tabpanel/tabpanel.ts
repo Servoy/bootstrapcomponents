@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, ChangeDetectionStrategy, ElementRef, AfterViewInit, OnDestroy, input, output, viewChild, linkedSignal, inject, forwardRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ElementRef, AfterViewInit, OnDestroy, input, output, viewChild, linkedSignal, inject, forwardRef } from '@angular/core';
 import { LoggerFactory, ServoyPublicModule } from '@servoy/public';
 import { NgStyle, NgTemplateOutlet } from '@angular/common';
 
@@ -37,12 +37,9 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
     containerStyle = { position: 'relative', minHeight: '0px', overflow: 'auto' };
 
     private visibleTabIndex!: number;
-    protected readonly cdRef = inject(ChangeDetectorRef);
     
     onResize(): void {
-        if (!this.servoyApi().isInAbsoluteLayout()) {
-            this.cdRef.detectChanges();
-        }
+        // intentionally empty — OnPush with signals handles re-rendering
     }
 
     svyOnInit() {

@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, SimpleChanges, ElementRef, ChangeDetectionStrategy, inject, input, viewChildren, viewChild, computed, signal } from '@angular/core';
+import { Component, SimpleChanges, ElementRef, ChangeDetectionStrategy, inject, input, viewChildren, viewChild, computed, signal } from '@angular/core';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 import { Format, FormattingService, IValuelist, ServoyPublicService, PopupStateService, ServoyPublicModule } from '@servoy/public';
 import { NgbDropdownItem, NgbTooltip, NgbDropdown, NgbDropdownModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
@@ -39,7 +39,6 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
     private valuelistDisplayValueSubscription: Subscription | null = null;
     private showPopupOnFocusGain = false;
 
-    protected readonly cdRef = inject(ChangeDetectorRef);
     protected readonly formatService = inject(FormattingService);
     protected readonly servoyService = inject(ServoyPublicService);
     protected readonly popupStateService = inject(PopupStateService);
@@ -60,14 +59,12 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
             if (!this.lastSelectValue()) this.closeTooltip();
             else this.refreshTooltip();
 
-            this.cdRef.detectChanges();
             this.scrollToFirstMatchingItem();
         } else {
             if (this.keyboardSelectValue) this.lastSelectValue.set(this.keyboardSelectValue.slice());
             if (!this.lastSelectValue()) this.closeTooltip();
             else this.refreshTooltip();
 
-            this.cdRef.detectChanges();
             this.scrollToFirstMatchingItem();
         }
         
@@ -244,7 +241,6 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
                     this.valuelistDisplayValueSubscription = valuelistIDValue.getDisplayValue(this._dataProviderID()).subscribe(val => {
                         this.valuelistDisplayValueSubscription = null;
                         this.formattedValue.set(val);
-                        this.cdRef.detectChanges();
                     });
                 }
             }
