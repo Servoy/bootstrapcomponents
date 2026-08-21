@@ -42,6 +42,11 @@ describe('ServoyBootstrapButton', () => {
         expect(btn.textContent).toContain('MyButton');
     });
 
+    it('should return a valid native element from getNativeElement()', () => {
+        expect(fixture.componentInstance.getNativeElement()).not.toBeNull();
+        expect(fixture.componentInstance.getNativeElement()).toBeInstanceOf(HTMLElement);
+    });
+
     it('should update text', async () => {
         fixture.componentRef.setInput('text', 'Button2');
         fixture.detectChanges();

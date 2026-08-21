@@ -69,6 +69,11 @@ describe('ServoyBootstrapTypeahead', () => {
         expect(input).not.toBeNull();
     });
 
+    it('should return a valid native element from getNativeElement()', () => {
+        expect(component.getNativeElement()).not.toBeNull();
+        expect(component.getNativeElement()).toBeInstanceOf(HTMLElement);
+    });
+
     it('should show the text value', async () => {
         const input = fixture.nativeElement.querySelector('input') as HTMLInputElement;
         expect(input.value).toBe('one');

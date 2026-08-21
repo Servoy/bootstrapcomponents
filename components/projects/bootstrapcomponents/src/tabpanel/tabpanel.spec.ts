@@ -70,6 +70,11 @@ describe('ServoyBootstrapTabpanel', () => {
         expect(el).not.toBeNull();
     });
 
+    it('should return a valid native element from getNativeElement()', () => {
+        expect(component.getNativeElement()).not.toBeNull();
+        expect(component.getNativeElement()).toBeInstanceOf(HTMLElement);
+    });
+
     it('should show tabs', async () => {
         const items = fixture.nativeElement.querySelectorAll('li');
         expect(items.length).toBe(3);

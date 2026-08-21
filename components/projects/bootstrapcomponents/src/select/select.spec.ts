@@ -58,6 +58,11 @@ describe('ServoyBootstrapSelect', () => {
         expect(select).not.toBeNull();
     });
 
+    it('should return a valid native element from getNativeElement()', () => {
+        expect(component.getNativeElement()).not.toBeNull();
+        expect(component.getNativeElement()).toBeInstanceOf(HTMLElement);
+    });
+
     it('show a style class', async () => {
         const select = fixture.nativeElement.querySelector('select') as HTMLElement;
         expect(select.classList.contains('mystyleclass')).toBe(false);

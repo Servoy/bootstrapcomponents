@@ -53,6 +53,11 @@ describe('ServoyBootstrapCalendar', () => {
         expect(input).not.toBeNull();
     });
 
+    it('should return a valid native element from getNativeElement()', () => {
+        expect(component.getNativeElement()).not.toBeNull();
+        expect(component.getNativeElement()).toBeInstanceOf(HTMLElement);
+    });
+
     it('show a style class', async () => {
         const input = fixture.nativeElement.querySelector('input') as HTMLElement;
         expect(input.classList.contains('mystyleclass')).toBe(false);

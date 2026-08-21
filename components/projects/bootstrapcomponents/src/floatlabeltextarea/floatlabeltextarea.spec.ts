@@ -50,6 +50,11 @@ describe('ServoyFloatLabelBootstrapTextarea', () => {
         expect(textarea).not.toBeNull();
     });
 
+    it('should return a valid native element from getNativeElement()', () => {
+        expect(component.getNativeElement()).not.toBeNull();
+        expect(component.getNativeElement()).toBeInstanceOf(HTMLElement);
+    });
+
     it('should show dataprovider value', async () => {
         const textarea = fixture.nativeElement.querySelector('textarea') as HTMLTextAreaElement;
         expect(textarea.value).toBe('initialValue');
