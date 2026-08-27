@@ -1,13 +1,6 @@
 {
   "name": "@servoy/bootstrapcomponents",
   "version": "2026.9.0",
-  "peerDependencies": {
-    "@angular/animations": "^22",
-    "@angular/common": "^22",
-    "@angular/core": "^22",
-    "@angular/forms": "^22",
-    "luxon": "*"
-  },
   "dependencies": {
     "@angular/cdk": "^22",
     "@ng-bootstrap/ng-bootstrap": "^21",
