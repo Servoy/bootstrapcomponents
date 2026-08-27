@@ -195,7 +195,7 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
 			});
 			if (value) {
 				result = value.displayValue;
-			} else {
+			} else if (!this.findmode) {
 				let display = this.realToDisplay.get(result);
 				if (display === null || display === undefined) {
 					this.valuelistID.getDisplayValue(result).subscribe(val => {
@@ -211,6 +211,8 @@ export class ServoyBootstrapTypeahead extends ServoyBootstrapBasefield<HTMLInput
 				} else {
 					result = display;
 				}
+			} else {
+				return '';
 			}
 		}
 		return this.formatService.format(result, this.format, false);
