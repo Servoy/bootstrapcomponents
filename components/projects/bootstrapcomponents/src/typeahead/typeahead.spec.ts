@@ -128,4 +128,33 @@ describe('ServoyBootstrapTypeahead', () => {
         expect(input.value).toBe('two');
         expect(spy).not.toHaveBeenCalled();
     });
+
+    describe('inputFormatter find mode value list resolution (SVY-21357)', () => {
+        it('resolves to the display value via the synchronous valuelist lookup when in find mode and a match exists', async () => {
+            await createComponent({ findmode: true, dataProviderID: 2 });
+            const result = component.inputFormatter(2);
+            expect(result).toBe('two');
+        });
+
+        it('returns empty string and does not call getDisplayValue when in find mode with no synchronous match', async () => {
+            const valuelistID = createMockValuelist();
+            const getDisplayValueSpy = vi.spyOn(valuelistID, 'getDisplayValue');
+            await createComponent({ findmode: true, dataProviderID: 1, valuelistID });
+
+            const result = component.inputFormatter(999);
+
+            expect(result).toBe('');
+            expect(getDisplayValueSpy).not.toHaveBeenCalled();
+        });
+
+        it('still calls getDisplayValue as an async fallback when not in find mode with no synchronous match', async () => {
+            const valuelistID = createMockValuelist();
+            const getDisplayValueSpy = vi.spyOn(valuelistID, 'getDisplayValue');
+            await createComponent({ findmode: false, dataProviderID: 1, valuelistID });
+
+            component.inputFormatter(999);
+
+            expect(getDisplayValueSpy).toHaveBeenCalledWith(999);
+        });
+    });
 });

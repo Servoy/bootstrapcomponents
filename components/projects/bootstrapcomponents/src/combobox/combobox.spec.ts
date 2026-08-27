@@ -136,4 +136,35 @@ describe('ServoyBootstrapCombobox', () => {
         await fixture.whenStable();
         expect(component.placeholderClass()).toBeNull();
     });
+
+    describe('find mode value list resolution (SVY-21357)', () => {
+        it('should resolve formattedValue via the valuelist display value when findmode is true', async () => {
+            await createComponent({ findmode: true, dataProviderID: 2 });
+            const span = fixture.nativeElement.querySelector('button span');
+            expect(span.textContent).toBe('two');
+        });
+
+        it('should update formattedValue via the valuelist when dataProviderID changes while in find mode', async () => {
+            await createComponent({ findmode: true, dataProviderID: 1 });
+            const span = fixture.nativeElement.querySelector('button span');
+            expect(span.textContent).toBe('one');
+            fixture.componentRef.setInput('dataProviderID', 3);
+            fixture.detectChanges();
+            await fixture.whenStable();
+            expect(span.textContent).toBe('three');
+        });
+
+        it('should still show placeholder text when there is no valuelist, even in find mode (third branch unaffected)', async () => {
+            await createComponent({ findmode: true, valuelistID: undefined, dataProviderID: null, placeholderText: 'Select...' });
+            const span = fixture.nativeElement.querySelector('button span');
+            expect(span.textContent).toBe('Select...');
+            expect(span.classList.contains('bts-combobox-placeholder')).toBe(true);
+        });
+
+        it('should resolve formattedValue via the valuelist when not in find mode (regression guard)', async () => {
+            await createComponent({ findmode: false, dataProviderID: 2 });
+            const span = fixture.nativeElement.querySelector('button span');
+            expect(span.textContent).toBe('two');
+        });
+    });
 });
