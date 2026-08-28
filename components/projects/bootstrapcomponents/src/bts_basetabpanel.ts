@@ -1,5 +1,5 @@
 import { SimpleChanges, TemplateRef, Directive, input, output, contentChild, inject } from '@angular/core';
-import { WindowRefService, BaseCustomObject } from '@servoy/public';
+import { WindowRefService } from '@servoy/public';
 import { ServoyBootstrapBaseComponent } from './bts_basecomp';
 
 @Directive()
@@ -105,16 +105,16 @@ export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBo
     }
 }
 
-export class Tab extends BaseCustomObject {
-	_id!: string;
-	name!: string;
-	containedForm!: string;
-	text!: string;
-	relationName!: string;
-	disabled!: boolean;
-	imageMediaID!: string;
-	hideCloseIcon!: boolean;
-	iconStyleClass!: string;
-	styleClass!: string;
-	toolTipText!: string;
+export interface Tab {
+	_id: string;
+	name: string;
+	containedForm: string;
+	text: string;
+	relationName: string;
+	disabled: boolean;
+	imageMediaID: string;
+	hideCloseIcon: boolean;
+	iconStyleClass: string;
+	styleClass: string;
+	toolTipText: string;
 }

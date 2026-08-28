@@ -12,23 +12,11 @@ describe('ServoyBootstrapTabpanel', () => {
 
     function createDefaultTabs(): Tab[] {
         const tabs: Tab[] = [];
-        let tab = new Tab();
-        tab.name = 'tab1';
-        tab.containedForm = 'form1';
-        tab.text = 'tab1';
-        tab.disabled = false;
+        let tab = { name: 'tab1', containedForm: 'form1', text: 'tab1', disabled: false } as Tab;
         tabs.push(tab);
-        tab = new Tab();
-        tab.name = 'tab2';
-        tab.containedForm = 'form2';
-        tab.text = 'tab2';
-        tab.disabled = false;
+        tab = { name: 'tab2', containedForm: 'form2', text: 'tab2', disabled: false } as Tab;
         tabs.push(tab);
-        tab = new Tab();
-        tab.name = 'tab3';
-        tab.containedForm = 'form3';
-        tab.text = 'tab3';
-        tab.disabled = false;
+        tab = { name: 'tab3', containedForm: 'form3', text: 'tab3', disabled: false } as Tab;
         tabs.push(tab);
         return tabs;
     }
@@ -100,11 +88,7 @@ describe('ServoyBootstrapTabpanel', () => {
         fixture.detectChanges();
         await fixture.whenStable();
 
-        const tab = new Tab();
-        tab.name = 'tab4';
-        tab.containedForm = 'form4';
-        tab.text = 'tab4';
-        tab.disabled = false;
+        const tab = { name: 'tab4', containedForm: 'form4', text: 'tab4', disabled: false } as Tab;
         const tabs = [...createDefaultTabs(), tab];
         fixture.componentRef.setInput('tabs', tabs);
         fixture.detectChanges();
