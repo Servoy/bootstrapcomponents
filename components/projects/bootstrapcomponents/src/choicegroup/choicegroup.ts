@@ -34,7 +34,12 @@ export class ServoyBootstrapChoicegroup extends ServoyBootstrapBasefield<HTMLDiv
     }
 
     svyOnChanges(changes: SimpleChanges) {
-		super.svyOnChanges(changes);
+        const filteredChanges = { ...changes };
+        delete filteredChanges['readOnly'];
+        delete filteredChanges['enabled'];
+        delete filteredChanges['editable'];
+        delete filteredChanges['findmode'];
+        super.svyOnChanges(filteredChanges);
         const valuelistID = this._valueProviderID();
         if (this.servoyApi.isInDesigner() && !valuelistID) {
             // this should only happen in preview

@@ -32,7 +32,12 @@ export class ServoyBootstrapCheckbox extends ServoyBootstrapBasefield<HTMLDivEle
     }
 
     svyOnChanges(changes: SimpleChanges) {
-		super.svyOnChanges(changes);
+        const filteredChanges = { ...changes };
+        delete filteredChanges['readOnly'];
+        delete filteredChanges['enabled'];
+        delete filteredChanges['editable'];
+        delete filteredChanges['findmode'];
+        super.svyOnChanges(filteredChanges);
     }
 
     getFocusElement(): HTMLElement {
