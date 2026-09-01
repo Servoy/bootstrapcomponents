@@ -127,4 +127,56 @@ describe('ServoyFloatLabelBootstrapTypeahead', () => {
         expect(input.value).toBe('two');
         expect(spy).not.toHaveBeenCalled();
     });
+
+    describe('errorShow two-way binding', () => {
+        it('should reflect a server-set errorShow value in the rendered error text', async () => {
+            await createComponent({ errorMessage: 'invalid value' });
+            expect(fixture.nativeElement.querySelector('.bts-floatlabeltypeahead-error-text')).toBeNull();
+
+            fixture.componentRef.setInput('errorShow', true);
+            fixture.detectChanges();
+            await fixture.whenStable();
+
+            const errorEl = fixture.nativeElement.querySelector('.bts-floatlabeltypeahead-error-text');
+            expect(errorEl).not.toBeNull();
+            expect(errorEl.textContent).toContain('invalid value');
+        });
+
+        it('should hide the error text when a server-set errorShow becomes false', async () => {
+            await createComponent({ errorMessage: 'invalid value', errorShow: true });
+            expect(fixture.nativeElement.querySelector('.bts-floatlabeltypeahead-error-text')).not.toBeNull();
+
+            fixture.componentRef.setInput('errorShow', false);
+            fixture.detectChanges();
+            await fixture.whenStable();
+
+            expect(fixture.nativeElement.querySelector('.bts-floatlabeltypeahead-error-text')).toBeNull();
+        });
+
+        it('should update the model and emit errorShowChange when the client toggles the error on', async () => {
+            await createComponent({ errorMessage: 'invalid value' });
+            const spy = vi.fn();
+            component.errorShow.subscribe(spy);
+
+            component.toggleErrorMessage(true);
+            fixture.detectChanges();
+            await fixture.whenStable();
+
+            expect(component.errorShow()).toBe(true);
+            expect(spy).toHaveBeenCalledWith(true);
+        });
+
+        it('should update the model and emit errorShowChange when the client toggles the error off', async () => {
+            await createComponent({ errorMessage: 'invalid value', errorShow: true });
+            const spy = vi.fn();
+            component.errorShow.subscribe(spy);
+
+            component.toggleErrorMessage(false);
+            fixture.detectChanges();
+            await fixture.whenStable();
+
+            expect(component.errorShow()).toBe(false);
+            expect(spy).toHaveBeenCalledWith(false);
+        });
+    });
 });

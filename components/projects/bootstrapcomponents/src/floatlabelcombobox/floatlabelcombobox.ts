@@ -1,4 +1,4 @@
-import { Component, SimpleChanges, ChangeDetectionStrategy, input, output, signal } from '@angular/core';
+import { Component, SimpleChanges, ChangeDetectionStrategy, input, model } from '@angular/core';
 import { ServoyBootstrapCombobox } from '../combobox/combobox';
 import { ServoyPublicModule } from '@servoy/public';
 import { NgbDropdownModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
@@ -14,8 +14,7 @@ export class ServoyFloatLabelBootstrapCombobox extends ServoyBootstrapCombobox{
 
     readonly floatLabelText = input<string | undefined>(undefined);
     readonly errorMessage = input<string | undefined>(undefined);
-    readonly errorShow = signal<boolean | undefined>(undefined);
-    readonly errorShowChange = output<boolean>();
+    readonly errorShow = model<boolean>();
     
     svyOnChanges(changes: SimpleChanges) {
         super.svyOnChanges(changes);
@@ -33,10 +32,10 @@ export class ServoyFloatLabelBootstrapCombobox extends ServoyBootstrapCombobox{
 				const nativeElement = this.elementRef()!.nativeElement as HTMLElement;
 				if (show) {
 					nativeElement.querySelector('button')!.classList.add('bts-floatlabelcombobox-input-invalid');
-					this.errorShowChange.emit(true);
+					this.errorShow.set(true);
 				} else {
 					nativeElement.querySelector('button')!.classList.remove('bts-floatlabelcombobox-input-invalid');
-					this.errorShowChange.emit(false);
+					this.errorShow.set(false);
 				}	
 			}			
 		}

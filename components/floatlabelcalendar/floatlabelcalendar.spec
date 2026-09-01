@@ -29,7 +29,7 @@
 	    "styleClass" : { "type" :"styleclass", "tags": { "scope" :"design", "doc": "Set the styleclasses that should be applied at to this component" }, "default" : "form-control"},
 	    "floatLabelText" : {"type" : "tagstring", "tags": { "basic": true } },
 	    "errorMessage" : "tagstring",
-		"errorShow" : {"type" : "boolean", "pushToServer": "allow", "tags":{ "serveronly": true,"scope":"private"}},
+		"errorShow" : {"type" : "boolean", "pushToServer": "allow", "tags":{ "scope":"private"}},
 	    "tabSeq" : {"type" :"tabseq", "tags": { "scope" :"design" }},
 	    "theme" : {"type":"string" , "tags": { "scope" :"design"}, "default" : "light",  "values" :["auto" , "dark", "light"]},
 	    "toolTipText" : { "type" : "tagstring"}, 

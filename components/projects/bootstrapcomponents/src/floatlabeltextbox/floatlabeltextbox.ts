@@ -1,5 +1,5 @@
 
-import { Component, ChangeDetectionStrategy, SimpleChanges, SimpleChange, input, output, signal } from '@angular/core';
+import { Component, ChangeDetectionStrategy, SimpleChanges, SimpleChange, input, model } from '@angular/core';
 import { ServoyBootstrapTextbox } from '../textbox/textbox';
 import { ServoyPublicModule } from '@servoy/public';
 import { FormsModule } from '@angular/forms';
@@ -15,8 +15,7 @@ export class ServoyFloatLabelBootstrapTextbox extends ServoyBootstrapTextbox {
     
     readonly floatLabelText = input<string | undefined>(undefined);
     readonly errorMessage = input<string | undefined>(undefined);
-    readonly errorShow = signal<boolean | undefined>(undefined);
-    readonly errorShowChange = output<boolean>();
+    readonly errorShow = model<boolean>();
 
     svyOnInit() {
         super.svyOnInit();
@@ -42,10 +41,10 @@ export class ServoyFloatLabelBootstrapTextbox extends ServoyBootstrapTextbox {
 				const nativeElement = this.elementRef()!.nativeElement as HTMLElement;
 				if (show) {
 					nativeElement.classList.add('bts-floatlabeltextbox-input-invalid');
-					this.errorShowChange.emit(true);
+					this.errorShow.set(true);
 				} else {
 					nativeElement.classList.remove('bts-floatlabeltextbox-input-invalid');
-					this.errorShowChange.emit(false);
+					this.errorShow.set(false);
 				}	
 			}			
 		}

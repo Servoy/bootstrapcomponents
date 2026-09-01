@@ -1,6 +1,6 @@
-import { Component, SimpleChanges, ElementRef, ChangeDetectionStrategy, viewChild, inject, signal } from '@angular/core';
+import { Component, SimpleChanges, ElementRef, ChangeDetectionStrategy, viewChild, inject, signal, input } from '@angular/core';
 import { ServoyPublicService, ServoyPublicModule } from '@servoy/public';
-import { NgTemplateOutlet } from '@angular/common';
+import { NgTemplateOutlet, NgClass } from '@angular/common';
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ServoyBootstrapBaseTabPanel,Tab } from '../bts_basetabpanel';
@@ -10,11 +10,12 @@ import { ServoyBootstrapBaseTabPanel,Tab } from '../bts_basetabpanel';
     templateUrl: './accordion.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [ServoyPublicModule, NgTemplateOutlet, NgbAccordionModule]
+    imports: [ServoyPublicModule, NgTemplateOutlet, NgbAccordionModule, NgClass]
 })
 export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDivElement> {
 
     readonly contentElementRef = viewChild('content', { read: ElementRef });
+    readonly containerStyleClass = input<string>();
     panelHeight = signal<number | undefined>(undefined);
     
     formHeightMap: Record<string, number> = {};

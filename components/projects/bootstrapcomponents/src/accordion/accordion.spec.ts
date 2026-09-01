@@ -97,4 +97,40 @@ describe('ServoyBootstrapAccordion', () => {
         expect(buttons.length).toBe(4);
         expect(buttons[3].textContent).toContain('tab4');
     });
+
+    describe('containerStyleClass binding', () => {
+        it('should apply containerStyleClass to the accordion body wrapper', async () => {
+            await createComponent({ containerStyleClass: 'my-container-class' });
+            fixture.componentRef.setInput('tabIndex', 1);
+            fixture.detectChanges();
+            await fixture.whenStable();
+
+            const body = fixture.nativeElement.querySelector('.my-container-class');
+            expect(body).not.toBeNull();
+        });
+
+        it('should not add a bogus class or error when containerStyleClass is undefined', async () => {
+            fixture.componentRef.setInput('tabIndex', 1);
+            fixture.detectChanges();
+            await fixture.whenStable();
+
+            expect(component.containerStyleClass()).toBeUndefined();
+            expect(fixture.nativeElement.querySelector('.undefined')).toBeNull();
+            expect(fixture.nativeElement.querySelector('.null')).toBeNull();
+        });
+
+        it('should update the applied class when containerStyleClass changes', async () => {
+            await createComponent({ containerStyleClass: 'class-a' });
+            fixture.componentRef.setInput('tabIndex', 1);
+            fixture.detectChanges();
+            await fixture.whenStable();
+            expect(fixture.nativeElement.querySelector('.class-a')).not.toBeNull();
+
+            fixture.componentRef.setInput('containerStyleClass', 'class-b');
+            fixture.detectChanges();
+            await fixture.whenStable();
+            expect(fixture.nativeElement.querySelector('.class-a')).toBeNull();
+            expect(fixture.nativeElement.querySelector('.class-b')).not.toBeNull();
+        });
+    });
 });
