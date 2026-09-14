@@ -3,7 +3,7 @@ import { SimpleChange } from '@angular/core';
 
 import { ServoyBootstrapTabpanel } from './tabpanel';
 import { Tab } from '../bts_basetabpanel';
-import { ServoyPublicTestingModule, WindowRefService } from '@servoy/public';
+import { ServoyPublicTestingModule, WindowRefService, ServoyPublicService } from '@servoy/public';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ServoyApi } from '@servoy/public';
 import { By } from '@angular/platform-browser';
@@ -108,6 +108,103 @@ describe('TabpanelComponent', () => {
         tabs = fixture.debugElement.queryAll((By.css('.nav-link')));
         expect(tabs.length).toBe(1);
         expect(tabs[0].nativeElement.textContent).toBe('tab3');
+    });
+
+    describe('overflow from contained form (SVY-20449)', () => {
+        let publicService: ServoyPublicService;
+
+        const mockFormCache = (layout: { [property: string]: string }) => ({
+            absolute: true,
+            size: { width: 100, height: 100 },
+            getComponent: () => null,
+            getBodyPartLayout: () => layout
+        });
+
+        const selectTabAsVisible = (tab: Tab) => {
+            component.selectedTab = tab;
+            component.onVisibleTab(tab);
+        };
+
+        beforeEach(() => {
+            publicService = TestBed.inject(ServoyPublicService);
+            selectTabAsVisible(component.tabs[0]);
+        });
+
+        it('AC1: hides overflow when contained form has scrollbars=NEVER', () => {
+            spyOn(publicService, 'getFormCacheByName').and.returnValue(
+                mockFormCache({ 'overflow-x': 'hidden', 'overflow-y': 'hidden' }) as any);
+
+            const style = component.getContainerStyle(fixture.nativeElement);
+
+            expect(style['overflowX']).toBe('hidden');
+            expect(style['overflowY']).toBe('hidden');
+            expect(style['overflow']).toBeUndefined();
+        });
+
+        it('AC3: keeps overflow auto when form allows scrollbars', () => {
+            spyOn(publicService, 'getFormCacheByName').and.returnValue(mockFormCache(null) as any);
+
+            const style = component.getContainerStyle(fixture.nativeElement);
+
+            expect(style['overflow']).toBe('auto');
+            expect(style['overflowX']).toBeUndefined();
+            expect(style['overflowY']).toBeUndefined();
+        });
+
+        it('AC5: applies overflow per-axis when only overflow-x is constrained', () => {
+            spyOn(publicService, 'getFormCacheByName').and.returnValue(
+                mockFormCache({ 'overflow-x': 'hidden' }) as any);
+
+            const style = component.getContainerStyle(fixture.nativeElement);
+
+            expect(style['overflowX']).toBe('hidden');
+            expect(style['overflowY']).toBeUndefined();
+            expect(style['overflow']).toBeUndefined();
+        });
+
+        it('AC6: is a graceful no-op when the runtime lacks getBodyPartLayout', () => {
+            spyOn(publicService, 'getFormCacheByName').and.returnValue({
+                absolute: true,
+                size: { width: 100, height: 100 },
+                getComponent: () => null
+            } as any);
+
+            const style = component.getContainerStyle(fixture.nativeElement);
+
+            expect(style['overflow']).toBe('auto');
+            expect(style['overflowX']).toBeUndefined();
+            expect(style['overflowY']).toBeUndefined();
+        });
+
+        it('AC4: re-derives overflow from the newly selected tab form', () => {
+            const cacheSpy = spyOn(publicService, 'getFormCacheByName').and.callFake((formName: string) =>
+                (formName === 'form1'
+                    ? mockFormCache({ 'overflow-x': 'hidden', 'overflow-y': 'hidden' })
+                    : mockFormCache(null)) as any);
+
+            let style = component.getContainerStyle(fixture.nativeElement);
+            expect(style['overflowX']).toBe('hidden');
+            expect(style['overflowY']).toBe('hidden');
+            expect(style['overflow']).toBeUndefined();
+
+            selectTabAsVisible(component.tabs[1]);
+
+            style = component.getContainerStyle(fixture.nativeElement);
+            expect(style['overflow']).toBe('auto');
+            expect(style['overflowX']).toBeUndefined();
+            expect(style['overflowY']).toBeUndefined();
+            expect(cacheSpy).toHaveBeenCalledWith('form2');
+        });
+
+        it('does not throw and keeps overflow auto when no tab is selected yet', () => {
+            component.selectedTab = undefined;
+
+            let style: { [property: string]: any };
+            expect(() => style = component.getContainerStyle(fixture.nativeElement)).not.toThrow();
+            expect(style['overflow']).toBe('auto');
+            expect(style['overflowX']).toBeUndefined();
+            expect(style['overflowY']).toBeUndefined();
+        });
     });
 
 });
