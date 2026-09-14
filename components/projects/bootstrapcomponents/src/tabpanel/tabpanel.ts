@@ -1,5 +1,5 @@
 import { Component, Renderer2, SimpleChanges, Input, ChangeDetectorRef, ChangeDetectionStrategy, ViewChild, ElementRef, AfterViewInit, OnDestroy, EventEmitter, Output, HostListener } from '@angular/core';
-import { LoggerFactory, LoggerService, WindowRefService } from '@servoy/public';
+import { LoggerFactory, LoggerService, ServoyPublicService, WindowRefService } from '@servoy/public';
 
 import { ServoyBootstrapBaseTabPanel, Tab } from '../bts_basetabpanel';
 import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
@@ -24,8 +24,8 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
 
     private visibleTabIndex: number;
 
-    constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, windowRefService: WindowRefService) {
-        super(renderer, cdRef, windowRefService);
+    constructor(renderer: Renderer2, cdRef: ChangeDetectorRef, windowRefService: WindowRefService, servoyPublicService: ServoyPublicService) {
+        super(renderer, cdRef, windowRefService, servoyPublicService);
     }
     
     @HostListener('window:resize')
@@ -133,6 +133,7 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
             }
         }
         this.containerStyle['marginTop'] = (element.offsetWidth < element.scrollWidth ? 8 : 0) + 'px';
+        this.applyOverflowFromForm(this.containerStyle);
         return this.containerStyle;
     }
     

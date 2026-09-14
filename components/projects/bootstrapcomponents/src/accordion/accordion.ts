@@ -1,5 +1,5 @@
 import { Component, Renderer2, ViewChild, SimpleChanges, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
-import { WindowRefService, ServoyPublicService } from '@servoy/public';
+import { ServoyPublicService, WindowRefService } from '@servoy/public';
 
 import { ServoyBootstrapBaseTabPanel,Tab } from '../bts_basetabpanel';
 
@@ -17,8 +17,14 @@ export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDi
     formHeightMap: { [formName: string]: number } = {};
 
     constructor(renderer: Renderer2,protected cdRef: ChangeDetectorRef, windowRefService: WindowRefService, protected servoyPublic: ServoyPublicService) {
-        super(renderer,cdRef, windowRefService);
+        super(renderer,cdRef, windowRefService, servoyPublic);
      }
+
+    getBodyStyle() {
+        const style = { overflow: 'auto' };
+        this.applyOverflowFromForm(style);
+        return style;
+    }
 
     svyOnChanges( changes: SimpleChanges ) {
         if (changes['height'] || changes['tabs'] || changes['tabIndex']) {
