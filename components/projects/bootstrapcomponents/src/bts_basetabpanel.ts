@@ -1,5 +1,5 @@
 import { Renderer2, SimpleChanges, TemplateRef, Directive, ChangeDetectorRef, input, output, contentChild } from '@angular/core';
-import { WindowRefService, BaseCustomObject } from '@servoy/public';
+import { WindowRefService, BaseCustomObject, ServoyPublicService } from '@servoy/public';
 import { ServoyBootstrapBaseComponent } from './bts_basecomp';
 
 @Directive()
@@ -18,8 +18,31 @@ export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBo
 
 	readonly templateRef = contentChild(TemplateRef);
 
-	constructor(renderer: Renderer2, protected cdRef: ChangeDetectorRef, protected windowRefService: WindowRefService) {
+	constructor(renderer: Renderer2, protected cdRef: ChangeDetectorRef, protected windowRefService: WindowRefService, protected servoyPublicService?: ServoyPublicService) {
 		super(renderer, cdRef);
+	}
+
+	protected applyOverflowFromForm(containerStyle: { [property: string]: any }) {
+		const tabs = this.tabs();
+		const selectedTab = tabs ? tabs[this.getRealTabIndex()] : null;
+		const formName = selectedTab ? this.getForm(selectedTab) : null;
+		if (formName && this.servoyPublicService) {
+			const formCache = this.servoyPublicService.getFormCacheByName(formName);
+			const layout = formCache?.getBodyPartLayout ? formCache.getBodyPartLayout() : null;
+			if (layout?.['overflow-x']) {
+				containerStyle['overflowX'] = layout['overflow-x'];
+			} else {
+				delete containerStyle['overflowX'];
+			}
+			if (layout?.['overflow-y']) {
+				containerStyle['overflowY'] = layout['overflow-y'];
+			} else {
+				delete containerStyle['overflowY'];
+			}
+			if (layout?.['overflow-x'] || layout?.['overflow-y']) {
+				delete containerStyle['overflow'];
+			}
+		}
 	}
 
 	ngOnInit() {
