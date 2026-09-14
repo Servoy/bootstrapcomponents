@@ -138,6 +138,7 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
             }
         }
         (this.containerStyle as any)['marginTop'] = (element.offsetWidth < element.scrollWidth ? 8 : 0) + 'px';
+        this.applyOverflowFromForm(this.containerStyle);
         return this.containerStyle;
     }
     

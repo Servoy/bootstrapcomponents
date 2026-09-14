@@ -22,6 +22,12 @@ export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDi
 
     protected readonly servoyPublic = inject(ServoyPublicService);
 
+    getBodyStyle() {
+        const style = { overflow: 'auto' };
+        this.applyOverflowFromForm(style);
+        return style;
+    }
+
     svyOnChanges( changes: SimpleChanges ) {
         if (changes['height'] || changes['tabs'] || changes['tabIndex']) {
             const currentTab = this.tabs()?.[this.getRealTabIndex()];
