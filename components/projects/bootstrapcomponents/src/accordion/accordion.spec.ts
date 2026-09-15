@@ -1,7 +1,7 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { ServoyApiTesting, ServoyPublicTestingModule } from '@servoy/public';
+import { ServoyApiTesting, ServoyPublicService, ServoyPublicServiceTestingImpl, ServoyPublicTestingModule, IFormCache } from '@servoy/public';
 import { ServoyBootstrapAccordion } from './accordion';
 import { Tab } from '../bts_basetabpanel';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -96,6 +96,42 @@ describe('ServoyBootstrapAccordion', () => {
         const buttons = fixture.nativeElement.querySelectorAll('button');
         expect(buttons.length).toBe(4);
         expect(buttons[3].textContent).toContain('tab4');
+    });
+
+    describe('scrollbars=never overflow from contained form', () => {
+        const registerFormCache = (layout: Record<string, string>) => {
+            const publicService = TestBed.inject(ServoyPublicService) as ServoyPublicServiceTestingImpl;
+            publicService.addForm('form1', { getBodyPartLayout: () => layout } as unknown as IFormCache);
+        };
+
+        it('should suppress outer and body overflow when the selected form is scrollbars=never', async () => {
+            registerFormCache({ 'overflow-x': 'hidden', 'overflow-y': 'hidden' });
+            fixture.componentRef.setInput('tabIndex', 1);
+            fixture.detectChanges();
+            await fixture.whenStable();
+
+            const container = component.getContainerStyle() as Record<string, any>;
+            expect(container['overflowY']).toBe('hidden');
+            expect(container['overflow']).toBeUndefined();
+
+            const body = component.getBodyStyle() as Record<string, any>;
+            expect(body['overflowX']).toBe('hidden');
+            expect(body['overflowY']).toBe('hidden');
+            expect(body['overflow']).toBeUndefined();
+        });
+
+        it('should keep overflow auto when the selected form has no scrollbar restriction', async () => {
+            registerFormCache({});
+            fixture.componentRef.setInput('tabIndex', 1);
+            fixture.detectChanges();
+            await fixture.whenStable();
+
+            const container = component.getContainerStyle() as Record<string, any>;
+            expect(container['overflowY']).not.toBe('hidden');
+
+            const body = component.getBodyStyle() as Record<string, any>;
+            expect(body['overflow']).toBe('auto');
+        });
     });
 
     describe('containerStyleClass binding', () => {
