@@ -133,6 +133,43 @@ describe('ServoyBootstrapAccordion', () => {
         });
     });
 
+    it('should suppress outer and body overflow when the selected form is scrollbars=never', () => {
+        const servoyApiSpy = defaultValues.servoyApi;
+        cy.stub(servoyApiSpy, 'getFormCacheByName').returns(
+            { getBodyPartLayout: () => ({ 'overflow-x': 'hidden', 'overflow-y': 'hidden' }) } as any);
+
+        cy.mount(WrapperComponent, configWrapper).then((wrapper) => {
+            applyDefaultProps(wrapper);
+            wrapper.fixture.detectChanges();
+
+            const container = wrapper.component.element.getContainerStyle() as { [property: string]: any };
+            expect(container['overflowY']).to.eq('hidden');
+            expect(container['overflow']).to.be.undefined;
+
+            const body = wrapper.component.element.getBodyStyle() as { [property: string]: any };
+            expect(body['overflowX']).to.eq('hidden');
+            expect(body['overflowY']).to.eq('hidden');
+            expect(body['overflow']).to.be.undefined;
+        });
+    });
+
+    it('should keep overflow auto when the selected form has no scrollbar restriction', () => {
+        const servoyApiSpy = defaultValues.servoyApi;
+        cy.stub(servoyApiSpy, 'getFormCacheByName').returns(
+            { getBodyPartLayout: () => ({}) } as any);
+
+        cy.mount(WrapperComponent, configWrapper).then((wrapper) => {
+            applyDefaultProps(wrapper);
+            wrapper.fixture.detectChanges();
+
+            const container = wrapper.component.element.getContainerStyle() as { [property: string]: any };
+            expect(container['overflowY']).to.eq('auto');
+
+            const body = wrapper.component.element.getBodyStyle() as { [property: string]: any };
+            expect(body['overflow']).to.eq('auto');
+        });
+    });
+
     it('should handle tabs edit', () => {
         cy.mount(WrapperComponent, configWrapper).then((wrapper) => {
             applyDefaultProps(wrapper);
