@@ -76,20 +76,36 @@ Consequences for the two options the triage laid out:
   `IFormCache`, because `parts` is a member of the concrete `FormCache`, not of
   the public `IFormCache` interface. That pattern only compiles inside the
   internal `src/` app. Using it here would require a cast to `any`/`FormCache`.
-- **`getBodyPartLayout?()`** *is* on the published `IFormCache` interface as an
-  optional method — but git history (triage §"Git history findings") shows it was
-  added under this same ticket and is **not present in the shipped
-  `@servoy/public 2024.3.0`** artifact that `bootstrapcomponents` currently
-  resolves. Calling it via the optional-chaining guard `formCache.getBodyPartLayout?.()`
-  is *type-safe* against the `.d.ts` (the member is declared optional) and
-  *runtime-safe* (returns `undefined` when the deployed public runtime predates
-  the method), so it degrades gracefully rather than throwing.
+- **`getBodyPartLayout?()`** was assumed to be declared on the published
+  `IFormCache` interface as an optional method. **This assumption proved wrong at
+  build time** (see §2.5): the published `@servoy/public` artifacts that the
+  branches resolve do **not** declare `getBodyPartLayout` on `IFormCache` at all,
+  so a guarded call still fails to type-check (`TS2339`). The method is
+  runtime-present on matching runtimes but absent from the published `.d.ts`.
 
-Because `getBodyPartLayout` is already declared on the public interface (unlike
-`parts`), the cleanest type-safe path is to call it defensively with optional
-chaining and require the runtime `@servoy/public` at deploy time to be a build
-that implements it. This matches the `servoydefault` implementation verbatim and
-avoids introducing an `any`/concrete-type cast. See Design §3.1.
+Because neither `parts` nor `getBodyPartLayout` is on the published `IFormCache`
+type, the call must be made through a **local structural cast** that declares the
+optional method, keeping the runtime optional-chaining guard for graceful
+degradation. See §2.5 and Design §3.1.
+
+### 2.5 Correction — published type gap (found at build time)
+The premise in §2.4 that the published `IFormCache` `.d.ts` declares
+`getBodyPartLayout?()` is **incorrect**. Installing each branch's pinned
+`@servoy/public` and grepping its `.d.ts` shows the member is not declared in any
+of them (`2024.3.0`, `2025.3.0`, `2025.9.1`, `2026.9.3`). The CI production build
+consequently failed with:
+```
+error TS2339: Property 'getBodyPartLayout' does not exist on type 'IFormCache'.
+```
+The correct, portable fix is to cast `getFormCacheByName()`'s result to a local
+structural type declaring the optional method:
+```ts
+const formCache = this.servoyPublicService.getFormCacheByName(formName)
+    as { getBodyPartLayout?(): { [property: string]: string } };
+const layout = formCache?.getBodyPartLayout ? formCache.getBodyPartLayout() : null;
+```
+This compiles against every published `@servoy/public` and stays a runtime no-op
+when the deployed runtime lacks the method. See triage "Post-merge findings" F1.
 
 ## 3. Design
 
@@ -104,7 +120,8 @@ mirroring `BaseTabpanel.applyOverflowFromForm` from `servoydefault`:
 protected applyOverflowFromForm(containerStyle: { [property: string]: any }) {
     const formName = this.selectedTab ? this.getForm(this.selectedTab) : null;
     if (formName && this.servoyPublicService) {
-        const formCache = this.servoyPublicService.getFormCacheByName(formName);
+        const formCache = this.servoyPublicService.getFormCacheByName(formName)
+            as { getBodyPartLayout?(): { [property: string]: string } };
         const layout = formCache?.getBodyPartLayout ? formCache.getBodyPartLayout() : null;
         if (layout?.['overflow-x']) {
             containerStyle['overflowX'] = layout['overflow-x'];
@@ -129,12 +146,14 @@ Requirements:
   `tablesspanel.ts:23`, `formcontainer` and `servoydefault BaseTabpanel:43`), and
   update the subclass constructors (`ServoyBootstrapTabpanel`,
   `ServoyBootstrapAccordion`) to pass it through `super(...)`.
-- Use `formCache.getBodyPartLayout?.()` guarded, exactly as `servoydefault` does,
-  so it is type-safe against the published `IFormCache` and runtime-safe if the
-  deployed `@servoy/public` predates the method (returns `undefined` → helper is a
-  no-op, container keeps existing `overflow: auto`).
+- Cast the `getFormCacheByName()` result to a local structural type declaring
+  `getBodyPartLayout?()` (see §2.5): the published `IFormCache` `.d.ts` does not
+  declare the member, so a bare guarded call fails `TS2339`. The cast plus the
+  optional-chaining guard is type-safe against every published `@servoy/public`
+  and runtime-safe if the deployed runtime predates the method (returns
+  `undefined` → helper is a no-op, container keeps existing `overflow: auto`).
 - Do **not** read `formCache.parts[...]` — it is not on the published
-  `IFormCache` and would not compile without an unsafe cast.
+  `IFormCache` either and would likewise require a cast.
 
 The helper resolves the form for the currently visible/selected tab, so switching
 tabs re-derives overflow from the newly shown form.
@@ -256,6 +275,6 @@ All changes are in `D:\GitSourcesComponents\bootstrapcomponents` on branch
 ## 7. Open questions
 | Question | Owner | Status |
 |----------|-------|--------|
-| Should `bootstrapcomponents`' `@servoy/public` dependency be bumped from `2024.3.0` to the build that ships `getBodyPartLayout()`, or is the guarded optional-call + deploy-time runtime alignment acceptable? | Dev/Release | **Resolved:** No bump. Use the guarded optional call (`getBodyPartLayout?.()`) — type-safe against the published `IFormCache` `.d.ts` (method declared optional) and runtime-safe (degrades to no-op on older runtimes). |
+| Should `bootstrapcomponents`' `@servoy/public` dependency be bumped from `2024.3.0` to the build that ships `getBodyPartLayout()`, or is the guarded optional-call + deploy-time runtime alignment acceptable? | Dev/Release | **Resolved (corrected):** No bump. But the guarded optional call alone does **not** compile — the published `IFormCache` `.d.ts` does not declare `getBodyPartLayout` (see §2.5 / triage F1), so `ng build --configuration production` failed with `TS2339`. Fix: cast `getFormCacheByName()` to a local structural type `{ getBodyPartLayout?(): {...} }`, keeping the runtime guard. Type-safe against every published `@servoy/public`, runtime no-op on older runtimes. |
 | Confirm the 2024.3 runtime that this component version ships against implements `getBodyPartLayout` on `FormCache`, so the fix is actually active (not a silent no-op). | Release | **Resolved:** In this workspace `servoy-public` is at `2024.3.1` and declares `getBodyPartLayout?()`; the concrete `FormCache` implementation was added under SVY-20449 in the same 2024.3 line. The component is at `2024.3.7`, so a matching 2024.3.x runtime (≥2024.3.1) implements the method — the fix is live, not a silent no-op. |
 | Accordion: bind a full `[ngStyle]` object vs. discrete `[style.overflow-x]`/`[style.overflow-y]` bindings. | Dev | **Resolved:** Use the full `[ngStyle]` object, for consistency with tabpanel. |
