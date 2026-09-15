@@ -183,3 +183,73 @@ the triage sketch above:
   entirely; no SVY-20449 commit exists in this repo. The accordion inline
   `overflow: auto` is original markup, likewise never revisited for scrollbar
   handling.
+
+## Post-merge findings (all branches)
+After the initial fix landed, three issues surfaced during live testing and CI.
+The fix was ported across all seven maintained branches: `2024.3`, `2025.3`,
+`2025.06`, `2025.9`, `2025.12`, `2026.6`, `master`.
+
+### F1 — Published `@servoy/public` does not declare `getBodyPartLayout` (build break)
+The spec assumed the published `IFormCache` `.d.ts` declares
+`getBodyPartLayout?()` as an optional member, making the guarded call
+`formCache?.getBodyPartLayout ? formCache.getBodyPartLayout() : null` type-safe
+with no cast. **That assumption was wrong.** The published `@servoy/public`
+artifact that each branch resolves does **not** declare the method on
+`IFormCache` at all, so the CI production build (`ng build --configuration
+production`) failed with `TS2339: Property 'getBodyPartLayout' does not exist on
+type 'IFormCache'`. Verified installed versions per branch — none ship the
+member in their type defs:
+`2024.3 → @servoy/public 2024.3.0`, `2025.3 → 2025.3.0`, `2025.06 → 2025.3.0`,
+`2025.9 → 2025.9.1`, `2026.6 → 2025.9.1`, `master → 2026.9.3`.
+
+**Fix:** cast the `getFormCacheByName()` result to a local structural type that
+declares the optional method, so it compiles regardless of the published
+`.d.ts`, while the runtime optional-chaining guard keeps it a no-op when the
+deployed runtime lacks the method:
+```ts
+const formCache = this.servoyPublicService.getFormCacheByName(formName)
+    as { getBodyPartLayout?(): { [property: string]: string } };
+const layout = formCache?.getBodyPartLayout ? formCache.getBodyPartLayout() : null;
+```
+Applied to `bts_basetabpanel.ts` on every branch. Each branch's library was
+built locally against its own installed `@servoy/public` before pushing, and CI
+went green on all seven.
+
+### F2 — Accordion root element still scrolled (`svy-accordion-scrollable`)
+Live DevTools inspection on `2025.12` showed the accordion **body** was correctly
+`overflow: hidden`, but the accordion **root** div still scrolled. Only on
+`2025.12` the root carries `class="bts-accordion svy-accordion-scrollable"`, and
+`svy-accordion-scrollable { height: 100%; overflow-y: auto }` (in
+`svy_bootstrapcomponents.css`) forces the root to scroll when the contained form
+is larger than the accordion viewport — independent of the body's overflow.
+
+**Fix (2025.12 only):** add `getRootStyle()` to `accordion.ts` (an empty style
+object run through `applyOverflowFromForm`) and bind `[ngStyle]="getRootStyle()"`
+on the accordion root. When the form is `scrollbars=NEVER`, this sets inline
+`overflow-y: hidden`, overriding the class rule; otherwise it returns `{}` and
+the class's `overflow-y: auto` (and `height: 100%`) remain, so normal scrollable
+forms are unaffected.
+
+**Scope:** the other six branches use `.bts-accordion { overflow: hidden }` on the
+root (no `svy-accordion-scrollable` rule), so their root cannot scroll and
+`getRootStyle` is unnecessary there. The root fix is therefore intentionally
+**2025.12-only**.
+
+### F3 — `master` accordion is a standalone component (missing `NgStyle` import)
+On `master` the accordion is `standalone: true`. Adding the `[ngStyle]` binding
+(already present via `getBodyStyle`) surfaced `NG8002: Can't bind to 'ngStyle'`
+because `NgStyle` was not in the component's `imports`. Fixed by adding `NgStyle`
+to the accordion component `imports`. On `2026.6` and earlier the accordion is
+`standalone: false` and `NgStyle` comes from a shared module, so no import change
+was needed there.
+
+## Commits (post-merge fixes)
+| Branch | Cast fix (F1) | Root fix (F2) | NgStyle (F3) |
+|--------|---------------|---------------|--------------|
+| 2025.12 | `cf4c402` | `e50b3b1` | n/a |
+| 2024.3 | `640d554` | n/a | n/a |
+| 2025.3 | `075cc1e` | n/a | n/a |
+| 2025.06 | `ae9a742` | n/a | n/a |
+| 2025.9 | `16c8fa8` | n/a | n/a |
+| 2026.6 | `481d0f0` | n/a | n/a |
+| master | `a9ab64e` | n/a | included in `a9ab64e` |
