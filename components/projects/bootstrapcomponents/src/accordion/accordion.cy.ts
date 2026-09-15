@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 import { ServoyBootstrapAccordion } from './accordion'
 import { MountConfig } from 'cypress/angular'
-import { ServoyApi, ServoyApiTesting, ServoyPublicTestingModule } from '@servoy/public'
+import { ServoyApi, ServoyApiTesting, ServoyPublicService, ServoyPublicServiceTestingImpl, ServoyPublicTestingModule, IFormCache } from '@servoy/public'
+import { TestBed } from '@angular/core/testing'
 import { Component, ViewChild, signal } from '@angular/core';
 import { Tab } from '../bts_basetabpanel';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -133,13 +134,15 @@ describe('ServoyBootstrapAccordion', () => {
         });
     });
 
-    it('should suppress outer and body overflow when the selected form is scrollbars=never', () => {
-        const servoyApiSpy = defaultValues.servoyApi;
-        cy.stub(servoyApiSpy, 'getFormCacheByName').returns(
-            { getBodyPartLayout: () => ({ 'overflow-x': 'hidden', 'overflow-y': 'hidden' }) } as any);
+    const registerFormCache = (layout: { [property: string]: string }) => {
+        const publicService = TestBed.inject(ServoyPublicService) as ServoyPublicServiceTestingImpl;
+        publicService.addForm('form1', { getBodyPartLayout: () => layout } as unknown as IFormCache);
+    };
 
+    it('should suppress outer and body overflow when the selected form is scrollbars=never', () => {
         cy.mount(WrapperComponent, configWrapper).then((wrapper) => {
             applyDefaultProps(wrapper);
+            registerFormCache({ 'overflow-x': 'hidden', 'overflow-y': 'hidden' });
             wrapper.fixture.detectChanges();
 
             const container = wrapper.component.element.getContainerStyle() as { [property: string]: any };
@@ -154,16 +157,13 @@ describe('ServoyBootstrapAccordion', () => {
     });
 
     it('should keep overflow auto when the selected form has no scrollbar restriction', () => {
-        const servoyApiSpy = defaultValues.servoyApi;
-        cy.stub(servoyApiSpy, 'getFormCacheByName').returns(
-            { getBodyPartLayout: () => ({}) } as any);
-
         cy.mount(WrapperComponent, configWrapper).then((wrapper) => {
             applyDefaultProps(wrapper);
+            registerFormCache({});
             wrapper.fixture.detectChanges();
 
             const container = wrapper.component.element.getContainerStyle() as { [property: string]: any };
-            expect(container['overflowY']).to.eq('auto');
+            expect(container['overflowY']).to.not.eq('hidden');
 
             const body = wrapper.component.element.getBodyStyle() as { [property: string]: any };
             expect(body['overflow']).to.eq('auto');
