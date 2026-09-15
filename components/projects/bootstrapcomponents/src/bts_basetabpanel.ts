@@ -27,7 +27,7 @@ export class ServoyBootstrapBaseTabPanel<T extends HTMLElement> extends ServoyBo
 		const selectedTab = tabs ? tabs[this.getRealTabIndex()] : null;
 		const formName = selectedTab ? this.getForm(selectedTab) : null;
 		if (formName && this.servoyPublicService) {
-			const formCache = this.servoyPublicService.getFormCacheByName(formName);
+			const formCache = this.servoyPublicService.getFormCacheByName(formName) as { getBodyPartLayout?(): { [property: string]: string } };
 			const layout = formCache?.getBodyPartLayout ? formCache.getBodyPartLayout() : null;
 			if (layout?.['overflow-x']) {
 				containerStyle['overflowX'] = layout['overflow-x'];
