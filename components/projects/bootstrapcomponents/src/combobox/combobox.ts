@@ -31,6 +31,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
         this.valuelistID()?.isRealValueDate() ? this.dateValueCompare : this.valueCompare
     );
     openState = signal(false);
+    dropDownWidth = signal<number | undefined>(undefined);
     keyboardSelectValue: string | null = null;
     lastSelectValue = signal<string | null>(null);
     firstItemFound = false;
@@ -192,6 +193,7 @@ export class ServoyBootstrapCombobox extends ServoyBootstrapBasefield<HTMLDivEle
         this.skipFocus = true;
         if (state) {
             this.popupStateService.activatePopup(this.getNativeElement().id);
+            this.dropDownWidth.set(this.getDropDownWidth());
             setTimeout(() => {
                 const item = this.menuItems().find((element) => element.nativeElement.classList.contains('active'));
                 if (item) {

@@ -24,7 +24,7 @@
   <div
     ngbDropdownMenu
     [attr.aria-labelledby]="servoyApi().getMarkupId() + '_btn'"
-    [style.width.px]="getDropDownWidth()"
+    [style.width.px]="dropDownWidth()"
     (keydown)="handleKeyDown($event)"
     #dropdown>
     @if (openState()) {

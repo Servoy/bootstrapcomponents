@@ -167,4 +167,62 @@ describe('ServoyBootstrapCombobox', () => {
             expect(span.textContent).toBe('two');
         });
     });
+
+    describe('dropdown width NG0100 fix (SVY-21485)', () => {
+        function mockToggleWidth(width: number) {
+            const toggle = component.input()!.nativeElement;
+            const descriptor = Object.getOwnPropertyDescriptor(toggle, 'clientWidth');
+            Object.defineProperty(toggle, 'clientWidth', { configurable: true, get: () => width });
+            return () => {
+                if (descriptor) Object.defineProperty(toggle, 'clientWidth', descriptor);
+                else delete (toggle as any).clientWidth;
+            };
+        }
+
+        it('should not populate dropDownWidth before the dropdown is opened', () => {
+            expect(component.dropDownWidth()).toBeUndefined();
+        });
+
+        it('should populate dropDownWidth from the toggle width on openChange(true)', () => {
+            const restore = mockToggleWidth(137);
+            component.openChange(true);
+            expect(component.dropDownWidth()).toBe(137);
+            restore();
+        });
+
+        it('should bind the menu width to dropDownWidth() and not re-read live clientWidth during change detection', () => {
+            const restore = mockToggleWidth(137);
+            component.openChange(true);
+            fixture.detectChanges();
+            const menu = fixture.nativeElement.querySelector('[ngbDropdownMenu]') as HTMLElement;
+            expect(menu.style.width).toBe('137px');
+
+            const laterRestore = mockToggleWidth(200);
+            fixture.detectChanges();
+            expect(menu.style.width).toBe('137px');
+            laterRestore();
+            restore();
+        });
+
+        it('should not throw and should set openState false on openChange(false)', () => {
+            component.openChange(true);
+            expect(component.openState()).toBe(true);
+            expect(() => component.openChange(false)).not.toThrow();
+            expect(component.openState()).toBe(false);
+        });
+
+        it('should refresh dropDownWidth on a subsequent open', () => {
+            const restore1 = mockToggleWidth(120);
+            component.openChange(true);
+            expect(component.dropDownWidth()).toBe(120);
+            restore1();
+
+            component.openChange(false);
+
+            const restore2 = mockToggleWidth(160);
+            component.openChange(true);
+            expect(component.dropDownWidth()).toBe(160);
+            restore2();
+        });
+    });
 });
