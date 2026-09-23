@@ -48,9 +48,11 @@ export class ServoyFloatLabelBootstrapTypeahead extends ServoyBootstrapTypeahead
 				const nativeElement = this.elementRef.nativeElement as HTMLElement;
 				if (show) {
 					nativeElement.classList.add('bts-floatlabeltypeahead-input-invalid');
+					this.errorShow.set(true);
 					this.errorShowChange.emit(true);
 				} else {
 					nativeElement.classList.remove('bts-floatlabeltypeahead-input-invalid');
+					this.errorShow.set(false);
 					this.errorShowChange.emit(false);
 				}	
 			}			

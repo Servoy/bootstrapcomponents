@@ -43,9 +43,11 @@ export class ServoyFloatLabelBootstrapTextarea extends ServoyBootstrapTextarea {
 				const nativeElement = this.elementRef.nativeElement as HTMLElement;
 				if (show) {
 					nativeElement.classList.add('bts-floatlabeltextarea-input-invalid');
+					this.errorShow.set(true);
 					this.errorShowChange.emit(true);
 				} else {
 					nativeElement.classList.remove('bts-floatlabeltextarea-input-invalid');
+					this.errorShow.set(false);
 					this.errorShowChange.emit(false);
 				}	
 			}			

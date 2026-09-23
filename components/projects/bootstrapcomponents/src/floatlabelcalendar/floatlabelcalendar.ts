@@ -47,9 +47,11 @@ export class ServoyFloatLabelBootstrapCalendar extends ServoyBootstrapCalendar {
 				const nativeElement = this.elementRef.nativeElement as HTMLElement;
 				if (show) {
 					nativeElement.querySelector('input').classList.add('bts-floatlabelcalendar-input-invalid');
+					this.errorShow.set(true);
 					this.errorShowChange.emit(true);
 				} else {
 					nativeElement.querySelector('input').classList.remove('bts-floatlabelcalendar-input-invalid');
+					this.errorShow.set(false);
 					this.errorShowChange.emit(false);
 				}	
 			}			
