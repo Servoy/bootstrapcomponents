@@ -97,4 +97,23 @@ describe('ServoyBootstrapTabpanel', () => {
         const items = fixture.nativeElement.querySelectorAll('li');
         expect(items.length).toBe(4);
     });
+
+    describe('container height (SVY-21649)', () => {
+        it('should fill the remaining space below the tab bar in absolute layout, ignoring the fixed height', async () => {
+            await createComponent({ height: 240 });
+            const style = component.getContainerStyle(fixture.nativeElement.querySelector('.bts-tabpanel')) as Record<string, string>;
+            expect(style['height']).toMatch(/^calc\(100% - [\d.]+px\)$/);
+            expect(style['minHeight']).not.toBe('240px');
+            expect(style['position']).toBeUndefined();
+        });
+
+        it('should use min-height from the height property in a responsive layout', async () => {
+            const servoyApi = new ServoyApiTesting();
+            vi.spyOn(servoyApi, 'isInAbsoluteLayout').mockReturnValue(false);
+            await createComponent({ servoyApi, height: 240 });
+            const style = component.getContainerStyle(fixture.nativeElement.querySelector('.bts-tabpanel')) as Record<string, string>;
+            expect(style['minHeight']).toBe('240px');
+            expect(style['height']).toBeUndefined();
+        });
+    });
 });

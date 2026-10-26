@@ -22,10 +22,6 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
 
     readonly showTabCloseIcon = input<boolean | undefined>(undefined);
     readonly closeIconStyleClass = input<string | undefined>(undefined);
-    readonly cssPosition = input<{
-        width: string;
-        height: string;
-    } | undefined>(undefined);
     readonly containerStyleClass = input<string | undefined>(undefined);
     
     protected _closeIconStyleClass = linkedSignal(() =>
@@ -119,7 +115,7 @@ export class ServoyBootstrapTabpanel extends ServoyBootstrapBaseTabPanel<HTMLULi
             } 
         }
         
-        if (this.cssPosition() && this.servoyApi().isInAbsoluteLayout()) {
+        if (this.servoyApi().isInAbsoluteLayout()) {
             const tabs = element.querySelector('ul')!;
             let calcHeight = tabs.clientHeight;
             const clientRects = tabs.getClientRects();
