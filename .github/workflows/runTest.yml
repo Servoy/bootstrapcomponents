@@ -67,7 +67,7 @@ jobs:
 
       - name: Install Playwright Chromium
         working-directory: ${{ env.COMPONENT_DIR }}
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install chromium
 
       - name: Run Vitest tests with combined coverage (jsdom + browser)
         working-directory: ${{ env.COMPONENT_DIR }}
