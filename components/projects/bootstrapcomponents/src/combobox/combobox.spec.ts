@@ -225,4 +225,120 @@ describe('ServoyBootstrapCombobox', () => {
             restore2();
         });
     });
+
+    describe('showAs / trusted html', () => {
+        it('should report html rendering for showAs "html"', async () => {
+            await createComponent({ showAs: 'html' });
+            expect(component.showAsHtml()).toBe(true);
+            expect(component.isTrustedHTML()).toBe(false);
+        });
+
+        it('should report html and trusted for showAs "trusted_html"', async () => {
+            await createComponent({ showAs: 'trusted_html' });
+            expect(component.showAsHtml()).toBe(true);
+            expect(component.isTrustedHTML()).toBe(true);
+        });
+
+        it('should not report html for a plain text showAs', async () => {
+            await createComponent({ showAs: 'text' });
+            expect(component.showAsHtml()).toBe(false);
+            expect(component.isTrustedHTML()).toBe(false);
+        });
+    });
+
+    describe('isPrintableChar', () => {
+        it('should treat a normal letter as printable', () => {
+            expect(component.isPrintableChar('a')).toBe(true);
+        });
+
+        it('should treat navigation and modifier keys as non-printable', () => {
+            for (const key of ['Shift', 'Enter', 'Tab', 'ArrowDown', 'Escape', 'F1', 'Meta']) {
+                expect(component.isPrintableChar(key)).toBe(false);
+            }
+        });
+
+        it('should close the tooltip for keys that dismiss it', () => {
+            const spy = vi.spyOn(component.tooltip()!, 'close');
+            expect(component.isPrintableChar('ArrowDown')).toBe(false);
+            expect(spy).toHaveBeenCalled();
+        });
+    });
+
+    describe('handleKeyDown type-ahead', () => {
+        it('should accumulate printable characters into the select value and open the dropdown', () => {
+            vi.spyOn(component.comboboxDropdown()!, 'isOpen').mockReturnValue(false);
+            const openSpy = vi.spyOn(component.comboboxDropdown()!, 'open');
+            // activeElement must be the focus element for the open branch
+            component.getFocusElement().focus();
+
+            component.handleKeyDown(new KeyboardEvent('keydown', { key: 't' }));
+            component.handleKeyDown(new KeyboardEvent('keydown', { key: 'w' }));
+
+            expect(component.lastSelectValue()).toBe('tw');
+            expect(openSpy).toHaveBeenCalled();
+        });
+
+        it('should remove the last character on Backspace', () => {
+            component.getFocusElement().focus();
+            component.handleKeyDown(new KeyboardEvent('keydown', { key: 'a' }));
+            component.handleKeyDown(new KeyboardEvent('keydown', { key: 'b' }));
+            expect(component.lastSelectValue()).toBe('ab');
+            component.handleKeyDown(new KeyboardEvent('keydown', { key: 'Backspace' }));
+            expect(component.lastSelectValue()).toBe('a');
+        });
+
+        it('should close the dropdown on Escape', () => {
+            const spy = vi.spyOn(component, 'openChange');
+            component.handleKeyDown(new KeyboardEvent('keydown', { key: 'Escape' }));
+            expect(spy).toHaveBeenCalledWith(false);
+        });
+    });
+
+    describe('highlight getters', () => {
+        beforeEach(() => {
+            component.openState.set(true);
+            component.lastSelectValue.set('hr');
+        });
+
+        it('should split a matching value into before / strong / after parts', () => {
+            expect(component.getRemainingValueBefore('three')).toBe('t');
+            expect(component.getStrongValue('three')).toBe('hr');
+            expect(component.getRemainingValueAfter('three')).toBe('ee');
+        });
+
+        it('should return empty highlight parts when there is no match', () => {
+            expect(component.getRemainingValueBefore('one')).toBe('');
+            expect(component.getStrongValue('one')).toBe('');
+            expect(component.getRemainingValueAfter('one')).toBe('one');
+        });
+
+        it('should not highlight when the dropdown is closed', () => {
+            component.openState.set(false);
+            expect(component.getRemainingValueBefore('three')).toBe('');
+            expect(component.getStrongValue('three')).toBe('');
+            expect(component.getRemainingValueAfter('three')).toBe('three');
+        });
+    });
+
+    describe('updateValue', () => {
+        it('should set the data provider, emit the change and clear the placeholder', () => {
+            const spy = vi.fn();
+            component.dataProviderIDChange.subscribe(spy);
+            component.placeholderClass.set('bts-combobox-placeholder');
+
+            component.updateValue(3, new Event('click'));
+
+            expect(component._dataProviderID()).toBe(3);
+            expect(spy).toHaveBeenCalledWith(3);
+            expect(component.placeholderClass()).toBeNull();
+        });
+
+        it('should invoke the onAction handler when one is set', async () => {
+            const onAction = vi.fn();
+            await createComponent({ onActionMethodID: onAction });
+            const event = new Event('click');
+            component.updateValue(2, event);
+            expect(onAction).toHaveBeenCalled();
+        });
+    });
 });
