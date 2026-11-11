@@ -157,4 +157,113 @@ describe('ServoyBootstrapTypeahead', () => {
             expect(getDisplayValueSpy).toHaveBeenCalledWith(999);
         });
     });
+
+    describe('onKeyDown', () => {
+        it('should deactivate the popup on Escape', () => {
+            const spy = vi.spyOn((component as any).popupStateService, 'deactivatePopup');
+            component.onKeyDown(new KeyboardEvent('keydown', { key: 'Escape' }));
+            expect(spy).toHaveBeenCalled();
+        });
+
+        it('should ignore other keys', () => {
+            const spy = vi.spyOn((component as any).popupStateService, 'deactivatePopup');
+            component.onKeyDown(new KeyboardEvent('keydown', { key: 'a' }));
+            expect(spy).not.toHaveBeenCalled();
+        });
+    });
+
+    describe('dataProvider get/set', () => {
+        it('should read the current data provider', () => {
+            component._dataProviderID.set(2);
+            expect(component.dataProvider).toBe(2);
+        });
+
+        it('should unwrap an object value to its realValue', () => {
+            component.dataProvider = { displayValue: 'three', realValue: 3 } as any;
+            expect(component._dataProviderID()).toBe(3);
+        });
+
+        it('should set a plain value directly', () => {
+            component.dataProvider = 4 as any;
+            expect(component._dataProviderID()).toBe(4);
+        });
+    });
+
+    describe('isTrustedHTML', () => {
+        it('should be true for showAs "trusted_html"', async () => {
+            await createComponent({ showAs: 'trusted_html' });
+            expect(component.isTrustedHTML()).toBe(true);
+        });
+
+        it('should be false for plain text', async () => {
+            await createComponent({ showAs: 'text' });
+            expect(component.isTrustedHTML()).toBe(false);
+        });
+    });
+
+    describe('isEditable', () => {
+        it('should be false when the valuelist has real values', async () => {
+            await createComponent({ dataProviderID: 1 });
+            expect(component.isEditable()).toBe(false);
+        });
+
+        it('should be true when the valuelist has no real values', async () => {
+            const valuelistID = createMockValuelist();
+            valuelistID.hasRealValues = () => false;
+            await createComponent({ valuelistID });
+            expect(component.isEditable()).toBe(true);
+        });
+    });
+
+    describe('resultFormatter', () => {
+        it('should return a non-breaking space for an empty display value', () => {
+            expect(component.resultFormatter({ displayValue: '', realValue: 1 })).toBe('\u00A0');
+            expect(component.resultFormatter({ displayValue: null as any, realValue: 1 })).toBe('\u00A0');
+        });
+
+        it('should format a normal display value', () => {
+            expect(component.resultFormatter({ displayValue: 'two', realValue: 2 })).toBe('two');
+        });
+    });
+
+    describe('valueChanged', () => {
+        it('should set the data provider from the selected item realValue and emit', () => {
+            const spy = vi.fn();
+            component.dataProviderIDChange.subscribe(spy);
+            component.lastFilteringPromise = null;
+            component.valueChanged({ item: { displayValue: 'three', realValue: 3 } } as any);
+            expect(component._dataProviderID()).toBe(3);
+            expect(spy).toHaveBeenCalledWith(3);
+        });
+
+        it('should defer the value while a filtering promise is pending', () => {
+            component.lastFilteringPromise = of([]);
+            const event: any = { item: { displayValue: 'three', realValue: 3 }, preventDefault: vi.fn() };
+            component.valueChanged(event);
+            expect(event.preventDefault).toHaveBeenCalled();
+            expect(component.valueToApply).toEqual({ displayValue: 'three', realValue: 3 });
+        });
+
+        it('should clear the data provider when the item is empty', () => {
+            component.lastFilteringPromise = null;
+            component.valueChanged({ item: null } as any);
+            expect(component._dataProviderID()).toBeNull();
+        });
+    });
+
+    describe('closePopup / focusLost', () => {
+        it('should dismiss the popup and deactivate it on closePopup', () => {
+            const dismissSpy = vi.spyOn(component.instance()!, 'dismissPopup');
+            const deactivateSpy = vi.spyOn((component as any).popupStateService, 'deactivatePopup');
+            component.closePopup();
+            expect(dismissSpy).toHaveBeenCalled();
+            expect(deactivateSpy).toHaveBeenCalled();
+        });
+
+        it('should deactivate the popup on focusLost', () => {
+            const spy = vi.spyOn((component as any).popupStateService, 'deactivatePopup');
+            component.focusLost();
+            expect(spy).toHaveBeenCalled();
+        });
+    });
 });
