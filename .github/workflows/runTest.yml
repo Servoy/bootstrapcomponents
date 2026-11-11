@@ -57,14 +57,26 @@ jobs:
           report-json: ${{ env.COMPONENT_DIR }}/eslint-results.json
         continue-on-error: true
 
-      - name: Run Vitest component tests with coverage
+      - name: Cache + Restore Playwright browsers
+        uses: actions/cache@v6
+        with:
+            path: ~/.cache/ms-playwright
+            key: ${{ runner.os }}-playwright-${{ hashFiles('**/package-lock.json') }}
+            restore-keys: |
+              ${{ runner.os }}-playwright-
+
+      - name: Install Playwright Chromium
         working-directory: ${{ env.COMPONENT_DIR }}
-        run: npm run test:coverage
+        run: npx playwright install --with-deps chromium
+
+      - name: Run Vitest tests with combined coverage (jsdom + browser)
+        working-directory: ${{ env.COMPONENT_DIR }}
+        run: npm run coverage:all
 
       - name: Coverage summary to job
         if: always()
         working-directory: ${{ env.COMPONENT_DIR }}
-        run: npm run coverage:summary >> $GITHUB_STEP_SUMMARY
+        run: npm run coverage:summary -- coverage/combined/coverage-summary.json >> $GITHUB_STEP_SUMMARY
 
       - name: Upload coverage report
         if: always()
@@ -73,7 +85,3 @@ jobs:
           name: coverage-${{ github.event.repository.name }}
           path: ${{ env.COMPONENT_DIR }}/coverage
           if-no-files-found: warn
-
-      - name: Run browser-mode tests
-        working-directory: ${{ env.COMPONENT_DIR }}
-        run: npm run test:browser

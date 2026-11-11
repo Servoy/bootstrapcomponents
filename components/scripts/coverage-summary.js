@@ -5,11 +5,28 @@
 const fs = require('fs');
 const path = require('path');
 
-const summaryPath = process.argv[2]
-  || path.join(__dirname, '..', 'coverage', '@servoy', 'bootstrapcomponents', 'coverage-summary.json');
+// Find the first coverage-summary.json under the given directory.
+// The Angular builder writes to coverage/<projectName>/, and the project
+// name differs per repo, so we discover it rather than hardcode it.
+function findSummary(dir) {
+  if (!fs.existsSync(dir)) return null;
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      const found = findSummary(full);
+      if (found) return found;
+    } else if (entry.name === 'coverage-summary.json') {
+      return full;
+    }
+  }
+  return null;
+}
 
-if (!fs.existsSync(summaryPath)) {
-  console.error(`Coverage summary not found at ${summaryPath}. Run "npm run test:coverage" first.`);
+const summaryPath = process.argv[2]
+  || findSummary(path.join(__dirname, '..', 'coverage'));
+
+if (!summaryPath || !fs.existsSync(summaryPath)) {
+  console.error('Coverage summary not found under ./coverage. Run "npm run test:coverage" first.');
   process.exit(1);
 }
 

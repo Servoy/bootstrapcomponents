@@ -8,12 +8,15 @@
     "build_debug_nowatch": "ng build @servoy/bootstrapcomponents --watch=false",
     "make_release": "ng build --configuration production @servoy/bootstrapcomponents && node scripts/build.js",
     "lint": "ng lint",
-    "test": "ng test @servoy/bootstrapcomponents --no-watch",
-    "test:coverage": "ng test @servoy/bootstrapcomponents --no-watch --coverage --coverage-include \"projects/bootstrapcomponents/src/**/*.ts\" --coverage-exclude \"**/*.spec.ts\" --coverage-exclude \"**/*.d.ts\" --coverage-exclude \"**/testingutils.ts\" --coverage-exclude \"**/public-api.ts\" --coverage-exclude \"**/list/**\" --coverage-exclude \"**/tablesspanel/**\"",
+    "test": "ng test @servoy/bootstrapcomponents --no-watch --exclude \"**/*.browser.spec.ts\"",
+    "test:coverage": "ng test @servoy/bootstrapcomponents --no-watch --exclude \"**/*.browser.spec.ts\" --coverage --coverage-include \"projects/bootstrapcomponents/src/**/*.ts\" --coverage-exclude \"**/*.spec.ts\" --coverage-exclude \"**/*.d.ts\" --coverage-exclude \"**/testingutils.ts\" --coverage-exclude \"**/public-api.ts\" --coverage-exclude \"**/list/**\" --coverage-exclude \"**/tablesspanel/**\"",
     "coverage:summary": "node scripts/coverage-summary.js",
-    "test:watch": "ng test @servoy/bootstrapcomponents",
-    "test:ui": "ng test @servoy/bootstrapcomponents --ui",
-    "test:browser": "ng test @servoy/bootstrapcomponents --no-watch --browsers chromium --headless --include \"projects/bootstrapcomponents/src/calendarinline/calendarinline.spec.ts\""
+    "test:watch": "ng test @servoy/bootstrapcomponents --exclude \"**/*.browser.spec.ts\"",
+    "test:ui": "ng test @servoy/bootstrapcomponents --ui --exclude \"**/*.browser.spec.ts\"",
+    "test:browser": "ng test @servoy/bootstrapcomponents --no-watch --browsers chromium --headless --include \"projects/bootstrapcomponents/src/**/*.browser.spec.ts\"",
+    "test:browser:coverage": "ng test @servoy/bootstrapcomponents --no-watch --browsers chromium --headless --include \"projects/bootstrapcomponents/src/**/*.browser.spec.ts\" --coverage --coverage-include \"projects/bootstrapcomponents/src/**/*.ts\" --coverage-exclude \"**/*.spec.ts\" --coverage-exclude \"**/*.d.ts\" --coverage-exclude \"**/testingutils.ts\" --coverage-exclude \"**/public-api.ts\" --coverage-exclude \"**/list/**\" --coverage-exclude \"**/tablesspanel/**\"",
+    "coverage:merge": "node scripts/coverage-merge.js",
+    "coverage:all": "node scripts/coverage-all.js"
   },
   "private": true,
   "dependencies": {
