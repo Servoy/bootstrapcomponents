@@ -57,9 +57,22 @@ jobs:
           report-json: ${{ env.COMPONENT_DIR }}/eslint-results.json
         continue-on-error: true
 
-      - name: Run Vitest component tests
+      - name: Run Vitest component tests with coverage
         working-directory: ${{ env.COMPONENT_DIR }}
-        run: npm run test
+        run: npm run test:coverage
+
+      - name: Coverage summary to job
+        if: always()
+        working-directory: ${{ env.COMPONENT_DIR }}
+        run: npm run coverage:summary >> $GITHUB_STEP_SUMMARY
+
+      - name: Upload coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-${{ github.event.repository.name }}
+          path: ${{ env.COMPONENT_DIR }}/coverage
+          if-no-files-found: warn
 
       - name: Run browser-mode tests
         working-directory: ${{ env.COMPONENT_DIR }}

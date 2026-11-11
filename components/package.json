@@ -9,6 +9,8 @@
     "make_release": "ng build --configuration production @servoy/bootstrapcomponents && node scripts/build.js",
     "lint": "ng lint",
     "test": "ng test @servoy/bootstrapcomponents --no-watch",
+    "test:coverage": "ng test @servoy/bootstrapcomponents --no-watch --coverage --coverage-include \"projects/bootstrapcomponents/src/**/*.ts\" --coverage-exclude \"**/*.spec.ts\" --coverage-exclude \"**/*.d.ts\" --coverage-exclude \"**/testingutils.ts\" --coverage-exclude \"**/public-api.ts\" --coverage-exclude \"**/list/**\" --coverage-exclude \"**/tablesspanel/**\"",
+    "coverage:summary": "node scripts/coverage-summary.js",
     "test:watch": "ng test @servoy/bootstrapcomponents",
     "test:ui": "ng test @servoy/bootstrapcomponents --ui",
     "test:browser": "ng test @servoy/bootstrapcomponents --no-watch --browsers chromium --headless --include \"projects/bootstrapcomponents/src/calendarinline/calendarinline.spec.ts\""
@@ -44,6 +46,7 @@
     "@stylistic/eslint-plugin": "^5.10.0",
     "@types/luxon": "3.7.3",
     "@vitest/browser-playwright": "^4.1.10",
+    "@vitest/coverage-v8": "^4.1.10",
     "adm-zip": "0.6.0",
     "angular-eslint": "^22.1.0",
     "eslint": "^10.8.0",
