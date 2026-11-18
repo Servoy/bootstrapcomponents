@@ -4,6 +4,7 @@ import { NgTemplateOutlet, NgClass, NgStyle } from '@angular/common';
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ServoyBootstrapBaseTabPanel,Tab } from '../bts_basetabpanel';
+import { isInDesignerOrSampleData } from '../sampledata';
 
 @Component({
     selector: 'bootstrapcomponents-accordion',
@@ -91,7 +92,7 @@ export class ServoyBootstrapAccordion extends ServoyBootstrapBaseTabPanel<HTMLDi
         }
         this.panelHeight.set(totalHeight);
         
-        if (this.servoyApi().isInDesigner()){
+        if (isInDesignerOrSampleData(this.servoyApi())){
 			if (tabs === undefined || tabs.length === 0 || (tabs.length > 0 && !contentElementRef)){
 				this.elementRef()!.nativeElement.style.display = 'block';
 				if (!this.servoyApi().isInAbsoluteLayout()) {  // responsive form

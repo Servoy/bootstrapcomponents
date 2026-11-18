@@ -2,6 +2,7 @@
 import { Component, SimpleChanges, ChangeDetectionStrategy, inject, input, signal } from '@angular/core';
 import { ServoyBootstrapBasefield } from '../bts_basefield';
 import { WindowRefService, ServoyPublicModule } from '@servoy/public';
+import { isInDesignerOrSampleData } from '../sampledata';
 
 @Component({
     selector: 'bootstrapcomponents-imagemedia',
@@ -76,7 +77,7 @@ export class ServoyBootstrapImageMedia extends ServoyBootstrapBasefield<HTMLImag
             this.imageURL.set(media);
         } else if(dataProviderID && dataProviderID.url) {
             this.imageURL.set(dataProviderID.url);
-        } else if (!dataProviderID && this.servoyApi().isInDesigner()) {
+        } else if (!dataProviderID && isInDesignerOrSampleData(this.servoyApi())) {
             this.imageURL.set('bootstrapcomponents/imagemedia/media.png');
         } else if (!dataProviderID){
             this.imageURL.set('bootstrapcomponents/imagemedia/images/empty.gif');

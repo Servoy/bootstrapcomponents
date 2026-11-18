@@ -112,6 +112,34 @@ describe('ServoyBootstrapImageMedia', () => {
         expect(img.getAttribute('src')).toBe('bootstrapcomponents/imagemedia/images/empty.gif');
     });
 
+    describe('placeholder image in the designer and the sample data render', () => {
+        const placeholder = 'bootstrapcomponents/imagemedia/media.png';
+
+        it('shows the placeholder when the designer has no media', async () => {
+            const api: any = new ServoyApiTesting();
+            api.isInDesigner = () => true;
+            await createComponent({ servoyApi: api, dataProviderID: null });
+            const img = fixture.nativeElement.querySelector('.svy-mediafield .bts-media') as HTMLImageElement;
+            expect(img.getAttribute('src')).toBe(placeholder);
+        });
+
+        it('shows the placeholder when the sample data render has no media', async () => {
+            const api: any = new ServoyApiTesting();
+            api.isInSampleDataMode = () => true;
+            await createComponent({ servoyApi: api, dataProviderID: null });
+            const img = fixture.nativeElement.querySelector('.svy-mediafield .bts-media') as HTMLImageElement;
+            expect(img.getAttribute('src')).toBe(placeholder);
+        });
+
+        it('still shows the media itself in the sample data render', async () => {
+            const api: any = new ServoyApiTesting();
+            api.isInSampleDataMode = () => true;
+            await createComponent({ servoyApi: api, dataProviderID: null, media: 'media-image.png' });
+            const img = fixture.nativeElement.querySelector('.svy-mediafield .bts-media') as HTMLImageElement;
+            expect(img.getAttribute('src')).toBe('media-image.png');
+        });
+    });
+
     it('should prefer media over dataProviderID', async () => {
         await createComponent({ dataProviderID: 'dp-image.png', media: 'media-image.png' });
         const img = fixture.nativeElement.querySelector('.svy-mediafield .bts-media') as HTMLImageElement;

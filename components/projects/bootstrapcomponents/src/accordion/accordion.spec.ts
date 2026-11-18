@@ -169,4 +169,25 @@ describe('ServoyBootstrapAccordion', () => {
             expect(fixture.nativeElement.querySelector('.class-b')).not.toBeNull();
         });
     });
+
+    describe('designer and sample data render', () => {
+        it('keeps an accordion without tabs visible in the designer', async () => {
+            const api: any = new ServoyApiTesting();
+            api.isInDesigner = () => true;
+            await createComponent({ servoyApi: api, tabs: [] });
+            expect(component.getNativeElement().style.display).toBe('block');
+        });
+
+        it('keeps an accordion without tabs visible in the sample data render', async () => {
+            const api: any = new ServoyApiTesting();
+            api.isInSampleDataMode = () => true;
+            await createComponent({ servoyApi: api, tabs: [] });
+            expect(component.getNativeElement().style.display).toBe('block');
+        });
+
+        it('does not force the display at runtime', async () => {
+            await createComponent({ servoyApi: new ServoyApiTesting(), tabs: [] });
+            expect(component.getNativeElement().style.display).not.toBe('block');
+        });
+    });
 });

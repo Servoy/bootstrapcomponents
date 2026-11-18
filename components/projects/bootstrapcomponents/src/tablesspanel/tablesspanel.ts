@@ -2,6 +2,7 @@ import { Component, TemplateRef, SimpleChanges, ChangeDetectionStrategy, input, 
 import { ServoyPublicService, ServoyPublicModule } from '@servoy/public';
 import { ServoyBootstrapBaseComponent } from '../bts_basecomp';
 import { NgStyle, NgTemplateOutlet } from '@angular/common';
+import { isInDesignerOrSampleData } from '../sampledata';
 
 @Component({
     selector: 'bootstrapcomponents-tablesspanel',
@@ -63,7 +64,7 @@ export class ServoyBootstrapTablesspanel extends ServoyBootstrapBaseComponent<HT
 
     svyOnInit(): void {
         super.svyOnInit();
-        if (this.servoyApi().isInDesigner() && !this.containedForm()) {
+        if (isInDesignerOrSampleData(this.servoyApi()) && !this.containedForm()) {
             this.getNativeElement().innerText = 'Select contained form';
         }
     }
