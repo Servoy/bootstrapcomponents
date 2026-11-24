@@ -1,6 +1,6 @@
 {
   "name": "bootstrapcomponents",
-  "version": "2024.3.8",
+  "version": "2024.3.8-pre",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
